@@ -1,0 +1,22 @@
+# Secrets
+.env
+*.key
+*-service-account*.json
+
+# Contenu récupéré potentiellement sensible
+content/raw/
+content/cleaned/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Node
+node_modules/
+
+# OS / éditeurs
+.DS_Store
+.vscode/
+*.log

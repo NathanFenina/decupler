@@ -1,0 +1,38 @@
+/* =====================================================================
+   Décupler — Design tokens (source unique de vérité)
+   Importé par theme/decupler/style.css. Ne pas dupliquer ailleurs.
+   ===================================================================== */
+
+:root {
+  /* ---- Couleurs ---- */
+  --c-bg:           #07080f;   /* fond principal (dark) */
+  --c-bg-elevated:  #0f1120;   /* cartes / surfaces surélevées */
+  --c-violet:       #7B5CFA;   /* accent primaire */
+  --c-violet-soft:  #9d86ff;   /* hover / variantes claires */
+  --c-green:        #00E5A0;   /* accent secondaire / succès / CTA */
+  --c-text:         #e8e9f2;   /* texte principal sur fond dark */
+  --c-text-muted:   #9aa0b5;   /* texte secondaire */
+  --c-border:       rgba(255,255,255,0.08);
+
+  /* ---- Typographie ---- */
+  --font-title: "Syne", system-ui, sans-serif;
+  --font-body:  "DM Sans", system-ui, sans-serif;
+
+  --fs-h1: clamp(2.4rem, 5vw, 4rem);
+  --fs-h2: clamp(1.8rem, 3.5vw, 2.6rem);
+  --fs-h3: clamp(1.3rem, 2.5vw, 1.7rem);
+  --fs-body: 1.0625rem;        /* ~17px */
+  --lh-body: 1.7;
+
+  /* ---- Espacements ---- */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 2rem;
+  --space-lg: 4rem;
+  --space-xl: 6rem;
+
+  /* ---- Layout ---- */
+  --content-width: 720px;      /* largeur de lecture (articles) */
+  --wide-width:    1200px;     /* largeur des landing pages */
+  --radius:        14px;
+}
