@@ -1,0 +1,136 @@
+silo,type,page,slug,parent,impressions,clics,position,ctr,score,volume,kd,action,in_inventory
+GEO / Référencement IA,cluster,Audit Geo,audit-geo,,766,3,13.7,0.0039,69.2,170,0,Optimiser → top 3,False
+GEO / Référencement IA,pilier,Agence GEO,agence-geo,,2723,1,42.7,0.0004,63.6,1600,0,Mettre à jour (quick win),True
+GEO / Référencement IA,pilier,Dominer les moteurs de recherche IA,dominer-les-moteurs-de-recherche-ia,,287,0,27.5,0.0,51.6,,,Mettre à jour (quick win),True
+GEO / Référencement IA,cluster,Referencement Sur Les Moteurs Ia Geo,referencement-sur-les-moteurs-ia-geo,,165,0,36.3,0.0,46.6,260,7,Mettre à jour (quick win),False
+GEO / Référencement IA,pilier,SEO & GEO Team,seo-geo-team,,141,1,25.2,0.0071,45.2,,,Mettre à jour (quick win),True
+GEO / Référencement IA,cluster,Agent Ia Seo,agent-ia-seo,,105,0,20.5,0.0,42.5,170,0,Mettre à jour (quick win),False
+GEO / Référencement IA,cluster,Reddit pour les LLMS,reddit-pour-les-llms,,180,0,43.6,0.0,41.8,,,Mettre à jour (quick win),True
+GEO / Référencement IA,cluster,Glossaire Geo,glossaire-geo,,41,0,15.4,0.0,39.0,,,Mettre à jour,False
+GEO / Référencement IA,lead magnet,Bootcamp-GEO,bootcamp-geo,,25,0,18.6,0.0,34.0,,,Mettre à jour,True
+GEO / Référencement IA,lead magnet,Matrice GAP GEO,matrice-gap-geo,,12,0,15.6,0.0,26.7,,,Mettre à jour,True
+GEO / Référencement IA,cluster,Worflow Recherche Prompt GEO,worflow-recherche-prompt-geo,,9,0,13.8,0.0,24.0,,,Mettre à jour,True
+GEO / Référencement IA,pilier,Référencement IA : Comment l'Intelligence Artificielle Révol,referencement-ia-comment-lintelligence-artificielle-revolutionne-le-seo,,0,0,,,0.0,,,Vérifier indexation / Relancer,True
+GEO / Référencement IA,cluster,LinkedIn SEO & GEO : Comment Transformer votre Profil en Sou,linkedin-seo,,0,0,,,0.0,30,0,Vérifier indexation / Relancer,True
+GEO / Référencement IA,cluster,Comment doubler votre visibilité avec l'IA et le SEO (sans j,ia-et-seo,,0,0,,,0.0,170,10,Vérifier indexation / Relancer,True
+GEO / Référencement IA,cluster,SEO ChatGPT & GEO : Ranker dans l'IA en 2026,seo-chatgpt,,0,0,,,0.0,110,22,Vérifier indexation / Relancer,True
+GEO / Référencement IA,cluster,Consultant Generative Engine Optimization : Optimisez votre,consultant-geo-optimisation-moteurs-ia,,0,0,,,0.0,,,Vérifier indexation / Relancer,True
+Claude Code & Skills SEO,pilier,claude skills SEO,claude-skills-seo,,1625,26,9.5,0.016,80.3,,,Optimiser → top 3,True
+Claude Code & Skills SEO,cluster,Installer MCP Data For SEO sur ChatGPT,installer-mcp-data-for-seo-sur-chatgpt,,614,8,9.9,0.013,69.7,40,,Optimiser → top 3,True
+Claude Code & Skills SEO,pilier,SEO AI Systems,seo-ai-systems,,243,6,10.9,0.0247,57.3,10,,Optimiser → top 3,True
+Claude Code & Skills SEO,lead magnet,Claude Skills Repo GITHUB,claude-skills-repo-github,,142,5,9.1,0.0352,53.9,,,Optimiser → top 3,True
+Claude Code & Skills SEO,cluster,claude code seo os,claude-code-seo-os,,5,0,18.4,0.0,18.7,,,Mettre à jour,True
+Claude Code & Skills SEO,cluster,openclawseo,openclawseo,,0,0,,,0.0,,,Vérifier indexation / Relancer,True
+Claude Code & Skills SEO,cluster,MCP Agent : Le Guide Complet pour Comprendre et Utiliser cet,mcp-agent-model-context-protocol-guide,,0,0,,,0.0,,,Vérifier indexation / Relancer,True
+Claude Code & Skills SEO,cluster,Wordpress MCP Plugin,wordpress-mcp-plugin,,0,0,,,0.0,10,,Vérifier indexation / Relancer,True
+Claude Code & Skills SEO,cluster,Audit GEO avec Claude Code,audit-geo-claude-code,,0,0,,,0.0,,,Vérifier indexation / Relancer,True
+Fondamentaux SEO,cluster,Structure des pages web : optimiser SEO et expérience utilis,structure-des-pages,,64,0,7.2,0.0,45.3,,,Optimiser → top 3,True
+Fondamentaux SEO,cluster,Maillage Interne WordPress,maillage-interne-wordpress,,129,0,21.8,0.0,44.4,50,0,Mettre à jour (quick win),True
+Fondamentaux SEO,cluster,Rédaction Web SEO en 2026 : Pourquoi les Anciennes Règles ne,redaction-web,,8,0,16.6,0.0,22.9,,,Mettre à jour,True
+Fondamentaux SEO,cluster,Augmenter sa Visibilité Web en 2026 : La Stratégie Multi-Can,augmenter-visibilite-web,,1,0,76.0,0.0,5.6,10,2,Mettre à jour,True
+Fondamentaux SEO,cluster,SEA vs SEO : Pourquoi le Référencement Naturel est plus Rent,sea-vs-seo,,0,0,,,0.0,320,0,Vérifier indexation / Relancer,True
+Fondamentaux SEO,cluster,Migration SEO : Réussir la migration de votre site web,migration-seo,,0,0,,,0.0,170,1,Vérifier indexation / Relancer,True
+Fondamentaux SEO,cluster,Faire un audit SEO complet : Guide débutant avec checklist,faire-un-audit-seo,,0,0,,,0.0,70,27,Vérifier indexation / Relancer,True
+Fondamentaux SEO,cluster,Comment faire des backlinks efficacement : 7 stratégies épro,strategie-de-backlinks,,0,0,,,0.0,,,Vérifier indexation / Relancer,True
+Fondamentaux SEO,cluster,Visibilité en ligne : Transformez votre présence digitale en,visibilite-en-ligne,,0,0,,,0.0,,,Vérifier indexation / Relancer,True
+Fondamentaux SEO,cluster,UX et SEO : Comment Optimiser Simultanément Expérience Utili,ux-et-seo,,0,0,,,0.0,90,0,Vérifier indexation / Relancer,True
+Fondamentaux SEO,cluster,"Architecture de site web : comment optimiser structure, craw",architecture-de-site,,0,0,,,0.0,320,45,Vérifier indexation / Relancer,True
+Outils & Data SEO,lead magnet,Guide Complet Connaitre Le Volume De Recherche Dun Mot Cle,guide-complet-connaitre-le-volume-de-recherche-dun-mot-cle,,9473,1,36.0,0.0001,83.5,,,Mettre à jour (quick win),False
+Outils & Data SEO,lead magnet,Guide Pratique Comment Rediger Une Balise Meta Title Imbattable,guide-pratique-comment-rediger-une-balise-meta-title-imbattable,,327,0,41.3,0.0,46.5,,,Mettre à jour (quick win),False
+Outils & Data SEO,cluster,Crawler Seo,crawler-seo,,39,0,30.3,0.0,33.6,,,Mettre à jour,False
+Outils & Data SEO,cluster,Automatisation Balises Meta : du Code-First au Programmatic,automatisation-balises-meta,,0,0,,,0.0,,,Vérifier indexation / Relancer,True
+Outils & Data SEO,cluster,"L'analyse des logs : méthodes, outils et bonnes pratiques po",analyse-des-logs,,0,0,,,0.0,,,Vérifier indexation / Relancer,True
+SEO Local & GMB,pilier,SEO Local,seo-local,,114,0,43.0,0.0,38.1,140,0,Mettre à jour (quick win),True
+SEO Local & GMB,cluster,100 citations locales,citations-locales,,23,0,10.7,0.0,33.1,,,Mettre à jour,True
+SEO Local & GMB,cluster,Fiche GMB,fiche-gmb,,32,0,23.8,0.0,31.9,,,Mettre à jour,True
+SEO Vertical,cluster,SEO e-commerce,seo-e-commerce,,383,0,35.2,0.0,54.3,590,35,Mettre à jour (quick win),True
+SEO Vertical,cluster,creer-app-ecommerce,creer-app-ecommerce,,12,0,36.7,0.0,23.4,,,Mettre à jour,True
+SEO Vertical,cluster,SEO SaaS,seo-saas,,0,0,,,0.0,40,46,Vérifier indexation / Relancer,True
+SEO Vertical,lead magnet,Webinaire-ecommerce-warsaw,webinaire-ecommerce-warsaw,,0,0,,,0.0,,,Vérifier indexation / Relancer,True
+SEO Vertical,cluster,Transformer une Vidéo en Texte Gratuit : L'Outil IA qui Tran,transformer-une-video-en-texte-gratuit-loutil-ia-qui-transcrit-en-5-minutes,,0,0,,,0.0,,,Vérifier indexation / Relancer,True
+SEO Vertical,cluster,SEO International : Conquérir les Marchés Mondiaux,seo-international,,0,0,,,0.0,480,0,Vérifier indexation / Relancer,True
+Offre / Conversion,offre,(Home),(home),,4805,392,6.2,0.0816,92.0,480,0,Optimiser → top 3,False
+Offre / Conversion,offre,Agence SEO,agence-seo,,1201,2,41.5,0.0017,57.0,720,0,Mettre à jour (quick win),True
+Offre / Conversion,offre,Accompagnement SEO,accompagnement-seo,,674,0,53.3,0.0,52.3,1000,6,Mettre à jour (quick win),True
+Offre / Conversion,offre,A Propos,a-propos,,96,1,9.4,0.0104,49.7,3600,0,Optimiser → top 3,False
+Offre / Conversion,lead magnet,Bootcamp Seo,bootcamp-seo,,88,0,9.1,0.0,48.7,50,0,Optimiser → top 3,False
+Offre / Conversion,offre,Application Decupler,app,,63,2,9.3,0.0317,45.2,480,0,Optimiser → top 3,True
+Offre / Conversion,offre,Etude De Cas Seo Decathlon,etude-de-cas-seo-decathlon,,54,0,10.9,0.0,41.8,10,,Mettre à jour,False
+Offre / Conversion,lead magnet,Guide Site IA : Créer un site Premium en 24h,guide-site-ia-creer-un-site-premium-en-24h,,34,0,15.9,0.0,37.1,50,0,Mettre à jour,True
+Offre / Conversion,offre,Cas Clients,cas-clients,,54,4,22.6,0.0741,36.5,,,Mettre à jour,False
+Offre / Conversion,offre,Etude De Cas Seo Double Trade,etude-de-cas-seo-double-trade,,52,1,29.2,0.0192,36.2,,,Mettre à jour,False
+Offre / Conversion,offre,Etude De Cas Seo Reux Travaux,etude-de-cas-seo-reux-travaux,,87,0,42.5,0.0,36.0,,,Mettre à jour,False
+Offre / Conversion,offre,Etude De Cas Seo Atoo Energie,etude-de-cas-seo-atoo-energie,,29,0,18.9,0.0,35.5,,,Mettre à jour,False
+Offre / Conversion,offre,Service Search Everywhere,search-everywhere,,40,0,34.7,0.0,33.9,,,Mettre à jour,True
+Offre / Conversion,lead magnet,Newsletter,newsletter,,7,0,2.0,0.0,18.1,,,Garder / Maintenir,True
+Offre / Conversion,lead magnet,Webinaire-Mars26,webinaire-mars26,,0,0,,,0.0,,,Vérifier indexation / Relancer,True
+Offre / Conversion,offre,Decupler,decupler-2,,0,0,,,0.0,480,0,Vérifier indexation / Relancer,True
+Offre / Conversion,lead magnet,Webinaire-Avril-26,webinaire-avril-26,,0,0,,,0.0,,,Vérifier indexation / Relancer,True
+Système / Légal,système,Blog,blog,,145,11,7.5,0.0759,54.1,,,Ignorer,True
+Système / Légal,système,Mon compte,mon-compte,,0,0,,,0.0,,,Ignorer,True
+Système / Légal,système,Validation de la commande,commander,,0,0,,,0.0,,,Ignorer,True
+Système / Légal,système,Politique de conditionnalité,politique-de-conditionnalite,,0,0,,,0.0,,,Ignorer,True
+Système / Légal,système,Panier,panier,,0,0,,,0.0,,,Ignorer,True
+Système / Légal,système,Boutique,boutique,,0,0,,,0.0,,,Ignorer,True
+Système / Légal,système,Confirmation de RDV,confirmation-de-rdv,,0,0,,,0.0,,,Ignorer,True
+Système / Légal,système,Home-old-2,home-old-2,,0,0,,,0.0,,,Désindexer,True
+Hack — à supprimer,hack,Obzor Foreks Brokera Forexpf 3,obzor-foreks-brokera-forexpf-3,,3247,0,4.5,0.0,87.8,,,Désindexer / Supprimer,False
+Hack — à supprimer,hack,Peppermill Casino Avis Et Bonus 2026,peppermill-casino-avis-et-bonus-2026,,141,0,8.6,0.0,53.8,,,Désindexer / Supprimer,False
+Hack — à supprimer,hack,O%C3%B9 Jouer Roulette En Ligne En France,o%C3%B9-jouer-roulette-en-ligne-en-france,,37,0,6.2,0.0,39.5,,,Désindexer / Supprimer,False
+Hack — à supprimer,hack,Meilleur Bonus Casino Encaissable Sans D%C3%A9P%C3%B4T,meilleur-bonus-casino-encaissable-sans-d%C3%A9p%C3%B4t,,17,1,7.9,0.0588,31.4,,,Désindexer / Supprimer,False
+Hack — à supprimer,hack,Casino En Ligne De D%C3%A9P%C3%B4T Avec Maestro,casino-en-ligne-de-d%C3%A9p%C3%B4t-avec-maestro,,15,0,5.7,0.0,30.1,,,Désindexer / Supprimer,False
+Hack — à supprimer,hack,Madnix Casino Code Promo Bonus 2026,madnix-casino-code-promo-bonus-2026,,13,2,4.2,0.1538,28.7,,,Désindexer / Supprimer,False
+Hack — à supprimer,hack,Test Nouveau Casino En Ligne,test-nouveau-casino-en-ligne,,11,0,15.8,0.0,25.9,,,Désindexer / Supprimer,False
+Hack — à supprimer,hack,Casino En Ligne D%C3%A9P%C3%B4T Bancontact,casino-en-ligne-d%C3%A9p%C3%B4t-bancontact,,16,0,3.6,0.0,24.6,,,Désindexer / Supprimer,False
+Hack — à supprimer,hack,Bitcasino Casino Avis Et Bonus 2026,bitcasino-casino-avis-et-bonus-2026,,9,0,10.1,0.0,24.0,,,Désindexer / Supprimer,False
+Hack — à supprimer,hack,Casinozer Casino Avis Et Bonus 2026,casinozer-casino-avis-et-bonus-2026,,8,0,10.0,0.0,23.9,,,Désindexer / Supprimer,False
+Hack — à supprimer,hack,Casinos Avec Du D%C3%A9P%C3%B4T De 1 Euro Et 10 Euros Bonus,casinos-avec-du-d%C3%A9p%C3%B4t-de-1-euro-et-10-euros-bonus,,8,0,11.2,0.0,22.9,,,Désindexer / Supprimer,False
+Hack — à supprimer,hack,Arlequin Casino Free Spins Sans Depot,arlequin-casino-free-spins-sans-depot,,6,0,15.3,0.0,20.3,,,Désindexer / Supprimer,False
+Hack — à supprimer,hack,Casino De Jeu Nice,casino-de-jeu-nice,,4,0,8.8,0.0,17.5,,,Désindexer / Supprimer,False
+Hack — à supprimer,hack,Meilleurs Jeux De Casino En Ligne Pour Gagner De L Argent,meilleurs-jeux-de-casino-en-ligne-pour-gagner-de-l-argent,,4,0,5.8,0.0,17.5,,,Désindexer / Supprimer,False
+Hack — à supprimer,hack,Casino Offre,casino-offre,,6,1,3.5,0.1667,16.9,,,Désindexer / Supprimer,False
+Hack — à supprimer,hack,Scratch Mania Casino Bonus Sans Depot 2026,scratch-mania-casino-bonus-sans-depot-2026,,4,0,18.2,0.0,16.8,,,Désindexer / Supprimer,False
+Hack — à supprimer,hack,Kings Chance Casino Avis Et Bonus 2026,kings-chance-casino-avis-et-bonus-2026,,4,0,10.2,0.0,16.8,,,Désindexer / Supprimer,False
+Hack — à supprimer,hack,Jeton Casino Valeur,jeton-casino-valeur,,4,0,10.5,0.0,16.8,,,Désindexer / Supprimer,False
+Hack — à supprimer,hack,Meilleur Casino En Ligne Avec Le Plus Gros Bonus Belgique,meilleur-casino-en-ligne-avec-le-plus-gros-bonus-belgique,,5,0,25.2,0.0,16.3,,,Désindexer / Supprimer,False
+Hack — à supprimer,hack,Thor Casino Avis Et Bonus 2026,thor-casino-avis-et-bonus-2026,,3,1,4.3,0.3333,15.1,,,Désindexer / Supprimer,False
+Hack — à supprimer,hack,Flush Casino Avis Et Bonus 2026,flush-casino-avis-et-bonus-2026,,4,0,36.2,0.0,14.7,,,Désindexer / Supprimer,False
+Hack — à supprimer,hack,Jouer Au Casino En Ligne Belge,jouer-au-casino-en-ligne-belge,,3,0,34.3,0.0,12.6,,,Désindexer / Supprimer,False
+Hack — à supprimer,hack,Extra Casino Bonus Sans Depot 2026,extra-casino-bonus-sans-depot-2026,,2,0,7.5,0.0,11.9,,,Désindexer / Supprimer,False
+Hack — à supprimer,hack,La Riviera Casino Avis Et Bonus 2026,la-riviera-casino-avis-et-bonus-2026,,2,0,8.5,0.0,11.9,,,Désindexer / Supprimer,False
+Hack — à supprimer,hack,Jouer Casino En Ligne Sur Tablette Android,jouer-casino-en-ligne-sur-tablette-android,,2,0,15.5,0.0,11.5,,,Désindexer / Supprimer,False
+Hack — à supprimer,hack,Casino D%C3%A9P%C3%B4T 20 Euros France,casino-d%C3%A9p%C3%B4t-20-euros-france,,2,0,10.5,0.0,11.5,,,Désindexer / Supprimer,False
+Hack — à supprimer,hack,Pas De Bonus De Casino De D%C3%A9P%C3%B4T Faible Pari,pas-de-bonus-de-casino-de-d%C3%A9p%C3%B4t-faible-pari,,2,0,38.0,0.0,10.0,,,Désindexer / Supprimer,False
+Hack — à supprimer,hack,Vavada Casino Lichnyi Kabinet,vavada-casino-lichnyi-kabinet,,2,0,25.0,0.0,10.0,,,Désindexer / Supprimer,False
+Hack — à supprimer,hack,Spinia Casino Avis Et Bonus 2026,spinia-casino-avis-et-bonus-2026,,2,0,3.0,0.0,9.5,,,Désindexer / Supprimer,False
+Hack — à supprimer,hack,Meilleur Bonus D Inscription De Casino R%C3%A9El,meilleur-bonus-d-inscription-de-casino-r%C3%A9el,,1,0,6.0,0.0,7.5,,,Désindexer / Supprimer,False
+Hack — à supprimer,hack,Casino Mastercard D%C3%A9P%C3%B4T 1 Euros,casino-mastercard-d%C3%A9p%C3%B4t-1-euros,,1,0,10.0,0.0,7.5,,,Désindexer / Supprimer,False
+Hack — à supprimer,hack,Top 10 Casino Sans Licence,top-10-casino-sans-licence,,1,0,7.0,0.0,7.5,,,Désindexer / Supprimer,False
+Hack — à supprimer,hack,Dancing Drums Slots Gratuits En Ligne,dancing-drums-slots-gratuits-en-ligne,,1,0,8.0,0.0,7.5,,,Désindexer / Supprimer,False
+Hack — à supprimer,hack,Casino En Ligne Vpn,casino-en-ligne-vpn,,1,0,5.0,0.0,7.5,,,Désindexer / Supprimer,False
+Hack — à supprimer,hack,Nouveau Casino En Ligne Avec Gros Jackpots,nouveau-casino-en-ligne-avec-gros-jackpots,,1,1,5.0,1.0,7.5,,,Désindexer / Supprimer,False
+Hack — à supprimer,hack,Casino En Ligne D%C3%A9P%C3%B4T 10 Euro Neteller,casino-en-ligne-d%C3%A9p%C3%B4t-10-euro-neteller,,1,0,5.0,0.0,7.5,,,Désindexer / Supprimer,False
+Hack — à supprimer,hack,Slots Avec Sticky Wild En Ligne,slots-avec-sticky-wild-en-ligne,,1,0,4.0,0.0,7.5,,,Désindexer / Supprimer,False
+Hack — à supprimer,hack,7Signs Casino Avis Et Bonus 2026,7signs-casino-avis-et-bonus-2026,,1,0,5.0,0.0,7.5,,,Désindexer / Supprimer,False
+Hack — à supprimer,hack,Vasy Casino Bonus Sans Depot 2026,vasy-casino-bonus-sans-depot-2026,,1,0,7.0,0.0,7.5,,,Désindexer / Supprimer,False
+Hack — à supprimer,hack,Casino Argent R%C3%A9El Paypal,casino-argent-r%C3%A9el-paypal,,1,0,6.0,0.0,7.5,,,Désindexer / Supprimer,False
+Hack — à supprimer,hack,Casino D%C3%A9P%C3%B4T 15 Euros Belgique,casino-d%C3%A9p%C3%B4t-15-euros-belgique,,1,0,8.0,0.0,7.5,,,Désindexer / Supprimer,False
+Hack — à supprimer,hack,Casino En Ligne D%C3%A9P%C3%B4T Minimum 5 Euros,casino-en-ligne-d%C3%A9p%C3%B4t-minimum-5-euros,,1,0,10.0,0.0,7.5,,,Désindexer / Supprimer,False
+Hack — à supprimer,hack,Quel Casino En Ligne Fiable,quel-casino-en-ligne-fiable,,1,1,11.0,1.0,7.2,,,Désindexer / Supprimer,False
+Hack — à supprimer,hack,Myjackpot Casino Avis Et Bonus 2026,myjackpot-casino-avis-et-bonus-2026,,1,0,15.0,0.0,7.2,,,Désindexer / Supprimer,False
+Hack — à supprimer,hack,Bonus 400 Casino En Ligne,bonus-400-casino-en-ligne,,1,0,11.0,0.0,7.2,,,Désindexer / Supprimer,False
+Hack — à supprimer,hack,Casino Visa Belgique,casino-visa-belgique,,1,0,12.0,0.0,7.2,,,Désindexer / Supprimer,False
+Hack — à supprimer,hack,Casino En Ligne Retrait Bancontact,casino-en-ligne-retrait-bancontact,,1,0,32.0,0.0,6.3,,,Désindexer / Supprimer,False
+Hack — à supprimer,hack,Casino Mobile Bruxelles,casino-mobile-bruxelles,,1,0,32.0,0.0,6.3,,,Désindexer / Supprimer,False
+Hack — à supprimer,hack,Casino En Ligne D%C3%A9P%C3%B4T Litecoin,casino-en-ligne-d%C3%A9p%C3%B4t-litecoin,,1,0,34.0,0.0,6.3,,,Désindexer / Supprimer,False
+Hack — à supprimer,hack,Casino En Ligne D%C3%A9P%C3%B4T 20 Euro Paypal,casino-en-ligne-d%C3%A9p%C3%B4t-20-euro-paypal,,1,0,24.0,0.0,6.3,,,Désindexer / Supprimer,False
+Hack — à supprimer,hack,Casino En Ligne Acceptant Maestro,casino-en-ligne-acceptant-maestro,,1,0,28.0,0.0,6.3,,,Désindexer / Supprimer,False
+Hack — à supprimer,hack,Casino Cardano 10 Euro,casino-cardano-10-euro,,1,0,2.0,0.0,6.0,,,Désindexer / Supprimer,False
+Hack — à supprimer,hack,Jack21 Casino Avis Et Bonus 2026,jack21-casino-avis-et-bonus-2026,,1,0,3.0,0.0,6.0,,,Désindexer / Supprimer,False
+Hack — à supprimer,hack,Quel Est Le Meilleur Jeux De Casino En Ligne,quel-est-le-meilleur-jeux-de-casino-en-ligne,,1,0,67.0,0.0,5.6,,,Désindexer / Supprimer,False
+Hack — à supprimer,hack,Big Bass Secrets Of The Golden Lake Slot Schritte Und Methoden Fur Deutsche Spieler,big-bass-secrets-of-the-golden-lake-slot-schritte-und-methoden-fur-deutsche-spieler,,1,0,73.0,0.0,5.6,,,Désindexer / Supprimer,False
+Hack — à supprimer,hack,Experiencia Y Analisis De Bison Casino Online 2,experiencia-y-analisis-de-bison-casino-online-2,,1,0,76.0,0.0,5.6,,,Désindexer / Supprimer,False
+Hack — à supprimer,hack,Casino Paysafecard Canada,casino-paysafecard-canada,,1,0,48.0,0.0,5.6,,,Désindexer / Supprimer,False
+Hack — à supprimer,hack,Meilleur Casino Cashlib,meilleur-casino-cashlib,,1,0,49.0,0.0,5.6,,,Désindexer / Supprimer,False
+Hack — à supprimer,hack,Casino Neosurf Lille,casino-neosurf-lille,,1,0,65.0,0.0,5.6,,,Désindexer / Supprimer,False
+Hack — à supprimer,hack,Bonus Quotidien Casino,bonus-quotidien-casino,,1,0,43.0,0.0,5.6,,,Désindexer / Supprimer,False

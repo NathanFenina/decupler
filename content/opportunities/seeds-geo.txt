@@ -1,0 +1,52 @@
+# Seeds GEO — mots-clés graines pour la découverte d'opportunités (marché FR)
+# Une graine par ligne. Lignes vides et lignes commençant par # ignorées.
+# Ces graines sont injectées dans DataForSEO (keyword_ideas / related / suggestions).
+# Objectif : couvrir le champ sémantique GEO (Generative Engine Optimization) en français.
+
+# --- Cœur GEO ---
+generative engine optimization
+GEO référencement
+GEO SEO
+optimisation pour moteurs génératifs
+référencement IA
+référencement intelligence artificielle
+SEO IA
+visibilité IA
+être visible sur les IA
+être cité par les IA
+
+# --- Moteurs / produits IA ---
+SEO ChatGPT
+référencement ChatGPT
+être cité par ChatGPT
+SEO Perplexity
+référencement Perplexity
+SEO Gemini
+référencement Google Gemini
+Google AI Overviews
+Google SGE
+AI Overviews référencement
+SEO Claude
+
+# --- Concepts adjacents ---
+answer engine optimization
+AEO référencement
+LLM SEO
+optimisation LLM
+moteur de recherche IA
+moteur de réponse IA
+recherche générative
+search generative experience
+prompt SEO
+citations IA
+
+# --- Intentions agence / business (FR) ---
+agence GEO
+agence référencement IA
+consultant GEO
+audit GEO
+stratégie GEO
+formation GEO
+prix référencement IA
+comment être référencé sur ChatGPT
+comment apparaître dans les réponses IA

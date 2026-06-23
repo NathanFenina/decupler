@@ -7,6 +7,10 @@
 content/raw/
 content/cleaned/
 
+# Cache de travail de la machine à opportunités (données brutes GSC/DataForSEO)
+content/opportunities/.cache/
+secrets/
+
 # Python
 __pycache__/
 *.pyc
