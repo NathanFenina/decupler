@@ -80,6 +80,13 @@ Lister tous les briefs en fin de rendu pour l'utilisateur/le designer.
    une fois publié.
 
 ## Garde-fous
+- ⚠️ **wpautop** : WordPress insère des `<p>`/`<br>` sur les lignes vides d'un
+  `<style>` inline et **casse le CSS au front-end** (le `raw` reste propre, mais
+  le `rendered` est corrompu → page qui ne se style pas). `build_article.py`
+  **minifie le CSS sur une ligne** et supprime les lignes vides du body pour
+  l'éviter. Ne jamais réintroduire de CSS multi-lignes dans le contenu publié.
+  Vérifier après publication : le `<style>` du `content.rendered` ne doit
+  contenir aucun `</p>`.
 - HTML propre, pas de classes Elementor. CSS uniquement via le système .lm-mcp.
 - Pas d'invention de chiffres/sources : si une stat est incertaine, la formuler
   prudemment ou la retirer.
