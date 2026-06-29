@@ -1,18 +1,22 @@
 [
   {
     "question": "Quelle différence entre un consultant SEO et un consultant GEO ?",
-    "answer": "Le consultant SEO optimise votre position dans Google. Le consultant GEO élargit ce travail aux moteurs génératifs (ChatGPT, Perplexity, AI Overviews…) pour que votre marque soit citée dans leurs réponses. Le GEO s'appuie sur le SEO : les deux sont complémentaires."
+    "answer": "Le consultant SEO optimise votre position dans Google. Le consultant GEO vous fait citer dans les réponses des moteurs génératifs (ChatGPT, Perplexity, AI Overviews…). Le GEO s'appuie sur le SEO : ils sont complémentaires, pas concurrents."
   },
   {
-    "question": "Consultant GEO, expert GEO, freelance GEO : est-ce la même chose ?",
-    "answer": "Oui, ce sont des appellations pour un même métier : un spécialiste qui rend votre marque visible dans les réponses des IA. La différence tient au statut (indépendant, salarié, agence), pas à la mission."
+    "question": "Comment un consultant GEO mesure-t-il ses résultats ?",
+    "answer": "En suivant votre taux de citation et votre part de voix moteur par moteur, sur un panel de requêtes, et leur évolution dans le temps. Sans cette mesure, impossible de piloter."
+  },
+  {
+    "question": "Faut-il optimiser différemment pour ChatGPT et Perplexity ?",
+    "answer": "Oui. ChatGPT s'appuie fortement sur des sources encyclopédiques et structurées (Wikipedia représente près de la moitié de ses citations), Perplexity privilégie les discussions (Reddit) et la fraîcheur. Seuls 11 % des sources se recoupent : la stratégie diffère par moteur."
   },
   {
     "question": "Combien coûte un consultant GEO ?",
-    "answer": "Cela dépend de l'état de votre site, de votre secteur et des objectifs. Le GEO étant adossé au SEO, la prestation recouvre souvent technique, contenu et autorité. Méfiez-vous des offres « magiques » à prix cassé."
+    "answer": "Cela dépend de l'état de votre site, de votre secteur et des objectifs. Le GEO étant adossé au SEO, la prestation couvre technique, contenu et autorité. Méfiez-vous des offres « magiques » à prix cassé."
   },
   {
-    "question": "Un consultant GEO peut-il garantir d'être cité par ChatGPT ?",
-    "answer": "Non. Aucun professionnel ne contrôle un modèle d'IA. Un bon consultant augmente vos chances d'être cité (contenu structuré, autorité, SEO solide) sans jamais promettre un résultat garanti."
+    "question": "Un consultant GEO peut-il garantir une citation par ChatGPT ?",
+    "answer": "Non. Personne ne contrôle un modèle d'IA. Un bon consultant augmente nettement vos probabilités (contenu crédible et extractible, autorité, SEO solide) sans jamais promettre un résultat garanti."
   }
 ]

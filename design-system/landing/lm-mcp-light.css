@@ -99,10 +99,11 @@ html,body{background:#f6f7fb !important}
 html,body,#page,.site,.ast-page-wrapper,#content,.site-content{background:#f6f7fb !important}
 .site-header,#masthead,header.site-header,.main-header-bar,.ast-primary-header-bar,
 .ast-above-header-wrap,.ast-below-header-wrap,.ast-sticky-active .site-header,
-.main-header-bar-wrap{
+.main-header-bar-wrap,#ast-desktop-header,.ast-main-header-wrap,.ast-above-header,
+.ast-below-header,.site-primary-header-wrap,.ast-header-bar,.ast-above-header-bar,
+.ast-primary-header-bar .ast-builder-grid-row,.ast-header-break-point .main-header-bar-wrap{
   background:#f6f7fb !important;background-color:#f6f7fb !important;
-  box-shadow:none !important;
-  border-bottom:1px solid rgba(15,23,42,.06) !important;
+  box-shadow:none !important;border-bottom:none !important;
 }
 .site-header a,.main-header-bar .menu-link,.ast-primary-header-bar .menu-link,
 .main-navigation a,.ast-header-break-point .main-header-bar .main-navigation a{color:#1e293b !important}
@@ -110,8 +111,9 @@ html,body,#page,.site,.ast-page-wrapper,#content,.site-content{background:#f6f7f
 .site-header .sub-menu,.ast-primary-header-bar .sub-menu{background:#ffffff !important;border-color:rgba(15,23,42,.08) !important}
 .site-header .sub-menu a{color:#334155 !important}
 
-/* ---- Espace sous le menu : assez pour ne pas chevaucher l'eyebrow, sans bande blanche ---- */
-.lm-mcp .hero{padding-top:48px}
+/* ---- Espace sous le menu : le header du thème est en overlay → il faut assez
+   de marge pour que l'eyebrow ne passe pas sous le menu ---- */
+.lm-mcp .hero{padding-top:96px}
 .site-content #primary,.entry-content,.site-content,#content,.ast-container{padding-top:0 !important;margin-top:0 !important}
 .ast-separate-container .ast-article-single{padding-top:0 !important}
 
