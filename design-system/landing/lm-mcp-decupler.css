@@ -1,0 +1,104 @@
+/* =====================================================================
+   .lm-mcp — skin « HOME-ALIGNED » (Décupler)
+   Aligne le rendu des pages sur la home : fond #fafafa, dégradé violet
+   #6366f1→#8b5cf6, police système, cartes blanches à ombre douce + hover,
+   titres foncés avec mot-clé en dégradé, CTA à pulse.
+   À charger APRÈS base + components + lm-mcp-light.
+   ===================================================================== */
+
+/* ---- Typo système + fond ---- */
+.lm-mcp{
+  --font-display:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Ubuntu,sans-serif;
+  --font-body:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Ubuntu,sans-serif;
+  --bg:#fafafa;--bg2:#ffffff;
+  --text:#1e293b;--text-muted:#475569;--text-dim:#64748b;
+  --violet:#6366f1;--violet-light:#8b5cf6;
+  background:#fafafa !important;color:#1e293b !important;
+  font-family:var(--font-body) !important;
+}
+html,body,#page,.site,.ast-page-wrapper,#content,.site-content{background:#fafafa !important}
+.lm-mcp::before{background-image:linear-gradient(rgba(99,102,241,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(99,102,241,.04) 1px,transparent 1px)}
+
+/* ---- Titres : foncés, gras, mot-clé en dégradé violet ---- */
+.lm-mcp .hero h1{
+  color:#1e293b !important;-webkit-text-fill-color:#1e293b;background:none;
+  font-family:var(--font-display) !important;font-weight:900 !important;letter-spacing:-.025em !important;
+}
+.lm-mcp .hero h1 em{
+  font-style:normal;
+  background:linear-gradient(135deg,#6366f1,#8b5cf6);
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+}
+.lm-mcp .section-title{
+  color:#1e293b !important;-webkit-text-fill-color:#1e293b;background:none;
+  font-weight:900 !important;letter-spacing:-.02em !important;
+}
+.lm-mcp .section-label{color:#6366f1 !important;font-weight:800}
+
+/* ---- Badge (eyebrow) ---- */
+.lm-mcp .hero-eyebrow{
+  background:rgba(99,102,241,.06) !important;border:1px solid rgba(99,102,241,.15) !important;
+  color:#6366f1 !important;box-shadow:none;font-family:var(--font-body);letter-spacing:normal;text-transform:none;font-weight:600;
+}
+.lm-mcp .hero-eyebrow::before{color:#8b5cf6}
+
+/* ---- Cartes blanches, ombre douce, hover qui soulève + glow violet ---- */
+.lm-mcp .stack-card,.lm-mcp .aa-card,.lm-mcp .statband .s,
+.lm-mcp .offer-card,.lm-mcp .faq details,.lm-mcp .hero-author{
+  background:#ffffff !important;border:1px solid rgba(15,23,42,.06) !important;
+  border-radius:16px !important;box-shadow:0 2px 12px rgba(0,0,0,.06) !important;
+  backdrop-filter:none;transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease;
+}
+.lm-mcp .stack-card:hover,.lm-mcp .aa-card:hover,
+.lm-mcp .statband .s:hover,.lm-mcp .offer-card:hover{
+  transform:translateY(-6px) !important;
+  box-shadow:0 16px 40px rgba(99,102,241,.14) !important;border-color:rgba(99,102,241,.2) !important;
+}
+.lm-mcp .aa-card.before{background:#fff5f5 !important;border-color:rgba(239,68,68,.18) !important}
+.lm-mcp .aa-card.after{background:#f0fdf8 !important;border-color:rgba(16,185,129,.22) !important}
+
+/* ---- Statband : chiffres en dégradé violet (métriques façon home) ---- */
+.lm-mcp .statband .s b{
+  background:linear-gradient(135deg,#6366f1,#8b5cf6);
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  filter:none;font-weight:900;font-family:var(--font-display);
+}
+.lm-mcp .statband .s span{color:#64748b !important}
+
+/* ---- Étapes : numéro en dégradé violet ---- */
+.lm-mcp .step-num{
+  background:linear-gradient(135deg,rgba(99,102,241,.12),rgba(139,92,246,.12)) !important;
+  border:1px solid rgba(99,102,241,.2) !important;color:#6366f1 !important;box-shadow:none !important;
+}
+.lm-mcp .step-content h3{color:#1e293b !important;font-weight:800}
+.lm-mcp .step{border-bottom-color:rgba(15,23,42,.07)}
+
+/* ---- Offer-card : léger dégradé + bordure violette (pas d'anim) ---- */
+.lm-mcp .offer-card{background:linear-gradient(135deg,#ffffff,rgba(99,102,241,.04)) !important;border-color:rgba(99,102,241,.15) !important}
+.lm-mcp .offer-card::after{display:none}
+.lm-mcp .offer-tag{background:rgba(99,102,241,.1) !important;color:#6366f1 !important;border:1px solid rgba(99,102,241,.2)}
+
+/* ---- Checklist / quote / FAQ ---- */
+.lm-mcp .checklist li{color:#475569 !important}
+.lm-mcp .checklist li strong{color:#1e293b}
+.lm-mcp .checklist li::before{color:#10b981 !important}
+.lm-mcp .faq summary{color:#1e293b !important}
+.lm-mcp .faq summary::before{color:#6366f1 !important}
+.lm-mcp .faq p{color:#475569 !important}
+
+/* ---- CTA : dégradé violet + pulse (façon home) ---- */
+.lm-mcp .cta-box{background:linear-gradient(135deg,#ffffff,#f2f2fe) !important;border:1px solid rgba(99,102,241,.18) !important;box-shadow:0 24px 60px rgba(99,102,241,.12) !important}
+.lm-mcp .cta-box::after{display:none}
+.lm-mcp .cta-box h2{color:#1e293b !important;font-weight:900}
+.lm-mcp .cta-box p{color:#64748b !important}
+.lm-mcp .cta-btn{background:linear-gradient(135deg,#6366f1,#8b5cf6) !important;box-shadow:0 4px 16px rgba(99,102,241,.3) !important}
+
+/* ---- Bandeau de métriques sous le hero (façon “floating cards”) ---- */
+.lm-mcp .metric-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:36px}
+.lm-mcp .metric-card{background:#fff;border:1px solid rgba(15,23,42,.06);border-radius:14px;padding:16px 18px;display:flex;align-items:center;gap:12px;box-shadow:0 2px 12px rgba(0,0,0,.06);transition:transform .3s,box-shadow .3s}
+.lm-mcp .metric-card:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(99,102,241,.14)}
+.lm-mcp .metric-ic{width:38px;height:38px;border-radius:10px;background:rgba(99,102,241,.08);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1.1rem}
+.lm-mcp .metric-txt{display:flex;flex-direction:column;gap:2px;text-align:left}
+.lm-mcp .metric-label{font-size:.62rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#94a3b8}
+.lm-mcp .metric-val{font-size:1.15rem;font-weight:900;color:#0f172a;line-height:1;font-family:var(--font-display)}
+@media(max-width:680px){.lm-mcp .metric-row{grid-template-columns:repeat(2,1fr)}}

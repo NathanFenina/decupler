@@ -62,14 +62,19 @@ Lister tous les briefs en fin de rendu pour l'utilisateur/le designer.
 3. **Rédiger le body** `.lm-mcp` dans `content/articles/<slug>.body.html`
    (intro citable, encadrés, tableau/statband, steps, maillage interne réel).
 4. **FAQ** : `content/articles/<slug>.faq.json` = liste de `{question, answer}`.
-5. **Assembler** :
+5. **Assembler** (skin « home-aligned » = look de decupler.com : fond #fafafa,
+   police système, titres foncés + mot-clé en dégradé violet, cartes blanches) :
    ```bash
    python3 scripts/build_article.py \
        --body content/articles/<slug>.body.html \
        --title "<title SEO ≤60c>" --description "<meta ≤155c>" \
        --faq content/articles/<slug>.faq.json \
+       --extra-css design-system/landing/lm-mcp-light.css design-system/landing/lm-mcp-decupler.css \
+       --img "__IMG_1__=<url>" \
        --out content/articles/<slug>.html
    ```
+   Ajouter dans le hero (après `.hero-meta`) un bandeau `<div class="metric-row">`
+   de 4 `.metric-card` (preuves Décupler : 📈 +376 % · 🤖 6 agents IA · ⭐ 4,9/5 · ⚡ 90 jours).
 6. **Relire** puis **publier en brouillon** (l'utilisateur valide dans l'admin) :
    ```bash
    python3 scripts/wp_publish.py --type post --title "<title>" --slug <slug> \

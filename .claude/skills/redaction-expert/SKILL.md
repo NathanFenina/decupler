@@ -73,7 +73,15 @@ retours d'expérience (E-E-A-T).
   donnée est incertaine, la formuler prudemment ou la retirer.
 
 ### 6. PRODUCTION (réutilise le pipeline)
-- Format **.lm-mcp clair** : `build_article.py --extra-css design-system/landing/lm-mcp-light.css`.
+- Format **.lm-mcp — skin « home-aligned »** (aligné sur la home decupler.com) :
+  `build_article.py --extra-css design-system/landing/lm-mcp-light.css design-system/landing/lm-mcp-decupler.css`
+  (charger les DEUX, dans cet ordre : `light` = clair + fixes thème, `decupler`
+  = look home : fond #fafafa, police système, titres foncés + mot-clé en dégradé
+  violet #6366f1→#8b5cf6, cartes blanches à ombre douce, CTA pulse).
+- **Bandeau de métriques** sous le hero (façon home) — insérer dans le hero,
+  après `.hero-meta`, un `<div class="metric-row">` de 4 `.metric-card`
+  (`.metric-ic` emoji + `.metric-label` + `.metric-val`). Preuves Décupler par
+  défaut : 📈 +376 % trafic · 🤖 6 agents IA · ⭐ 4,9/5 · ⚡ 90 jours.
 - **Images** : générer (imagegen) puis `wp_upload_media.py` (compression auto) ;
   width/height + `loading="lazy"` ; emplacements briefés si pas de génération.
 - **Maillage interne** réel depuis la carte / Notion (pilier + clusters voisins).
