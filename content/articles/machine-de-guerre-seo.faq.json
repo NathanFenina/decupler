@@ -1,0 +1,18 @@
+[
+  {
+    "question": "Le contenu IA est-il pénalisé par Google ?",
+    "answer": "Non. Google pénalise le contenu sans valeur, quelle qu'en soit l'origine. Ses consignes récompensent l'utilité, l'expérience et la fiabilité — pas le mode de production. La machine est conçue autour de ces critères : sources, données, structure, intention."
+  },
+  {
+    "question": "Est-ce vraiment 100 % automatique ?",
+    "answer": "Le pipeline tourne seul à chaque étape. Vous gardez la main sur la stratégie et la validation finale : par défaut, tout sort en brouillon avant publication. Vous pouvez passer en full-auto quand vous avez confiance."
+  },
+  {
+    "question": "Ça marche sur autre chose que WordPress ?",
+    "answer": "Oui. La publication passe par MCP — WordPress aujourd'hui, la même logique pour les autres CMS."
+  },
+  {
+    "question": "Combien de temps avant de voir des résultats ?",
+    "answer": "Le SEO reste un jeu de fond. La différence, c'est le rythme : la machine publie et maille en continu, donc l'actif se construit bien plus vite qu'avec une chaîne humaine."
+  }
+]

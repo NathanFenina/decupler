@@ -1,0 +1,38 @@
+/* =====================================================================
+   Lead magnet — popup email gate → Substack (skin clair Décupler)
+   Mécanisme : form POST vers Substack dans un iframe caché, mémorisation
+   de l'abonnement (localStorage + cookie), léger flou du contenu gaté.
+   Classes globales (la popup est un overlay hors flux .lm-mcp).
+   ===================================================================== */
+
+/* Flou du contenu tant que la popup est active (effet « données cachées ») */
+body.lmg-gated .lm-mcp{filter:blur(5px);transition:filter .4s ease;pointer-events:none;user-select:none}
+
+.ai-popup-overlay{
+  position:fixed;inset:0;width:100%;height:100%;
+  background:rgba(15,23,42,.55);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  z-index:99999;display:none;justify-content:center;align-items:center;
+  padding:1.5rem;opacity:0;transition:opacity .4s ease;
+}
+.ai-popup-overlay.active{display:flex;opacity:1}
+
+.ai-popup-card{
+  background:#ffffff;width:100%;max-width:460px;padding:2.75rem 2.5rem;
+  border-radius:22px;text-align:center;
+  box-shadow:0 25px 60px -12px rgba(15,23,42,.35);border:1px solid rgba(99,102,241,.12);
+  transform:scale(.96);transition:transform .4s ease;position:relative;
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+}
+.ai-popup-overlay.active .ai-popup-card{transform:scale(1)}
+
+.ai-popup-icon{font-size:3rem;margin-bottom:.75rem;display:block}
+.ai-popup-title{font-size:1.6rem;font-weight:900;color:#1e293b;margin:0 0 .5rem;line-height:1.2;letter-spacing:-.02em}
+.ai-popup-desc{font-size:1rem;color:#64748b;margin:0 0 1.75rem;line-height:1.6}
+.ai-popup-input{width:100%;padding:1rem 1.25rem;border:2px solid #e2e8f0;border-radius:12px;font-size:1rem;margin-bottom:1rem;font-family:inherit;transition:border-color .3s}
+.ai-popup-input:focus{outline:none;border-color:#6366f1}
+.ai-popup-submit{background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;border:none;padding:1rem 2rem;border-radius:12px;font-size:1.05rem;font-weight:700;cursor:pointer;width:100%;transition:transform .2s,box-shadow .2s;box-shadow:0 10px 24px -6px rgba(99,102,241,.45)}
+.ai-popup-submit:hover{transform:translateY(-2px);box-shadow:0 16px 30px -6px rgba(99,102,241,.55)}
+.ai-popup-footer{font-size:.8rem;color:#94a3b8;margin-top:1rem}
+.ai-success-message{display:none;color:#10b981;font-weight:700;font-size:1.15rem;margin-top:1rem}
+.ai-popup-close{position:absolute;top:14px;right:16px;background:none;border:none;font-size:1.4rem;color:#cbd5e1;cursor:pointer;line-height:1}
+.ai-popup-close:hover{color:#64748b}

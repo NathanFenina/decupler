@@ -45,6 +45,40 @@ FONTS = ('<link href="https://fonts.googleapis.com/css2?'
 
 # Script de sécurité : masque le titre du thème (cf. mémoire — le CSS seul ne
 # suffit pas toujours sous Astra).
+# --- Lead magnet : popup email gate → Substack (form POST dans un iframe caché) ---
+GATE_HTML = (
+    '<div id="ai-content-gate" class="ai-popup-overlay"><div class="ai-popup-card">'
+    '<span class="ai-popup-icon">{icon}</span>'
+    '<h3 class="ai-popup-title">{title}</h3>'
+    '<p class="ai-popup-desc">{desc}</p>'
+    '<iframe name="hidden_iframe" id="hidden_iframe" style="display:none"></iframe>'
+    '<form id="ai-popup-form" action="{substack}/api/v1/free" method="post" target="hidden_iframe">'
+    '<input type="email" name="email" placeholder="votre@email.com" class="ai-popup-input" required>'
+    '<input type="hidden" name="first_url" value="{substack}">'
+    '<input type="hidden" name="first_referrer" value="https://decupler.com">'
+    '<button type="submit" class="ai-popup-submit">Recevoir le guide (gratuit) →</button>'
+    '<p class="ai-popup-footer">🔒 Pas de spam. Désabonnement en 1 clic.</p></form>'
+    '<div id="ai-success-msg" class="ai-success-message">✅ C\'est bon ! Bonne lecture.</div>'
+    '</div></div>'
+)
+GATE_SCRIPT = (
+    "<script>document.addEventListener('DOMContentLoaded',function(){"
+    "var p=document.getElementById('ai-content-gate'),f=document.getElementById('ai-popup-form'),"
+    "s=document.getElementById('ai-success-msg'), i=document.getElementById('hidden_iframe'),sub=false;"
+    "function op(){if(localStorage.getItem('lmg_sub')==='true')return;"
+    "if(document.cookie.indexOf('lmg_sub=true')!==-1)return;p.classList.add('active');"
+    "document.body.classList.add('lmg-gated');document.body.style.overflow='hidden'}"
+    "setTimeout(op,%(delay)s);"
+    "function cl(){p.classList.remove('active');document.body.classList.remove('lmg-gated');document.body.style.overflow='auto'}"
+    "if(f)f.addEventListener('submit',function(){sub=true;var b=f.querySelector('button[type=submit]');"
+    "b.textContent='Validation…';b.style.opacity='0.7'});"
+    "if(i)i.onload=function(){if(sub){f.style.display='none';s.style.display='block';"
+    "localStorage.setItem('lmg_sub','true');document.cookie='lmg_sub=true; max-age=31536000; path=/';"
+    "setTimeout(cl,1500);sub=false}};"
+    "if(location.search.indexOf('reset=true')!==-1){localStorage.removeItem('lmg_sub');"
+    "document.cookie='lmg_sub=; max-age=0; path=/'}});</script>"
+)
+
 HIDE_TITLE_SCRIPT = (
     "<script>document.addEventListener('DOMContentLoaded',function(){"
     "document.querySelectorAll('.entry-header,.entry-title,.ast-single-entry-banner,"
@@ -99,6 +133,12 @@ def main():
                     help="Fichiers CSS additionnels (skins/overlays) chargés après base+components")
     ap.add_argument("--img", nargs="*", default=[],
                     help="Remplacements de placeholders d'image, ex : __IMG_1__=https://…/img.png")
+    ap.add_argument("--gate", default=None,
+                    help="Active la popup email→Substack. Valeur = base Substack, ex https://decupler.substack.com")
+    ap.add_argument("--gate-title", default="Débloquez le guide complet")
+    ap.add_argument("--gate-desc", default="Laissez votre email pour recevoir le guide et nos meilleures méthodes SEO/GEO.")
+    ap.add_argument("--gate-icon", default="🛠️")
+    ap.add_argument("--gate-delay", default="5000", help="Délai (ms) avant l'apparition de la popup")
     args = ap.parse_args()
 
     body = Path(args.body).read_text(encoding="utf-8").strip()
@@ -108,11 +148,20 @@ def main():
     body = re.sub(r"\n\s*\n+", "\n", body)  # supprime les lignes vides (évite wpautop)
     faq = json.loads(Path(args.faq).read_text(encoding="utf-8")) if args.faq else None
 
+    gate_html = gate_script = ""
+    if args.gate:
+        sub = args.gate.rstrip("/")
+        gate_html = GATE_HTML.format(icon=args.gate_icon, title=args.gate_title,
+                                     desc=args.gate_desc, substack=sub)
+        gate_script = GATE_SCRIPT % {"delay": args.gate_delay}
+
     parts = [
         FONTS,
         f"<style>{minify_css(read_css(args.extra_css))}</style>",
         body,
+        gate_html,
         "" if args.no_hide_title else HIDE_TITLE_SCRIPT,
+        gate_script,
         article_jsonld(args.title, args.description, args.author),
         faq_jsonld(faq),
     ]
