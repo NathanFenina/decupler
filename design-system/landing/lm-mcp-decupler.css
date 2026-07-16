@@ -112,3 +112,38 @@ html,body,#page,.site,.ast-page-wrapper,#content,.site-content{background:#fafaf
 .lm-mcp .metric-label{font-size:.62rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#94a3b8}
 .lm-mcp .metric-val{font-size:1.15rem;font-weight:900;color:#0f172a;line-height:1;font-family:var(--font-display)}
 @media(max-width:680px){.lm-mcp .metric-row{grid-template-columns:repeat(2,1fr)}}
+
+/* ---- Encadrés « tip » (astuce / validation / alerte / info) ---- */
+.lm-mcp .tip{display:flex;gap:12px;align-items:flex-start;background:#fff;border:1px solid rgba(15,23,42,.07);border-left:3px solid var(--violet);border-radius:12px;padding:16px 18px;margin:22px 0;box-shadow:0 2px 12px rgba(0,0,0,.05)}
+.lm-mcp .tip p{margin:0;font-size:.9rem;line-height:1.65;color:#475569 !important;text-align:left}
+.lm-mcp .tip p strong{color:#0f172a}
+.lm-mcp .tip .tipico{font-size:1.15rem;line-height:1.3;flex-shrink:0}
+.lm-mcp .tip.tip-v{border-left-color:#6366f1;background:rgba(99,102,241,.04)}
+.lm-mcp .tip.tip-e{border-left-color:#10b981;background:rgba(16,185,129,.05)}
+.lm-mcp .tip.tip-a{border-left-color:#f59e0b;background:rgba(245,158,11,.06)}
+.lm-mcp .tip.tip-w{border-left-color:#ef4444;background:rgba(239,68,68,.05)}
+
+/* ---- Carte « info » à titre + liste (icard) ---- */
+.lm-mcp .icard{background:#fff;border:1px solid rgba(99,102,241,.16);border-radius:14px;padding:22px 24px;margin:22px 0;box-shadow:0 6px 24px rgba(15,23,42,.06)}
+.lm-mcp .icard h4{font-size:.95rem !important;font-weight:800 !important;color:#0f172a !important;margin:0 0 14px !important}
+.lm-mcp .icard ol,.lm-mcp .icard ul{display:flex;flex-direction:column;gap:9px;counter-reset:ic}
+.lm-mcp .icard ol li{position:relative;padding-left:30px;font-size:.9rem;color:#475569 !important;line-height:1.6;text-align:left;counter-increment:ic}
+.lm-mcp .icard ol li::before{content:counter(ic);position:absolute;left:0;top:0;width:20px;height:20px;border-radius:6px;background:rgba(99,102,241,.12);color:#4f46e5 !important;font-family:var(--font-mono);font-size:.7rem;font-weight:700;display:flex;align-items:center;justify-content:center}
+.lm-mcp .icard ul li{padding-left:18px;position:relative;font-size:.9rem;color:#475569 !important;line-height:1.6;text-align:left}
+.lm-mcp .icard ul li::before{content:'›';position:absolute;left:0;color:#6366f1 !important;font-weight:700}
+.lm-mcp .icard li strong{color:#0f172a}
+
+/* ---- Figure + légende ---- */
+.lm-mcp figure{margin:26px 0;text-align:center}
+.lm-mcp figure img{border-radius:16px;border:1px solid rgba(15,23,42,.08);box-shadow:0 12px 40px rgba(15,23,42,.12)}
+.lm-mcp figcaption{margin-top:12px;font-size:.78rem;color:#94a3b8 !important;font-style:italic}
+
+/* ---- Tableau propre (cartographie, planning hebdo…) ---- */
+.lm-mcp .dtable{width:100%;border-collapse:collapse;margin:22px 0;font-size:.86rem;background:#fff;border:1px solid rgba(15,23,42,.08);border-radius:14px;overflow:hidden;box-shadow:0 6px 24px rgba(15,23,42,.06)}
+.lm-mcp .dtable th{background:rgba(99,102,241,.07);color:#0f172a !important;font-weight:800;text-align:left;padding:12px 16px;font-size:.72rem;letter-spacing:.03em;text-transform:uppercase;border-bottom:1px solid rgba(15,23,42,.08)}
+.lm-mcp .dtable td{padding:12px 16px;color:#475569 !important;border-bottom:1px solid rgba(15,23,42,.05);vertical-align:top;text-align:left;line-height:1.5}
+.lm-mcp .dtable tr:last-child td{border-bottom:none}
+.lm-mcp .dtable td strong{color:#0f172a}
+.lm-mcp .dtable code{font-family:'JetBrains Mono',monospace;font-size:.82em;background:rgba(99,102,241,.09);color:#4f46e5;padding:1px 6px;border-radius:5px}
+.lm-mcp .dtable-wrap{overflow-x:auto;margin:22px 0}
+.lm-mcp .dtable-wrap .dtable{margin:0;min-width:560px}

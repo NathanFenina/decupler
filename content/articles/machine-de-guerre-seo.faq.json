@@ -1,18 +1,26 @@
 [
   {
-    "question": "Le contenu IA est-il pénalisé par Google ?",
-    "answer": "Non. Google pénalise le contenu sans valeur, quelle qu'en soit l'origine. Ses consignes récompensent l'utilité, l'expérience et la fiabilité — pas le mode de production. La machine est conçue autour de ces critères : sources, données, structure, intention."
+    "question": "Quelle différence entre un skill, un agent et un slash command dans Claude Code ?",
+    "answer": "Un skill est une méthode réutilisable (le « comment »). Un agent est un exécutant spécialisé avec ses propres outils et un seul rôle (le « qui »). Un slash command est le raccourci qui déclenche tout d'un mot (le « go »). Les trois se combinent : un raccourci lance un agent qui applique un skill."
   },
   {
-    "question": "Est-ce vraiment 100 % automatique ?",
-    "answer": "Le pipeline tourne seul à chaque étape. Vous gardez la main sur la stratégie et la validation finale : par défaut, tout sort en brouillon avant publication. Vous pouvez passer en full-auto quand vous avez confiance."
+    "question": "Peut-on vraiment automatiser 3 contenus par semaine avec un agent ?",
+    "answer": "Oui, en brouillon. Un agent planifié (cron) lit la cartographie Notion, prend les meilleures opportunités « À créer », rédige avec le skill maison, génère les images, teste le rendu et publie en brouillon WordPress. Vous gardez la validation finale : la machine gère la production, pas la décision."
   },
   {
-    "question": "Ça marche sur autre chose que WordPress ?",
-    "answer": "Oui. La publication passe par MCP — WordPress aujourd'hui, la même logique pour les autres CMS."
+    "question": "Comment savoir si ChatGPT ou Perplexity citent ma marque ?",
+    "answer": "Via un agent d'audit de visibilité IA branché sur les outils de brand visibility d'Ubersuggest : il liste les prompts business, votre taux de citation, et qui est cité à votre place et via quelle page. Il tourne chaque semaine et remonte le delta."
   },
   {
-    "question": "Combien de temps avant de voir des résultats ?",
-    "answer": "Le SEO reste un jeu de fond. La différence, c'est le rythme : la machine publie et maille en continu, donc l'actif se construit bien plus vite qu'avec une chaîne humaine."
+    "question": "Faut-il payer tous ces MCP et outils SEO ?",
+    "answer": "Certains sont gratuits ou déjà chez vous (Search Console, Notion, WordPress, Chrome). D'autres sont payants selon l'usage (Ubersuggest/Ahrefs, DataForSEO, génération d'images). L'idée n'est pas d'empiler mais de brancher, brique par brique, ce que votre stratégie exige."
+  },
+  {
+    "question": "Le contenu produit par l'IA est-il pénalisé par Google ?",
+    "answer": "Non. Google pénalise le contenu sans valeur, quelle qu'en soit l'origine. Ses consignes récompensent l'utilité, l'expérience et la fiabilité. La machine est bâtie autour de ces critères : recherche SERP, vraies données, structure, intention et maillage interne."
+  },
+  {
+    "question": "Faut-il savoir coder pour monter cette machine ?",
+    "answer": "Non, mais être à l'aise avec un terminal aide. Les MCP se branchent en copier-coller (fichier .mcp.json ou commande claude mcp add) et les connecteurs claude.ai en un clic. Le reste, c'est Claude qui l'exécute."
   }
 ]

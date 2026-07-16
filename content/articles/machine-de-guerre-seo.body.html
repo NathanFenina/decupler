@@ -3,19 +3,19 @@
 
 <section class="hero">
   <div class="container">
-    <span class="hero-eyebrow">Tuto complet · Claude Code</span>
-    <h1>Monte ta <em>machine de guerre SEO</em> dans Claude Code</h1>
-    <p class="hero-sub">Le guide pas à pas pour brancher, dans Claude Code, tous les MCP qui font tourner un pipeline SEO+GEO complet : <strong>Chrome</strong> (voir le rendu), <strong>Search Console</strong> (les vraies données), <strong>mots-clés</strong> (Ubersuggest/Ahrefs), <strong>génération d'images</strong> et <strong>publication WordPress</strong>. Configs réelles, commandes exactes, copier-coller.</p>
+    <span class="hero-eyebrow">Guide complet · Claude Code + MCP</span>
+    <h1>Monte ta <em>machine de guerre SEO+GEO</em> dans Claude Code</h1>
+    <p class="hero-sub">La plupart des gens collent une URL dans ChatGPT et demandent « c'est bien mon SEO&nbsp;? ». Ça n'est pas être « AI native ». Le <strong>top 1%</strong> configure <strong>7 choses</strong> que la plupart des founders et CMO ne touchent jamais : un rulebook, des workflows, un agent d'audit de visibilité IA, des agents spécialisés, des raccourcis, des automatisations et des connecteurs MCP. Voici comment les brancher, un par un, avec les configs réelles à copier-coller.</p>
     <div class="hero-meta">
       <span class="hero-meta-item">Niveau : intermédiaire</span>
-      <span class="hero-meta-item">Setup : ~15 min</span>
+      <span class="hero-meta-item">Setup : ~30 min</span>
       <span class="hero-meta-item">Par Décupler</span>
     </div>
     <div class="metric-row">
-      <div class="metric-card"><div class="metric-ic">🔌</div><div class="metric-txt"><div class="metric-label">MCP branchés</div><div class="metric-val">5+</div></div></div>
-      <div class="metric-card"><div class="metric-ic">⚙️</div><div class="metric-txt"><div class="metric-label">Installation</div><div class="metric-val">~15 min</div></div></div>
+      <div class="metric-card"><div class="metric-ic">🧱</div><div class="metric-txt"><div class="metric-label">Les piliers</div><div class="metric-val">7</div></div></div>
+      <div class="metric-card"><div class="metric-ic">🔌</div><div class="metric-txt"><div class="metric-label">MCP branchés</div><div class="metric-val">10+</div></div></div>
+      <div class="metric-card"><div class="metric-ic">📅</div><div class="metric-txt"><div class="metric-label">En auto</div><div class="metric-val">3 contenus/sem</div></div></div>
       <div class="metric-card"><div class="metric-ic">🤖</div><div class="metric-txt"><div class="metric-label">Dans</div><div class="metric-val">Claude Code</div></div></div>
-      <div class="metric-card"><div class="metric-ic">🚀</div><div class="metric-txt"><div class="metric-label">Pipeline</div><div class="metric-val">A → Z</div></div></div>
     </div>
   </div>
 </section>
@@ -23,16 +23,16 @@
 <section class="guide-section">
   <div class="container">
     <div class="section-label">Vue d'ensemble</div>
-    <h2 class="section-title">Le principe : un cerveau, plusieurs bras</h2>
-    <p class="prose-block"><strong>Claude Code</strong> est le cerveau. Les <strong>MCP</strong> (Model Context Protocol) sont les bras : chacun connecte Claude à un outil réel (ton navigateur, Search Console, un outil de mots-clés, ton WordPress). Une fois branchés, Claude ne « raconte » plus le SEO — il le <strong>fait</strong> : il lit tes vraies données, rédige, visualise le rendu, publie.</p>
+    <h2 class="section-title">Le principe : un cerveau, plusieurs bras, une mémoire, des réflexes</h2>
+    <p class="prose-block"><strong>Claude Code</strong> est le cerveau. Autour de lui, on installe quatre couches qui transforment un chatbot en <strong>infrastructure de production</strong> :</p>
     <ul class="checklist">
-      <li><strong>MCP Chrome DevTools</strong> — Claude ouvre un navigateur et <em>voit</em> le rendu HTML avant publication</li>
-      <li><strong>MCP Search Console (via Windsor.ai)</strong> — les vraies impressions, positions, clics de ton site</li>
-      <li><strong>MCP mots-clés (Ubersuggest / Ahrefs)</strong> — volumes, difficulté, intention</li>
-      <li><strong>MCP imagegen</strong> — génère les visuels des articles</li>
-      <li><strong>Publication WordPress</strong> — via l'API REST (mot de passe d'application)</li>
+      <li><strong>Une mémoire</strong> — le rulebook (<span class="inline-code">CLAUDE.md</span>) que l'IA relit à chaque session</li>
+      <li><strong>Des bras</strong> — les <strong>MCP</strong> (Model Context Protocol), qui branchent Claude à tes vrais outils (navigateur, Search Console, mots-clés, Notion, WordPress…)</li>
+      <li><strong>Des réflexes</strong> — les <strong>skills</strong>, <strong>agents</strong> et <strong>raccourcis</strong> qui figent tes méthodes et les rejouent à l'identique</li>
+      <li><strong>Des horaires</strong> — les <strong>automatisations</strong> qui font tourner tout ça pendant que tu dors</li>
     </ul>
-    <figure><img src="__IMG_1__" alt="Claude Code au centre, connecté par des MCP au navigateur, à Search Console, aux mots-clés et à WordPress" width="1200" height="800" loading="lazy" decoding="async"><figcaption>Un cerveau (Claude Code) branché à ses outils réels via les MCP.</figcaption></figure>
+    <p class="prose-block">Une fois branché, Claude ne « raconte » plus le SEO — il le <strong>fait</strong> : il lit tes vraies données, cartographie, rédige, illustre, teste le rendu, publie, puis mesure. On monte les 7 piliers dans l'ordre.</p>
+    <figure><img src="__IMG_1__" alt="Claude Code au centre, connecté par des MCP au navigateur, à Search Console, à Notion, aux mots-clés et à WordPress" width="1200" height="800" loading="lazy" decoding="async"><figcaption>Un cerveau (Claude Code), une mémoire (le rulebook), des bras (les MCP) et des horaires (les automatisations).</figcaption></figure>
     <div class="tip tip-v"><span class="tipico">💡</span><p>Deux familles de MCP : ceux qui tournent <strong>en local</strong> (lancés par <span class="inline-code">npx</span>, déclarés dans un fichier de config) et les <strong>connecteurs claude.ai</strong> (branchés en un clic depuis les réglages). On voit les deux.</p></div>
   </div>
 </section>
@@ -53,134 +53,334 @@ claude</pre></div>
 
 <section class="guide-section">
   <div class="container">
-    <div class="section-label">Étape 1 · Voir le rendu</div>
-    <h2 class="section-title">MCP Chrome DevTools</h2>
-    <p class="prose-block">Le plus important pour la qualité : Claude <strong>ouvre un vrai navigateur</strong>, charge la page et en lit le rendu (screenshot + arbre d'accessibilité). Fini le « publié à l'aveugle » — on vérifie le HTML <strong>avant</strong> la mise en ligne.</p>
-    <div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>.mcp.json</span></div><pre>{
-  <span class="p">"mcpServers"</span>: {
-    <span class="p">"chrome-devtools"</span>: {
-      <span class="p">"command"</span>: <span class="s">"npx"</span>,
-      <span class="p">"args"</span>: [<span class="s">"-y"</span>, <span class="s">"chrome-devtools-mcp@latest"</span>, <span class="s">"--viewport"</span>, <span class="s">"1440x900"</span>, <span class="s">"--isolated"</span>]
-    }
-  }
-}</pre></div>
-    <p class="prose-block">Équivalent en une commande :</p>
-    <div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>terminal</span></div><pre>claude mcp add chrome-devtools -- npx -y chrome-devtools-mcp@latest --isolated</pre></div>
-    <div class="tip tip-e"><span class="tipico">✅</span><p><strong>Vérifier :</strong> dans Claude, demande « ouvre cette page et fais un screenshot » — s'il te renvoie une capture, c'est branché.</p></div>
+    <div class="section-label">Pilier 1</div>
+    <h2 class="section-title">Le rulebook que l'IA lit à chaque fois</h2>
+    <p class="prose-block">Tes pages cibles, tes mots-clés prioritaires, ta voix de marque — et <strong>comment l'IA doit décrire ton business</strong>. Écrit une fois dans un fichier <span class="inline-code">CLAUDE.md</span>, à la racine du projet. Fini de réexpliquer le contexte à chaque session : Claude le relit automatiquement au démarrage.</p>
+    <div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>CLAUDE.md</span></div><pre><span class="c"># Rulebook — [Ta marque]</span>
+
+<span class="c">## Qui on est</span>
+Agence SEO/GEO. Décris-nous comme « l'infrastructure de
+visibilité organique », jamais comme « une agence de netlinking ».
+
+<span class="c">## Cibles prioritaires</span>
+- Pages argent : /offre, /audit-geo, /cartographie
+- Mots-clés cœur : "agence GEO", "SEO pour IA", "citation ChatGPT"
+- Marché : France · ton : expert, direct, sans jargon creux
+
+<span class="c">## Règles de production</span>
+1. HTML sémantique propre (h2/h3/p/ul/table), zéro CSS Elementor
+2. Toujours mailler vers les pages argent
+3. Publier en BROUILLON — jamais inventer un chiffre</pre></div>
+    <div class="tip tip-e"><span class="tipico">✅</span><p><strong>Le test :</strong> ouvre une nouvelle session et demande « décris mon business ». Si Claude reprend ta formulation exacte sans que tu la lui redonnes, ton rulebook est actif.</p></div>
   </div>
 </section>
 
 <section class="guide-section">
   <div class="container">
-    <div class="section-label">Étape 2 · Générer les visuels</div>
-    <h2 class="section-title">MCP imagegen</h2>
-    <p class="prose-block">Pour que chaque article sorte avec ses images, on branche un générateur (ici <span class="inline-code">gpt-image-1</span> d'OpenAI). Il faut une clé API OpenAI.</p>
+    <div class="section-label">Pilier 2</div>
+    <h2 class="section-title">Des workflows réutilisables (les skills)</h2>
+    <p class="prose-block">Des playbooks pré-construits, écrits une fois, rejoués à l'identique : audit de content gaps, récupération de CTR, check de schema, analyse des gaps de citation IA, rédaction selon <strong>ton</strong> style. Dans Claude Code, un workflow s'écrit sous forme de <strong>Skill</strong> — un dossier <span class="inline-code">SKILL.md</span> auto-découvert. Tu le lances, il applique la méthode.</p>
+    <div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>~/.claude/skills/redaction-expert/SKILL.md</span></div><pre><span class="c">---</span>
+<span class="p">name</span>: <span class="s">redaction-expert</span>
+<span class="p">description</span>: <span class="s">Rédige un article SEO+GEO profond,</span>
+<span class="s">  sourcé, dans le style maison. À utiliser pour tout contenu.</span>
+<span class="c">---</span>
+<span class="c"># Règles</span>
+1. RECHERCHE avant d'écrire (données, SERP, top pages)
+2. Chaque paragraphe = une donnée / un exemple / une méthode
+3. Descendre au "comment" technique, jamais au "quoi" bateau
+4. Encadrés + tableaux + FAQ (JSON-LD) + maillage interne
+5. Publier en brouillon, jamais inventer de chiffres</pre></div>
+    <p class="prose-block">Chaque étape du pipeline a le sien. Quelques skills que fait tourner Décupler :</p>
+    <div class="stack-grid">
+      <div class="stack-card"><div class="stack-icon v">🗺️</div><div class="stack-info"><h3>geo-opportunities</h3><p>Trouve et priorise les sujets/mots-clés à fort potentiel (volume, difficulté, intention).</p></div></div>
+      <div class="stack-card"><div class="stack-icon g">✍️</div><div class="stack-info"><h3>redaction-expert</h3><p>Rédige l'article profond et sourcé, dans ta voix de marque, prêt à publier.</p></div></div>
+      <div class="stack-card"><div class="stack-icon a">🎨</div><div class="stack-info"><h3>skin / style</h3><p>Applique la charte : mise en page, encadrés, images, composants maison.</p></div></div>
+      <div class="stack-card"><div class="stack-icon v">🧲</div><div class="stack-info"><h3>lead-magnet</h3><p>Transforme un guide en aimant à emails (page + popup de capture).</p></div></div>
+    </div>
+    <div class="tip tip-v"><span class="tipico">🎯</span><p>Un skill n'est pas un prompt jetable : c'est <strong>ta méthode figée</strong>. C'est ce qui rend la production <strong>cohérente et scalable</strong> — dix articles écrits par la machine se ressemblent parce qu'ils suivent la même règle.</p></div>
+  </div>
+</section>
+
+<section class="guide-section">
+  <div class="container">
+    <div class="section-label">Pilier 3</div>
+    <h2 class="section-title">Un agent d'audit de visibilité IA</h2>
+    <p class="prose-block">Un setup spécialisé qui vérifie <strong>une seule chose</strong> : est-ce que ChatGPT, Perplexity et Gemini te citent sur tes requêtes business — et <strong>qui gagne</strong> quand ce n'est pas toi. C'est le cœur du GEO (Generative Engine Optimization). Le MCP <strong>Ubersuggest</strong> expose justement des outils de <em>brand visibility</em> : les prompts sur lesquels ta marque devrait apparaître, et ton taux de citation réel.</p>
+    <div class="icard"><h4>📌 Ce que l'agent regarde chaque semaine</h4><ul>
+      <li>Ta <strong>part de citation</strong> sur les prompts business (es-tu mentionné, à quelle place)</li>
+      <li>Les <strong>concurrents cités à ta place</strong> et pourquoi (quelle source l'IA reprend)</li>
+      <li>Les prompts où tu es <strong>absent</strong> = les pages à créer ou à renforcer en priorité</li>
+    </ul></div>
+    <div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>claude — audit visibilité IA</span></div><pre><span class="c"># Via le MCP Ubersuggest (brand visibility)</span>
+&gt; Configure ma marque, puis liste les prompts business
+  où ChatGPT/Perplexity devraient me citer.
+&gt; Pour chacun : suis-je cité ? sinon, qui l'est et via
+  quelle page ? Sors un plan d'action priorisé.</pre></div>
+    <div class="tip tip-e"><span class="tipico">📊</span><p>On en fait un <strong>agent dédié</strong> (pilier 4) qui tourne tout seul chaque semaine (pilier 6) et remonte le delta : ce que tu as gagné, ce que tu as perdu, où réinvestir.</p></div>
+  </div>
+</section>
+
+<section class="guide-section">
+  <div class="container">
+    <div class="section-label">Pilier 4</div>
+    <h2 class="section-title">Des agents spécialisés</h2>
+    <p class="prose-block">Un mini-setup par tâche, plutôt qu'un généraliste qui fait tout mal. Chaque agent a un rôle, ses outils, ses règles. Ils bossent en arrière-plan, remontent l'info, et gardent ton contexte propre. Dans Claude Code, un agent = un fichier dans <span class="inline-code">.claude/agents/</span>.</p>
+    <div class="dtable-wrap"><table class="dtable">
+      <thead><tr><th>Agent</th><th>Sa seule mission</th><th>Ses outils (MCP)</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Contenu</strong></td><td>Écrire et mailler les articles</td><td>Ubersuggest, DataForSEO, WordPress</td></tr>
+        <tr><td><strong>Santé technique</strong></td><td>Traquer erreurs de crawl &amp; schema</td><td>Screaming Frog, Chrome</td></tr>
+        <tr><td><strong>Data GSC</strong></td><td>Repérer les quick wins (pos. 5–20)</td><td>Search Console (Windsor)</td></tr>
+        <tr><td><strong>Citations IA</strong></td><td>Suivre la visibilité GEO</td><td>Ubersuggest (brand visibility)</td></tr>
+        <tr><td><strong>Rédaction</strong></td><td>Appliquer le style maison</td><td>skill redaction-expert</td></tr>
+        <tr><td><strong>Publication</strong></td><td>Pousser en brouillon + images</td><td>WordPress, imagegen, Unsplash</td></tr>
+      </tbody>
+    </table></div>
+    <div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>.claude/agents/citations-ia.md</span></div><pre><span class="c">---</span>
+<span class="p">name</span>: <span class="s">citations-ia</span>
+<span class="p">description</span>: <span class="s">Audite la visibilité de la marque dans</span>
+<span class="s">  ChatGPT/Perplexity/Gemini. Ne fait QUE ça.</span>
+<span class="p">tools</span>: <span class="s">[ubersuggest, notion]</span>
+<span class="c">---</span>
+Tu es l'agent Visibilité IA. Chaque semaine :
+1. Relève ma part de citation sur les prompts business
+2. Note qui gagne à ma place + la page source
+3. Écris le delta dans la base Notion "Cartographie"</pre></div>
+  </div>
+</section>
+
+<section class="guide-section">
+  <div class="container">
+    <div class="section-label">Pilier 5</div>
+    <h2 class="section-title">Des raccourcis (slash commands)</h2>
+    <p class="prose-block">Tu construis <span class="inline-code">/audit</span>, <span class="inline-code">/visibility</span>, <span class="inline-code">/refresh</span>. <strong>Un mot déclenche tout le workflow.</strong> Un raccourci, c'est un fichier Markdown dans <span class="inline-code">.claude/commands/</span> : Claude exécute son contenu comme si tu l'avais tapé.</p>
+    <div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>.claude/commands/refresh.md</span></div><pre><span class="c"># /refresh — rafraîchit une page qui décroche</span>
+1. Récupère les données GSC de la page (Windsor)
+2. Compare aux top résultats SERP (DataForSEO)
+3. Repère les requêtes perdues + les gaps de contenu
+4. Réécris les sections faibles (skill redaction-expert)
+5. Teste le rendu (Chrome) puis publie en brouillon (WP)</pre></div>
+    <div class="tip tip-v"><span class="tipico">⚡</span><p>Tape <span class="inline-code">/refresh https://ton-site.com/page</span> et la chaîne complète se lance. Les raccourcis, c'est l'interface de ta machine : tu arrêtes de piloter à la main.</p></div>
+  </div>
+</section>
+
+<section class="guide-section">
+  <div class="container">
+    <div class="section-label">Pilier 6</div>
+    <h2 class="section-title">Des automatisations — dont l'agent « 3 contenus / semaine »</h2>
+    <p class="prose-block">Ton analyse sur minuteur. Check de positions le <strong>lundi</strong>, scan des citations IA le <strong>mercredi</strong>, brief + rédaction le <strong>vendredi</strong>. Ça tourne, que tu y penses ou pas. Dans Claude Code, on programme un <strong>agent planifié</strong> (cron) qui rejoue un raccourci à heure fixe.</p>
+    <div class="dtable-wrap"><table class="dtable">
+      <thead><tr><th>Jour</th><th>Ce qui se lance</th><th>Résultat déposé</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Lundi</strong></td><td><code>/positions</code> — retrace les mots-clés cibles</td><td>Rapport positions dans Notion</td></tr>
+        <tr><td><strong>Mercredi</strong></td><td><code>/visibility</code> — scan citations IA</td><td>Delta GEO + pages à créer</td></tr>
+        <tr><td><strong>Ven.</strong></td><td><code>/redige</code> — 3 briefs → 3 brouillons</td><td>3 articles en brouillon dans WP</td></tr>
+      </tbody>
+    </table></div>
+    <p class="prose-block">L'agent « 3 contenus / semaine » enchaîne, sans intervention : il lit la <strong>base Notion</strong> (pilier 7), prend les 3 meilleures opportunités « À créer », lance la rédaction experte, génère les images, teste le rendu, publie en <strong>brouillon</strong> WordPress et coche la ligne dans Notion.</p>
+    <div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>terminal — planifier l'agent</span></div><pre><span class="c"># Chaque vendredi 9h : 3 contenus en brouillon</span>
+claude schedule add \
+  --name "3-contenus-hebdo" \
+  --cron "0 9 * * 5" \
+  --prompt "Lis la base Notion Cartographie. Prends les 3
+    lignes 'À créer' au meilleur score. Pour chacune :
+    lance le skill redaction-expert, génère les images,
+    teste le rendu (Chrome), publie en BROUILLON WordPress,
+    puis passe la ligne Notion en 'Rédigé'."</pre></div>
+    <div class="tip tip-a"><span class="tipico">🛡️</span><p>On reste en <strong>brouillon</strong> par défaut : la machine produit en continu, tu gardes la validation finale. Tu passes en full-auto le jour où tu as confiance.</p></div>
+  </div>
+</section>
+
+<section class="guide-section">
+  <div class="container">
+    <div class="section-label">Pilier 7</div>
+    <h2 class="section-title">Les connecteurs MCP — la vraie machine de guerre</h2>
+    <p class="prose-block">C'est ici que l'IA agit dans <strong>tes outils</strong>, pas juste dans la conversation. GSC, DataForSEO, WordPress, Notion, Ahrefs/Ubersuggest, Screaming Frog, générateurs d'images… branchés directement. Vue d'ensemble, puis les configs une par une.</p>
+    <div class="stack-grid">
+      <div class="stack-card"><div class="stack-icon v">🌐</div><div class="stack-info"><h3>Chrome DevTools</h3><p>Ouvre un vrai navigateur, voit et teste le rendu HTML avant publication.</p><span class="stack-badge">local · officiel</span></div></div>
+      <div class="stack-card"><div class="stack-icon g">📈</div><div class="stack-info"><h3>Search Console (Windsor)</h3><p>Impressions, positions, clics, CTR réels de ton site.</p><span class="stack-badge">connecteur</span></div></div>
+      <div class="stack-card"><div class="stack-icon v">🔎</div><div class="stack-info"><h3>Ubersuggest / Ahrefs</h3><p>Volumes, difficulté, intention + visibilité dans les IA.</p><span class="stack-badge">connecteur</span></div></div>
+      <div class="stack-card"><div class="stack-icon g">🧠</div><div class="stack-info"><h3>DataForSEO</h3><p>Analyse fine de la SERP pour préparer des briefs solides.</p><span class="stack-badge">local · officiel</span></div></div>
+      <div class="stack-card"><div class="stack-icon v">🗂️</div><div class="stack-info"><h3>Notion</h3><p>La cartographie vivante : mots-clés, données, clusters, maillage.</p><span class="stack-badge">officiel</span></div></div>
+      <div class="stack-card"><div class="stack-icon g">📝</div><div class="stack-info"><h3>WordPress</h3><p>Publie articles &amp; pages + téléverse les images (API REST / MCP).</p><span class="stack-badge">officiel</span></div></div>
+      <div class="stack-card"><div class="stack-icon a">🐸</div><div class="stack-info"><h3>Screaming Frog</h3><p>Crawl technique : erreurs, redirects, balises, schema.</p><span class="stack-badge">CLI · exemple</span></div></div>
+      <div class="stack-card"><div class="stack-icon v">🖼️</div><div class="stack-info"><h3>imagegen + Unsplash</h3><p>Visuels génératifs sur mesure ou photos stock libres de droits.</p><span class="stack-badge">local</span></div></div>
+    </div>
+    <div class="tip tip-a"><span class="tipico">ℹ️</span><p>Badges : <strong>officiel</strong> = serveur MCP maintenu par l'éditeur ; <strong>connecteur</strong> = branché en un clic côté claude.ai ; <strong>exemple / CLI</strong> = pas (encore) de serveur MCP officiel, on montre l'approche exacte à adapter. Rien n'est présenté comme « testé » quand ça ne l'est pas.</p></div>
+  </div>
+</section>
+
+<section class="guide-section">
+  <div class="container">
+    <div class="section-label">Pilier 7 · a</div>
+    <h2 class="section-title">MCP Chrome DevTools — voir &amp; tester le rendu</h2>
+    <p class="prose-block">Le plus important pour la qualité : Claude <strong>ouvre un vrai navigateur</strong>, charge la page et en lit le rendu (screenshot + arbre d'accessibilité), et peut même lancer un audit Lighthouse. Fini le « publié à l'aveugle » — on vérifie le HTML <strong>avant</strong> la mise en ligne.</p>
+    <div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>.mcp.json</span></div><pre>{
+  <span class="p">"mcpServers"</span>: {
+    <span class="p">"chrome-devtools"</span>: {
+      <span class="p">"command"</span>: <span class="s">"npx"</span>,
+      <span class="p">"args"</span>: [<span class="s">"-y"</span>, <span class="s">"chrome-devtools-mcp@latest"</span>, <span class="s">"--isolated"</span>]
+    }
+  }
+}</pre></div>
+    <p class="prose-block">Équivalent en une commande : <span class="inline-code">claude mcp add chrome-devtools -- npx -y chrome-devtools-mcp@latest --isolated</span></p>
+    <div class="tip tip-e"><span class="tipico">✅</span><p><strong>Vérifier :</strong> demande « ouvre cette page et fais un screenshot ». S'il te renvoie une capture — et repère un titre coupé ou un contraste faible — c'est branché.</p></div>
+  </div>
+</section>
+
+<section class="guide-section">
+  <div class="container">
+    <div class="section-label">Pilier 7 · b</div>
+    <h2 class="section-title">MCP Notion — la cartographie des opportunités</h2>
+    <p class="prose-block">Le cœur stratégique de la machine : une <strong>base Notion vivante</strong> où chaque ligne = une opportunité, priorisée par impact business. Claude la remplit à partir d'Ubersuggest (volumes, difficulté), de la SERP (DataForSEO) et de tes vraies données GSC (Windsor), puis en déduit clusters, maillage et angles GEO.</p>
+    <div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>.mcp.json</span></div><pre>{
+  <span class="p">"mcpServers"</span>: {
+    <span class="p">"notion"</span>: {
+      <span class="p">"command"</span>: <span class="s">"npx"</span>,
+      <span class="p">"args"</span>: [<span class="s">"-y"</span>, <span class="s">"@notionhq/notion-mcp-server"</span>],
+      <span class="p">"env"</span>: { <span class="p">"NOTION_TOKEN"</span>: <span class="s">"secret_…ton-jeton…"</span> }
+    }
+  }
+}</pre></div>
+    <p class="prose-block">On crée un jeton d'intégration sur <span class="inline-code">notion.so/my-integrations</span>, on partage la base avec l'intégration, et Claude lit/écrit dedans. Le schéma qu'on utilise chez Décupler :</p>
+    <div class="dtable-wrap"><table class="dtable">
+      <thead><tr><th>Colonne</th><th>Source</th><th>À quoi ça sert</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Mot-clé</strong> · <strong>Slug</strong></td><td>Ubersuggest + site</td><td>La cible et la page (existante ou à créer)</td></tr>
+        <tr><td><strong>Volume</strong> · <strong>Difficulté</strong></td><td>Ubersuggest</td><td>Demande vs effort — le socle de la priorisation</td></tr>
+        <tr><td><strong>Impressions · Clics · CTR</strong></td><td>GSC (Windsor)</td><td>Réalité terrain : ce que la page fait déjà</td></tr>
+        <tr><td><strong>Opportunité</strong> · <strong>Potentiel</strong></td><td>calculé</td><td>Score d'impact = quick win, gros pari, ou à ignorer</td></tr>
+        <tr><td><strong>Thématique</strong> · <strong>Cluster</strong></td><td>Claude</td><td>Le silo et le groupe de contenus liés</td></tr>
+        <tr><td><strong>Page liée</strong> · <strong>Maillage</strong></td><td>Claude</td><td>Vers/depuis quoi lier — l'architecture interne</td></tr>
+        <tr><td><strong>Prompt FAQ / query</strong></td><td>Claude</td><td>Les questions à couvrir (SEO + réponses IA/GEO)</td></tr>
+      </tbody>
+    </table></div>
+    <div class="tip tip-v"><span class="tipico">🗺️</span><p>C'est cette base que l'agent « 3 contenus / semaine » vient piocher. La cartographie n'est pas un livrable mort : c'est le <strong>carburant</strong> de l'automatisation.</p></div>
+  </div>
+</section>
+
+<section class="guide-section">
+  <div class="container">
+    <div class="section-label">Pilier 7 · c</div>
+    <h2 class="section-title">MCP DataForSEO — analyser la SERP pour les briefs</h2>
+    <p class="prose-block">Avant d'écrire, on regarde <strong>ce que Google récompense déjà</strong> sur la requête : qui est top 10, quel angle, quelle longueur, quels titres, quelles questions « People Also Ask », quels featured snippets. <strong>DataForSEO</strong> expose tout ça en MCP, et Claude en tire un brief nourri plutôt qu'un plan au doigt mouillé.</p>
+    <div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>.mcp.json</span></div><pre>{
+  <span class="p">"mcpServers"</span>: {
+    <span class="p">"dataforseo"</span>: {
+      <span class="p">"command"</span>: <span class="s">"npx"</span>,
+      <span class="p">"args"</span>: [<span class="s">"-y"</span>, <span class="s">"dataforseo-mcp-server"</span>],
+      <span class="p">"env"</span>: {
+        <span class="p">"DATAFORSEO_USERNAME"</span>: <span class="s">"ton-login"</span>,
+        <span class="p">"DATAFORSEO_PASSWORD"</span>: <span class="s">"ton-mot-de-passe-api"</span>
+      }
+    }
+  }
+}</pre></div>
+    <div class="icard"><h4>📌 Ce que Claude sort du brief</h4><ul>
+      <li>Les <strong>10 pages qui rankent</strong> : angle, plan (Hn), intention dominante</li>
+      <li>Les <strong>questions PAA</strong> et featured snippets à capturer (bonus GEO)</li>
+      <li>Le <strong>gap</strong> : ce que personne ne traite bien = ton angle différenciant</li>
+    </ul></div>
+    <div class="tip tip-e"><span class="tipico">🎯</span><p>Le brief atterrit dans la ligne Notion (colonne « Prompt FAQ / query »), prêt pour le skill de rédaction. La SERP nourrit la carto, la carto nourrit l'écriture.</p></div>
+  </div>
+</section>
+
+<section class="guide-section">
+  <div class="container">
+    <div class="section-label">Pilier 7 · d</div>
+    <h2 class="section-title">MCP images — imagegen &amp; Unsplash</h2>
+    <p class="prose-block">Pour que chaque article sorte illustré, deux options complémentaires : un <strong>générateur</strong> (visuel sur mesure) et <strong>Unsplash</strong> (photo réelle, libre de droits). Claude choisit selon le sujet, insère l'image et l'optimise.</p>
     <div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>.mcp.json</span></div><pre>{
   <span class="p">"mcpServers"</span>: {
     <span class="p">"imagegen"</span>: {
       <span class="p">"command"</span>: <span class="s">"npx"</span>,
       <span class="p">"args"</span>: [<span class="s">"-y"</span>, <span class="s">"imagegen-mcp"</span>, <span class="s">"--models"</span>, <span class="s">"gpt-image-1"</span>],
       <span class="p">"env"</span>: { <span class="p">"OPENAI_API_KEY"</span>: <span class="s">"sk-…ta-clé…"</span> }
+    },
+    <span class="p">"unsplash"</span>: {
+      <span class="p">"command"</span>: <span class="s">"npx"</span>,
+      <span class="p">"args"</span>: [<span class="s">"-y"</span>, <span class="s">"unsplash-mcp-server"</span>],
+      <span class="p">"env"</span>: { <span class="p">"UNSPLASH_ACCESS_KEY"</span>: <span class="s">"…ta-clé-Unsplash…"</span> }
     }
   }
 }</pre></div>
-    <div class="tip tip-a"><span class="tipico">🔒</span><p>Ne <strong>commit jamais</strong> ta clé. Garde-la en variable d'environnement ou dans un fichier ignoré par git.</p></div>
+    <div class="tip tip-a"><span class="tipico">🔒</span><p>Ne <strong>commit jamais</strong> tes clés. Garde-les en variables d'environnement ou dans un fichier ignoré par git. <em>(Le serveur Unsplash est un exemple communautaire : vérifie le paquet avant de l'utiliser en prod.)</em></p></div>
   </div>
 </section>
 
 <section class="guide-section">
   <div class="container">
-    <div class="section-label">Étape 3 · Les vraies données</div>
-    <h2 class="section-title">Search Console via Windsor.ai</h2>
-    <p class="prose-block">Pour piloter avec des faits (impressions, positions, clics), on branche <strong>Google Search Console</strong>. Le plus simple : le connecteur <strong>Windsor.ai</strong>, qui expose GSC (et 300+ sources) en MCP côté claude.ai.</p>
-    <div class="icard"><h4>📌 Connexion (côté claude.ai)</h4><ol>
-      <li>Va dans <strong>Réglages → Connecteurs</strong> (<span class="inline-code">claude.ai/customize/connectors</span>)</li>
-      <li>Ajoute <strong>Windsor.ai</strong> et autorise-le</li>
-      <li>Dans Windsor, connecte la source <strong>Search Console</strong> et sélectionne la propriété de ton site</li>
-      <li>Dans Claude, demande les requêtes des 90 derniers jours (champs : <span class="inline-code">query, clicks, impressions, ctr, position, page</span>)</li>
-    </ol></div>
-    <p class="prose-block">Claude récupère alors les données brutes, que tu normalises en une commande pour repérer les <strong>quick wins</strong> (pages en position 5-20 qui peuvent passer en page 1) :</p>
-    <div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>terminal</span></div><pre>python3 scripts/gsc_normalize.py \
-  --in .cache/gsc-raw.json \
-  --out .cache/gsc.json</pre></div>
-  </div>
-</section>
-
-<section class="guide-section">
-  <div class="container">
-    <div class="section-label">Étape 4 · Les mots-clés</div>
-    <h2 class="section-title">Ubersuggest ou Ahrefs</h2>
-    <p class="prose-block">Pour les volumes, la difficulté et l'intention, on branche un outil de mots-clés en MCP. <strong>Ubersuggest</strong> et <strong>Ahrefs</strong> exposent tous deux un connecteur — même logique de branchement que Windsor.</p>
-    <div class="icard"><h4>📌 Branchement</h4><ol>
-      <li>Ajoute le connecteur (Ubersuggest ou Ahrefs) dans <strong>Réglages → Connecteurs</strong>, ou déclare son serveur MCP dans <span class="inline-code">.mcp.json</span> s'il tourne en local</li>
-      <li>Vérifie l'authentification (compte + tier) avant de lancer</li>
-      <li>Demande à Claude : suggestions de mots-clés, volumes et difficulté sur tes thématiques (marché FR)</li>
-    </ol></div>
-    <div class="tip tip-v"><span class="tipico">🎯</span><p>Objectif : pas 500 mots-clés dans un tableur, mais une <strong>liste courte priorisée</strong> par intention commerciale et faisabilité. (La transformation en plan éditorial complet fait l'objet d'un autre guide.)</p></div>
-  </div>
-</section>
-
-<section class="guide-section">
-  <div class="container">
-    <div class="section-label">Étape 5 · Publier</div>
-    <h2 class="section-title">Publication WordPress (API REST)</h2>
-    <p class="prose-block">On publie directement dans WordPress via son <strong>API REST</strong>, avec un <strong>mot de passe d'application</strong> (révocable, sans exposer ton vrai mot de passe). Crée-le dans WordPress : <em>Utilisateurs → Profil → Mots de passe d'application</em>.</p>
-    <div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>.env</span></div><pre><span class="c"># Jamais commité</span>
-WP_SITE_URL=https://ton-site.com
+    <div class="section-label">Pilier 7 · e</div>
+    <h2 class="section-title">MCP WordPress + RankMath — publier &amp; vérifier le score</h2>
+    <p class="prose-block">On publie directement dans WordPress, par défaut en <strong>brouillon</strong> pour relecture. Deux voies : l'<strong>API REST</strong> (mot de passe d'application, ce qu'on utilise) ou le <strong>plugin MCP WordPress</strong> officiel d'Automattic. Puis on lit le <strong>score RankMath</strong> de la page pour boucler la boucle on-page.</p>
+    <div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>.env — API REST (jamais commité)</span></div><pre>WP_SITE_URL=https://ton-site.com
 WP_USER=ton-utilisateur
 WP_APP_PASSWORD=xxxx xxxx xxxx xxxx xxxx xxxx</pre></div>
-    <p class="prose-block">Un petit script POST le contenu (article ou page), par défaut en <strong>brouillon</strong> pour relecture :</p>
+    <p class="prose-block">Le mot de passe d'application se crée dans WordPress : <em>Utilisateurs → Profil → Mots de passe d'application</em> (révocable, sans exposer ton vrai mot de passe). Publication en une commande :</p>
     <div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>terminal</span></div><pre>python3 scripts/wp_publish.py --type post \
   --title <span class="s">"Mon titre"</span> --slug mon-titre \
   --content-file article.html --status draft</pre></div>
-    <div class="tip tip-e"><span class="tipico">🖼️</span><p>Les <strong>images</strong> montent aussi via l'API (<span class="inline-code">/wp-json/wp/v2/media</span>) — Claude les génère, les compresse, les téléverse, puis insère l'URL dans le contenu.</p></div>
+    <p class="prose-block"><strong>RankMath n'a pas de MCP dédié</strong>, mais il stocke son score dans un champ méta exposé par l'API REST. Claude peut donc le lire après publication et itérer tant que le score n'est pas au vert :</p>
+    <div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>exemple — lire le score RankMath (à adapter)</span></div><pre><span class="c"># Le score se trouve dans la méta rank_math_seo_score</span>
+GET /wp-json/wp/v2/posts/&lt;id&gt;?_fields=meta.rank_math_seo_score
+<span class="c"># Claude : "score = 72/100 → il manque le mot-clé en H2</span>
+<span class="c"># et la méta description. Je corrige et je republie."</span></pre></div>
+    <div class="tip tip-e"><span class="tipico">🖼️</span><p>Les <strong>images</strong> montent aussi via l'API (<span class="inline-code">/wp-json/wp/v2/media</span>) : Claude les génère, les compresse, les téléverse, puis insère l'URL — tout dans le même flux.</p></div>
   </div>
 </section>
 
 <section class="guide-section">
   <div class="container">
-    <div class="section-label">Étape 6 · Le savoir-faire</div>
-    <h2 class="section-title">Les Skills : figer tes méthodes</h2>
-    <p class="prose-block">Un <strong>Skill</strong>, c'est une méthode écrite une fois que Claude applique à l'identique à chaque fois (rôle + règles + format). C'est ce qui rend la production <strong>cohérente et scalable</strong>. Chaque étape du pipeline a le sien : découverte de mots-clés, rédaction experte, lead magnet…</p>
-    <div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>~/.claude/skills/redaction-expert/SKILL.md</span></div><pre><span class="c">---</span>
-<span class="p">name</span>: <span class="s">redaction-expert</span>
-<span class="p">description</span>: <span class="s">Rédige un article SEO+GEO profond et sourcé.</span>
-<span class="c">---</span>
-<span class="c"># Règles</span>
-1. Recherche AVANT d'écrire (données, SERP, sources)
-2. Chaque paragraphe = une donnée / un exemple / une méthode
-3. Descendre au "comment" technique, pas au "quoi"
-4. Publier en brouillon, jamais inventer de chiffres</pre></div>
-    <p class="prose-block">En Claude Code, un dossier <span class="inline-code">~/.claude/skills/&lt;nom&gt;/SKILL.md</span> est auto-découvert. Tu invoques ensuite le skill par son nom.</p>
+    <div class="section-label">Pilier 7 · f</div>
+    <h2 class="section-title">MCP Screaming Frog — traquer les erreurs techniques</h2>
+    <p class="prose-block">La visibilité meurt aussi sur des détails techniques : 404, chaînes de redirections, balises manquantes, canonical cassés, schema absent. <strong>Screaming Frog n'a pas de serveur MCP officiel</strong>, mais il expose une <strong>CLI headless</strong> que Claude Code lance via le terminal, puis lit les CSV exportés pour te sortir la liste priorisée des corrections.</p>
+    <div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>exemple — crawl technique via CLI (à adapter)</span></div><pre><span class="c"># Crawl headless + export des onglets qui comptent</span>
+screamingfrogseospider \
+  --crawl https://ton-site.com \
+  --headless --save-crawl \
+  --export-tabs "Response Codes:Client Error (4xx)" \
+  --export-tabs "Directives:Canonicalised" \
+  --output-folder ./.cache/crawl --overwrite
+
+<span class="c"># Claude lit les CSV et priorise</span>
+&gt; Analyse ./.cache/crawl : liste les 404, les redirects
+  en chaîne et les pages sans title/meta. Trie par impact.</pre></div>
+    <div class="tip tip-a"><span class="tipico">🐸</span><p>C'est l'outil de l'agent « santé technique » (pilier 4). Il tourne, remonte les erreurs, et l'agent contenu évite de mailler vers des pages cassées.</p></div>
   </div>
 </section>
 
 <section class="guide-section">
   <div class="container">
-    <div class="section-label">Étape 7 · Suivre</div>
-    <h2 class="section-title">Suivi &amp; reporting</h2>
-    <p class="prose-block">La boucle se referme avec le suivi. Le MCP Search Console alimente en continu un <strong>tableau de bord</strong> : ce qui monte, ce qui stagne, où réinvestir. On regénère un <strong>rapport mensuel</strong> automatiquement, et on retrace les positions des mots-clés via le MCP mots-clés.</p>
-    <ul class="checklist">
-      <li><strong>Positions &amp; impressions</strong> : GSC en temps réel (Windsor)</li>
-      <li><strong>Suivi des mots-clés cibles</strong> : Ubersuggest / Ahrefs</li>
-      <li><strong>Rapport mensuel</strong> : généré et mis en forme automatiquement</li>
-    </ul>
+    <div class="section-label">Pilier 7 · g</div>
+    <h2 class="section-title">Search Console &amp; mots-clés (les vraies données)</h2>
+    <p class="prose-block">Pour piloter avec des faits, on branche <strong>Google Search Console</strong> (via le connecteur <strong>Windsor.ai</strong>, qui expose GSC et 300+ sources) et un outil de <strong>mots-clés</strong> (<strong>Ubersuggest</strong> ou <strong>Ahrefs</strong>).</p>
+    <div class="icard"><h4>📌 Connexion (côté claude.ai)</h4><ol>
+      <li>Va dans <strong>Réglages → Connecteurs</strong> (<span class="inline-code">claude.ai/customize/connectors</span>)</li>
+      <li>Ajoute <strong>Windsor.ai</strong>, autorise-le, puis connecte la source <strong>Search Console</strong> et ta propriété</li>
+      <li>Ajoute le connecteur <strong>Ubersuggest</strong> (ou Ahrefs) et vérifie l'authentification</li>
+      <li>Demande les requêtes 90 jours (<span class="inline-code">query, clicks, impressions, ctr, position, page</span>)</li>
+    </ol></div>
+    <p class="prose-block">Claude récupère les données brutes et repère les <strong>quick wins</strong> (pages en position 5–20 qui peuvent passer en page 1) — puis les écrit dans la carto Notion.</p>
   </div>
 </section>
 
 <section class="guide-section">
   <div class="container">
     <div class="section-label">La boucle</div>
-    <h2 class="section-title">Comment tout s'enchaîne</h2>
+    <h2 class="section-title">Comment les 7 piliers s'enchaînent</h2>
     <div class="chain-steps" style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:10px 0 20px">
-      <span class="offer-tag">Mots-clés</span><span style="color:#8b5cf6">→</span>
+      <span class="offer-tag">Rulebook</span><span style="color:#8b5cf6">→</span>
+      <span class="offer-tag">Carto Notion</span><span style="color:#8b5cf6">→</span>
+      <span class="offer-tag">SERP (DataForSEO)</span><span style="color:#8b5cf6">→</span>
       <span class="offer-tag">Rédaction (skill)</span><span style="color:#8b5cf6">→</span>
+      <span class="offer-tag">Images</span><span style="color:#8b5cf6">→</span>
       <span class="offer-tag">Rendu (Chrome)</span><span style="color:#8b5cf6">→</span>
-      <span class="offer-tag">Images (imagegen)</span><span style="color:#8b5cf6">→</span>
       <span class="offer-tag">Publication (WP)</span><span style="color:#8b5cf6">→</span>
-      <span class="offer-tag">Suivi (GSC)</span>
+      <span class="offer-tag">Score (RankMath)</span><span style="color:#8b5cf6">→</span>
+      <span class="offer-tag">Suivi (GSC + IA)</span>
     </div>
-    <p class="prose-block">Chaque brique alimente la suivante : les données GSC révèlent les quick wins, le mot-clé nourrit la rédaction experte, Claude visualise le rendu avant de publier, WordPress reçoit l'article maillé et illustré, et GSC mesure le résultat — qui relance le cycle. <strong>Un seul cerveau, une seule boucle.</strong></p>
+    <p class="prose-block">Le rulebook cadre tout. La carto Notion révèle les priorités, la SERP nourrit le brief, le skill rédige dans ta voix, les images illustrent, Chrome vérifie le rendu, WordPress reçoit le brouillon maillé, RankMath valide l'on-page, et le suivi (GSC + citations IA) mesure le résultat — qui relance le cycle. Les agents font le travail, les raccourcis le déclenchent, les automatisations le rejouent chaque semaine. <strong>Un seul cerveau, une seule boucle, qui tourne sans toi.</strong></p>
   </div>
 </section>
 
@@ -189,10 +389,12 @@ WP_APP_PASSWORD=xxxx xxxx xxxx xxxx xxxx xxxx</pre></div>
     <div class="section-label">FAQ</div>
     <h2 class="section-title">Questions fréquentes</h2>
     <div class="faq">
-      <details><summary>Faut-il savoir coder ?</summary><p>Non, mais être à l'aise avec un terminal aide. Les MCP se branchent en copier-coller (un fichier <code>.mcp.json</code> ou quelques commandes) et les connecteurs claude.ai se branchent en un clic. Le reste, c'est Claude qui l'exécute.</p></details>
-      <details><summary>C'est quoi exactement un MCP ?</summary><p>Le Model Context Protocol est un standard qui connecte un modèle (Claude) à des outils externes. Chaque MCP donne à Claude une capacité réelle : ouvrir un navigateur, lire Search Console, publier sur WordPress, générer une image.</p></details>
-      <details><summary>Ça marche avec Ahrefs au lieu d'Ubersuggest ?</summary><p>Oui. La logique est identique : tu branches le connecteur mots-clés de ton choix. Ubersuggest et Ahrefs exposent tous deux un accès exploitable en MCP.</p></details>
-      <details><summary>Et si je ne suis pas sur WordPress ?</summary><p>La publication passe par une API : WordPress via son API REST aujourd'hui, la même logique s'applique aux autres CMS qui exposent une API ou un MCP dédié.</p></details>
+      <details><summary>Quelle différence entre un skill, un agent et un slash command ?</summary><p>Un <strong>skill</strong> est une méthode réutilisable (le « comment »). Un <strong>agent</strong> est un exécutant spécialisé avec ses propres outils et son seul rôle (le « qui »). Un <strong>slash command</strong> est le raccourci qui déclenche tout ça d'un mot (le « go »). Les trois se combinent : un raccourci lance un agent qui applique un skill.</p></details>
+      <details><summary>Peut-on vraiment automatiser 3 contenus par semaine ?</summary><p>Oui, en brouillon. Un agent planifié lit la cartographie Notion, prend les meilleures opportunités, rédige, illustre, teste le rendu et publie en brouillon. Tu gardes la validation finale — la machine gère la production, pas la décision.</p></details>
+      <details><summary>Comment savoir si ChatGPT ou Perplexity me citent ?</summary><p>Via l'agent d'audit de visibilité IA (pilier 3), branché sur les outils de <em>brand visibility</em> d'Ubersuggest : il liste les prompts business, ton taux de citation, et qui gagne à ta place. Il tourne chaque semaine et remonte le delta.</p></details>
+      <details><summary>Faut-il payer tous ces outils ?</summary><p>Certains sont gratuits ou déjà chez toi (GSC, Notion, WordPress, Chrome). D'autres sont payants selon l'usage (Ubersuggest/Ahrefs, DataForSEO, génération d'images). L'idée n'est pas d'empiler : tu branches ce que ta stratégie exige, brique par brique.</p></details>
+      <details><summary>Le contenu produit par l'IA est-il pénalisé par Google ?</summary><p>Non. Google pénalise le contenu sans valeur, quelle qu'en soit l'origine. Ses consignes récompensent l'utilité, l'expérience et la fiabilité. La machine est bâtie autour de ces critères : recherche SERP, vraies données, structure, intention, maillage.</p></details>
+      <details><summary>Faut-il savoir coder ?</summary><p>Non, mais être à l'aise avec un terminal aide. Les MCP se branchent en copier-coller (<code>.mcp.json</code> ou <code>claude mcp add</code>) et les connecteurs claude.ai en un clic. Le reste, c'est Claude qui l'exécute.</p></details>
     </div>
   </div>
 </section>
@@ -201,8 +403,8 @@ WP_APP_PASSWORD=xxxx xxxx xxxx xxxx xxxx xxxx</pre></div>
   <div class="container">
     <div class="cta-break"><span>Passez à l'action</span></div>
     <div class="cta-box">
-      <h2>Tu veux qu'on installe cette machine sur ton site&nbsp;?</h2>
-      <p>On branche le pipeline, on connecte tes MCP, et les pages commencent à sortir — maillées, illustrées, publiées.</p>
+      <h2>Envie de cette machine sur ton site&nbsp;?</h2>
+      <p>Deux façons d'avancer : on <strong>installe la machine de guerre sur ton site</strong> et tu la pilotes — ou tu préfères déléguer, et on <strong>gère tout de A à Z pour toi</strong>. Dans les deux cas, on branche les 7 piliers et les pages commencent à sortir : cartographiées, rédigées, illustrées, testées, publiées.</p>
       <a href="https://calendly.com/fenina-nathan/consultationstrategique" class="cta-btn cta-btn--pulse">Prendre un RDV de 20 min →</a>
       <p class="cta-note">Décupler — l'infrastructure de visibilité organique.</p>
     </div>
