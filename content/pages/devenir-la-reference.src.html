@@ -270,6 +270,55 @@
   .nitem span{font-size:14px;color:var(--muted);}
   .never-line{max-width:760px;margin:26px auto 0;text-align:center;font-size:16px;color:var(--ink-strong);font-weight:700;}
 
+  /* CTA intermédiaires */
+  .mid-cta{text-align:center;padding:0 24px 70px;}
+  .mid-cta-line{font-size:19px;font-weight:700;color:var(--ink-strong);max-width:640px;margin:0 auto 20px;line-height:1.45;}
+
+  /* Comment on trouve les leads */
+  .find{padding:86px 24px;}
+  .fsteps{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:14px;align-items:stretch;max-width:1000px;margin:0 auto;}
+  .fstep{background:#fff;border:1px solid var(--line);border-radius:16px;padding:26px 22px;box-shadow:var(--shadow-sm);text-align:center;}
+  .fstep .fi{width:46px;height:46px;border-radius:12px;background:rgba(99,102,241,.09);display:flex;align-items:center;justify-content:center;margin:0 auto 14px;}
+  .fstep h3{font-size:15px;font-weight:800;color:var(--ink);margin-bottom:8px;}
+  .fstep p{font-size:13.5px;color:var(--muted);line-height:1.55;}
+  .fstep .src{margin-top:12px;font-size:11px;color:var(--muted-2);border-top:1px solid var(--line);padding-top:10px;}
+  .fsep{display:flex;align-items:center;justify-content:center;color:var(--violet);font-size:20px;font-weight:800;}
+
+  /* Comment ça devient du cash */
+  .cash{padding:86px 24px;background:#fff;}
+  .calc{max-width:900px;margin:0 auto;background:#fff;border:1px solid var(--line);border-radius:20px;padding:34px;box-shadow:var(--shadow-glow);}
+  .crow{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px;margin-bottom:12px;}
+  .cbox{background:#f8fafc;border:1px solid var(--line);border-radius:10px;padding:10px 14px;text-align:center;min-width:96px;}
+  .cbox .cl{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.4px;color:var(--muted-2);}
+  .cbox .cv{font-size:16px;font-weight:900;color:var(--ink-strong);line-height:1.2;margin-top:2px;}
+  .cop{font-size:17px;font-weight:800;color:var(--violet);}
+  .cres{background:linear-gradient(135deg,rgba(16,185,129,.1),rgba(16,185,129,.04));border:1px solid rgba(16,185,129,.28);}
+  .cres .cv{color:#16a34a;}
+  .cdiv{height:1px;background:var(--line);margin:22px 0;}
+  .cex{font-size:13px;color:var(--muted);text-align:center;line-height:1.7;}
+  .cex b{color:var(--ink-strong);}
+  .cnote{max-width:900px;margin:16px auto 0;text-align:center;font-size:12px;color:var(--muted-2);font-style:italic;}
+
+  /* Comment on track */
+  .track{padding:86px 24px;}
+  .tflow{max-width:960px;margin:0 auto 26px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
+  .tnode{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px 16px;text-align:center;box-shadow:var(--shadow-sm);}
+  .tnode .tt{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.4px;color:var(--indigo);margin-bottom:8px;}
+  .tnode h4{font-size:14px;font-weight:800;color:var(--ink);margin-bottom:6px;}
+  .tnode p{font-size:12.5px;color:var(--muted);line-height:1.5;}
+
+  /* Agents (avec photos) */
+  .agents{padding:86px 24px;background:#fff;}
+  .agrid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:1000px;margin:0 auto;}
+  .ag{background:#fff;border:1px solid var(--line);border-radius:18px;padding:24px;box-shadow:var(--shadow-sm);
+    display:flex;gap:16px;align-items:center;transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease;}
+  .ag:hover{transform:translateY(-5px);box-shadow:0 18px 44px rgba(99,102,241,.16);border-color:rgba(99,102,241,.25);}
+  .ag img{width:64px;height:64px;border-radius:14px;object-fit:cover;flex-shrink:0;border:1px solid var(--line);background:#f8fafc;}
+  .ag h3{font-size:15px;font-weight:800;color:var(--ink);margin-bottom:3px;}
+  .ag p{font-size:12.5px;color:var(--muted);line-height:1.5;}
+  .agents-note{max-width:820px;margin:26px auto 0;text-align:center;font-size:14px;color:var(--muted);}
+  .agents-note b{color:var(--ink-strong);}
+
   /* Reveal (activé uniquement si JS) */
   .itc-anim .rev{opacity:0;transform:translateY(26px);
     transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1);transition-delay:var(--d,0s);}
@@ -299,6 +348,12 @@
     .pitem{flex-direction:column;gap:14px;}
     .statband{grid-template-columns:1fr;}
     .trow{grid-template-columns:1fr;}
+    .fsteps{grid-template-columns:1fr;}
+    .fsep{transform:rotate(90deg);}
+    .tflow{grid-template-columns:1fr;}
+    .agrid3{grid-template-columns:1fr;}
+    .calc{padding:24px 18px;}
+    .mid-cta .btn{width:100%;}
     .trow .old{border-bottom:1px dashed var(--line);}
     .thead{display:none;}
     .scroll-hint{display:block;}
@@ -313,15 +368,15 @@
   <div class="hero-inner">
     <div class="eyebrow">
       <svg viewBox="0 0 24 24" fill="none" width="14" height="14"><path d="M13 2L3 14h8l-1 8 10-12h-8l1-8z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
-      <span>Interception de parts de marché · Décupler</span>
+      <span>Visibilité IA &amp; Google · Décupler</span>
     </div>
 
-    <h1>Détournez le trafic intentionniste de vos concurrents vers <span class="gr">votre pipeline</span>.</h1>
+    <h1>Quand un décideur demande à l'IA qui est le meilleur,<br>elle doit répondre&nbsp;: <span class="gr">vous</span>.</h1>
 
-    <p class="hero-sub">Votre trafic SEO baisse. Pendant ce temps, vos concurrents captent les clients qui <b>vous</b> cherchent. On identifie exactement où — et on siphonne cette demande vers vous, grâce à nos <b>agents IA</b>.</p>
+    <p class="hero-sub">Aujourd'hui, c'est votre concurrent qui sort. Vos futurs clients posent leurs questions à ChatGPT et à Google, et se font une shortlist <b>avant même de vous parler</b>. On identifie exactement où vous perdez ces clients — et on récupère cette demande.</p>
 
     <a href="https://calendly.com/fenina-nathan/consultationstrategique" class="btn btn-primary js-cta">
-      <span>Réserver ma cartographie d'interception</span>
+      <span>Réserver mon diagnostic</span>
       <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </a>
     <p class="hero-note">30 minutes. On vous dit franchement s'il y a du pipeline à récupérer — ou pas.</p>
@@ -458,6 +513,48 @@
   </div>
 </section>
 
+<!-- ============ CTA 1 ============ -->
+<div class="mid-cta rev">
+  <p class="mid-cta-line">Combien de clients partent chez vos concurrents en ce moment&nbsp;? On le chiffre avec vous.</p>
+  <a href="https://calendly.com/fenina-nathan/consultationstrategique" class="btn btn-primary js-cta">
+    <span>Réserver mon diagnostic</span>
+    <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </a>
+</div>
+
+<!-- ============ COMMENT ON TROUVE LES LEADS ============ -->
+<section class="find">
+  <div class="wrap">
+    <div class="sec-head rev">
+      <div class="eyebrow">Étape 1 · Trouver</div>
+      <h2>D'où sortent les opportunités</h2>
+      <p>Pas d'intuition, pas de « bonnes pratiques ». On part de vos données réelles et de ce que vos acheteurs tapent vraiment.</p>
+    </div>
+    <div class="fsteps">
+      <div class="fstep rev">
+        <div class="fi"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><ellipse cx="12" cy="5" rx="8" ry="3" stroke="#6366f1" stroke-width="2"/><path d="M4 5v6c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 11v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6" stroke="#6366f1" stroke-width="2"/></svg></div>
+        <h3>On branche vos données</h3>
+        <p>Vos vraies performances, pas des estimations d'outil : ce qui vous rapporte déjà, ce qui stagne, et d'où viennent vos clients actuels.</p>
+        <div class="src">Search Console · Analytics · CRM · Ads</div>
+      </div>
+      <div class="fsep">→</div>
+      <div class="fstep rev">
+        <div class="fi"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="#6366f1" stroke-width="2"/><path d="M20 20l-4.3-4.3" stroke="#6366f1" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <h3>On traque la demande qui achète</h3>
+        <p>Les questions posées à Google <b>et</b> à ChatGPT au moment de choisir un fournisseur. On regarde qui est cité — et qui ne l'est pas.</p>
+        <div class="src">Requêtes Google + prompts IA + analyse concurrents</div>
+      </div>
+      <div class="fsep">→</div>
+      <div class="fstep rev">
+        <div class="fi"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M18 20V10M12 20V4M6 20v-6" stroke="#6366f1" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <h3>On classe par argent</h3>
+        <p>Chaque opportunité reçoit un chiffre : combien de leads elle vaut, quel effort elle demande. On garde celles qui rapportent.</p>
+        <div class="src">Une liste priorisée P1 / P2 / P3</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ============ TABLEAU MAÎTRE ============ -->
 <section class="master">
   <div class="wrap">
@@ -501,6 +598,40 @@
       </table>
     </div>
     <p class="note">Exemple de structure — chiffres illustratifs. Le potentiel € et les MQL sont des <b>estimations</b> (volume × CTR × taux de conversion secteur), pas une promesse de résultat. Vos vrais chiffres sont calculés sur vos données.</p>
+  </div>
+</section>
+
+<!-- ============ COMMENT ÇA DEVIENT DU CASH ============ -->
+<section class="cash">
+  <div class="wrap">
+    <div class="sec-head rev">
+      <div class="eyebrow">Étape 2 · Chiffrer</div>
+      <h2>Comment une requête devient de l'argent</h2>
+      <p>Le calcul est simple, et on vous le montre. Pas de boîte noire.</p>
+    </div>
+    <div class="calc rev">
+      <div class="crow">
+        <div class="cbox"><div class="cl">Recherches</div><div class="cv">2 400/mois</div></div>
+        <div class="cop">×</div>
+        <div class="cbox"><div class="cl">Clics captés</div><div class="cv">~12 %</div></div>
+        <div class="cop">×</div>
+        <div class="cbox"><div class="cl">Deviennent lead</div><div class="cv">~4 %</div></div>
+        <div class="cop">=</div>
+        <div class="cbox cres"><div class="cl">Leads / mois</div><div class="cv">~12</div></div>
+      </div>
+      <div class="crow">
+        <div class="cbox"><div class="cl">Leads / an</div><div class="cv">~144</div></div>
+        <div class="cop">×</div>
+        <div class="cbox"><div class="cl">Taux de closing</div><div class="cv">~10 %</div></div>
+        <div class="cop">×</div>
+        <div class="cbox"><div class="cl">Panier moyen</div><div class="cv">5 000 €</div></div>
+        <div class="cop">=</div>
+        <div class="cbox cres"><div class="cl">Pipeline / an</div><div class="cv">≈ 72 k€</div></div>
+      </div>
+      <div class="cdiv"></div>
+      <p class="cex">Voilà ce que représente <b>une seule ligne</b> de votre cartographie — celle où votre concurrent est premier et vous quatorzième. Multipliez par les dizaines de requêtes où vous êtes absent : <b>c'est ça, votre manque à gagner.</b><br>Les taux de clic et de conversion viennent des moyennes de votre secteur, puis sont ajustés sur <b>vos</b> chiffres réels dès la première semaine.</p>
+    </div>
+    <p class="cnote">Exemple illustratif. Ce sont des <b>estimations</b>, pas une promesse de résultat — et on vous dit toujours lesquelles sont estimées et lesquelles sont mesurées.</p>
   </div>
 </section>
 
@@ -568,6 +699,15 @@
   </div>
 </section>
 
+<!-- ============ CTA 2 ============ -->
+<div class="mid-cta rev">
+  <p class="mid-cta-line">Vous voulez ce chiffre pour votre marque, sur vos vraies données&nbsp;?</p>
+  <a href="https://calendly.com/fenina-nathan/consultationstrategique" class="btn btn-primary js-cta">
+    <span>Réserver mon diagnostic</span>
+    <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </a>
+</div>
+
 <!-- ============ ARCHITECTURE 2 TEMPS ============ -->
 <section class="arch">
   <div class="wrap">
@@ -580,7 +720,7 @@
       <div class="acard rev">
         <div class="kind">Temps 1 · ponctuel — ~30 jours</div>
         <h3>L'audit de risque pipeline</h3>
-        <div class="sub">Organic Opportunity Map™</div>
+        <div class="sub">La carte de ce que vous perdez, chiffrée</div>
         <p>On diagnostique et on chiffre la fuite : quels prompts et mots-clés, qui est cité à votre place, ce que ça vous coûte, et par où récupérer en priorité.</p>
         <ul>
           <li>Cartographie complète des opportunités</li>
@@ -595,13 +735,13 @@
       <div class="acard back rev">
         <div class="kind">Temps 2 · récurrent</div>
         <h3>L'infrastructure opérée</h3>
-        <div class="sub">Organic Visibility Infrastructure™ (OVI)</div>
-        <p>On exécute, en continu. Contenu extractible par l'IA, schema, autorité off-site — et un reporting relié à votre pipeline, pas à votre trafic.</p>
+        <div class="sub">On opère votre visibilité, tous les mois</div>
+        <p>On exécute, tous les mois. Du contenu que les IA reprennent en réponse, le balisage qui va avec, les mentions qui font autorité — et un reporting qui parle leads, pas trafic.</p>
         <ul>
           <li>Production et publication en continu</li>
-          <li>Schema &amp; entités (extractabilité IA)</li>
-          <li>Autorité off-site (Reddit, G2, presse)</li>
-          <li>Monitoring de la part de voix IA</li>
+          <li>Balisage que les IA savent lire et citer</li>
+          <li>Mentions sur Reddit, G2 et dans la presse</li>
+          <li>Suivi de vos citations dans les IA</li>
           <li>Reporting relié aux leads</li>
           <li>Réallocation mensuelle du budget</li>
         </ul>
@@ -625,10 +765,10 @@
         <div class="fpromise">Exister dans les réponses IA &amp; Google</div>
         <ul>
           <li>SEO on-page</li>
-          <li>GEO / AI Search</li>
-          <li>Schema &amp; entités</li>
-          <li>Contenu Answer-First</li>
-          <li>Reporting standard</li>
+          <li>Être cité par ChatGPT, Perplexity &amp; Gemini</li>
+          <li>Balisage lisible par les IA</li>
+          <li>Contenu conçu pour être repris en réponse</li>
+          <li>Reporting positions + citations IA</li>
         </ul>
         <div class="fwho">Pour démarrer avec un budget maîtrisé.</div>
       </div>
@@ -641,7 +781,7 @@
           <li>Reddit &amp; communautés</li>
           <li>Distribution LinkedIn</li>
           <li>PR light</li>
-          <li>Monitoring part de voix IA</li>
+          <li>Suivi de votre part de citations vs concurrents</li>
         </ul>
         <div class="fwho">Pour ceux qui veulent prendre du terrain.</div>
       </div>
@@ -666,7 +806,7 @@
         <span class="chip">Sprint PR</span>
         <span class="chip">Pack vidéo / YouTube</span>
         <span class="chip">Attribution CRM</span>
-        <span class="chip">Refonte schema</span>
+        <span class="chip">Refonte du balisage</span>
       </div>
     </div>
     <p class="fnote rev">Le budget se calibre sur votre marché et votre ambition — on en parle au rendez-vous, une fois qu'on sait ce qu'il y a à récupérer.</p>
@@ -677,16 +817,16 @@
 <section class="layers">
   <div class="wrap">
     <div class="sec-head rev">
-      <div class="eyebrow">Le mécanisme OVI™</div>
+      <div class="eyebrow">Le système</div>
       <h2>Pas un service. Un système.</h2>
-      <p>Cinq couches qui transforment vos données marketing en décisions exécutées, en continu.</p>
+      <p>Cinq couches qui transforment vos données en actions, tous les mois, sans que vous ayez à arbitrer.</p>
     </div>
     <div class="lstack">
       <div class="layer rev"><div class="ln">1</div><div><h3>Données</h3><p>Search Console, Analytics, CRM, DataForSEO, Ahrefs, SERP &amp; AI-SERP.</p></div></div>
-      <div class="layer rev"><div class="ln">2</div><div><h3>Moteur de décision</h3><p>Priorisation par impact business — pas par volume de recherche.</p></div></div>
-      <div class="layer rev"><div class="ln">3</div><div><h3>Agents IA spécialisés</h3><p>Recherche, clustering, production, distribution.</p></div></div>
+      <div class="layer rev"><div class="ln">2</div><div><h3>Un moteur de décision</h3><p>Il classe par argent potentiel, pas par volume de recherche.</p></div></div>
+      <div class="layer rev"><div class="ln">3</div><div><h3>Des agents spécialisés</h3><p>Un par métier : recherche, regroupement des sujets, rédaction, diffusion.</p></div></div>
       <div class="layer rev"><div class="ln">4</div><div><h3>Supervision humaine</h3><p>Contrôle qualité et arbitrage. Rien ne sort sans validation.</p></div></div>
-      <div class="layer rev"><div class="ln">5</div><div><h3>Boucle d'amélioration</h3><p>Publication, monitoring, réallocation continue du budget.</p></div></div>
+      <div class="layer rev"><div class="ln">5</div><div><h3>Une boucle qui apprend</h3><p>On publie, on mesure, on redéploie le budget sur ce qui marche.</p></div></div>
     </div>
     <div class="cycle rev">
       <span class="cs">Détecte</span><span class="ca">→</span>
@@ -697,6 +837,44 @@
       <span class="cs">Mesure</span><span class="ca">→</span>
       <span class="cs loop">Améliore ↻</span>
     </div>
+  </div>
+</section>
+
+<!-- ============ AGENTS (photos réelles) ============ -->
+<section class="agents">
+  <div class="wrap">
+    <div class="sec-head rev">
+      <div class="eyebrow">Votre équipe</div>
+      <h2>Une équipe qui ne dort jamais</h2>
+      <p>Chaque métier d'une agence a son agent dédié. Ils travaillent en continu ; nos experts valident.</p>
+    </div>
+    <div class="agrid3">
+      <div class="ag rev">
+        <img src="https://decupler.com/wp-content/uploads/2025/10/ChatGPT-Image-16-sept.-2025-12_12_27-1.png" alt="Agent Analyste SEO" loading="lazy" width="64" height="64">
+        <div><h3>L'analyste</h3><p>Surveille vos positions et vos données, repère les opportunités qui bougent.</p></div>
+      </div>
+      <div class="ag rev">
+        <img src="https://decupler.com/wp-content/uploads/2025/10/ChatGPT-Image-16-sept.-2025-12_12_30.png" alt="Agent Spécialiste visibilité IA" loading="lazy" width="64" height="64">
+        <div><h3>Le veilleur IA</h3><p>Vérifie chaque semaine si ChatGPT et Perplexity vous citent — et qui gagne à votre place.</p></div>
+      </div>
+      <div class="ag rev">
+        <img src="https://decupler.com/wp-content/uploads/2025/10/ChatGPT-Image-16-sept.-2025-12_12_25.png" alt="Agent Rédaction" loading="lazy" width="64" height="64">
+        <div><h3>La rédaction</h3><p>Produit le contenu dans votre voix de marque, conçu pour être repris en réponse par les IA.</p></div>
+      </div>
+      <div class="ag rev">
+        <img src="https://decupler.com/wp-content/uploads/2025/10/ChatGPT-Image-16-sept.-2025-12_12_24.png" alt="Agent Autorité et mentions" loading="lazy" width="64" height="64">
+        <div><h3>L'autorité</h3><p>Va chercher les mentions qui font basculer une citation : Reddit, G2, presse, communautés.</p></div>
+      </div>
+      <div class="ag rev">
+        <img src="https://decupler.com/wp-content/uploads/2025/10/ChatGPT-Image-27-oct.-2025-11_37_08.png" alt="Agent Design" loading="lazy" width="64" height="64">
+        <div><h3>Le design</h3><p>Habille chaque page à votre charte. Pas de gabarit générique, pas de designer à facturer.</p></div>
+      </div>
+      <div class="ag rev">
+        <img src="https://decupler.com/wp-content/uploads/2025/10/ChatGPT-Image-27-oct.-2025-12_11_57.png" alt="Agent Publication" loading="lazy" width="64" height="64">
+        <div><h3>La publication</h3><p>Met en ligne, teste le rendu, vérifie le balisage. Vous n'ouvrez jamais WordPress.</p></div>
+      </div>
+    </div>
+    <p class="agents-note rev">C'est ce qui nous permet de produire en quelques jours ce qu'une agence classique facture en semaines — <b>sans intégrateur ni designer à payer</b>. Mais rien ne part en ligne sans qu'un humain l'ait validé.</p>
   </div>
 </section>
 
@@ -739,18 +917,24 @@
 <section class="attrib">
   <div class="wrap">
     <div class="sec-head rev">
-      <div class="eyebrow">Reporting</div>
-      <h2>« Peut-on savoir si un lead vient de ChatGPT ? »</h2>
-      <p>La réponse honnête est : oui et non. Voici exactement ce qu'on sait mesurer.</p>
+      <div class="eyebrow">Étape 3 · Tracker</div>
+      <h2>Peut-on savoir si un lead vient de ChatGPT&nbsp;?</h2>
+      <p>La réponse honnête est : oui et non. Voici exactement ce qu'on mesure, et comment ça remonte jusqu'à votre CRM.</p>
+    </div>
+    <div class="tflow">
+      <div class="tnode rev"><div class="tt">1 · La source</div><h4>L'IA vous cite</h4><p>ChatGPT, Perplexity ou l'AI Overview de Google vous recommande dans sa réponse.</p></div>
+      <div class="tnode rev"><div class="tt">2 · L'arrivée</div><h4>Le prospect arrive</h4><p>Soit il clique la citation (on le voit), soit il tape votre nom plus tard (on le déduit).</p></div>
+      <div class="tnode rev"><div class="tt">3 · La capture</div><h4>Le formulaire tagué</h4><p>Chaque formulaire porte sa source. Le lead entre dans votre CRM avec son origine.</p></div>
+      <div class="tnode rev"><div class="tt">4 · Le verdict</div><h4>Le chiffre business</h4><p>Combien de leads, combien de deals, quel montant — par source, chaque mois.</p></div>
     </div>
     <div class="agrid2">
       <div class="acol ok rev">
         <div class="lbl">✓ Traçable</div>
         <h3>Quand il clique une citation IA</h3>
-        <p>Le lead arrive en referral (<code>chatgpt.com</code>, <code>perplexity.ai</code>). On le voit, on le compte, on le relie à votre CRM.</p>
+        <p>Le lead arrive en referral (<b>chatgpt.com</b>, <b>perplexity.ai</b>). On le voit, on le compte, on le relie à votre CRM.</p>
       </div>
       <div class="acol ko rev">
-        <div class="lbl">~ Dark funnel</div>
+        <div class="lbl">~ Déduit</div>
         <h3>Quand l'IA le recommande sans clic</h3>
         <p>Il vient ensuite en direct ou tape votre nom sur Google. Invisible en attribution classique — on le mesure par des indicateurs proxy : branded search, direct, « comment nous avez-vous connu ? ».</p>
       </div>
@@ -811,6 +995,15 @@
     </div>
   </div>
 </section>
+
+<!-- ============ CTA 3 ============ -->
+<div class="mid-cta rev">
+  <p class="mid-cta-line">Prêt à voir précisément ce que vos concurrents vous prennent&nbsp;?</p>
+  <a href="https://calendly.com/fenina-nathan/consultationstrategique" class="btn btn-primary js-cta">
+    <span>Réserver mon diagnostic</span>
+    <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </a>
+</div>
 
 <!-- ============ FAQ ============ -->
 <section class="faq">
