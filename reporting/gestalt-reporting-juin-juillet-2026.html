@@ -3,16 +3,18 @@
 <title>Reporting Gestalt.fr × Décupler — Juin / Juillet 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <style>
+/* Charte graphique gestalt.fr — palette naturelle/humaniste, police Jost */
 :root{
-  --bg:#07080f; --bg-elev:#0f1120; --bg-elev2:#151831;
-  --violet:#7B5CFA; --violet-soft:#9d86ff; --green:#00E5A0;
-  --text:#e8e9f2; --muted:#9aa0b5; --border:rgba(255,255,255,.08);
+  --bg:#f5f2e7; --bg-elev:#fffdf6; --bg-elev2:#efeed8;
+  --violet:#525948; --violet-soft:#b05a30; --green:#5f7d4a;
+  --text:#23261a; --muted:#6b705c; --border:rgba(35,38,26,.12);
   --radius:14px;
-  --amber:#f6b955; --blue:#5aa9ff; --red:#ff6b7d; --grey:#8a90a6;
-  --font-title:"Syne",system-ui,sans-serif;
-  --font-body:"DM Sans",system-ui,sans-serif;
+  --amber:#b08328; --blue:#3a7ca5; --red:#b5524b; --grey:#8a9994;
+  --shadow:0 2px 14px rgba(82,89,72,.08);
+  --font-title:"Jost",system-ui,sans-serif;
+  --font-body:"Jost",system-ui,sans-serif;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -30,8 +32,9 @@ a:hover{text-decoration:underline}
   position:relative; overflow:hidden;
   padding:88px 0 64px;
   background:
-    radial-gradient(900px 500px at 15% -10%, rgba(123,92,250,.28), transparent 60%),
-    radial-gradient(700px 500px at 95% 10%, rgba(0,229,160,.14), transparent 55%);
+    radial-gradient(900px 520px at 15% -10%, rgba(82,89,72,.16), transparent 62%),
+    radial-gradient(760px 520px at 95% 8%, rgba(227,205,139,.4), transparent 58%),
+    linear-gradient(180deg,#efeed8,#f5f2e7);
   border-bottom:1px solid var(--border);
 }
 .eyebrow{
@@ -57,8 +60,8 @@ a:hover{text-decoration:underline}
 /* ---------- KPI band ---------- */
 .kpis{display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin:44px 0}
 .kpi{
-  background:linear-gradient(180deg,var(--bg-elev),#0c0e1c);
-  border:1px solid var(--border); border-radius:var(--radius); padding:22px 20px;
+  background:linear-gradient(180deg,#fffdf6,#f8f5e8);
+  border:1px solid var(--border); border-radius:var(--radius); padding:22px 20px; box-shadow:var(--shadow);
 }
 .kpi .v{font-family:var(--font-title); font-weight:800; font-size:2rem; line-height:1; letter-spacing:-.02em}
 .kpi .v.g{color:var(--green)} .kpi .v.p{color:var(--violet-soft)}
@@ -81,7 +84,7 @@ section{padding:52px 0; border-top:1px solid var(--border)}
 .lead{color:var(--muted); font-size:1.05rem; margin:6px 0 28px; max-width:760px}
 
 h3{font-family:var(--font-title); font-weight:700; font-size:1.15rem; margin:30px 0 12px}
-.card{background:var(--bg-elev); border:1px solid var(--border); border-radius:var(--radius); padding:24px 26px}
+.card{background:var(--bg-elev); border:1px solid var(--border); border-radius:var(--radius); padding:24px 26px; box-shadow:var(--shadow)}
 .grid2{display:grid; grid-template-columns:1fr 1fr; gap:20px}
 .grid3{display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
 
@@ -98,7 +101,7 @@ ul.clean li a{word-break:break-word}
 table{border-collapse:collapse; width:100%; font-size:.9rem; min-width:520px}
 th,td{text-align:left; padding:12px 15px; border-bottom:1px solid var(--border)}
 thead th{background:var(--bg-elev2); color:var(--muted); font-weight:600; font-size:.78rem; text-transform:uppercase; letter-spacing:.05em; position:sticky; top:0}
-tbody tr:hover{background:rgba(255,255,255,.02)}
+tbody tr:hover{background:rgba(82,89,72,.05)}
 td.num{font-variant-numeric:tabular-nums; white-space:nowrap}
 td.strong{font-weight:600; color:var(--text)}
 tr:last-child td{border-bottom:0}
@@ -106,13 +109,13 @@ tr:last-child td{border-bottom:0}
 /* status chips */
 .st{display:inline-flex; align-items:center; gap:6px; font-size:.75rem; font-weight:600; padding:4px 10px; border-radius:999px; white-space:nowrap}
 .st::before{content:""; width:7px; height:7px; border-radius:50%; background:currentColor}
-.st-valide{color:var(--green); background:rgba(0,229,160,.1)}
-.st-gestalt{color:var(--violet-soft); background:rgba(123,92,250,.16)}
-.st-attente{color:var(--amber); background:rgba(246,185,85,.1)}
-.st-contact{color:var(--blue); background:rgba(90,169,255,.1)}
-.st-inscrire{color:var(--amber); background:rgba(246,185,85,.1)}
-.st-payant{color:var(--grey); background:rgba(138,144,166,.12)}
-.st-ko{color:var(--red); background:rgba(255,107,125,.1)}
+.st-valide{color:#4c6a39; background:rgba(95,125,74,.14)}
+.st-gestalt{color:#a1481f; background:rgba(176,90,48,.16); box-shadow:0 0 0 1px rgba(176,90,48,.25) inset}
+.st-attente{color:#8a6512; background:rgba(176,131,40,.15)}
+.st-contact{color:#2e6788; background:rgba(58,124,165,.14)}
+.st-inscrire{color:#8a6512; background:rgba(176,131,40,.15)}
+.st-payant{color:#5f6a62; background:rgba(138,153,148,.2)}
+.st-ko{color:#9a3f39; background:rgba(181,82,75,.14)}
 
 /* callouts */
 .callout{border-left:3px solid var(--violet); background:var(--bg-elev); border-radius:0 var(--radius) var(--radius) 0; padding:18px 22px; margin:20px 0}
@@ -124,7 +127,7 @@ tr:last-child td{border-bottom:0}
 .note{font-size:.82rem; color:var(--muted); font-style:italic}
 
 /* chart */
-.chart-card{background:var(--bg-elev); border:1px solid var(--border); border-radius:var(--radius); padding:24px 26px 16px}
+.chart-card{background:var(--bg-elev); border:1px solid var(--border); border-radius:var(--radius); padding:24px 26px 16px; box-shadow:var(--shadow)}
 .legend{display:flex; gap:20px; flex-wrap:wrap; font-size:.82rem; color:var(--muted); margin-top:4px}
 .legend span{display:inline-flex; align-items:center; gap:8px}
 .dot{width:11px; height:11px; border-radius:3px; display:inline-block}
@@ -135,9 +138,9 @@ tr:last-child td{border-bottom:0}
 .kw .q{font-weight:600; font-family:var(--font-title); flex:none; min-width:210px}
 .kw .d{color:var(--muted); font-size:.92rem}
 .chip{display:inline-block; font-size:.72rem; font-weight:700; padding:2px 8px; border-radius:6px; margin-right:6px; font-variant-numeric:tabular-nums}
-.chip.pos{color:var(--green); background:rgba(0,229,160,.12)}
-.chip.warn{color:var(--amber); background:rgba(246,185,85,.12)}
-.chip.neu{color:var(--violet-soft); background:rgba(123,92,250,.14)}
+.chip.pos{color:#4c6a39; background:rgba(95,125,74,.15)}
+.chip.warn{color:#8a6512; background:rgba(176,131,40,.16)}
+.chip.neu{color:#a1481f; background:rgba(176,90,48,.15)}
 
 .foot{padding:46px 0 70px; color:var(--muted); font-size:.85rem; text-align:center; border-top:1px solid var(--border)}
 .foot b{color:var(--text)}
@@ -373,8 +376,8 @@ tr:last-child td{border-bottom:0}
       <h3 style="margin-top:6px">Impressions &amp; clics — évolution mensuelle</h3>
       <div id="chart1"></div>
       <div class="legend">
-        <span><span class="dot" style="background:var(--violet)"></span> Impressions</span>
-        <span><span class="dot" style="background:var(--green)"></span> Clics</span>
+        <span><span class="dot" style="background:#525948"></span> Impressions</span>
+        <span><span class="dot" style="background:#c0673a"></span> Clics</span>
       </div>
     </div>
 
@@ -382,7 +385,7 @@ tr:last-child td{border-bottom:0}
       <h3 style="margin-top:6px">Position moyenne — plus c'est bas, mieux c'est</h3>
       <div id="chart2"></div>
       <div class="legend">
-        <span><span class="dot" style="background:var(--green)"></span> Position moyenne (échelle inversée)</span>
+        <span><span class="dot" style="background:#3a7ca5"></span> Position moyenne (échelle inversée)</span>
       </div>
     </div>
 
@@ -504,7 +507,7 @@ const labels = monthly.map(m=>m[0].replace('2025-','').replace('2026-','').repla
 const xAt = i => P.l + (iw*i/(monthly.length-1));
 
 function svg(inner){return `<svg viewBox="0 0 ${W} ${H}" width="100%" preserveAspectRatio="xMidYMid meet" style="overflow:visible">${inner}</svg>`;}
-function xLabels(){return labels.map((l,i)=>`<text x="${xAt(i)}" y="${H-12}" fill="#9aa0b5" font-size="11" text-anchor="middle">${l}</text>`).join('');}
+function xLabels(){return labels.map((l,i)=>`<text x="${xAt(i)}" y="${H-12}" fill="#6b705c" font-size="11" text-anchor="middle">${l}</text>`).join('');}
 
 // Chart 1: impressions (area) + clics (line, secondary axis)
 (function(){
@@ -517,18 +520,18 @@ function xLabels(){return labels.map((l,i)=>`<text x="${xAt(i)}" y="${H-12}" fil
   const line = pts => pts.map((p,i)=>(i?'L':'M')+p[0].toFixed(1)+' '+p[1].toFixed(1)).join(' ');
   const area = line(impPts)+` L${xAt(monthly.length-1).toFixed(1)} ${P.t+ih} L${P.l} ${P.t+ih} Z`;
   let grid='';
-  for(let g=0;g<=4;g++){const y=P.t+ih*g/4; grid+=`<line x1="${P.l}" y1="${y}" x2="${W-P.r}" y2="${y}" stroke="rgba(255,255,255,.06)"/>`+
-    `<text x="${P.l-8}" y="${y+4}" fill="#9aa0b5" font-size="10" text-anchor="end">${Math.round(impMax*(4-g)/4/1000)}k</text>`;}
+  for(let g=0;g<=4;g++){const y=P.t+ih*g/4; grid+=`<line x1="${P.l}" y1="${y}" x2="${W-P.r}" y2="${y}" stroke="rgba(35,38,26,.09)"/>`+
+    `<text x="${P.l-8}" y="${y+4}" fill="#6b705c" font-size="10" text-anchor="end">${Math.round(impMax*(4-g)/4/1000)}k</text>`;}
   const inner = `
     <defs><linearGradient id="ga" x1="0" x2="0" y1="0" y2="1">
-      <stop offset="0" stop-color="#7B5CFA" stop-opacity=".45"/><stop offset="1" stop-color="#7B5CFA" stop-opacity="0"/>
+      <stop offset="0" stop-color="#525948" stop-opacity=".45"/><stop offset="1" stop-color="#525948" stop-opacity="0"/>
     </linearGradient></defs>
     ${grid}
     <path d="${area}" fill="url(#ga)"/>
-    <path d="${line(impPts)}" fill="none" stroke="#7B5CFA" stroke-width="2.5"/>
-    <path d="${line(clPts)}" fill="none" stroke="#00E5A0" stroke-width="2.5"/>
-    ${impPts.map(p=>`<circle cx="${p[0]}" cy="${p[1]}" r="3" fill="#7B5CFA"/>`).join('')}
-    ${clPts.map(p=>`<circle cx="${p[0]}" cy="${p[1]}" r="3" fill="#00E5A0"/>`).join('')}
+    <path d="${line(impPts)}" fill="none" stroke="#525948" stroke-width="2.5"/>
+    <path d="${line(clPts)}" fill="none" stroke="#c0673a" stroke-width="2.5"/>
+    ${impPts.map(p=>`<circle cx="${p[0]}" cy="${p[1]}" r="3" fill="#525948"/>`).join('')}
+    ${clPts.map(p=>`<circle cx="${p[0]}" cy="${p[1]}" r="3" fill="#c0673a"/>`).join('')}
     ${xLabels()}`;
   document.getElementById('chart1').innerHTML = svg(inner);
 })();
@@ -545,11 +548,11 @@ function xLabels(){return labels.map((l,i)=>`<text x="${xAt(i)}" y="${H-12}" fil
   const line = pts.map((p,i)=>(i?'L':'M')+p[0].toFixed(1)+' '+p[1].toFixed(1)).join(' ');
   let grid='';
   for(let g=0;g<=4;g++){const val=lo+(hi-lo)*g/4; const yy=P.t+ih*g/4;
-    grid+=`<line x1="${P.l}" y1="${yy}" x2="${W-P.r}" y2="${yy}" stroke="rgba(255,255,255,.06)"/>`+
-    `<text x="${P.l-8}" y="${yy+4}" fill="#9aa0b5" font-size="10" text-anchor="end">${val.toFixed(0)}</text>`;}
+    grid+=`<line x1="${P.l}" y1="${yy}" x2="${W-P.r}" y2="${yy}" stroke="rgba(35,38,26,.09)"/>`+
+    `<text x="${P.l-8}" y="${yy+4}" fill="#6b705c" font-size="10" text-anchor="end">${val.toFixed(0)}</text>`;}
   const inner = `${grid}
-    <path d="${line}" fill="none" stroke="#00E5A0" stroke-width="2.5"/>
-    ${pts.map((p,i)=>`<circle cx="${p[0]}" cy="${p[1]}" r="3.5" fill="#00E5A0"/><text x="${p[0]}" y="${p[1]-10}" fill="#e8e9f2" font-size="10" text-anchor="middle">${pos[i].toString().replace('.',',')}</text>`).join('')}
+    <path d="${line}" fill="none" stroke="#3a7ca5" stroke-width="2.5"/>
+    ${pts.map((p,i)=>`<circle cx="${p[0]}" cy="${p[1]}" r="3.5" fill="#3a7ca5"/><text x="${p[0]}" y="${p[1]-10}" fill="#23261a" font-size="10" font-weight="600" text-anchor="middle">${pos[i].toString().replace('.',',')}</text>`).join('')}
     ${xLabels()}`;
   document.getElementById('chart2').innerHTML = svg(inner);
 })();
