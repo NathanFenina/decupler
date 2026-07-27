@@ -51,6 +51,14 @@ sans CSS inline ni classes Elementor, pour bien s'intégrer au thème du freelan
 - `docs/` — historique migration (archive).
 - `.env` / `.env.example` — secrets (WP, GSC, DataForSEO).
 
+## Génération d'images (MCP Gemini)
+- Serveur MCP `gemini-images` (`scripts/mcp/gemini_images.py`) → génère des
+  images avec **Google Gemini** (« Nano Banana », `gemini-2.5-flash-image`) pour
+  illustrer articles/pages (Décupler + sites clients).
+- Outil `generate_image` : enregistre un fichier image, puis on le téléverse dans
+  WordPress via `scripts/wp_upload_media.py`.
+- Clé : `GEMINI_API_KEY` dans `.env`. Détails/installation : `scripts/mcp/README.md`.
+
 ## Outillage SEO (prévu)
 - Google Search Console (script Python, service account — voir `.env`).
 - DataForSEO (via MCP ou script).

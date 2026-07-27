@@ -20,6 +20,9 @@ venv/
 # Node
 node_modules/
 
+# Images générées par le MCP Gemini
+generated-images/
+
 # OS / éditeurs
 .DS_Store
 .vscode/
