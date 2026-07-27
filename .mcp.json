@@ -8,6 +8,11 @@
       "env": {
         "GEMINI_API_KEY": "${GEMINI_API_KEY:-}"
       }
+    },
+    "yoast-seo": {
+      "type": "stdio",
+      "command": "python3",
+      "args": ["scripts/mcp/yoast_seo.py"]
     }
   }
 }

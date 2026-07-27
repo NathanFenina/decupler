@@ -72,3 +72,43 @@ python3 scripts/wp_upload_media.py --file content/articles/images/hero.png \
 | `GEMINI_API_KEY`    | Clé API (obligatoire)                  | —                         |
 | `GEMINI_IMAGE_MODEL`| Modèle par défaut                      | `gemini-2.5-flash-image`  |
 | `GEMINI_IMAGE_DIR`  | Dossier de sortie par défaut           | `./generated-images`      |
+
+---
+
+# MCP Yoast SEO — métadonnées WordPress
+
+Serveur MCP autonome (`yoast_seo.py`) pour **lire et écrire les métadonnées Yoast
+SEO** des articles et pages WordPress (titre SEO, méta description, requête cible,
+canonical, indexation, Open Graph) — sans passer par l'admin WP.
+
+- **Zéro dépendance** (bibliothèque standard Python).
+- Réutilise les identifiants WordPress du `.env` (les mêmes que `wp_publish.py`) :
+  `WP_SITE_URL`, `WP_USER`, `WP_APP_PASSWORD`.
+
+## Installation
+Déjà déclaré dans le `.mcp.json` du dépôt — rien à faire côté Claude Code (juste
+approuver au 1er lancement). Aucune clé supplémentaire : il utilise le `.env`.
+
+## Écriture SEO : le mu-plugin (une fois)
+WordPress **protège** les métadonnées Yoast (préfixe `_`) : la **lecture**
+(`get_seo`) marche telle quelle, mais l'**écriture** (`set_seo`) est ignorée tant
+que le site n'autorise pas ces champs via REST.
+
+→ Une seule action côté site, à confier au freelance : déposer le fichier
+`wordpress/decupler-yoast-rest.php` dans **`wp-content/mu-plugins/`** (créer le
+dossier si besoin). C'est un « must-use plugin » : actif automatiquement, sûr
+(écriture réservée aux utilisateurs pouvant éditer les contenus), rien à activer.
+
+Sans ce plugin, `set_seo` te préviendra clairement que les champs ont été ignorés.
+
+## Outils
+- **`find_content`** — cherche un article/page (mot-clé, slug), brouillons inclus → renvoie les IDs.
+- **`get_seo`** — lit les métadonnées Yoast d'un contenu (`id` ou `slug`).
+- **`set_seo`** — écrit : `seo_title`, `meta_description`, `focus_keyphrase`,
+  `canonical`, `noindex`, `nofollow`, `og_title`, `og_description`, `og_image`,
+  `twitter_title`, `twitter_description`.
+
+Exemple de demande à Claude :
+
+> « Trouve la page “agence GEO”, mets le titre SEO “Agence GEO : … | Décupler”,
+> la méta description à ~155 caractères et la requête cible “agence GEO”. »

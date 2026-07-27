@@ -59,6 +59,14 @@ sans CSS inline ni classes Elementor, pour bien s'intégrer au thème du freelan
   WordPress via `scripts/wp_upload_media.py`.
 - Clé : `GEMINI_API_KEY` dans `.env`. Détails/installation : `scripts/mcp/README.md`.
 
+## Métadonnées Yoast SEO (MCP)
+- Serveur MCP `yoast-seo` (`scripts/mcp/yoast_seo.py`) → lit/écrit les métas Yoast
+  (titre SEO, méta description, requête cible, canonical, robots, Open Graph) des
+  articles/pages via l'API REST WordPress. Réutilise les identifiants du `.env`.
+- Outils : `find_content`, `get_seo`, `set_seo`.
+- Écriture : nécessite le mu-plugin `wordpress/decupler-yoast-rest.php` sur le site
+  (voir `scripts/mcp/README.md`). La lecture marche sans rien.
+
 ## Outillage SEO (prévu)
 - Google Search Console (script Python, service account — voir `.env`).
 - DataForSEO (via MCP ou script).
