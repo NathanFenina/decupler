@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Décupler — Reporting SEO/GEO · Juillet 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --c-bg:#07080f; --c-bg-elevated:#0f1120;
+    --c-violet:#7B5CFA; --c-violet-soft:#9d86ff; --c-green:#00E5A0;
+    --c-text:#e8e9f2; --c-text-muted:#9aa0b5; --c-border:rgba(255,255,255,.08);
+    --font-title:"Syne",system-ui,sans-serif; --font-body:"DM Sans",system-ui,sans-serif;
+    --radius:14px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    background:var(--c-bg); color:var(--c-text);
+    font-family:var(--font-body); font-size:1.0625rem; line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+    background-image:radial-gradient(900px 500px at 12% -8%,rgba(123,92,250,.22),transparent 60%),
+                     radial-gradient(800px 500px at 92% 4%,rgba(0,229,160,.12),transparent 55%);
+    background-attachment:fixed;
+  }
+  .wrap{max-width:1080px;margin:0 auto;padding:clamp(1.5rem,4vw,4rem) clamp(1.1rem,3vw,2rem) 5rem}
+  h1,h2,h3{font-family:var(--font-title);line-height:1.15;letter-spacing:-.01em}
+
+  /* Header */
+  header.top{margin-bottom:3rem}
+  .eyebrow{display:inline-flex;align-items:center;gap:.55rem;font-size:.8rem;font-weight:700;
+    letter-spacing:.14em;text-transform:uppercase;color:var(--c-violet-soft);
+    border:1px solid var(--c-border);background:rgba(123,92,250,.08);
+    padding:.4rem .8rem;border-radius:999px;margin-bottom:1.3rem}
+  .eyebrow .dot{width:8px;height:8px;border-radius:50%;background:var(--c-green);box-shadow:0 0 12px var(--c-green)}
+  h1{font-size:clamp(2.3rem,5.5vw,3.9rem);font-weight:800}
+  h1 .grad{background:linear-gradient(100deg,var(--c-violet-soft),var(--c-green));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .subtitle{color:var(--c-text-muted);font-size:1.15rem;margin-top:.9rem;max-width:60ch}
+
+  /* KPI row */
+  .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1rem;margin:2.6rem 0 1rem}
+  .kpi{background:var(--c-bg-elevated);border:1px solid var(--c-border);border-radius:var(--radius);
+    padding:1.4rem 1.5rem;position:relative;overflow:hidden}
+  .kpi::before{content:"";position:absolute;inset:0 auto 0 0;width:3px;
+    background:linear-gradient(var(--c-violet),var(--c-green))}
+  .kpi .num{font-family:var(--font-title);font-size:2.5rem;font-weight:800;line-height:1}
+  .kpi .num.green{color:var(--c-green)} .kpi .num.violet{color:var(--c-violet-soft)}
+  .kpi .lbl{color:var(--c-text-muted);font-size:.9rem;margin-top:.5rem}
+
+  /* Sections */
+  section{margin-top:3.4rem}
+  .sec-head{display:flex;align-items:center;gap:.85rem;margin-bottom:1.4rem}
+  .sec-num{font-family:var(--font-title);font-weight:800;font-size:1rem;color:var(--c-bg);
+    background:linear-gradient(135deg,var(--c-violet-soft),var(--c-green));
+    width:34px;height:34px;border-radius:9px;display:grid;place-items:center;flex:none}
+  h2{font-size:clamp(1.6rem,3.2vw,2.1rem);font-weight:700}
+  .sec-sub{color:var(--c-text-muted);margin:-.4rem 0 1.4rem;padding-left:calc(34px + .85rem)}
+
+  .card{background:var(--c-bg-elevated);border:1px solid var(--c-border);border-radius:var(--radius);
+    padding:1.6rem 1.7rem;margin-bottom:1.1rem}
+  .card h3{font-size:1.15rem;font-weight:700;margin-bottom:1rem;display:flex;align-items:center;gap:.6rem}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem}
+  @media(max-width:720px){.grid2{grid-template-columns:1fr}}
+
+  /* URL lists */
+  ul.urls{list-style:none;display:flex;flex-direction:column;gap:.5rem}
+  ul.urls li{display:flex;align-items:center;gap:.65rem;font-size:.97rem;
+    padding:.55rem .7rem;border-radius:9px;background:rgba(255,255,255,.02);border:1px solid var(--c-border)}
+  ul.urls li .ic{flex:none;width:18px;height:18px}
+  ul.urls a{color:var(--c-text);text-decoration:none;word-break:break-all}
+  ul.urls a:hover{color:var(--c-violet-soft)}
+  .path{color:var(--c-text-muted)}
+  .check{color:var(--c-green)} .todo{color:var(--c-violet-soft)}
+
+  /* Callout */
+  .callout{border:1px solid rgba(0,229,160,.3);background:linear-gradient(180deg,rgba(0,229,160,.08),rgba(0,229,160,.02));
+    border-radius:var(--radius);padding:1.4rem 1.6rem;display:flex;gap:1rem;align-items:flex-start}
+  .callout .ic{flex:none;font-size:1.5rem;line-height:1}
+  .callout h3{font-family:var(--font-title);font-size:1.1rem;margin-bottom:.4rem;color:var(--c-green)}
+  .callout p{color:var(--c-text);font-size:.98rem}
+  .callout ul{margin:.5rem 0 0 1.1rem;color:var(--c-text-muted)}
+
+  /* Table */
+  .tbl-wrap{overflow-x:auto;border:1px solid var(--c-border);border-radius:var(--radius);background:var(--c-bg-elevated)}
+  table{border-collapse:collapse;width:100%;font-size:.92rem;min-width:640px}
+  thead th{text-align:left;font-family:var(--font-title);font-weight:700;font-size:.78rem;
+    letter-spacing:.06em;text-transform:uppercase;color:var(--c-text-muted);
+    padding:.9rem 1rem;border-bottom:1px solid var(--c-border);white-space:nowrap}
+  tbody td{padding:.8rem 1rem;border-bottom:1px solid var(--c-border);vertical-align:middle}
+  tbody tr:last-child td{border-bottom:none}
+  tbody tr:hover{background:rgba(123,92,250,.05)}
+  td a{color:var(--c-text);text-decoration:none} td a:hover{color:var(--c-violet-soft)}
+  .badge{display:inline-block;font-size:.72rem;font-weight:700;padding:.22rem .6rem;border-radius:999px;
+    white-space:nowrap;letter-spacing:.02em}
+  .b-pub{background:rgba(0,229,160,.14);color:var(--c-green);border:1px solid rgba(0,229,160,.3)}
+  .b-plan{background:rgba(123,92,250,.14);color:var(--c-violet-soft);border:1px solid rgba(123,92,250,.3)}
+  .b-page{background:rgba(255,255,255,.06);color:var(--c-text-muted);border:1px solid var(--c-border)}
+  .b-art{background:rgba(255,255,255,.03);color:var(--c-text-muted);border:1px solid var(--c-border)}
+
+  /* Chips (cartographie) */
+  .chips{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:.4rem}
+  .chip{display:inline-flex;align-items:center;gap:.5rem;padding:.55rem .9rem;border-radius:10px;
+    background:rgba(123,92,250,.08);border:1px solid rgba(123,92,250,.25);font-size:.92rem;font-weight:500}
+  .chip .plus{color:var(--c-green);font-weight:800}
+
+  .li-clean{list-style:none;display:flex;flex-direction:column;gap:.7rem}
+  .li-clean li{display:flex;gap:.7rem;align-items:flex-start;color:var(--c-text)}
+  .li-clean li .ic{flex:none;color:var(--c-green);margin-top:.15rem}
+
+  footer{margin-top:4rem;padding-top:1.6rem;border-top:1px solid var(--c-border);
+    color:var(--c-text-muted);font-size:.88rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:.6rem}
+  footer .brand{font-family:var(--font-title);font-weight:800;color:var(--c-text)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <span class="eyebrow"><span class="dot"></span>Reporting SEO / GEO · Juillet 2026</span>
+    <h1>Ce qu'on a fait sur <span class="grad">Décupler</span></h1>
+    <p class="subtitle">Indexation Google Search Console, enrichissement de la cartographie, production de contenus et optimisations on-site du mois.</p>
+
+    <div class="kpis">
+      <div class="kpi"><div class="num green">1&nbsp;640</div><div class="lbl">pages indexées sur GSC</div></div>
+      <div class="kpi"><div class="num violet">12</div><div class="lbl">URLs poussées à l'index</div></div>
+      <div class="kpi"><div class="num">11</div><div class="lbl">contenus produits en juillet</div></div>
+      <div class="kpi"><div class="num">2</div><div class="lbl">pages piliers optimisées</div></div>
+    </div>
+  </header>
+
+  <!-- 1. GSC -->
+  <section>
+    <div class="sec-head"><span class="sec-num">1</span><h2>Indexation Google Search Console</h2></div>
+    <p class="sec-sub"><strong>1&nbsp;640 pages</strong> désormais indexées sur le domaine. Demandes d'indexation en deux vagues&nbsp;:</p>
+
+    <div class="grid2">
+      <div class="card">
+        <h3><span class="check">✔</span> Indexation demandée</h3>
+        <ul class="urls">
+          <li><span class="ic check">✔</span><a href="https://decupler.com/visibilite-llm/">decupler.com<span class="path">/visibilite-llm/</span></a></li>
+          <li><span class="ic check">✔</span><a href="https://decupler.com/mesurer-sa-visibilite/">decupler.com<span class="path">/mesurer-sa-visibilite/</span></a></li>
+          <li><span class="ic check">✔</span><a href="https://decupler.com/reddit-pour-le-geo/">decupler.com<span class="path">/reddit-pour-le-geo/</span></a></li>
+          <li><span class="ic check">✔</span><a href="https://decupler.com/generer-un-article-seo/">decupler.com<span class="path">/generer-un-article-seo/</span></a></li>
+          <li><span class="ic check">✔</span><a href="https://decupler.com/automatisation-seo/">decupler.com<span class="path">/automatisation-seo/</span></a></li>
+          <li><span class="ic check">✔</span><a href="https://decupler.com/reddit-pour-les-llms/">decupler.com<span class="path">/reddit-pour-les-llms/</span></a></li>
+          <li><span class="ic check">✔</span><a href="https://decupler.com/openclawseo/">decupler.com<span class="path">/openclawseo/</span></a></li>
+          <li><span class="ic check">✔</span><a href="https://decupler.com/seo-saas/">decupler.com<span class="path">/seo-saas/</span></a></li>
+          <li><span class="ic check">✔</span><a href="https://decupler.com/agence-seo-nice/">decupler.com<span class="path">/agence-seo-nice/</span></a></li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3><span class="todo">◔</span> Indexation à demander</h3>
+        <ul class="urls">
+          <li><span class="ic todo">→</span><a href="https://decupler.com/agence-geo-nice/">decupler.com<span class="path">/agence-geo-nice/</span></a></li>
+          <li><span class="ic todo">→</span><a href="https://decupler.com/agence-geo-paris/">decupler.com<span class="path">/agence-geo-paris/</span></a></li>
+          <li><span class="ic todo">→</span><a href="https://decupler.com/machine-de-guerre-seo/">decupler.com<span class="path">/machine-de-guerre-seo/</span></a></li>
+        </ul>
+        <div class="callout" style="margin-top:1.2rem">
+          <span class="ic">🔁</span>
+          <div>
+            <h3>Rituel à cadrer</h3>
+            <p>Mettre en place un rendez-vous récurrent&nbsp;:</p>
+            <ul>
+              <li>Analyse GSC <strong>mensuelle</strong></li>
+              <li>Indexation systématique de <strong>toutes les futures nouvelles pages</strong></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Cartographie -->
+  <section>
+    <div class="sec-head"><span class="sec-num">2</span><h2>Enrichissement de la cartographie</h2></div>
+    <p class="sec-sub">Nouvelles colonnes à ajouter pour suivre la performance business et la visibilité IA&nbsp;:</p>
+    <div class="card">
+      <div class="chips">
+        <span class="chip"><span class="plus">+</span> Tracking de lead</span>
+        <span class="chip"><span class="plus">+</span> Prompt principal</span>
+        <span class="chip"><span class="plus">+</span> Citations</span>
+        <span class="chip"><span class="plus">+</span> Mentions</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Contenus juillet -->
+  <section>
+    <div class="sec-head"><span class="sec-num">3</span><h2>Contenus produits — Juillet</h2></div>
+    <p class="sec-sub">11 contenus créés (pages &amp; articles), gérés par Morgane.</p>
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr><th>Titre / cible</th><th>URL</th><th>Type</th><th>Statut</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Agence GEO Nice</td><td><a href="https://decupler.com/agence-geo-nice/">/agence-geo-nice/</a></td><td><span class="badge b-page">Page</span></td><td><span class="badge b-pub">Publié</span></td></tr>
+          <tr><td>SEO BTP</td><td><a href="https://decupler.com/seo-btp/">/seo-btp/</a></td><td><span class="badge b-art">Article</span></td><td><span class="badge b-pub">Publié</span></td></tr>
+          <tr><td>GEO SAAS</td><td><a href="https://decupler.com/geo-saas/">/geo-saas/</a></td><td><span class="badge b-art">Article</span></td><td><span class="badge b-plan">Planifié</span></td></tr>
+          <tr><td>SEO académie</td><td><a href="https://decupler.com/seo-academie/">/seo-academie/</a></td><td><span class="badge b-art">Article</span></td><td><span class="badge b-plan">Planifié</span></td></tr>
+          <tr><td>LLM forum</td><td><span class="path">—</span></td><td><span class="badge b-art">Article</span></td><td><span class="badge b-plan">Planifié</span></td></tr>
+          <tr><td>Top 10 des agences GEO en France</td><td><span class="path">—</span></td><td><span class="badge b-art">Article</span></td><td><span class="badge b-plan">Planifié</span></td></tr>
+          <tr><td>Reddit pour le GEO</td><td><a href="https://decupler.com/reddit-pour-le-geo/">/reddit-pour-le-geo/</a></td><td><span class="badge b-page">Page</span></td><td><span class="badge b-pub">Publié</span></td></tr>
+          <tr><td>Visibilité LLM</td><td><a href="https://decupler.com/visibilite-llm/">/visibilite-llm/</a></td><td><span class="badge b-page">Page</span></td><td><span class="badge b-pub">Publié</span></td></tr>
+          <tr><td>Générer un article SEO</td><td><a href="https://decupler.com/generer-un-article-seo/">/generer-un-article-seo/</a></td><td><span class="badge b-page">Page</span></td><td><span class="badge b-pub">Publié</span></td></tr>
+          <tr><td>Mesurer sa visibilité</td><td><a href="https://decupler.com/mesurer-sa-visibilite/">/mesurer-sa-visibilite/</a></td><td><span class="badge b-page">Page</span></td><td><span class="badge b-pub">Publié</span></td></tr>
+          <tr><td>Automatisation SEO</td><td><a href="https://decupler.com/automatisation-seo/">/automatisation-seo/</a></td><td><span class="badge b-page">Page</span></td><td><span class="badge b-pub">Publié</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 4. Optimisations -->
+  <section>
+    <div class="sec-head"><span class="sec-num">4</span><h2>Optimisations on-site</h2></div>
+    <div class="grid2">
+      <div class="card">
+        <h3><span class="check">✔</span> Pages piliers optimisées</h3>
+        <ul class="li-clean">
+          <li><span class="ic">✔</span><div>Optimisation de la page <strong>Agence SEO</strong></div></li>
+          <li><span class="ic">✔</span><div>Optimisation de la page <strong>Agence GEO</strong></div></li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3><span class="check">✔</span> Réparations techniques</h3>
+        <ul class="li-clean">
+          <li><span class="ic">✔</span><div>Réparation de la <strong>structure des blogs</strong></div></li>
+          <li><span class="ic">✔</span><div>Réparation des <strong>images mises en avant</strong> des blogs</div></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span class="brand">Décupler</span>
+    <span>Reporting SEO / GEO · Juillet 2026</span>
+  </footer>
+
+</div>
+</body>
+</html>
