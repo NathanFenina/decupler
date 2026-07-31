@@ -60,9 +60,24 @@ Les 6 catégories (100 points) :
 
 ## Inputs attendus
 1. **Le contenu** : texte collé, HTML, ou URL (si URL, récupère-la via web fetch).
-2. **Le mot-clé principal ciblé**.
+2. **Le mot-clé principal ciblé** — c'est l'entrée qui commande tout le score, comme
+   le « focus keyphrase » de Yoast. Une même page notée sur deux mots-clés différents
+   donne deux scores très différents : le mot-clé n'est donc jamais optionnel.
 
-Si le **mot-clé manque**, demande-le avant de noter (impossible d'auditer sans cible).
+**Le choix du mot-clé (volume, difficulté, intention) est un travail amont** — il se
+fait avec Search Console / Semrush / Ubersuggest ou les skills `geo-opportunities` /
+`cartographie-client`. Ce skill **audite contre le mot-clé fourni**, il ne le choisit
+pas à ta place. En pratique :
+- Si l'utilisateur **donne** le mot-clé → utilise-le tel quel.
+- S'il **manque** → ne bloque pas bêtement : **déduis** le mot-clé le plus probable du
+  **title / H1 / URL** du contenu, **annonce-le clairement** (« j'audite sur : … —
+  corrige si Rank Math/Yoast visait autre chose »), et propose de le confirmer. Si le
+  MCP Ubersuggest est disponible et que c'est utile, tu peux **valider volume/KD** du
+  mot-clé retenu pour vérifier qu'il est pertinent.
+- Pour **comparer un score à celui de Rank Math/Yoast**, il faut le **même** mot-clé
+  qu'eux : demande-le, sinon la comparaison n'a pas de sens (tu noterais une autre
+  cible).
+
 Si le **contenu est partiel** (ex. corps sans title/meta), audite ce que tu as et
 marque le reste **⚪ N/A** — ne pénalise pas une info simplement non fournie (règles
 de N/A et de redistribution : voir `criteres-scoring.md`).
