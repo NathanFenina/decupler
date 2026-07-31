@@ -1,20 +1,18 @@
 ---
 name: seo-geo-score
 description: >-
-  Audite et score n'importe quel contenu web (article, page service/produit,
-  landing, fiche) pour le SEO ET le GEO/AEO, façon plugin Yoast — mais générique,
-  applicable à tous les clients de Décupler (Apogea, Pluxee, Reux, BeTomorrow,
-  TechMedias...). Produit un score global sur 100, un feu rouge/orange/vert par
-  critère, et des recommandations concrètes et actionnables. C'est le scoreur SEO
-  par défaut de l'agence : déclenche-le dès que l'utilisateur veut auditer, scorer,
-  noter, évaluer un contenu par rapport à un mot-clé cible, OU veut qu'on optimise,
-  ré-optimise, corrige ou réécrive un contenu pour le SEO (le faire « passer au
-  vert »), mentionne Yoast ou Rank Math, un « score SEO », une « note sur 100 », un
-  « audit on-page », des « feux rouge/orange/vert », l'optimisation pour ChatGPT /
-  Perplexity / Gemini / AI Overviews (GEO / AEO), ou colle un texte/URL en demandant
-  s'il est bien optimisé — même sans nommer explicitement un audit. Il remplace
-  Yoast/Rank Math : il note ET applique lui-même les corrections. En cas de doute entre ce skill et un
-  skill client spécifique, utilise le skill client s'il existe ; sinon, celui-ci.
+  Audite et score n'importe quel contenu web (article, page, landing, fiche) pour le
+  SEO ET le GEO/AEO, façon Yoast/Rank Math mais générique — tous les clients et
+  domaines de Décupler (Apogea, Pluxee, Reux, BeTomorrow, TechMedias...). Rend un
+  score /100, un feu rouge/orange/vert par critère avec le pourquoi, des
+  recommandations actionnables, PUIS réécrit lui-même le contenu optimisé (il remplace
+  Yoast/Rank Math : il note ET corrige). Déclenche-le dès qu'on veut auditer, scorer,
+  noter, évaluer, optimiser, ré-optimiser, corriger ou réécrire un contenu pour le SEO
+  par rapport à un mot-clé cible, « le faire passer au vert », un « score SEO », une
+  « note sur 100 », un audit on-page, des feux rouge/orange/vert, l'optimisation pour
+  ChatGPT/Perplexity/Gemini/AI Overviews (GEO/AEO), ou qu'on colle un texte/URL en
+  demandant s'il est bien optimisé. Si un skill client spécifique existe, il prime ;
+  sinon, celui-ci.
 ---
 
 # Skill : seo-geo-score — le « Yoast » de Décupler (SEO + GEO)
