@@ -93,9 +93,19 @@ qui comptent, sans sur-optimisation.
 | **Champ sémantique** / variantes | 2 | Nombreux termes liés & synonymes | Quelques-uns | Répétition du seul mot-clé exact |
 
 **Notes de calcul :**
-- Densité = (occurrences du mot-clé exact + variantes proches) / nombre total de mots.
+- Densité = (occurrences du mot-clé, exactes + distribuées) / nombre total de mots.
+  Le script `analyze_content.py` renvoie la densité effective ; s'appuyer dessus.
 - « Bourrage » (> 3,5 %) est pénalisé aussi durement que l'absence : Google et les
   IA lisent la sur-optimisation comme un signal de spam.
+- **Nombre d'occurrences vs densité.** Ce qui compte est la **densité**, pas un compte
+  brut. Un même « 25 fois » vaut ~2 % dans un article de 2 500 mots (🟢) mais ~10 %
+  dans une page de 500 mots (🔴). Vise donc **1,5–2,5 %** : sur un contenu long, cela
+  revient naturellement à ~25-35 occurrences ; sur un contenu court, à beaucoup moins.
+  Ne jamais gonfler le compte au prix de la densité.
+- **Mots-clés secondaires.** S'ils sont fournis, vérifier que chacun apparaît
+  **naturellement** (quelques fois, idéalement dans un sous-titre), sans bourrage.
+  Leur absence n'écroule pas la note (micro-malus dans « champ sémantique ») ; leur
+  sur-répétition, si, comme pour le principal.
 
 ---
 

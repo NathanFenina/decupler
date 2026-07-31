@@ -63,6 +63,14 @@ Les 6 catégories (100 points) :
 2. **Le mot-clé principal ciblé** — c'est l'entrée qui commande tout le score, comme
    le « focus keyphrase » de Yoast. Une même page notée sur deux mots-clés différents
    donne deux scores très différents : le mot-clé n'est donc jamais optionnel.
+3. **(Optionnel) Mots-clés secondaires** — variantes / longue traîne à couvrir aussi.
+   Ils doivent apparaître **naturellement** dans le contenu (chacun quelques fois),
+   sans bourrage, et de préférence dans un sous-titre pertinent.
+4. **(Optionnel) Liste des liens/pages du site** — URLs d'articles et de pages
+   existants (liste, sitemap, ou export). Sert au **maillage interne** en mode
+   Ré-optimisation : tu insères des liens vers les pages réellement pertinentes,
+   avec un texte d'ancrage naturel dans le corps. Sans cette liste, tu proposes des
+   emplacements d'ancrage et marques la cible `[lien interne à choisir : …]`.
 
 **Le choix du mot-clé (volume, difficulté, intention) est un travail amont** — il se
 fait avec Search Console / Semrush / Ubersuggest ou les skills `geo-opportunities` /
@@ -152,6 +160,17 @@ Quand l'utilisateur veut que tu **appliques** les corrections (pas juste les lis
    densité (sans bourrer), ancres, ajoute liens internes/externes manquants, blocs
    citables GEO, FAQ/données structurées. Reste **fidèle au fond, au ton et à la
    marque** du client — tu optimises, tu ne réinventes pas le sujet.
+   - **Priorise l'important ET le réellement modifiable** : concentre-toi d'abord sur
+     ce qui a le plus d'impact et qui se change *dans le contenu* (title, meta, H1,
+     intro, densité, sous-titres, maillage, FAQ). Ne noie pas la valeur sous des
+     micro-détails ou des choses hors de portée (réglages serveur, thème).
+   - **Maillage interne à partir des liens fournis** : si une liste de pages/URLs du
+     site est donnée, insère des liens vers les **plus pertinents pour le sujet**, au
+     fil du texte, avec une ancre descriptive et naturelle (jamais « cliquez ici »).
+     N'invente pas d'URL : si aucune liste n'est fournie, marque `[lien interne : …]`.
+   - **Mot-clé principal** : vise une densité **~1,5–2,5 %** (sur un article long, cela
+     fait naturellement ~25-35 occurrences) — jamais au-delà du plafond de bourrage.
+     **Secondaires** : chacun présent quelques fois, naturellement.
 3. **Livre trois choses** :
    - la **version ré-optimisée** (prête à coller dans le CMS),
    - un **récap des changements** (quoi, et quel critère ça fait passer au vert),
