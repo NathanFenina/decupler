@@ -51,6 +51,29 @@ faits chiffrés, clarté des entités).
 Ces bandes sont un point de départ ; elles font partie de ce qu'on **calibre**
 contre le jugement humain.
 
+### Malus « sur-optimisation » (appliqué au score global)
+
+La densité du mot-clé est déjà un critère (catégorie 1), mais un critère à 3 points
+ne reflète pas la réalité : quand un mot-clé exact revient 20 fois, un SEO humain
+voit un contenu **globalement dégradé**, pas juste « un point en moins ». Le bourrage
+nuit à la lisibilité, au naturel et à la confiance — donc il doit peser sur **tout**
+le score, comme le font Yoast et Rank Math qui affichent un avertissement rouge franc.
+
+Après avoir calculé le score global, applique ce **malus** selon la densité du
+mot-clé exact (occurrences × longueur du mot-clé / nombre total de mots) :
+
+| Densité du mot-clé exact | Malus global |
+|---|---|
+| ≤ 3,5 % | 0 (rien à retirer) |
+| 3,5 % – 5 % | **−5** |
+| 5 % – 6,5 % | **−8** |
+| > 6,5 % | **−12** |
+
+Exemple réel : une page à **83/100** avec « content marketing » à **6,23 %** →
+malus −8 → **75/100**. C'est bien plus proche du ressenti d'un SEO qui voit le
+mot-clé répété à chaque phrase. Signale toujours le malus dans le rapport
+(« score 83, −8 sur-optimisation → **75/100** ») pour que la correction soit lisible.
+
 ---
 
 ## Catégorie 1 — Mot-clé & sémantique (20 pts)
