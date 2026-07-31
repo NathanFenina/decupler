@@ -62,9 +62,31 @@ def main():
     words = word_tokens(text)
     n = len(words) or 1
 
-    # Densité du mot-clé exact.
+    # Densité du mot-clé exact (correspondance contiguë stricte).
     occ = len(re.findall(re.escape(kw), low))
     density = occ * kw_wordlen / n * 100
+
+    # Correspondance "distribuée", façon Yoast : le mot-clé compte même si de petits
+    # mots s'intercalent ("rénovation À Fontainebleau"). On retire les mots vides du
+    # mot-clé, puis on compte les fenêtres qui contiennent TOUS les mots utiles.
+    STOP = {"de", "du", "des", "la", "le", "les", "l", "à", "a", "au", "aux", "en",
+            "et", "pour", "un", "une", "d"}
+    content_words = [w for w in word_tokens(kw) if w not in STOP]
+    distributed = 0
+    if content_words:
+        win = len(content_words) + 4  # petite fenêtre glissante tolérante
+        i = 0
+        while i <= max(0, n - 1):
+            window = set(words[i:i + win])
+            if all(cw in window for cw in content_words):
+                distributed += 1
+                i += win  # fenêtres non chevauchantes pour ne pas sur-compter
+            else:
+                i += 1
+    # Densité effective : la plus favorable des deux (exacte vs distribuée),
+    # pour ne pas pénaliser un mot-clé local bien placé mais non contigu.
+    density_distrib = distributed * len(content_words) / n * 100 if content_words else 0
+    density_eff = max(density, density_distrib)
 
     # Phrases + longueur.
     sentences = [s.strip() for s in re.split(r"(?<=[.!?])\s+", text) if s.strip()]
@@ -95,19 +117,24 @@ def main():
     out = {
         "mot_cle": args.keyword,
         "mots": n,
-        "occurrences_mot_cle": occ,
-        "densite_pct": round(density, 2),
+        "occurrences_exactes": occ,
+        "occurrences_distribuees": distributed,
+        "densite_exacte_pct": round(density, 2),
+        "densite_effective_pct": round(density_eff, 2),
         "densite_verdict": (
-            "OK" if density <= 2.5 else
-            "un peu haute" if density <= 3.5 else
+            "ABSENT" if density_eff == 0 else
+            "OK" if density_eff <= 2.5 else
+            "un peu haute" if density_eff <= 3.5 else
             "SUR-OPTIMISATION"
         ),
         "malus_suroptimisation": (
-            0 if density <= 3.5 else
-            5 if density <= 5 else
-            8 if density <= 6.5 else 12
+            0 if density_eff <= 3.5 else
+            5 if density_eff <= 5 else
+            8 if density_eff <= 6.5 else 12
         ),
-        "mot_cle_dans_100_premiers_mots": kw_in_first_100,
+        "mot_cle_dans_100_premiers_mots": (
+            kw_in_first_100 or all(cw in " ".join(words[:100]) for cw in content_words)
+        ),
         "phrases": len(sentences),
         "phrases_longues_pct": round(pct_long, 1),
         "mots_transition_pct": round(pct_trans, 1),
