@@ -92,6 +92,16 @@ qui comptent, sans sur-optimisation.
 | **Densité** du mot-clé | 3 | 0,5 – 2,5 % (idéal ~1–1,5 %) | 2,5 – 3,5 % ou 0,3 – 0,5 % | > 3,5 % (bourrage) ou ~0 % |
 | **Champ sémantique** / variantes | 2 | Nombreux termes liés & synonymes | Quelques-uns | Répétition du seul mot-clé exact |
 
+**Pourquoi ces critères (1 phrase chacun) :**
+- *Title* : c'est le signal de pertinence le plus fort et le texte cliqué dans les résultats.
+- *H1* : il annonce le sujet principal de la page aux moteurs comme aux lecteurs.
+- *Intro* : Google et les IA pondèrent fortement les 100 premiers mots pour cerner le sujet.
+- *Meta description* : sans être un facteur de ranking, le mot-clé y est surligné dans les résultats et augmente le taux de clic.
+- *Sous-titre* : le mot-clé dans un Hn confirme que le sujet est réellement traité.
+- *URL* : c'est un signal de pertinence visible, durable et repris comme ancre par d'autres sites.
+- *Densité* : trop bas = sujet flou, trop haut = spam ; 1–2,5 % est le point d'équilibre naturel.
+- *Champ sémantique* : Google juge un sujet via un réseau de termes liés, pas la seule répétition exacte.
+
 **Notes de calcul :**
 - Densité = (occurrences du mot-clé, exactes + distribuées) / nombre total de mots.
   Le script `analyze_content.py` renvoie la densité effective ; s'appuyer dessus.
@@ -122,6 +132,13 @@ Ici on juge la **qualité technique** des balises, indépendamment du mot-clé
 | **Balises `alt`** des images | 4 | Toutes les images ont un alt descriptif | Alt partiels ou génériques | Alt absents (ou aucune image sur un contenu qui en aurait besoin) |
 | **Données structurées** (schema.org) | 3 | Article/FAQ/Breadcrumb ou équivalent présent | Balisage minimal | Aucun balisage |
 
+**Pourquoi ces critères (1 phrase chacun) :**
+- *Longueur du title* : au-delà de ~60 caractères Google tronque le titre dans les résultats, ce qui casse le clic.
+- *Meta description* : trop courte gâche de la persuasion, trop longue est coupée ; 120–156 est la zone réellement affichée.
+- *Slug/URL* : une URL courte et lisible est plus cliquable, plus partageable et mieux comprise par les moteurs.
+- *Balises alt* : elles décrivent l'image aux moteurs et aux malvoyants, et sont la base du SEO image.
+- *Données structurées* : le balisage schema permet les rich snippets sur Google et l'extraction propre par les IA.
+
 **Note :** si le contenu fourni ne montre pas le title/meta/slug (ex. on ne t'a
 collé que le corps), ne devine pas : marque le critère **N/A** et signale à
 l'utilisateur qu'il faut fournir ces éléments pour une note fiable (voir section
@@ -138,6 +155,13 @@ N/A). Ne mets pas 🔴 pour une info simplement absente de ce qui t'a été four
 | **Fréquence des sous-titres** | 3 | Un H2/H3 tous les ~300 mots | Quelques blocs longs sans titre | Longs pavés (> 500 mots) sans sous-titre |
 | **Longueur du contenu** vs intention | 4 | Adaptée (info/transactionnel) et couvre le sujet | Un peu court/long | Beaucoup trop court pour le sujet ou délayé |
 | **Éléments scannables** (listes, tableaux, gras) | 3 | Présents et utiles | Rares | Bloc de texte massif sans respiration visuelle |
+
+**Pourquoi ces critères (1 phrase chacun) :**
+- *H1 unique* : un seul H1 dit clairement quel est le sujet ; plusieurs brouillent le message.
+- *Hiérarchie Hn* : une arborescence logique aide moteurs et lecteurs à saisir le plan du contenu.
+- *Fréquence des sous-titres* : des titres réguliers rendent le texte scannable et facilitent l'extraction par les IA.
+- *Longueur du contenu* : trop court ne couvre pas l'intention, trop long la dilue — il faut « juste ce qu'il faut ».
+- *Éléments scannables* : listes et tableaux captent l'œil pressé et sont faciles à citer par les moteurs IA.
 
 **Repères de longueur (indicatifs, à ajuster selon l'intention) :** article de
 blog informationnel 800–2000 mots ; page service/produit 400–1000 mots ; landing
@@ -159,6 +183,13 @@ Reproduit l'analyse de lisibilité de Yoast, adaptée au français.
 | **Voix passive** | 2 | < 10 % des phrases | 10–20 % | > 20 % |
 | **Clarté / jargon** | 3 | Langage clair, jargon expliqué | Un peu technique sans explication | Jargon dense, phrases alambiquées |
 
+**Pourquoi ces critères (1 phrase chacun) :**
+- *Longueur des phrases* : les phrases courtes se lisent et se comprennent plus vite, surtout sur mobile.
+- *Longueur des paragraphes* : les gros pavés découragent la lecture et masquent l'information.
+- *Mots de transition* : ils guident le lecteur d'une idée à la suivante et rendent le texte fluide.
+- *Voix passive* : la voix active est plus directe, plus courte et plus claire.
+- *Clarté / jargon* : un contenu compréhensible retient le lecteur et élargit l'audience.
+
 **Note français :** les indices type Flesch sont calés sur l'anglais ; utilise-les
 comme indice, pas comme vérité. Le vrai juge, c'est : « un lecteur pressé
 comprend-il en diagonale ? »
@@ -179,6 +210,14 @@ Authoritativeness, Trust).
 | **Signaux d'expertise** (auteur, date, expérience concrète) | 2 | Auteur/date/exemples vécus | Partiel | Anonyme, daté, générique |
 | **Cohérence avec l'intention** de recherche | 2 | Répond exactement à l'intention du mot-clé | Répond partiellement | Hors-sujet vs intention |
 
+**Pourquoi ces critères (1 phrase chacun) :**
+- *Liens internes* : ils font circuler l'autorité entre pages et aident Google à découvrir et hiérarchiser le site.
+- *Liens externes* : citer des sources crédibles renforce le contexte et la confiance.
+- *Ancres descriptives* : une ancre parlante indique aux moteurs et aux lecteurs ce qu'ils trouveront au bout du lien.
+- *Données / sources* : chiffres et sources rendent le contenu vérifiable, socle de la fiabilité (Trust).
+- *Signaux d'expertise* : auteur, date et expérience concrète prouvent la légitimité attendue par Google (E-E-A-T).
+- *Cohérence avec l'intention* : répondre à ce que l'internaute cherche vraiment est le premier facteur de satisfaction et de ranking.
+
 ---
 
 ## Catégorie 6 — GEO / AEO (15 pts)
@@ -195,6 +234,14 @@ extraient des **blocs de réponse autonomes, factuels et bien identifiés**.
 | **Données structurées FAQ / Q&A** | 2 | JSON-LD FAQ/QAPage présent | Balisage partiel | Aucun |
 | **Clarté des entités** | 2 | Sujet, marque, lieux, personnes nommés explicitement | Entités floues par endroits | Références vagues (« notre solution », « la ville ») |
 | **Fraîcheur / mise à jour** | 2 | Date récente ou signaux d'actualité | Daté mais encore valable | Périmé, non daté |
+
+**Pourquoi ces critères (1 phrase chacun) :**
+- *Réponse citable en intro* : les IA extraient des blocs de réponse autonomes, donc une réponse claire en tête augmente les chances d'être cité.
+- *Structure Q→R* : le format question/réponse colle à la façon dont les gens interrogent les IA.
+- *Faits extractibles* : chiffres, définitions et listes sont faciles à isoler et à reprendre pour un moteur génératif.
+- *Données structurées FAQ* : le balisage FAQ/Q&A fournit des paires question-réponse prêtes à l'emploi.
+- *Clarté des entités* : nommer explicitement marques, lieux et personnes aide les IA à relier le contenu aux bonnes entités.
+- *Fraîcheur* : moteurs et IA privilégient l'information récente, surtout sur des sujets qui évoluent.
 
 ---
 

@@ -112,6 +112,11 @@ Le score doit être **réaliste et reproductible** : on mesure ce qui est mesura
    (« 83, −8 sur-optimisation → 75 »).
 5. **Rédige les recommandations** : pour chaque critère non vert, dis **quoi changer
    concrètement**, pas juste « c'est moyen ». C'est ça qui rend le rapport utile.
+6. **Explique le pourquoi** : chaque critère évalué porte **une phrase** disant
+   *pourquoi* il compte (colonne « Pourquoi ça compte »). Les raisons sont dans
+   `references/criteres-scoring.md` (bloc « Pourquoi ces critères » sous chaque
+   catégorie) — reprends-les, adaptées au contenu. Un audit qui justifie apprend au
+   lecteur au lieu de le noter à l'aveugle.
 
 ## Format du rapport (à respecter)
 Produis **un seul bloc markdown** structuré ainsi :
@@ -135,10 +140,10 @@ Produis **un seul bloc markdown** structuré ainsi :
 Pour chaque catégorie, un tableau :
 
 ### 1. Mot-clé & sémantique — XX/20
-| Critère | Feu | Constat | Recommandation |
-|---|---|---|---|
-| Mot-clé dans le title | 🟢 | ... | ... |
-| ... | | | |
+| Critère | Feu | Constat | Pourquoi ça compte | Recommandation |
+|---|---|---|---|---|
+| Mot-clé dans le title | 🟢 | ... | (1 phrase : la raison SEO/GEO) | ... |
+| ... | | | | |
 
 [... les 6 catégories ...]
 
