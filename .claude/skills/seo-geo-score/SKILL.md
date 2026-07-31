@@ -67,14 +67,26 @@ Si le **contenu est partiel** (ex. corps sans title/meta), audite ce que tu as e
 marque le reste **⚪ N/A** — ne pénalise pas une info simplement non fournie (règles
 de N/A et de redistribution : voir `criteres-scoring.md`).
 
-## Méthode d'audit (déroulé)
-1. **Lis `references/criteres-scoring.md`** pour avoir les seuils en tête.
-2. **Repère les éléments** : title, meta, slug, H1/Hn, intro, corps, liens, images/alt,
-   FAQ, données structurées. Note ce qui est fourni vs non fourni.
-3. **Note chaque critère** avec son feu, en choisissant le feu **le plus sévère** en
-   cas de doute (un audit complaisant ne rend service à personne).
-4. **Calcule** : points par critère → total par catégorie → score /100 (gère les N/A
-   par redistribution). Annonce si le score est « sous réserve » (base partielle).
+## Méthode d'audit (déroulé déterministe)
+Le score doit être **réaliste et reproductible** : on mesure ce qui est mesurable
+(on ne l'estime pas), et on réserve le jugement du modèle au qualitatif.
+
+1. **Mesure objective d'abord.** Passe le contenu au script bundlé
+   `scripts/analyze_content.py --keyword "<mot-clé>" --file <contenu>` (ou via stdin).
+   Il renvoie en JSON : nombre de mots, occurrences + **densité** du mot-clé,
+   **malus sur-optimisation**, % de phrases longues, % de mots de transition, liens
+   internes/externes, images + alt, titres Hn, présence FAQ/schema. Ces chiffres sont
+   la **base factuelle** de la note — ne les devine pas à la main.
+2. **Lis `references/criteres-scoring.md`** pour les seuils, et garde en tête la carte
+   `references/couverture-yoast-rankmath.md` (ce que le skill reproduit de Yoast/Rank
+   Math et ce qu'il ajoute) — c'est ce qui garantit qu'on n'oublie aucun check attendu.
+3. **Note chaque critère** avec son feu, en croisant les mesures du script et ton
+   jugement qualitatif (pertinence, ton, intention). En cas de doute, feu **le plus
+   sévère** : un audit complaisant ne rend service à personne.
+4. **Calcule** : points par critère → total par catégorie → score brut /100 → applique
+   le **malus sur-optimisation** → score final. Gère les N/A par redistribution et
+   annonce si le score est « sous réserve » (base partielle). Affiche le malus en clair
+   (« 83, −8 sur-optimisation → 75 »).
 5. **Rédige les recommandations** : pour chaque critère non vert, dis **quoi changer
    concrètement**, pas juste « c'est moyen ». C'est ça qui rend le rapport utile.
 
