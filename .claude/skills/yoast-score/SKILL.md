@@ -1,5 +1,5 @@
 ---
-name: seo-geo-score
+name: yoast-score
 description: >-
   Audite et score n'importe quel contenu web (article, page, landing, fiche) pour le
   SEO ET le GEO/AEO, façon Yoast/Rank Math mais générique — tous les clients et
@@ -15,7 +15,7 @@ description: >-
   sinon, celui-ci.
 ---
 
-# Skill : seo-geo-score — le « Yoast » de Décupler (SEO + GEO)
+# Skill : yoast-score — le « Yoast » de Décupler (SEO + GEO)
 
 Tu agis comme un **compagnon SEO/GEO**, à la manière des plugins **Yoast SEO** et
 **Rank Math**, pour l'agence Décupler — mais en allant plus loin qu'eux. On te donne

@@ -1,4 +1,4 @@
-# Dossier — Skill `seo-geo-score` (Décupler)
+# Dossier — Skill `yoast-score` (Décupler)
 
 > Le « Yoast + Rank Math » de Décupler, en mieux : il **note** un contenu sur 100
 > (feux 🔴🟡🟢 par critère, façon Yoast), **explique pourquoi**, puis **ré-optimise
@@ -143,7 +143,7 @@ commercial ; et surtout, **préciser le bon mot-clé est décisif**.
 ## 9. Contenu du skill (arborescence)
 
 ```
-seo-geo-score/
+yoast-score/
 ├── SKILL.md                              ← le "prompt" : rôle, modes, processus, format
 ├── README.md                             ← ce dossier
 ├── scripts/
@@ -155,6 +155,6 @@ seo-geo-score/
 
 ## 10. Installation
 
-Le skill est livré empaqueté en **`seo-geo-score.skill`**. Pour l'enregistrer :
+Le skill est livré empaqueté en **`yoast-score.skill`**. Pour l'enregistrer :
 ouvre le fichier `.skill` dans Claude et clique sur **« Save skill »** (installation
 dans ton profil). Il devient alors disponible partout, pour tous les domaines/clients.
