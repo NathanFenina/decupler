@@ -1,0 +1,130 @@
+<!-- =====================================================================
+     Blocs HTML Décupler — à copier tels quels.
+     Styles : assets/article_css.py (variable CSS).
+
+     RÈGLE ABSOLUE : aucune ligne vide dans le contenu final, et jamais
+     d'élément inline (span, svg, b, i) voisin direct d'un bloc (div,
+     section, ul, table). wpautop l'envelopperait dans un <p> et avalerait
+     la balise du bloc. Voir references/pieges-plateforme.md.
+     ===================================================================== -->
+
+
+<!-- ── EN-TÊTE D'ARTICLE ─────────────────────────────────────────────── -->
+<div class="dcp-post-header">
+<span class="dcp-eyebrow">🤖 Choisir son prestataire</span>
+<h1>Titre avec le mot-clé exact</h1>
+<p class="dcp-subtitle">Une phrase qui précise l'angle et la promesse.</p>
+<div class="dcp-divider"></div>
+</div>
+
+
+<!-- ── CHAPÔ : la réponse directe, mot-clé en strong ─────────────────── -->
+<p class="dcp-lead">Une <strong>agence SEO IA</strong> ne se reconnaît ni à son discours, ni à ses certifications : elle se reconnaît à ce qu'elle sait mesurer.</p>
+
+
+<!-- ── PILIER : H2 formulé comme un prompt ───────────────────────────── -->
+<div class="dcp-pillar"><span class="dcp-pillar-badge">01</span><h2>Quels critères utiliser pour choisir une agence SEO IA ?</h2>
+<p>Premier paragraphe : la réponse, tout de suite.</p>
+<p>Deuxième paragraphe : la nuance, le détail, l'exception.</p>
+</div>
+
+
+<!-- ── TABLEAU ───────────────────────────────────────────────────────── -->
+<div class="dcp-table-wrap"><table class="dcp-table"><thead><tr><th>Critère</th><th>Ce qui doit alerter</th><th>Ce que vous devez obtenir</th></tr></thead><tbody>
+<tr><td>Mesure de départ</td><td>« On va améliorer votre visibilité »</td><td>Un taux de citation chiffré</td></tr>
+<tr><td>Moteurs couverts</td><td>ChatGPT uniquement</td><td>ChatGPT, Claude, Gemini, Perplexity</td></tr>
+</tbody></table></div>
+
+
+<!-- ── ENCART CONSEIL ────────────────────────────────────────────────── -->
+<div class="dcp-callout dcp-tip"><p><strong>Le test en une question.</strong> Demandez : « quel est mon taux de citation actuel ? ». Un spécialiste donne un chiffre.</p></div>
+
+
+<!-- ── ENCART ALERTE ─────────────────────────────────────────────────── -->
+<div class="dcp-callout dcp-warning"><p><strong>Signal d'alarme.</strong> Un engagement de douze mois exigé avant toute mesure de départ.</p></div>
+
+
+<!-- ── COMPARAISON À DEUX CARTES ─────────────────────────────────────── -->
+<div class="dcp-compare">
+<div class="dcp-compare-card dcp-bad"><span class="dcp-compare-label">Réponse floue</span>
+<p>« Nous optimisons votre contenu pour l'IA. » Aucun chiffre, aucun moteur nommé.</p></div>
+<div class="dcp-compare-card dcp-good"><span class="dcp-compare-label">Réponse solide</span>
+<p>« Vous êtes cité 1 fois sur 20 réponses, votre concurrent 14 fois. »</p></div>
+</div>
+
+
+<!-- ── LISTE NUMÉROTÉE ───────────────────────────────────────────────── -->
+<ol class="dcp-numbered-list">
+<li><strong>Cartographie des prompts.</strong> On reconstitue les questions réellement posées.</li>
+<li><strong>Mesure de départ.</strong> Sessions neutres, plusieurs exécutions par formulation.</li>
+</ol>
+
+
+<!-- ── CLASSEMENT ────────────────────────────────────────────────────── -->
+<div class="dcp-rank-item"><span class="dcp-rank-num">1</span><div class="dcp-rank-body"><h4>Nom</h4><p>Description en deux phrases.</p></div></div>
+
+
+<!-- ── IMAGE DE CORPS (maquette d'écran) ─────────────────────────────── -->
+<!-- {{ECRAN_URL}} est remplacé par push_wp.py après téléversement -->
+<figure class="dcp-screen-figure"><img src="{{ECRAN_URL}}" alt="Mot-clé exact : ce que montre l'écran" width="1076" height="651" loading="lazy" decoding="async" /><figcaption>Une phrase qui interprète l'image, pas qui la décrit.</figcaption></figure>
+
+
+<!-- ── RÉCAPITULATIF ─────────────────────────────────────────────────── -->
+<div class="dcp-recap"><h2>Ce qu'il faut retenir</h2><ul>
+<li>Cinq à six puces, une idée par puce, mot-clé dans la première.</li>
+</ul></div>
+
+
+<!-- ── FAQ : .decupler-faq-answer-inner est OBLIGATOIRE ──────────────── -->
+<div class="dcp-faq-section">
+<h2>Questions fréquentes</h2>
+<div class="decupler-faq-item"><div class="decupler-faq-question"><span class="dcp-q-text">La question telle qu'on la pose ?</span><span class="decupler-faq-icon">+</span></div><div class="decupler-faq-answer"><div class="decupler-faq-answer-inner">La réponse, en deux à quatre phrases autonomes.</div></div></div>
+</div>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"La question telle qu'on la pose ?","acceptedAnswer":{"@type":"Answer","text":"La réponse, en deux à quatre phrases autonomes."}}]}</script>
+
+
+<!-- ── SIDEBAR CTA STICKY : le <a> reste collé au </p> (wpautop) ─────── -->
+<div class="dcp-sidebar" id="dcpSidebar">
+<div class="dcp-cta-sticky" id="dcpCta">
+<span class="dcp-cta-badge">Audit gratuit</span>
+<h3>Votre marque est-elle citée par les IA ?</h3>
+<p>Échangez 30 minutes avec Nathan Fenina, fondateur de Décupler, pour évaluer votre visibilité GEO et bâtir votre stratégie d'autorité.</p><a class="dcp-cta-btn" href="https://calendly.com/fenina-nathan/consultationstrategique" target="_blank" rel="noopener">📅 Réserver mon créneau</a>
+<div class="dcp-cta-meta"><span class="dcp-cta-dot"></span>Réponse sous 24h — sans engagement</div>
+</div>
+</div>
+
+
+<!-- ── BANDEAU E-E-A-T (pages service et ville) ──────────────────────── -->
+<div class="dcp-eeat">
+<div class="dcp-eeat-photo"><img src="URL_PHOTO_NATHAN" alt="Nathan Fenina, fondateur de Décupler" width="160" height="160" /></div>
+<div class="dcp-eeat-corps">
+<h3>Nathan Fenina — fondateur de Décupler</h3>
+<p>Une phrase de parcours, factuelle, pas un titre ronflant.</p>
+<div class="dcp-eeat-liens"><a href="URL_LINKEDIN" target="_blank" rel="noopener">LinkedIn</a><a href="https://calendly.com/fenina-nathan/consultationstrategique" target="_blank" rel="noopener">Réserver 30 minutes</a></div>
+</div>
+</div>
+
+
+<!-- ── BANDEAU YMYL (dès qu'on parle résultat, délai ou budget) ──────── -->
+<div class="dcp-ymyl"><p><strong>Ce que nous ne promettons pas.</strong> La sélection finale appartient aux moteurs : aucune citation ne peut être garantie. Ce qui s'engage est un protocole de mesure, une fréquence de relevé et un volume de production.</p></div>
+
+
+<!-- ── SCRIPT DE FIN : accordéon FAQ + apparition progressive ────────── -->
+<script>
+(function(){
+  var items = document.querySelectorAll('.dcp-post .decupler-faq-item');
+  items.forEach(function(item){
+    var q = item.querySelector('.decupler-faq-question');
+    var a = item.querySelector('.decupler-faq-answer');
+    q.addEventListener('click', function(){
+      var open = item.classList.contains('dcp-open');
+      items.forEach(function(o){ o.classList.remove('dcp-open'); o.querySelector('.decupler-faq-answer').style.maxHeight = null; });
+      if(!open){ item.classList.add('dcp-open'); a.style.maxHeight = a.scrollHeight + 'px'; }
+    });
+  });
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(es){ es.forEach(function(e,i){ if(e.isIntersecting){ setTimeout(function(){ e.target.classList.add('dcp-in-view'); }, i*90); io.unobserve(e.target); } }); }, {threshold:0.15});
+    items.forEach(function(i){ io.observe(i); });
+  } else { items.forEach(function(i){ i.classList.add('dcp-in-view'); }); }
+})();
+</script>
