@@ -25,9 +25,31 @@ import unicodedata
 ICI = os.path.dirname(os.path.abspath(__file__))
 SKILL = os.path.dirname(ICI)
 
-# le script de notation du skill voisin, s'il est installe
-ANALYZE = os.path.join(os.path.expanduser("~"), ".claude", "skills",
-                       "decupler-seo-geo-score", "scripts", "analyze_content.py")
+def trouver_analyseur():
+    """Localise analyze_content.py du skill de notation, ou qu'il soit installe.
+
+    Le skill s'appelle `yoast-score` dans le depot et `decupler-seo-geo-score`
+    sur certains postes : on cherche les deux, dans le depot puis chez l'usager.
+    """
+    noms = ("yoast-score", "decupler-seo-geo-score")
+    racines = [os.path.dirname(os.path.dirname(ICI))]        # skills/ voisin
+    d = os.path.abspath(os.getcwd())                          # remontee depuis le projet
+    while True:
+        racines.append(os.path.join(d, ".claude", "skills"))
+        parent = os.path.dirname(d)
+        if parent == d:
+            break
+        d = parent
+    racines.append(os.path.join(os.path.expanduser("~"), ".claude", "skills"))
+    for r in racines:
+        for n in noms:
+            p = os.path.join(r, n, "scripts", "analyze_content.py")
+            if os.path.exists(p):
+                return p
+    return ""
+
+
+ANALYZE = os.environ.get("DECUPLER_ANALYZE") or trouver_analyseur()
 
 DENSITE_MAX = 3.5          # au-dela : malus -5 de la grille de scoring
 OCCURRENCES_MIN = 20
@@ -75,7 +97,7 @@ def phrases(html, sidebar=""):
 
 
 def mesures(html, kw):
-    """Delegue au script de notation du skill decupler-seo-geo-score."""
+    """Delegue au script de notation (skill yoast-score)."""
     if not os.path.exists(ANALYZE):
         return None
     tmp = os.path.join(SKILL, "_tmp_validate.html")

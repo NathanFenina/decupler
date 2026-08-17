@@ -74,26 +74,27 @@ Vérifiées à 200. Ancres suggérées dans `references/maillage.md` §4.
 
 ---
 
-## 5. Skill voisin, incomplet sur le disque
+## 5. Skill voisin — la grille de notation
 
-`~/.claude/skills/decupler-seo-geo-score/` ne contient que
-`scripts/analyze_content.py`. Son `SKILL.md` et ses deux références
-(`criteres-scoring.md`, `specificites-decupler.md`) n'ont jamais été écrits sur
-le disque — ils n'existent que dans l'historique de conversation.
+Le skill de notation s'appelle **`yoast-score`** dans ce dépôt
+(`.claude/skills/yoast-score/`), et `decupler-seo-geo-score` sur certains
+postes. `validate_page.py` cherche les deux noms, d'abord dans le dépôt puis
+chez l'usager ; la variable d'environnement `DECUPLER_ANALYZE` permet de forcer
+le chemin.
 
-Conséquence pratique : `validate_page.py` appelle `analyze_content.py` et
-fonctionne, mais la grille de notation complète n'est pas consultable hors
-ligne. À combler quand Nathan pourra recoller les deux fichiers.
+Il fournit `scripts/analyze_content.py`, dont `validate_page.py` dépend pour
+les mesures : nombre de mots, occurrences exactes, densité, position du
+mot-clé.
 
-Ce qui est connu de la grille et repris ici :
+Seuils de densité de sa grille, repris ici :
 
-| Densité effective | Verdict | Malus |
+| Densite effective | Verdict | Malus |
 |---|---|---|
 | 0 % | ABSENT | — |
-| ≤ 2,5 % | OK | 0 |
-| ≤ 3,5 % | un peu haute | 0 |
-| ≤ 5 % | SUR-OPTIMISATION | −5 |
-| ≤ 6,5 % | — | −8 |
-| > 6,5 % | — | −12 |
+| <= 2,5 % | OK | 0 |
+| <= 3,5 % | un peu haute | 0 |
+| <= 5 % | SUR-OPTIMISATION | -5 |
+| <= 6,5 % | — | -8 |
+| > 6,5 % | — | -12 |
 
 C'est ce seuil de 3,5 % qui commande toute la formule de longueur.

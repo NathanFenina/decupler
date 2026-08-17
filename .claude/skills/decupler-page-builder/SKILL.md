@@ -9,7 +9,7 @@ Ce skill produit du contenu **publiable en l'état** sur decupler.com. Il ne
 donne pas des conseils : il donne un gabarit, des contraintes chiffrées, un
 validateur bloquant et un script de publication.
 
-Il complète `decupler-seo-geo-score`, qui note un contenu existant. Ici on en
+Il complète `yoast-score`, qui note un contenu existant. Ici on en
 fabrique un.
 
 ## 1. Identifier le type de page
