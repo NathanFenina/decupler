@@ -12,7 +12,7 @@
       <span class="hero-meta-item">Par Décupler</span>
     </div>
     <div class="metric-row">
-      <div class="metric-card"><div class="metric-ic">🔌</div><div class="metric-txt"><div class="metric-label">MCP branchés</div><div class="metric-val">12</div></div></div>
+      <div class="metric-card"><div class="metric-ic">🔌</div><div class="metric-txt"><div class="metric-label">MCP branchés</div><div class="metric-val" data-count="12">12</div></div></div>
       <div class="metric-card"><div class="metric-ic">⚙️</div><div class="metric-txt"><div class="metric-label">Installation</div><div class="metric-val">~15 min</div></div></div>
       <div class="metric-card"><div class="metric-ic">🤖</div><div class="metric-txt"><div class="metric-label">Dans</div><div class="metric-val">Claude Code</div></div></div>
       <div class="metric-card"><div class="metric-ic">🚀</div><div class="metric-txt"><div class="metric-label">Pipeline</div><div class="metric-val">A → Z</div></div></div>
@@ -143,7 +143,7 @@ claude</pre></div>
       <li>Dans Windsor, connecte la source <strong>Search Console</strong> et sélectionne la propriété de ton site</li>
       <li>Dans Claude, demande les requêtes des 90 derniers jours (champs : <span class="inline-code">query, clicks, impressions, ctr, position, page</span>)</li>
     </ol></div>
-    <p class="prose-block">Claude récupère alors les données brutes, que tu normalises en une commande pour repérer les <strong>quick wins</strong> (pages en position 5-20 qui peuvent passer en page 1) :</p>
+    <p class="prose-block">Claude récupère alors les données brutes, que tu normalises en une commande pour repérer les <a href="https://decupler.com/organic-opportunity-map/"><strong>quick wins</strong></a> (pages en position 5-20 qui peuvent passer en page 1) :</p>
     <div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>terminal</span></div><pre>python3 scripts/gsc_normalize.py \
   --in .cache/gsc-raw.json \
   --out .cache/gsc.json</pre></div>
@@ -160,7 +160,7 @@ claude</pre></div>
       <li>Vérifie l'authentification (compte + tier) avant de lancer</li>
       <li>Demande à Claude : suggestions de mots-clés, volumes et difficulté sur tes thématiques (marché FR)</li>
     </ol></div>
-    <div class="tip tip-v"><span class="tipico">🎯</span><p>Objectif : pas 500 mots-clés dans un tableur, mais une <strong>liste courte priorisée</strong> par intention commerciale et faisabilité. (La transformation en plan éditorial complet fait l'objet d'un autre guide.)</p></div>
+    <div class="tip tip-v"><span class="tipico">🎯</span><p>Objectif : pas 500 mots-clés dans un tableur, mais une <strong>liste courte priorisée</strong> par intention commerciale et faisabilité. (La transformation en plan éditorial complet fait l'objet d'<a href="https://decupler.com/generer-un-article-seo/">un autre guide</a>.)</p></div>
   </div>
 </section>
 
@@ -228,6 +228,57 @@ WP_APP_PASSWORD=xxxx xxxx xxxx xxxx xxxx xxxx</pre></div>
   </div>
 </section>
 
+<style>
+.lm-mcp .mcp-table-wrap{overflow-x:auto;margin:20px 0}
+.lm-mcp .mcp-table{width:100%;border-collapse:collapse;font-size:.9rem;min-width:560px}
+.lm-mcp .mcp-table th{background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;text-align:left;padding:12px 16px;font-family:var(--font-mono);font-size:.7rem;letter-spacing:.04em;text-transform:uppercase}
+.lm-mcp .mcp-table td{padding:12px 16px;border-bottom:1px solid var(--border);color:var(--text);vertical-align:top}
+.lm-mcp .mcp-table tr:last-child td{border-bottom:none}
+.lm-mcp .mcp-table tbody tr:nth-child(even){background:rgba(99,102,241,.04)}
+.lm-mcp .res-links{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.lm-mcp .res-links a{font-size:.85rem;font-weight:700;color:var(--violet);text-decoration:none;background:rgba(99,102,241,.08);border:1px solid rgba(99,102,241,.22);border-radius:20px;padding:8px 14px;transition:background .2s,transform .2s}
+.lm-mcp .res-links a:hover{background:rgba(99,102,241,.15);transform:translateY(-2px)}
+.lm-mcp .reveal-up{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+.lm-mcp .reveal-up.in{opacity:1;transform:none}
+</style>
+<noscript><style>.lm-mcp .reveal-up{opacity:1!important;transform:none!important}</style></noscript>
+<section class="guide-section">
+  <div class="container">
+    <div class="section-label">Ce que tu débloques</div>
+    <h2 class="section-title reveal-up">Une fois branché, tu ne fais plus du SEO « à la main »</h2>
+    <p class="prose-block reveal-up">L'infra ne « raconte » pas le SEO : elle l'exécute sur tes vraies données. Une fois les MCP en place, tu peux simplement <strong>demander à Claude</strong> :</p>
+    <ul class="checklist reveal-up">
+      <li>« Trouve mes <strong>quick wins</strong> Search Console (positions 5–20) et classe-les par potentiel de trafic »</li>
+      <li>« Rédige un article sur <span class="inline-code">[mot-clé]</span>, maillé vers mes pages existantes, et montre-moi le rendu avant publication »</li>
+      <li>« Suis-je <strong>cité par ChatGPT / Perplexity</strong> sur mes 10 prompts cibles ? Sinon, pourquoi ? »</li>
+      <li>« Audite la <strong>vitesse</strong> et les Core Web Vitals de cette page, corrige ce qui bloque »</li>
+      <li>« Publie ce brouillon dans WordPress, images générées et compressées comprises »</li>
+      <li>« Génère le <strong>rapport mensuel</strong> : ce qui monte, ce qui stagne, où réinvestir »</li>
+    </ul>
+    <p class="prose-block reveal-up">Il y a <strong>trois façons</strong> de brancher un MCP — tu combines selon ton stack :</p>
+    <div class="mcp-table-wrap reveal-up">
+      <table class="mcp-table">
+        <thead><tr><th>Méthode</th><th>Comment</th><th>Exemples</th><th>Quand</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Connecteur claude.ai</strong></td><td>1 clic dans Réglages → Connecteurs</td><td>Ubersuggest, Notion, Windsor.ai (GSC, GA…)</td><td>Le plus simple, sans terminal</td></tr>
+          <tr><td><strong>.mcp.json (local)</strong></td><td><span class="inline-code">npx</span> déclaré dans le projet</td><td>Chrome DevTools, Firecrawl, imagegen</td><td>Outils techniques, en local</td></tr>
+          <tr><td><strong>API / clé</strong></td><td>Clé API ou mot de passe d'application</td><td>DataForSEO, Ahrefs, WordPress, PostHog</td><td>Accès direct à un service</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="tip tip-e reveal-up"><span class="tipico">🔗</span><p><strong>Pour aller plus loin</strong> — les guides et offres Décupler qui s'appuient sur cette infra :</p>
+      <div class="res-links">
+        <a href="https://decupler.com/organic-opportunity-map/">La cartographie d'opportunités</a>
+        <a href="https://decupler.com/audit-geo-claude-code/">Audit GEO avec Claude Code</a>
+        <a href="https://decupler.com/playbook-geo/">Playbook GEO</a>
+        <a href="https://decupler.com/reddit-pour-le-geo/">Reddit pour le GEO</a>
+        <a href="https://decupler.com/mesurer-sa-visibilite/">Mesurer sa visibilité IA</a>
+        <a href="https://decupler.com/generer-un-article-seo/">Générer un article SEO</a>
+      </div>
+    </div>
+  </div>
+</section>
+<script>(function(){function cu(el){var t=parseFloat(el.getAttribute('data-count'))||0,s=null,d=1200,suf=el.getAttribute('data-suffix')||'';function f(ts){if(!s)s=ts;var p=Math.min((ts-s)/d,1),e=1-Math.pow(1-p,3);el.textContent=Math.round(t*e)+suf;if(p<1)requestAnimationFrame(f)}requestAnimationFrame(f)}var els=document.querySelectorAll('.lm-mcp [data-count],.lm-mcp .reveal-up');if(!('IntersectionObserver'in window)){els.forEach(function(e){e.classList.add('in');if(e.hasAttribute('data-count'))e.textContent=e.getAttribute('data-count')+(e.getAttribute('data-suffix')||'')});return}var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){if(e.target.hasAttribute('data-count'))cu(e.target);e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.25});els.forEach(function(e){io.observe(e)})})();</script>
 <section class="guide-section">
   <div class="container">
     <div class="section-label">FAQ</div>
