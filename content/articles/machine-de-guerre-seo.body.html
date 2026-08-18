@@ -60,26 +60,47 @@
     <h2 class="section-title">Les 12 MCPs SEO à brancher sur Claude</h2>
     <p class="prose-block">Tu n'as pas besoin de 10 outils SEO à 200&nbsp;€/mois chacun. Tu as besoin d'<strong>UNE bonne infra SEO</strong>, branchée sur tes <strong>vraies données</strong>. Voici les 12 MCP qu'on connecte chez nos clients — et <strong>par où</strong> chacun se branche.</p>
     <figure class="mcp-poster"><img src="https://decupler.com/wp-content/uploads/2026/08/IMAGE-3.png" alt="Les 12 meilleurs MCP SEO à brancher sur Claude : DataForSEO, Ubersuggest, Ahrefs, Search Console, Firecrawl, Chrome, Google Analytics, PostHog, WordPress, ChatGPT/Perplexity, Reddit, Notion" width="1200" height="1200" loading="lazy" decoding="async"><figcaption>Claude Code au centre, entouré des 12 MCP qui lui donnent accès à tes vraies données.</figcaption></figure>
-    <p class="prose-block">Le principe&nbsp;: <strong>Claude Code aux commandes</strong>. Autour, des <strong>MCP</strong> (des connecteurs) qui lui donnent accès à la data. Tu demandes, il va chercher, il exécute. Le rôle de chacun — et sa méthode de branchement&nbsp;:</p>
-    <div class="mcp-grid">
-      <div class="mcp-card"><div class="mcp-ic">1</div><div><span class="mcp-badge">Recherche</span><h4>DataForSEO</h4><span class="mcp-how">API / connecteur</span></div></div>
-      <div class="mcp-card"><div class="mcp-ic">2</div><div><span class="mcp-badge">Recherche</span><h4>Ubersuggest</h4><span class="mcp-how">Connecteur claude.ai</span></div></div>
-      <div class="mcp-card"><div class="mcp-ic">3</div><div><span class="mcp-badge">Recherche</span><h4>Ahrefs</h4><span class="mcp-how">API / connecteur</span></div></div>
-      <div class="mcp-card"><div class="mcp-ic">4</div><div><span class="mcp-badge">Recherche</span><h4>Search Console</h4><span class="mcp-how">via Windsor.ai</span></div></div>
-      <div class="mcp-card"><div class="mcp-ic">5</div><div><span class="mcp-badge">Crawl</span><h4>Firecrawl</h4><span class="mcp-how">.mcp.json (npx)</span></div></div>
-      <div class="mcp-card"><div class="mcp-ic">6</div><div><span class="mcp-badge">Crawl</span><h4>Chrome / HTML</h4><span class="mcp-how">.mcp.json (npx)</span></div></div>
-      <div class="mcp-card"><div class="mcp-ic">7</div><div><span class="mcp-badge">Analytics</span><h4>Google Analytics</h4><span class="mcp-how">via Windsor.ai</span></div></div>
-      <div class="mcp-card"><div class="mcp-ic">8</div><div><span class="mcp-badge">Analytics</span><h4>PostHog</h4><span class="mcp-how">API / connecteur</span></div></div>
-      <div class="mcp-card"><div class="mcp-ic">9</div><div><span class="mcp-badge">Publication</span><h4>WordPress API</h4><span class="mcp-how">Mot de passe d'app</span></div></div>
-      <div class="mcp-card"><div class="mcp-ic">10</div><div><span class="mcp-badge">Visibilité IA</span><h4>ChatGPT / Perplexity</h4><span class="mcp-how">Connecteur / API</span></div></div>
-      <div class="mcp-card"><div class="mcp-ic">11</div><div><span class="mcp-badge">Visibilité IA</span><h4>Reddit</h4><span class="mcp-how">Connecteur / API</span></div></div>
-      <div class="mcp-card"><div class="mcp-ic">12</div><div><span class="mcp-badge">Ops</span><h4>Notion</h4><span class="mcp-how">Connecteur claude.ai</span></div></div>
-    </div>
+    <p class="prose-block">Le principe&nbsp;: <strong>Claude Code aux commandes</strong>. Autour, des <strong>MCP</strong> (des connecteurs) qui lui donnent accès à la data. Tu demandes, il va chercher, il exécute. <strong>Le détail, action par action, est juste en dessous.</strong></p>
     <div class="tip tip-v"><span class="tipico">⚙️</span><p>Pas besoin de tout brancher d'un coup. On démarre avec <strong>Search Console + un outil de mots-clés + WordPress</strong>, puis on ajoute les couches (crawl, analytics, visibilité IA) selon les besoins. <strong>Un seul cerveau, tes vraies données, les meilleurs MCP.</strong></p></div>
   </div>
 </section>
-<noscript><style>.lm-mcp .mcp-card{opacity:1!important;transform:none!important}</style></noscript>
-<script>(function(){var c=document.querySelectorAll('.lm-mcp .mcp-card');if(!c.length)return;if(!('IntersectionObserver'in window)){c.forEach(function(e){e.classList.add('in')});return;}var o=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){var el=e.target,i=Array.prototype.indexOf.call(el.parentNode.children,el);el.style.transitionDelay=(Math.min(i,8)*0.06)+'s';el.classList.add('in');o.unobserve(el)}})},{threshold:.15,rootMargin:'0px 0px -6% 0px'});c.forEach(function(e){o.observe(e)})})();</script>
+<style>
+.lm-mcp .mcpd-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:24px}
+.lm-mcp .mcpd-card{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:20px 22px;transition:transform .25s,border-color .25s,box-shadow .25s}
+.lm-mcp .mcpd-card:hover{border-color:var(--violet);transform:translateY(-3px);box-shadow:0 18px 36px -16px rgba(99,102,241,.45)}
+.lm-mcp .mcpd-head{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.lm-mcp .mcpd-num{flex:0 0 auto;width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:800;color:#fff;background:linear-gradient(135deg,#6366f1,#8b5cf6);box-shadow:0 6px 16px rgba(99,102,241,.3)}
+.lm-mcp .mcpd-card:nth-child(4n+2) .mcpd-num,.lm-mcp .mcpd-card:nth-child(4n+3) .mcpd-num{background:linear-gradient(135deg,#8b5cf6,#10b981)}
+.lm-mcp .mcpd-head h4{font-family:var(--font-display);font-size:1.08rem;font-weight:800;color:var(--text);margin:3px 0 0;line-height:1.15}
+.lm-mcp .mcpd-head .mcp-how{margin-left:auto}
+.lm-mcp .mcpd-row{display:flex;gap:12px;padding:9px 0;border-top:1px solid var(--border)}
+.lm-mcp .mcpd-row .lbl{flex:0 0 78px;font-family:var(--font-mono);font-size:.64rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;padding-top:2px}
+.lm-mcp .mcpd-do .lbl{color:var(--violet)}
+.lm-mcp .mcpd-win .lbl{color:var(--green)}
+.lm-mcp .mcpd-row p{margin:0;font-size:.87rem;color:var(--text-muted);line-height:1.45}
+@media(max-width:640px){.lm-mcp .mcpd-grid{grid-template-columns:1fr}.lm-mcp .mcpd-head .mcp-how{margin-left:0;margin-top:4px}}
+</style>
+<section class="guide-section">
+  <div class="container">
+    <div class="section-label">Le détail</div>
+    <h2 class="section-title reveal-up">Ce que tu fais avec chaque MCP — et ce que tu gagnes</h2>
+    <p class="prose-block reveal-up">L'image te donne la carte. Voici, MCP par MCP, l'<strong>action concrète</strong> que tu déclenches et le <strong>bénéfice</strong> que tu en tires.</p>
+    <div class="mcpd-grid">
+      <div class="mcpd-card reveal-up"><div class="mcpd-head"><span class="mcpd-num">1</span><div><span class="mcp-badge">Recherche</span><h4>DataForSEO</h4></div><span class="mcp-how">API / connecteur</span></div><div class="mcpd-row mcpd-do"><span class="lbl">Tu fais</span><p>Extrais volumes, positions, difficulté et SERP en direct sur tes mots-clés.</p></div><div class="mcpd-row mcpd-win"><span class="lbl">Tu gagnes</span><p>Tu priorises tes cibles sur la donnée brute, plus au feeling.</p></div></div>
+      <div class="mcpd-card reveal-up"><div class="mcpd-head"><span class="mcpd-num">2</span><div><span class="mcp-badge">Recherche</span><h4>Ubersuggest</h4></div><span class="mcp-how">Connecteur claude.ai</span></div><div class="mcpd-row mcpd-do"><span class="lbl">Tu fais</span><p>Génère des idées de contenu et des variantes de mots-clés à bas coût.</p></div><div class="mcpd-row mcpd-win"><span class="lbl">Tu gagnes</span><p>Un backlog d'articles prêt, sans licence hors de prix.</p></div></div>
+      <div class="mcpd-card reveal-up"><div class="mcpd-head"><span class="mcpd-num">3</span><div><span class="mcp-badge">Recherche</span><h4>Ahrefs</h4></div><span class="mcp-how">API / connecteur</span></div><div class="mcpd-row mcpd-do"><span class="lbl">Tu fais</span><p>Analyse les backlinks et les pages qui rankent chez tes concurrents.</p></div><div class="mcpd-row mcpd-win"><span class="lbl">Tu gagnes</span><p>Tu vois où sont les vraies opportunités de liens et de contenu.</p></div></div>
+      <div class="mcpd-card reveal-up"><div class="mcpd-head"><span class="mcpd-num">4</span><div><span class="mcp-badge">Recherche</span><h4>Search Console</h4></div><span class="mcp-how">via Windsor.ai</span></div><div class="mcpd-row mcpd-do"><span class="lbl">Tu fais</span><p>Récupère tes requêtes, clics, impressions et positions réelles.</p></div><div class="mcpd-row mcpd-win"><span class="lbl">Tu gagnes</span><p>Tes quick wins (positions 5–20) sortent de TES données.</p></div></div>
+      <div class="mcpd-card reveal-up"><div class="mcpd-head"><span class="mcpd-num">5</span><div><span class="mcp-badge">Crawl</span><h4>Firecrawl</h4></div><span class="mcp-how">.mcp.json (npx)</span></div><div class="mcpd-row mcpd-do"><span class="lbl">Tu fais</span><p>Aspire n'importe quelle page (concurrent, doc) en texte propre.</p></div><div class="mcpd-row mcpd-win"><span class="lbl">Tu gagnes</span><p>Claude exploite le web comme source, sans copier-coller.</p></div></div>
+      <div class="mcpd-card reveal-up"><div class="mcpd-head"><span class="mcpd-num">6</span><div><span class="mcp-badge">Crawl</span><h4>Chrome / HTML</h4></div><span class="mcp-how">.mcp.json (npx)</span></div><div class="mcpd-row mcpd-do"><span class="lbl">Tu fais</span><p>Ouvre la page dans un vrai navigateur : screenshot + audit technique.</p></div><div class="mcpd-row mcpd-win"><span class="lbl">Tu gagnes</span><p>Tu valides le rendu et les Core Web Vitals avant de publier.</p></div></div>
+      <div class="mcpd-card reveal-up"><div class="mcpd-head"><span class="mcpd-num">7</span><div><span class="mcp-badge">Analytics</span><h4>Google Analytics</h4></div><span class="mcp-how">via Windsor.ai</span></div><div class="mcpd-row mcpd-do"><span class="lbl">Tu fais</span><p>Relie le trafic aux conversions et à l'origine des leads.</p></div><div class="mcpd-row mcpd-win"><span class="lbl">Tu gagnes</span><p>Tu investis sur ce qui rapporte, pas sur la vanity metric.</p></div></div>
+      <div class="mcpd-card reveal-up"><div class="mcpd-head"><span class="mcpd-num">8</span><div><span class="mcp-badge">Analytics</span><h4>PostHog</h4></div><span class="mcp-how">API / connecteur</span></div><div class="mcpd-row mcpd-do"><span class="lbl">Tu fais</span><p>Observe sessions, funnels et replays de tes utilisateurs (SaaS).</p></div><div class="mcpd-row mcpd-win"><span class="lbl">Tu gagnes</span><p>Tu vois où le parcours bloque, pas juste le trafic.</p></div></div>
+      <div class="mcpd-card reveal-up"><div class="mcpd-head"><span class="mcpd-num">9</span><div><span class="mcp-badge">Publication</span><h4>WordPress API</h4></div><span class="mcp-how">Mot de passe d'app</span></div><div class="mcpd-row mcpd-do"><span class="lbl">Tu fais</span><p>Publie et mets à jour articles et pages direct depuis Claude.</p></div><div class="mcpd-row mcpd-win"><span class="lbl">Tu gagnes</span><p>De l'idée au publié sans jamais ouvrir le CMS.</p></div></div>
+      <div class="mcpd-card reveal-up"><div class="mcpd-head"><span class="mcpd-num">10</span><div><span class="mcp-badge">Visibilité IA</span><h4>ChatGPT / Perplexity</h4></div><span class="mcp-how">Connecteur / API</span></div><div class="mcpd-row mcpd-do"><span class="lbl">Tu fais</span><p>Vérifie si (et où) l'IA te cite sur tes prompts cibles.</p></div><div class="mcpd-row mcpd-win"><span class="lbl">Tu gagnes</span><p>Ton monitoring GEO : tu sais si tu existes dans les réponses IA.</p></div></div>
+      <div class="mcpd-card reveal-up"><div class="mcpd-head"><span class="mcpd-num">11</span><div><span class="mcp-badge">Visibilité IA</span><h4>Reddit</h4></div><span class="mcp-how">Connecteur / API</span></div><div class="mcpd-row mcpd-do"><span class="lbl">Tu fais</span><p>Repère les fils que les IA citent et où être présent.</p></div><div class="mcpd-row mcpd-win"><span class="lbl">Tu gagnes</span><p>Tu te places sur la source que les LLM adorent reprendre.</p></div></div>
+      <div class="mcpd-card reveal-up"><div class="mcpd-head"><span class="mcpd-num">12</span><div><span class="mcp-badge">Ops</span><h4>Notion</h4></div><span class="mcp-how">Connecteur claude.ai</span></div><div class="mcpd-row mcpd-do"><span class="lbl">Tu fais</span><p>Centralise briefs, calendrier éditorial, suivi et rapports.</p></div><div class="mcpd-row mcpd-win"><span class="lbl">Tu gagnes</span><p>La mémoire de l'infra : tout est tracé et réutilisable.</p></div></div>
+    </div>
+  </div>
+</section>
 <section class="guide-section">
   <div class="container">
     <div class="section-label">Étape 0</div>
