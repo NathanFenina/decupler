@@ -13,7 +13,7 @@
       <span class="hero-meta-item">Par Décupler</span>
     </div>
     <div class="metric-row">
-      <div class="metric-card"><div class="metric-ic">🔌</div><div class="metric-txt"><div class="metric-label">MCP branchés</div><div class="metric-val">5+</div></div></div>
+      <div class="metric-card"><div class="metric-ic">🔌</div><div class="metric-txt"><div class="metric-label">MCP branchés</div><div class="metric-val">12</div></div></div>
       <div class="metric-card"><div class="metric-ic">⚙️</div><div class="metric-txt"><div class="metric-label">Installation</div><div class="metric-val">~15 min</div></div></div>
       <div class="metric-card"><div class="metric-ic">🤖</div><div class="metric-txt"><div class="metric-label">Dans</div><div class="metric-val">Claude Code</div></div></div>
       <div class="metric-card"><div class="metric-ic">🚀</div><div class="metric-txt"><div class="metric-label">Pipeline</div><div class="metric-val">A → Z</div></div></div>
@@ -32,49 +32,59 @@
       <li><strong>MCP imagegen</strong> — génère les visuels des articles</li>
       <li><strong>Publication WordPress</strong> — via l'API REST (mot de passe d'application)</li>
     </ul>
+    <p class="prose-block">Ça, c'est le noyau. Au total, on branche <strong>12 MCP</strong> — le catalogue complet est juste en dessous.</p>
     <figure><img src="https://decupler.com/wp-content/uploads/2026/07/machine-seo-hero.jpg
 https://decupler.com/wp-content/uploads/2026/07/machine-seo-hero.jpg" alt="Claude Code au centre, connecté par des MCP au navigateur, à Search Console, aux mots-clés et à WordPress" width="1200" height="800" loading="lazy" decoding="async"><figcaption>Un cerveau (Claude Code) branché à ses outils réels via les MCP.</figcaption></figure>
     <div class="tip tip-v"><span class="tipico">💡</span><p>Deux familles de MCP : ceux qui tournent <strong>en local</strong> (lancés par <span class="inline-code">npx</span>, déclarés dans un fichier de config) et les <strong>connecteurs claude.ai</strong> (branchés en un clic depuis les réglages). On voit les deux.</p></div>
   </div>
 </section>
 <style>
-.lm-mcp .mcp-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:28px}
-.lm-mcp .mcp-card{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:20px 22px;display:flex;align-items:flex-start;gap:16px;transition:border-color .2s,background .2s}
-.lm-mcp .mcp-card:hover{border-color:var(--violet);background:rgba(99,102,241,.05)}
-.lm-mcp .mcp-ic{flex:0 0 auto;width:44px;height:44px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:800;font-size:1rem;color:#fff;background:linear-gradient(135deg,#6366f1,#8b5cf6);box-shadow:0 6px 18px rgba(99,102,241,.28)}
+.lm-mcp .mcp-poster{margin:26px 0 6px;border-radius:16px;overflow:hidden;border:1px solid var(--border);box-shadow:0 20px 50px -22px rgba(99,102,241,.4)}
+.lm-mcp .mcp-poster img{display:block;width:100%;height:auto}
+.lm-mcp .mcp-poster figcaption{font-size:.82rem;color:var(--text-muted);text-align:center;padding:10px 14px;background:var(--bg2)}
+.lm-mcp .mcp-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:22px}
+.lm-mcp .mcp-card{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:18px 20px;display:flex;align-items:flex-start;gap:14px;transition:transform .25s ease,border-color .25s,box-shadow .25s,background .25s;opacity:0;transform:translateY(16px)}
+.lm-mcp .mcp-card.in{opacity:1;transform:none}
+.lm-mcp .mcp-card:hover{border-color:var(--violet);background:rgba(99,102,241,.05);transform:translateY(-3px);box-shadow:0 16px 32px -14px rgba(99,102,241,.45)}
+.lm-mcp .mcp-ic{flex:0 0 auto;width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:800;font-size:1rem;color:#fff;background:linear-gradient(135deg,#6366f1,#8b5cf6);box-shadow:0 6px 18px rgba(99,102,241,.3)}
 .lm-mcp .mcp-card:nth-child(4n+2) .mcp-ic,.lm-mcp .mcp-card:nth-child(4n+3) .mcp-ic{background:linear-gradient(135deg,#8b5cf6,#10b981)}
-.lm-mcp .mcp-badge{display:inline-block;font-family:var(--font-mono);font-size:.62rem;letter-spacing:.06em;padding:2px 8px;border-radius:4px;background:rgba(99,102,241,.1);color:var(--violet-light);border:1px solid rgba(99,102,241,.2);text-transform:uppercase}
-.lm-mcp .mcp-card h4{font-family:var(--font-display);font-size:1.05rem;font-weight:800;color:var(--text);margin:8px 0 4px;line-height:1.2}
-.lm-mcp .mcp-card p{font-size:.9rem;color:var(--text-muted);margin:0;line-height:1.45}
+.lm-mcp .mcp-badge{display:inline-block;font-family:var(--font-mono);font-size:.6rem;letter-spacing:.06em;padding:2px 8px;border-radius:4px;background:rgba(99,102,241,.1);color:var(--violet-light);border:1px solid rgba(99,102,241,.2);text-transform:uppercase}
+.lm-mcp .mcp-card h4{font-family:var(--font-display);font-size:1.02rem;font-weight:800;color:var(--text);margin:6px 0 10px;line-height:1.2}
+.lm-mcp .mcp-how{display:inline-flex;align-items:center;gap:6px;font-family:var(--font-mono);font-size:.66rem;color:var(--green);background:var(--green-glow);border:1px solid rgba(16,185,129,.22);border-radius:20px;padding:3px 10px}
+.lm-mcp .mcp-how::before{content:'\26A1'}
 @media(max-width:640px){.lm-mcp .mcp-grid{grid-template-columns:1fr}}
 </style>
 <section class="guide-section">
   <div class="container">
     <div class="section-label">Le catalogue</div>
     <h2 class="section-title">Les 12 MCPs SEO à brancher sur Claude</h2>
-    <p class="prose-block">Tu n'as pas besoin de 10 outils SEO à 200&nbsp;€/mois chacun. Tu as besoin d'<strong>UNE bonne infra SEO</strong>, branchée sur tes <strong>vraies données</strong>. Voici les 12 MCP qu'on connecte chez nos clients.</p>
-    <p class="prose-block">Le principe&nbsp;: <strong>Claude Code aux commandes</strong>. Autour, des <strong>MCP</strong> (des connecteurs) qui lui donnent accès à la data. Tu demandes, il va chercher, il exécute.</p>
+    <p class="prose-block">Tu n'as pas besoin de 10 outils SEO à 200&nbsp;€/mois chacun. Tu as besoin d'<strong>UNE bonne infra SEO</strong>, branchée sur tes <strong>vraies données</strong>. Voici les 12 MCP qu'on connecte chez nos clients — et <strong>par où</strong> chacun se branche.</p>
+    <figure class="mcp-poster"><img src="https://decupler.com/wp-content/uploads/2026/08/IMAGE-3.png" alt="Les 12 meilleurs MCP SEO à brancher sur Claude : DataForSEO, Ubersuggest, Ahrefs, Search Console, Firecrawl, Chrome, Google Analytics, PostHog, WordPress, ChatGPT/Perplexity, Reddit, Notion" width="1200" height="1200" loading="lazy" decoding="async"><figcaption>Claude Code au centre, entouré des 12 MCP qui lui donnent accès à tes vraies données.</figcaption></figure>
+    <p class="prose-block">Le principe&nbsp;: <strong>Claude Code aux commandes</strong>. Autour, des <strong>MCP</strong> (des connecteurs) qui lui donnent accès à la data. Tu demandes, il va chercher, il exécute. Le rôle de chacun — et sa méthode de branchement&nbsp;:</p>
     <div class="mcp-grid">
-      <div class="mcp-card"><div class="mcp-ic">1</div><div><span class="mcp-badge">Recherche</span><h4>DataForSEO</h4><p>Data SERP brute&nbsp;: volumes, positions, difficulté — la matière première.</p></div></div>
-      <div class="mcp-card"><div class="mcp-ic">2</div><div><span class="mcp-badge">Recherche</span><h4>Ubersuggest</h4><p>Mots-clés + idées de contenu, pas cher pour démarrer.</p></div></div>
-      <div class="mcp-card"><div class="mcp-ic">3</div><div><span class="mcp-badge">Recherche</span><h4>Ahrefs</h4><p>Backlinks + analyse concurrents&nbsp;: qui te link, qui rank sur quoi.</p></div></div>
-      <div class="mcp-card"><div class="mcp-ic">4</div><div><span class="mcp-badge">Recherche</span><h4>Search Console</h4><p>Ta vraie demande&nbsp;: requêtes, clics, impressions, pages (tes données).</p></div></div>
-      <div class="mcp-card"><div class="mcp-ic">5</div><div><span class="mcp-badge">Crawl</span><h4>Firecrawl</h4><p>Aspire n'importe quelle page web en texte propre, exploitable par l'IA.</p></div></div>
-      <div class="mcp-card"><div class="mcp-ic">6</div><div><span class="mcp-badge">Crawl</span><h4>Chrome / HTML</h4><p>Rendu réel&nbsp;: audit technique, Core Web Vitals, screenshots.</p></div></div>
-      <div class="mcp-card"><div class="mcp-ic">7</div><div><span class="mcp-badge">Analytics</span><h4>Google Analytics</h4><p>Ce qui convertit vraiment, d'où viennent les leads — pas la vanity metric.</p></div></div>
-      <div class="mcp-card"><div class="mcp-ic">8</div><div><span class="mcp-badge">Analytics</span><h4>PostHog</h4><p>Pour un SaaS&nbsp;: ce que tes users FONT — sessions, replays, funnels.</p></div></div>
-      <div class="mcp-card"><div class="mcp-ic">9</div><div><span class="mcp-badge">Publication</span><h4>WordPress API</h4><p>Publier / mettre à jour tes articles direct depuis Claude, sans ouvrir le CMS.</p></div></div>
-      <div class="mcp-card"><div class="mcp-ic">10</div><div><span class="mcp-badge">Visibilité IA</span><h4>ChatGPT / Perplexity</h4><p>Savoir si (et où) l'IA te cite&nbsp;: ton monitoring GEO.</p></div></div>
-      <div class="mcp-card"><div class="mcp-ic">11</div><div><span class="mcp-badge">Visibilité IA</span><h4>Reddit</h4><p>La source que les IA adorent citer — y être = être repris dans les réponses.</p></div></div>
-      <div class="mcp-card"><div class="mcp-ic">12</div><div><span class="mcp-badge">Ops</span><h4>Notion</h4><p>Le back-office&nbsp;: briefs, calendrier, suivi, rapports — la mémoire de l'infra.</p></div></div>
+      <div class="mcp-card"><div class="mcp-ic">1</div><div><span class="mcp-badge">Recherche</span><h4>DataForSEO</h4><span class="mcp-how">API / connecteur</span></div></div>
+      <div class="mcp-card"><div class="mcp-ic">2</div><div><span class="mcp-badge">Recherche</span><h4>Ubersuggest</h4><span class="mcp-how">Connecteur claude.ai</span></div></div>
+      <div class="mcp-card"><div class="mcp-ic">3</div><div><span class="mcp-badge">Recherche</span><h4>Ahrefs</h4><span class="mcp-how">API / connecteur</span></div></div>
+      <div class="mcp-card"><div class="mcp-ic">4</div><div><span class="mcp-badge">Recherche</span><h4>Search Console</h4><span class="mcp-how">via Windsor.ai</span></div></div>
+      <div class="mcp-card"><div class="mcp-ic">5</div><div><span class="mcp-badge">Crawl</span><h4>Firecrawl</h4><span class="mcp-how">.mcp.json (npx)</span></div></div>
+      <div class="mcp-card"><div class="mcp-ic">6</div><div><span class="mcp-badge">Crawl</span><h4>Chrome / HTML</h4><span class="mcp-how">.mcp.json (npx)</span></div></div>
+      <div class="mcp-card"><div class="mcp-ic">7</div><div><span class="mcp-badge">Analytics</span><h4>Google Analytics</h4><span class="mcp-how">via Windsor.ai</span></div></div>
+      <div class="mcp-card"><div class="mcp-ic">8</div><div><span class="mcp-badge">Analytics</span><h4>PostHog</h4><span class="mcp-how">API / connecteur</span></div></div>
+      <div class="mcp-card"><div class="mcp-ic">9</div><div><span class="mcp-badge">Publication</span><h4>WordPress API</h4><span class="mcp-how">Mot de passe d'app</span></div></div>
+      <div class="mcp-card"><div class="mcp-ic">10</div><div><span class="mcp-badge">Visibilité IA</span><h4>ChatGPT / Perplexity</h4><span class="mcp-how">Connecteur / API</span></div></div>
+      <div class="mcp-card"><div class="mcp-ic">11</div><div><span class="mcp-badge">Visibilité IA</span><h4>Reddit</h4><span class="mcp-how">Connecteur / API</span></div></div>
+      <div class="mcp-card"><div class="mcp-ic">12</div><div><span class="mcp-badge">Ops</span><h4>Notion</h4><span class="mcp-how">Connecteur claude.ai</span></div></div>
     </div>
     <div class="tip tip-v"><span class="tipico">⚙️</span><p>Pas besoin de tout brancher d'un coup. On démarre avec <strong>Search Console + un outil de mots-clés + WordPress</strong>, puis on ajoute les couches (crawl, analytics, visibilité IA) selon les besoins. <strong>Un seul cerveau, tes vraies données, les meilleurs MCP.</strong></p></div>
   </div>
 </section>
+<noscript><style>.lm-mcp .mcp-card{opacity:1!important;transform:none!important}</style></noscript>
+<script>(function(){var c=document.querySelectorAll('.lm-mcp .mcp-card');if(!c.length)return;if(!('IntersectionObserver'in window)){c.forEach(function(e){e.classList.add('in')});return;}var o=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){var el=e.target,i=Array.prototype.indexOf.call(el.parentNode.children,el);el.style.transitionDelay=(Math.min(i,8)*0.06)+'s';el.classList.add('in');o.unobserve(el)}})},{threshold:.15,rootMargin:'0px 0px -6% 0px'});c.forEach(function(e){o.observe(e)})})();</script>
 <section class="guide-section">
   <div class="container">
     <div class="section-label">Étape 0</div>
     <h2 class="section-title">Installer Claude Code</h2>
+    <p class="prose-block"><strong>Deux façons de démarrer.</strong> Le plus simple&nbsp;: <strong>l'app Claude</strong> (Mac, Windows, ou le web sur <span class="inline-code">claude.ai/code</span>) — tu ouvres ton projet et tu branches les connecteurs en quelques clics, sans toucher au terminal. Ou en <strong>ligne de commande</strong> (ci-dessous), plus flexible pour les MCP qui tournent en local.</p>
     <p class="prose-block">Si ce n'est pas déjà fait, installe Claude Code (Node.js requis), puis lance-le dans le dossier de ton projet.</p>
     <div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>terminal</span></div><pre><span class="c"># Installation (une fois)</span>
 npm install -g @anthropic-ai/claude-code
