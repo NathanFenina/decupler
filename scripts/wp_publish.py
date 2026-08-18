@@ -32,14 +32,21 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 def load_env():
     env = {}
     path = os.path.join(ROOT, ".env")
-    if not os.path.exists(path):
-        sys.exit("❌ Fichier .env introuvable. Copie .env.example en .env et remplis-le.")
-    for line in open(path, encoding="utf-8"):
-        line = line.strip()
-        if not line or line.startswith("#") or "=" not in line:
-            continue
-        k, v = line.split("=", 1)
-        env[k.strip()] = v.strip()
+    # 1) Fichier .env (jamais commité), s'il existe
+    if os.path.exists(path):
+        for line in open(path, encoding="utf-8"):
+            line = line.strip()
+            if not line or line.startswith("#") or "=" not in line:
+                continue
+            k, v = line.split("=", 1)
+            env[k.strip()] = v.strip()
+    # 2) Fallback : variables d'environnement (ex. secrets d'environnement Claude Code)
+    for k in ("WP_SITE_URL", "WP_USER", "WP_APP_PASSWORD"):
+        if not env.get(k) and os.environ.get(k):
+            env[k] = os.environ[k]
+    if not any(env.get(k) for k in ("WP_SITE_URL", "WP_USER", "WP_APP_PASSWORD")):
+        sys.exit("❌ Identifiants introuvables. Remplis un fichier .env (voir .env.example) "
+                 "ou définis WP_SITE_URL / WP_USER / WP_APP_PASSWORD en variables d'environnement.")
     return env
 
 
