@@ -37,6 +37,40 @@
   </div>
 </section>
 
+<style>
+.lm-mcp .mcp-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:28px}
+.lm-mcp .mcp-card{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:20px 22px;display:flex;align-items:flex-start;gap:16px;transition:border-color .2s,background .2s}
+.lm-mcp .mcp-card:hover{border-color:var(--violet);background:rgba(99,102,241,.05)}
+.lm-mcp .mcp-ic{flex:0 0 auto;width:44px;height:44px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:800;font-size:1rem;color:#fff;background:linear-gradient(135deg,#6366f1,#8b5cf6);box-shadow:0 6px 18px rgba(99,102,241,.28)}
+.lm-mcp .mcp-card:nth-child(4n+2) .mcp-ic,.lm-mcp .mcp-card:nth-child(4n+3) .mcp-ic{background:linear-gradient(135deg,#8b5cf6,#10b981)}
+.lm-mcp .mcp-badge{display:inline-block;font-family:var(--font-mono);font-size:.62rem;letter-spacing:.06em;padding:2px 8px;border-radius:4px;background:rgba(99,102,241,.1);color:var(--violet-light);border:1px solid rgba(99,102,241,.2);text-transform:uppercase}
+.lm-mcp .mcp-card h4{font-family:var(--font-display);font-size:1.05rem;font-weight:800;color:var(--text);margin:8px 0 4px;line-height:1.2}
+.lm-mcp .mcp-card p{font-size:.9rem;color:var(--text-muted);margin:0;line-height:1.45}
+@media(max-width:640px){.lm-mcp .mcp-grid{grid-template-columns:1fr}}
+</style>
+<section class="guide-section">
+  <div class="container">
+    <div class="section-label">Le catalogue</div>
+    <h2 class="section-title">Les 12 MCPs SEO à brancher sur Claude</h2>
+    <p class="prose-block">Tu n'as pas besoin de 10 outils SEO à 200&nbsp;€/mois chacun. Tu as besoin d'<strong>UNE bonne infra SEO</strong>, branchée sur tes <strong>vraies données</strong>. Voici les 12 MCP qu'on connecte chez nos clients.</p>
+    <p class="prose-block">Le principe&nbsp;: <strong>Claude Code aux commandes</strong>. Autour, des <strong>MCP</strong> (des connecteurs) qui lui donnent accès à la data. Tu demandes, il va chercher, il exécute.</p>
+    <div class="mcp-grid">
+      <div class="mcp-card"><div class="mcp-ic">1</div><div><span class="mcp-badge">Recherche</span><h4>DataForSEO</h4><p>Data SERP brute&nbsp;: volumes, positions, difficulté — la matière première.</p></div></div>
+      <div class="mcp-card"><div class="mcp-ic">2</div><div><span class="mcp-badge">Recherche</span><h4>Ubersuggest</h4><p>Mots-clés + idées de contenu, pas cher pour démarrer.</p></div></div>
+      <div class="mcp-card"><div class="mcp-ic">3</div><div><span class="mcp-badge">Recherche</span><h4>Ahrefs</h4><p>Backlinks + analyse concurrents&nbsp;: qui te link, qui rank sur quoi.</p></div></div>
+      <div class="mcp-card"><div class="mcp-ic">4</div><div><span class="mcp-badge">Recherche</span><h4>Search Console</h4><p>Ta vraie demande&nbsp;: requêtes, clics, impressions, pages (tes données).</p></div></div>
+      <div class="mcp-card"><div class="mcp-ic">5</div><div><span class="mcp-badge">Crawl</span><h4>Firecrawl</h4><p>Aspire n'importe quelle page web en texte propre, exploitable par l'IA.</p></div></div>
+      <div class="mcp-card"><div class="mcp-ic">6</div><div><span class="mcp-badge">Crawl</span><h4>Chrome / HTML</h4><p>Rendu réel&nbsp;: audit technique, Core Web Vitals, screenshots.</p></div></div>
+      <div class="mcp-card"><div class="mcp-ic">7</div><div><span class="mcp-badge">Analytics</span><h4>Google Analytics</h4><p>Ce qui convertit vraiment, d'où viennent les leads — pas la vanity metric.</p></div></div>
+      <div class="mcp-card"><div class="mcp-ic">8</div><div><span class="mcp-badge">Analytics</span><h4>PostHog</h4><p>Pour un SaaS&nbsp;: ce que tes users FONT — sessions, replays, funnels.</p></div></div>
+      <div class="mcp-card"><div class="mcp-ic">9</div><div><span class="mcp-badge">Publication</span><h4>WordPress API</h4><p>Publier / mettre à jour tes articles direct depuis Claude, sans ouvrir le CMS.</p></div></div>
+      <div class="mcp-card"><div class="mcp-ic">10</div><div><span class="mcp-badge">Visibilité IA</span><h4>ChatGPT / Perplexity</h4><p>Savoir si (et où) l'IA te cite&nbsp;: ton monitoring GEO.</p></div></div>
+      <div class="mcp-card"><div class="mcp-ic">11</div><div><span class="mcp-badge">Visibilité IA</span><h4>Reddit</h4><p>La source que les IA adorent citer — y être = être repris dans les réponses.</p></div></div>
+      <div class="mcp-card"><div class="mcp-ic">12</div><div><span class="mcp-badge">Ops</span><h4>Notion</h4><p>Le back-office&nbsp;: briefs, calendrier, suivi, rapports — la mémoire de l'infra.</p></div></div>
+    </div>
+    <div class="tip tip-v"><span class="tipico">⚙️</span><p>Pas besoin de tout brancher d'un coup. On démarre avec <strong>Search Console + un outil de mots-clés + WordPress</strong>, puis on ajoute les couches (crawl, analytics, visibilité IA) selon les besoins. <strong>Un seul cerveau, tes vraies données, les meilleurs MCP.</strong></p></div>
+  </div>
+</section>
 <section class="guide-section">
   <div class="container">
     <div class="section-label">Étape 0</div>
