@@ -30,10 +30,12 @@
    IntersectionObserver plutot que animation-timeline:view(). Le natif est
    plus elegant mais laisse le contenu a opacity:0 s'il ne progresse jamais.
    Sur une page commerciale, du contenu invisible ne se rattrape pas.
-   Trois filets : la classe .in, le noscript, et un forcage a 2,5 s.        */
+   Trois filets : la classe .vu, le noscript, et un forcage a 2,5 s.
+   NE PAS nommer cette classe .in : le conteneur du skin s'appelle deja .in,
+   et la collision refile au paragraphe le max-width et le padding du bloc.        */
 .dcp .rise{opacity:0;transform:translateY(22px);
   transition:opacity .75s cubic-bezier(.2,.8,.2,1),transform .75s cubic-bezier(.2,.8,.2,1)}
-.dcp .rise.in{opacity:1;transform:none}
+.dcp .rise.vu{opacity:1;transform:none}
 
 /* ── Hero ───────────────────────────────────────────────────────────────── */
 .dcp-hero{padding:70px 0 58px;position:relative}
