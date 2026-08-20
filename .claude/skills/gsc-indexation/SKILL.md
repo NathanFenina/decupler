@@ -34,6 +34,14 @@ Deux voies possibles, au choix selon le client :
 
 Les pages non indexées qui comptent, groupées par motif, avec l'action de correction.
 
+## Le prompt
+
+```
+Lance gsc-indexation.
+Confronte mon sitemap aux URLs réellement indexées
+et groupe les exclusions par motif, avec la correction.
+```
+
 ## Règles
 
 - **Ne jamais inventer un chiffre.** Si la donnée manque, le dire — pas l'estimer en silence.

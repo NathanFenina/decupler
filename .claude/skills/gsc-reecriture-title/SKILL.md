@@ -36,6 +36,14 @@ Deux voies possibles, au choix selon le client :
 
 Un tableau : URL, title actuel → 2 propositions, meta actuelle → 2 propositions, gain de clics estimé.
 
+## Le prompt
+
+```
+Prends la sortie de gsc-ctr-anormal et lance gsc-reecriture-title.
+Deux variantes par page, avec le gain de clics estimé
+si le CTR rejoint la médiane.
+```
+
 ## Règles
 
 - **Ne jamais inventer un chiffre.** Si la donnée manque, le dire — pas l'estimer en silence.

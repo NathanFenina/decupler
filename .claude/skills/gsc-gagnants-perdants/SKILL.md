@@ -35,6 +35,14 @@ Deux voies possibles, au choix selon le client :
 
 Deux tableaux (top gains / top pertes) avec volume, variation, et cause probable.
 
+## Le prompt
+
+```
+Lance gsc-gagnants-perdants sur le mois écoulé.
+Deux tableaux, top 10 chacun, toujours avec le volume
+à côté du pourcentage.
+```
+
 ## Règles
 
 - **Ne jamais inventer un chiffre.** Si la donnée manque, le dire — pas l'estimer en silence.

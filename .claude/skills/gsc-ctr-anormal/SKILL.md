@@ -35,6 +35,14 @@ Deux voies possibles, au choix selon le client :
 
 Les pages à fort potentiel de CTR, avec l'écart chiffré à la courbe. Passer la main à `gsc-reecriture-title`.
 
+## Le prompt
+
+```
+Lance gsc-ctr-anormal.
+Calcule d'abord la courbe CTR/position de mon site,
+puis sors les pages qui sont sous la médiane de leur position.
+```
+
 ## Règles
 
 - **Ne jamais inventer un chiffre.** Si la donnée manque, le dire — pas l'estimer en silence.

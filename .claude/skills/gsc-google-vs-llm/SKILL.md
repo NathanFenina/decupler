@@ -36,6 +36,14 @@ Deux voies possibles, au choix selon le client :
 
 Le tableau position Google / citation LLM par requête, l'écart chiffré, et les sources concurrentes à travailler.
 
+## Le prompt
+
+```
+Lance gsc-google-vs-llm sur mes 20 requêtes cibles.
+Mets ma position Google en face des citations Perplexity
+et dis-moi quelles sources sont citées à ma place.
+```
+
 ## Règles
 
 - **Ne jamais inventer un chiffre.** Si la donnée manque, le dire — pas l'estimer en silence.

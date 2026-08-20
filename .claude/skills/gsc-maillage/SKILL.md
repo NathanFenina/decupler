@@ -34,6 +34,14 @@ Deux voies possibles, au choix selon le client :
 
 Un tableau : page source, page cible, ancre proposée, requête qui la justifie, trafic de la page source.
 
+## Le prompt
+
+```
+Lance gsc-maillage sur tout le site.
+Propose les ancres à partir des requêtes réelles partagées,
+et ne pars que de pages qui reçoivent déjà du trafic.
+```
+
 ## Règles
 
 - **Ne jamais inventer un chiffre.** Si la donnée manque, le dire — pas l'estimer en silence.

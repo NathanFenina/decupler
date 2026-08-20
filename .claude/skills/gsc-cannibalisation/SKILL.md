@@ -35,6 +35,14 @@ Deux voies possibles, au choix selon le client :
 
 Par requête : les URLs en conflit, laquelle garder, et l'action (fusion + redirection, désoptimisation, ou différenciation d'intention).
 
+## Le prompt
+
+```
+Lance gsc-cannibalisation sur les 3 derniers mois.
+Signale en priorité les requêtes où Google alterne entre
+deux de mes URLs d'un mois sur l'autre.
+```
+
 ## Règles
 
 - **Ne jamais inventer un chiffre.** Si la donnée manque, le dire — pas l'estimer en silence.

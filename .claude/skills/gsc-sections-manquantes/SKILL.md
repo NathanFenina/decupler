@@ -35,6 +35,14 @@ Deux voies possibles, au choix selon le client :
 
 La liste des sections à ajouter, avec pour chacune les requêtes qui la justifient et le volume d'impressions en jeu.
 
+## Le prompt
+
+```
+Lance gsc-sections-manquantes sur /ma-page/.
+Sors les requêtes qu'elle reçoit et ne traite pas,
+et propose uniquement les sections absentes.
+```
+
 ## Règles
 
 - **Ne jamais inventer un chiffre.** Si la donnée manque, le dire — pas l'estimer en silence.

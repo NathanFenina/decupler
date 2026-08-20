@@ -35,6 +35,14 @@ Deux voies possibles, au choix selon le client :
 
 Un verdict en une phrase (« 70 % de la perte vient du CTR, pas du classement ») + le détail par cause et par URL.
 
+## Le prompt
+
+```
+J'ai perdu du trafic ce mois-ci. Lance gsc-chute-trafic :
+compare aux 28 jours précédents et dis-moi combien de la perte
+vient du classement, du CTR, et de la demande.
+```
+
 ## Règles
 
 - **Ne jamais inventer un chiffre.** Si la donnée manque, le dire — pas l'estimer en silence.

@@ -35,6 +35,14 @@ Deux voies possibles, au choix selon le client :
 
 Les requêtes émergentes groupées par thème, avec la page actuellement servie et un verdict : page adaptée / à enrichir / à créer.
 
+## Le prompt
+
+```
+Lance gsc-requetes-neuves : compare les 28 derniers jours
+aux 28 précédents, groupe les requêtes émergentes par thème,
+et dis-moi lesquelles n'ont pas de page adaptée.
+```
+
 ## Règles
 
 - **Ne jamais inventer un chiffre.** Si la donnée manque, le dire — pas l'estimer en silence.

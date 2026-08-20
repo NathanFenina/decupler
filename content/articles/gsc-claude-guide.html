@@ -40,18 +40,34 @@
 @media(max-width:640px){.lm-mcp .aa-table{display:block;overflow-x:auto}.lm-mcp .combo{padding:20px 18px}}
 </style>
 <style>
-.lm-mcp .sk-group{margin-top:34px}
+.lm-mcp .sk-group{margin-top:44px}
 .lm-mcp .sk-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:12px;margin-bottom:6px}
-.lm-mcp .sk-head h3{font-family:var(--font-display);font-size:1.16rem;font-weight:800;margin:0}
+.lm-mcp .sk-head h3{font-family:var(--font-display);font-size:1.3rem;font-weight:800;margin:0}
 .lm-mcp .sk-count{font-family:var(--font-mono);font-size:.68rem;color:var(--violet);background:rgba(99,102,241,.1);
  border:1px solid rgba(99,102,241,.22);border-radius:20px;padding:3px 10px}
-.lm-mcp .sk-intro{font-size:.92rem;color:var(--text-muted);margin:0 0 16px;max-width:70ch}
-.lm-mcp .sk-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-.lm-mcp .sk-card{background:var(--bg2);border:1px solid var(--border);border-radius:13px;padding:16px 18px;
- transition:transform .22s,border-color .22s,box-shadow .22s}
-.lm-mcp .sk-card:hover{transform:translateY(-2px);border-color:var(--violet);box-shadow:0 14px 30px -16px rgba(99,102,241,.42)}
-.lm-mcp .sk-name{font-family:var(--font-mono);font-size:.82rem;font-weight:700;color:var(--violet);margin:0 0 6px;word-break:break-word}
-.lm-mcp .sk-q{font-size:.88rem;line-height:1.5;color:var(--text-muted);margin:0}
+.lm-mcp .sk-intro{font-size:.95rem;color:var(--text-muted);margin:0 0 20px;max-width:74ch;line-height:1.6}
+.lm-mcp .sk{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:24px 26px;margin-top:16px;
+ transition:border-color .22s,box-shadow .22s}
+.lm-mcp .sk:hover{border-color:var(--violet);box-shadow:0 18px 38px -20px rgba(99,102,241,.4)}
+.lm-mcp .sk-top{display:flex;align-items:center;gap:13px;flex-wrap:wrap;margin-bottom:14px}
+.lm-mcp .sk-n{flex:0 0 auto;width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;
+ font-family:var(--font-mono);font-size:.76rem;font-weight:800;color:#fff;background:linear-gradient(135deg,#6366f1,#8b5cf6)}
+.lm-mcp .sk:nth-child(even) .sk-n{background:linear-gradient(135deg,#8b5cf6,#10b981)}
+.lm-mcp .sk-slug{font-family:var(--font-mono);font-size:.95rem;font-weight:700;color:var(--violet);word-break:break-word}
+.lm-mcp .sk-q{font-size:1rem;line-height:1.55;color:var(--text);margin:0 0 18px;font-weight:600}
+.lm-mcp .sk-lbl{font-family:var(--font-mono);font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+ color:var(--text-dim);margin:0 0 8px}
+.lm-mcp .sk-steps{margin:0 0 18px;padding-left:0;list-style:none;counter-reset:sks}
+.lm-mcp .sk-steps li{counter-increment:sks;position:relative;padding:8px 0 8px 32px;font-size:.9rem;
+ color:var(--text-muted);line-height:1.52;border-top:1px solid var(--border)}
+.lm-mcp .sk-steps li:first-child{border-top:none}
+.lm-mcp .sk-steps li::before{content:counter(sks);position:absolute;left:0;top:8px;width:21px;height:21px;border-radius:6px;
+ background:rgba(99,102,241,.1);border:1px solid rgba(99,102,241,.25);color:var(--violet);
+ font-family:var(--font-mono);font-size:.66rem;font-weight:700;display:flex;align-items:center;justify-content:center}
+.lm-mcp .sk-out{padding:13px 16px;background:var(--bg3);border-radius:11px;border-left:3px solid var(--green);margin:0 0 18px}
+.lm-mcp .sk-out .sk-lbl{color:var(--green);margin-bottom:5px}
+.lm-mcp .sk-out p{margin:0;font-size:.9rem;color:var(--text-muted);line-height:1.55}
+.lm-mcp .sk-data{font-size:.86rem;color:var(--text-muted);margin:0 0 18px;padding-left:14px;border-left:2px solid var(--border)}
 .lm-mcp .voie{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:22px}
 .lm-mcp .voie-card{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:22px 24px}
 .lm-mcp .voie-card.reco{border-color:rgba(16,185,129,.35);background:rgba(16,185,129,.04)}
@@ -63,7 +79,7 @@
 .lm-mcp .voie-card p{font-size:.9rem;color:var(--text-muted);margin:0 0 12px;line-height:1.55}
 .lm-mcp .voie-card ul{margin:0;padding-left:18px}
 .lm-mcp .voie-card li{font-size:.86rem;color:var(--text-muted);margin-bottom:5px;line-height:1.45}
-@media(max-width:760px){.lm-mcp .sk-grid,.lm-mcp .voie{grid-template-columns:1fr}}
+@media(max-width:760px){.lm-mcp .voie{grid-template-columns:1fr}.lm-mcp .sk{padding:20px 18px}}
 </style>
 <div class="lm-mcp">
 <div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div>
@@ -173,17 +189,237 @@ GSC_CREDENTIALS_JSON=./secrets/gsc-service-account.json</pre></div></div></div>
     <div class="sk-group">
       <div class="sk-head"><h3>Diagnostiquer — Lire la donnée</h3><span class="sk-count">8 skills</span></div>
       <p class="sk-intro">Ces huit-là répondent à une question qu'on se pose vraiment, pas « exporte-moi un tableau ». La plupart des outils GSC s'arrêtent ici.</p>
-      <div class="sk-grid"><div class="sk-card reveal-up"><p class="sk-name">gsc-quick-wins</p><p class="sk-q">Quelles pages sont juste sous le seuil de trafic, et lesquelles rapportent le plus vite si on les pousse ?</p></div><div class="sk-card reveal-up"><p class="sk-name">gsc-chute-trafic</p><p class="sk-q">J'ai perdu du trafic : est-ce le classement, le CTR, ou la demande qui a baissé ?</p></div><div class="sk-card reveal-up"><p class="sk-name">gsc-content-decay</p><p class="sk-q">Quelles pages déclinent lentement depuis plusieurs mois, avant qu'elles ne disparaissent ?</p></div><div class="sk-card reveal-up"><p class="sk-name">gsc-cannibalisation</p><p class="sk-q">Quelles pages de mon site se battent entre elles sur la même requête ?</p></div><div class="sk-card reveal-up"><p class="sk-name">gsc-ctr-anormal</p><p class="sk-q">Quelles pages sous-performent en clics compte tenu de la position qu'elles occupent déjà ?</p></div><div class="sk-card reveal-up"><p class="sk-name">gsc-requetes-neuves</p><p class="sk-q">Sur quelles requêtes Google a-t-il commencé à me montrer, sans que j'aie de page dédiée ?</p></div><div class="sk-card reveal-up"><p class="sk-name">gsc-gagnants-perdants</p><p class="sk-q">Qu'est-ce qui monte et qu'est-ce qui tombe depuis le mois dernier ?</p></div><div class="sk-card reveal-up"><p class="sk-name">gsc-saisonnalite</p><p class="sk-q">Cette baisse est-elle un problème, ou mon creux annuel habituel ?</p></div></div>
+            <div class="sk reveal-up">
+        <div class="sk-top"><span class="sk-n">01</span><span class="sk-slug">gsc-quick-wins</span></div>
+        <p class="sk-q">Quelles pages sont juste sous le seuil de trafic, et lesquelles rapportent le plus vite si on les pousse ?</p>
+        <p class="sk-data"><strong>Données&nbsp;:</strong> `query` + `page`, 28 derniers jours : impressions, clics, CTR, position moyenne.</p>
+        <p class="sk-lbl">La méthode qu'il impose</p>
+        <ol class="sk-steps"><li>Filtrer les couples (requête, page) en **position 8 à 20** avec au moins 50 impressions sur la période.</li><li>Estimer le gain : `impressions × (CTR attendu en position 3 − CTR actuel)`. Utiliser une courbe CTR/position de référence, pas une moyenne du site.</li><li>Agréger par URL et trier par gain estimé décroissant.</li><li>Écarter les requêtes de marque : elles gonflent le classement sans rien apprendre.</li></ol>
+        <div class="sk-out"><p class="sk-lbl">Ce qu'il rend</p><p>Un tableau URL · requête principale · position · impressions · gain de clics estimé, trié par gain. Top 10 commenté.</p></div>
+        <p class="sk-lbl">Le prompt</p>
+        <div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>claude</span></div><pre>Lance gsc-quick-wins sur les 28 derniers jours.
+Écarte les requêtes de marque et donne-moi le top 10
+par gain de clics estimé.</pre></div>
+      </div>      <div class="sk reveal-up">
+        <div class="sk-top"><span class="sk-n">02</span><span class="sk-slug">gsc-chute-trafic</span></div>
+        <p class="sk-q">J'ai perdu du trafic : est-ce le classement, le CTR, ou la demande qui a baissé ?</p>
+        <p class="sk-data"><strong>Données&nbsp;:</strong> Deux périodes comparables (même longueur, mêmes jours de semaine) : clics, impressions, CTR, position.</p>
+        <p class="sk-lbl">La méthode qu'il impose</p>
+        <ol class="sk-steps"><li>Décomposer la variation de clics en trois causes : **position** (position moyenne dégradée), **CTR** (position stable mais moins de clics), **demande** (impressions en baisse à position constante).</li><li>Chiffrer la part de chaque cause dans la perte totale — c'est le cœur du diagnostic.</li><li>Descendre au niveau URL pour les 10 plus grosses pertes.</li><li>Vérifier `gsc-saisonnalite` avant de conclure à un problème.</li></ol>
+        <div class="sk-out"><p class="sk-lbl">Ce qu'il rend</p><p>Un verdict en une phrase (« 70 % de la perte vient du CTR, pas du classement ») + le détail par cause et par URL.</p></div>
+        <p class="sk-lbl">Le prompt</p>
+        <div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>claude</span></div><pre>J'ai perdu du trafic ce mois-ci. Lance gsc-chute-trafic :
+compare aux 28 jours précédents et dis-moi combien de la perte
+vient du classement, du CTR, et de la demande.</pre></div>
+      </div>      <div class="sk reveal-up">
+        <div class="sk-top"><span class="sk-n">03</span><span class="sk-slug">gsc-content-decay</span></div>
+        <p class="sk-q">Quelles pages déclinent lentement depuis plusieurs mois, avant qu'elles ne disparaissent ?</p>
+        <p class="sk-data"><strong>Données&nbsp;:</strong> 12 derniers mois par `page` et par mois : clics, impressions, position.</p>
+        <p class="sk-lbl">La méthode qu'il impose</p>
+        <ol class="sk-steps"><li>Repérer les pages en baisse sur **3 mois consécutifs au minimum** — un mauvais mois isolé est du bruit, pas du déclin.</li><li>Calculer la pente sur 6 mois et le pourcentage perdu depuis le pic.</li><li>Croiser avec la date de dernière mise à jour de la page si elle est disponible.</li><li>Classer par volume perdu en valeur absolue, pas en pourcentage : −20 % sur une grosse page vaut plus que −80 % sur une page morte.</li></ol>
+        <div class="sk-out"><p class="sk-lbl">Ce qu'il rend</p><p>Liste des pages en déclin avec pente, clics perdus, mois de bascule, et une recommandation par page (rafraîchir / fusionner / laisser mourir).</p></div>
+        <p class="sk-lbl">Le prompt</p>
+        <div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>claude</span></div><pre>Lance gsc-content-decay sur 12 mois.
+Ne me remonte que les pages en baisse sur 3 mois consécutifs,
+triées par clics perdus en valeur absolue.</pre></div>
+      </div>      <div class="sk reveal-up">
+        <div class="sk-top"><span class="sk-n">04</span><span class="sk-slug">gsc-cannibalisation</span></div>
+        <p class="sk-q">Quelles pages de mon site se battent entre elles sur la même requête ?</p>
+        <p class="sk-data"><strong>Données&nbsp;:</strong> `query` + `page` sur 3 mois : impressions, clics, position par couple.</p>
+        <p class="sk-lbl">La méthode qu'il impose</p>
+        <ol class="sk-steps"><li>Isoler les requêtes servies par **2 URLs ou plus** avec des impressions significatives sur chacune.</li><li>Signaler les cas où Google **alterne** entre les URLs d'un mois sur l'autre : c'est le vrai symptôme, pas la simple co-présence.</li><li>Désigner l'URL à garder : celle qui a la meilleure position moyenne ET les meilleurs signaux de conversion.</li><li>Distinguer la vraie cannibalisation d'une couverture légitime (une page catégorie et une page produit peuvent coexister).</li></ol>
+        <div class="sk-out"><p class="sk-lbl">Ce qu'il rend</p><p>Par requête : les URLs en conflit, laquelle garder, et l'action (fusion + redirection, désoptimisation, ou différenciation d'intention).</p></div>
+        <p class="sk-lbl">Le prompt</p>
+        <div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>claude</span></div><pre>Lance gsc-cannibalisation sur les 3 derniers mois.
+Signale en priorité les requêtes où Google alterne entre
+deux de mes URLs d'un mois sur l'autre.</pre></div>
+      </div>      <div class="sk reveal-up">
+        <div class="sk-top"><span class="sk-n">05</span><span class="sk-slug">gsc-ctr-anormal</span></div>
+        <p class="sk-q">Quelles pages sous-performent en clics compte tenu de la position qu'elles occupent déjà ?</p>
+        <p class="sk-data"><strong>Données&nbsp;:</strong> `query` + `page`, 28 jours : impressions, clics, CTR, position.</p>
+        <p class="sk-lbl">La méthode qu'il impose</p>
+        <ol class="sk-steps"><li>Établir la **courbe CTR/position du site** (CTR médian observé pour chaque position) — c'est la référence, pas un standard générique.</li><li>Repérer les pages dont le CTR est nettement sous la médiane de leur propre position.</li><li>Filtrer sur un minimum d'impressions pour éviter les faux positifs statistiques.</li><li>Vérifier la SERP : un AI Overview ou un featured snippet concurrent explique parfois tout le déficit.</li></ol>
+        <div class="sk-out"><p class="sk-lbl">Ce qu'il rend</p><p>Les pages à fort potentiel de CTR, avec l'écart chiffré à la courbe. Passer la main à `gsc-reecriture-title`.</p></div>
+        <p class="sk-lbl">Le prompt</p>
+        <div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>claude</span></div><pre>Lance gsc-ctr-anormal.
+Calcule d'abord la courbe CTR/position de mon site,
+puis sors les pages qui sont sous la médiane de leur position.</pre></div>
+      </div>      <div class="sk reveal-up">
+        <div class="sk-top"><span class="sk-n">06</span><span class="sk-slug">gsc-requetes-neuves</span></div>
+        <p class="sk-q">Sur quelles requêtes Google a-t-il commencé à me montrer, sans que j'aie de page dédiée ?</p>
+        <p class="sk-data"><strong>Données&nbsp;:</strong> Deux périodes de 28 jours consécutives, dimension `query`.</p>
+        <p class="sk-lbl">La méthode qu'il impose</p>
+        <ol class="sk-steps"><li>Isoler les requêtes présentes sur la période récente et **absentes** de la précédente.</li><li>Écarter le bruit : exiger un seuil d'impressions.</li><li>Pour chaque requête neuve, identifier la page qui la reçoit et juger si elle est la bonne.</li><li>Regrouper les requêtes neuves par thème : un cluster émergent vaut une page, pas une ligne.</li></ol>
+        <div class="sk-out"><p class="sk-lbl">Ce qu'il rend</p><p>Les requêtes émergentes groupées par thème, avec la page actuellement servie et un verdict : page adaptée / à enrichir / à créer.</p></div>
+        <p class="sk-lbl">Le prompt</p>
+        <div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>claude</span></div><pre>Lance gsc-requetes-neuves : compare les 28 derniers jours
+aux 28 précédents, groupe les requêtes émergentes par thème,
+et dis-moi lesquelles n'ont pas de page adaptée.</pre></div>
+      </div>      <div class="sk reveal-up">
+        <div class="sk-top"><span class="sk-n">07</span><span class="sk-slug">gsc-gagnants-perdants</span></div>
+        <p class="sk-q">Qu'est-ce qui monte et qu'est-ce qui tombe depuis le mois dernier ?</p>
+        <p class="sk-data"><strong>Données&nbsp;:</strong> Deux périodes comparables, par `page` et par `query`.</p>
+        <p class="sk-lbl">La méthode qu'il impose</p>
+        <ol class="sk-steps"><li>Comparer clics, impressions et position sur des périodes de longueur identique.</li><li>Classer séparément les gains et les pertes, en valeur absolue.</li><li>Pour chaque mouvement important, donner la cause probable (renvoyer vers `gsc-chute-trafic`).</li><li>Ne jamais présenter un pourcentage sans le volume associé.</li></ol>
+        <div class="sk-out"><p class="sk-lbl">Ce qu'il rend</p><p>Deux tableaux (top gains / top pertes) avec volume, variation, et cause probable.</p></div>
+        <p class="sk-lbl">Le prompt</p>
+        <div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>claude</span></div><pre>Lance gsc-gagnants-perdants sur le mois écoulé.
+Deux tableaux, top 10 chacun, toujours avec le volume
+à côté du pourcentage.</pre></div>
+      </div>      <div class="sk reveal-up">
+        <div class="sk-top"><span class="sk-n">08</span><span class="sk-slug">gsc-saisonnalite</span></div>
+        <p class="sk-q">Cette baisse est-elle un problème, ou mon creux annuel habituel ?</p>
+        <p class="sk-data"><strong>Données&nbsp;:</strong> 16 mois d'historique minimum, par mois.</p>
+        <p class="sk-lbl">La méthode qu'il impose</p>
+        <ol class="sk-steps"><li>Comparer le mois courant au **même mois de l'année précédente**, pas au mois précédent.</li><li>Calculer l'indice saisonnier de chaque mois sur l'historique disponible.</li><li>Décider si l'écart observé sort de la fourchette saisonnière normale.</li><li>Le dire franchement quand il n'y a pas assez d'historique pour conclure.</li></ol>
+        <div class="sk-out"><p class="sk-lbl">Ce qu'il rend</p><p>Un verdict : saisonnier attendu / anomalie réelle / historique insuffisant, avec le graphique année sur année.</p></div>
+        <p class="sk-lbl">Le prompt</p>
+        <div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>claude</span></div><pre>Mon trafic baisse. Lance gsc-saisonnalite :
+compare au même mois l'an dernier et dis-moi si ça sort
+de ma fourchette saisonnière normale.</pre></div>
+      </div>
     </div>
     <div class="sk-group">
       <div class="sk-head"><h3>Produire — Transformer la donnée en contenu</h3><span class="sk-count">7 skills</span></div>
       <p class="sk-intro">C'est le groupe qui change tout. Presque tous les outils du marché <em>lisent</em> Search Console&nbsp;; très peu <strong>écrivent à partir de Search Console</strong>. Vos vraies requêtes portent le vocabulaire exact de vos acheteurs — aucun outil de volume ne vous donnera ça.</p>
-      <div class="sk-grid"><div class="sk-card reveal-up"><p class="sk-name">gsc-sections-manquantes</p><p class="sk-q">Quelles questions cette page reçoit-elle sans y répondre ?</p></div><div class="sk-card reveal-up"><p class="sk-name">gsc-brief-depuis-requetes</p><p class="sk-q">Comment écrire un brief à partir de ce que les gens tapent vraiment, pas de ce qu'un outil suggère ?</p></div><div class="sk-card reveal-up"><p class="sk-name">gsc-reecriture-title</p><p class="sk-q">Comment réécrire mes titles et metas pour récupérer les clics que je laisse sur la table ?</p></div><div class="sk-card reveal-up"><p class="sk-name">gsc-faq-depuis-requetes</p><p class="sk-q">Quelles questions dois-je mettre en FAQ, en me basant sur ce qu'on me demande vraiment ?</p></div><div class="sk-card reveal-up"><p class="sk-name">gsc-page-a-creer</p><p class="sk-q">Quels sujets méritent une page dédiée que je n'ai pas encore ?</p></div><div class="sk-card reveal-up"><p class="sk-name">gsc-consolidation</p><p class="sk-q">Comment fusionner mes pages qui se cannibalisent, sans perdre de trafic ?</p></div><div class="sk-card reveal-up"><p class="sk-name">gsc-maillage</p><p class="sk-q">Quels liens internes ajouter, et depuis quelles pages exactement ?</p></div></div>
+            <div class="sk reveal-up">
+        <div class="sk-top"><span class="sk-n">01</span><span class="sk-slug">gsc-sections-manquantes</span></div>
+        <p class="sk-q">Quelles questions cette page reçoit-elle sans y répondre ?</p>
+        <p class="sk-data"><strong>Données&nbsp;:</strong> Toutes les requêtes servies par UNE URL, 3 mois.</p>
+        <p class="sk-lbl">La méthode qu'il impose</p>
+        <ol class="sk-steps"><li>Récupérer l'intégralité des requêtes que la page reçoit, y compris celles à faibles impressions.</li><li>Les regrouper en intentions distinctes.</li><li>Confronter chaque intention au contenu réel de la page : la traite-t-elle explicitement, ou Google l'a-t-il servie par défaut ?</li><li>Ne proposer que les sections **absentes** — ne jamais réécrire ce qui existe déjà.</li></ol>
+        <div class="sk-out"><p class="sk-lbl">Ce qu'il rend</p><p>La liste des sections à ajouter, avec pour chacune les requêtes qui la justifient et le volume d'impressions en jeu.</p></div>
+        <p class="sk-lbl">Le prompt</p>
+        <div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>claude</span></div><pre>Lance gsc-sections-manquantes sur /ma-page/.
+Sors les requêtes qu'elle reçoit et ne traite pas,
+et propose uniquement les sections absentes.</pre></div>
+      </div>      <div class="sk reveal-up">
+        <div class="sk-top"><span class="sk-n">02</span><span class="sk-slug">gsc-brief-depuis-requetes</span></div>
+        <p class="sk-q">Comment écrire un brief à partir de ce que les gens tapent vraiment, pas de ce qu'un outil suggère ?</p>
+        <p class="sk-data"><strong>Données&nbsp;:</strong> Requêtes d'une page ou d'un cluster, 6 mois.</p>
+        <p class="sk-lbl">La méthode qu'il impose</p>
+        <ol class="sk-steps"><li>Partir des requêtes réelles : elles portent le vocabulaire exact des acheteurs.</li><li>Grouper par intention, puis ordonner les groupes par volume d'impressions — cet ordre devient le plan Hn.</li><li>Extraire les formulations interrogatives : elles deviennent des H3 ou des entrées de FAQ.</li><li>Compléter avec la SERP (via DataForSEO ou Firecrawl) uniquement pour ce que GSC ne peut pas dire : ce que couvrent les concurrents.</li></ol>
+        <div class="sk-out"><p class="sk-lbl">Ce qu'il rend</p><p>Un brief : angle, plan Hn ordonné, vocabulaire imposé, questions à traiter, et le volume d'impressions qui justifie chaque section.</p></div>
+        <p class="sk-lbl">Le prompt</p>
+        <div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>claude</span></div><pre>Lance gsc-brief-depuis-requetes pour le cluster « audit seo ».
+Ordonne le plan Hn par volume d'impressions et impose
+le vocabulaire exact des requêtes.</pre></div>
+      </div>      <div class="sk reveal-up">
+        <div class="sk-top"><span class="sk-n">03</span><span class="sk-slug">gsc-reecriture-title</span></div>
+        <p class="sk-q">Comment réécrire mes titles et metas pour récupérer les clics que je laisse sur la table ?</p>
+        <p class="sk-data"><strong>Données&nbsp;:</strong> Sortie de `gsc-ctr-anormal` + title/meta actuels des pages ciblées.</p>
+        <p class="sk-lbl">La méthode qu'il impose</p>
+        <ol class="sk-steps"><li>Reprendre les pages identifiées en déficit de CTR.</li><li>Réécrire en intégrant **la formulation exacte** de la requête la plus porteuse de la page.</li><li>Respecter les limites d'affichage (environ 60 caractères pour le title, 155 pour la meta).</li><li>Proposer deux variantes par page pour permettre un test.</li><li>Estimer le gain de clics si le CTR rejoint la médiane de sa position.</li></ol>
+        <div class="sk-out"><p class="sk-lbl">Ce qu'il rend</p><p>Un tableau : URL, title actuel → 2 propositions, meta actuelle → 2 propositions, gain de clics estimé.</p></div>
+        <p class="sk-lbl">Le prompt</p>
+        <div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>claude</span></div><pre>Prends la sortie de gsc-ctr-anormal et lance gsc-reecriture-title.
+Deux variantes par page, avec le gain de clics estimé
+si le CTR rejoint la médiane.</pre></div>
+      </div>      <div class="sk reveal-up">
+        <div class="sk-top"><span class="sk-n">04</span><span class="sk-slug">gsc-faq-depuis-requetes</span></div>
+        <p class="sk-q">Quelles questions dois-je mettre en FAQ, en me basant sur ce qu'on me demande vraiment ?</p>
+        <p class="sk-data"><strong>Données&nbsp;:</strong> Requêtes interrogatives d'une page ou d'un site, 6 mois.</p>
+        <p class="sk-lbl">La méthode qu'il impose</p>
+        <ol class="sk-steps"><li>Isoler les requêtes qui commencent par un interrogatif (comment, pourquoi, combien, quel, est-ce que…) ou qui en ont la forme.</li><li>Dédupliquer les reformulations d'une même question.</li><li>Trier par impressions et retenir celles qui ne sont pas déjà traitées dans le corps de la page.</li><li>Rédiger des réponses courtes et autonomes — c'est ce format que les moteurs génératifs citent.</li></ol>
+        <div class="sk-out"><p class="sk-lbl">Ce qu'il rend</p><p>Le bloc FAQ rédigé + le JSON-LD `FAQPage` correspondant, prêt à coller.</p></div>
+        <p class="sk-lbl">Le prompt</p>
+        <div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>claude</span></div><pre>Lance gsc-faq-depuis-requetes sur /ma-page/.
+Garde les questions non traitées dans le corps de page
+et sors-moi le JSON-LD FAQPage.</pre></div>
+      </div>      <div class="sk reveal-up">
+        <div class="sk-top"><span class="sk-n">05</span><span class="sk-slug">gsc-page-a-creer</span></div>
+        <p class="sk-q">Quels sujets méritent une page dédiée que je n'ai pas encore ?</p>
+        <p class="sk-data"><strong>Données&nbsp;:</strong> Toutes les requêtes du site, 6 mois, avec leur page servie.</p>
+        <p class="sk-lbl">La méthode qu'il impose</p>
+        <ol class="sk-steps"><li>Regrouper les requêtes en clusters sémantiques.</li><li>Repérer les clusters où **aucune page n'est vraiment dédiée** : les impressions sont dispersées sur des pages approximatives, avec des positions faibles.</li><li>Estimer le potentiel du cluster : impressions cumulées et position moyenne actuelle.</li><li>Vérifier l'absence de doublon avec l'inventaire interne avant de proposer une création.</li></ol>
+        <div class="sk-out"><p class="sk-lbl">Ce qu'il rend</p><p>Les clusters orphelins classés par potentiel, avec pour chacun le mot-clé principal, les requêtes couvertes et la page à créer.</p></div>
+        <p class="sk-lbl">Le prompt</p>
+        <div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>claude</span></div><pre>Lance gsc-page-a-creer sur 6 mois.
+Repère les clusters dont les impressions sont dispersées
+sur des pages approximatives, et vérifie qu'il n'y a pas de doublon.</pre></div>
+      </div>      <div class="sk reveal-up">
+        <div class="sk-top"><span class="sk-n">06</span><span class="sk-slug">gsc-consolidation</span></div>
+        <p class="sk-q">Comment fusionner mes pages qui se cannibalisent, sans perdre de trafic ?</p>
+        <p class="sk-data"><strong>Données&nbsp;:</strong> Sortie de `gsc-cannibalisation` + contenu des pages concernées.</p>
+        <p class="sk-lbl">La méthode qu'il impose</p>
+        <ol class="sk-steps"><li>Désigner la page canonique : meilleure position, meilleure profondeur, meilleurs signaux business.</li><li>Lister ce que les pages absorbées apportent d'unique et qui doit être **transféré** avant redirection.</li><li>Produire le plan de redirection 301, une ligne par URL.</li><li>Lister les liens internes à mettre à jour pour ne pas laisser de chaînes de redirection.</li></ol>
+        <div class="sk-out"><p class="sk-lbl">Ce qu'il rend</p><p>Le plan de fusion : page cible, contenu à transférer, redirections 301, liens internes à corriger.</p></div>
+        <p class="sk-lbl">Le prompt</p>
+        <div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>claude</span></div><pre>Reprends les conflits de gsc-cannibalisation et lance gsc-consolidation.
+Donne-moi la page à garder, ce qu'il faut transférer,
+et le plan de redirections 301.</pre></div>
+      </div>      <div class="sk reveal-up">
+        <div class="sk-top"><span class="sk-n">07</span><span class="sk-slug">gsc-maillage</span></div>
+        <p class="sk-q">Quels liens internes ajouter, et depuis quelles pages exactement ?</p>
+        <p class="sk-data"><strong>Données&nbsp;:</strong> Requêtes par page sur tout le site.</p>
+        <p class="sk-lbl">La méthode qu'il impose</p>
+        <ol class="sk-steps"><li>Calculer la proximité sémantique entre pages à partir du recouvrement de leurs requêtes.</li><li>Proposer un lien quand une page A reçoit des requêtes proches du sujet d'une page B mieux positionnée.</li><li>Proposer l'ancre à partir de la requête réelle partagée, jamais une ancre générique.</li><li>Prioriser les liens venant des pages qui reçoivent déjà du trafic — un lien depuis une page morte ne vaut rien.</li></ol>
+        <div class="sk-out"><p class="sk-lbl">Ce qu'il rend</p><p>Un tableau : page source, page cible, ancre proposée, requête qui la justifie, trafic de la page source.</p></div>
+        <p class="sk-lbl">Le prompt</p>
+        <div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>claude</span></div><pre>Lance gsc-maillage sur tout le site.
+Propose les ancres à partir des requêtes réelles partagées,
+et ne pars que de pages qui reçoivent déjà du trafic.</pre></div>
+      </div>
     </div>
     <div class="sk-group">
       <div class="sk-head"><h3>Piloter — Suivre dans le temps</h3><span class="sk-count">5 skills</span></div>
       <p class="sk-intro">Le reporting et la surveillance, une fois que la machine tourne.</p>
-      <div class="sk-grid"><div class="sk-card reveal-up"><p class="sk-name">gsc-rapport-mensuel</p><p class="sk-q">À quoi ressemble le mois écoulé, et qu'est-ce que ça veut dire ?</p></div><div class="sk-card reveal-up"><p class="sk-name">gsc-alerte</p><p class="sk-q">Qu'est-ce qui vient de décrocher et que je n'ai pas vu ?</p></div><div class="sk-card reveal-up"><p class="sk-name">gsc-panier-cibles</p><p class="sk-q">Où en sont les requêtes sur lesquelles j'ai décidé de me battre ?</p></div><div class="sk-card reveal-up"><p class="sk-name">gsc-indexation</p><p class="sk-q">Qu'est-ce qui n'est pas indexé, et pourquoi ?</p></div><div class="sk-card reveal-up"><p class="sk-name">gsc-google-vs-llm</p><p class="sk-q">Je suis bien placé sur Google — est-ce que les IA me citent pour autant ?</p></div></div>
+            <div class="sk reveal-up">
+        <div class="sk-top"><span class="sk-n">01</span><span class="sk-slug">gsc-rapport-mensuel</span></div>
+        <p class="sk-q">À quoi ressemble le mois écoulé, et qu'est-ce que ça veut dire ?</p>
+        <p class="sk-data"><strong>Données&nbsp;:</strong> Mois courant vs M-1 vs même mois N-1. GA4 et PostHog si branchés.</p>
+        <p class="sk-lbl">La méthode qu'il impose</p>
+        <ol class="sk-steps"><li>Donner d'abord les chiffres clés : clics, impressions, position moyenne, avec les deux comparaisons.</li><li>Nommer les 3 mouvements qui expliquent l'essentiel de la variation — pas une liste de 40 lignes.</li><li>Croiser avec les conversions si GA4 est disponible : « le trafic monte sur les pages qui ne convertissent pas » est une information, « le trafic monte » n'en est pas une.</li><li>Terminer par les actions du mois suivant, priorisées.</li><li>Ne jamais inventer un chiffre absent des données.</li></ol>
+        <div class="sk-out"><p class="sk-lbl">Ce qu'il rend</p><p>Un rapport structuré : chiffres clés, ce qui a bougé et pourquoi, actions du mois suivant.</p></div>
+        <p class="sk-lbl">Le prompt</p>
+        <div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>claude</span></div><pre>Lance gsc-rapport-mensuel.
+Trois mouvements maximum pour expliquer la variation,
+et croise avec les conversions GA4 si c'est branché.</pre></div>
+      </div>      <div class="sk reveal-up">
+        <div class="sk-top"><span class="sk-n">02</span><span class="sk-slug">gsc-alerte</span></div>
+        <p class="sk-q">Qu'est-ce qui vient de décrocher et que je n'ai pas vu ?</p>
+        <p class="sk-data"><strong>Données&nbsp;:</strong> 7 derniers jours vs les 4 semaines précédentes.</p>
+        <p class="sk-lbl">La méthode qu'il impose</p>
+        <ol class="sk-steps"><li>Définir les seuils avant de regarder les données, pour éviter de justifier après coup.</li><li>Surveiller : chute de clics d'une URL importante, perte de position sur une requête stratégique, effondrement de CTR, disparition d'une page de l'index.</li><li>Comparer à des jours équivalents — un lundi contre un dimanche ne veut rien dire.</li><li>Ne remonter que ce qui dépasse le seuil : une alerte qui crie tout le temps n'est plus lue.</li></ol>
+        <div class="sk-out"><p class="sk-lbl">Ce qu'il rend</p><p>Une liste d'alertes ou, mieux, la confirmation explicite qu'il n'y a rien à signaler.</p></div>
+        <p class="sk-lbl">Le prompt</p>
+        <div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>claude</span></div><pre>Lance gsc-alerte sur les 7 derniers jours.
+Compare à des jours équivalents et ne me remonte
+que ce qui dépasse les seuils.</pre></div>
+      </div>      <div class="sk reveal-up">
+        <div class="sk-top"><span class="sk-n">03</span><span class="sk-slug">gsc-panier-cibles</span></div>
+        <p class="sk-q">Où en sont les requêtes sur lesquelles j'ai décidé de me battre ?</p>
+        <p class="sk-data"><strong>Données&nbsp;:</strong> Un panier de requêtes défini par le client, suivi mois par mois.</p>
+        <p class="sk-lbl">La méthode qu'il impose</p>
+        <ol class="sk-steps"><li>Suivre position, impressions et clics pour chaque requête du panier.</li><li>Afficher la trajectoire sur 6 mois, pas seulement l'instantané.</li><li>Signaler les requêtes qui franchissent un palier (entrée en page 1, entrée dans le top 3).</li><li>Indiquer la page qui se positionne, et alerter si Google en change.</li></ol>
+        <div class="sk-out"><p class="sk-lbl">Ce qu'il rend</p><p>Le tableau de suivi avec trajectoire, paliers franchis, et changements de page servie.</p></div>
+        <p class="sk-lbl">Le prompt</p>
+        <div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>claude</span></div><pre>Lance gsc-panier-cibles sur mes 20 requêtes stratégiques.
+Montre la trajectoire sur 6 mois et signale les paliers
+et les changements de page servie.</pre></div>
+      </div>      <div class="sk reveal-up">
+        <div class="sk-top"><span class="sk-n">04</span><span class="sk-slug">gsc-indexation</span></div>
+        <p class="sk-q">Qu'est-ce qui n'est pas indexé, et pourquoi ?</p>
+        <p class="sk-data"><strong>Données&nbsp;:</strong> Rapport de couverture + inspection d'URL + sitemap.</p>
+        <p class="sk-lbl">La méthode qu'il impose</p>
+        <ol class="sk-steps"><li>Confronter les URLs du sitemap aux URLs réellement indexées.</li><li>Classer les exclusions par motif : découverte sans indexation, explorée non indexée, canonique différente, 404, redirection.</li><li>Traiter en priorité les pages qui comptent — une page de pagination non indexée n'est pas un problème.</li><li>Pour chaque motif, donner la correction concrète, pas juste le constat.</li></ol>
+        <div class="sk-out"><p class="sk-lbl">Ce qu'il rend</p><p>Les pages non indexées qui comptent, groupées par motif, avec l'action de correction.</p></div>
+        <p class="sk-lbl">Le prompt</p>
+        <div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>claude</span></div><pre>Lance gsc-indexation.
+Confronte mon sitemap aux URLs réellement indexées
+et groupe les exclusions par motif, avec la correction.</pre></div>
+      </div>      <div class="sk reveal-up">
+        <div class="sk-top"><span class="sk-n">05</span><span class="sk-slug">gsc-google-vs-llm</span></div>
+        <p class="sk-q">Je suis bien placé sur Google — est-ce que les IA me citent pour autant ?</p>
+        <p class="sk-data"><strong>Données&nbsp;:</strong> Requêtes cibles GSC + interrogation des moteurs génératifs (Perplexity, ChatGPT).</p>
+        <p class="sk-lbl">La méthode qu'il impose</p>
+        <ol class="sk-steps"><li>Prendre les requêtes où le site est déjà bien positionné sur Google.</li><li>Poser ces mêmes questions aux moteurs génératifs et relever qui est cité, et à quel rang.</li><li>Mettre les deux colonnes face à face : l'écart est la feuille de route GEO.</li><li>Identifier les sources que les moteurs citent à la place — c'est là qu'il faut aller se faire mentionner.</li><li>Journaliser chaque relevé pour mesurer l'évolution d'un mois sur l'autre.</li></ol>
+        <div class="sk-out"><p class="sk-lbl">Ce qu'il rend</p><p>Le tableau position Google / citation LLM par requête, l'écart chiffré, et les sources concurrentes à travailler.</p></div>
+        <p class="sk-lbl">Le prompt</p>
+        <div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>claude</span></div><pre>Lance gsc-google-vs-llm sur mes 20 requêtes cibles.
+Mets ma position Google en face des citations Perplexity
+et dis-moi quelles sources sont citées à ma place.</pre></div>
+      </div>
     </div>
     <div class="tip tip-v"><span class="tipico">🔑</span><p>Chaque skill impose la même règle&nbsp;: <strong>ne jamais inventer un chiffre</strong>. Quand la donnée manque, il le dit au lieu de l'estimer en silence. C'est ce qui rend un rapport présentable à un client.</p></div>
   </div>
@@ -284,8 +520,8 @@ GSC_CREDENTIALS_JSON=./secrets/gsc-service-account.json</pre></div></div></div>
 </div>
 </section>
 </div>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Faut-il savoir coder ?", "acceptedAnswer": {"@type": "Answer", "text": "Non pour la voie Windsor : c'est une autorisation OAuth, comme quand vous connectez un outil à votre Google Analytics. La voie service account demande de créer un projet Google Cloud et de déposer un fichier JSON — comptez 20 minutes si c'est la première fois."}}, {"@type": "Question", "name": "Est-ce que Claude peut modifier mon site ou mon Search Console ?", "acceptedAnswer": {"@type": "Answer", "text": "Non. L'accès Search Console est en lecture seule. Claude ne peut rien changer dans GSC. Il peut publier sur votre site uniquement si vous branchez séparément l'API WordPress, et par défaut en brouillon."}}, {"@type": "Question", "name": "Quelle différence entre un MCP et un skill ?", "acceptedAnswer": {"@type": "Answer", "text": "Le MCP est le  tuyau  : il donne à Claude l'accès à vos données Search Console. Le skill est la  méthode  : il lui dit quoi en faire, dans quel ordre, avec quelles règles. Sans MCP, un skill n'a rien à analyser. Sans skill, Claude improvise une analyse différente à chaque fois."}}, {"@type": "Question", "name": "Ça marche avec Claude tout court, ou seulement Claude Code ?", "acceptedAnswer": {"@type": "Answer", "text": "Les deux. Le connecteur Windsor fonctionne dans l'application Claude. Claude Code ajoute la possibilité d'exécuter des scripts locaux et de versionner vos skills dans un dépôt Git — c'est ce qu'on utilise chez Décupler."}}, {"@type": "Question", "name": "Combien de données Search Console remonte ?", "acceptedAnswer": {"@type": "Answer", "text": "16 mois d'historique, avec un plafond de lignes par requête à l'API et un échantillonnage sur les requêtes rares. Pour un gros site, il faut segmenter par page ou par date. C'est une limite de Google, pas de Claude."}}]}</script>
-<script>(function(){function cu(el){var t=parseFloat(el.getAttribute('data-count'))||0,s=null,d=1200,suf=el.getAttribute('data-suffix')||'';function f(ts){if(!s)s=ts;var p=Math.min((ts-s)/d,1),e=1-Math.pow(1-p,3);el.textContent=Math.round(t*e)+suf;if(p<1)requestAnimationFrame(f)}requestAnimationFrame(f)}var els=document.querySelectorAll('.lm-mcp [data-count],.lm-mcp .reveal-up');if(!('IntersectionObserver'in window)){els.forEach(function(e){e.classList.add('in');if(e.hasAttribute('data-count'))e.textContent=e.getAttribute('data-count')+(e.getAttribute('data-suffix')||'')});return}var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){if(e.target.hasAttribute('data-count'))cu(e.target);e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.25});els.forEach(function(e){io.observe(e)})})();</script>
-<script>document.addEventListener('DOMContentLoaded',function(){document.querySelectorAll('.entry-header,.entry-title,.ast-single-entry-banner,.page-header').forEach(function(e){e&&e.remove&&e.remove()});});</script>
-<script>document.addEventListener('DOMContentLoaded',function(){var p=document.getElementById('ai-content-gate'),f=document.getElementById('ai-popup-form'),s=document.getElementById('ai-success-msg'), i=document.getElementById('hidden_iframe'),sub=false;function op(){if(localStorage.getItem('lmg_sub')==='true')return;if(document.cookie.indexOf('lmg_sub=true')!==-1)return;p.classList.add('active');document.body.classList.add('lmg-gated');document.body.style.overflow='hidden'}setTimeout(op,6000);function cl(){p.classList.remove('active');document.body.classList.remove('lmg-gated');document.body.style.overflow='auto'}if(f)f.addEventListener('submit',function(){sub=true;var b=f.querySelector('button[type=submit]');b.textContent='Validation…';b.style.opacity='0.7'});if(i)i.onload=function(){if(sub){f.style.display='none';s.style.display='block';localStorage.setItem('lmg_sub','true');document.cookie='lmg_sub=true; max-age=31536000; path=/';setTimeout(cl,1500);sub=false}};if(location.search.indexOf('reset=true')!==-1){localStorage.removeItem('lmg_sub');document.cookie='lmg_sub=; max-age=0; path=/'}});</script>
+<div class="dcp-js"><script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Faut-il savoir coder ?", "acceptedAnswer": {"@type": "Answer", "text": "Non pour la voie Windsor : c'est une autorisation OAuth, comme quand vous connectez un outil à votre Google Analytics. La voie service account demande de créer un projet Google Cloud et de déposer un fichier JSON — comptez 20 minutes si c'est la première fois."}}, {"@type": "Question", "name": "Est-ce que Claude peut modifier mon site ou mon Search Console ?", "acceptedAnswer": {"@type": "Answer", "text": "Non. L'accès Search Console est en lecture seule. Claude ne peut rien changer dans GSC. Il peut publier sur votre site uniquement si vous branchez séparément l'API WordPress, et par défaut en brouillon."}}, {"@type": "Question", "name": "Quelle différence entre un MCP et un skill ?", "acceptedAnswer": {"@type": "Answer", "text": "Le MCP est le  tuyau  : il donne à Claude l'accès à vos données Search Console. Le skill est la  méthode  : il lui dit quoi en faire, dans quel ordre, avec quelles règles. Sans MCP, un skill n'a rien à analyser. Sans skill, Claude improvise une analyse différente à chaque fois."}}, {"@type": "Question", "name": "Ça marche avec Claude tout court, ou seulement Claude Code ?", "acceptedAnswer": {"@type": "Answer", "text": "Les deux. Le connecteur Windsor fonctionne dans l'application Claude. Claude Code ajoute la possibilité d'exécuter des scripts locaux et de versionner vos skills dans un dépôt Git — c'est ce qu'on utilise chez Décupler."}}, {"@type": "Question", "name": "Combien de données Search Console remonte ?", "acceptedAnswer": {"@type": "Answer", "text": "16 mois d'historique, avec un plafond de lignes par requête à l'API et un échantillonnage sur les requêtes rares. Pour un gros site, il faut segmenter par page ou par date. C'est une limite de Google, pas de Claude."}}]}</script></div>
+<div class="dcp-js"><script>(function(){function cu(el){var t=parseFloat(el.getAttribute('data-count'))||0,s=null,d=1200,suf=el.getAttribute('data-suffix')||'';function f(ts){if(!s)s=ts;var p=Math.min((ts-s)/d,1),e=1-Math.pow(1-p,3);el.textContent=Math.round(t*e)+suf;if(p<1)requestAnimationFrame(f)}requestAnimationFrame(f)}var els=document.querySelectorAll('.lm-mcp [data-count],.lm-mcp .reveal-up');if(!('IntersectionObserver'in window)){els.forEach(function(e){e.classList.add('in');if(e.hasAttribute('data-count'))e.textContent=e.getAttribute('data-count')+(e.getAttribute('data-suffix')||'')});return}var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){if(e.target.hasAttribute('data-count'))cu(e.target);e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.25});els.forEach(function(e){io.observe(e)})})();</script></div>
+<div class="dcp-js"><script>document.addEventListener('DOMContentLoaded',function(){document.querySelectorAll('.entry-header,.entry-title,.ast-single-entry-banner,.page-header').forEach(function(e){e&&e.remove&&e.remove()});});</script></div>
+<div class="dcp-js"><script>document.addEventListener('DOMContentLoaded',function(){var p=document.getElementById('ai-content-gate'),f=document.getElementById('ai-popup-form'),s=document.getElementById('ai-success-msg'), i=document.getElementById('hidden_iframe'),sub=false;function op(){if(localStorage.getItem('lmg_sub')==='true')return;if(document.cookie.indexOf('lmg_sub=true')!==-1)return;p.classList.add('active');document.body.classList.add('lmg-gated');document.body.style.overflow='hidden'}setTimeout(op,6000);function cl(){p.classList.remove('active');document.body.classList.remove('lmg-gated');document.body.style.overflow='auto'}if(f)f.addEventListener('submit',function(){sub=true;var b=f.querySelector('button[type=submit]');b.textContent='Validation…';b.style.opacity='0.7'});if(i)i.onload=function(){if(sub){f.style.display='none';s.style.display='block';localStorage.setItem('lmg_sub','true');document.cookie='lmg_sub=true; max-age=31536000; path=/';setTimeout(cl,1500);sub=false}};if(location.search.indexOf('reset=true')!==-1){localStorage.removeItem('lmg_sub');document.cookie='lmg_sub=; max-age=0; path=/'}});</script></div>
 <noscript><style>.lm-mcp .reveal-up{opacity:1!important;transform:none!important}</style></noscript>

@@ -35,6 +35,14 @@ Deux voies possibles, au choix selon le client :
 
 Un brief : angle, plan Hn ordonné, vocabulaire imposé, questions à traiter, et le volume d'impressions qui justifie chaque section.
 
+## Le prompt
+
+```
+Lance gsc-brief-depuis-requetes pour le cluster « audit seo ».
+Ordonne le plan Hn par volume d'impressions et impose
+le vocabulaire exact des requêtes.
+```
+
 ## Règles
 
 - **Ne jamais inventer un chiffre.** Si la donnée manque, le dire — pas l'estimer en silence.

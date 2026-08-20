@@ -35,6 +35,14 @@ Deux voies possibles, au choix selon le client :
 
 Un tableau URL · requête principale · position · impressions · gain de clics estimé, trié par gain. Top 10 commenté.
 
+## Le prompt
+
+```
+Lance gsc-quick-wins sur les 28 derniers jours.
+Écarte les requêtes de marque et donne-moi le top 10
+par gain de clics estimé.
+```
+
 ## Règles
 
 - **Ne jamais inventer un chiffre.** Si la donnée manque, le dire — pas l'estimer en silence.

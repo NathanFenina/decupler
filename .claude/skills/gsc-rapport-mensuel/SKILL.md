@@ -35,6 +35,14 @@ Deux voies possibles, au choix selon le client :
 
 Un rapport structuré : chiffres clés, ce qui a bougé et pourquoi, actions du mois suivant.
 
+## Le prompt
+
+```
+Lance gsc-rapport-mensuel.
+Trois mouvements maximum pour expliquer la variation,
+et croise avec les conversions GA4 si c'est branché.
+```
+
 ## Règles
 
 - **Ne jamais inventer un chiffre.** Si la donnée manque, le dire — pas l'estimer en silence.

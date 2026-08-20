@@ -35,6 +35,14 @@ Deux voies possibles, au choix selon le client :
 
 Un verdict : saisonnier attendu / anomalie réelle / historique insuffisant, avec le graphique année sur année.
 
+## Le prompt
+
+```
+Mon trafic baisse. Lance gsc-saisonnalite :
+compare au même mois l'an dernier et dis-moi si ça sort
+de ma fourchette saisonnière normale.
+```
+
 ## Règles
 
 - **Ne jamais inventer un chiffre.** Si la donnée manque, le dire — pas l'estimer en silence.

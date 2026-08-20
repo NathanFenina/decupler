@@ -34,6 +34,14 @@ Deux voies possibles, au choix selon le client :
 
 Une liste d'alertes ou, mieux, la confirmation explicite qu'il n'y a rien à signaler.
 
+## Le prompt
+
+```
+Lance gsc-alerte sur les 7 derniers jours.
+Compare à des jours équivalents et ne me remonte
+que ce qui dépasse les seuils.
+```
+
 ## Règles
 
 - **Ne jamais inventer un chiffre.** Si la donnée manque, le dire — pas l'estimer en silence.

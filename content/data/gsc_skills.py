@@ -211,3 +211,47 @@ S = [
  "Le tableau position Google / citation LLM par requête, l'écart chiffré, et les sources concurrentes à travailler."),
 ]
 
+
+# Le prompt exact à taper pour déclencher chaque skill.
+PROMPTS = {
+"gsc-quick-wins":
+ "Lance gsc-quick-wins sur les 28 derniers jours.\nÉcarte les requêtes de marque et donne-moi le top 10\npar gain de clics estimé.",
+"gsc-chute-trafic":
+ "J'ai perdu du trafic ce mois-ci. Lance gsc-chute-trafic :\ncompare aux 28 jours précédents et dis-moi combien de la perte\nvient du classement, du CTR, et de la demande.",
+"gsc-content-decay":
+ "Lance gsc-content-decay sur 12 mois.\nNe me remonte que les pages en baisse sur 3 mois consécutifs,\ntriées par clics perdus en valeur absolue.",
+"gsc-cannibalisation":
+ "Lance gsc-cannibalisation sur les 3 derniers mois.\nSignale en priorité les requêtes où Google alterne entre\ndeux de mes URLs d'un mois sur l'autre.",
+"gsc-ctr-anormal":
+ "Lance gsc-ctr-anormal.\nCalcule d'abord la courbe CTR/position de mon site,\npuis sors les pages qui sont sous la médiane de leur position.",
+"gsc-requetes-neuves":
+ "Lance gsc-requetes-neuves : compare les 28 derniers jours\naux 28 précédents, groupe les requêtes émergentes par thème,\net dis-moi lesquelles n'ont pas de page adaptée.",
+"gsc-gagnants-perdants":
+ "Lance gsc-gagnants-perdants sur le mois écoulé.\nDeux tableaux, top 10 chacun, toujours avec le volume\nà côté du pourcentage.",
+"gsc-saisonnalite":
+ "Mon trafic baisse. Lance gsc-saisonnalite :\ncompare au même mois l'an dernier et dis-moi si ça sort\nde ma fourchette saisonnière normale.",
+"gsc-sections-manquantes":
+ "Lance gsc-sections-manquantes sur /ma-page/.\nSors les requêtes qu'elle reçoit et ne traite pas,\net propose uniquement les sections absentes.",
+"gsc-brief-depuis-requetes":
+ "Lance gsc-brief-depuis-requetes pour le cluster « audit seo ».\nOrdonne le plan Hn par volume d'impressions et impose\nle vocabulaire exact des requêtes.",
+"gsc-reecriture-title":
+ "Prends la sortie de gsc-ctr-anormal et lance gsc-reecriture-title.\nDeux variantes par page, avec le gain de clics estimé\nsi le CTR rejoint la médiane.",
+"gsc-faq-depuis-requetes":
+ "Lance gsc-faq-depuis-requetes sur /ma-page/.\nGarde les questions non traitées dans le corps de page\net sors-moi le JSON-LD FAQPage.",
+"gsc-page-a-creer":
+ "Lance gsc-page-a-creer sur 6 mois.\nRepère les clusters dont les impressions sont dispersées\nsur des pages approximatives, et vérifie qu'il n'y a pas de doublon.",
+"gsc-consolidation":
+ "Reprends les conflits de gsc-cannibalisation et lance gsc-consolidation.\nDonne-moi la page à garder, ce qu'il faut transférer,\net le plan de redirections 301.",
+"gsc-maillage":
+ "Lance gsc-maillage sur tout le site.\nPropose les ancres à partir des requêtes réelles partagées,\net ne pars que de pages qui reçoivent déjà du trafic.",
+"gsc-rapport-mensuel":
+ "Lance gsc-rapport-mensuel.\nTrois mouvements maximum pour expliquer la variation,\net croise avec les conversions GA4 si c'est branché.",
+"gsc-alerte":
+ "Lance gsc-alerte sur les 7 derniers jours.\nCompare à des jours équivalents et ne me remonte\nque ce qui dépasse les seuils.",
+"gsc-panier-cibles":
+ "Lance gsc-panier-cibles sur mes 20 requêtes stratégiques.\nMontre la trajectoire sur 6 mois et signale les paliers\net les changements de page servie.",
+"gsc-indexation":
+ "Lance gsc-indexation.\nConfronte mon sitemap aux URLs réellement indexées\net groupe les exclusions par motif, avec la correction.",
+"gsc-google-vs-llm":
+ "Lance gsc-google-vs-llm sur mes 20 requêtes cibles.\nMets ma position Google en face des citations Perplexity\net dis-moi quelles sources sont citées à ma place.",
+}

@@ -35,6 +35,14 @@ Deux voies possibles, au choix selon le client :
 
 Le bloc FAQ rédigé + le JSON-LD `FAQPage` correspondant, prêt à coller.
 
+## Le prompt
+
+```
+Lance gsc-faq-depuis-requetes sur /ma-page/.
+Garde les questions non traitées dans le corps de page
+et sors-moi le JSON-LD FAQPage.
+```
+
 ## Règles
 
 - **Ne jamais inventer un chiffre.** Si la donnée manque, le dire — pas l'estimer en silence.

@@ -35,6 +35,14 @@ Deux voies possibles, au choix selon le client :
 
 Le tableau de suivi avec trajectoire, paliers franchis, et changements de page servie.
 
+## Le prompt
+
+```
+Lance gsc-panier-cibles sur mes 20 requêtes stratégiques.
+Montre la trajectoire sur 6 mois et signale les paliers
+et les changements de page servie.
+```
+
 ## Règles
 
 - **Ne jamais inventer un chiffre.** Si la donnée manque, le dire — pas l'estimer en silence.

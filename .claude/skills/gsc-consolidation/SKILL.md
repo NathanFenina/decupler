@@ -35,6 +35,14 @@ Deux voies possibles, au choix selon le client :
 
 Le plan de fusion : page cible, contenu à transférer, redirections 301, liens internes à corriger.
 
+## Le prompt
+
+```
+Reprends les conflits de gsc-cannibalisation et lance gsc-consolidation.
+Donne-moi la page à garder, ce qu'il faut transférer,
+et le plan de redirections 301.
+```
+
 ## Règles
 
 - **Ne jamais inventer un chiffre.** Si la donnée manque, le dire — pas l'estimer en silence.

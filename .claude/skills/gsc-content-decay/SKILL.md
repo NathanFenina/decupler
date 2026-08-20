@@ -35,6 +35,14 @@ Deux voies possibles, au choix selon le client :
 
 Liste des pages en déclin avec pente, clics perdus, mois de bascule, et une recommandation par page (rafraîchir / fusionner / laisser mourir).
 
+## Le prompt
+
+```
+Lance gsc-content-decay sur 12 mois.
+Ne me remonte que les pages en baisse sur 3 mois consécutifs,
+triées par clics perdus en valeur absolue.
+```
+
 ## Règles
 
 - **Ne jamais inventer un chiffre.** Si la donnée manque, le dire — pas l'estimer en silence.

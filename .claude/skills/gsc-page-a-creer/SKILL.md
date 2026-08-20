@@ -35,6 +35,14 @@ Deux voies possibles, au choix selon le client :
 
 Les clusters orphelins classés par potentiel, avec pour chacun le mot-clé principal, les requêtes couvertes et la page à créer.
 
+## Le prompt
+
+```
+Lance gsc-page-a-creer sur 6 mois.
+Repère les clusters dont les impressions sont dispersées
+sur des pages approximatives, et vérifie qu'il n'y a pas de doublon.
+```
+
 ## Règles
 
 - **Ne jamais inventer un chiffre.** Si la donnée manque, le dire — pas l'estimer en silence.
