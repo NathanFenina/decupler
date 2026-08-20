@@ -1,4 +1,29 @@
 <style>
+
+/* ══ Neutralisation du thème Astra ═══════════════════════════════════════
+   Sans ces regles, le theme impose son titre de page, contraint le contenu
+   dans une colonne etroite et applique ses propres fonds. C'est exactement
+   ce que fait le skin .lm-mcp des 15 autres pages ; on reprend le meme jeu,
+   adapte a la palette claire de cette page.                               */
+body .ast-article-single>.entry-header,body .ast-article-single .entry-title,
+body header.entry-header,.ast-single-entry-banner,.page-header{
+  display:none!important;height:0!important;overflow:hidden!important;visibility:hidden!important}
+.site-content .ast-container,.site-content #primary,.entry-content,.site-content,#content{
+  max-width:100%!important}
+.site-content #primary,.entry-content,.site-content,#content,.ast-container{
+  padding-top:0!important;padding-bottom:0!important;margin-top:0!important}
+.ast-separate-container .ast-article-single{padding:0!important;background:transparent!important}
+html,body,#page,.site,.ast-page-wrapper,#content,.site-content{background:#fbfbfe!important}
+.site-header,#masthead,header.site-header,.main-header-bar,.ast-primary-header-bar,
+.ast-above-header-wrap,.ast-main-header-wrap{
+  background:#fbfbfe!important;background-color:#fbfbfe!important;box-shadow:none!important;border-bottom:none!important}
+.site-header a,.main-header-bar .menu-link,.ast-primary-header-bar .menu-link,.main-navigation a{color:#14152b!important}
+.site-header a:hover,.main-header-bar .menu-link:hover,.main-navigation a:hover{color:#7B5CFA!important}
+.site-header .sub-menu,.ast-primary-header-bar .sub-menu{background:#ffffff!important;border-color:rgba(20,21,43,.08)!important}
+.site-header .sub-menu a{color:#5a5f78!important}
+.post-navigation,.nav-links,.ast-single-related-posts,.ast-author-box,.ast-navigation-post,
+nav.post-navigation{display:none!important}
+
 /* ══ Skin « dcp » — page offre entreprises locales ═══════════════════════════
    Palette : fond violacé clair, encre bleu-noir. Le vert ne signifie que
    « récupéré », le rouge que « perdu ». Jamais décoratifs.
