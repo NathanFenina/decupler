@@ -38,9 +38,30 @@ Les clusters orphelins classés par potentiel, avec pour chacun le mot-clé prin
 ## Le prompt
 
 ```
-Lance gsc-page-a-creer sur 6 mois.
-Repère les clusters dont les impressions sont dispersées
-sur des pages approximatives, et vérifie qu'il n'y a pas de doublon.
+Contexte : site {domaine}.
+Objectif : trouver les sujets qui méritent une page et n'en ont pas.
+
+1. Récupère toutes les requêtes du site sur 6 mois, avec la page qui
+   les sert et la position obtenue.
+2. Regroupe en clusters sémantiques.
+3. Repère les clusters ORPHELINS : les impressions sont dispersées sur
+   plusieurs pages approximatives, les positions sont faibles, et
+   aucune page n'est vraiment dédiée au sujet.
+4. Estime le potentiel de chaque cluster : impressions cumulées,
+   position moyenne actuelle, et gain si une vraie page atteignait la
+   position 5.
+5. Avant de proposer une création, VÉRIFIE qu'il n'existe pas déjà une
+   page sur le sujet dans l'inventaire du site. Une page en double fait
+   plus de mal que pas de page.
+
+Rends les clusters orphelins triés par potentiel, avec pour chacun : le
+mot-clé principal, les requêtes couvertes, les impressions cumulées, les
+pages qui les captent mal aujourd'hui, et le titre de la page à créer.
+Signale explicitement les clusters où tu as un doute sur un doublon.
+
+Ne jamais inventer un chiffre : si la donnée manque ou si le volume
+est trop faible pour conclure, dis-le explicitement.
+Indique toujours la période et le volume qui portent tes conclusions.
 ```
 
 ## Règles

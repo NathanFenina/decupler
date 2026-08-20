@@ -39,9 +39,29 @@ Un tableau : URL, title actuel → 2 propositions, meta actuelle → 2 propositi
 ## Le prompt
 
 ```
-Prends la sortie de gsc-ctr-anormal et lance gsc-reecriture-title.
-Deux variantes par page, avec le gain de clics estimé
-si le CTR rejoint la médiane.
+Contexte : site {domaine}.
+Objectif : réécrire les titles et metas des pages qui sous-performent
+en clics à position égale.
+
+1. Pars de la sortie de gsc-ctr-anormal. Si tu ne l'as pas, lance
+   d'abord l'analyse : courbe CTR/position du site, puis écart.
+2. Pour chaque page ciblée, récupère le title et la meta actuels ainsi
+   que sa requête la plus porteuse en impressions.
+3. Réécris en intégrant la FORMULATION EXACTE de cette requête, pas une
+   variante élégante. Google met en gras ce qui correspond.
+4. Respecte les limites d'affichage : environ 60 caractères pour le
+   title, 155 pour la meta. Compte-les et affiche le compte.
+5. Produis DEUX variantes par page, avec des angles différents — une
+   factuelle, une orientée bénéfice — pour permettre un test.
+6. Estime le gain si le CTR rejoint la médiane de sa position.
+
+Rends un tableau : URL | title actuel (nb caractères) | variante A |
+variante B | meta actuelle | variante A | variante B | gain estimé.
+Ajoute une phrase par page expliquant ton angle.
+
+Ne jamais inventer un chiffre : si la donnée manque ou si le volume
+est trop faible pour conclure, dis-le explicitement.
+Indique toujours la période et le volume qui portent tes conclusions.
 ```
 
 ## Règles

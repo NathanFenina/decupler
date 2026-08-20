@@ -38,9 +38,29 @@ Le bloc FAQ rédigé + le JSON-LD `FAQPage` correspondant, prêt à coller.
 ## Le prompt
 
 ```
-Lance gsc-faq-depuis-requetes sur /ma-page/.
-Garde les questions non traitées dans le corps de page
-et sors-moi le JSON-LD FAQPage.
+Contexte : page {page} du site {domaine}.
+Objectif : une FAQ construite sur les vraies questions reçues.
+
+1. Récupère les requêtes de cette page sur 6 mois.
+2. Isole celles qui sont des questions : soit elles commencent par un
+   interrogatif (comment, pourquoi, combien, quel, quand, est-ce que),
+   soit elles en ont la forme implicite (« prix installation X »).
+3. Déduplique les reformulations d'une même question — garde la
+   formulation la plus recherchée comme intitulé.
+4. Écarte celles qui sont DÉJÀ traitées dans le corps de la page : une
+   FAQ qui répète le contenu ne sert à rien.
+5. Rédige des réponses courtes et AUTONOMES : 2 à 4 phrases,
+   compréhensibles hors contexte. C'est ce format que ChatGPT et
+   Perplexity citent.
+6. Trie par impressions décroissantes et garde les 8 meilleures.
+
+Rends le bloc FAQ rédigé en HTML sémantique, puis le JSON-LD FAQPage
+correspondant, prêt à coller. Indique en face de chaque question son
+volume d'impressions.
+
+Ne jamais inventer un chiffre : si la donnée manque ou si le volume
+est trop faible pour conclure, dis-le explicitement.
+Indique toujours la période et le volume qui portent tes conclusions.
 ```
 
 ## Règles

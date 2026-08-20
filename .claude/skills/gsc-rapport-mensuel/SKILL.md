@@ -38,9 +38,29 @@ Un rapport structuré : chiffres clés, ce qui a bougé et pourquoi, actions du 
 ## Le prompt
 
 ```
-Lance gsc-rapport-mensuel.
-Trois mouvements maximum pour expliquer la variation,
-et croise avec les conversions GA4 si c'est branché.
+Contexte : site {domaine}, rapport pour le client.
+Objectif : un rapport qui DIT quelque chose, pas qui aligne des courbes.
+
+1. Récupère : mois courant, mois précédent, et même mois l'an dernier.
+2. Ouvre sur les chiffres clés — clics, impressions, position moyenne —
+   avec les DEUX comparaisons. Sans la comparaison annuelle, on
+   confond un cycle avec une tendance.
+3. Nomme les 3 mouvements qui expliquent l'essentiel de la variation.
+   Trois, pas quarante lignes de tableau.
+4. Si GA4 est branché, croise avec les conversions par page d'entrée.
+   « Le trafic monte sur les pages qui ne convertissent pas » est une
+   information ; « le trafic monte » n'en est pas une.
+5. Si PostHog est branché, ajoute où les visiteurs organiques décrochent.
+6. Termine par les actions du mois suivant, priorisées par impact
+   attendu, avec la page concernée pour chacune.
+
+Rends : chiffres clés, les 3 mouvements expliqués, le croisement
+conversion, puis les actions. Ton factuel, pas de superlatifs. Si un
+chiffre est absent des données, écris-le au lieu de l'estimer.
+
+Ne jamais inventer un chiffre : si la donnée manque ou si le volume
+est trop faible pour conclure, dis-le explicitement.
+Indique toujours la période et le volume qui portent tes conclusions.
 ```
 
 ## Règles

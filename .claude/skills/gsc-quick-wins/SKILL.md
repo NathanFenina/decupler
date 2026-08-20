@@ -38,9 +38,28 @@ Un tableau URL · requête principale · position · impressions · gain de clic
 ## Le prompt
 
 ```
-Lance gsc-quick-wins sur les 28 derniers jours.
-Écarte les requêtes de marque et donne-moi le top 10
-par gain de clics estimé.
+Contexte : site {domaine}, marché France.
+Objectif : trouver où je gagne le plus de trafic pour le moins d'effort.
+
+1. Récupère les couples (requête, page) sur les 28 derniers jours :
+   impressions, clics, CTR, position moyenne.
+2. Ne garde que la position 8 à 20, avec au moins 50 impressions.
+3. Écarte les requêtes contenant ma marque : elles gonflent le
+   classement sans rien m'apprendre.
+4. Construis la courbe CTR/position de MON site — le CTR médian que
+   j'observe à chaque position. N'utilise pas une courbe standard.
+5. Estime le gain par couple :
+   impressions × (CTR médian en position 3 − CTR actuel).
+6. Agrège par URL, additionne, trie par gain décroissant.
+
+Rends un tableau : URL | requête principale | position | impressions |
+gain estimé en clics/mois. Puis commente le top 10 : pour chacune, une
+phrase sur ce qui bloque probablement (intention mal servie, page trop
+courte, title faible).
+
+Ne jamais inventer un chiffre : si la donnée manque ou si le volume
+est trop faible pour conclure, dis-le explicitement.
+Indique toujours la période et le volume qui portent tes conclusions.
 ```
 
 ## Règles

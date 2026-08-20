@@ -37,9 +37,28 @@ Une liste d'alertes ou, mieux, la confirmation explicite qu'il n'y a rien à sig
 ## Le prompt
 
 ```
-Lance gsc-alerte sur les 7 derniers jours.
-Compare à des jours équivalents et ne me remonte
-que ce qui dépasse les seuils.
+Contexte : site {domaine}, surveillance hebdomadaire.
+Objectif : ne remonter que ce qui mérite vraiment mon attention.
+
+1. FIXE LES SEUILS AVANT de regarder les données. Sinon on justifie
+   après coup ce qu'on a trouvé.
+   Seuils proposés, à ajuster : −25 % de clics sur une URL qui pesait
+   plus de 100 clics/mois ; −3 positions sur une requête stratégique ;
+   −30 % de CTR à position stable ; disparition totale d'une page.
+2. Compare les 7 derniers jours aux 4 semaines précédentes, sur des
+   jours ÉQUIVALENTS. Un lundi contre un dimanche ne veut rien dire.
+3. Écarte les variations explicables par la saisonnalité connue.
+4. Ne remonte que ce qui dépasse un seuil. Une alerte qui se déclenche
+   toutes les semaines n'est plus lue par personne.
+5. Pour chaque alerte, donne la cause probable et l'action immédiate.
+
+Rends soit la liste des alertes classées par gravité, soit — et c'est
+une réponse parfaitement valable — la confirmation explicite qu'il n'y
+a rien à signaler cette semaine, avec les seuils qui ont été testés.
+
+Ne jamais inventer un chiffre : si la donnée manque ou si le volume
+est trop faible pour conclure, dis-le explicitement.
+Indique toujours la période et le volume qui portent tes conclusions.
 ```
 
 ## Règles

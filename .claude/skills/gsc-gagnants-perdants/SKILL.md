@@ -38,9 +38,28 @@ Deux tableaux (top gains / top pertes) avec volume, variation, et cause probable
 ## Le prompt
 
 ```
-Lance gsc-gagnants-perdants sur le mois écoulé.
-Deux tableaux, top 10 chacun, toujours avec le volume
-à côté du pourcentage.
+Contexte : site {domaine}.
+Objectif : voir ce qui a bougé ce mois-ci, et de combien.
+
+1. Compare le mois écoulé au précédent, sur des périodes de longueur
+   strictement identique. Fais-le par page ET par requête.
+2. Classe séparément les gains et les pertes, en VALEUR ABSOLUE de
+   clics. Un +300 % sur 4 clics n'intéresse personne.
+3. Pour chacun des 10 plus gros mouvements dans chaque sens, donne la
+   cause probable : position, CTR, ou demande.
+4. Ne présente jamais un pourcentage sans le volume à côté.
+5. Signale à part les pages qui apparaissent ou disparaissent
+   complètement — ce sont souvent des problèmes techniques, pas
+   éditoriaux.
+
+Rends deux tableaux (top 10 gains, top 10 pertes) : URL ou requête |
+clics avant | clics après | variation absolue | variation % | cause
+probable. Termine par les 3 mouvements qui expliquent l'essentiel de la
+variation globale.
+
+Ne jamais inventer un chiffre : si la donnée manque ou si le volume
+est trop faible pour conclure, dis-le explicitement.
+Indique toujours la période et le volume qui portent tes conclusions.
 ```
 
 ## Règles

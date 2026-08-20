@@ -38,9 +38,29 @@ Un verdict en une phrase (« 70 % de la perte vient du CTR, pas du classement »
 ## Le prompt
 
 ```
-J'ai perdu du trafic ce mois-ci. Lance gsc-chute-trafic :
-compare aux 28 jours précédents et dis-moi combien de la perte
-vient du classement, du CTR, et de la demande.
+Contexte : site {domaine}. J'ai perdu du trafic organique.
+Objectif : savoir de quoi vient la perte avant de corriger quoi que ce soit.
+
+1. Prends les 28 derniers jours et les 28 précédents. Vérifie que les
+   deux périodes contiennent le même nombre de chaque jour de semaine.
+2. Décompose la variation de clics en trois causes :
+   - POSITION : je suis moins bien classé qu'avant
+   - CTR : je suis classé pareil mais on me clique moins
+   - DEMANDE : mes impressions baissent à position constante
+3. Chiffre la part de chaque cause dans la perte totale, en clics et en
+   pourcentage. C'est le cœur de la réponse — commence par ça.
+4. Descends au niveau URL pour les 10 plus grosses pertes et refais la
+   même décomposition sur chacune.
+5. Avant de conclure à un problème, vérifie la saisonnalité : compare
+   au même mois de l'année précédente.
+
+Rends d'abord un verdict en une phrase du type « 70 % de la perte vient
+du CTR, pas du classement », puis le détail par cause et par URL.
+Termine par ce que je dois corriger en premier.
+
+Ne jamais inventer un chiffre : si la donnée manque ou si le volume
+est trop faible pour conclure, dis-le explicitement.
+Indique toujours la période et le volume qui portent tes conclusions.
 ```
 
 ## Règles

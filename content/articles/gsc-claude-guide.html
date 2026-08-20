@@ -185,6 +185,7 @@ GSC_CREDENTIALS_JSON=./secrets/gsc-service-account.json</pre></div></div></div>
     <h2 class="section-title reveal-up">Les 20 skills qu'on utilise chez Décupler</h2>
     <p class="prose-block reveal-up">Brancher la donnée, c'est la moitié du travail. L'autre moitié, c'est <strong>figer la méthode</strong> — sinon Claude improvise une analyse différente à chaque fois, et vous ne pouvez comparer aucun mois avec le précédent.</p>
     <p class="prose-block reveal-up">Un skill, c'est une procédure écrite une fois&nbsp;: quelles données prendre, comment les traiter, quoi rendre, et quelles erreurs ne jamais commettre. On en a vingt, rangés en trois groupes. La même logique nourrit notre <a href="https://decupler.com/organic-opportunity-map/">Organic Opportunity Map</a>.</p>
+    <div class="tip tip-v"><span class="tipico">📋</span><p>Chaque skill est donné avec <strong>son prompt complet, copiable tel quel</strong>. Remplacez simplement <span class="inline-code">{domaine}</span> par votre site et <span class="inline-code">{page}</span> par l'URL concernée. Ces prompts fonctionnent même sans avoir installé les skills&nbsp;: collez-les directement dans Claude une fois Search Console branché.</p></div>
     
     <div class="sk-group">
       <div class="sk-head"><h3>Diagnostiquer — Lire la donnée</h3><span class="sk-count">8 skills</span></div>
@@ -192,91 +193,249 @@ GSC_CREDENTIALS_JSON=./secrets/gsc-service-account.json</pre></div></div></div>
             <div class="sk reveal-up">
         <div class="sk-top"><span class="sk-n">01</span><span class="sk-slug">gsc-quick-wins</span></div>
         <p class="sk-q">Quelles pages sont juste sous le seuil de trafic, et lesquelles rapportent le plus vite si on les pousse ?</p>
-        <p class="sk-data"><strong>Données&nbsp;:</strong> `query` + `page`, 28 derniers jours : impressions, clics, CTR, position moyenne.</p>
+        <p class="sk-data"><strong>Données&nbsp;:</strong> <span class="inline-code">query</span> + <span class="inline-code">page</span>, 28 derniers jours : impressions, clics, CTR, position moyenne.</p>
         <p class="sk-lbl">La méthode qu'il impose</p>
-        <ol class="sk-steps"><li>Filtrer les couples (requête, page) en **position 8 à 20** avec au moins 50 impressions sur la période.</li><li>Estimer le gain : `impressions × (CTR attendu en position 3 − CTR actuel)`. Utiliser une courbe CTR/position de référence, pas une moyenne du site.</li><li>Agréger par URL et trier par gain estimé décroissant.</li><li>Écarter les requêtes de marque : elles gonflent le classement sans rien apprendre.</li></ol>
+        <ol class="sk-steps"><li>Filtrer les couples (requête, page) en <strong>position 8 à 20</strong> avec au moins 50 impressions sur la période.</li><li>Estimer le gain : <span class="inline-code">impressions × (CTR attendu en position 3 − CTR actuel)</span>. Utiliser une courbe CTR/position de référence, pas une moyenne du site.</li><li>Agréger par URL et trier par gain estimé décroissant.</li><li>Écarter les requêtes de marque : elles gonflent le classement sans rien apprendre.</li></ol>
         <div class="sk-out"><p class="sk-lbl">Ce qu'il rend</p><p>Un tableau URL · requête principale · position · impressions · gain de clics estimé, trié par gain. Top 10 commenté.</p></div>
         <p class="sk-lbl">Le prompt</p>
-        <div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>claude</span></div><pre>Lance gsc-quick-wins sur les 28 derniers jours.
-Écarte les requêtes de marque et donne-moi le top 10
-par gain de clics estimé.</pre></div>
+        <div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>claude</span></div><pre>Contexte : site {domaine}, marché France.
+Objectif : trouver où je gagne le plus de trafic pour le moins d'effort.
+
+1. Récupère les couples (requête, page) sur les 28 derniers jours :
+   impressions, clics, CTR, position moyenne.
+2. Ne garde que la position 8 à 20, avec au moins 50 impressions.
+3. Écarte les requêtes contenant ma marque : elles gonflent le
+   classement sans rien m'apprendre.
+4. Construis la courbe CTR/position de MON site — le CTR médian que
+   j'observe à chaque position. N'utilise pas une courbe standard.
+5. Estime le gain par couple :
+   impressions × (CTR médian en position 3 − CTR actuel).
+6. Agrège par URL, additionne, trie par gain décroissant.
+
+Rends un tableau : URL | requête principale | position | impressions |
+gain estimé en clics/mois. Puis commente le top 10 : pour chacune, une
+phrase sur ce qui bloque probablement (intention mal servie, page trop
+courte, title faible).
+
+Ne jamais inventer un chiffre : si la donnée manque ou si le volume
+est trop faible pour conclure, dis-le explicitement.
+Indique toujours la période et le volume qui portent tes conclusions.</pre></div>
       </div>      <div class="sk reveal-up">
         <div class="sk-top"><span class="sk-n">02</span><span class="sk-slug">gsc-chute-trafic</span></div>
         <p class="sk-q">J'ai perdu du trafic : est-ce le classement, le CTR, ou la demande qui a baissé ?</p>
         <p class="sk-data"><strong>Données&nbsp;:</strong> Deux périodes comparables (même longueur, mêmes jours de semaine) : clics, impressions, CTR, position.</p>
         <p class="sk-lbl">La méthode qu'il impose</p>
-        <ol class="sk-steps"><li>Décomposer la variation de clics en trois causes : **position** (position moyenne dégradée), **CTR** (position stable mais moins de clics), **demande** (impressions en baisse à position constante).</li><li>Chiffrer la part de chaque cause dans la perte totale — c'est le cœur du diagnostic.</li><li>Descendre au niveau URL pour les 10 plus grosses pertes.</li><li>Vérifier `gsc-saisonnalite` avant de conclure à un problème.</li></ol>
+        <ol class="sk-steps"><li>Décomposer la variation de clics en trois causes : <strong>position</strong> (position moyenne dégradée), <strong>CTR</strong> (position stable mais moins de clics), <strong>demande</strong> (impressions en baisse à position constante).</li><li>Chiffrer la part de chaque cause dans la perte totale — c'est le cœur du diagnostic.</li><li>Descendre au niveau URL pour les 10 plus grosses pertes.</li><li>Vérifier <span class="inline-code">gsc-saisonnalite</span> avant de conclure à un problème.</li></ol>
         <div class="sk-out"><p class="sk-lbl">Ce qu'il rend</p><p>Un verdict en une phrase (« 70 % de la perte vient du CTR, pas du classement ») + le détail par cause et par URL.</p></div>
         <p class="sk-lbl">Le prompt</p>
-        <div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>claude</span></div><pre>J'ai perdu du trafic ce mois-ci. Lance gsc-chute-trafic :
-compare aux 28 jours précédents et dis-moi combien de la perte
-vient du classement, du CTR, et de la demande.</pre></div>
+        <div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>claude</span></div><pre>Contexte : site {domaine}. J'ai perdu du trafic organique.
+Objectif : savoir de quoi vient la perte avant de corriger quoi que ce soit.
+
+1. Prends les 28 derniers jours et les 28 précédents. Vérifie que les
+   deux périodes contiennent le même nombre de chaque jour de semaine.
+2. Décompose la variation de clics en trois causes :
+   - POSITION : je suis moins bien classé qu'avant
+   - CTR : je suis classé pareil mais on me clique moins
+   - DEMANDE : mes impressions baissent à position constante
+3. Chiffre la part de chaque cause dans la perte totale, en clics et en
+   pourcentage. C'est le cœur de la réponse — commence par ça.
+4. Descends au niveau URL pour les 10 plus grosses pertes et refais la
+   même décomposition sur chacune.
+5. Avant de conclure à un problème, vérifie la saisonnalité : compare
+   au même mois de l'année précédente.
+
+Rends d'abord un verdict en une phrase du type « 70 % de la perte vient
+du CTR, pas du classement », puis le détail par cause et par URL.
+Termine par ce que je dois corriger en premier.
+
+Ne jamais inventer un chiffre : si la donnée manque ou si le volume
+est trop faible pour conclure, dis-le explicitement.
+Indique toujours la période et le volume qui portent tes conclusions.</pre></div>
       </div>      <div class="sk reveal-up">
         <div class="sk-top"><span class="sk-n">03</span><span class="sk-slug">gsc-content-decay</span></div>
         <p class="sk-q">Quelles pages déclinent lentement depuis plusieurs mois, avant qu'elles ne disparaissent ?</p>
-        <p class="sk-data"><strong>Données&nbsp;:</strong> 12 derniers mois par `page` et par mois : clics, impressions, position.</p>
+        <p class="sk-data"><strong>Données&nbsp;:</strong> 12 derniers mois par <span class="inline-code">page</span> et par mois : clics, impressions, position.</p>
         <p class="sk-lbl">La méthode qu'il impose</p>
-        <ol class="sk-steps"><li>Repérer les pages en baisse sur **3 mois consécutifs au minimum** — un mauvais mois isolé est du bruit, pas du déclin.</li><li>Calculer la pente sur 6 mois et le pourcentage perdu depuis le pic.</li><li>Croiser avec la date de dernière mise à jour de la page si elle est disponible.</li><li>Classer par volume perdu en valeur absolue, pas en pourcentage : −20 % sur une grosse page vaut plus que −80 % sur une page morte.</li></ol>
+        <ol class="sk-steps"><li>Repérer les pages en baisse sur <strong>3 mois consécutifs au minimum</strong> — un mauvais mois isolé est du bruit, pas du déclin.</li><li>Calculer la pente sur 6 mois et le pourcentage perdu depuis le pic.</li><li>Croiser avec la date de dernière mise à jour de la page si elle est disponible.</li><li>Classer par volume perdu en valeur absolue, pas en pourcentage : −20 % sur une grosse page vaut plus que −80 % sur une page morte.</li></ol>
         <div class="sk-out"><p class="sk-lbl">Ce qu'il rend</p><p>Liste des pages en déclin avec pente, clics perdus, mois de bascule, et une recommandation par page (rafraîchir / fusionner / laisser mourir).</p></div>
         <p class="sk-lbl">Le prompt</p>
-        <div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>claude</span></div><pre>Lance gsc-content-decay sur 12 mois.
-Ne me remonte que les pages en baisse sur 3 mois consécutifs,
-triées par clics perdus en valeur absolue.</pre></div>
+        <div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>claude</span></div><pre>Contexte : site {domaine}.
+Objectif : repérer les pages qui s'éteignent lentement, avant qu'elles
+ne disparaissent complètement.
+
+1. Récupère 12 mois d'historique par page et par mois : clics,
+   impressions, position moyenne.
+2. Ne retiens une page que si elle baisse sur au moins 3 mois
+   CONSÉCUTIFS. Un mauvais mois isolé est du bruit, pas du déclin.
+3. Pour chaque page retenue, calcule la pente sur 6 mois, le pourcentage
+   perdu depuis son pic, et le mois où la bascule commence.
+4. Classe par clics perdus en VALEUR ABSOLUE, pas en pourcentage :
+   −20 % sur une grosse page vaut plus que −80 % sur une page morte.
+5. Si tu as la date de dernière mise à jour de chaque page, mets-la en
+   face — une corrélation avec l'ancienneté oriente le diagnostic.
+
+Rends un tableau : URL | pente 6 mois | clics perdus | mois de bascule |
+recommandation. La recommandation doit trancher entre trois options
+seulement : rafraîchir, fusionner, ou laisser mourir. Justifie en une
+phrase pour chaque page.
+
+Ne jamais inventer un chiffre : si la donnée manque ou si le volume
+est trop faible pour conclure, dis-le explicitement.
+Indique toujours la période et le volume qui portent tes conclusions.</pre></div>
       </div>      <div class="sk reveal-up">
         <div class="sk-top"><span class="sk-n">04</span><span class="sk-slug">gsc-cannibalisation</span></div>
         <p class="sk-q">Quelles pages de mon site se battent entre elles sur la même requête ?</p>
-        <p class="sk-data"><strong>Données&nbsp;:</strong> `query` + `page` sur 3 mois : impressions, clics, position par couple.</p>
+        <p class="sk-data"><strong>Données&nbsp;:</strong> <span class="inline-code">query</span> + <span class="inline-code">page</span> sur 3 mois : impressions, clics, position par couple.</p>
         <p class="sk-lbl">La méthode qu'il impose</p>
-        <ol class="sk-steps"><li>Isoler les requêtes servies par **2 URLs ou plus** avec des impressions significatives sur chacune.</li><li>Signaler les cas où Google **alterne** entre les URLs d'un mois sur l'autre : c'est le vrai symptôme, pas la simple co-présence.</li><li>Désigner l'URL à garder : celle qui a la meilleure position moyenne ET les meilleurs signaux de conversion.</li><li>Distinguer la vraie cannibalisation d'une couverture légitime (une page catégorie et une page produit peuvent coexister).</li></ol>
+        <ol class="sk-steps"><li>Isoler les requêtes servies par <strong>2 URLs ou plus</strong> avec des impressions significatives sur chacune.</li><li>Signaler les cas où Google <strong>alterne</strong> entre les URLs d'un mois sur l'autre : c'est le vrai symptôme, pas la simple co-présence.</li><li>Désigner l'URL à garder : celle qui a la meilleure position moyenne ET les meilleurs signaux de conversion.</li><li>Distinguer la vraie cannibalisation d'une couverture légitime (une page catégorie et une page produit peuvent coexister).</li></ol>
         <div class="sk-out"><p class="sk-lbl">Ce qu'il rend</p><p>Par requête : les URLs en conflit, laquelle garder, et l'action (fusion + redirection, désoptimisation, ou différenciation d'intention).</p></div>
         <p class="sk-lbl">Le prompt</p>
-        <div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>claude</span></div><pre>Lance gsc-cannibalisation sur les 3 derniers mois.
-Signale en priorité les requêtes où Google alterne entre
-deux de mes URLs d'un mois sur l'autre.</pre></div>
+        <div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>claude</span></div><pre>Contexte : site {domaine}.
+Objectif : trouver les pages qui se font concurrence entre elles.
+
+1. Récupère les couples (requête, page) sur les 3 derniers mois.
+2. Isole les requêtes servies par 2 URLs ou plus, avec des impressions
+   significatives sur chacune (au moins 30).
+3. Distingue deux situations, c'est essentiel :
+   - VRAIE cannibalisation : Google ALTERNE entre mes URLs d'un mois
+     sur l'autre. C'est le symptôme qui compte.
+   - Couverture légitime : une page catégorie et une page produit
+     peuvent coexister sur la même requête sans problème.
+4. Pour chaque conflit réel, désigne l'URL à garder : celle qui a la
+   meilleure position moyenne ET la meilleure intention business.
+5. Mesure ce que le conflit coûte : compare la position moyenne quand
+   les deux pages se battent à la meilleure position observée.
+
+Rends, par requête : les URLs en conflit, leurs positions mois par mois,
+laquelle garder, et l'action — fusion et redirection, désoptimisation de
+la perdante, ou différenciation d'intention. Ne propose une fusion que
+si les deux pages traitent réellement le même sujet.
+
+Ne jamais inventer un chiffre : si la donnée manque ou si le volume
+est trop faible pour conclure, dis-le explicitement.
+Indique toujours la période et le volume qui portent tes conclusions.</pre></div>
       </div>      <div class="sk reveal-up">
         <div class="sk-top"><span class="sk-n">05</span><span class="sk-slug">gsc-ctr-anormal</span></div>
         <p class="sk-q">Quelles pages sous-performent en clics compte tenu de la position qu'elles occupent déjà ?</p>
-        <p class="sk-data"><strong>Données&nbsp;:</strong> `query` + `page`, 28 jours : impressions, clics, CTR, position.</p>
+        <p class="sk-data"><strong>Données&nbsp;:</strong> <span class="inline-code">query</span> + <span class="inline-code">page</span>, 28 jours : impressions, clics, CTR, position.</p>
         <p class="sk-lbl">La méthode qu'il impose</p>
-        <ol class="sk-steps"><li>Établir la **courbe CTR/position du site** (CTR médian observé pour chaque position) — c'est la référence, pas un standard générique.</li><li>Repérer les pages dont le CTR est nettement sous la médiane de leur propre position.</li><li>Filtrer sur un minimum d'impressions pour éviter les faux positifs statistiques.</li><li>Vérifier la SERP : un AI Overview ou un featured snippet concurrent explique parfois tout le déficit.</li></ol>
-        <div class="sk-out"><p class="sk-lbl">Ce qu'il rend</p><p>Les pages à fort potentiel de CTR, avec l'écart chiffré à la courbe. Passer la main à `gsc-reecriture-title`.</p></div>
+        <ol class="sk-steps"><li>Établir la <strong>courbe CTR/position du site</strong> (CTR médian observé pour chaque position) — c'est la référence, pas un standard générique.</li><li>Repérer les pages dont le CTR est nettement sous la médiane de leur propre position.</li><li>Filtrer sur un minimum d'impressions pour éviter les faux positifs statistiques.</li><li>Vérifier la SERP : un AI Overview ou un featured snippet concurrent explique parfois tout le déficit.</li></ol>
+        <div class="sk-out"><p class="sk-lbl">Ce qu'il rend</p><p>Les pages à fort potentiel de CTR, avec l'écart chiffré à la courbe. Passer la main à <span class="inline-code">gsc-reecriture-title</span>.</p></div>
         <p class="sk-lbl">Le prompt</p>
-        <div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>claude</span></div><pre>Lance gsc-ctr-anormal.
-Calcule d'abord la courbe CTR/position de mon site,
-puis sors les pages qui sont sous la médiane de leur position.</pre></div>
+        <div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>claude</span></div><pre>Contexte : site {domaine}.
+Objectif : récupérer les clics que je laisse sur la table à position égale.
+
+1. Récupère les couples (requête, page) sur 28 jours : impressions,
+   clics, CTR, position.
+2. Construis d'abord la courbe CTR/position de MON site : pour chaque
+   position entière, le CTR médian que j'observe réellement. C'est la
+   référence — un standard générique du marché ne vaut rien ici.
+3. Repère les pages dont le CTR est nettement sous la médiane de leur
+   PROPRE position. Exige au moins 200 impressions pour éviter les faux
+   positifs statistiques.
+4. Pour les 10 pires écarts, vérifie la SERP : un AI Overview, un
+   featured snippet concurrent ou un bloc shopping expliquent parfois
+   tout le déficit. Dans ce cas, dis-le — ce n'est pas un problème de
+   title.
+5. Chiffre le manque à gagner : impressions × (CTR médian − CTR actuel).
+
+Rends un tableau : URL | requête | position | CTR actuel | CTR médian à
+cette position | écart | clics perdus/mois. Sépare clairement les cas
+« title à réécrire » des cas « la SERP me vole le clic ».
+
+Ne jamais inventer un chiffre : si la donnée manque ou si le volume
+est trop faible pour conclure, dis-le explicitement.
+Indique toujours la période et le volume qui portent tes conclusions.</pre></div>
       </div>      <div class="sk reveal-up">
         <div class="sk-top"><span class="sk-n">06</span><span class="sk-slug">gsc-requetes-neuves</span></div>
         <p class="sk-q">Sur quelles requêtes Google a-t-il commencé à me montrer, sans que j'aie de page dédiée ?</p>
-        <p class="sk-data"><strong>Données&nbsp;:</strong> Deux périodes de 28 jours consécutives, dimension `query`.</p>
+        <p class="sk-data"><strong>Données&nbsp;:</strong> Deux périodes de 28 jours consécutives, dimension <span class="inline-code">query</span>.</p>
         <p class="sk-lbl">La méthode qu'il impose</p>
-        <ol class="sk-steps"><li>Isoler les requêtes présentes sur la période récente et **absentes** de la précédente.</li><li>Écarter le bruit : exiger un seuil d'impressions.</li><li>Pour chaque requête neuve, identifier la page qui la reçoit et juger si elle est la bonne.</li><li>Regrouper les requêtes neuves par thème : un cluster émergent vaut une page, pas une ligne.</li></ol>
+        <ol class="sk-steps"><li>Isoler les requêtes présentes sur la période récente et <strong>absentes</strong> de la précédente.</li><li>Écarter le bruit : exiger un seuil d'impressions.</li><li>Pour chaque requête neuve, identifier la page qui la reçoit et juger si elle est la bonne.</li><li>Regrouper les requêtes neuves par thème : un cluster émergent vaut une page, pas une ligne.</li></ol>
         <div class="sk-out"><p class="sk-lbl">Ce qu'il rend</p><p>Les requêtes émergentes groupées par thème, avec la page actuellement servie et un verdict : page adaptée / à enrichir / à créer.</p></div>
         <p class="sk-lbl">Le prompt</p>
-        <div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>claude</span></div><pre>Lance gsc-requetes-neuves : compare les 28 derniers jours
-aux 28 précédents, groupe les requêtes émergentes par thème,
-et dis-moi lesquelles n'ont pas de page adaptée.</pre></div>
+        <div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>claude</span></div><pre>Contexte : site {domaine}.
+Objectif : attraper les sujets sur lesquels Google commence à me tester.
+
+1. Compare les 28 derniers jours aux 28 précédents, dimension requête.
+2. Isole les requêtes présentes sur la période récente et TOTALEMENT
+   absentes de la précédente.
+3. Écarte le bruit : exige au moins 20 impressions sur la période
+   récente. Écarte aussi les requêtes de marque.
+4. Pour chaque requête neuve, identifie la page qui la reçoit
+   aujourd'hui et juge si c'est la bonne : Google me sert-il une page
+   pertinente, ou une page par défaut faute de mieux ?
+5. Regroupe les requêtes neuves par thème. Un cluster émergent mérite
+   une page dédiée, une requête isolée ne mérite qu'une section.
+
+Rends les clusters émergents triés par impressions cumulées, avec pour
+chacun : les requêtes qui le composent, la page actuellement servie, sa
+position, et un verdict en trois options — page adaptée, page à
+enrichir, page à créer.
+
+Ne jamais inventer un chiffre : si la donnée manque ou si le volume
+est trop faible pour conclure, dis-le explicitement.
+Indique toujours la période et le volume qui portent tes conclusions.</pre></div>
       </div>      <div class="sk reveal-up">
         <div class="sk-top"><span class="sk-n">07</span><span class="sk-slug">gsc-gagnants-perdants</span></div>
         <p class="sk-q">Qu'est-ce qui monte et qu'est-ce qui tombe depuis le mois dernier ?</p>
-        <p class="sk-data"><strong>Données&nbsp;:</strong> Deux périodes comparables, par `page` et par `query`.</p>
+        <p class="sk-data"><strong>Données&nbsp;:</strong> Deux périodes comparables, par <span class="inline-code">page</span> et par <span class="inline-code">query</span>.</p>
         <p class="sk-lbl">La méthode qu'il impose</p>
-        <ol class="sk-steps"><li>Comparer clics, impressions et position sur des périodes de longueur identique.</li><li>Classer séparément les gains et les pertes, en valeur absolue.</li><li>Pour chaque mouvement important, donner la cause probable (renvoyer vers `gsc-chute-trafic`).</li><li>Ne jamais présenter un pourcentage sans le volume associé.</li></ol>
+        <ol class="sk-steps"><li>Comparer clics, impressions et position sur des périodes de longueur identique.</li><li>Classer séparément les gains et les pertes, en valeur absolue.</li><li>Pour chaque mouvement important, donner la cause probable (renvoyer vers <span class="inline-code">gsc-chute-trafic</span>).</li><li>Ne jamais présenter un pourcentage sans le volume associé.</li></ol>
         <div class="sk-out"><p class="sk-lbl">Ce qu'il rend</p><p>Deux tableaux (top gains / top pertes) avec volume, variation, et cause probable.</p></div>
         <p class="sk-lbl">Le prompt</p>
-        <div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>claude</span></div><pre>Lance gsc-gagnants-perdants sur le mois écoulé.
-Deux tableaux, top 10 chacun, toujours avec le volume
-à côté du pourcentage.</pre></div>
+        <div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>claude</span></div><pre>Contexte : site {domaine}.
+Objectif : voir ce qui a bougé ce mois-ci, et de combien.
+
+1. Compare le mois écoulé au précédent, sur des périodes de longueur
+   strictement identique. Fais-le par page ET par requête.
+2. Classe séparément les gains et les pertes, en VALEUR ABSOLUE de
+   clics. Un +300 % sur 4 clics n'intéresse personne.
+3. Pour chacun des 10 plus gros mouvements dans chaque sens, donne la
+   cause probable : position, CTR, ou demande.
+4. Ne présente jamais un pourcentage sans le volume à côté.
+5. Signale à part les pages qui apparaissent ou disparaissent
+   complètement — ce sont souvent des problèmes techniques, pas
+   éditoriaux.
+
+Rends deux tableaux (top 10 gains, top 10 pertes) : URL ou requête |
+clics avant | clics après | variation absolue | variation % | cause
+probable. Termine par les 3 mouvements qui expliquent l'essentiel de la
+variation globale.
+
+Ne jamais inventer un chiffre : si la donnée manque ou si le volume
+est trop faible pour conclure, dis-le explicitement.
+Indique toujours la période et le volume qui portent tes conclusions.</pre></div>
       </div>      <div class="sk reveal-up">
         <div class="sk-top"><span class="sk-n">08</span><span class="sk-slug">gsc-saisonnalite</span></div>
         <p class="sk-q">Cette baisse est-elle un problème, ou mon creux annuel habituel ?</p>
         <p class="sk-data"><strong>Données&nbsp;:</strong> 16 mois d'historique minimum, par mois.</p>
         <p class="sk-lbl">La méthode qu'il impose</p>
-        <ol class="sk-steps"><li>Comparer le mois courant au **même mois de l'année précédente**, pas au mois précédent.</li><li>Calculer l'indice saisonnier de chaque mois sur l'historique disponible.</li><li>Décider si l'écart observé sort de la fourchette saisonnière normale.</li><li>Le dire franchement quand il n'y a pas assez d'historique pour conclure.</li></ol>
+        <ol class="sk-steps"><li>Comparer le mois courant au <strong>même mois de l'année précédente</strong>, pas au mois précédent.</li><li>Calculer l'indice saisonnier de chaque mois sur l'historique disponible.</li><li>Décider si l'écart observé sort de la fourchette saisonnière normale.</li><li>Le dire franchement quand il n'y a pas assez d'historique pour conclure.</li></ol>
         <div class="sk-out"><p class="sk-lbl">Ce qu'il rend</p><p>Un verdict : saisonnier attendu / anomalie réelle / historique insuffisant, avec le graphique année sur année.</p></div>
         <p class="sk-lbl">Le prompt</p>
-        <div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>claude</span></div><pre>Mon trafic baisse. Lance gsc-saisonnalite :
-compare au même mois l'an dernier et dis-moi si ça sort
-de ma fourchette saisonnière normale.</pre></div>
+        <div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>claude</span></div><pre>Contexte : site {domaine}. Mon trafic baisse et je ne sais pas
+si je dois m'inquiéter.
+Objectif : séparer le cycle normal de l'anomalie réelle.
+
+1. Récupère au moins 16 mois d'historique mensuel : clics, impressions.
+2. Compare le mois courant au MÊME MOIS de l'année précédente, pas au
+   mois précédent. C'est toute la différence.
+3. Calcule l'indice saisonnier de chaque mois sur l'historique
+   disponible, et la fourchette normale de variation.
+4. Situe l'écart observé : est-il dans la fourchette saisonnière, ou
+   en sort-il ?
+5. Si l'historique est trop court pour établir un cycle (moins de deux
+   passages sur le même mois), dis-le franchement au lieu de conclure.
+
+Rends un verdict clair en trois options : saisonnier attendu, anomalie
+réelle, ou historique insuffisant. Appuie-le sur le tableau année contre
+année, mois par mois. Si c'est une anomalie, enchaîne sur une
+décomposition position / CTR / demande.
+
+Ne jamais inventer un chiffre : si la donnée manque ou si le volume
+est trop faible pour conclure, dis-le explicitement.
+Indique toujours la période et le volume qui portent tes conclusions.</pre></div>
       </div>
     </div>
     <div class="sk-group">
@@ -287,12 +446,33 @@ de ma fourchette saisonnière normale.</pre></div>
         <p class="sk-q">Quelles questions cette page reçoit-elle sans y répondre ?</p>
         <p class="sk-data"><strong>Données&nbsp;:</strong> Toutes les requêtes servies par UNE URL, 3 mois.</p>
         <p class="sk-lbl">La méthode qu'il impose</p>
-        <ol class="sk-steps"><li>Récupérer l'intégralité des requêtes que la page reçoit, y compris celles à faibles impressions.</li><li>Les regrouper en intentions distinctes.</li><li>Confronter chaque intention au contenu réel de la page : la traite-t-elle explicitement, ou Google l'a-t-il servie par défaut ?</li><li>Ne proposer que les sections **absentes** — ne jamais réécrire ce qui existe déjà.</li></ol>
+        <ol class="sk-steps"><li>Récupérer l'intégralité des requêtes que la page reçoit, y compris celles à faibles impressions.</li><li>Les regrouper en intentions distinctes.</li><li>Confronter chaque intention au contenu réel de la page : la traite-t-elle explicitement, ou Google l'a-t-il servie par défaut ?</li><li>Ne proposer que les sections <strong>absentes</strong> — ne jamais réécrire ce qui existe déjà.</li></ol>
         <div class="sk-out"><p class="sk-lbl">Ce qu'il rend</p><p>La liste des sections à ajouter, avec pour chacune les requêtes qui la justifient et le volume d'impressions en jeu.</p></div>
         <p class="sk-lbl">Le prompt</p>
-        <div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>claude</span></div><pre>Lance gsc-sections-manquantes sur /ma-page/.
-Sors les requêtes qu'elle reçoit et ne traite pas,
-et propose uniquement les sections absentes.</pre></div>
+        <div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>claude</span></div><pre>Contexte : page {page} du site {domaine}.
+Objectif : trouver ce que cette page reçoit comme questions sans y répondre.
+
+1. Récupère TOUTES les requêtes servies par cette URL sur 3 mois, y
+   compris celles à faibles impressions — c'est souvent là que se
+   cachent les trous.
+2. Regroupe-les en intentions distinctes (pas en mots-clés : en
+   intentions).
+3. Lis le contenu réel de la page. Pour chaque intention, tranche :
+   la page la traite-t-elle EXPLICITEMENT, ou Google l'a-t-il servie
+   par défaut faute de meilleure candidate ?
+4. Ne propose que les sections ABSENTES. Ne réécris jamais ce qui
+   existe déjà — ce n'est pas la mission.
+5. Pour chaque section proposée, cite les requêtes qui la justifient et
+   le total d'impressions en jeu.
+
+Rends la liste des sections à ajouter, ordonnée par impressions
+couvertes, avec pour chacune : le titre Hn proposé, les requêtes
+justificatives, le volume, et deux lignes sur ce que la section doit
+dire. Termine par le total d'impressions actuellement mal servies.
+
+Ne jamais inventer un chiffre : si la donnée manque ou si le volume
+est trop faible pour conclure, dis-le explicitement.
+Indique toujours la période et le volume qui portent tes conclusions.</pre></div>
       </div>      <div class="sk reveal-up">
         <div class="sk-top"><span class="sk-n">02</span><span class="sk-slug">gsc-brief-depuis-requetes</span></div>
         <p class="sk-q">Comment écrire un brief à partir de ce que les gens tapent vraiment, pas de ce qu'un outil suggère ?</p>
@@ -301,53 +481,156 @@ et propose uniquement les sections absentes.</pre></div>
         <ol class="sk-steps"><li>Partir des requêtes réelles : elles portent le vocabulaire exact des acheteurs.</li><li>Grouper par intention, puis ordonner les groupes par volume d'impressions — cet ordre devient le plan Hn.</li><li>Extraire les formulations interrogatives : elles deviennent des H3 ou des entrées de FAQ.</li><li>Compléter avec la SERP (via DataForSEO ou Firecrawl) uniquement pour ce que GSC ne peut pas dire : ce que couvrent les concurrents.</li></ol>
         <div class="sk-out"><p class="sk-lbl">Ce qu'il rend</p><p>Un brief : angle, plan Hn ordonné, vocabulaire imposé, questions à traiter, et le volume d'impressions qui justifie chaque section.</p></div>
         <p class="sk-lbl">Le prompt</p>
-        <div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>claude</span></div><pre>Lance gsc-brief-depuis-requetes pour le cluster « audit seo ».
-Ordonne le plan Hn par volume d'impressions et impose
-le vocabulaire exact des requêtes.</pre></div>
+        <div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>claude</span></div><pre>Contexte : site {domaine}, cluster ou page {page}.
+Objectif : un brief bâti sur ce que les gens tapent vraiment, pas sur ce
+qu'un outil de volume suggère.
+
+1. Récupère les requêtes du cluster sur 6 mois : impressions, clics,
+   position, page servie.
+2. Groupe par intention, puis ordonne les groupes par impressions.
+   Cet ordre devient le plan Hn — le sujet le plus cherché passe en
+   premier, pas celui qui t'arrange.
+3. Extrais les formulations interrogatives : elles deviennent des H3 ou
+   des entrées de FAQ.
+4. Relève le VOCABULAIRE EXACT des requêtes. C'est le langage de mes
+   acheteurs : impose-le dans le brief, ne le reformule pas en jargon.
+5. Complète avec la SERP (DataForSEO ou Firecrawl) UNIQUEMENT pour ce
+   que Search Console ne peut pas dire : ce que couvrent les
+   concurrents et que je ne couvre pas.
+
+Rends un brief : angle éditorial, plan Hn ordonné avec le volume qui
+justifie chaque section, vocabulaire imposé, questions à traiter, et
+longueur cible. Précise pour chaque section si elle vient de mes
+données ou de l'analyse SERP.
+
+Ne jamais inventer un chiffre : si la donnée manque ou si le volume
+est trop faible pour conclure, dis-le explicitement.
+Indique toujours la période et le volume qui portent tes conclusions.</pre></div>
       </div>      <div class="sk reveal-up">
         <div class="sk-top"><span class="sk-n">03</span><span class="sk-slug">gsc-reecriture-title</span></div>
         <p class="sk-q">Comment réécrire mes titles et metas pour récupérer les clics que je laisse sur la table ?</p>
-        <p class="sk-data"><strong>Données&nbsp;:</strong> Sortie de `gsc-ctr-anormal` + title/meta actuels des pages ciblées.</p>
+        <p class="sk-data"><strong>Données&nbsp;:</strong> Sortie de <span class="inline-code">gsc-ctr-anormal</span> + title/meta actuels des pages ciblées.</p>
         <p class="sk-lbl">La méthode qu'il impose</p>
-        <ol class="sk-steps"><li>Reprendre les pages identifiées en déficit de CTR.</li><li>Réécrire en intégrant **la formulation exacte** de la requête la plus porteuse de la page.</li><li>Respecter les limites d'affichage (environ 60 caractères pour le title, 155 pour la meta).</li><li>Proposer deux variantes par page pour permettre un test.</li><li>Estimer le gain de clics si le CTR rejoint la médiane de sa position.</li></ol>
+        <ol class="sk-steps"><li>Reprendre les pages identifiées en déficit de CTR.</li><li>Réécrire en intégrant <strong>la formulation exacte</strong> de la requête la plus porteuse de la page.</li><li>Respecter les limites d'affichage (environ 60 caractères pour le title, 155 pour la meta).</li><li>Proposer deux variantes par page pour permettre un test.</li><li>Estimer le gain de clics si le CTR rejoint la médiane de sa position.</li></ol>
         <div class="sk-out"><p class="sk-lbl">Ce qu'il rend</p><p>Un tableau : URL, title actuel → 2 propositions, meta actuelle → 2 propositions, gain de clics estimé.</p></div>
         <p class="sk-lbl">Le prompt</p>
-        <div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>claude</span></div><pre>Prends la sortie de gsc-ctr-anormal et lance gsc-reecriture-title.
-Deux variantes par page, avec le gain de clics estimé
-si le CTR rejoint la médiane.</pre></div>
+        <div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>claude</span></div><pre>Contexte : site {domaine}.
+Objectif : réécrire les titles et metas des pages qui sous-performent
+en clics à position égale.
+
+1. Pars de la sortie de gsc-ctr-anormal. Si tu ne l'as pas, lance
+   d'abord l'analyse : courbe CTR/position du site, puis écart.
+2. Pour chaque page ciblée, récupère le title et la meta actuels ainsi
+   que sa requête la plus porteuse en impressions.
+3. Réécris en intégrant la FORMULATION EXACTE de cette requête, pas une
+   variante élégante. Google met en gras ce qui correspond.
+4. Respecte les limites d'affichage : environ 60 caractères pour le
+   title, 155 pour la meta. Compte-les et affiche le compte.
+5. Produis DEUX variantes par page, avec des angles différents — une
+   factuelle, une orientée bénéfice — pour permettre un test.
+6. Estime le gain si le CTR rejoint la médiane de sa position.
+
+Rends un tableau : URL | title actuel (nb caractères) | variante A |
+variante B | meta actuelle | variante A | variante B | gain estimé.
+Ajoute une phrase par page expliquant ton angle.
+
+Ne jamais inventer un chiffre : si la donnée manque ou si le volume
+est trop faible pour conclure, dis-le explicitement.
+Indique toujours la période et le volume qui portent tes conclusions.</pre></div>
       </div>      <div class="sk reveal-up">
         <div class="sk-top"><span class="sk-n">04</span><span class="sk-slug">gsc-faq-depuis-requetes</span></div>
         <p class="sk-q">Quelles questions dois-je mettre en FAQ, en me basant sur ce qu'on me demande vraiment ?</p>
         <p class="sk-data"><strong>Données&nbsp;:</strong> Requêtes interrogatives d'une page ou d'un site, 6 mois.</p>
         <p class="sk-lbl">La méthode qu'il impose</p>
         <ol class="sk-steps"><li>Isoler les requêtes qui commencent par un interrogatif (comment, pourquoi, combien, quel, est-ce que…) ou qui en ont la forme.</li><li>Dédupliquer les reformulations d'une même question.</li><li>Trier par impressions et retenir celles qui ne sont pas déjà traitées dans le corps de la page.</li><li>Rédiger des réponses courtes et autonomes — c'est ce format que les moteurs génératifs citent.</li></ol>
-        <div class="sk-out"><p class="sk-lbl">Ce qu'il rend</p><p>Le bloc FAQ rédigé + le JSON-LD `FAQPage` correspondant, prêt à coller.</p></div>
+        <div class="sk-out"><p class="sk-lbl">Ce qu'il rend</p><p>Le bloc FAQ rédigé + le JSON-LD <span class="inline-code">FAQPage</span> correspondant, prêt à coller.</p></div>
         <p class="sk-lbl">Le prompt</p>
-        <div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>claude</span></div><pre>Lance gsc-faq-depuis-requetes sur /ma-page/.
-Garde les questions non traitées dans le corps de page
-et sors-moi le JSON-LD FAQPage.</pre></div>
+        <div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>claude</span></div><pre>Contexte : page {page} du site {domaine}.
+Objectif : une FAQ construite sur les vraies questions reçues.
+
+1. Récupère les requêtes de cette page sur 6 mois.
+2. Isole celles qui sont des questions : soit elles commencent par un
+   interrogatif (comment, pourquoi, combien, quel, quand, est-ce que),
+   soit elles en ont la forme implicite (« prix installation X »).
+3. Déduplique les reformulations d'une même question — garde la
+   formulation la plus recherchée comme intitulé.
+4. Écarte celles qui sont DÉJÀ traitées dans le corps de la page : une
+   FAQ qui répète le contenu ne sert à rien.
+5. Rédige des réponses courtes et AUTONOMES : 2 à 4 phrases,
+   compréhensibles hors contexte. C'est ce format que ChatGPT et
+   Perplexity citent.
+6. Trie par impressions décroissantes et garde les 8 meilleures.
+
+Rends le bloc FAQ rédigé en HTML sémantique, puis le JSON-LD FAQPage
+correspondant, prêt à coller. Indique en face de chaque question son
+volume d'impressions.
+
+Ne jamais inventer un chiffre : si la donnée manque ou si le volume
+est trop faible pour conclure, dis-le explicitement.
+Indique toujours la période et le volume qui portent tes conclusions.</pre></div>
       </div>      <div class="sk reveal-up">
         <div class="sk-top"><span class="sk-n">05</span><span class="sk-slug">gsc-page-a-creer</span></div>
         <p class="sk-q">Quels sujets méritent une page dédiée que je n'ai pas encore ?</p>
         <p class="sk-data"><strong>Données&nbsp;:</strong> Toutes les requêtes du site, 6 mois, avec leur page servie.</p>
         <p class="sk-lbl">La méthode qu'il impose</p>
-        <ol class="sk-steps"><li>Regrouper les requêtes en clusters sémantiques.</li><li>Repérer les clusters où **aucune page n'est vraiment dédiée** : les impressions sont dispersées sur des pages approximatives, avec des positions faibles.</li><li>Estimer le potentiel du cluster : impressions cumulées et position moyenne actuelle.</li><li>Vérifier l'absence de doublon avec l'inventaire interne avant de proposer une création.</li></ol>
+        <ol class="sk-steps"><li>Regrouper les requêtes en clusters sémantiques.</li><li>Repérer les clusters où <strong>aucune page n'est vraiment dédiée</strong> : les impressions sont dispersées sur des pages approximatives, avec des positions faibles.</li><li>Estimer le potentiel du cluster : impressions cumulées et position moyenne actuelle.</li><li>Vérifier l'absence de doublon avec l'inventaire interne avant de proposer une création.</li></ol>
         <div class="sk-out"><p class="sk-lbl">Ce qu'il rend</p><p>Les clusters orphelins classés par potentiel, avec pour chacun le mot-clé principal, les requêtes couvertes et la page à créer.</p></div>
         <p class="sk-lbl">Le prompt</p>
-        <div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>claude</span></div><pre>Lance gsc-page-a-creer sur 6 mois.
-Repère les clusters dont les impressions sont dispersées
-sur des pages approximatives, et vérifie qu'il n'y a pas de doublon.</pre></div>
+        <div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>claude</span></div><pre>Contexte : site {domaine}.
+Objectif : trouver les sujets qui méritent une page et n'en ont pas.
+
+1. Récupère toutes les requêtes du site sur 6 mois, avec la page qui
+   les sert et la position obtenue.
+2. Regroupe en clusters sémantiques.
+3. Repère les clusters ORPHELINS : les impressions sont dispersées sur
+   plusieurs pages approximatives, les positions sont faibles, et
+   aucune page n'est vraiment dédiée au sujet.
+4. Estime le potentiel de chaque cluster : impressions cumulées,
+   position moyenne actuelle, et gain si une vraie page atteignait la
+   position 5.
+5. Avant de proposer une création, VÉRIFIE qu'il n'existe pas déjà une
+   page sur le sujet dans l'inventaire du site. Une page en double fait
+   plus de mal que pas de page.
+
+Rends les clusters orphelins triés par potentiel, avec pour chacun : le
+mot-clé principal, les requêtes couvertes, les impressions cumulées, les
+pages qui les captent mal aujourd'hui, et le titre de la page à créer.
+Signale explicitement les clusters où tu as un doute sur un doublon.
+
+Ne jamais inventer un chiffre : si la donnée manque ou si le volume
+est trop faible pour conclure, dis-le explicitement.
+Indique toujours la période et le volume qui portent tes conclusions.</pre></div>
       </div>      <div class="sk reveal-up">
         <div class="sk-top"><span class="sk-n">06</span><span class="sk-slug">gsc-consolidation</span></div>
         <p class="sk-q">Comment fusionner mes pages qui se cannibalisent, sans perdre de trafic ?</p>
-        <p class="sk-data"><strong>Données&nbsp;:</strong> Sortie de `gsc-cannibalisation` + contenu des pages concernées.</p>
+        <p class="sk-data"><strong>Données&nbsp;:</strong> Sortie de <span class="inline-code">gsc-cannibalisation</span> + contenu des pages concernées.</p>
         <p class="sk-lbl">La méthode qu'il impose</p>
-        <ol class="sk-steps"><li>Désigner la page canonique : meilleure position, meilleure profondeur, meilleurs signaux business.</li><li>Lister ce que les pages absorbées apportent d'unique et qui doit être **transféré** avant redirection.</li><li>Produire le plan de redirection 301, une ligne par URL.</li><li>Lister les liens internes à mettre à jour pour ne pas laisser de chaînes de redirection.</li></ol>
+        <ol class="sk-steps"><li>Désigner la page canonique : meilleure position, meilleure profondeur, meilleurs signaux business.</li><li>Lister ce que les pages absorbées apportent d'unique et qui doit être <strong>transféré</strong> avant redirection.</li><li>Produire le plan de redirection 301, une ligne par URL.</li><li>Lister les liens internes à mettre à jour pour ne pas laisser de chaînes de redirection.</li></ol>
         <div class="sk-out"><p class="sk-lbl">Ce qu'il rend</p><p>Le plan de fusion : page cible, contenu à transférer, redirections 301, liens internes à corriger.</p></div>
         <p class="sk-lbl">Le prompt</p>
-        <div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>claude</span></div><pre>Reprends les conflits de gsc-cannibalisation et lance gsc-consolidation.
-Donne-moi la page à garder, ce qu'il faut transférer,
-et le plan de redirections 301.</pre></div>
+        <div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>claude</span></div><pre>Contexte : site {domaine}.
+Objectif : fusionner mes pages cannibales sans perdre de trafic.
+
+1. Pars des conflits identifiés par gsc-cannibalisation.
+2. Pour chaque groupe, désigne la page canonique selon trois critères,
+   dans cet ordre : meilleure position moyenne, meilleure profondeur de
+   contenu, meilleure intention business.
+3. Lis les pages absorbées et liste ce qu'elles apportent d'UNIQUE et
+   qui doit être transféré avant redirection — sections, exemples,
+   données, visuels. C'est l'étape qu'on saute et qui coûte le trafic.
+4. Produis le plan de redirections 301, une ligne par URL source.
+5. Liste les liens internes pointant vers les URLs absorbées et qui
+   doivent être repointés, pour ne pas laisser de chaînes de
+   redirection.
+6. Indique les requêtes à surveiller après la fusion et le délai
+   raisonnable avant de juger (compte 4 à 6 semaines).
+
+Rends : page cible, contenu à transférer section par section, tableau
+de redirections, liens internes à corriger, requêtes à surveiller.
+
+Ne jamais inventer un chiffre : si la donnée manque ou si le volume
+est trop faible pour conclure, dis-le explicitement.
+Indique toujours la période et le volume qui portent tes conclusions.</pre></div>
       </div>      <div class="sk reveal-up">
         <div class="sk-top"><span class="sk-n">07</span><span class="sk-slug">gsc-maillage</span></div>
         <p class="sk-q">Quels liens internes ajouter, et depuis quelles pages exactement ?</p>
@@ -356,9 +639,28 @@ et le plan de redirections 301.</pre></div>
         <ol class="sk-steps"><li>Calculer la proximité sémantique entre pages à partir du recouvrement de leurs requêtes.</li><li>Proposer un lien quand une page A reçoit des requêtes proches du sujet d'une page B mieux positionnée.</li><li>Proposer l'ancre à partir de la requête réelle partagée, jamais une ancre générique.</li><li>Prioriser les liens venant des pages qui reçoivent déjà du trafic — un lien depuis une page morte ne vaut rien.</li></ol>
         <div class="sk-out"><p class="sk-lbl">Ce qu'il rend</p><p>Un tableau : page source, page cible, ancre proposée, requête qui la justifie, trafic de la page source.</p></div>
         <p class="sk-lbl">Le prompt</p>
-        <div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>claude</span></div><pre>Lance gsc-maillage sur tout le site.
-Propose les ancres à partir des requêtes réelles partagées,
-et ne pars que de pages qui reçoivent déjà du trafic.</pre></div>
+        <div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>claude</span></div><pre>Contexte : site {domaine}.
+Objectif : ajouter les liens internes qui manquent, avec les bonnes ancres.
+
+1. Récupère les requêtes par page sur l'ensemble du site, 6 mois.
+2. Calcule la proximité entre pages à partir du RECOUVREMENT de leurs
+   requêtes — pas d'une similarité de titre.
+3. Propose un lien quand une page A reçoit des requêtes proches du sujet
+   d'une page B mieux positionnée sur ces requêtes.
+4. Déduis l'ancre de la requête réelle partagée. Jamais « cliquez ici »,
+   jamais une ancre générique, jamais l'URL nue.
+5. Ne pars QUE de pages qui reçoivent déjà du trafic : un lien depuis
+   une page que personne ne visite ne transmet rien.
+6. Vérifie que le lien n'existe pas déjà avant de le proposer.
+
+Rends un tableau : page source | trafic de la source | page cible |
+ancre proposée | requête qui justifie le lien | où l'insérer dans la
+page source. Trie par impact attendu, et limite-toi à 20 liens pour
+rester actionnable.
+
+Ne jamais inventer un chiffre : si la donnée manque ou si le volume
+est trop faible pour conclure, dis-le explicitement.
+Indique toujours la période et le volume qui portent tes conclusions.</pre></div>
       </div>
     </div>
     <div class="sk-group">
@@ -372,9 +674,29 @@ et ne pars que de pages qui reçoivent déjà du trafic.</pre></div>
         <ol class="sk-steps"><li>Donner d'abord les chiffres clés : clics, impressions, position moyenne, avec les deux comparaisons.</li><li>Nommer les 3 mouvements qui expliquent l'essentiel de la variation — pas une liste de 40 lignes.</li><li>Croiser avec les conversions si GA4 est disponible : « le trafic monte sur les pages qui ne convertissent pas » est une information, « le trafic monte » n'en est pas une.</li><li>Terminer par les actions du mois suivant, priorisées.</li><li>Ne jamais inventer un chiffre absent des données.</li></ol>
         <div class="sk-out"><p class="sk-lbl">Ce qu'il rend</p><p>Un rapport structuré : chiffres clés, ce qui a bougé et pourquoi, actions du mois suivant.</p></div>
         <p class="sk-lbl">Le prompt</p>
-        <div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>claude</span></div><pre>Lance gsc-rapport-mensuel.
-Trois mouvements maximum pour expliquer la variation,
-et croise avec les conversions GA4 si c'est branché.</pre></div>
+        <div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>claude</span></div><pre>Contexte : site {domaine}, rapport pour le client.
+Objectif : un rapport qui DIT quelque chose, pas qui aligne des courbes.
+
+1. Récupère : mois courant, mois précédent, et même mois l'an dernier.
+2. Ouvre sur les chiffres clés — clics, impressions, position moyenne —
+   avec les DEUX comparaisons. Sans la comparaison annuelle, on
+   confond un cycle avec une tendance.
+3. Nomme les 3 mouvements qui expliquent l'essentiel de la variation.
+   Trois, pas quarante lignes de tableau.
+4. Si GA4 est branché, croise avec les conversions par page d'entrée.
+   « Le trafic monte sur les pages qui ne convertissent pas » est une
+   information ; « le trafic monte » n'en est pas une.
+5. Si PostHog est branché, ajoute où les visiteurs organiques décrochent.
+6. Termine par les actions du mois suivant, priorisées par impact
+   attendu, avec la page concernée pour chacune.
+
+Rends : chiffres clés, les 3 mouvements expliqués, le croisement
+conversion, puis les actions. Ton factuel, pas de superlatifs. Si un
+chiffre est absent des données, écris-le au lieu de l'estimer.
+
+Ne jamais inventer un chiffre : si la donnée manque ou si le volume
+est trop faible pour conclure, dis-le explicitement.
+Indique toujours la période et le volume qui portent tes conclusions.</pre></div>
       </div>      <div class="sk reveal-up">
         <div class="sk-top"><span class="sk-n">02</span><span class="sk-slug">gsc-alerte</span></div>
         <p class="sk-q">Qu'est-ce qui vient de décrocher et que je n'ai pas vu ?</p>
@@ -383,9 +705,28 @@ et croise avec les conversions GA4 si c'est branché.</pre></div>
         <ol class="sk-steps"><li>Définir les seuils avant de regarder les données, pour éviter de justifier après coup.</li><li>Surveiller : chute de clics d'une URL importante, perte de position sur une requête stratégique, effondrement de CTR, disparition d'une page de l'index.</li><li>Comparer à des jours équivalents — un lundi contre un dimanche ne veut rien dire.</li><li>Ne remonter que ce qui dépasse le seuil : une alerte qui crie tout le temps n'est plus lue.</li></ol>
         <div class="sk-out"><p class="sk-lbl">Ce qu'il rend</p><p>Une liste d'alertes ou, mieux, la confirmation explicite qu'il n'y a rien à signaler.</p></div>
         <p class="sk-lbl">Le prompt</p>
-        <div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>claude</span></div><pre>Lance gsc-alerte sur les 7 derniers jours.
-Compare à des jours équivalents et ne me remonte
-que ce qui dépasse les seuils.</pre></div>
+        <div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>claude</span></div><pre>Contexte : site {domaine}, surveillance hebdomadaire.
+Objectif : ne remonter que ce qui mérite vraiment mon attention.
+
+1. FIXE LES SEUILS AVANT de regarder les données. Sinon on justifie
+   après coup ce qu'on a trouvé.
+   Seuils proposés, à ajuster : −25 % de clics sur une URL qui pesait
+   plus de 100 clics/mois ; −3 positions sur une requête stratégique ;
+   −30 % de CTR à position stable ; disparition totale d'une page.
+2. Compare les 7 derniers jours aux 4 semaines précédentes, sur des
+   jours ÉQUIVALENTS. Un lundi contre un dimanche ne veut rien dire.
+3. Écarte les variations explicables par la saisonnalité connue.
+4. Ne remonte que ce qui dépasse un seuil. Une alerte qui se déclenche
+   toutes les semaines n'est plus lue par personne.
+5. Pour chaque alerte, donne la cause probable et l'action immédiate.
+
+Rends soit la liste des alertes classées par gravité, soit — et c'est
+une réponse parfaitement valable — la confirmation explicite qu'il n'y
+a rien à signaler cette semaine, avec les seuils qui ont été testés.
+
+Ne jamais inventer un chiffre : si la donnée manque ou si le volume
+est trop faible pour conclure, dis-le explicitement.
+Indique toujours la période et le volume qui portent tes conclusions.</pre></div>
       </div>      <div class="sk reveal-up">
         <div class="sk-top"><span class="sk-n">03</span><span class="sk-slug">gsc-panier-cibles</span></div>
         <p class="sk-q">Où en sont les requêtes sur lesquelles j'ai décidé de me battre ?</p>
@@ -394,9 +735,29 @@ que ce qui dépasse les seuils.</pre></div>
         <ol class="sk-steps"><li>Suivre position, impressions et clics pour chaque requête du panier.</li><li>Afficher la trajectoire sur 6 mois, pas seulement l'instantané.</li><li>Signaler les requêtes qui franchissent un palier (entrée en page 1, entrée dans le top 3).</li><li>Indiquer la page qui se positionne, et alerter si Google en change.</li></ol>
         <div class="sk-out"><p class="sk-lbl">Ce qu'il rend</p><p>Le tableau de suivi avec trajectoire, paliers franchis, et changements de page servie.</p></div>
         <p class="sk-lbl">Le prompt</p>
-        <div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>claude</span></div><pre>Lance gsc-panier-cibles sur mes 20 requêtes stratégiques.
-Montre la trajectoire sur 6 mois et signale les paliers
-et les changements de page servie.</pre></div>
+        <div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>claude</span></div><pre>Contexte : site {domaine}, panier de requêtes stratégiques.
+Objectif : suivre les requêtes sur lesquelles j'ai décidé de me battre.
+
+1. Prends le panier de requêtes défini (si je ne te l'ai pas donné,
+   demande-le-moi avant de commencer — ne le devine pas).
+2. Pour chaque requête : position, impressions, clics, et la PAGE qui
+   se positionne.
+3. Montre la trajectoire sur 6 mois, pas l'instantané. Une position 7
+   qui vient de 15 et une position 7 qui vient de 3 n'appellent pas la
+   même réaction.
+4. Signale les franchissements de palier : entrée en page 1 (top 10),
+   entrée dans le top 3, sortie de page 1.
+5. Alerte si Google CHANGE la page qu'il positionne sur une requête —
+   c'est souvent le signe d'une cannibalisation qui démarre.
+6. Sépare les requêtes qui progressent, stagnent, et reculent.
+
+Rends le tableau de suivi : requête | position M-5 à M | tendance |
+page servie | changement de page | palier franchi. Termine par les 3
+requêtes qui demandent une action ce mois-ci, et laquelle.
+
+Ne jamais inventer un chiffre : si la donnée manque ou si le volume
+est trop faible pour conclure, dis-le explicitement.
+Indique toujours la période et le volume qui portent tes conclusions.</pre></div>
       </div>      <div class="sk reveal-up">
         <div class="sk-top"><span class="sk-n">04</span><span class="sk-slug">gsc-indexation</span></div>
         <p class="sk-q">Qu'est-ce qui n'est pas indexé, et pourquoi ?</p>
@@ -405,9 +766,29 @@ et les changements de page servie.</pre></div>
         <ol class="sk-steps"><li>Confronter les URLs du sitemap aux URLs réellement indexées.</li><li>Classer les exclusions par motif : découverte sans indexation, explorée non indexée, canonique différente, 404, redirection.</li><li>Traiter en priorité les pages qui comptent — une page de pagination non indexée n'est pas un problème.</li><li>Pour chaque motif, donner la correction concrète, pas juste le constat.</li></ol>
         <div class="sk-out"><p class="sk-lbl">Ce qu'il rend</p><p>Les pages non indexées qui comptent, groupées par motif, avec l'action de correction.</p></div>
         <p class="sk-lbl">Le prompt</p>
-        <div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>claude</span></div><pre>Lance gsc-indexation.
-Confronte mon sitemap aux URLs réellement indexées
-et groupe les exclusions par motif, avec la correction.</pre></div>
+        <div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>claude</span></div><pre>Contexte : site {domaine}.
+Objectif : savoir ce qui n'est pas indexé, et surtout si c'est grave.
+
+1. Confronte les URLs du sitemap aux URLs réellement indexées.
+2. Classe les exclusions par MOTIF : découverte sans indexation,
+   explorée non indexée, canonique différente, 404, redirection,
+   bloquée par robots.txt, balise noindex.
+3. Trie par importance business, pas par volume. Une page de
+   pagination non indexée n'est pas un problème ; ta page service
+   principale non indexée en est un.
+4. Pour chaque motif, donne la correction CONCRÈTE, pas le constat.
+   « Explorée non indexée » veut souvent dire contenu trop faible ou
+   trop proche d'une autre page : dis laquelle.
+5. Signale les pages indexées qui NE sont PAS dans le sitemap —
+   c'est l'angle mort habituel.
+
+Rends : le compte par motif, puis les pages qui comptent vraiment,
+groupées par motif, avec l'action de correction et sa priorité.
+Distingue ce qui est normal de ce qui est cassé.
+
+Ne jamais inventer un chiffre : si la donnée manque ou si le volume
+est trop faible pour conclure, dis-le explicitement.
+Indique toujours la période et le volume qui portent tes conclusions.</pre></div>
       </div>      <div class="sk reveal-up">
         <div class="sk-top"><span class="sk-n">05</span><span class="sk-slug">gsc-google-vs-llm</span></div>
         <p class="sk-q">Je suis bien placé sur Google — est-ce que les IA me citent pour autant ?</p>
@@ -416,9 +797,31 @@ et groupe les exclusions par motif, avec la correction.</pre></div>
         <ol class="sk-steps"><li>Prendre les requêtes où le site est déjà bien positionné sur Google.</li><li>Poser ces mêmes questions aux moteurs génératifs et relever qui est cité, et à quel rang.</li><li>Mettre les deux colonnes face à face : l'écart est la feuille de route GEO.</li><li>Identifier les sources que les moteurs citent à la place — c'est là qu'il faut aller se faire mentionner.</li><li>Journaliser chaque relevé pour mesurer l'évolution d'un mois sur l'autre.</li></ol>
         <div class="sk-out"><p class="sk-lbl">Ce qu'il rend</p><p>Le tableau position Google / citation LLM par requête, l'écart chiffré, et les sources concurrentes à travailler.</p></div>
         <p class="sk-lbl">Le prompt</p>
-        <div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>claude</span></div><pre>Lance gsc-google-vs-llm sur mes 20 requêtes cibles.
-Mets ma position Google en face des citations Perplexity
-et dis-moi quelles sources sont citées à ma place.</pre></div>
+        <div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>claude</span></div><pre>Contexte : site {domaine}, marché France.
+Objectif : mesurer l'écart entre ma visibilité Google et ma visibilité
+dans les moteurs génératifs.
+
+1. Prends mes requêtes cibles où je suis déjà bien placé sur Google
+   (position 1 à 10 selon Search Console).
+2. Pose ces mêmes questions à Perplexity, en langage naturel — pas en
+   mots-clés. Un utilisateur d'IA écrit des phrases.
+3. Pour chaque réponse, relève : mon domaine est-il cité ? à quel rang
+   parmi les sources ? et QUI est cité à ma place ?
+4. Mets les deux colonnes face à face : position Google contre présence
+   LLM. L'écart est la feuille de route GEO — les requêtes où je suis
+   1er sur Google et absent des IA sont les plus urgentes.
+5. Analyse les sources citées à ma place : sont-elles des concurrents,
+   des annuaires, des forums, des médias ? C'est là qu'il faut aller
+   se faire mentionner.
+6. Journalise le relevé avec sa date pour comparer d'un mois sur l'autre.
+
+Rends le tableau requête | position Google | cité par Perplexity |
+rang de citation | sources citées à ma place. Puis les 5 requêtes au
+plus gros écart, avec pour chacune l'action concrète pour y entrer.
+
+Ne jamais inventer un chiffre : si la donnée manque ou si le volume
+est trop faible pour conclure, dis-le explicitement.
+Indique toujours la période et le volume qui portent tes conclusions.</pre></div>
       </div>
     </div>
     <div class="tip tip-v"><span class="tipico">🔑</span><p>Chaque skill impose la même règle&nbsp;: <strong>ne jamais inventer un chiffre</strong>. Quand la donnée manque, il le dit au lieu de l'estimer en silence. C'est ce qui rend un rapport présentable à un client.</p></div>
