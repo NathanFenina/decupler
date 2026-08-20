@@ -49,15 +49,25 @@ def optimize_image(path, max_dim=1600, quality=80):
 
 
 def load_env():
+    """Lit .env s'il existe, sinon les variables d'environnement.
+
+    Même logique que wp_publish.py : en session Claude Code, les secrets
+    arrivent par l'environnement et aucun .env n'est présent.
+    """
     env = {}
     path = os.path.join(ROOT, ".env")
-    if not os.path.exists(path):
-        sys.exit("❌ .env introuvable.")
-    for line in open(path, encoding="utf-8"):
-        line = line.strip()
-        if line and not line.startswith("#") and "=" in line:
-            k, v = line.split("=", 1)
-            env[k.strip()] = v.strip()
+    if os.path.exists(path):
+        for line in open(path, encoding="utf-8"):
+            line = line.strip()
+            if line and not line.startswith("#") and "=" in line:
+                k, v = line.split("=", 1)
+                env[k.strip()] = v.strip()
+    for k in ("WP_SITE_URL", "WP_USER", "WP_APP_PASSWORD"):
+        if not env.get(k) and os.environ.get(k):
+            env[k] = os.environ[k]
+    if not all(env.get(k) for k in ("WP_SITE_URL", "WP_USER", "WP_APP_PASSWORD")):
+        sys.exit("❌ Identifiants WordPress introuvables (ni .env, ni variables "
+                 "d'environnement WP_SITE_URL / WP_USER / WP_APP_PASSWORD).")
     return env
 
 
