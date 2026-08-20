@@ -14,7 +14,7 @@ Ajouter ?reset=true à l'URL pour réarmer la popup pendant les tests.
 SUBSTACK = "https://decupler.substack.com/api/v1/free"
 
 
-def render(titre, desc, bouton, icone="📊", delai=6000,
+def render(titre, desc, bouton, icone="📊", delai=6000, unlock=None,
            succes="✅ C'est bon ! Bonne lecture.",
            footer="🔒 Pas de spam. Désabonnement en 1 clic."):
     markup = (
@@ -34,12 +34,22 @@ def render(titre, desc, bouton, icone="📊", delai=6000,
         f'<div id="ai-success-msg" class="ai-success-message">{succes}</div>'
         '</div></div>')
 
+    # deverrouillage d'une section gardee (ex. le coffre des skills)
+    unl = (f"var v=document.getElementById('{unlock}');"
+           "function unlock(){if(v)v.classList.remove('locked')}"
+           "if(localStorage.getItem('lmg_sub')==='true'||document.cookie.indexOf('lmg_sub=true')!==-1)unlock();"
+           "document.querySelectorAll('[data-open-gate]').forEach(function(el){"
+           "el.addEventListener('click',function(e){e.preventDefault();"
+           "p.classList.add('active');document.body.classList.add('lmg-gated');"
+           "document.body.style.overflow='hidden'})});") if unlock else "function unlock(){}"
+
     js = (
         '<div class="dcp-js"><script>'
         "document.addEventListener('DOMContentLoaded',function(){"
         "var p=document.getElementById('ai-content-gate'),f=document.getElementById('ai-popup-form'),"
         "s=document.getElementById('ai-success-msg'),i=document.getElementById('hidden_iframe'),sub=false;"
         "if(!p)return;"
+        + unl +
         "function op(){if(localStorage.getItem('lmg_sub')==='true')return;"
         "if(document.cookie.indexOf('lmg_sub=true')!==-1)return;"
         "p.classList.add('active');document.body.classList.add('lmg-gated');"
@@ -51,7 +61,7 @@ def render(titre, desc, bouton, icone="📊", delai=6000,
         "var b=f.querySelector('button[type=submit]');b.textContent='Validation…';b.style.opacity='0.7'});"
         "if(i)i.onload=function(){if(sub){f.style.display='none';s.style.display='block';"
         "localStorage.setItem('lmg_sub','true');"
-        "document.cookie='lmg_sub=true; max-age=31536000; path=/';setTimeout(cl,1500);sub=false}};"
+        "document.cookie='lmg_sub=true; max-age=31536000; path=/';unlock();setTimeout(cl,1500);sub=false}};"
         "if(location.search.indexOf('reset=true')!==-1){localStorage.removeItem('lmg_sub');"
         "document.cookie='lmg_sub=; max-age=0; path=/'}});"
         '</script></div>')

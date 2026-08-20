@@ -68,6 +68,25 @@
 .lm-mcp .sk-out .sk-lbl{color:var(--green);margin-bottom:5px}
 .lm-mcp .sk-out p{margin:0;font-size:.9rem;color:var(--text-muted);line-height:1.55}
 .lm-mcp .sk-data{font-size:.86rem;color:var(--text-muted);margin:0 0 18px;padding-left:14px;border-left:2px solid var(--border)}
+.lm-mcp .sk-vault{position:relative}
+.lm-mcp .sk-vault.locked .sk-vault-in{max-height:340px;overflow:hidden;filter:blur(3.5px);
+ pointer-events:none;user-select:none;
+ -webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 42%,rgba(0,0,0,.25) 78%,transparent 100%);
+ mask-image:linear-gradient(to bottom,#000 0%,#000 42%,rgba(0,0,0,.25) 78%,transparent 100%)}
+.lm-mcp .sk-lock{display:none}
+.lm-mcp .sk-vault.locked .sk-lock{display:block;position:relative;margin-top:-96px;z-index:2}
+.lm-mcp .sk-lock-card{max-width:600px;margin:0 auto;background:var(--bg2);border:1px solid rgba(99,102,241,.3);
+ border-radius:18px;padding:30px 32px;text-align:center;box-shadow:0 26px 60px -26px rgba(99,102,241,.55)}
+.lm-mcp .sk-lock-ic{font-size:1.9rem;line-height:1;margin:0 0 12px}
+.lm-mcp .sk-lock-card h3{font-family:var(--font-display);font-size:1.32rem;font-weight:800;margin:0 0 10px;line-height:1.2}
+.lm-mcp .sk-lock-card p{font-size:.95rem;color:var(--text-muted);margin:0 0 20px;line-height:1.58}
+.lm-mcp .sk-lock-btn{display:inline-flex;align-items:center;gap:9px;background:linear-gradient(135deg,#6366f1,#8b5cf6);
+ color:#fff!important;text-decoration:none!important;font-weight:700;font-size:1rem;padding:15px 30px;border-radius:11px;
+ box-shadow:0 12px 26px -10px rgba(99,102,241,.6);transition:transform .22s,box-shadow .22s;cursor:pointer;border:none}
+.lm-mcp .sk-lock-btn::after{content:'→'}
+.lm-mcp .sk-lock-btn:hover{transform:translateY(-2px);box-shadow:0 18px 34px -12px rgba(99,102,241,.72);color:#fff!important}
+.lm-mcp .sk-lock-note{font-family:var(--font-mono);font-size:.7rem;letter-spacing:.05em;text-transform:uppercase;
+ color:var(--text-dim);margin:14px 0 0}
 .lm-mcp .voie{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:22px}
 .lm-mcp .voie-card{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:22px 24px}
 .lm-mcp .voie-card.reco{border-color:rgba(16,185,129,.35);background:rgba(16,185,129,.04)}
@@ -189,8 +208,7 @@ GSC_CREDENTIALS_JSON=./secrets/gsc-service-account.json</pre></div></div></div>
     
     <div class="sk-group">
       <div class="sk-head"><h3>Diagnostiquer — Lire la donnée</h3><span class="sk-count">8 skills</span></div>
-      <p class="sk-intro">Ces huit-là répondent à une question qu'on se pose vraiment, pas « exporte-moi un tableau ». La plupart des outils GSC s'arrêtent ici.</p>
-            <div class="sk reveal-up">
+      <p class="sk-intro">Ces huit-là répondent à une question qu'on se pose vraiment, pas « exporte-moi un tableau ». La plupart des outils GSC s'arrêtent ici.</p>      <div class="sk reveal-up">
         <div class="sk-top"><span class="sk-n">01</span><span class="sk-slug">gsc-quick-wins</span></div>
         <p class="sk-q">Quelles pages sont juste sous le seuil de trafic, et lesquelles rapportent le plus vite si on les pousse ?</p>
         <p class="sk-data"><strong>Données&nbsp;:</strong> <span class="inline-code">query</span> + <span class="inline-code">page</span>, 28 derniers jours : impressions, clics, CTR, position moyenne.</p>
@@ -220,7 +238,10 @@ courte, title faible).
 Ne jamais inventer un chiffre : si la donnée manque ou si le volume
 est trop faible pour conclure, dis-le explicitement.
 Indique toujours la période et le volume qui portent tes conclusions.</pre></div>
-      </div>      <div class="sk reveal-up">
+      </div>
+    </div>
+    <div class="sk-vault locked" id="sk-vault">
+      <div class="sk-vault-in"><div class="sk-group" style="margin-top:8px">      <div class="sk reveal-up">
         <div class="sk-top"><span class="sk-n">02</span><span class="sk-slug">gsc-chute-trafic</span></div>
         <p class="sk-q">J'ai perdu du trafic : est-ce le classement, le CTR, ou la demande qui a baissé ?</p>
         <p class="sk-data"><strong>Données&nbsp;:</strong> Deux périodes comparables (même longueur, mêmes jours de semaine) : clics, impressions, CTR, position.</p>
@@ -440,8 +461,7 @@ Indique toujours la période et le volume qui portent tes conclusions.</pre></di
     </div>
     <div class="sk-group">
       <div class="sk-head"><h3>Produire — Transformer la donnée en contenu</h3><span class="sk-count">7 skills</span></div>
-      <p class="sk-intro">C'est le groupe qui change tout. Presque tous les outils du marché <em>lisent</em> Search Console&nbsp;; très peu <strong>écrivent à partir de Search Console</strong>. Vos vraies requêtes portent le vocabulaire exact de vos acheteurs — aucun outil de volume ne vous donnera ça.</p>
-            <div class="sk reveal-up">
+      <p class="sk-intro">C'est le groupe qui change tout. Presque tous les outils du marché <em>lisent</em> Search Console&nbsp;; très peu <strong>écrivent à partir de Search Console</strong>. Vos vraies requêtes portent le vocabulaire exact de vos acheteurs — aucun outil de volume ne vous donnera ça.</p>      <div class="sk reveal-up">
         <div class="sk-top"><span class="sk-n">01</span><span class="sk-slug">gsc-sections-manquantes</span></div>
         <p class="sk-q">Quelles questions cette page reçoit-elle sans y répondre ?</p>
         <p class="sk-data"><strong>Données&nbsp;:</strong> Toutes les requêtes servies par UNE URL, 3 mois.</p>
@@ -665,8 +685,7 @@ Indique toujours la période et le volume qui portent tes conclusions.</pre></di
     </div>
     <div class="sk-group">
       <div class="sk-head"><h3>Piloter — Suivre dans le temps</h3><span class="sk-count">5 skills</span></div>
-      <p class="sk-intro">Le reporting et la surveillance, une fois que la machine tourne.</p>
-            <div class="sk reveal-up">
+      <p class="sk-intro">Le reporting et la surveillance, une fois que la machine tourne.</p>      <div class="sk reveal-up">
         <div class="sk-top"><span class="sk-n">01</span><span class="sk-slug">gsc-rapport-mensuel</span></div>
         <p class="sk-q">À quoi ressemble le mois écoulé, et qu'est-ce que ça veut dire ?</p>
         <p class="sk-data"><strong>Données&nbsp;:</strong> Mois courant vs M-1 vs même mois N-1. GA4 et PostHog si branchés.</p>
@@ -823,6 +842,14 @@ Ne jamais inventer un chiffre : si la donnée manque ou si le volume
 est trop faible pour conclure, dis-le explicitement.
 Indique toujours la période et le volume qui portent tes conclusions.</pre></div>
       </div>
+    </div></div>
+      <div class="sk-lock"><div class="sk-lock-card">
+        <p class="sk-lock-ic">🔒</p>
+        <h3>Les 19 autres skills sont dans le mail</h3>
+        <p>Vous venez de voir le niveau de détail&nbsp;: la méthode complète et le prompt de 200 mots, pour chaque skill. Laissez votre email et les 19 suivants s'ouvrent immédiatement sur cette page.</p>
+        <button class="sk-lock-btn" data-open-gate type="button">Débloquer les 20 skills</button>
+        <p class="sk-lock-note">Gratuit · déblocage instantané</p>
+      </div></div>
     </div>
     <div class="tip tip-v"><span class="tipico">🔑</span><p>Chaque skill impose la même règle&nbsp;: <strong>ne jamais inventer un chiffre</strong>. Quand la donnée manque, il le dit au lieu de l'estimer en silence. C'est ce qui rend un rapport présentable à un client.</p></div>
   </div>
@@ -923,10 +950,9 @@ Indique toujours la période et le volume qui portent tes conclusions.</pre></di
 </div>
 </section>
 </div>
-<div class="dcp-js"><script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Faut-il savoir coder ?", "acceptedAnswer": {"@type": "Answer", "text": "Non pour la voie Windsor : c'est une autorisation OAuth, comme quand vous connectez un outil à votre Google Analytics. La voie service account demande de créer un projet Google Cloud et de déposer un fichier JSON — comptez 20 minutes si c'est la première fois."}}, {"@type": "Question", "name": "Est-ce que Claude peut modifier mon site ou mon Search Console ?", "acceptedAnswer": {"@type": "Answer", "text": "Non. L'accès Search Console est en lecture seule. Claude ne peut rien changer dans GSC. Il peut publier sur votre site uniquement si vous branchez séparément l'API WordPress, et par défaut en brouillon."}}, {"@type": "Question", "name": "Quelle différence entre un MCP et un skill ?", "acceptedAnswer": {"@type": "Answer", "text": "Le MCP est le  tuyau  : il donne à Claude l'accès à vos données Search Console. Le skill est la  méthode  : il lui dit quoi en faire, dans quel ordre, avec quelles règles. Sans MCP, un skill n'a rien à analyser. Sans skill, Claude improvise une analyse différente à chaque fois."}}, {"@type": "Question", "name": "Ça marche avec Claude tout court, ou seulement Claude Code ?", "acceptedAnswer": {"@type": "Answer", "text": "Les deux. Le connecteur Windsor fonctionne dans l'application Claude. Claude Code ajoute la possibilité d'exécuter des scripts locaux et de versionner vos skills dans un dépôt Git — c'est ce qu'on utilise chez Décupler."}}, {"@type": "Question", "name": "Combien de données Search Console remonte ?", "acceptedAnswer": {"@type": "Answer", "text": "16 mois d'historique, avec un plafond de lignes par requête à l'API et un échantillonnage sur les requêtes rares. Pour un gros site, il faut segmenter par page ou par date. C'est une limite de Google, pas de Claude."}}]}</script></div>
+
+<div id="ai-content-gate" class="ai-popup-overlay"><div class="ai-popup-card"><span class="ai-popup-icon">🔌</span><h3 class="ai-popup-title">Débloquez les 20 skills</h3><p class="ai-popup-desc">Laissez votre email&nbsp;: les 19 skills verrouillés s'ouvrent tout de suite sur cette page, et vous recevez les fichiers prêts à installer.</p><iframe name="hidden_iframe" id="hidden_iframe" style="display:none"></iframe><form id="ai-popup-form" action="https://decupler.substack.com/api/v1/free" method="post" target="hidden_iframe"><input type="email" name="email" placeholder="votre@email.com" class="ai-popup-input" required><input type="hidden" name="first_url" value="https://decupler.substack.com"><input type="hidden" name="first_referrer" value="https://decupler.com"><button type="submit" class="ai-popup-submit">Débloquer les 20 skills (gratuit) →</button><p class="ai-popup-footer">🔒 Pas de spam. Désabonnement en 1 clic.</p></form><div id="ai-success-msg" class="ai-success-message">✅ C'est débloqué. Bonne lecture.</div></div></div>
+<div class="dcp-js"><script>document.addEventListener('DOMContentLoaded',function(){var p=document.getElementById('ai-content-gate'),f=document.getElementById('ai-popup-form'),s=document.getElementById('ai-success-msg'),i=document.getElementById('hidden_iframe'),sub=false;if(!p)return;var v=document.getElementById('sk-vault');function unlock(){if(v)v.classList.remove('locked')}if(localStorage.getItem('lmg_sub')==='true'||document.cookie.indexOf('lmg_sub=true')!==-1)unlock();document.querySelectorAll('[data-open-gate]').forEach(function(el){el.addEventListener('click',function(e){e.preventDefault();p.classList.add('active');document.body.classList.add('lmg-gated');document.body.style.overflow='hidden'})});function op(){if(localStorage.getItem('lmg_sub')==='true')return;if(document.cookie.indexOf('lmg_sub=true')!==-1)return;p.classList.add('active');document.body.classList.add('lmg-gated');document.body.style.overflow='hidden'}setTimeout(op,20000);function cl(){p.classList.remove('active');document.body.classList.remove('lmg-gated');document.body.style.overflow='auto'}if(f)f.addEventListener('submit',function(){sub=true;var b=f.querySelector('button[type=submit]');b.textContent='Validation…';b.style.opacity='0.7'});if(i)i.onload=function(){if(sub){f.style.display='none';s.style.display='block';localStorage.setItem('lmg_sub','true');document.cookie='lmg_sub=true; max-age=31536000; path=/';unlock();setTimeout(cl,1500);sub=false}};if(location.search.indexOf('reset=true')!==-1){localStorage.removeItem('lmg_sub');document.cookie='lmg_sub=; max-age=0; path=/'}});</script></div><div class="dcp-js"><script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Faut-il savoir coder ?", "acceptedAnswer": {"@type": "Answer", "text": "Non pour la voie Windsor : c'est une autorisation OAuth, comme quand vous connectez un outil à votre Google Analytics. La voie service account demande de créer un projet Google Cloud et de déposer un fichier JSON — comptez 20 minutes si c'est la première fois."}}, {"@type": "Question", "name": "Est-ce que Claude peut modifier mon site ou mon Search Console ?", "acceptedAnswer": {"@type": "Answer", "text": "Non. L'accès Search Console est en lecture seule. Claude ne peut rien changer dans GSC. Il peut publier sur votre site uniquement si vous branchez séparément l'API WordPress, et par défaut en brouillon."}}, {"@type": "Question", "name": "Quelle différence entre un MCP et un skill ?", "acceptedAnswer": {"@type": "Answer", "text": "Le MCP est le  tuyau  : il donne à Claude l'accès à vos données Search Console. Le skill est la  méthode  : il lui dit quoi en faire, dans quel ordre, avec quelles règles. Sans MCP, un skill n'a rien à analyser. Sans skill, Claude improvise une analyse différente à chaque fois."}}, {"@type": "Question", "name": "Ça marche avec Claude tout court, ou seulement Claude Code ?", "acceptedAnswer": {"@type": "Answer", "text": "Les deux. Le connecteur Windsor fonctionne dans l'application Claude. Claude Code ajoute la possibilité d'exécuter des scripts locaux et de versionner vos skills dans un dépôt Git — c'est ce qu'on utilise chez Décupler."}}, {"@type": "Question", "name": "Combien de données Search Console remonte ?", "acceptedAnswer": {"@type": "Answer", "text": "16 mois d'historique, avec un plafond de lignes par requête à l'API et un échantillonnage sur les requêtes rares. Pour un gros site, il faut segmenter par page ou par date. C'est une limite de Google, pas de Claude."}}]}</script></div>
 <div class="dcp-js"><script>(function(){function cu(el){var t=parseFloat(el.getAttribute('data-count'))||0,s=null,d=1200,suf=el.getAttribute('data-suffix')||'';function f(ts){if(!s)s=ts;var p=Math.min((ts-s)/d,1),e=1-Math.pow(1-p,3);el.textContent=Math.round(t*e)+suf;if(p<1)requestAnimationFrame(f)}requestAnimationFrame(f)}var els=document.querySelectorAll('.lm-mcp [data-count],.lm-mcp .reveal-up');if(!('IntersectionObserver'in window)){els.forEach(function(e){e.classList.add('in');if(e.hasAttribute('data-count'))e.textContent=e.getAttribute('data-count')+(e.getAttribute('data-suffix')||'')});return}var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){if(e.target.hasAttribute('data-count'))cu(e.target);e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.25});els.forEach(function(e){io.observe(e)})})();</script></div>
-
-<div id="ai-content-gate" class="ai-popup-overlay"><div class="ai-popup-card"><span class="ai-popup-icon">🔌</span><h3 class="ai-popup-title">Recevez les 20 skills</h3><p class="ai-popup-desc">Laissez votre email&nbsp;: je vous envoie les 20 skills prêts à installer, avec les prompts complets.</p><iframe name="hidden_iframe" id="hidden_iframe" style="display:none"></iframe><form id="ai-popup-form" action="https://decupler.substack.com/api/v1/free" method="post" target="hidden_iframe"><input type="email" name="email" placeholder="votre@email.com" class="ai-popup-input" required><input type="hidden" name="first_url" value="https://decupler.substack.com"><input type="hidden" name="first_referrer" value="https://decupler.com"><button type="submit" class="ai-popup-submit">Recevoir les 20 skills (gratuit) →</button><p class="ai-popup-footer">🔒 Pas de spam. Désabonnement en 1 clic.</p></form><div id="ai-success-msg" class="ai-success-message">✅ C'est parti. Bonne lecture.</div></div></div>
-<div class="dcp-js"><script>document.addEventListener('DOMContentLoaded',function(){var p=document.getElementById('ai-content-gate'),f=document.getElementById('ai-popup-form'),s=document.getElementById('ai-success-msg'),i=document.getElementById('hidden_iframe'),sub=false;if(!p)return;function op(){if(localStorage.getItem('lmg_sub')==='true')return;if(document.cookie.indexOf('lmg_sub=true')!==-1)return;p.classList.add('active');document.body.classList.add('lmg-gated');document.body.style.overflow='hidden'}setTimeout(op,25000);function cl(){p.classList.remove('active');document.body.classList.remove('lmg-gated');document.body.style.overflow='auto'}if(f)f.addEventListener('submit',function(){sub=true;var b=f.querySelector('button[type=submit]');b.textContent='Validation…';b.style.opacity='0.7'});if(i)i.onload=function(){if(sub){f.style.display='none';s.style.display='block';localStorage.setItem('lmg_sub','true');document.cookie='lmg_sub=true; max-age=31536000; path=/';setTimeout(cl,1500);sub=false}};if(location.search.indexOf('reset=true')!==-1){localStorage.removeItem('lmg_sub');document.cookie='lmg_sub=; max-age=0; path=/'}});</script></div><div class="dcp-js"><script>document.addEventListener('DOMContentLoaded',function(){document.querySelectorAll('.entry-header,.entry-title,.ast-single-entry-banner,.page-header').forEach(function(e){e&&e.remove&&e.remove()});});</script></div>
-
+<div class="dcp-js"><script>document.addEventListener('DOMContentLoaded',function(){document.querySelectorAll('.entry-header,.entry-title,.ast-single-entry-banner,.page-header').forEach(function(e){e&&e.remove&&e.remove()});});</script></div>
 <noscript><style>.lm-mcp .reveal-up{opacity:1!important;transform:none!important}</style></noscript>
