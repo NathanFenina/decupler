@@ -301,7 +301,7 @@ nav.post-navigation{display:none!important}
   background:var(--grn-bg);color:var(--grn-t);transition:background .3s,color .3s}
 .cib-ic .ic-svg{width:22px;height:22px}
 .cib-c:hover .cib-ic{background:var(--grn-t);color:#fff}
-.cib-c h4{font-family:var(--display);font-size:1rem;font-weight:800;margin:0 0 6px;color:var(--ink)}
+.cib-c h3{font-family:var(--display);font-size:1rem;font-weight:800;margin:0 0 6px;color:var(--ink)}
 .cib-c p{font-size:.86rem;color:var(--soft);margin:0;line-height:1.5}
 
 /* ── Étapes ─────────────────────────────────────────────────────────────── */
@@ -312,7 +312,7 @@ nav.post-navigation{display:none!important}
   border:1px solid rgba(123,92,250,.24);display:flex;align-items:center;justify-content:center;
   font-family:var(--mono);font-weight:700;font-size:.88rem;color:var(--vio-t)}
 .et-l .num::before{content:counter(et)}
-.et-l h4{font-family:var(--display);font-size:1.08rem;font-weight:800;margin:0 0 7px;color:var(--ink)}
+.et-l h3{font-family:var(--display);font-size:1.08rem;font-weight:800;margin:0 0 7px;color:var(--ink)}
 .et-l p{font-size:.92rem;color:var(--soft);margin:0;line-height:1.55}
 
 /* ── Encadré + FAQ ──────────────────────────────────────────────────────── */

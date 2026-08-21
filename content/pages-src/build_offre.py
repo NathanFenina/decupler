@@ -97,7 +97,7 @@ def cibles_html():
     manquants = [n for n, _, _ in A.CIBLES if n not in CIBLE_IC]
     assert not manquants, f'metier sans icone : {manquants}'
     return '<div class="cib">' + ''.join(
-        f'<div class="cib-c rise">{I.bloc(CIBLE_IC[nom], "cib-ic")}<h4>{nom}</h4><p>{txt}</p></div>'
+        f'<div class="cib-c rise">{I.bloc(CIBLE_IC[nom], "cib-ic")}<h3>{nom}</h3><p>{txt}</p></div>'
         for nom, ic, txt in A.CIBLES) + '</div>'
 
 
@@ -229,9 +229,9 @@ BODY = f"""{FONTS}
   <div class="eyebrow rise">Comment ça se passe</div>
   <h2 class="rise">Trois étapes, et vous décidez à la deuxième</h2>
   <div class="etapes">
-    <div class="et-l rise"><div class="num"></div><div><h4>On construit le site</h4><p>À partir de vos photos, de vos prestations et de ce que vos clients cherchent réellement dans votre ville. C'est notre métier de départ&nbsp;: on est <a href="https://decupler.com/agence-seo/">agence SEO</a> avant d'être fournisseur de sites. Vous n'avez rien à faire et rien à payer.</p></div></div>
-    <div class="et-l rise"><div class="num"></div><div><h4>On vous le montre en visio</h4><p>Quinze minutes, partage d'écran. Vous voyez le site fini. Si vous n'aimez pas, on s'arrête là et ça ne vous a rien coûté.</p></div></div>
-    <div class="et-l rise"><div class="num"></div><div><h4>On branche les agents</h4><p>Mise en ligne, numéro de suivi, <a href="https://decupler.com/fiche-gmb/">fiche Google</a>, agents choisis. Ensuite, chaque mois, vous recevez le compte de ce que le système a rattrapé.</p></div></div>
+    <div class="et-l rise"><div class="num"></div><div><h3>On construit le site</h3><p>À partir de vos photos, de vos prestations et de ce que vos clients cherchent réellement dans votre ville. C'est notre métier de départ&nbsp;: on est <a href="https://decupler.com/agence-seo/">agence SEO</a> avant d'être fournisseur de sites. Vous n'avez rien à faire et rien à payer.</p></div></div>
+    <div class="et-l rise"><div class="num"></div><div><h3>On vous le montre en visio</h3><p>Quinze minutes, partage d'écran. Vous voyez le site fini. Si vous n'aimez pas, on s'arrête là et ça ne vous a rien coûté.</p></div></div>
+    <div class="et-l rise"><div class="num"></div><div><h3>On branche les agents</h3><p>Mise en ligne, numéro de suivi, <a href="https://decupler.com/fiche-gmb/">fiche Google</a>, agents choisis. Ensuite, chaque mois, vous recevez le compte de ce que le système a rattrapé.</p></div></div>
   </div>
   {mini_cta('La deuxième étape ne vous engage à rien&nbsp;: vous voyez le site fini, et vous décidez ensuite.')}
 </div></section>
