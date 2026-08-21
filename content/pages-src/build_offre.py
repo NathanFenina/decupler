@@ -87,6 +87,17 @@ def agents_html():
 
 # L'emoji du catalogue sert de cle de lecture ; le rendu, lui, passe par le
 # trait, qui ne depend pas de la police emoji du systeme.
+# Les pages metier du cluster. Tant qu'elles sont en brouillon, les cartes ne
+# pointent nulle part : un lien vers un brouillon est un 404 pour un visiteur.
+# Basculer a True le jour ou elles passent en ligne.
+CLUSTER_EN_LIGNE = False
+CIBLE_LIEN = {
+    'Paysagistes': 'creation-site-internet-paysagiste',
+    'Artisans du bâtiment': 'creation-site-internet-artisan',
+    'Dentistes et cabinets': 'creation-site-internet-dentiste',
+    'Spas et instituts': 'creation-site-internet-institut-de-beaute',
+}
+
 CIBLE_IC = {'Paysagistes': 'paysagiste', 'Artisans du batiment': 'artisan',
             'Artisans du bâtiment': 'artisan', 'Dentistes et cabinets': 'dentiste',
             'Spas et instituts': 'spa', 'Agences immobilières': 'immobilier',
@@ -96,9 +107,14 @@ CIBLE_IC = {'Paysagistes': 'paysagiste', 'Artisans du batiment': 'artisan',
 def cibles_html():
     manquants = [n for n, _, _ in A.CIBLES if n not in CIBLE_IC]
     assert not manquants, f'metier sans icone : {manquants}'
-    return '<div class="cib">' + ''.join(
-        f'<div class="cib-c rise">{I.bloc(CIBLE_IC[nom], "cib-ic")}<h3>{nom}</h3><p>{txt}</p></div>'
-        for nom, ic, txt in A.CIBLES) + '</div>'
+    cartes = []
+    for nom, ic, txt in A.CIBLES:
+        titre = nom
+        if CLUSTER_EN_LIGNE and nom in CIBLE_LIEN:
+            titre = f'<a href="https://decupler.com/{CIBLE_LIEN[nom]}/">{nom}</a>'
+        cartes.append(f'<div class="cib-c rise">{I.bloc(CIBLE_IC[nom], "cib-ic")}'
+                      f'<h3>{titre}</h3><p>{txt}</p></div>')
+    return '<div class="cib">' + ''.join(cartes) + '</div>'
 
 
 RDV = 'https://calendly.com/fenina-nathan/consultationstrategique'
