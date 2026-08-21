@@ -13,9 +13,11 @@ from pathlib import Path
 RACINE = Path(__file__).resolve().parents[2]
 for d in ('content/data', 'content/components', 'scripts/lib'):
     sys.path.insert(0, str(RACINE / d))
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 import agents_locaux as A
 import cta_prompts as CTA
 import wpcss
+import icones as I
 
 SKIN = open(RACINE / 'content/skins/dcp.css', encoding='utf-8').read()
 FONTS = ('<link rel="stylesheet" href="https://fonts.googleapis.com/css2?'
@@ -70,23 +72,42 @@ def agents_html():
     out = ''
     for i, (cle, titre, chapo) in enumerate(A.ETAPES, 1):
         cards = ''.join(
-            f'<div class="ag2"><div class="pill">{nom.split()[0]}</div><h4>{nom}</h4>'
-            f'<p>{promesse}</p></div>'
+            f'<div class="ag2">{I.bloc(slug, "ag2-ic")}'
+            f'<div class="ag2-tx"><h4>{nom}</h4><p>{promesse}</p></div></div>'
             for slug, nom, _, promesse, meca, preuve in A.par_etape(cle))
         flip = ' flip' if i % 2 == 0 else ''
         alt = ' alt' if i % 2 == 1 else ''
         out += f"""
 <section class="dcp-sec{alt}"><div class="in">
-  <div class="step-lab rise"><div class="n">{i:02d}</div><h3>{titre}</h3></div>
+  <div class="step-lab rise">{I.bloc(cle, "si")}<div class="n">{i:02d}</div><h3>{titre}</h3></div>
   <p class="step-chapo rise">{chapo}</p>
   <div class="duo{flip}">{VIZ[cle]}<div class="rise">{cards}</div></div>
 </div></section>"""
     return out
 
+# L'emoji du catalogue sert de cle de lecture ; le rendu, lui, passe par le
+# trait, qui ne depend pas de la police emoji du systeme.
+CIBLE_IC = {'Paysagistes': 'paysagiste', 'Artisans du batiment': 'artisan',
+            'Artisans du bâtiment': 'artisan', 'Dentistes et cabinets': 'dentiste',
+            'Spas et instituts': 'spa', 'Agences immobilières': 'immobilier',
+            "Maisons d'hôtes": 'maison-hote'}
+
+
 def cibles_html():
+    manquants = [n for n, _, _ in A.CIBLES if n not in CIBLE_IC]
+    assert not manquants, f'metier sans icone : {manquants}'
     return '<div class="cib">' + ''.join(
-        f'<div class="cib-c rise"><p class="cib-ic">{ic}</p><h4>{nom}</h4><p>{txt}</p></div>'
+        f'<div class="cib-c rise">{I.bloc(CIBLE_IC[nom], "cib-ic")}<h4>{nom}</h4><p>{txt}</p></div>'
         for nom, ic, txt in A.CIBLES) + '</div>'
+
+
+RDV = 'https://calendly.com/fenina-nathan/consultationstrategique'
+
+
+def mini_cta(phrase, libelle='Voir mon site avant de décider'):
+    """Relance courte au fil de la page, pour ne pas renvoyer tout le monde au pied."""
+    return (f'<div class="dcp-mini rise"><p class="dcp-mini-t">{phrase}</p>'
+            f'<p class="dcp-mini-a"><a class="dcp-cta" href="{RDV}" rel="noopener">{libelle}</a></p></div>')
 
 FAQ = [
  ("C'est vraiment gratuit&nbsp;? Où est le piège&nbsp;?",
@@ -124,7 +145,7 @@ BODY = f"""{FONTS}
 <section class="dcp-hero"><div class="in dcp-grid">
   <div>
     <div class="eyebrow">Entreprises locales</div>
-    <h2>Votre site, <em>offert</em>.<br>Vous ne payez que ce qui vous rapporte.</h2>
+    <h2>Votre site, <em>offert</em>.<br>Vous ne payez que ce qui vous rapporte des clients.</h2>
     <p class="lead">On construit votre site, vous le voyez terminé, puis vous décidez. Ensuite les agents travaillent pendant que vous êtes sur le terrain&nbsp;: ils rattrapent les appels manqués, relancent les devis en attente, récoltent les avis.</p>
     <div class="dcp-act"><a class="dcp-cta" href="https://calendly.com/fenina-nathan/consultationstrategique" rel="noopener">Voir mon site avant de décider</a></div>
     <p class="dcp-under">Site 0&nbsp;€ · puis dès 199&nbsp;€/mois</p>
@@ -143,9 +164,9 @@ BODY = f"""{FONTS}
 </div></section>
 
 <section class="dcp-band"><div class="in">
-  <div class="cnt lost"><p class="lbl">Sans le système</p><p class="num">L'appel manqué ne laisse aucune trace</p><p class="cap">Le client ne laisse pas de message. Il compose le numéro suivant, et vous ne saurez jamais qu'il a appelé.</p></div>
+  <div class="cnt lost">{I.bloc("sms-appel-manque", "cnt-ic")}<p class="lbl">Sans le système</p><p class="num">L'appel manqué ne laisse aucune trace</p><p class="cap">Le client ne laisse pas de message. Il compose le numéro suivant, et vous ne saurez jamais qu'il a appelé.</p></div>
   <div class="arrow">→</div>
-  <div class="cnt won"><p class="lbl">Avec</p><p class="num">Le SMS part avant qu'il ait raccroché</p><p class="cap">À votre nom, avec le lien de votre formulaire. Vous rappelez quand vous descendez du toit.</p></div>
+  <div class="cnt won">{I.bloc("sms-formulaire", "cnt-ic")}<p class="lbl">Avec</p><p class="num">Le SMS part avant qu'il ait raccroché</p><p class="cap">À votre nom, avec le lien de votre formulaire. Vous rappelez quand vous descendez du toit.</p></div>
 </div></section>
 
 <section class="dcp-sec"><div class="in">
@@ -164,6 +185,10 @@ BODY = f"""{FONTS}
   <p class="lead rise">Vous n'êtes pas obligé de tout prendre. On démarre par les trois qui rapportent le plus vite, et on ajoute au fur et à mesure&nbsp;— c'est ce qui fait varier l'abonnement.</p>
 </div></section>
 {agents_html()}
+
+<section class="dcp-sec"><div class="in">
+  {mini_cta('Vous voulez savoir lesquels de ces agents changeraient quelque chose chez vous&nbsp;? On regarde ensemble, en quinze minutes.', 'Prendre 15 minutes')}
+</div></section>
 
 <section class="dcp-sec"><div class="in">
   <div class="eyebrow rise">Le prix</div>
@@ -198,6 +223,7 @@ BODY = f"""{FONTS}
     <div class="et-l rise"><div class="num"></div><div><h4>On vous le montre en visio</h4><p>Quinze minutes, partage d'écran. Vous voyez le site fini. Si vous n'aimez pas, on s'arrête là et ça ne vous a rien coûté.</p></div></div>
     <div class="et-l rise"><div class="num"></div><div><h4>On branche les agents</h4><p>Mise en ligne, numéro de suivi, <a href="https://decupler.com/fiche-gmb/">fiche Google</a>, agents choisis. Ensuite, chaque mois, vous recevez le compte de ce que le système a rattrapé.</p></div></div>
   </div>
+  {mini_cta('La deuxième étape ne vous engage à rien&nbsp;: vous voyez le site fini, et vous décidez ensuite.')}
 </div></section>
 
 <section class="dcp-sec alt"><div class="in">
@@ -209,13 +235,25 @@ BODY = f"""{FONTS}
 </div>
 {CTA.render('vous', href='https://calendly.com/fenina-nathan/consultationstrategique')}
 <div class="dcp-js"><script type="application/ld+json">{faq_ld}</script></div>
-<noscript><style>.dcp .rise{{opacity:1;transform:none}}</style></noscript>
+<noscript><style>.dcp .rise{{opacity:1;transform:none}}.dcp .ic-svg>*{{stroke-dashoffset:0}}</style></noscript>
 <div class="dcp-js"><script>
 (function(){{
   /* Le theme affiche son propre titre de page au-dessus du contenu : on le retire,
      comme le font deja les 15 autres pages. */
   document.querySelectorAll('.entry-header,.entry-title,.ast-single-entry-banner,.page-header')
     .forEach(function(e){{e&&e.remove&&e.remove()}});
+  /* Les bandes vont d'un bord a l'autre. On mesure la vraie gouttiere plutot
+     que d'utiliser 100vw, qui compte la barre de defilement et deborde. */
+  function bleed(){{
+    var d=document.querySelector('.dcp'); if(!d) return;
+    var r=d.getBoundingClientRect(), w=document.documentElement.clientWidth, st=document.documentElement.style;
+    st.setProperty('--dcp-bl', Math.min(400,Math.max(0,Math.round(r.left)))+'px');
+    st.setProperty('--dcp-br', Math.min(400,Math.max(0,Math.round(w-r.right)))+'px');
+  }}
+  bleed();
+  var t; addEventListener('resize',function(){{clearTimeout(t);t=setTimeout(bleed,120)}});
+  addEventListener('load',bleed);
+
   var els=document.querySelectorAll('.dcp .rise');
   function showAll(){{for(var i=0;i<els.length;i++)els[i].classList.add('vu')}}
   if(!('IntersectionObserver' in window)){{showAll();return}}

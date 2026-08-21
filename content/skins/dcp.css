@@ -13,6 +13,10 @@ body header.entry-header,.ast-single-entry-banner,.page-header{
 .site-content #primary,.entry-content,.site-content,#content,.ast-container{
   padding-top:0!important;padding-bottom:0!important;margin-top:0!important}
 .ast-separate-container .ast-article-single{padding:0!important;background:transparent!important}
+/* Les bandes debordent volontairement de la colonne de contenu : aucun
+   ancetre ne doit les rogner. */
+.site-content .ast-container,.site-content #primary,.entry-content,.site-content,#content,
+.ast-article-single,.ast-page-wrapper{overflow:visible!important}
 html,body,#page,.site,.ast-page-wrapper,#content,.site-content{background:#fbfbfe!important}
 .site-header,#masthead,header.site-header,.main-header-bar,.ast-primary-header-bar,
 .ast-above-header-wrap,.ast-main-header-wrap{
@@ -38,7 +42,7 @@ nav.post-navigation{display:none!important}
   --display:"Syne",system-ui,sans-serif; --body:"DM Sans",system-ui,sans-serif;
   --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,monospace;
   background:var(--ground);color:var(--ink);font-family:var(--body);
-  font-size:1.0625rem;line-height:1.65;position:relative;overflow:hidden;
+  font-size:1.0625rem;line-height:1.65;position:relative;
   -webkit-font-smoothing:antialiased}
 .dcp *{box-sizing:border-box}
 .dcp .in{max-width:960px;margin:0 auto;padding:0 32px}
@@ -64,10 +68,10 @@ nav.post-navigation{display:none!important}
 
 /* ── Hero ───────────────────────────────────────────────────────────────── */
 .dcp-hero{padding:70px 0 66px;position:relative}
-.dcp-hero::before{content:"";position:absolute;inset:-30% -20% auto -20%;height:150%;
+.dcp-hero::before{content:"";position:absolute;inset:-20% 12% auto 12%;height:150%;
   background:radial-gradient(closest-side,rgba(123,92,250,.13),transparent 72%);
   animation:dcpDrift 19s ease-in-out infinite alternate;pointer-events:none}
-@keyframes dcpDrift{to{transform:translate3d(8%,4%,0) scale(1.16)}}
+@keyframes dcpDrift{to{transform:translate3d(4%,4%,0) scale(1.1)}}
 .dcp-grid{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:center}
 .dcp-cta{display:inline-flex;align-items:center;gap:9px;background:var(--ink);color:#fff!important;
   text-decoration:none!important;font-weight:700;font-size:1rem;padding:16px 30px;border-radius:11px;
@@ -101,36 +105,53 @@ nav.post-navigation{display:none!important}
   color:var(--faint);text-align:center;margin:16px 0 0}
 
 /* ── Bande sombre ───────────────────────────────────────────────────────── */
-.dcp-band{background:var(--ink);color:#fff;padding:46px 0}
+.dcp-sec,.dcp-band,.dcp~.pcta{margin-left:calc(-1*var(--dcp-bl,0px));margin-right:calc(-1*var(--dcp-br,0px))}
+.dcp-band{background:var(--ink);color:#fff;padding:52px 0}
+/* Le conteneur des <script> : sans cette regle, c'est un bloc vide qui
+   pousse une bande blanche sous la derniere section. */
+.dcp-js{display:none}
 .dcp-band .in{display:grid;grid-template-columns:1fr auto 1fr;gap:28px;align-items:center}
 .cnt{text-align:center}
+.cnt-ic{width:36px;height:36px;border-radius:11px;display:grid;place-items:center;margin:0 auto 14px;
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.13)}
+.cnt-ic .ic-svg{width:19px;height:19px}
+.cnt.lost .cnt-ic{color:#ff8a9c}.cnt.won .cnt-ic{color:#00E5A0}
 .cnt .lbl{font-family:var(--mono);font-size:.75rem;letter-spacing:.11em;text-transform:uppercase;
   color:rgba(255,255,255,.5);margin:0 0 10px}
 .cnt .num{font-family:var(--display);font-weight:800;font-size:clamp(1.4rem,3.2vw,2rem);line-height:1.15;
   margin:0;text-wrap:balance}
 .cnt.lost .num{color:#ff8a9c}.cnt.won .num{color:#00E5A0}
 .cnt .cap{font-size:.84rem;color:rgba(255,255,255,.55);margin:10px 0 0}
-.arrow{font-family:var(--display);font-size:1.7rem;color:rgba(255,255,255,.3)}
+.arrow{font-family:var(--display);font-size:1.7rem;color:rgba(255,255,255,.3);
+  animation:dcpNudge 2.6s ease-in-out infinite}
+@keyframes dcpNudge{0%,100%{transform:translateX(0);opacity:.28}50%{transform:translateX(6px);opacity:.8}}
 
 /* ── Sections ───────────────────────────────────────────────────────────── */
 .dcp-sec{padding:60px 0;border-top:1px solid var(--edge)}
 .dcp-sec.alt{background:var(--surface)}
 .step-lab{display:flex;align-items:center;gap:11px;margin:0 0 8px}
-.step-lab .n{font-family:var(--mono);font-size:.77rem;font-weight:700;color:#fff;background:var(--ink);
-  border-radius:5px;padding:3px 8px}
+.step-lab .si{width:36px;height:36px;border-radius:11px;display:grid;place-items:center;
+  background:var(--ink);color:var(--grn);flex:0 0 auto}
+.step-lab .si .ic-svg{width:19px;height:19px}
+.step-lab .n{font-family:var(--mono);font-size:.79rem;font-weight:700;color:var(--faint);letter-spacing:.06em}
 .step-lab h3{font-family:var(--display);font-size:1.34rem;font-weight:800;margin:0;color:var(--ink)}
 .step-chapo{font-size:.97rem;color:var(--soft);margin:0 0 26px;max-width:62ch}
 .duo{display:grid;grid-template-columns:.9fr 1.1fr;gap:26px;align-items:start}
 .duo.flip>*:first-child{order:2}
-.ag2{background:var(--surface);border:1px solid var(--edge);border-radius:15px;padding:19px 21px;
+.ag2{display:grid;grid-template-columns:40px 1fr;gap:15px;align-items:start;
+  background:var(--surface);border:1px solid var(--edge);border-radius:15px;padding:19px 21px;
   transition:transform .25s,box-shadow .25s,border-color .25s}
+.ag2-ic{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;
+  background:var(--vio-bg);color:var(--vio-t);
+  transition:background .3s,color .3s,transform .3s cubic-bezier(.2,.8,.2,1)}
+.ag2-ic .ic-svg{width:21px;height:21px}
+.ag2:hover .ag2-ic{background:var(--vio-t);color:#fff;transform:rotate(-7deg) scale(1.07)}
 .dcp-sec.alt .ag2{background:var(--ground)}
 .ag2+.ag2{margin-top:14px}
 .ag2:hover{transform:translateY(-4px);border-color:var(--vio);box-shadow:0 22px 40px -22px rgba(20,21,43,.35)}
 .ag2 h4{font-family:var(--display);font-size:1.03rem;font-weight:800;margin:0 0 7px;color:var(--ink)}
+.ag2-tx{min-width:0}
 .ag2 p{font-size:.9rem;color:var(--soft);margin:0;line-height:1.55}
-.ag2 .pill{display:inline-block;font-family:var(--mono);font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;
-  color:var(--grn-t);background:var(--grn-bg);border-radius:20px;padding:3px 9px;margin-bottom:10px}
 
 /* ── Visuels : socle commun ─────────────────────────────────────────────── */
 .viz{background:var(--surface);border:1px solid var(--edge);border-radius:15px;padding:20px 22px;
@@ -220,6 +241,27 @@ nav.post-navigation{display:none!important}
 .dcp .rep-l:nth-of-type(4) b{animation-delay:.36s}
 @keyframes dcpMonte{from{opacity:0;transform:translateY(12px)}}
 
+/* ── Icones au trait ─────────────────────────────────────────────────────── */
+.dcp .ic-svg{display:block}
+/* Le trait se dessine a l'apparition. L'etat DESSINE est la valeur par defaut :
+   si le script ne tourne jamais, l'icone est complete, pas invisible. */
+.dcp .ic-svg>*{stroke-dasharray:170;stroke-dashoffset:0;
+  transition:stroke-dashoffset .85s cubic-bezier(.2,.8,.2,1) .12s}
+.dcp .rise:not(.vu) .ic-svg>*{stroke-dashoffset:170}
+
+/* ── Relance au milieu de la page ────────────────────────────────────────── */
+.dcp-mini{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px;
+  background:var(--ink);color:#fff;border-radius:19px;padding:26px 30px;margin-top:34px;
+  position:relative;overflow:hidden}
+.dcp-mini::after{content:"";position:absolute;top:-70%;right:-6%;width:280px;height:280px;pointer-events:none;z-index:0;
+  background:radial-gradient(circle,rgba(123,92,250,.55),transparent 66%)}
+.dcp-mini>*{position:relative;z-index:1}
+.dcp-mini-t{font-family:var(--display);font-size:1.12rem;font-weight:800;
+  line-height:1.35;margin:0;max-width:40ch;text-wrap:balance}
+.dcp-mini-a{position:relative;margin:0}
+.dcp-mini .dcp-cta{background:#fff;color:var(--ink)!important}
+.dcp-mini .dcp-cta:hover{color:var(--ink)!important;box-shadow:0 16px 30px -14px rgba(0,0,0,.55)}
+
 /* ── Prix ───────────────────────────────────────────────────────────────── */
 .prix{display:flex;flex-wrap:wrap;align-items:stretch;justify-content:center;gap:18px;margin-top:26px}
 .prix-c{background:var(--surface);border:1px solid var(--edge);border-radius:16px;padding:24px 28px;
@@ -245,7 +287,10 @@ nav.post-navigation{display:none!important}
   transition:transform .25s,border-color .25s}
 .dcp-sec.alt .cib-c{background:var(--ground)}
 .cib-c:hover{transform:translateY(-3px);border-color:var(--vio)}
-.cib-ic{font-size:1.6rem;line-height:1;margin:0 0 10px}
+.cib-ic{width:42px;height:42px;border-radius:13px;display:grid;place-items:center;margin:0 0 13px;
+  background:var(--grn-bg);color:var(--grn-t);transition:background .3s,color .3s}
+.cib-ic .ic-svg{width:22px;height:22px}
+.cib-c:hover .cib-ic{background:var(--grn-t);color:#fff}
 .cib-c h4{font-family:var(--display);font-size:1rem;font-weight:800;margin:0 0 6px;color:var(--ink)}
 .cib-c p{font-size:.86rem;color:var(--soft);margin:0;line-height:1.5}
 
@@ -280,6 +325,8 @@ nav.post-navigation{display:none!important}
 .dcp :focus-visible{outline:2px solid var(--vio);outline-offset:3px;border-radius:4px}
 
 @media(prefers-reduced-motion:reduce){
+  .dcp .ic-svg>*{stroke-dashoffset:0!important;transition:none}
+  .arrow{animation:none;opacity:.45}
   .dcp *,.dcp *::before,.dcp *::after{animation:none!important;transition:none!important}
   /* Sans animation, chaque element doit etre rendu dans son etat FINAL, visible. */
   .dcp .rise,.dcp .evt,.dcp .bub{opacity:1!important;transform:none!important}
