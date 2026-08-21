@@ -29,12 +29,12 @@ nav.post-navigation{display:none!important}
    « récupéré », le rouge que « perdu ». Jamais décoratifs.
    Motion : CSS pur, transform/opacity uniquement. Aucune bibliothèque.       */
 .dcp{
-  --ground:#fbfbfe; --surface:#ffffff; --ink:#14152b; --soft:#5a5f78; --faint:#8b90a8;
+  --ground:#fbfbfe; --surface:#ffffff; --ink:#14152b; --soft:#5a5f78; --faint:#626883;
   --edge:rgba(20,21,43,.09); --edge2:rgba(20,21,43,.05);
-  --vio:#7B5CFA; --vio2:#9d86ff; --vio-bg:rgba(123,92,250,.08);
-  --grn:#00B87F; --grn-bg:rgba(0,184,127,.09);
-  --red:#e0475f; --red-bg:rgba(224,71,95,.08);
-  --amb:#d97706;
+  --vio:#7B5CFA; --vio2:#9d86ff; --vio-t:#6946f9; --vio-bg:rgba(123,92,250,.08);
+  --grn:#00B87F; --grn-t:#007752; --grn-bg:rgba(0,184,127,.09);
+  --red:#e0475f; --red-t:#ca223c; --red-bg:rgba(224,71,95,.08);
+  --amb:#a15904;
   --display:"Syne",system-ui,sans-serif; --body:"DM Sans",system-ui,sans-serif;
   --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,monospace;
   background:var(--ground);color:var(--ink);font-family:var(--body);
@@ -44,11 +44,11 @@ nav.post-navigation{display:none!important}
 .dcp .in{max-width:960px;margin:0 auto;padding:0 32px}
 .dcp h2{font-family:var(--display);font-size:clamp(1.75rem,3.7vw,2.6rem);font-weight:800;line-height:1.08;
   letter-spacing:-.026em;margin:0 0 16px;text-wrap:balance;color:var(--ink)}
-.dcp h2 em{font-style:normal;color:var(--vio)}
+.dcp h2 em{font-style:normal;color:var(--vio-t)}
 .dcp p{margin:0 0 16px}
 .dcp .lead{font-size:1.04rem;color:var(--soft);max-width:60ch}
-.dcp .eyebrow{display:inline-block;font-family:var(--mono);font-size:.66rem;font-weight:700;letter-spacing:.11em;
-  text-transform:uppercase;color:var(--vio);background:var(--vio-bg);border:1px solid rgba(123,92,250,.2);
+.dcp .eyebrow{display:inline-block;font-family:var(--mono);font-size:.77rem;font-weight:700;letter-spacing:.11em;
+  text-transform:uppercase;color:var(--vio-t);background:var(--vio-bg);border:1px solid rgba(123,92,250,.2);
   border-radius:20px;padding:5px 13px;margin:0 0 18px}
 
 /* ── Reveal au scroll ────────────────────────────────────────────────────
@@ -74,37 +74,37 @@ nav.post-navigation{display:none!important}
   transition:transform .2s,box-shadow .2s}
 .dcp-cta:hover{transform:translateY(-2px);box-shadow:0 16px 30px -14px rgba(20,21,43,.6);color:#fff!important}
 .dcp-cta::after{content:"\2192"}
-.dcp-under{font-family:var(--mono);font-size:.7rem;letter-spacing:.05em;text-transform:uppercase;
+.dcp-under{font-family:var(--mono);font-size:.75rem;letter-spacing:.05em;text-transform:uppercase;
   color:var(--faint);margin:15px 0 0}
 
 /* ── Le téléphone qui rejoue la scène ───────────────────────────────────── */
-.phone{position:relative;width:236px;margin:0 auto;aspect-ratio:9/17.5;background:#0d0e1c;
+.phone{position:relative;width:236px;margin:0 auto;aspect-ratio:9/19.5;background:#0d0e1c;
   border-radius:31px;padding:11px;box-shadow:0 30px 60px -22px rgba(20,21,43,.5),0 0 0 1px rgba(20,21,43,.1)}
 .phone-scr{position:relative;height:100%;background:linear-gradient(175deg,#f3f4fb,#e9ebf7);
   border-radius:21px;overflow:hidden;display:flex;flex-direction:column}
 .phone-top{height:22px;display:flex;align-items:center;justify-content:center;flex:0 0 auto}
 .phone-notch{width:62px;height:15px;background:#0d0e1c;border-radius:0 0 9px 9px}
-.phone-body{flex:1;padding:12px 11px;display:flex;flex-direction:column;gap:9px}
-.evt{border-radius:12px;padding:10px 11px;font-size:.7rem;line-height:1.4;opacity:0;
+.phone-body{flex:1;padding:12px 11px;display:flex;flex-direction:column;gap:8px}
+.evt{border-radius:12px;padding:10px 11px;font-size:.75rem;line-height:1.4;opacity:0;
   transform:translateY(9px);animation:dcpPop .7s cubic-bezier(.2,.8,.2,1) forwards}
-.evt b{display:block;font-size:.74rem;margin-bottom:2px}
+.evt b{display:block;font-size:.79rem;margin-bottom:2px}
 .evt-call{background:#fff;border:1px solid var(--edge);animation-delay:.5s}
 .evt-call b{color:var(--ink)}.evt-call span{color:var(--faint)}
 .evt-miss{background:var(--red-bg);border:1px solid rgba(224,71,95,.24);animation-delay:1.6s}
-.evt-miss b{color:var(--red)}.evt-miss span{color:#a4586a}
+.evt-miss b{color:var(--red-t)}.evt-miss span{color:#9f5567}
 .evt-sms{background:var(--grn-bg);border:1px solid rgba(0,184,127,.26);animation-delay:2.9s;margin-top:auto}
-.evt-sms b{color:var(--grn)}.evt-sms span{color:#3f7566}
-.evt-tag{display:block;width:fit-content;font-family:var(--mono);font-size:.55rem;letter-spacing:.07em;
+.evt-sms b{color:var(--grn-t)}.evt-sms span{color:#3f7566}
+.evt .evt-tag{display:block;width:fit-content;white-space:nowrap;font-family:var(--mono);font-size:.75rem;letter-spacing:.07em;
   text-transform:uppercase;background:var(--grn);color:#04231a;border-radius:4px;padding:3px 7px;margin-top:9px}
 @keyframes dcpPop{to{opacity:1;transform:none}}
-.phone-cap{font-family:var(--mono);font-size:.63rem;letter-spacing:.06em;text-transform:uppercase;
+.phone-cap{font-family:var(--mono);font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;
   color:var(--faint);text-align:center;margin:16px 0 0}
 
 /* ── Bande sombre ───────────────────────────────────────────────────────── */
 .dcp-band{background:var(--ink);color:#fff;padding:46px 0}
 .dcp-band .in{display:grid;grid-template-columns:1fr auto 1fr;gap:28px;align-items:center}
 .cnt{text-align:center}
-.cnt .lbl{font-family:var(--mono);font-size:.63rem;letter-spacing:.11em;text-transform:uppercase;
+.cnt .lbl{font-family:var(--mono);font-size:.75rem;letter-spacing:.11em;text-transform:uppercase;
   color:rgba(255,255,255,.5);margin:0 0 10px}
 .cnt .num{font-family:var(--display);font-weight:800;font-size:clamp(1.4rem,3.2vw,2rem);line-height:1.15;
   margin:0;text-wrap:balance}
@@ -116,7 +116,7 @@ nav.post-navigation{display:none!important}
 .dcp-sec{padding:60px 0;border-top:1px solid var(--edge)}
 .dcp-sec.alt{background:var(--surface)}
 .step-lab{display:flex;align-items:center;gap:11px;margin:0 0 8px}
-.step-lab .n{font-family:var(--mono);font-size:.68rem;font-weight:700;color:#fff;background:var(--ink);
+.step-lab .n{font-family:var(--mono);font-size:.77rem;font-weight:700;color:#fff;background:var(--ink);
   border-radius:5px;padding:3px 8px}
 .step-lab h3{font-family:var(--display);font-size:1.34rem;font-weight:800;margin:0;color:var(--ink)}
 .step-chapo{font-size:.97rem;color:var(--soft);margin:0 0 26px;max-width:62ch}
@@ -129,8 +129,8 @@ nav.post-navigation{display:none!important}
 .ag2:hover{transform:translateY(-4px);border-color:var(--vio);box-shadow:0 22px 40px -22px rgba(20,21,43,.35)}
 .ag2 h4{font-family:var(--display);font-size:1.03rem;font-weight:800;margin:0 0 7px;color:var(--ink)}
 .ag2 p{font-size:.9rem;color:var(--soft);margin:0;line-height:1.55}
-.ag2 .pill{display:inline-block;font-family:var(--mono);font-size:.6rem;letter-spacing:.06em;text-transform:uppercase;
-  color:var(--grn);background:var(--grn-bg);border-radius:20px;padding:3px 9px;margin-bottom:10px}
+.ag2 .pill{display:inline-block;font-family:var(--mono);font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--grn-t);background:var(--grn-bg);border-radius:20px;padding:3px 9px;margin-bottom:10px}
 
 /* ── Visuels : socle commun ─────────────────────────────────────────────── */
 .viz{background:var(--surface);border:1px solid var(--edge);border-radius:15px;padding:20px 22px;
@@ -138,7 +138,7 @@ nav.post-navigation{display:none!important}
 .dcp-sec.alt .viz{background:var(--ground)}
 .viz-h{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:14px}
 .viz-h strong{font-family:var(--display);font-size:1rem;color:var(--ink)}
-.viz-h .tag{font-family:var(--mono);font-size:.72rem;font-weight:700;color:var(--grn)}
+.viz-h .tag{font-family:var(--mono);font-size:.77rem;font-weight:700;color:var(--grn-t)}
 .viz-row{display:flex;align-items:center;gap:10px;padding:7px 0;border-top:1px solid var(--edge);
   font-size:.84rem;color:var(--soft)}
 .viz-row:first-of-type{border-top:none}
@@ -163,25 +163,25 @@ nav.post-navigation{display:none!important}
 .dcp-sec.alt .bub.them{background:var(--surface)}
 .bub.you{background:var(--ink);color:#fff;align-self:flex-end;border-bottom-right-radius:4px}
 .bub:nth-child(2){animation-delay:.35s}.bub:nth-child(3){animation-delay:.7s}
-.bub .t{display:block;font-family:var(--mono);font-size:.58rem;letter-spacing:.05em;opacity:.55;margin-top:5px}
+.bub .t{display:block;font-family:var(--mono);font-size:.75rem;opacity:.55;margin-top:5px}
 
 /* Devis relancé */
 .dev-line{display:flex;align-items:center;gap:11px;padding:9px 0;border-top:1px solid var(--edge);font-size:.83rem}
 .dev-line:first-of-type{border-top:none}
-.dev-when{font-family:var(--mono);font-size:.68rem;color:var(--faint);flex:0 0 46px}
+.dev-when{font-family:var(--mono);font-size:.77rem;color:var(--faint);flex:0 0 46px}
 .dev-what{color:var(--soft);flex:1}
-.dev-st{font-family:var(--mono);font-size:.6rem;letter-spacing:.05em;text-transform:uppercase;
+.dev-st{font-family:var(--mono);font-size:.75rem;letter-spacing:.05em;text-transform:uppercase;
   border-radius:20px;padding:3px 9px;white-space:nowrap}
 .dev-st.wait{color:var(--amb);background:rgba(217,119,6,.1)}
-.dev-st.sent{color:var(--vio);background:var(--vio-bg)}
-.dev-st.won{color:var(--grn);background:var(--grn-bg)}
+.dev-st.sent{color:var(--vio-t);background:var(--vio-bg)}
+.dev-st.won{color:var(--grn-t);background:var(--grn-bg)}
 
 /* Avis */
 .rev{display:flex;align-items:center;gap:12px;padding:10px 0;border-top:1px solid var(--edge)}
 .rev:first-of-type{border-top:none}
 .rev-st{color:#f5a623;font-size:.8rem;letter-spacing:1px;flex:0 0 auto}
 .rev-tx{font-size:.83rem;color:var(--soft);flex:1;line-height:1.4}
-.rev-ok{font-family:var(--mono);font-size:.58rem;letter-spacing:.05em;text-transform:uppercase;color:var(--grn);
+.rev-ok{font-family:var(--mono);font-size:.75rem;letter-spacing:.05em;text-transform:uppercase;color:var(--grn-t);
   background:var(--grn-bg);border-radius:20px;padding:3px 8px;white-space:nowrap}
 
 /* Rapport */
@@ -201,7 +201,7 @@ nav.post-navigation{display:none!important}
 .dcp .photo:hover img{transform:scale(1.035)}
 .dcp .photo::after{content:"";position:absolute;inset:0;pointer-events:none;
   background:linear-gradient(180deg,transparent 55%,rgba(20,21,43,.22))}
-.dcp .photo-cap{font-family:var(--mono);font-size:.65rem;letter-spacing:.05em;text-transform:uppercase;
+.dcp .photo-cap{font-family:var(--mono);font-size:.75rem;letter-spacing:.01em;line-height:1.5;
   color:var(--faint);margin:12px 0 0}
 /* Le telephone chevauche la photo du hero */
 .dcp .hero-visuel{position:relative;padding-left:26px}
@@ -225,16 +225,16 @@ nav.post-navigation{display:none!important}
 .prix-c{background:var(--surface);border:1px solid var(--edge);border-radius:16px;padding:24px 28px;
   text-align:center;min-width:210px;flex:0 1 auto}
 .prix-c.zero{border-color:rgba(0,184,127,.4);background:var(--grn-bg)}
-.prix-c .lbl{font-family:var(--mono);font-size:.64rem;letter-spacing:.09em;text-transform:uppercase;
+.prix-c .lbl{font-family:var(--mono);font-size:.76rem;letter-spacing:.09em;text-transform:uppercase;
   color:var(--faint);margin:0 0 8px}
 .prix-c .val{font-family:var(--display);font-weight:800;font-size:2.1rem;line-height:1;margin:0;color:var(--ink)}
-.prix-c.zero .val{color:var(--grn)}
+.prix-c.zero .val{color:var(--grn-t)}
 .prix-c .sub{font-size:.82rem;color:var(--soft);margin:8px 0 0}
-.prix-plus{align-self:center;font-family:var(--display);font-size:1.7rem;font-weight:800;color:var(--vio)}
+.prix-plus{align-self:center;font-family:var(--display);font-size:1.7rem;font-weight:800;color:var(--vio-t)}
 .dcp table{width:100%;border-collapse:collapse;margin-top:24px;font-size:.92rem;background:var(--surface);
   border:1px solid var(--edge);border-radius:14px;overflow:hidden}
 .dcp th,.dcp td{padding:13px 16px;text-align:left;border-bottom:1px solid var(--edge)}
-.dcp thead th{font-family:var(--mono);font-size:.64rem;text-transform:uppercase;letter-spacing:.06em;
+.dcp thead th{font-family:var(--mono);font-size:.76rem;text-transform:uppercase;letter-spacing:.06em;
   color:var(--faint);background:var(--ground);font-weight:700}
 .dcp tbody tr:last-child td{border-bottom:none}
 .dcp td:first-child{font-weight:700;color:var(--ink)}
@@ -255,16 +255,17 @@ nav.post-navigation{display:none!important}
 .et-l:first-child{border-top:none}
 .et-l .num{counter-increment:et;width:44px;height:44px;border-radius:12px;background:var(--vio-bg);
   border:1px solid rgba(123,92,250,.24);display:flex;align-items:center;justify-content:center;
-  font-family:var(--mono);font-weight:700;font-size:.88rem;color:var(--vio)}
+  font-family:var(--mono);font-weight:700;font-size:.88rem;color:var(--vio-t)}
 .et-l .num::before{content:counter(et)}
 .et-l h4{font-family:var(--display);font-size:1.08rem;font-weight:800;margin:0 0 7px;color:var(--ink)}
 .et-l p{font-size:.92rem;color:var(--soft);margin:0;line-height:1.55}
 
 /* ── Encadré + FAQ ──────────────────────────────────────────────────────── */
-.dcp-tip{display:flex;gap:14px;background:var(--surface);border:1px solid var(--edge);border-left:3px solid var(--vio);
+.dcp-tip{display:flex;gap:14px;background:var(--surface);border:1px solid var(--edge);
   border-radius:12px;padding:18px 20px;margin-top:26px}
 .dcp-sec.alt .dcp-tip{background:var(--ground)}
-.dcp-tip .ic{font-size:1.2rem;line-height:1.3;flex:0 0 auto}
+.dcp-tip .ic{display:grid;place-items:center;width:34px;height:34px;border-radius:10px;
+  background:var(--vio-bg);font-size:1.05rem;line-height:1;flex:0 0 auto}
 .dcp-tip p{margin:0;font-size:.93rem;color:var(--soft);line-height:1.58}
 .dcp-tip strong{color:var(--ink)}
 .dcp details{background:var(--surface);border:1px solid var(--edge);border-radius:12px;margin-top:11px;overflow:hidden}
@@ -272,10 +273,10 @@ nav.post-navigation{display:none!important}
 .dcp summary{cursor:pointer;padding:16px 20px;font-family:var(--display);font-weight:700;font-size:1rem;
   color:var(--ink);list-style:none;display:flex;justify-content:space-between;gap:14px;align-items:center}
 .dcp summary::-webkit-details-marker{display:none}
-.dcp summary::after{content:"+";font-family:var(--mono);font-size:1.15rem;color:var(--vio);transition:transform .25s}
+.dcp summary::after{content:"+";font-family:var(--mono);font-size:1.15rem;color:var(--vio-t);transition:transform .25s}
 .dcp details[open] summary::after{transform:rotate(45deg)}
 .dcp details p{padding:0 20px 18px;margin:0;font-size:.93rem;color:var(--soft);line-height:1.6}
-.dcp a{color:var(--vio)}
+.dcp a{color:var(--vio-t)}
 .dcp :focus-visible{outline:2px solid var(--vio);outline-offset:3px;border-radius:4px}
 
 @media(prefers-reduced-motion:reduce){
