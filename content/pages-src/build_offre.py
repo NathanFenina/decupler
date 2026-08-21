@@ -249,7 +249,7 @@ BODY = f"""{FONTS}
 </div>
 {CTA.render('vous', href='https://calendly.com/fenina-nathan/consultationstrategique')}
 <div class="dcp-js"><script type="application/ld+json">{faq_ld}</script></div>
-<noscript><style>.dcp .rise{{opacity:1;transform:none}}.dcp .ic-svg>*{{stroke-dashoffset:0}}</style></noscript>
+<div class="dcp-js"><noscript><style>.dcp .rise{{opacity:1;transform:none}}.dcp .ic-svg>*{{stroke-dashoffset:0}}</style></noscript></div>
 <div class="dcp-js"><script>
 (function(){{
   /* Le theme affiche son propre titre de page au-dessus du contenu : on le retire,

@@ -123,6 +123,10 @@ nav.post-navigation{display:none!important}
 /* Le conteneur des <script> : sans cette regle, c'est un bloc vide qui
    pousse une bande blanche sous la derniere section. */
 .dcp-js{display:none}
+/* wpautop fabrique des <p> vides autour de nos blocs techniques. Ils sont
+   invisibles mais portent la marge basse du theme : 16px de blanc entre
+   le CTA et le pied de page. */
+.dcp~p,.entry-content>p:empty{margin:0!important;padding:0!important}
 .dcp-band .in{display:grid;grid-template-columns:1fr auto 1fr;gap:28px;align-items:center}
 .cnt{text-align:center}
 .cnt-ic{width:36px;height:36px;border-radius:11px;display:grid;place-items:center;margin:0 auto 14px;

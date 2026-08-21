@@ -166,7 +166,7 @@ def construis(slug):
 </div>
 {CTA.render('vous', href=ML.RDV)}
 <div class="dcp-js"><script type="application/ld+json">{faq_ld}</script></div>
-<noscript><style>.dcp .rise{{opacity:1;transform:none}}.dcp .ic-svg>*{{stroke-dashoffset:0}}</style></noscript>
+<div class="dcp-js"><noscript><style>.dcp .rise{{opacity:1;transform:none}}.dcp .ic-svg>*{{stroke-dashoffset:0}}</style></noscript></div>
 <div class="dcp-js"><script>
 (function(){{
   document.querySelectorAll('.entry-header,.entry-title,.ast-single-entry-banner,.page-header')
