@@ -151,9 +151,18 @@ nav.post-navigation{display:none!important}
 .dcp-sec.alt .ag2{background:var(--ground)}
 .ag2+.ag2{margin-top:14px}
 .ag2:hover{transform:translateY(-4px);border-color:var(--vio);box-shadow:0 22px 40px -22px rgba(20,21,43,.35)}
-.ag2 h4{font-family:var(--display);font-size:1.03rem;font-weight:800;margin:0 0 7px;color:var(--ink)}
+.ag2 h3,.ag2 h4{font-family:var(--display);font-size:1.03rem;font-weight:800;margin:0 0 7px;color:var(--ink)}
 .ag2-tx{min-width:0}
 .ag2 p{font-size:.9rem;color:var(--soft);margin:0;line-height:1.55}
+
+/* Grille de cartes agent, hors du duo visuel/cartes des pages pilier. */
+.ag-grille{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:26px}
+.ag-grille .ag2+.ag2{margin-top:0}
+/* Une carte « on ne le fera pas » : meme forme, autre signal. */
+.ag2.non .ag2-ic{background:var(--red-bg);color:var(--red-t)}
+.ag2.non:hover{border-color:var(--red)}
+.ag2.non:hover .ag2-ic{background:var(--red-t);color:#fff}
+.dcp-src{font-size:.84rem;color:var(--faint);margin:18px 0 0}
 
 /* ── Visuels : socle commun ─────────────────────────────────────────────── */
 .viz{background:var(--surface);border:1px solid var(--edge);border-radius:15px;padding:20px 22px;
@@ -346,7 +355,7 @@ nav.post-navigation{display:none!important}
   .dcp .photo img{transform:none!important}}
 @media(max-width:760px){
   .dcp .in{padding:0 20px}
-  .dcp-grid,.duo,.cib{grid-template-columns:1fr}
+  .dcp-grid,.duo,.cib,.ag-grille{grid-template-columns:1fr}
   .duo.flip>*:first-child{order:0}
   .viz{position:static}
   .dcp-band .in{grid-template-columns:1fr}
