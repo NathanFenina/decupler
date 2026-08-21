@@ -27,3 +27,7 @@ generated-images/
 .DS_Store
 .vscode/
 *.log
+
+# Skills tierces installees via `npx skills add` (reinstallables depuis skills-lock.json)
+.agents/
+.claude/skills/impeccable

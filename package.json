@@ -1,0 +1,15 @@
+{
+  "name": "decupler-atelier",
+  "private": true,
+  "description": "Dependances Node de l'atelier contenu : detecteur d'anti-patterns design (skill impeccable).",
+  "scripts": {
+    "design:check": "node .agents/skills/impeccable/scripts/detector/detect-antipatterns.mjs"
+  },
+  "dependencies": {
+    "css-select": "^7.0.0",
+    "css-tree": "^3.2.1",
+    "domutils": "^4.0.2",
+    "htmlparser2": "^12.0.0",
+    "puppeteer": "^25.8.0"
+  }
+}

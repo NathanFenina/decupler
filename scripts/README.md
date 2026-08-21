@@ -22,3 +22,20 @@ Branché en **MCP** directement dans Claude Code (pas un script ici) :
 ## Search Console
 Via un **service account** Google Cloud (API Search Console activée), clé JSON
 référencée dans `.env`. Détails dans `docs/setup-gsc.md` (créé en phase 3).
+
+## Contrôle design (skill `impeccable`)
+
+Installé via `npx skills add github.com/pbakaus/impeccable --skill impeccable`
+(le skill lui-même n'est pas commité — `skills-lock.json` permet de le
+réinstaller à l'identique ; `npm install` pour les dépendances du détecteur).
+
+Le détecteur d'anti-patterns lit un fichier HTML **avec ses `<style>` inline**,
+c'est-à-dire exactement ce que `wp_publish.py` envoie dans `entry_content` :
+
+```
+npm run design:check -- content/articles/offre-site-offert.html
+```
+
+Il complète `scripts/lib/wpcss.py` (qui vérifie que WordPress ne casse pas le
+balisage) : `wpcss` regarde la plomberie, `impeccable` regarde le rendu
+(contraste WCAG, tailles de texte, tics visuels d'UI générée).
