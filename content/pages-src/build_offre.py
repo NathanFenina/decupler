@@ -102,6 +102,9 @@ def cibles_html():
 
 
 RDV = 'https://calendly.com/fenina-nathan/consultationstrategique'
+# Date de derniere revision du contenu. A remonter a la main quand la page
+# change vraiment : une date qui bouge toute seule ne prouve rien.
+MAJ = '21 août 2026'
 
 
 def mini_cta(phrase, libelle='Voir mon site avant de décider'):
@@ -114,6 +117,11 @@ FAQ = [
   "Il n'y en a pas. La création du site ne vous coûte rien et vous ne payez rien tant que vous ne l'avez pas vu. "
   "On se rémunère sur l'abonnement mensuel, qui couvre l'hébergement et les agents. Si le site ne vous plaît pas, "
   "vous nous le dites et on en reste là."),
+ ("En quoi c'est différent d'une agence qui facture la création du site&nbsp;?",
+  "Une agence classique est payée à la livraison&nbsp;: son travail s'arrête le jour où le site est en ligne. "
+  "Ici, on n'est payé qu'ensuite, sur l'abonnement&nbsp;— donc on n'a aucun intérêt à livrer un site qui ne ramène "
+  "personne. C'est le même métier que notre <a href=\"https://decupler.com/agence-seo/\">agence SEO</a>, "
+  "avec un modèle économique inversé."),
  ("Pourquoi feriez-vous un site gratuitement&nbsp;?",
   "Parce qu'un site seul ne vaut plus grand-chose&nbsp;: n'importe qui peut en générer un aujourd'hui. "
   "Ce qui a de la valeur, c'est ce qui tourne derrière et qui vous ramène des clients. C'est là-dessus qu'on est payés, "
@@ -126,7 +134,9 @@ FAQ = [
   "Il prend le relais uniquement quand l'appel serait tombé dans le vide."),
  ("Vous filtrez les mauvais avis&nbsp;?",
   "Non, et méfiez-vous de ceux qui vous le proposent. Depuis 2026, Google interdit explicitement de trier les clients "
-  "selon leur note avant de les envoyer sur la fiche, et sanctionne jusqu'à la suspension complète du profil. "
+  "selon leur note avant de les envoyer sur la fiche "
+  "(<a href=\"https://support.google.com/business/answer/7091\" rel=\"nofollow noopener\" target=\"_blank\">règles de Google sur les avis</a>), "
+  "et sanctionne jusqu'à la suspension complète du profil. "
   "On demande l'avis à tous vos clients. En revanche, un SMS de satisfaction envoyé en fin d'intervention vous permet "
   "de rattraper un mécontent avant qu'il n'écrive&nbsp;— ça, c'est du service, et c'est parfaitement conforme."),
  ("Combien de temps avant d'avoir le site en ligne&nbsp;?",
@@ -144,9 +154,9 @@ BODY = f"""{FONTS}
 
 <section class="dcp-hero"><div class="in dcp-grid">
   <div>
-    <div class="eyebrow">Entreprises locales</div>
-    <h2>Votre site, <em>offert</em>.<br>Vous ne payez que ce qui vous rapporte des clients.</h2>
-    <p class="lead">On construit votre site, vous le voyez terminé, puis vous décidez. Ensuite les agents travaillent pendant que vous êtes sur le terrain&nbsp;: ils rattrapent les appels manqués, relancent les devis en attente, récoltent les avis.</p>
+    <h1><span class="k">Création de site internet pour artisan</span>Votre site, <em>offert</em>.<br>Vous ne payez que ce qui vous rapporte des clients.</h1>
+    <p class="lead"><strong>La création de votre site internet ne vous est pas facturée&nbsp;:</strong> on le construit, vous le voyez terminé, puis vous décidez. Vous ne payez ensuite qu'un abonnement mensuel — hébergement et agents — à partir de 199&nbsp;€. Pour un artisan ou une entreprise locale, c'est le seul modèle où le prestataire n'est payé que si le site rapporte des clients.</p>
+    <p class="lead">Pendant que vous êtes sur le terrain, les agents rattrapent les appels manqués, relancent les devis en attente et récoltent les avis.</p>
     <div class="dcp-act"><a class="dcp-cta" href="https://calendly.com/fenina-nathan/consultationstrategique" rel="noopener">Voir mon site avant de décider</a></div>
     <p class="dcp-under">Site 0&nbsp;€ · puis dès 199&nbsp;€/mois</p>
   </div>
@@ -176,13 +186,13 @@ BODY = f"""{FONTS}
   <div class="photo rise"><img src="https://decupler.com/wp-content/uploads/2026/08/offre-probleme.jpg" alt="Un téléphone qui sonne dans un atelier vide : l'appel manqué que personne ne rattrape" width="1536" height="1024" loading="lazy" decoding="async"></div>
   <p class="photo-cap rise">Le lead le moins cher de votre année, c'est celui qui vous appelait déjà.</p>
   <p class="lead rise">Et ce n'est pas qu'une affaire d'appels. Le devis parti la semaine dernière qui n'a jamais reçu de réponse. Le rendez-vous que le client a oublié. Les deux cents clients satisfaits qui n'ont jamais laissé l'avis qui vous en aurait amené un de plus.</p>
-  <div class="dcp-tip rise"><div class="ic">💡</div><p>Un joli site ne bouche aucun de ces trous. C'est pour ça qu'on vous l'offre&nbsp;: <strong>la valeur est dans ce qui tourne derrière</strong>.</p></div>
+  <div class="dcp-tip rise"><div class="ic">💡</div><p>Un joli site ne bouche aucun de ces trous. C'est pour ça qu'on vous l'offre&nbsp;: <strong>la valeur est dans ce qui tourne derrière</strong>. La création d'un site internet d'artisan n'est plus le travail difficile&nbsp;— le travail difficile, c'est le <a href="https://decupler.com/seo-local/">SEO local</a> et ce qui se passe après le clic.</p></div>
 </div></section>
 
 <section class="dcp-sec alt"><div class="in">
   <div class="eyebrow rise">Ce qui travaille pour vous</div>
   <h2 class="rise">Les agents, rangés par endroit où l'argent fuit</h2>
-  <p class="lead rise">Vous n'êtes pas obligé de tout prendre. On démarre par les trois qui rapportent le plus vite, et on ajoute au fur et à mesure&nbsp;— c'est ce qui fait varier l'abonnement.</p>
+  <p class="lead rise">Un site internet d'artisan qui ne fait qu'exister ne sert à rien. Ce sont ces agents qui le rendent rentable. Vous n'êtes pas obligé de tout prendre&nbsp;: on démarre par les trois qui rapportent le plus vite, et on ajoute au fur et à mesure&nbsp;— c'est ce qui fait varier l'abonnement.</p>
 </div></section>
 {agents_html()}
 
@@ -192,8 +202,8 @@ BODY = f"""{FONTS}
 
 <section class="dcp-sec"><div class="in">
   <div class="eyebrow rise">Le prix</div>
-  <h2 class="rise">Un seul abonnement, qui monte avec ce que vous branchez</h2>
-  <p class="lead rise">Pas de frais d'installation, pas de facture de création, pas de surprise.</p>
+  <h2 class="rise">Combien coûte la création d'un site internet pour un artisan&nbsp;?</h2>
+  <p class="lead rise">Zéro. La création du site est offerte, et vous ne payez qu'un abonnement mensuel une fois le site validé. Pas de frais d'installation, pas de facture de création, pas de surprise.</p>
   <div class="prix rise">
     <div class="prix-c zero"><p class="lbl">Création du site</p><p class="val">0&nbsp;€</p><p class="sub">Vous le voyez avant de décider</p></div>
     <div class="prix-plus">+</div>
@@ -209,8 +219,8 @@ BODY = f"""{FONTS}
 
 <section class="dcp-sec alt"><div class="in">
   <div class="eyebrow rise">Pour qui</div>
-  <h2 class="rise">Les métiers où ça change le plus</h2>
-  <p class="lead rise">Le point commun&nbsp;: vous travaillez avec vos mains, vos patients ou vos clients devant vous&nbsp;— pas devant un écran à guetter les demandes.</p>
+  <h2 class="rise">Artisans, paysagistes, dentistes&nbsp;: les métiers où ça change le plus</h2>
+  <p class="lead rise">La création d'un site internet pour un artisan n'a rien à voir avec celle d'un site vitrine d'entreprise&nbsp;: ici, tout se joue sur la recherche locale et sur le téléphone. Le point commun de ces métiers&nbsp;: vous travaillez avec vos mains, vos patients ou vos clients devant vous&nbsp;— pas devant un écran à guetter les demandes.</p>
   <div class="photo rise"><img src="https://decupler.com/wp-content/uploads/2026/08/offre-metiers.jpg" alt="La gérante d'un institut de beauté consulte son téléphone à l'accueil de son établissement" width="1536" height="1024" loading="lazy" decoding="async"></div>
   {cibles_html()}
 </div></section>
@@ -230,6 +240,10 @@ BODY = f"""{FONTS}
   <div class="eyebrow rise">FAQ</div>
   <h2 class="rise">Les questions qu'on nous pose</h2>
   {faq_html}
+  <div class="dcp-sign rise">
+    <p class="dcp-sign-t">Écrit par <strong>Nathan Fenina</strong>, fondateur de <strong>Décupler</strong>, agence SEO et GEO. On construit des sites d'artisans et d'entreprises locales, et on les fait remonter&nbsp;— d'abord sur Google, ensuite dans les réponses des IA. Voir <a href="https://decupler.com/cas-clients/">nos cas clients</a> et notre approche de la <a href="https://decupler.com/visibilite-llm/">visibilité dans les LLM</a>.</p>
+    <p class="dcp-sign-d">Dernière mise à jour&nbsp;: {MAJ}</p>
+  </div>
 </div></section>
 
 </div>
