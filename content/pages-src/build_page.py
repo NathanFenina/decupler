@@ -23,6 +23,8 @@ import pages_cluster as PC
 import cta_prompts as CTA
 import wpcss
 import icones as I
+sys.path.insert(0, str(RACINE / 'content/components'))
+from visuels import VIZ
 
 SKIN = open(RACINE / 'content/skins/dcp.css', encoding='utf-8').read()
 FONTS = ('<link rel="stylesheet" href="https://fonts.googleapis.com/css2?'
@@ -44,7 +46,13 @@ def _cartes(items, balise='h3', classe=''):
 
 
 def hero(d, page):
-    img, alt = d['image']
+    visuel = ''
+    if d.get('image'):
+        img, alt = d['image']
+        visuel = (f'<div class="photo"><img src="{img}" alt="{alt}" width="1536" height="1024" '
+                  f'loading="eager" decoding="async"></div>')
+    elif d.get('viz'):
+        visuel = VIZ[d['viz']].replace(' rise', '')
     tel = ''
     if d.get('phone'):
         lignes = ''
@@ -62,8 +70,8 @@ def hero(d, page):
     <div class="dcp-act"><a class="dcp-cta" href="{PC.RDV}" rel="noopener">{d.get('cta', 'Voir mon site avant de décider')}</a></div>
     <p class="dcp-under">{d.get('sous_cta', 'Site 0&nbsp;€ · puis dès 199&nbsp;€/mois')}</p>
   </div>
-  <div class="hero-visuel">
-    <div class="photo"><img src="{img}" alt="{alt}" width="1536" height="1024" loading="eager" decoding="async"></div>
+  <div class="hero-visuel{' seul' if not d.get('image') else ''}">
+    {visuel}
     {tel}
   </div>
 </div></section>"""
@@ -190,7 +198,17 @@ def faq(d, page):
 </div></section>"""
 
 
-BLOCS = {'hero': hero, 'bande': bande, 'texte': texte, 'reponse': reponse, 'cartes': cartes,
+def visuel(d, page):
+    alt = ' alt' if d.get('alt') else ''
+    return f"""<section class="dcp-sec{alt}"><div class="in">
+  <div class="eyebrow rise">{d['eyebrow']}</div>
+  <h2 class="rise">{d['h2']}</h2>
+  {''.join(f'<p class="lead rise">{t}</p>' for t in d.get('paras', []))}
+  <div class="viz-seul rise">{VIZ[d['viz']]}</div>
+</div></section>"""
+
+
+BLOCS = {'hero': hero, 'visuel': visuel, 'bande': bande, 'texte': texte, 'reponse': reponse, 'cartes': cartes,
          'etapes': etapes, 'tableau': tableau, 'agents': agents, 'relance': relance, 'faq': faq}
 
 

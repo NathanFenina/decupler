@@ -813,4 +813,616 @@ PAGES = {
        ])),
     ]),
 
+# ══ Pages agent (vente) — pas de volume de recherche, maillées depuis l'offre ══
+
+"agent-fiche-google": dict(
+    mot_cle="optimisation fiche google",
+    titre_seo="Optimisation de la fiche Google : l'agent Décupler",
+    meta=("On complète votre fiche Google sur tous les critères que Google regarde, avec le "
+          "vocabulaire que vos clients tapent. Inclus dans l'offre site offert."),
+    signature=SIG_AVIS,
+    sections=[
+     ('hero', dict(
+       kicker="Agent · Optimisation de la fiche Google",
+       h1="Une fiche remplie à moitié<br>ne remonte <em>jamais</em>.",
+       leads=["<strong>À distance égale, c'est la fiche la plus complète qui passe devant.</strong> Catégories, "
+              "services, zones desservies, horaires, photos, description&nbsp;: chaque champ vide est un point que "
+              "votre concurrent a et que vous n'avez pas.",
+              "On remplit les seize critères que Google regarde, avec le vocabulaire que vos clients tapent "
+              "réellement&nbsp;— pas celui de votre plaquette."],
+       cta="Faire auditer ma fiche", sous_cta="Gratuit · sans engagement", viz="trouve")),
+     ('reponse', dict(
+       eyebrow="Ce que fait l'agent", h2="Concrètement, qu'est-ce qui change sur la fiche&nbsp;?",
+       reponse="On complète les champs que presque personne ne remplit&nbsp;: les services détaillés un par un, les "
+               "zones desservies commune par commune, les attributs, la description longue, et les catégories "
+               "secondaires. Puis on maintient&nbsp;: horaires exceptionnels, nouvelles photos, nouveaux services.",
+       paras=["La catégorie principale est le champ qui pèse le plus lourd, et c'est celui qui est le plus souvent "
+              "mal choisi. Un « entrepreneur général » qui pose des fenêtres ne sortira jamais sur « menuisier »."])),
+     ('cartes', dict(
+       alt=True, eyebrow="Les limites", h2="Ce que cet agent ne fera pas", classe='non',
+       items=[
+        ("mots-cles-locaux", "Vous promettre une position",
+         "Personne ne peut garantir une place dans le pack local&nbsp;: la distance entre le chercheur et vous compte, "
+         "et vous ne pouvez pas la changer. Ce qu'on peut faire, c'est ne plus perdre sur les critères qui dépendent "
+         "de vous."),
+        ("demande-avis", "Fabriquer des avis",
+         "Une fiche complète sans avis plafonne, mais la solution n'est pas d'en inventer. On branche la demande "
+         "d'avis à tous vos clients&nbsp;— voir "
+         "<a href=\"https://decupler.com/obtenir-des-avis-google/\">obtenir des avis Google</a>."),
+        ("citations-locales", "Ignorer le reste de votre présence",
+         "Une fiche parfaite avec une adresse écrite différemment sur trois annuaires reste bancale. C'est le travail "
+         "des <a href=\"https://decupler.com/citations-locales/\">citations locales</a>, qu'on branche en même temps."),
+       ])),
+     ('agents', dict(
+       eyebrow="Ce qui va avec", h2="La fiche n'est qu'une porte",
+       paras=["Être trouvé ne sert à rien si l'appel qui suit n'est pas décroché. Le catalogue complet des quinze "
+              f"agents est sur la <a href=\"{PILIER}\">page de l'offre</a>."],
+       slugs=["citations-locales", "posts-google", "mots-cles-locaux", "demande-avis"])),
+     ('relance', dict(texte="Je regarde votre fiche en direct et je vous dis ce qui manque, champ par champ.",
+                      libelle="Prendre 15 minutes")),
+     ('faq', dict(alt=True, eyebrow="FAQ", h2="Les questions qu'on nous pose", items=[
+        ("Ma fiche existe déjà, vous la refaites&nbsp;?",
+         "Non, on la complète. On ne crée une fiche que si vous n'en avez pas, ou si un doublon traîne&nbsp;— auquel "
+         "cas on fait fusionner, ce qui est souvent la première chose à régler."),
+        ("Combien de temps avant de voir un effet&nbsp;?",
+         "Les modifications sont visibles en quelques jours, l'effet sur les positions se juge sur quelques semaines. "
+         "C'est un des rares leviers locaux où le travail est fini une fois pour toutes, et non à recommencer."),
+        ("Vous avez besoin des accès à ma fiche&nbsp;?",
+         "Oui, en tant que gestionnaire&nbsp;— vous restez propriétaire et vous pouvez nous retirer l'accès à tout "
+         "moment. On ne demande jamais le transfert de propriété."),
+        ("C'est facturé combien&nbsp;?",
+         f"Rien à l'unité&nbsp;: cet agent fait partie de l'abonnement mensuel qui démarre à 199&nbsp;€, la création "
+         f"du site étant offerte. Voir <a href=\"{PILIER}\">le détail de l'offre</a>."),
+       ])),
+    ]),
+
+"agent-posts-google": dict(
+    mot_cle="posts google my business automatiques",
+    titre_seo="Posts Google automatiques : une photo, un post publié",
+    meta=("Vous photographiez déjà vos chantiers. Envoyez la photo par SMS : le post part sur votre "
+          "fiche Google, rédigé et optimisé. Inclus dans l'offre site offert."),
+    signature=SIG_AVIS,
+    sections=[
+     ('hero', dict(
+       kicker="Agent · Posts Google automatiques",
+       h1="Vous prenez déjà les photos.<br>Elles dorment dans votre <em>téléphone</em>.",
+       leads=["<strong>Une fiche Google qui publie est une fiche vivante&nbsp;;</strong> une fiche muette depuis huit "
+              "mois envoie le signal inverse, à Google comme au client qui hésite.",
+              "Le geste demandé tient en dix secondes&nbsp;: vous envoyez une photo de chantier par SMS. L'agent "
+              "écrit le texte avec le vocabulaire de votre métier et de votre ville, et publie."],
+       cta="Voir ce que ça donnerait", sous_cta="Site 0&nbsp;€ · puis dès 199&nbsp;€/mois",
+       phone=[("call", "Vous · 17:22", "📷 Photo du chantier"),
+              ("sms", "Post publié", "«&nbsp;Terrasse bois posée cette semaine à Vitry — 24&nbsp;m², essence "
+                                     "douglas.&nbsp;»", "En ligne")])),
+     ('reponse', dict(
+       eyebrow="Ce que fait l'agent", h2="Comment un post part depuis un SMS&nbsp;?",
+       reponse="Vous envoyez la photo à un numéro dédié, avec deux mots si vous voulez préciser. L'agent identifie la "
+               "prestation, écrit un texte court intégrant votre métier et votre commune, ajoute un bouton d'appel, "
+               "et publie sur votre fiche. Vous recevez le post en retour&nbsp;: un mot suffit à le faire retirer.",
+       paras=["Ce que ça vaut&nbsp;: chaque post ajoute à votre fiche du vocabulaire réel — un nom de prestation, une "
+              "commune, un matériau — que vous n'aviez nulle part ailleurs."])),
+     ('cartes', dict(
+       alt=True, eyebrow="Les limites", h2="Ce que cet agent ne fera pas", classe='non',
+       items=[
+        ("posts-google", "Publier sans vos photos",
+         "On ne va pas chercher d'images en banque. Si vous n'envoyez rien pendant deux mois, la fiche ne publie rien "
+         "— et c'est mieux que de publier des photos qui ne sont pas les vôtres."),
+        ("satisfaction", "Publier des avant/après dans tous les métiers",
+         "Dans la santé et l'esthétique, les avant/après tombent sous des règles strictes. Selon votre activité, "
+         "l'agent est configuré pour ne publier que du factuel&nbsp;: prestation, lieu, matériel."),
+        ("mots-cles-locaux", "Remplacer un vrai travail de mots-clés",
+         "Le post reprend le vocabulaire qu'on lui a donné. C'est la recherche de mots-clés locaux qui décide de ce "
+         "vocabulaire, pas l'agent de publication."),
+       ])),
+     ('agents', dict(
+       eyebrow="Ce qui va avec", h2="Publier ne suffit pas à être trouvé",
+       paras=[f"Le catalogue complet des quinze agents est sur la <a href=\"{PILIER}\">page de l'offre</a>."],
+       slugs=["fiche-google", "citations-locales", "mots-cles-locaux", "demande-avis"])),
+     ('relance', dict(texte="Envoyez-moi une photo de votre dernier chantier&nbsp;: je vous montre le post qui en sortirait.",
+                      libelle="Prendre 15 minutes")),
+     ('faq', dict(eyebrow="FAQ", h2="Les questions qu'on nous pose", items=[
+        ("Je dois envoyer une photo tous les combien&nbsp;?",
+         "Une à deux par mois suffisent à tenir une fiche vivante. Il n'y a aucune obligation&nbsp;: le reste du "
+         "système tourne même si vous n'envoyez jamais rien."),
+        ("Je peux relire avant publication&nbsp;?",
+         "Par défaut le post part directement et vous le recevez en retour. Si vous préférez valider avant, on bascule "
+         "l'agent en mode relecture&nbsp;— ça se règle en une minute."),
+        ("Et si la photo est ratée&nbsp;?",
+         "L'agent le dit et ne publie pas. Une photo floue ou mal cadrée sur une fiche fait plus de mal qu'une fiche "
+         "sans photo récente."),
+        ("Ça marche aussi pour les réseaux sociaux&nbsp;?",
+         "L'agent publie sur la fiche Google, qui est l'endroit où la décision se prend en recherche locale. On peut "
+         "brancher d'autres destinations, mais on ne commence jamais par là."),
+       ])),
+    ]),
+
+"agent-mots-cles-locaux": dict(
+    mot_cle="recherche de mots-clés locaux",
+    titre_seo="Mots-clés locaux : viser ce que vos clients tapent",
+    meta=("On arrête de se battre sur « plombier Paris » pour viser les requêtes de votre zone à "
+          "forte intention et faible concurrence. Inclus dans l'offre site offert."),
+    signature=SIG_AVIS,
+    sections=[
+     ('hero', dict(
+       kicker="Agent · Recherche de mots-clés locaux",
+       h1="« Plombier Paris » ne vous<br>amènera <em>jamais</em> un client.",
+       leads=["<strong>Le mot-clé évident est celui sur lequel tout le monde se bat, et personne de votre taille ne "
+              "gagne.</strong> Pendant ce temps, des dizaines de requêtes précises, à forte intention et à faible "
+              "concurrence, sont libres dans votre zone.",
+              "L'agent isole ces requêtes-là, et c'est elles que le site et la fiche vont viser."],
+       cta="Voir mes requêtes libres", sous_cta="Gratuit · sans engagement", viz="pilote")),
+     ('reponse', dict(
+       eyebrow="Ce que fait l'agent", h2="Qu'est-ce qu'un mot-clé local qui vaut le coup&nbsp;?",
+       reponse="Trois conditions&nbsp;: il est tapé dans votre zone, il exprime une intention d'achat et non une "
+               "curiosité, et sa difficulté est à votre portée. Une requête à 40 recherches par mois que vous prenez "
+               "vaut mieux qu'une requête à 3 000 sur laquelle vous serez toujours en page trois.",
+       paras=["C'est exactement le raisonnement qu'on applique à notre propre site&nbsp;: on ne vise que ce qu'on peut "
+              "prendre, et on le dit quand une requête est hors de portée."])),
+     ('etapes', dict(
+       alt=True, eyebrow="La méthode", h2="Comment on trie",
+       items=[
+        ("On part de vos prestations réelles",
+         "Pas d'une liste générique de métier. Ce que vous facturez vraiment, dans l'ordre de ce qui vous rapporte."),
+        ("On mesure volume, difficulté et intention",
+         "Chaque requête reçoit ses trois chiffres. Une requête sans intention commerciale est écartée même si le "
+         "volume est beau."),
+        ("On compare à votre autorité réelle",
+         "Un site neuf ne prend pas les mêmes requêtes qu'un site installé depuis dix ans. On vous dit franchement "
+         "ce qui est hors de portée, et pour combien de temps."),
+        ("On répartit sur les pages",
+         "Une requête par page, jamais deux pages sur la même&nbsp;: c'est comme ça qu'on évite de se cannibaliser "
+         "soi-même."),
+       ])),
+     ('agents', dict(
+       eyebrow="Ce qui va avec", h2="Savoir quoi viser, puis le viser",
+       paras=[f"Le catalogue complet des quinze agents est sur la <a href=\"{PILIER}\">page de l'offre</a>."],
+       slugs=["fiche-google", "citations-locales", "posts-google", "rapport-mensuel"])),
+     ('relance', dict(texte="Donnez-moi votre métier et votre ville&nbsp;: je vous sors les requêtes libres dans votre zone.",
+                      libelle="Prendre 15 minutes")),
+     ('faq', dict(eyebrow="FAQ", h2="Les questions qu'on nous pose", items=[
+        ("Vous garantissez la première page&nbsp;?",
+         "Non, et personne ne le peut honnêtement. Ce qu'on garantit, c'est de ne viser que des requêtes à votre "
+         "portée et de vous montrer chaque mois où vous en êtes."),
+        ("C'est un travail à refaire souvent&nbsp;?",
+         "Le socle tient des années. On le revoit quand vous ajoutez une prestation, quand vous élargissez votre zone, "
+         "ou quand les données montrent qu'une requête neuve est apparue."),
+        ("Vous utilisez quels outils&nbsp;?",
+         "Les données de volume et de difficulté viennent d'Ubersuggest, et les requêtes réelles de votre Search "
+         "Console une fois le site en ligne. Les deuxièmes valent mieux que les premières&nbsp;: ce sont vos clients."),
+        ("Et pour la visibilité dans les IA&nbsp;?",
+         "C'est un autre exercice, avec d'autres requêtes&nbsp;— voir notre approche de la "
+         "<a href=\"https://decupler.com/visibilite-llm/\">visibilité dans les LLM</a>."),
+       ])),
+    ]),
+
+"agent-sms-appel-manque": dict(
+    mot_cle="sms sur appel manqué",
+    titre_seo="SMS sur appel manqué : rattraper l'appel qu'on rate",
+    meta=("Vous ne décrochez pas : le client reçoit un SMS dans la seconde, à votre nom, avant "
+          "d'avoir composé le numéro suivant. Inclus dans l'offre site offert."),
+    signature=SIG_AGENT,
+    sections=[
+     ('hero', dict(
+       kicker="Agent · SMS sur appel manqué",
+       h1="Il ne laisse pas de message.<br>Il appelle le <em>suivant</em>.",
+       leads=["<strong>Moins d'un appelant sur trois laisse un message sur une boîte vocale.</strong> Les autres "
+              "raccrochent et composent le numéro d'après. Cet appel-là n'apparaît nulle part dans votre journée&nbsp;: "
+              "vous ne saurez jamais qu'il a existé.",
+              "L'agent envoie un SMS à votre nom dans la seconde qui suit, avec le lien de votre formulaire. Le client "
+              "vous attend au lieu d'appeler ailleurs."],
+       cta="Voir ce que ça donnerait", sous_cta="Site 0&nbsp;€ · puis dès 199&nbsp;€/mois",
+       phone=[("call", "06 12 •• •• 41", "Appel entrant · 14:32"),
+              ("miss", "Appel manqué", "Vous êtes sur un chantier"),
+              ("sms", "SMS envoyé", "«&nbsp;Ici Dupont Paysage. Je vous rappelle très vite.&nbsp;»",
+               "Client retenu")])),
+     ('bande', dict(
+       lbl_g="Sans l'agent", ic_g="sms-appel-manque", lbl_d="Avec", ic_d="sms-formulaire",
+       cnt=("L'appel manqué ne laisse aucune trace",
+            "Ni message, ni rappel, ni ligne dans une statistique. Le client est parti et vous n'avez rien vu.",
+            "Le SMS part avant qu'il ait raccroché",
+            "À votre nom, avec le lien de votre formulaire. Vous rappelez quand vous descendez du toit."))),
+     ('reponse', dict(
+       eyebrow="Ce que fait l'agent", h2="Comment un appel manqué déclenche un SMS&nbsp;?",
+       reponse="Un numéro de suivi, géographique et non surtaxé, se pose devant votre ligne et renvoie sur votre "
+               "portable. Si personne ne décroche après le nombre de sonneries que vous choisissez, le SMS part "
+               "automatiquement à l'appelant, signé de votre nom. Vous gardez votre numéro, votre téléphone et votre "
+               "forfait.",
+       paras=["C'est l'agent le plus simple du catalogue et souvent le premier qu'on branche&nbsp;: il ne demande "
+              "aucune décision, aucun apprentissage, et il travaille dès le premier appel raté."])),
+     ('cartes', dict(
+       alt=True, eyebrow="Les limites", h2="Ce que cet agent ne fera pas", classe='non',
+       items=[
+        ("agent-vocal", "Répondre à la place de quelqu'un",
+         "Il envoie un message écrit, il ne tient pas de conversation. Si vous voulez qu'une voix décroche et pose le "
+         "rendez-vous, c'est <a href=\"https://decupler.com/agent-vocal-ia/\">l'agent vocal</a>."),
+        ("relance-devis", "Qualifier la demande",
+         "Le SMS annonce que vous rappelez. Il ne demande ni le motif ni l'adresse&nbsp;: un message trop long ou "
+         "trop curieux fait fuir. La qualification, c'est le rôle du vocal ou de l'assistant du site."),
+        ("satisfaction", "Vous faire gagner du temps",
+         "Il ne réduit pas votre charge d'appels, il l'augmente&nbsp;— parce que vous rappelez des gens qui seraient "
+         "partis. C'est du chiffre d'affaires, pas du confort. Autant le dire avant."),
+       ])),
+     ('agents', dict(
+       eyebrow="Ce qui va avec", h2="Le SMS rattrape. Il ne convertit pas",
+       paras=[f"Le catalogue complet des quinze agents est sur la <a href=\"{PILIER}\">page de l'offre</a>."],
+       slugs=["agent-vocal", "sms-formulaire", "chatbot", "rappel-rdv"])),
+     ('relance', dict(texte="Quinze minutes&nbsp;: on regarde combien d'appels vous ratez vraiment dans une semaine.",
+                      libelle="Prendre 15 minutes")),
+     ('faq', dict(eyebrow="FAQ", h2="Les questions qu'on nous pose", items=[
+        ("Le numéro de suivi est-il surtaxé&nbsp;?",
+         "Non. C'est un numéro géographique classique&nbsp;: l'appelant paie un appel local. C'est l'inverse des "
+         "réseaux de dépannage qui facturent la mise en relation."),
+        ("Je dois changer de numéro sur mes devis et mon camion&nbsp;?",
+         "Non. Le numéro de suivi ne sert que sur le site et la fiche Google, là où on peut mesurer. Votre numéro "
+         "historique continue de fonctionner exactement comme avant."),
+        ("Et si l'appelant est un démarcheur&nbsp;?",
+         "Il reçoit un SMS et ça s'arrête là. Le coût est négligeable et le filtrage automatique ferait plus de dégâts "
+         "qu'il n'en éviterait&nbsp;: un vrai client mal classé, c'est un client perdu."),
+        ("Ça marche la nuit et le week-end&nbsp;?",
+         "Oui, et c'est là que ça rapporte le plus, parce que vos concurrents ne décrochent pas non plus. Vous pouvez "
+         "adapter le texte du message selon l'horaire."),
+       ])),
+    ]),
+
+"agent-sms-formulaire": dict(
+    mot_cle="alerte sms formulaire de contact",
+    titre_seo="SMS instantané sur formulaire : rappeler avant les autres",
+    meta=("Une demande arrive sur le site : vous avez le nom et le numéro par SMS, avant même "
+          "d'avoir ouvert votre boîte mail. Inclus dans l'offre site offert."),
+    signature=SIG_AGENT,
+    sections=[
+     ('hero', dict(
+       kicker="Agent · SMS instantané sur formulaire",
+       h1="Une demande par mail<br>se lit le soir. Trop <em>tard</em>.",
+       leads=["<strong>Celui qui rappelle en premier signe.</strong> Une demande envoyée à 10&nbsp;h et lue à "
+              "19&nbsp;h a eu le temps d'aller chez deux concurrents, qui ont peut-être déjà rappelé.",
+              "L'agent vous envoie le nom et le numéro par SMS dans la seconde. Le prospect, lui, reçoit une "
+              "confirmation immédiate&nbsp;: il sait que sa demande est arrivée quelque part."],
+       cta="Voir ce que ça donnerait", sous_cta="Site 0&nbsp;€ · puis dès 199&nbsp;€/mois",
+       phone=[("call", "Formulaire · 10:04", "Nouvelle demande"),
+              ("sms", "À rappeler", "Claire M. · 06 71 •• •• 09 · Devis salle de bain · Vitry",
+               "Reçu en 4 s")])),
+     ('reponse', dict(
+       eyebrow="Ce que fait l'agent", h2="Pourquoi un SMS plutôt qu'un e-mail&nbsp;?",
+       reponse="Parce qu'un SMS est lu dans les minutes qui suivent, et un e-mail professionnel le soir. Sur une "
+               "demande de devis, ce décalage décide souvent de qui obtient le rendez-vous. L'agent vous transmet le "
+               "nom, le numéro et le motif&nbsp;; le prospect reçoit une confirmation à votre nom.",
+       paras=["Le message qui part au prospect compte autant que celui qui vous arrive&nbsp;: il évite le doute — "
+              "« est-ce que ça a marché&nbsp;? » — qui pousse à remplir le formulaire du concurrent d'à côté."])),
+     ('cartes', dict(
+       alt=True, eyebrow="Les limites", h2="Ce que cet agent ne fera pas", classe='non',
+       items=[
+        ("chatbot", "Qualifier à votre place",
+         "Il transmet ce que le formulaire a collecté. Si votre formulaire pose trois questions, vous recevez trois "
+         "réponses. La qualification fine, c'est l'assistant du site&nbsp;— voir "
+         "<a href=\"https://decupler.com/chatbot-wordpress/\">chatbot WordPress</a>."),
+        ("relance-devis", "Relancer si vous ne rappelez pas",
+         "L'agent vous prévient une fois. Si la demande reste sans suite, c'est un autre agent qui prend le relais, "
+         "et il faut le brancher volontairement."),
+        ("satisfaction", "Trier les demandes sérieuses",
+         "Vous recevrez aussi des demandes creuses. On préfère vous laisser juger&nbsp;: un filtre automatique finit "
+         "toujours par écarter un vrai client."),
+       ])),
+     ('agents', dict(
+       eyebrow="Ce qui va avec", h2="Recevoir vite, puis ne pas laisser retomber",
+       paras=[f"Le catalogue complet des quinze agents est sur la <a href=\"{PILIER}\">page de l'offre</a>."],
+       slugs=["sms-appel-manque", "chatbot", "relance-devis", "rappel-rdv"])),
+     ('relance', dict(texte="On regarde votre formulaire actuel et ce qu'il devient une fois envoyé.",
+                      libelle="Prendre 15 minutes")),
+     ('faq', dict(eyebrow="FAQ", h2="Les questions qu'on nous pose", items=[
+        ("Je reçois le SMS sur combien de numéros&nbsp;?",
+         "Autant que vous voulez&nbsp;: vous, votre associé, votre assistante. Chacun peut avoir sa règle selon le "
+         "type de demande."),
+        ("Et si je suis en congés&nbsp;?",
+         "Le message envoyé au prospect s'adapte&nbsp;: on annonce un délai de rappel réaliste plutôt que de le "
+         "laisser attendre. Une attente annoncée fait beaucoup moins de dégâts qu'un silence."),
+        ("Ça remplace mon logiciel de devis&nbsp;?",
+         "Non, ça se pose devant. Vous continuez à travailler avec vos outils&nbsp;; l'agent ne fait que raccourcir le "
+         "délai entre la demande et votre rappel."),
+        ("Le prospect reçoit quoi exactement&nbsp;?",
+         "Un message court à votre nom qui confirme la réception et annonce quand vous rappelez. Pas de publicité, pas "
+         "de lien de suivi&nbsp;: juste ce qui le rassure."),
+       ])),
+    ]),
+
+"agent-relance-devis": dict(
+    mot_cle="relance de devis automatique",
+    titre_seo="Relance de devis : le trou le plus cher, et personne ne le bouche",
+    meta=("Vos devis restés sans réponse repartent à J+3 puis à J+7, poliment, sans que vous ayez "
+          "à y penser. Inclus dans l'offre site offert."),
+    signature=SIG_AGENT,
+    sections=[
+     ('hero', dict(
+       kicker="Agent · Relance de devis",
+       h1="Le devis part.<br>Et puis plus <em>rien</em>.",
+       leads=["<strong>C'est le trou le plus cher de votre activité, et le seul que personne ne bouche.</strong> "
+              "Vous avez passé deux heures à chiffrer, le client a dit qu'il regardait, et trois semaines plus tard "
+              "vous n'osez plus rappeler.",
+              "L'agent relance à J+3 puis à J+7, à votre nom, sur un ton neutre. Et il s'arrête net dès que le client "
+              "répond."],
+       cta="Voir ce que ça donnerait", sous_cta="Site 0&nbsp;€ · puis dès 199&nbsp;€/mois", viz="transforme")),
+     ('reponse', dict(
+       eyebrow="Ce que fait l'agent", h2="À quoi ressemble une relance qui ne braque pas&nbsp;?",
+       reponse="Trois lignes, à votre nom&nbsp;: le devis est toujours valable, vous restez disponible pour les "
+               "questions, et vous demandez simplement si le projet suit son cours. Aucune remise, aucune urgence "
+               "fabriquée, aucun rappel du montant. La séquence s'arrête dès la première réponse.",
+       paras=["La réponse la plus fréquente n'est pas un refus&nbsp;: c'est « ah oui, pardon, j'avais oublié de vous "
+              "répondre ». C'est exactement le devis que vous aviez perdu."])),
+     ('cartes', dict(
+       alt=True, eyebrow="Les limites", h2="Ce que cet agent ne fera pas", classe='non',
+       items=[
+        ("relance-devis", "Relancer indéfiniment",
+         "Deux relances, puis plus rien. Une troisième n'apporte presque aucune réponse supplémentaire et transforme "
+         "un suivi en harcèlement&nbsp;— ce qui vous coûte le client suivant, pas seulement celui-là."),
+        ("satisfaction", "Négocier ou baisser le prix",
+         "L'agent ne propose jamais de remise. Une relance qui s'accompagne d'une réduction apprend à vos clients à "
+         "attendre pour payer moins cher."),
+        ("chatbot", "Écrire à votre place la première fois",
+         "Vous relisez et validez le texte des deux relances avant qu'elles ne partent la première fois. Ensuite, "
+         "elles tournent seules."),
+       ])),
+     ('agents', dict(
+       eyebrow="Ce qui va avec", h2="Relancer, puis ne pas rater le rendez-vous",
+       paras=[f"Le catalogue complet des quinze agents est sur la <a href=\"{PILIER}\">page de l'offre</a>."],
+       slugs=["rappel-rdv", "reactivation", "sms-formulaire", "rapport-mensuel"])),
+     ('relance', dict(texte="Combien de devis avez-vous envoyés le mois dernier sans jamais avoir de réponse&nbsp;? "
+                            "On regarde ensemble ce que ça représente.",
+                      libelle="Prendre 15 minutes")),
+     ('faq', dict(eyebrow="FAQ", h2="Les questions qu'on nous pose", items=[
+        ("Comment l'agent sait qu'un devis est parti&nbsp;?",
+         "Soit vous le marquez envoyé dans votre outil, soit vous mettez l'agent en copie de l'e-mail. Les deux "
+         "fonctionnent&nbsp;; le second ne demande aucun changement d'habitude."),
+        ("Et si le client a déjà répondu par téléphone&nbsp;?",
+         "Vous marquez le devis comme traité et la séquence s'arrête. C'est le seul geste demandé, et il évite la "
+         "relance embarrassante."),
+        ("Le message vient de mon adresse&nbsp;?",
+         "Oui, à votre nom et depuis votre adresse. Le client ne voit jamais passer d'outil tiers."),
+        ("Ça marche pour les devis papier&nbsp;?",
+         "Oui, à condition d'avoir le contact du client dans le système. La relance part par e-mail ou par SMS selon "
+         "ce dont vous disposez."),
+       ])),
+    ]),
+
+"agent-rappel-rdv": dict(
+    mot_cle="rappel de rendez-vous automatique",
+    titre_seo="Rappel de rendez-vous : ne plus se déplacer pour rien",
+    meta=("SMS de confirmation à la prise de rendez-vous, rappel automatique 24 h avant. Le client "
+          "confirme la veille. Inclus dans l'offre site offert."),
+    signature=SIG_AGENT,
+    sections=[
+     ('hero', dict(
+       kicker="Agent · Confirmation et rappel de rendez-vous",
+       h1="Un créneau libéré la veille<br>se <em>recase</em>. Pas celui qu'on découvre vide.",
+       leads=["<strong>Un rendez-vous oublié coûte deux fois&nbsp;:</strong> l'heure perdue, et le client qui aurait "
+              "pu la prendre. Dans un cabinet, c'est un fauteuil vide&nbsp;; chez un artisan, ce sont trente "
+              "kilomètres pour rien.",
+              "L'agent confirme à la prise du rendez-vous, puis rappelle la veille avec la possibilité de décaler en "
+              "un mot. C'est le poste où le retour se voit le plus vite, parce qu'il se chiffre."],
+       cta="Voir ce que ça donnerait", sous_cta="Site 0&nbsp;€ · puis dès 199&nbsp;€/mois",
+       phone=[("call", "Confirmation", "Mardi 14&nbsp;h · noté"),
+              ("sms", "Rappel · la veille", "«&nbsp;Rendez-vous demain 14&nbsp;h. Répondez OK, ou DECALER.&nbsp;»",
+               "Confirmé")])),
+     ('reponse', dict(
+       eyebrow="Ce que fait l'agent", h2="Pourquoi deux messages et pas un&nbsp;?",
+       reponse="Le premier, à la prise du rendez-vous, ancre la date et donne une trace écrite&nbsp;: c'est lui qui "
+               "évite l'erreur de créneau. Le second, la veille, sert à décider&nbsp;— il propose explicitement de "
+               "décaler, parce qu'un client qui décale la veille vaut infiniment mieux qu'un client qui ne vient pas.",
+       paras=["La formulation compte&nbsp;: proposer le report ne fait pas annuler davantage. Ça fait annuler "
+              "<em>plus tôt</em>, ce qui est exactement ce qu'on cherche."])),
+     ('cartes', dict(
+       alt=True, eyebrow="Les limites", h2="Ce que cet agent ne fera pas", classe='non',
+       items=[
+        ("rappel-rdv", "Remplir le créneau libéré",
+         "Il vous prévient qu'un créneau se libère, il ne trouve pas le remplaçant. C'est la réactivation des clients "
+         "en attente qui fait ce travail, et il faut la brancher volontairement."),
+        ("satisfaction", "Rappeler indéfiniment",
+         "Une confirmation, un rappel. Un troisième message la veille au soir agace, et un client agacé annule."),
+        ("chatbot", "Gérer votre agenda à votre place",
+         "Il lit votre agenda, il ne le réorganise pas. Les arbitrages de planning restent les vôtres."),
+       ])),
+     ('agents', dict(
+       eyebrow="Ce qui va avec", h2="Le rendez-vous tenu n'est qu'une étape",
+       paras=[f"Le catalogue complet des quinze agents est sur la <a href=\"{PILIER}\">page de l'offre</a>."],
+       slugs=["agent-vocal", "relance-devis", "satisfaction", "reactivation"])),
+     ('relance', dict(texte="Combien de rendez-vous non honorés par mois&nbsp;? Multipliez par votre panier moyen&nbsp;: "
+                            "on regarde ce chiffre ensemble.",
+                      libelle="Prendre 15 minutes")),
+     ('faq', dict(eyebrow="FAQ", h2="Les questions qu'on nous pose", items=[
+        ("Ça se branche sur mon agenda&nbsp;?",
+         "Sur les agendas courants, oui. Sinon l'agent fonctionne sur les rendez-vous saisis dans son propre "
+         "calendrier, ce qui reste plus simple que de changer d'outil."),
+        ("SMS ou e-mail&nbsp;?",
+         "SMS par défaut&nbsp;: le taux de lecture n'a rien à voir. L'e-mail vient en complément quand le rendez-vous "
+         "demande des documents à préparer."),
+        ("Et si le client répond au SMS&nbsp;?",
+         "La réponse vous arrive. « OK » confirme automatiquement, « DECALER » vous alerte, et tout autre message "
+         "vous est transmis tel quel."),
+        ("Ça convient à un cabinet de santé&nbsp;?",
+         "Oui, et c'est là que ça rapporte le plus. Le message ne contient jamais le motif de la consultation&nbsp;: "
+         "date, heure, nom du praticien, rien d'autre."),
+       ])),
+    ]),
+
+"agent-reactivation": dict(
+    mot_cle="réactivation clients dormants",
+    titre_seo="Réactivation des clients dormants : le fichier qu'on oublie",
+    meta=("Vos clients d'il y a deux ans reçoivent un mot. Il y en a toujours quelques-uns qui "
+          "avaient un projet en tête. Inclus dans l'offre site offert."),
+    signature=SIG_AGENT,
+    sections=[
+     ('hero', dict(
+       kicker="Agent · Réactivation des clients dormants",
+       h1="Le client le moins cher<br>est celui que vous avez <em>déjà</em>.",
+       leads=["<strong>Vous avez un fichier de clients satisfaits que personne n'a rappelés depuis deux ans.</strong> "
+              "Ils n'ont pas changé de maison, ni de dents, ni de jardin. Certains ont un projet en tête et ne pensent "
+              "simplement plus à vous.",
+              "L'agent repère ceux qui n'ont pas eu de contact depuis douze mois et leur envoie un mot adapté à votre "
+              "métier. C'est le canal le moins cher de tous&nbsp;: la confiance est déjà faite."],
+       cta="Voir ce que ça donnerait", sous_cta="Site 0&nbsp;€ · puis dès 199&nbsp;€/mois", viz="capitalise")),
+     ('reponse', dict(
+       eyebrow="Ce que fait l'agent", h2="Qu'est-ce qu'on écrit à un client de 2024&nbsp;?",
+       reponse="Rien qui ressemble à une newsletter. Un message court, à votre nom, qui rappelle la prestation faite "
+               "chez lui et propose la suite logique&nbsp;: le contrôle annuel, l'entretien de saison, la reprise du "
+               "chantier laissé de côté. Un seul envoi, sans relance.",
+       paras=["Le taux de réponse d'une réactivation bien écrite dépasse celui de n'importe quelle campagne vers des "
+              "inconnus, pour une raison simple&nbsp;: ces gens vous connaissent et vous ont déjà payé."])),
+     ('cartes', dict(
+       alt=True, eyebrow="Les limites", h2="Ce que cet agent ne fera pas", classe='non',
+       items=[
+        ("reactivation", "Écrire à des gens qui ne vous connaissent pas",
+         "L'agent ne travaille que sur vos clients. Il n'achète aucun fichier et n'envoie rien à des contacts qui "
+         "n'ont jamais eu affaire à vous&nbsp;— c'est du démarchage, et ce n'est ni notre métier ni sans risque."),
+        ("satisfaction", "Relancer plusieurs fois",
+         "Un envoi, une fois par an au maximum. Un client dormant qui reçoit trois messages devient un client qui se "
+         "désabonne."),
+        ("posts-google", "Remplacer votre mémoire",
+         "L'agent envoie ce que vos données lui permettent d'envoyer. Si vos fiches clients sont vides, le message "
+         "sera générique — et un message générique ne réactive personne."),
+       ])),
+     ('agents', dict(
+       eyebrow="Ce qui va avec", h2="Réveiller, puis ne pas laisser retomber",
+       paras=[f"Le catalogue complet des quinze agents est sur la <a href=\"{PILIER}\">page de l'offre</a>."],
+       slugs=["relance-devis", "rappel-rdv", "demande-avis", "rapport-mensuel"])),
+     ('relance', dict(texte="Combien de clients avez-vous servis il y a deux ans et jamais recontactés depuis&nbsp;?",
+                      libelle="Prendre 15 minutes")),
+     ('faq', dict(eyebrow="FAQ", h2="Les questions qu'on nous pose", items=[
+        ("Et le RGPD&nbsp;?",
+         "Il s'agit de vos propres clients, contactés au sujet d'une prestation comparable à celle qu'ils ont déjà "
+         "achetée&nbsp;: c'est le cadre habituel de la prospection vers une clientèle existante. Chaque message porte "
+         "un moyen simple de ne plus être contacté, et l'agent le respecte."),
+        ("Je n'ai pas de fichier client propre.",
+         "C'est le cas le plus fréquent. On part de ce que vous avez&nbsp;— factures, agenda, carnet — et on construit "
+         "la base au fur et à mesure. Le premier envoi est souvent partiel&nbsp;; le deuxième ne l'est plus."),
+        ("Quel message pour mon métier&nbsp;?",
+         "Il change du tout au tout&nbsp;: contrôle annuel pour un cabinet, entretien de printemps pour un paysagiste, "
+         "révision de chaudière pour un chauffagiste. On l'écrit avec vous la première fois."),
+        ("À quelle fréquence&nbsp;?",
+         "Une fois par an et par client, pas plus. La réactivation est un levier puissant précisément parce qu'on ne "
+         "s'en sert pas souvent."),
+       ])),
+    ]),
+
+"agent-satisfaction": dict(
+    mot_cle="suivi de satisfaction client sms",
+    titre_seo="Suivi de satisfaction : savoir avant que ce soit écrit",
+    meta=("Un SMS de satisfaction part à la fin de l'intervention. S'il est négatif, vous êtes "
+          "alerté pour rappeler. Inclus dans l'offre site offert."),
+    signature=SIG_AVIS,
+    sections=[
+     ('hero', dict(
+       kicker="Agent · Suivi de satisfaction",
+       h1="Le rappeler le soir même,<br>ou le lire sur Google <em>samedi</em>.",
+       leads=["<strong>Un client mécontent qui n'a rien dit finit toujours par l'écrire quelque part.</strong> Entre "
+              "le moment où il repart contrarié et celui où il publie, il y a souvent deux ou trois jours&nbsp;: c'est "
+              "la seule fenêtre où vous pouvez encore agir.",
+              "L'agent envoie un SMS de satisfaction en fin d'intervention. S'il est négatif, vous êtes alerté "
+              "immédiatement. Rien n'est publié, rien n'est filtré&nbsp;: c'est du service."],
+       cta="Voir ce que ça donnerait", sous_cta="Site 0&nbsp;€ · puis dès 199&nbsp;€/mois",
+       phone=[("call", "Intervention terminée", "Mardi · 16:40"),
+              ("miss", "Retour reçu", "«&nbsp;Bof, la finition m'a déçu.&nbsp;»"),
+              ("sms", "Vous êtes alerté", "Rappelez M. Perrin aujourd'hui", "Avant Google")])),
+     ('reponse', dict(
+       eyebrow="Ce que fait l'agent", h2="En quoi c'est différent du filtrage d'avis&nbsp;?",
+       reponse="Le filtrage consiste à sonder d'abord et à n'envoyer sur Google que les clients contents&nbsp;: c'est "
+               "interdit, et sanctionné jusqu'à la suspension du profil. Ici, la demande d'avis part à tout le monde, "
+               "sans exception. Le SMS de satisfaction est un canal séparé, qui revient chez vous et ne conditionne "
+               "rien.",
+       paras=["La différence n'est pas cosmétique&nbsp;: dans un cas vous triez vos clients avant de les exposer, dans "
+              "l'autre vous rattrapez un mécontent. Beaucoup d'outils vendent le premier en l'appelant le second."])),
+     ('cartes', dict(
+       alt=True, eyebrow="Les limites", h2="Ce que cet agent ne fera pas", classe='non',
+       items=[
+        ("demande-avis", "Empêcher un avis négatif",
+         "Le client reste libre d'écrire ce qu'il veut, quand il veut. L'agent vous donne quelques jours d'avance, "
+         "pas un droit de veto."),
+        ("satisfaction", "Décider à votre place de rappeler",
+         "Il alerte. Le rappel, c'est vous, et c'est lui qui fait toute la valeur du dispositif. Un agent branché sans "
+         "personne pour rappeler ne sert à rien."),
+        ("reponse-avis", "Servir de conditionnement à la demande d'avis",
+         "Les deux agents sont indépendants par construction. On refuse de les enchaîner, même quand on nous le "
+         "demande&nbsp;— voir <a href=\"https://decupler.com/obtenir-des-avis-google/\">obtenir des avis Google</a>."),
+       ])),
+     ('agents', dict(
+       eyebrow="Ce qui va avec", h2="Savoir, répondre, et faire venir les bons avis",
+       paras=[f"Le catalogue complet des quinze agents est sur la <a href=\"{PILIER}\">page de l'offre</a>."],
+       slugs=["demande-avis", "reponse-avis", "rappel-rdv", "rapport-mensuel"])),
+     ('relance', dict(texte="On regarde vos derniers avis négatifs&nbsp;: combien auraient pu être rattrapés avant "
+                            "d'être écrits&nbsp;?",
+                      libelle="Prendre 15 minutes")),
+     ('faq', dict(eyebrow="FAQ", h2="Les questions qu'on nous pose", items=[
+        ("Le SMS demande une note&nbsp;?",
+         "Une question simple, en une ligne, avec une réponse en un mot ou une note courte. Plus le message est "
+         "court, plus il obtient de réponses."),
+        ("Le client comprend que ça ne va pas sur Google&nbsp;?",
+         "Le message le dit&nbsp;: c'est un retour direct à l'entreprise. Aucune ambiguïté, aucun lien vers une "
+         "plateforme."),
+        ("Et si personne ne répond&nbsp;?",
+         "C'est fréquent, et ce n'est pas grave&nbsp;: le dispositif ne coûte rien de plus. Ce sont les retours "
+         "négatifs qui font sa valeur, et ceux-là arrivent."),
+        ("Vous conservez les réponses&nbsp;?",
+         "Elles vous appartiennent et vous restent accessibles. Selon votre métier, on restreint ce qui peut être "
+         "demandé&nbsp;— dans la santé, par exemple, aucune question sur le soin lui-même."),
+       ])),
+    ]),
+
+"agent-rapport-mensuel": dict(
+    mot_cle="rapport mensuel agents",
+    titre_seo="Rapport mensuel : le compte de ce qui a été rattrapé",
+    meta=("Chaque mois, le compte exact de ce que le système a récupéré : appels rattrapés, devis "
+          "relancés, avis, rendez-vous. Inclus dans l'offre site offert."),
+    signature=SIG_AGENT,
+    sections=[
+     ('hero', dict(
+       kicker="Agent · Rapport mensuel",
+       h1="Sans preuve chiffrée,<br>un abonnement finit <em>résilié</em>.",
+       leads=["<strong>C'est vrai, et c'est sain.</strong> Un service qu'on paie tous les mois sans jamais voir ce "
+              "qu'il rapporte finit toujours par sauter, souvent au mauvais moment.",
+              "Chaque mois, vous recevez le compte&nbsp;: appels rattrapés, devis relancés, avis obtenus, rendez-vous "
+              "pris. Pas un tableau de bord à consulter&nbsp;— quatre chiffres, dans un message."],
+       cta="Voir un rapport type", sous_cta="Site 0&nbsp;€ · puis dès 199&nbsp;€/mois", viz="pilote")),
+     ('reponse', dict(
+       eyebrow="Ce que fait l'agent", h2="Qu'est-ce qu'on compte, exactement&nbsp;?",
+       reponse="Des événements, pas des impressions&nbsp;: le nombre d'appels manqués qui ont reçu un SMS, le nombre "
+               "de devis relancés et ceux qui ont obtenu une réponse, le nombre d'avis nouveaux, le nombre de "
+               "rendez-vous posés par l'agent vocal. Chaque chiffre correspond à une action datée, vérifiable dans "
+               "le détail.",
+       paras=["Ce qu'on ne compte pas&nbsp;: les « vues », les « impressions » et tout ce qui gonfle un rapport sans "
+              "rien prouver. Le seul chiffre qui compte est celui que vous pouvez rapprocher de votre chiffre "
+              "d'affaires."])),
+     ('cartes', dict(
+       alt=True, eyebrow="Les limites", h2="Ce que ce rapport ne prétend pas être", classe='non',
+       items=[
+        ("rapport-mensuel", "Une attribution parfaite",
+         "Un appel rattrapé qui devient un chantier trois semaines plus tard, personne ne peut le tracer "
+         "honnêtement. On compte ce qu'on peut compter et on vous dit où s'arrête la mesure."),
+        ("mots-cles-locaux", "Un rapport de positionnement",
+         "Il ne dit pas où vous êtes classé sur telle requête. C'est un autre sujet, qu'on traite ailleurs et qui "
+         "bouge trop pour figurer dans un compte mensuel."),
+        ("satisfaction", "Une raison de rester",
+         "Si les chiffres sont mauvais deux mois de suite, c'est qu'il faut changer quelque chose ou arrêter. Le "
+         "rapport sert autant à ça qu'à justifier l'abonnement."),
+       ])),
+     ('agents', dict(
+       eyebrow="Ce qui va avec", h2="Il ne mesure que ce qui tourne",
+       paras=["Un rapport sur un système sans agents branchés est une page vide. Le catalogue complet est sur la "
+              f"<a href=\"{PILIER}\">page de l'offre</a>."],
+       slugs=["sms-appel-manque", "relance-devis", "demande-avis", "agent-vocal"])),
+     ('relance', dict(texte="Je vous montre un rapport réel, avec les chiffres d'un mois entier.",
+                      libelle="Prendre 15 minutes")),
+     ('faq', dict(eyebrow="FAQ", h2="Les questions qu'on nous pose", items=[
+        ("Je reçois ça comment&nbsp;?",
+         "Par SMS et par e-mail, le même jour chaque mois. Quatre chiffres dans le message, le détail dans le lien "
+         "si vous voulez creuser."),
+        ("Je peux voir le détail d'un chiffre&nbsp;?",
+         "Oui, ligne par ligne&nbsp;: quel appel, quel jour, quel devis. C'est ce qui distingue un compte d'une "
+         "estimation."),
+        ("Et si un mois est mauvais&nbsp;?",
+         "Vous le verrez, et nous aussi. On regarde ce qui a changé&nbsp;— saison, volume d'appels, agent débranché — "
+         "et on ajuste. Un rapport qui n'est jamais mauvais est un rapport qui ne mesure rien."),
+        ("Vous comptez les chantiers signés&nbsp;?",
+         "Seulement si vous nous les remontez. On ne va pas dans votre comptabilité, et on préfère un chiffre "
+         "incomplet mais vrai à une estimation flatteuse."),
+       ])),
+    ]),
+
 }

@@ -288,6 +288,14 @@ nav.post-navigation{display:none!important}
 .dcp-mini .dcp-cta{background:#fff;color:var(--ink)!important}
 .dcp-mini .dcp-cta:hover{color:var(--ink)!important;box-shadow:0 16px 30px -14px rgba(0,0,0,.55)}
 
+/* Sur une page agent, le hero montre le produit et non une photo : le visuel
+   anime prend alors toute la colonne, et il ne colle plus au telephone. */
+.dcp .hero-visuel.seul{padding-left:0}
+.dcp .hero-visuel.seul .phone{position:static;width:100%;max-width:236px;margin:22px auto 0}
+.dcp .hero-visuel.seul .viz{position:static}
+.viz-seul{max-width:520px;margin:26px auto 0}
+.viz-seul .viz{position:static}
+
 /* ── Reponse directe ──────────────────────────────────────────────────────
    Deux ou trois phrases autonomes, visuellement detachees. C'est ce bloc
    qu'un moteur generatif extrait ; il doit se lire hors de son contexte.   */
