@@ -10,6 +10,12 @@ body header.entry-header,.ast-single-entry-banner,.page-header{
   display:none!important;height:0!important;overflow:hidden!important;visibility:hidden!important}
 .site-content .ast-container,.site-content #primary,.entry-content,.site-content,#content{
   max-width:100%!important}
+/* .ast-container est en display:flex. Sans largeur explicite, #primary est un
+   item flex en `0 1 auto` : il se reduit a la largeur maximale de son contenu
+   — 960px, celle de .in — et se colle a gauche, laissant 480px de vide a
+   droite sur un ecran de 1440. Constate en production le 21 aout 2026. */
+.site-content #primary,.site-content .ast-container,.site-content main,
+.ast-article-single{width:100%!important;flex:1 1 100%!important}
 .site-content #primary,.entry-content,.site-content,#content,.ast-container{
   padding-top:0!important;padding-bottom:0!important;margin-top:0!important}
 .ast-separate-container .ast-article-single{padding:0!important;background:transparent!important}
@@ -84,13 +90,18 @@ nav.post-navigation{display:none!important}
   color:var(--faint);margin:15px 0 0}
 
 /* ── Le téléphone qui rejoue la scène ───────────────────────────────────── */
-.phone{position:relative;width:236px;margin:0 auto;aspect-ratio:9/19.5;background:#0d0e1c;
+/* La largeur du telephone est une variable : l'ecran s'en sert pour garder
+   des proportions de telephone quand le contenu est court, et grandir
+   plutot que de le tronquer quand il ne l'est pas. Un aspect-ratio fixe
+   coupait le dernier message en production. */
+.phone{--pw:236px;position:relative;width:var(--pw);margin:0 auto;background:#0d0e1c;
   border-radius:31px;padding:11px;box-shadow:0 30px 60px -22px rgba(20,21,43,.5),0 0 0 1px rgba(20,21,43,.1)}
-.phone-scr{position:relative;height:100%;background:linear-gradient(175deg,#f3f4fb,#e9ebf7);
+.phone-scr{position:relative;min-height:calc((var(--pw) - 22px)*21/9);
+  background:linear-gradient(175deg,#f3f4fb,#e9ebf7);
   border-radius:21px;overflow:hidden;display:flex;flex-direction:column}
 .phone-top{height:22px;display:flex;align-items:center;justify-content:center;flex:0 0 auto}
 .phone-notch{width:62px;height:15px;background:#0d0e1c;border-radius:0 0 9px 9px}
-.phone-body{flex:1;padding:12px 11px;display:flex;flex-direction:column;gap:8px}
+.phone-body{flex:1 1 auto;padding:12px 11px;display:flex;flex-direction:column;gap:8px}
 .evt{border-radius:12px;padding:10px 11px;font-size:.75rem;line-height:1.4;opacity:0;
   transform:translateY(9px);animation:dcpPop .7s cubic-bezier(.2,.8,.2,1) forwards}
 .evt b{display:block;font-size:.79rem;margin-bottom:2px}
@@ -237,8 +248,8 @@ nav.post-navigation{display:none!important}
   color:var(--faint);margin:12px 0 0}
 /* Le telephone chevauche la photo du hero */
 .dcp .hero-visuel{position:relative;padding-left:26px}
-.dcp .hero-visuel .phone{position:absolute;left:-30px;bottom:-34px;width:178px;margin:0;z-index:2}
-@media(max-width:900px){.dcp .hero-visuel .phone{position:static;width:210px;margin:22px auto 0}}
+.dcp .hero-visuel .phone{--pw:178px;position:absolute;left:-30px;bottom:-34px;margin:0;z-index:2}
+@media(max-width:900px){.dcp .hero-visuel .phone{--pw:210px;position:static;margin:22px auto 0}}
 /* Decalage en cascade entre freres */
 .dcp .rise:nth-child(2){transition-delay:.09s}
 .dcp .rise:nth-child(3){transition-delay:.18s}

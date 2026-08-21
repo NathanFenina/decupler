@@ -30,16 +30,45 @@ def minify_css(css: str) -> str:
     return re.sub(r'\x00(\d+)\x00', lambda m: strings[int(m.group(1))], css)
 
 
+def sans_lignes_vides(bloc: str) -> str:
+    """Supprime les lignes vides d'un bloc, en gardant le reste lisible.
+
+    wpautop coupe sur `\n\n` PARTOUT, y compris dans un <script>. Une ligne
+    vide au milieu du JS y fait apparaitre `</p><p>` : le script ne parse plus,
+    et tout ce qu'il devait faire ne se fait pas. Vu en production le 21 aout
+    2026 sur /site-internet-offert/ — la page entiere restait a opacity:0.
+    """
+    return re.sub(r'\n\s*\n+', '\n', bloc)
+
+
 def harden(html: str) -> str:
-    """Minifie chaque bloc <style> d'un document HTML destiné à WordPress."""
-    def one(m):
+    """Rend inline styles ET scripts insensibles a wpautop."""
+    def css(m):
         return '<style>' + minify_css(m.group(1)) + '</style>'
-    return re.sub(r'<style>(.*?)</style>', one, html, flags=re.S)
+    html = re.sub(r'<style>(.*?)</style>', css, html, flags=re.S)
+
+    def js(m):
+        return m.group(1) + sans_lignes_vides(m.group(2)) + '</script>'
+    html = re.sub(r'(<script[^>]*>)(.*?)</script>', js, html, flags=re.S)
+
+    # Un <noscript> multiligne subit le meme sort : wpautop le coupe en deux et
+    # sa feuille de secours s'applique alors TOUT LE TEMPS.
+    def nos(m):
+        return '<noscript>' + re.sub(r'\s*\n\s*', '', m.group(1)) + '</noscript>'
+    return re.sub(r'<noscript>(.*?)</noscript>', nos, html, flags=re.S)
 
 
 def audit(html: str):
-    """Contrôle qu'aucun bloc <style> ne peut plus déclencher wpautop."""
+    """Contrôle qu'aucun bloc <style>, <script> ou <noscript> ne peut plus
+    déclencher wpautop."""
     problemes = []
+    for i, bloc in enumerate(re.findall(r'<script[^>]*>(.*?)</script>', html, flags=re.S)):
+        if re.search(r'\n\s*\n', bloc):
+            problemes.append(f'script {i}: ligne vide (wpautop y insérera </p><p> '
+                             f'et le script ne parsera plus)')
+    for i, bloc in enumerate(re.findall(r'<noscript>(.*?)</noscript>', html, flags=re.S)):
+        if '\n' in bloc:
+            problemes.append(f'noscript {i}: saut de ligne (wpautop le coupera en deux)')
     for i, bloc in enumerate(re.findall(r'<style>(.*?)</style>', html, flags=re.S)):
         if '\n\n' in bloc:
             problemes.append(f'bloc {i}: ligne vide (wpautop y insérera </p><p>)')
