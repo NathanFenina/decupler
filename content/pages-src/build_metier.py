@@ -46,8 +46,9 @@ def agents_html(slugs):
     cartes = ''
     for s in slugs:
         nom, promesse = PAR_SLUG[s]
+        titre = f'<a href="{A.LIENS[s]}">{nom}</a>' if s in A.LIENS else nom
         cartes += (f'<div class="ag2 rise">{I.bloc(s, "ag2-ic")}'
-                   f'<div class="ag2-tx"><h3>{nom}</h3><p>{promesse}</p></div></div>')
+                   f'<div class="ag2-tx"><h3>{titre}</h3><p>{promesse}</p></div></div>')
     return f'<div class="ag-grille">{cartes}</div>'
 
 

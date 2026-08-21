@@ -288,6 +288,14 @@ nav.post-navigation{display:none!important}
 .dcp-mini .dcp-cta{background:#fff;color:var(--ink)!important}
 .dcp-mini .dcp-cta:hover{color:var(--ink)!important;box-shadow:0 16px 30px -14px rgba(0,0,0,.55)}
 
+/* ── Reponse directe ──────────────────────────────────────────────────────
+   Deux ou trois phrases autonomes, visuellement detachees. C'est ce bloc
+   qu'un moteur generatif extrait ; il doit se lire hors de son contexte.   */
+.dcp-rep{background:var(--vio-bg);border:1px solid rgba(123,92,250,.22);border-radius:14px;
+  padding:22px 26px;margin:0 0 22px}
+.dcp-rep p{margin:0;font-size:1.06rem;line-height:1.6;color:var(--ink);font-weight:500}
+.dcp-sec.alt .dcp-rep{background:#fff}
+
 /* ── Signature ───────────────────────────────────────────────────────────
    Qui parle, depuis quand, et sur quelle preuve. Google appelle ca E-E-A-T ;
    pour le lecteur c'est juste savoir a qui il a affaire.                    */

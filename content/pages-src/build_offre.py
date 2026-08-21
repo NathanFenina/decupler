@@ -71,10 +71,11 @@ VIZ = {
 def agents_html():
     out = ''
     for i, (cle, titre, chapo) in enumerate(A.ETAPES, 1):
-        cards = ''.join(
-            f'<div class="ag2">{I.bloc(slug, "ag2-ic")}'
-            f'<div class="ag2-tx"><h4>{nom}</h4><p>{promesse}</p></div></div>'
-            for slug, nom, _, promesse, meca, preuve in A.par_etape(cle))
+        cards = ''
+        for slug, nom, _, promesse, meca, preuve in A.par_etape(cle):
+            titre = f'<a href="{A.LIENS[slug]}">{nom}</a>' if slug in A.LIENS else nom
+            cards += (f'<div class="ag2">{I.bloc(slug, "ag2-ic")}'
+                      f'<div class="ag2-tx"><h4>{titre}</h4><p>{promesse}</p></div></div>')
         flip = ' flip' if i % 2 == 0 else ''
         alt = ' alt' if i % 2 == 1 else ''
         out += f"""

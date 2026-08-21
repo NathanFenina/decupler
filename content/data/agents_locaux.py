@@ -23,6 +23,11 @@ AGENTS = [
   "Vous photographiez déjà vos chantiers. Envoyez la photo par SMS&nbsp;: le post part sur votre fiche, rédigé et optimisé.",
   "L'agent reçoit la photo, écrit le texte avec les mots-clés de votre métier et de votre ville, et publie.",
   "Zéro effort de votre côté : vous photographiez déjà vos chantiers."),
+ ("citations-locales", "Citations locales", "trouve",
+  "Votre nom, votre adresse et votre téléphone, écrits à l'identique sur les annuaires que Google recoupe.",
+  "On crée et on aligne vos fiches sur les annuaires qui comptent dans votre secteur. La moindre variation d'adresse "
+  "entre deux annuaires affaiblit votre fiche&nbsp;: on la corrige partout.",
+  "C'est le socle du référencement local : sans citations cohérentes, une fiche Google plafonne."),
  ("mots-cles-locaux", "Recherche de mots-clés locaux", "trouve",
   "On arrête de se battre sur « plombier Paris » pour viser ce que vos clients tapent vraiment.",
   "Analyse des requêtes de votre zone pour isoler celles à forte intention et faible concurrence.",
@@ -89,3 +94,10 @@ CIBLES = [
 
 def par_etape(cle):
     return [a for a in AGENTS if a[2] == cle]
+
+
+# Agents qui renvoient vers une page existante du site. Les autres n'ont pas
+# encore de page : ne rien mettre plutot qu'un lien mort.
+LIENS = {
+    'citations-locales': 'https://decupler.com/citations-locales/',
+}

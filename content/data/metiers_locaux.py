@@ -70,7 +70,7 @@ METIERS = {
 
     # Ordre du catalogue partagé : ce sont des slugs de content/data/agents_locaux.py
     agents=["agent-vocal", "sms-appel-manque", "rappel-rdv", "fiche-google",
-            "chatbot", "reactivation", "mots-cles-locaux", "rapport-mensuel"],
+            "chatbot", "reactivation", "mots-cles-locaux", "citations-locales", "rapport-mensuel"],
 
     # Ce qu'on refuse de brancher, et pourquoi. Avec la source.
     deonto_titre="Ce qu'on ne branchera pas chez vous",
@@ -162,7 +162,7 @@ METIERS = {
                "année. Les deux cents interventions réussies qui n'ont laissé aucune trace publique."),
     legende="Le chantier le moins cher de votre année, c'est celui qui vous appelait déjà.",
     agents=["sms-appel-manque", "agent-vocal", "fiche-google", "relance-devis",
-            "sms-formulaire", "reactivation", "mots-cles-locaux", "rapport-mensuel"],
+            "sms-formulaire", "reactivation", "mots-cles-locaux", "citations-locales", "rapport-mensuel"],
     deonto_titre="Ce qu'on corrige, et ce qu'on refuse de vous vendre",
     deonto=[
       ("mots-cles-locaux", "Vos tarifs seront affichés sur le site",
@@ -247,7 +247,7 @@ METIERS = {
                "semaine dernière, jamais relancé, sur lequel vous avez passé deux heures de chiffrage."),
     legende="Le chantier le moins cher de votre année, c'est le devis que vous avez déjà chiffré.",
     agents=["relance-devis", "sms-appel-manque", "fiche-google", "sms-formulaire",
-            "rappel-rdv", "chatbot", "mots-cles-locaux", "rapport-mensuel"],
+            "rappel-rdv", "chatbot", "mots-cles-locaux", "citations-locales", "rapport-mensuel"],
     deonto_titre="Ce qu'on affiche, et ce qu'on n'écrira pas",
     deonto=[
       ("fiche-google", "Vos qualifications, telles qu'elles sont",
@@ -328,7 +328,7 @@ METIERS = {
                "clientes satisfaites qui n'ont jamais laissé le moindre avis."),
     legende="La cliente la moins chère de votre année, c'est celle qui vous appelait déjà.",
     agents=["rappel-rdv", "sms-appel-manque", "fiche-google", "posts-google",
-            "reactivation", "demande-avis", "chatbot", "rapport-mensuel"],
+            "reactivation", "demande-avis", "citations-locales", "rapport-mensuel"],
     deonto_titre="Ce qu'on n'écrira pas sur votre site",
     deonto=[
       ("satisfaction", "Aucune promesse de résultat chiffrée",
@@ -413,7 +413,7 @@ METIERS = {
                "février. Les jardins réussis dont aucune photo n'est jamais sortie du téléphone."),
     legende="Le chantier le moins cher de votre année, c'est celui qui vous appelait déjà.",
     agents=["sms-appel-manque", "relance-devis", "fiche-google", "posts-google",
-            "reactivation", "sms-formulaire", "mots-cles-locaux", "rapport-mensuel"],
+            "reactivation", "citations-locales", "mots-cles-locaux", "rapport-mensuel"],
     deonto_titre="Ce qu'on refuse de vous vendre",
     deonto=[
       ("demande-avis", "Aucun avis fabriqué, aucun tri des clients",
@@ -493,7 +493,7 @@ METIERS = {
                "rien. Les deux cents clients satisfaits qui n'ont jamais laissé d'avis."),
     legende="Le chantier le moins cher de votre année, c'est celui qui vous appelait déjà.",
     agents=["sms-appel-manque", "relance-devis", "fiche-google", "rappel-rdv",
-            "sms-formulaire", "posts-google", "reactivation", "rapport-mensuel"],
+            "sms-formulaire", "posts-google", "citations-locales", "rapport-mensuel"],
     deonto_titre="Ce qu'on affiche, et ce qu'on refuse de vous vendre",
     deonto=[
       ("mots-cles-locaux", "Vos tarifs, si vous faites du dépannage",
