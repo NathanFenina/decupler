@@ -9,7 +9,8 @@ Volumes et difficultés relevés sur Ubersuggest (France, français) le
 
 RDV = 'https://calendly.com/fenina-nathan/consultationstrategique'
 PILIER = 'https://decupler.com/site-internet-offert/'
-MAJ = '21 août 2026'
+MAJ = '24 août 2026'
+MAJ_ISO = '2026-08-24'
 IMG = 'https://decupler.com/wp-content/uploads/2026/08/'
 
 # (slug, mot-clé, volume/mois, difficulté SEO, CPC €)
@@ -37,8 +38,8 @@ PAGES = {
 "supprimer-un-avis-google": dict(
     mot_cle="supprimer un avis google",
     titre_seo="Supprimer un avis Google : ce qui marche vraiment",
-    meta=("Supprimer un avis Google : les 6 motifs que Google accepte, la procédure de "
-          "signalement, le recours en appel, et ce qui ne marche pas. Guide 2026."),
+    meta=("Supprimer un avis Google : les motifs que Google accepte, la procédure, le recours "
+          "en appel — et comment retirer un avis que vous avez laissé vous-même."),
     signature=SIG_AVIS,
     sections=[
      ('hero', dict(
@@ -68,8 +69,36 @@ PAGES = {
               "«&nbsp;quelle règle enfreint-il&nbsp;?&nbsp;». Si vous ne trouvez pas la règle, le signalement sera "
               "refusé, et vous aurez perdu votre seule cartouche."])),
 
+     ('qr', dict(
+       alt=True, eyebrow="En une phrase",
+       h2="Les questions auxquelles vous cherchez une réponse tout de suite",
+       items=[
+        ("Combien de temps Google met-il à supprimer un avis&nbsp;?",
+         "De quelques jours à quelques semaines. Google ne s'engage sur aucun délai et n'envoie pas toujours de "
+         "notification&nbsp;: c'est l'outil de gestion des avis qui affiche l'état du signalement. Relancer ne "
+         "l'accélère pas."),
+        ("Combien de signalements faut-il pour faire retirer un avis&nbsp;?",
+         "Aucun nombre ne déclenche une suppression. Un seul signalement bien motivé vaut mieux que trente identiques. "
+         "Une vague de signalements venant de comptes liés ressemble à une manipulation, et se retourne contre le "
+         "profil signalé."),
+        ("Qui peut supprimer un avis Google&nbsp;?",
+         "Deux personnes seulement&nbsp;: <strong>son auteur</strong>, à tout moment, depuis ses contributions&nbsp;; "
+         "et <strong>Google</strong>, quand l'avis enfreint ses règles. Le propriétaire de la fiche ne le peut pas, "
+         "et aucun prestataire ne le peut à sa place."),
+        ("Une entreprise peut-elle faire retirer un avis qu'elle juge injuste&nbsp;?",
+         "Pas au motif qu'il est injuste. Un avis négatif sincère laissé par un vrai client reste en ligne, même "
+         "sévère, même exagéré. Seule une infraction aux règles de contenu ouvre un retrait."),
+        ("Pourquoi un avis Google disparaît-il parfois tout seul&nbsp;?",
+         "Le plus souvent parce que les filtres anti-spam de Google l'ont retiré après coup, parce que son auteur a "
+         "supprimé son compte Google, ou parce que la fiche a été fusionnée avec un doublon. Un avis peut aussi "
+         "revenir&nbsp;: un retrait automatique n'est pas définitif."),
+        ("Peut-on supprimer seulement la photo jointe à un avis&nbsp;?",
+         "Oui, une photo se signale indépendamment du texte, depuis la photo elle-même. C'est utile quand le "
+         "commentaire est acceptable mais que l'image montre un salarié, une plaque d'immatriculation ou un document."),
+       ])),
+
      ('tableau', dict(
-       alt=True, eyebrow="Le tri",
+       alt=True, eyebrow="Le tri", verdict=True,
        h2="Ce que Google retire, et ce qu'il laisse en ligne",
        paras=["Cette distinction est la seule qui compte. Ainsi, avant de signaler quoi que ce soit, situez votre avis dans "
               "la bonne colonne."],
@@ -90,7 +119,7 @@ PAGES = {
        ])),
 
      ('etapes', dict(
-       eyebrow="La procédure",
+       eyebrow="La procédure", howto=True,
        h2="Comment signaler un avis, étape par étape",
        paras=["Comptez ensuite quelques jours à quelques semaines. En revanche, rien n'accélère le traitement&nbsp;: relancer ne sert à rien "
               "et signaler deux fois le même avis non plus."],
@@ -110,6 +139,35 @@ PAGES = {
          "et de demander un réexamen. C'est là que se gagnent la plupart des retraits obtenus&nbsp;: apportez un "
          "élément neuf, pas la même demande reformulée."),
        ])),
+
+     ('cartes', dict(
+       eyebrow="L'autre cas", id="mon-avis",
+       h2="Et si c'est vous qui avez laissé l'avis&nbsp;?",
+       paras=["Une bonne partie des gens qui cherchent à supprimer un avis Google cherchent à supprimer "
+              "<strong>le leur</strong>&nbsp;: un coup de sang, une erreur d'établissement, un litige réglé depuis. "
+              "Dans ce cas, c'est simple et immédiat&nbsp;— vous êtes la seule personne, avec Google, à pouvoir le "
+              "faire. Il n'y a ni signalement, ni délai, ni justification à fournir."],
+       items=[
+        ("chatbot", "Sur Android",
+         "Ouvrez Google Maps, touchez votre photo de profil en haut à droite, puis "
+         "«&nbsp;Vos contributions&nbsp;» et l'onglet «&nbsp;Avis&nbsp;». À côté de l'avis, les trois points "
+         "donnent «&nbsp;Modifier l'avis&nbsp;» et «&nbsp;Supprimer l'avis&nbsp;»."),
+        ("agent-vocal", "Sur iPhone et iPad",
+         "Le chemin est le même dans l'application Google Maps. Si vous passez par Safari, connectez-vous sur "
+         "google.com/maps et demandez la version pour ordinateur&nbsp;: le menu mobile du navigateur n'expose pas "
+         "toujours les contributions."),
+        ("fiche-google", "Sur ordinateur",
+         "Allez sur google.com/maps, ouvrez le menu en haut à gauche, puis «&nbsp;Vos contributions&nbsp;» et "
+         "«&nbsp;Avis&nbsp;». Le menu à trois points de chaque avis contient la suppression. Vous pouvez aussi passer "
+         "par votre compte Google, rubrique «&nbsp;Données et confidentialité&nbsp;»."),
+        ("satisfaction", "Ce qui se passe ensuite",
+         "L'avis disparaît de la fiche tout de suite, mais il peut rester visible quelques heures dans les résultats "
+         "de recherche, le temps que le cache se mette à jour. La note moyenne de l'établissement, elle, est "
+         "recalculée immédiatement."),
+       ],
+       tip="Si un commerçant vous demande de retirer votre avis en échange d'un geste commercial, sachez que vous "
+           "n'y êtes pas tenu&nbsp;— et que lui n'a pas le droit de conditionner un remboursement à ce retrait.",
+       tip_ic="🙋")),
 
      ('cartes', dict(
        alt=True, eyebrow="Les fausses pistes",
@@ -138,6 +196,56 @@ PAGES = {
        sources=[("règles de Google sur le contenu des avis", G_REGLES[0]),
                 ("procédure de signalement des avis inappropriés", G_SIGNAL[0])])),
 
+     ('etapes', dict(
+       eyebrow="Le plan B", id="refuse",
+       h2="«&nbsp;Signalement examiné, aucune règle enfreinte&nbsp;»&nbsp;: la suite",
+       paras=["C'est la réponse la plus fréquente, et c'est là que la plupart des gens abandonnent. Il reste pourtant "
+              "quatre choses à faire, dans cet ordre&nbsp;— chacune coûte plus cher que la précédente, alors ne "
+              "sautez pas d'étape."],
+       items=[
+        ("Faites appel avec un élément neuf",
+         "L'appel n'est pas une deuxième chance sur le même dossier&nbsp;: reformuler la même demande donne le même "
+         "refus. Ce qui fait bouger un réexamen, c'est une preuve que vous n'aviez pas jointe&nbsp;— l'absence de "
+         "l'auteur dans votre fichier client, la date de son avis comparée à celle de votre fermeture annuelle, une "
+         "capture de son profil montrant dix avis à une étoile déposés le même jour dans votre secteur."),
+        ("Reprenez contact avec l'auteur",
+         "Quand le litige est réglé, un client satisfait retire souvent son avis de lui-même&nbsp;: c'est la voie la "
+         "plus rapide et la seule qui soit à 100&nbsp;% entre vos mains. Écrivez-lui hors de la fiche, réglez le "
+         "fond, et demandez le retrait sans le conditionner à un geste commercial&nbsp;— une contrepartie explicite "
+         "vous exposerait."),
+        ("Notifiez l'hébergeur si le contenu est manifestement illicite",
+         "Google est hébergeur au sens de la loi pour la confiance dans l'économie numérique du 21&nbsp;juin 2004. "
+         "Une notification en bonne et due forme, avec les mentions exigées par son article&nbsp;6, fait courir sa "
+         "responsabilité s'il laisse en ligne un contenu manifestement illicite. Ce n'est pas le même canal que le "
+         "signalement&nbsp;: c'est une mise en demeure, et elle se rédige avec un avocat."),
+        ("Passez au juge, ou arrêtez",
+         "Le référé permet de faire cesser un trouble manifestement illicite en quelques semaines. C'est efficace et "
+         "coûteux. En dessous d'un certain enjeu, la réponse honnête est d'arrêter là et de basculer le budget sur ce "
+         "qui fait vraiment baisser le poids d'un avis&nbsp;: le volume d'avis sincères qui arrivent après."),
+       ])),
+
+     ('texte', dict(
+       alt=True, eyebrow="Les disparitions",
+       h2="Pourquoi un avis disparaît sans que personne ne l'ait signalé",
+       paras=[
+        "Il arrive qu'un avis s'efface tout seul, en bien comme en mal&nbsp;: le mauvais avis que vous guettiez "
+        "s'évapore, ou dix bons avis manquent à l'appel un lundi matin. Ce n'est presque jamais une décision humaine.",
+        "<strong>Les filtres automatiques</strong> passent après coup&nbsp;: Google analyse en continu les schémas de "
+        "dépôt et retire rétroactivement ce qu'il classe comme faux ou coordonné. C'est la cause la plus fréquente, "
+        "et c'est aussi celle qui emporte de vrais avis au passage&nbsp;— typiquement quand plusieurs clients ont "
+        "laissé leur avis depuis le même réseau Wi-Fi, dans la même heure, sur une tablette de l'accueil.",
+        "<strong>Le compte de l'auteur a été supprimé.</strong> Un compte Google fermé emporte ses contributions. "
+        "L'avis disparaît sans que rien n'ait été signalé, et il ne reviendra pas.",
+        "<strong>La fiche a bougé.</strong> Une fusion de doublons, un changement de catégorie, une adresse modifiée, "
+        "une suspension temporaire du profil&nbsp;: chacun de ces mouvements peut faire disparaître des avis, parfois "
+        "le temps de la vérification seulement.",
+        "Un point important&nbsp;: <strong>un retrait automatique n'est pas définitif</strong>. Un avis filtré peut "
+        "revenir si l'algorithme se ravise. Ne comptez donc pas une disparition comme un dossier clos, et ne "
+        "reconstruisez pas votre moyenne sur un avis qui n'est peut-être parti que pour quinze jours."],
+       tip="Si vous perdez plusieurs avis d'un coup, vérifiez d'abord que votre fiche n'a pas été fusionnée avec un "
+           "doublon&nbsp;: c'est l'explication la plus courante, et la plus réparable.",
+       tip_ic="🔍")),
+
      ('texte', dict(
        eyebrow="Le recours juridique",
        h2="Le recours juridique, et sa fenêtre de trois mois",
@@ -149,13 +257,59 @@ PAGES = {
         "de la publication</strong>, en application de la loi du 29 juillet 1881 sur la liberté de la presse. Passé ce "
         "délai, la voie est fermée. C'est court, et c'est la raison pour laquelle un avis manifestement diffamatoire "
         "se traite tout de suite, pas «&nbsp;quand on aura le temps&nbsp;».",
-        "Concrètement, faites d'abord constater l'avis (capture horodatée, idéalement constat d'huissier si l'enjeu le "
-        "justifie), puis prenez l'avis d'un avocat. Nous ne sommes pas juristes et cette page ne remplace pas une "
-        "consultation&nbsp;— elle sert à ce que vous ne découvriez pas le délai le quatrième mois."],
+        "Le dénigrement, lui, relève de la responsabilité civile de droit commun&nbsp;: article&nbsp;1240 du code "
+        "civil, et une prescription de cinq ans. C'est une différence décisive&nbsp;— un avis qui dénigre vos "
+        "prestations sans imputer de fait précis reste attaquable longtemps après qu'un avis diffamatoire soit devenu "
+        "intouchable. La qualification n'est donc pas un détail de vocabulaire&nbsp;: elle décide de la porte qui "
+        "vous reste ouverte.",
+        "Concrètement, la séquence est toujours la même. <strong>Faites constater</strong> l'avis&nbsp;: capture "
+        "horodatée avec l'URL complète, et constat de commissaire de justice si l'enjeu le justifie&nbsp;— une "
+        "capture d'écran seule se conteste facilement. <strong>Mettez en demeure</strong>, l'auteur s'il est "
+        "identifiable, l'hébergeur sinon. Puis <strong>choisissez la voie</strong>&nbsp;: le référé pour faire "
+        "retirer vite, le fond pour obtenir des dommages et intérêts.",
+        "Un mot sur l'anonymat, parce que c'est la question qui bloque tout le monde&nbsp;: un pseudonyme n'empêche "
+        "pas d'agir. Le juge peut ordonner à l'hébergeur de communiquer les données d'identification de l'auteur. "
+        "C'est une procédure de plus, donc du temps et de l'argent, mais ce n'est pas une impasse.",
+        "Nous ne sommes pas juristes et cette page ne remplace pas une consultation. Elle sert à ce que vous ne "
+        "découvriez pas le délai de trois mois au quatrième."],
        tip="Dans l'immense majorité des cas, l'avis qui vous ronge n'est ni diffamatoire ni supprimable. Il est "
            "simplement mal placé dans une liste trop courte. Le travail utile est ailleurs&nbsp;: en faire arriver "
            "d'autres.",
        tip_ic="📌")),
+
+     ('texte', dict(
+       alt=True, eyebrow="Le marché parallèle", id="prestataires",
+       h2="Ce que vendent vraiment les services de suppression d'avis",
+       paras=[
+        "Tapez la requête et vous tomberez sur une dizaine de sites qui promettent de faire disparaître n'importe "
+        "quel avis, au forfait ou au résultat. Il faut savoir ce que vous achetez, parce qu'aucun d'eux ne dispose "
+        "d'un canal que vous n'auriez pas&nbsp;: <strong>seul Google décide</strong>, et il ne vend pas cet accès.",
+        "Dans le meilleur des cas, le prestataire fait à votre place ce que décrit cette page&nbsp;: il qualifie "
+        "l'infraction, signale proprement, fait appel avec un dossier. C'est un vrai travail, il peut le facturer, "
+        "et le taux de réussite reste celui de la procédure officielle.",
+        "Dans le pire, il déclenche des signalements en masse depuis des comptes fabriqués, ou compense en faisant "
+        "déposer de faux avis positifs. Les deux enfreignent les règles de Google, et la sanction ne tombe pas sur "
+        "le prestataire&nbsp;: elle tombe sur votre fiche, jusqu'à la suspension du profil et la perte de tous les "
+        "avis accumulés.",
+        "Il y a aussi un risque que peu de gens mesurent&nbsp;: faire publier de faux avis est une "
+        "<strong>pratique commerciale trompeuse</strong>, punie par l'article&nbsp;L132-2 du code de la consommation "
+        "de deux ans d'emprisonnement et 300&nbsp;000&nbsp;euros d'amende, montant pouvant être porté à un "
+        "pourcentage du chiffre d'affaires. Le donneur d'ordre est l'entreprise, pas l'agence.",
+        "La question à poser à un prestataire tient en une phrase&nbsp;: «&nbsp;par quel canal signalez-vous, et "
+        "que se passe-t-il si Google refuse&nbsp;?&nbsp;» Une réponse qui parle de contacts internes chez Google est "
+        "une réponse qui devrait mettre fin à la conversation."],
+       tip="Une promesse de résultat sur une suppression d'avis est, en soi, un signal d'alarme&nbsp;: personne ne "
+           "peut garantir une décision qui n'est pas la sienne.",
+       tip_ic="🚩")),
+
+     ('visuel', dict(
+       eyebrow="Le seul levier qui tient", viz='capitalise',
+       h2="Un avis pèse ce que pèse le silence autour de lui",
+       paras=["Un avis à une étoile sur douze commande la lecture. Sur cent quarante, il devient une ligne parmi "
+              "d'autres, et le prospect regarde la moyenne. Vous ne pouvez pas décider du sort d'un avis&nbsp;; vous "
+              "décidez du nombre d'avis qui arrivent après lui, et de la vitesse à laquelle ils arrivent.",
+              "C'est la seule variable de cette page que vous contrôlez entièrement, et c'est aussi la seule qui "
+              "continue de produire de l'effet une fois le litige oublié."])),
 
      ('agents', dict(
        alt=True, eyebrow="Ce qu'on met en place",
@@ -183,12 +337,28 @@ PAGES = {
          "Non, sauf s'il provient d'un faux compte ou d'une personne en conflit d'intérêts. Une note seule n'enfreint "
          "aucune règle de contenu&nbsp;: il n'y a pas de contenu à incriminer."),
         ("Est-ce que je peux demander à mes clients contents de laisser un avis pour compenser&nbsp;?",
-         "Oui, à condition de le demander à <strong>tous</strong> vos clients. Depuis 2026, Google interdit "
-         "explicitement de trier les clients selon leur note avant de les envoyer sur la fiche, et sanctionne cette "
-         "pratique jusqu'à la suspension du profil. Demander à tout le monde est autorisé&nbsp;; filtrer ne l'est pas."),
+         "Oui, à condition de le demander à <strong>tous</strong> vos clients. Google interdit explicitement de trier "
+         "les clients selon leur satisfaction avant de les envoyer sur la fiche, et sanctionne cette pratique "
+         "jusqu'à la suspension du profil. Demander à tout le monde est autorisé&nbsp;; filtrer ne l'est pas."),
         ("Que faire pendant que le signalement est en cours&nbsp;?",
          "Répondez à l'avis, calmement et brièvement, sans détailler le dossier. Cette réponse est lue par tous les "
          "prospects suivants&nbsp;: c'est elle qui décide de l'effet réel de l'avis, bien plus que sa présence."),
+        ("Mon signalement est refusé et l'appel aussi. C'est vraiment fini&nbsp;?",
+         "Pour la voie Google, oui. Il reste la notification à l'hébergeur si le contenu est manifestement illicite, "
+         "et le juge si l'avis est diffamatoire — dans les trois mois — ou dénigrant. En dessous de cet enjeu, la "
+         "suite utile n'est plus juridique&nbsp;: <a href=\"#refuse\">c'est le plan B</a>."),
+        ("Mon propre avis a été supprimé par Google, pourquoi&nbsp;?",
+         "Le plus souvent parce que les filtres l'ont classé comme suspect&nbsp;: compte récent, avis déposé depuis "
+         "le même réseau qu'un autre, texte proche d'un avis existant, ou lien commercial supposé avec "
+         "l'établissement. Vous pouvez le republier, mais un deuxième retrait est probable si la cause n'a pas changé."),
+        ("Puis-je modifier mon avis au lieu de le supprimer&nbsp;?",
+         "Oui, et c'est souvent préférable&nbsp;: un avis modifié conserve son ancienneté et remplace le texte "
+         "précédent. Le chemin est le même que pour la suppression&nbsp;— vos contributions, l'onglet avis, puis "
+         "«&nbsp;Modifier l'avis&nbsp;»."),
+        ("Un concurrent a laissé un faux avis. Qu'est-ce qui marche&nbsp;?",
+         "Le conflit d'intérêts est un motif de retrait explicite dans les règles de Google, et c'est l'un des mieux "
+         "traités&nbsp;— à condition de le prouver. Signalez sur ce motif précis, et joignez ce qui rend le lien "
+         "visible&nbsp;: le profil de l'auteur, les autres avis qu'il a déposés dans votre secteur, les dates."),
         ("Vous proposez un service de suppression d'avis&nbsp;?",
          "Non, et méfiez-vous de ceux qui le proposent. On travaille sur ce qui est autorisé et durable&nbsp;: une "
          "fiche complète, un flux d'avis sincères, des réponses systématiques, et une alerte quand un client repart "

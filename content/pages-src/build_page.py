@@ -139,9 +139,10 @@ def cartes(d, page):
 
 def etapes(d, page):
     alt = ' alt' if d.get('alt') else ''
+    ancre = f' id="{d["id"]}"' if d.get('id') else ''
     lignes = ''.join(f'<div class="et-l rise"><div class="num"></div><div><h3>{t}</h3><p>{p}</p></div></div>'
                      for t, p in d['items'])
-    return f"""<section class="dcp-sec{alt}"><div class="in">
+    return f"""<section class="dcp-sec{alt}"{ancre}><div class="in">
   <div class="eyebrow rise">{d['eyebrow']}</div>
   <h2 class="rise">{d['h2']}</h2>
   {''.join(f'<p class="lead rise">{t}</p>' for t in d.get('paras', []))}
@@ -157,7 +158,7 @@ def tableau(d, page):
   <div class="eyebrow rise">{d['eyebrow']}</div>
   <h2 class="rise">{d['h2']}</h2>
   {''.join(f'<p class="lead rise">{t}</p>' for t in d.get('paras', []))}
-  <table class="rise"><thead><tr>{thead}</tr></thead><tbody>{tbody}</tbody></table>
+  <table class="rise{' verdict' if d.get('verdict') else ''}"><thead><tr>{thead}</tr></thead><tbody>{tbody}</tbody></table>
 </div></section>"""
 
 
@@ -198,6 +199,20 @@ def faq(d, page):
 </div></section>"""
 
 
+def qr(d, page):
+    """Réponses courtes, visibles, non repliées. La FAQ du bas est dans des
+    <details> : un moteur génératif n'en extrait rien de fiable. Ici chaque
+    réponse tient en deux ou trois phrases autonomes, lisibles hors contexte."""
+    alt = ' alt' if d.get('alt') else ''
+    cells = ''.join(f'<div class="qr rise"><h3>{q}</h3><p>{a}</p></div>' for q, a in d['items'])
+    return f"""<section class="dcp-sec{alt}"><div class="in">
+  <div class="eyebrow rise">{d['eyebrow']}</div>
+  <h2 class="rise">{d['h2']}</h2>
+  {''.join(f'<p class="lead rise">{t}</p>' for t in d.get('paras', []))}
+  <div class="qr-grille">{cells}</div>
+</div></section>"""
+
+
 def visuel(d, page):
     alt = ' alt' if d.get('alt') else ''
     return f"""<section class="dcp-sec{alt}"><div class="in">
@@ -209,18 +224,43 @@ def visuel(d, page):
 
 
 BLOCS = {'hero': hero, 'visuel': visuel, 'bande': bande, 'texte': texte, 'reponse': reponse, 'cartes': cartes,
-         'etapes': etapes, 'tableau': tableau, 'agents': agents, 'relance': relance, 'faq': faq}
+         'etapes': etapes, 'tableau': tableau, 'agents': agents, 'relance': relance, 'faq': faq, 'qr': qr}
 
 
 def construis(slug):
     page = PC.PAGES[slug]
     corps = ''.join(BLOCS[t](d, page) for t, d in page['sections'])
 
-    fq = next((d['items'] for t, d in page['sections'] if t == 'faq'), [])
-    ld = json.dumps({"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
-        {"@type": "Question", "name": re.sub(r'&nbsp;|<[^>]+>', ' ', q).strip(),
-         "acceptedAnswer": {"@type": "Answer", "text": re.sub(r'&nbsp;|<[^>]+>', ' ', a).strip()}}
-        for q, a in fq]}, ensure_ascii=False)
+    def net(x):
+        return re.sub(r'\s+', ' ', re.sub(r'&nbsp;|<[^>]+>', ' ', x)).strip()
+
+    # FAQPage : la FAQ du bas ET les réponses courtes du bloc qr. Les deux sont
+    # des questions posées puis répondues ; les séparer priverait le schéma des
+    # réponses les plus citables de la page.
+    fq = [c for t, d in page['sections'] if t in ('faq', 'qr') for c in d['items']]
+    graph = [{"@type": "FAQPage", "mainEntity": [
+        {"@type": "Question", "name": net(q),
+         "acceptedAnswer": {"@type": "Answer", "text": net(a)}} for q, a in fq]}]
+
+    # HowTo : seulement si la page décrit une vraie procédure, déclarée comme
+    # telle. Un bloc etapes qui énumère des cas de figure n'en est pas une.
+    for t, d in page['sections']:
+        if t == 'etapes' and d.get('howto'):
+            graph.append({"@type": "HowTo", "name": net(d['h2']), "step": [
+                {"@type": "HowToStep", "position": i, "name": net(nom), "text": net(txt)}
+                for i, (nom, txt) in enumerate(d['items'], 1)]})
+
+    # Article + auteur : le signal E-E-A-T que les moteurs génératifs lisent
+    # pour décider à qui attribuer une citation.
+    graph.append({
+        "@type": "Article", "headline": page['titre_seo'], "description": net(page['meta']),
+        "inLanguage": "fr-FR", "dateModified": PC.MAJ_ISO,
+        "author": {"@type": "Person", "name": "Nathan Fenina", "jobTitle": "Fondateur de Décupler",
+                   "url": "https://decupler.com/", "worksFor": {"@type": "Organization", "name": "Décupler"}},
+        "publisher": {"@type": "Organization", "name": "Décupler", "url": "https://decupler.com/"},
+        "mainEntityOfPage": {"@type": "WebPage", "@id": f"https://decupler.com/{slug}/"}})
+
+    ld = json.dumps({"@context": "https://schema.org", "@graph": graph}, ensure_ascii=False)
 
     body = f"""{FONTS}
 {SKIN}
