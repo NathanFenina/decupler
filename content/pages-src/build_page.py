@@ -68,7 +68,7 @@ def hero(d, page):
     <h1><span class="k">{d['kicker']}</span>{d['h1']}</h1>
     {leads}
     <div class="dcp-act"><a class="dcp-cta" href="{PC.RDV}" rel="noopener">{d.get('cta', 'Voir mon site avant de décider')}</a></div>
-    <p class="dcp-under">{d.get('sous_cta', 'Site 0&nbsp;€ · puis dès 199&nbsp;€/mois')}</p>
+    <p class="dcp-under">{d.get('sous_cta', 'Site 0&nbsp;€ · dès 199&nbsp;€/mois')}</p>
   </div>
   <div class="hero-visuel{' seul' if not d.get('image') else ''}">
     {visuel}

@@ -920,7 +920,7 @@ PAGES = {
          "Chez Décupler il n'est pas vendu seul&nbsp;: il fait partie des agents branchés autour du site, dans une "
          f"<a href=\"{PILIER}\">offre où la création du site est offerte</a> et où vous ne payez qu'un abonnement."],
        cta="Écouter ce que ça donnerait chez moi",
-       sous_cta="Site 0&nbsp;€ · puis dès 199&nbsp;€/mois",
+       sous_cta="Site 0&nbsp;€ · dès 199&nbsp;€/mois",
        image=(IMG + 'agent-vocal-ia.jpg',
               "Un artisan travaille des deux mains, son téléphone posé à côté de lui sur l'établi"),
        phone=[("call", "06 44 •• •• 12", "Appel entrant · 19:41"),
@@ -948,6 +948,37 @@ PAGES = {
               "Commercialement, ce qui compte est ailleurs&nbsp;: ce n'est ni un serveur vocal à touches, ni un "
               "répondeur. L'appelant parle normalement et obtient une réponse, pas un menu."])),
 
+     ('qr', dict(
+       eyebrow="En une phrase",
+       h2="Ce qu'on nous demande avant de signer",
+       items=[
+        ("Combien coûte un agent vocal IA&nbsp;?",
+         "Les briques techniques se facturent à la minute, dans une fourchette de quelques centimes. Les offres "
+         "clés en main du marché démarrent autour de quelques dizaines d'euros par mois plus la consommation. "
+         "L'écart de prix ne vient presque jamais de la technologie&nbsp;: il vient du paramétrage métier, qui est "
+         "le vrai travail."),
+        ("L'appelant se rend-il compte que c'est une IA&nbsp;?",
+         "Sur les deux ou trois premières phrases, souvent pas. Ensuite, oui&nbsp;— dès qu'il sort du cadre prévu. "
+         "C'est pour ça qu'on fait annoncer l'assistant dès la première seconde&nbsp;: un appelant prévenu accepte "
+         "la machine, un appelant qui découvre le pot aux roses raccroche."),
+        ("Que se passe-t-il quand l'agent ne comprend pas&nbsp;?",
+         "Il transfère, ou il prend un message. Un agent bien configuré est un agent qui abandonne vite&nbsp;: au "
+         "deuxième malentendu, il passe la main. C'est la règle qui fait la différence entre un outil utile et un "
+         "répondeur qui exaspère."),
+        ("Peut-on faire un agent vocal IA gratuitement&nbsp;?",
+         "Les modèles existent en open source et plusieurs plateformes offrent un palier gratuit pour tester. Mais "
+         "un agent qui décroche vos vrais appels a besoin d'un numéro, d'une disponibilité permanente et d'une "
+         "supervision&nbsp;: gratuit à l'essai, jamais gratuit en production."),
+        ("Faut-il changer de numéro ou d'opérateur&nbsp;?",
+         "Non. On branche l'agent en renvoi conditionnel sur votre ligne existante&nbsp;: il ne décroche que quand "
+         "personne n'a répondu au bout de quelques sonneries, ou en dehors des horaires. Votre numéro ne bouge pas, "
+         "et vous pouvez tout couper en une manipulation."),
+        ("Combien de temps pour le mettre en service&nbsp;?",
+         "Quelques jours, dont l'essentiel est passé à écrire ce que l'agent doit dire et à écouter les premiers "
+         "appels. La partie technique se règle en une heure&nbsp;; le paramétrage métier, lui, se corrige pendant "
+         "les deux premières semaines."),
+       ])),
+
      ('texte', dict(
        alt=True, eyebrow="Le vrai problème",
        h2="Ce n'est pas le standard qui coûte cher, c'est le silence",
@@ -964,7 +995,7 @@ PAGES = {
            "moyen. Un seul rattrapé dans le mois paie généralement l'abonnement entier.",
        tip_ic="🧮")),
 
-     ('etapes', dict(
+     ('etapes', dict(howto=True, id="mise-en-place", 
        eyebrow="Comment ça marche",
        h2="Quatre étapes, et rien à installer",
        items=[
@@ -1000,6 +1031,86 @@ PAGES = {
          "qui les rappelle, beaucoup moins de découvrir qu'on les a trompés."),
        ])),
 
+     ('cartes', dict(
+       eyebrow="Sur le terrain", id="metiers",
+       h2="Le même agent, quatre métiers, quatre missions",
+       paras=["Un agent vocal ne se règle pas une fois pour toutes&nbsp;: ce qu'il doit obtenir de l'appelant change "
+              "complètement d'un métier à l'autre. Voici ce qu'on lui fait faire, concrètement, chez les clients "
+              "qu'on équipe."],
+       items=[
+        ("relance-devis", "Plombier, électricien, dépannage",
+         "L'urgence ne rappelle pas&nbsp;: elle appelle le suivant. L'agent qualifie en trois questions — quoi, où, "
+         "depuis quand — et vous envoie le résumé par SMS pendant que vous êtes sous un évier. Vous rappelez en "
+         "connaissance de cause, ou pas du tout si c'est hors zone."),
+        ("estimation-en-ligne", "Agence immobilière",
+         "Les appels sur annonce arrivent le soir et le week-end, en rafale. L'agent identifie le bien concerné, "
+         "note le budget et les disponibilités, et pose la visite dans l'agenda. Le samedi 21&nbsp;h devient un "
+         "rendez-vous du lundi matin au lieu d'un appel manqué."),
+        ("rappel-rdv", "Cabinet, institut, salon",
+         "Périmètre volontairement étroit&nbsp;: prendre, décaler ou annuler un rendez-vous. Rien sur le motif, "
+         "rien sur l'état de santé. L'agent libère le poste d'accueil des appels d'agenda, qui sont les plus "
+         "nombreux et les moins intéressants."),
+        ("messagerie-google", "Commerce et restauration",
+         "Horaires, adresse, disponibilité, réservation. Ce sont les quatre questions qui saturent la ligne au pire "
+         "moment du service. L'agent y répond sans interrompre personne, et transfère le reste."),
+       ],
+       tip="Le point commun des quatre&nbsp;: l'agent ne cherche jamais à conclure. Il qualifie, il note, il pose "
+           "un rendez-vous. Un agent qui essaie de vendre est un agent qui fait raccrocher.",
+       tip_ic="🎧")),
+
+     ('tableau', dict(
+       alt=True, eyebrow="Les trois voies", id="faire-soi-meme",
+       h2="Le faire soi-même, l'acheter, ou le faire faire",
+       paras=["Trois chemins mènent à un agent qui décroche, et ils ne s'adressent pas aux mêmes gens. Le tableau "
+              "dit ce que chacun coûte vraiment&nbsp;— parce que la ligne de facture n'est jamais le coût principal."],
+       colonnes=["La voie", "Ce que ça demande"],
+       lignes=[
+        ["<strong>Open source, auto-hébergé</strong>&nbsp;— reconnaissance vocale, modèle de langage et synthèse "
+         "vocale assemblés soi-même.",
+         "Techniquement faisable et peu coûteux à la minute. En revanche, il faut tenir la latence sous la seconde, "
+         "gérer la téléphonie, et rester disponible la nuit — puisque c'est précisément la nuit que l'agent "
+         "travaille. Pour une équipe qui a déjà un profil technique et du temps, pas pour un artisan."],
+        ["<strong>Une plateforme SaaS branchée soi-même</strong>, ou un montage sur un outil d'automatisation "
+         "comme n8n.",
+         "C'est la voie la plus courante quand on aime bricoler&nbsp;: l'assemblage tient en une soirée. Le piège "
+         "est ailleurs — écrire ce que l'agent doit dire, prévoir les cas tordus, décider quand il transfère. "
+         "Comptez que 20&nbsp;% du travail est technique et 80&nbsp;% conversationnel."],
+        ["<strong>Le faire faire</strong>&nbsp;— ce qu'on propose.",
+         "On paramètre l'agent sur votre activité, on écoute les premiers appels avec vous, on corrige, et on "
+         "branche derrière ce qui transforme l'appel en rendez-vous. Vous payez pour ne pas avoir à devenir "
+         "spécialiste d'un sujet que vous n'aviez pas prévu d'apprendre."],
+       ],
+       tip="Quelle que soit la voie, la question qui décide de tout est la même&nbsp;: qu'est-ce que l'agent fait "
+           "quand il ne sait pas&nbsp;? Une réponse floue à cette question annonce un agent qui fera fuir vos "
+           "appelants.",
+       tip_ic="🔀")),
+
+     ('texte', dict(
+       eyebrow="Le cadre légal", id="cadre",
+       h2="Ce que vous devez à la personne qui appelle",
+       paras=[
+        "Faire décrocher une machine n'est pas neutre juridiquement, et c'est le sujet que les prestataires "
+        "évitent le plus volontiers. Trois obligations, qu'on applique par défaut sur les agents qu'on installe.",
+        "<strong>Dire que c'est une IA.</strong> Le règlement européen sur l'intelligence artificielle impose "
+        "d'informer la personne qu'elle interagit avec un système d'IA, sauf si c'est manifeste. Sur un appel "
+        "téléphonique, ce n'est jamais manifeste. Une phrase d'accueil suffit — et elle sert aussi vos intérêts, "
+        "puisqu'un appelant prévenu est un appelant qui coopère.",
+        "<strong>Traiter l'enregistrement comme une donnée personnelle.</strong> Une voix identifie une personne. "
+        "Dès qu'un appel est enregistré ou transcrit, le RGPD s'applique&nbsp;: information de l'appelant, base "
+        "légale, durée de conservation limitée, et possibilité pour lui de demander l'effacement. La CNIL a une "
+        "position constante sur les enregistrements téléphoniques&nbsp;: ils doivent être l'exception justifiée, "
+        "pas le réglage par défaut.",
+        "<strong>Laisser une porte de sortie humaine.</strong> Rien n'oblige formellement à proposer un humain sur "
+        "un appel entrant, mais un agent qui ne transfère jamais et ne prend jamais de message met votre client "
+        "dans une impasse. C'est un choix commercial catastrophique avant d'être un problème de conformité.",
+        "Une précision qui compte&nbsp;: tout ce qui précède concerne les appels <strong>entrants</strong>. La "
+        "prospection téléphonique sortante relève d'un régime différent, avec l'opposition au démarchage "
+        "téléphonique et des règles propres. Nous n'installons pas d'agent vocal de prospection sortante, et si "
+        "quelqu'un vous en vend un, faites-vous préciser par écrit comment il traite la liste d'opposition."],
+       tip="Notre phrase d'accueil type&nbsp;: «&nbsp;Bonjour, vous êtes sur l'assistant de [entreprise]. Je peux "
+           "prendre votre demande ou vous transférer.&nbsp;» Onze mots, et les trois obligations sont couvertes.",
+       tip_ic="⚖️")),
+
      ('agents', dict(
        eyebrow="Ce qui va avec",
        h2="L'agent vocal ne travaille jamais seul",
@@ -1016,6 +1127,25 @@ PAGES = {
      ('faq', dict(
        alt=True, eyebrow="FAQ", h2="Les questions qu'on nous pose",
        items=[
+        ("Un agent vocal IA fonctionne-t-il pour un cabinet médical&nbsp;?",
+         "Pour la prise et le rappel de rendez-vous, oui, et c'est un usage courant. Pour tout ce qui touche à un "
+         "motif de consultation ou à un symptôme, non&nbsp;: ce sont des données de santé, avec un régime de "
+         "protection renforcé, et un agent générique n'a rien à y faire. On limite le périmètre à l'agenda."),
+        ("Et pour une agence immobilière&nbsp;?",
+         "C'est l'un des cas où le gain est le plus visible&nbsp;: les appels sur annonce arrivent en rafale et "
+         "souvent hors horaires. L'agent qualifie — quel bien, quel budget, quelle disponibilité — et pose la "
+         "visite. Les appels qui tombaient dans le vide le samedi soir deviennent des rendez-vous du lundi."),
+        ("Peut-on lui faire faire de la prospection sortante&nbsp;?",
+         "Techniquement oui, et nous ne le proposons pas. Le démarchage téléphonique automatisé accumule les "
+         "contraintes — opposition au démarchage, information sur la nature du système, consentement — et le jeu "
+         "n'en vaut pas la chandelle pour une entreprise locale."),
+        ("Que devient l'agent si je change d'avis&nbsp;?",
+         "Vous coupez le renvoi et tout redevient comme avant, en une manipulation sur votre ligne. Les "
+         "transcriptions déjà collectées vous appartiennent&nbsp;: on vous les exporte, on ne les garde pas."),
+        ("L'agent comprend-il un accent, ou une personne âgée qui parle lentement&nbsp;?",
+         "Mieux qu'il y a deux ans, et pas parfaitement. C'est justement pour ça que la règle du transfert au "
+         "deuxième malentendu compte plus que la performance brute du modèle&nbsp;: elle transforme un échec de "
+         "compréhension en appel transféré, pas en client perdu."),
         ("Est-ce que ça s'entend que c'est une IA&nbsp;?",
          "Oui, et c'est voulu&nbsp;: l'agent se présente comme un assistant dès la première phrase. La voix est "
          "naturelle, mais l'objectif n'est pas de faire illusion — il est de ne pas laisser un appel sans réponse."),
@@ -1178,7 +1308,7 @@ PAGES = {
          "Cette page explique laquelle des deux versions vous obtenez, selon comment il est installé et sur quoi il "
          "est entraîné."],
        cta="Voir ce que ça donnerait sur mon site",
-       sous_cta="Site 0&nbsp;€ · puis dès 199&nbsp;€/mois",
+       sous_cta="Site 0&nbsp;€ · dès 199&nbsp;€/mois",
        image=(IMG + 'chatbot-wordpress.jpg',
               "Une visiteuse consulte un site sur son téléphone à 21 h, chez elle"),
        phone=[("call", "Visiteur · 21:07", "Page « Tarifs »"),
@@ -1369,7 +1499,7 @@ PAGES = {
               "mois envoie le signal inverse, à Google comme au client qui hésite.",
               "Le geste demandé tient en dix secondes&nbsp;: vous envoyez une photo de chantier par SMS. L'agent "
               "écrit le texte avec le vocabulaire de votre métier et de votre ville, et publie."],
-       cta="Voir ce que ça donnerait", sous_cta="Site 0&nbsp;€ · puis dès 199&nbsp;€/mois",
+       cta="Voir ce que ça donnerait", sous_cta="Site 0&nbsp;€ · dès 199&nbsp;€/mois",
        phone=[("call", "Vous · 17:22", "📷 Photo du chantier"),
               ("sms", "Post publié", "«&nbsp;Terrasse bois posée cette semaine à Vitry — 24&nbsp;m², essence "
                                      "douglas.&nbsp;»", "En ligne")])),
@@ -1489,7 +1619,7 @@ PAGES = {
               "vous ne saurez jamais qu'il a existé.",
               "L'agent envoie un SMS à votre nom dans la seconde qui suit, avec le lien de votre formulaire. Le client "
               "vous attend au lieu d'appeler ailleurs."],
-       cta="Voir ce que ça donnerait", sous_cta="Site 0&nbsp;€ · puis dès 199&nbsp;€/mois",
+       cta="Voir ce que ça donnerait", sous_cta="Site 0&nbsp;€ · dès 199&nbsp;€/mois",
        phone=[("call", "06 12 •• •• 41", "Appel entrant · 14:32"),
               ("miss", "Appel manqué", "Vous êtes sur un chantier"),
               ("sms", "SMS envoyé", "«&nbsp;Ici Dupont Paysage. Je vous rappelle très vite.&nbsp;»",
@@ -1557,7 +1687,7 @@ PAGES = {
               "19&nbsp;h a eu le temps d'aller chez deux concurrents, qui ont peut-être déjà rappelé.",
               "L'agent vous envoie le nom et le numéro par SMS dans la seconde. Le prospect, lui, reçoit une "
               "confirmation immédiate&nbsp;: il sait que sa demande est arrivée quelque part."],
-       cta="Voir ce que ça donnerait", sous_cta="Site 0&nbsp;€ · puis dès 199&nbsp;€/mois",
+       cta="Voir ce que ça donnerait", sous_cta="Site 0&nbsp;€ · dès 199&nbsp;€/mois",
        phone=[("call", "Formulaire · 10:04", "Nouvelle demande"),
               ("sms", "À rappeler", "Claire M. · 06 71 •• •• 09 · Devis salle de bain · Vitry",
                "Reçu en 4 s")])),
@@ -1619,7 +1749,7 @@ PAGES = {
               "vous n'osez plus rappeler.",
               "L'agent relance à J+3 puis à J+7, à votre nom, sur un ton neutre. Et il s'arrête net dès que le client "
               "répond."],
-       cta="Voir ce que ça donnerait", sous_cta="Site 0&nbsp;€ · puis dès 199&nbsp;€/mois", viz="transforme")),
+       cta="Voir ce que ça donnerait", sous_cta="Site 0&nbsp;€ · dès 199&nbsp;€/mois", viz="transforme")),
      ('reponse', dict(
        eyebrow="Ce que fait l'agent", h2="À quoi ressemble une relance qui ne braque pas&nbsp;?",
        reponse="Trois lignes, à votre nom&nbsp;: le devis est toujours valable, vous restez disponible pour les "
@@ -1677,7 +1807,7 @@ PAGES = {
               "kilomètres pour rien.",
               "L'agent confirme à la prise du rendez-vous, puis rappelle la veille avec la possibilité de décaler en "
               "un mot. C'est le poste où le retour se voit le plus vite, parce qu'il se chiffre."],
-       cta="Voir ce que ça donnerait", sous_cta="Site 0&nbsp;€ · puis dès 199&nbsp;€/mois",
+       cta="Voir ce que ça donnerait", sous_cta="Site 0&nbsp;€ · dès 199&nbsp;€/mois",
        phone=[("call", "Confirmation", "Mardi 14&nbsp;h · noté"),
               ("sms", "Rappel · la veille", "«&nbsp;Rendez-vous demain 14&nbsp;h. Répondez OK, ou DECALER.&nbsp;»",
                "Confirmé")])),
@@ -1737,7 +1867,7 @@ PAGES = {
               "simplement plus à vous.",
               "L'agent repère ceux qui n'ont pas eu de contact depuis douze mois et leur envoie un mot adapté à votre "
               "métier. C'est le canal le moins cher de tous&nbsp;: la confiance est déjà faite."],
-       cta="Voir ce que ça donnerait", sous_cta="Site 0&nbsp;€ · puis dès 199&nbsp;€/mois", viz="capitalise")),
+       cta="Voir ce que ça donnerait", sous_cta="Site 0&nbsp;€ · dès 199&nbsp;€/mois", viz="capitalise")),
      ('reponse', dict(
        eyebrow="Ce que fait l'agent", h2="Qu'est-ce qu'on écrit à un client de 2024&nbsp;?",
        reponse="Rien qui ressemble à une newsletter. Un message court, à votre nom, qui rappelle la prestation faite "
@@ -1796,7 +1926,7 @@ PAGES = {
               "la seule fenêtre où vous pouvez encore agir.",
               "L'agent envoie un SMS de satisfaction en fin d'intervention. S'il est négatif, vous êtes alerté "
               "immédiatement. Rien n'est publié, rien n'est filtré&nbsp;: c'est du service."],
-       cta="Voir ce que ça donnerait", sous_cta="Site 0&nbsp;€ · puis dès 199&nbsp;€/mois",
+       cta="Voir ce que ça donnerait", sous_cta="Site 0&nbsp;€ · dès 199&nbsp;€/mois",
        phone=[("call", "Intervention terminée", "Mardi · 16:40"),
               ("miss", "Retour reçu", "«&nbsp;Bof, la finition m'a déçu.&nbsp;»"),
               ("sms", "Vous êtes alerté", "Rappelez M. Perrin aujourd'hui", "Avant Google")])),
@@ -1858,7 +1988,7 @@ PAGES = {
               "qu'il rapporte finit toujours par sauter, souvent au mauvais moment.",
               "Chaque mois, vous recevez le compte&nbsp;: appels rattrapés, devis relancés, avis obtenus, rendez-vous "
               "pris. Pas un tableau de bord à consulter&nbsp;— quatre chiffres, dans un message."],
-       cta="Voir un rapport type", sous_cta="Site 0&nbsp;€ · puis dès 199&nbsp;€/mois", viz="pilote")),
+       cta="Voir un rapport type", sous_cta="Site 0&nbsp;€ · dès 199&nbsp;€/mois", viz="pilote")),
      ('reponse', dict(
        eyebrow="Ce que fait l'agent", h2="Qu'est-ce qu'on compte, exactement&nbsp;?",
        reponse="Des événements, pas des impressions&nbsp;: le nombre d'appels manqués qui ont reçu un SMS, le nombre "
@@ -1918,7 +2048,7 @@ PAGES = {
               "se dit qu'on verra la semaine prochaine, et deux mois plus tard on négocie ce qui était dû.",
               "L'agent relance à J+1 puis à J+15, poliment, à votre nom. Vous ne passez jamais pour le créancier "
               "qui court après son argent&nbsp;— et la séquence s'arrête au paiement."],
-       cta="Voir ce que ça donnerait", sous_cta="Site 0&nbsp;€ · puis dès 199&nbsp;€/mois",
+       cta="Voir ce que ça donnerait", sous_cta="Site 0&nbsp;€ · dès 199&nbsp;€/mois",
        phone=[("call", "Facture 2418 · 3 240 €", "Échéance dépassée · J+1"),
               ("miss", "Sans relance", "Vous n'osez pas rappeler"),
               ("sms", "Rappel envoyé", "«&nbsp;Bonjour, la facture 2418 arrive à échéance. Merci d'avance.&nbsp;»",
@@ -2042,7 +2172,7 @@ PAGES = {
               "coûte rien.</strong> Trois jours plus tard, la fenêtre est fermée&nbsp;: il est passé à autre chose.",
               "Quand le suivi de satisfaction remonte un retour positif, l'agent propose au client de vous "
               "recommander, avec un message tout prêt qu'il n'a qu'à transférer à qui il veut."],
-       cta="Voir ce que ça donnerait", sous_cta="Site 0&nbsp;€ · puis dès 199&nbsp;€/mois",
+       cta="Voir ce que ça donnerait", sous_cta="Site 0&nbsp;€ · dès 199&nbsp;€/mois",
        phone=[("call", "Retour reçu", "«&nbsp;Très content, merci&nbsp;!&nbsp;»"),
               ("sms", "Proposition envoyée", "«&nbsp;Ravi&nbsp;! Si quelqu'un autour de vous en a besoin, voici un "
                                              "message tout prêt à transférer.&nbsp;»", "1 filleul")])),
@@ -2104,7 +2234,7 @@ PAGES = {
               "lui, n'ose pas demander le prix et va le chercher chez un concurrent qui l'affiche.",
               "L'agent pose quelques questions sur le site et donne une fourchette calculée à partir de vos propres "
               "tarifs. Vous recevez la demande déjà chiffrée."],
-       cta="Voir ce que ça donnerait", sous_cta="Site 0&nbsp;€ · puis dès 199&nbsp;€/mois", viz="transforme")),
+       cta="Voir ce que ça donnerait", sous_cta="Site 0&nbsp;€ · dès 199&nbsp;€/mois", viz="transforme")),
      ('reponse', dict(
        eyebrow="Ce que fait l'agent", h2="Une estimation, ce n'est pas un devis&nbsp;?",
        reponse="Non, et la page le dit explicitement au visiteur. C'est une fourchette calculée à partir de vos "
