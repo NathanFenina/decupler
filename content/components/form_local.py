@@ -6,14 +6,17 @@ façon Typeform), pas un formulaire long qui scrolle.
 Écrit dans Supabase (projet « LinkedIn App », table `candidatures_local`,
 policy INSERT publique / aucune lecture anonyme).
 
-Choix : le téléphone est obligatoire (canal principal de relance pour cette
-audience — on les appelle, on ne compte pas sur eux pour réserver un
-Calendly). Calendly reste proposé en bonus aux profils "verts" seulement.
+Choix : le téléphone est obligatoire et c'est le seul canal de relance —
+pas de Calendly, on appelle directement.
+
+⚠️ Ne jamais utiliser `&&` dans le JS de ce fichier : WordPress convertit
+tout '&' isolé en '&#038;' à l'enregistrement, y compris dans un <script>,
+ce qui casse le parsing. Utiliser des ternaires (A?B:false) à la place.
+Voir scripts/lib/wpcss.py::audit(), qui bloque ce motif automatiquement.
 """
 
 SUPABASE_URL = "https://bhgsnoybkxldkzkwkbku.supabase.co"
 SUPABASE_ANON_KEY = "sb_publishable_IhHhliR-DLLuakQ2yYpZ-A_kOKRb4_m"
-CALENDLY = "https://calendly.com/fenina-nathan/consultationstrategique"
 
 PLACES = 10
 CLOTURE = "dimanche 6 septembre"
@@ -64,6 +67,7 @@ CSS = """<style>
  border-radius:12px;padding:14px 16px;margin:18px 0 4px}
 .rf .rf-eng input{margin-top:3px}
 .rf .rf-eng p{margin:0;font-size:.88rem;line-height:1.5;color:var(--rmut)}
+.rf .rf-eng.bad{border-color:#c0392b}
 .rf .rf-nav{display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:24px;gap:12px}
 .rf .rf-next,.rf .rf-submit{background:linear-gradient(135deg,var(--rv),var(--rv2));color:#fff;border:none;
  font-weight:700;font-size:.96rem;padding:13px 26px;border-radius:10px;cursor:pointer;transition:transform .18s,box-shadow .18s}
@@ -79,19 +83,17 @@ CSS = """<style>
 .rf .rf-outcome .ic{font-size:2.2rem;margin:0 0 12px}
 .rf .rf-outcome h3{font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:800;color:var(--rink);margin:0 0 12px}
 .rf .rf-outcome p{font-size:.98rem;line-height:1.6;color:var(--rmut);margin:0 0 22px}
-.rf .rf-cal-wrap{margin:0}
-.rf .rf-cal{display:inline-flex;align-items:center;gap:9px;background:linear-gradient(135deg,var(--rv),var(--rv2));
- color:#fff!important;text-decoration:none!important;font-weight:700;font-size:1rem;padding:15px 30px;border-radius:11px;
- box-shadow:0 12px 26px -10px rgba(123,92,250,.6)}
 @media(max-width:640px){.rf .rf-card{padding:26px 20px}}
 </style>"""
 
 BESOINS = [
-    ("avis", "Avoir plus d'avis sur Maps"),
-    ("auto", "Répondre automatiquement aux clients"),
+    ("avis", "Avoir plus d'avis positifs sur Maps"),
+    ("auto", "Répondre automatiquement aux clients par SMS"),
     ("form", "Un formulaire sur mon site pour récupérer les messages"),
-    ("chatbot", "Un chatbot"),
+    ("chatbot", "Un chatbot IA sur le site ou sur mon répondeur"),
     ("devis", "Un agent pour les devis et les factures"),
+    ("visibilite", "Plus de visibilité organique sur Google, Maps, ChatGPT"),
+    ("ads", "Faire de la publicité sur Google, Local Services…"),
 ]
 besoin_html = "".join(
     f'<label class="rf-check" data-check><input type="checkbox" id="rf-besoin-{k}"><span>{lbl}</span></label>'
@@ -110,7 +112,7 @@ STEPS = [
     ("Votre activité", "",
      """<label class="rf-lbl">Entreprise / cabinet</label><input type="text" id="rf-entreprise">
 <label class="rf-lbl">Ville</label><input type="text" id="rf-ville">""",
-     []),
+     ["rf-entreprise", "rf-ville"]),
     ("Avez-vous déjà un site&nbsp;?", "",
      """<select id="rf-site"><option value="non">Non, je n'en ai pas</option><option value="oui-a-refaire">Oui, mais il est à refaire</option><option value="oui-ok">Oui, il me convient</option></select>
 <div id="rf-site-url-wrap" style="display:none"><label class="rf-lbl">L'adresse de votre site actuel</label><input type="url" id="rf-site-url" placeholder="https://…"></div>""",
@@ -125,14 +127,14 @@ STEPS = [
     ("Le site est gratuit.", "Une fois que vous l'aurez vu, seriez-vous prêt à payer un service ensuite&nbsp;? Combien&nbsp;?",
      """<label class="rf-lbl">Quel(s) service(s)&nbsp;?</label><input type="text" id="rf-service" placeholder="ex. agent SMS, chatbot, plus de visibilité…">
 <label class="rf-lbl">À quel prix par mois, environ&nbsp;?</label><input type="text" id="rf-prix" placeholder="ex. 100€, ou une fourchette">""",
-     []),
+     ["rf-service", "rf-prix"]),
     ("Délai souhaité de mise en ligne", "",
      """<select id="rf-delai"><option value="pas-presse">Je ne suis pas pressé</option><option value="ce-mois">Ce mois-ci</option><option value="cette-semaine">Cette semaine</option></select>""",
      []),
     ("Dernière chose", "Pourquoi vous, plutôt qu'un autre&nbsp;?",
      """<textarea id="rf-pourquoi" placeholder="Un mot sur votre situation, ce qui vous bloque aujourd'hui, pourquoi maintenant…"></textarea>
 <div class="rf-eng"><input type="checkbox" id="rf-engagement"><p>Ok pour qu'on vous appelle et pour fournir quelques photos/infos sous 7 jours si votre candidature est retenue&nbsp;? (clôture {cloture})</p></div>""".format(cloture=CLOTURE),
-     []),
+     ["rf-pourquoi"]),
 ]
 
 
@@ -177,8 +179,7 @@ def render(photo_url=None, photo_alt=""):
 <div class="rf-outcome" data-outcome="vert">
   <div class="ic">🟢</div>
   <h3>Votre profil correspond à ce qu'on cherche.</h3>
-  <p>On vous appelle sous 48&nbsp;h. Si vous préférez choisir vous-même le créneau, c'est possible aussi&nbsp;:</p>
-  <div class="rf-cal-wrap"><a class="rf-cal" href="{CALENDLY}" rel="noopener">Réserver mon créneau</a></div>
+  <p>On vous appelle sous 48&nbsp;h au numéro que vous avez laissé.</p>
 </div>
 <div class="rf-outcome" data-outcome="orange">
   <div class="ic">🟠</div>
@@ -228,7 +229,15 @@ root.querySelectorAll('[data-check]').forEach(function(lbl){{
   var cb=lbl.querySelector('input');
   cb.addEventListener('change',function(){{lbl.classList.toggle('sel',cb.checked)}});
 }});
+var engCb=root.querySelector('#rf-engagement');
+if(engCb){{
+  engCb.addEventListener('change',function(){{
+    var engBox=root.querySelector('.rf-eng');
+    if(engBox)engBox.classList.remove('bad');
+  }});
+}}
 function markInvalid(id,bad){{var e=root.querySelector('#'+id);if(e)e.style.borderColor=bad?'#c0392b':''}}
+var BESOIN_KEYS=['avis','auto','form','chatbot','devis','visibilite','ads'];
 root.querySelectorAll('[data-next]').forEach(function(btn){{
   btn.addEventListener('click',function(){{
     var req=REQUIRED[cur]||[],err=root.querySelector('#rf-err-'+cur),ok=true,firstBad=null;
@@ -238,9 +247,21 @@ root.querySelectorAll('[data-next]').forEach(function(btn){{
       markInvalid(req[k],bad);
       if(bad){{ok=false;if(!firstBad)firstBad=req[k]}}
     }}
+    if(cur===3){{
+      var needUrl=val('rf-site')!=='non';
+      var urlBad=needUrl?!val('rf-site-url'):false;
+      markInvalid('rf-site-url',urlBad);
+      if(urlBad){{ok=false;if(!firstBad)firstBad='rf-site-url'}}
+    }}
+    if(cur===5){{
+      var nChecked=0;
+      BESOIN_KEYS.forEach(function(k){{if(checked('rf-besoin-'+k))nChecked++}});
+      var besoinBad=(nChecked===0)?(!val('rf-besoin-autre')):false;
+      if(besoinBad){{ok=false;if(!firstBad)firstBad='rf-besoin-autre'}}
+    }}
     if(!ok){{
       if(err)err.classList.add('show');
-      var badEl=root.querySelector('#'+firstBad);
+      var badEl=firstBad?root.querySelector('#'+firstBad):null;
       if(badEl)badEl.scrollIntoView({{block:'center',behavior:'smooth'}});
       return;
     }}
@@ -251,7 +272,6 @@ root.querySelectorAll('[data-next]').forEach(function(btn){{
 root.querySelectorAll('[data-back]').forEach(function(btn){{
   btn.addEventListener('click',function(){{if(cur>0)goTo(cur-1)}});
 }});
-var PAYANT_HINT=0;
 var DELAI={{'pas-presse':0,'ce-mois':1,'cette-semaine':2}};
 var CA={{'ne-sait-pas':0,'-30k':0,'30-60k':1,'60-120k':2,'120k+':3}};
 function score(){{
@@ -264,16 +284,21 @@ function score(){{
 }}
 function statut(s){{if(s>=5)return'vert';if(s>=2)return'orange';return'rouge'}}
 function besoinsList(){{
-  var keys=['avis','auto','form','chatbot','devis'],out=[];
-  keys.forEach(function(k){{if(checked('rf-besoin-'+k))out.push(k)}});
+  var out=[];
+  BESOIN_KEYS.forEach(function(k){{if(checked('rf-besoin-'+k))out.push(k)}});
   var autre=val('rf-besoin-autre');if(autre)out.push('autre: '+autre);
   return out.join(', ');
 }}
 var btn=root.querySelector('#rf-submit');
 btn.addEventListener('click',function(){{
-  var nom=val('rf-nom'),tel=val('rf-tel'),email=val('rf-email'),metier=val('rf-metier');
+  var nom=val('rf-nom'),tel=val('rf-tel'),email=val('rf-email'),metier=val('rf-metier'),pourquoi=val('rf-pourquoi');
   var err=root.querySelector('#rf-err-'+(N-1));
-  if(!nom||!tel||!email||!metier||email.indexOf('@')===-1){{if(err)err.classList.add('show');return}}
+  var emailBad=email.indexOf('@')===-1;
+  var engBad=!checked('rf-engagement');
+  var engBox=root.querySelector('.rf-eng');
+  markInvalid('rf-pourquoi',!pourquoi);
+  if(engBox)engBox.classList.toggle('bad',engBad);
+  if(!nom||!tel||!email||!metier||!pourquoi||emailBad||engBad){{if(err)err.classList.add('show');return}}
   if(err)err.classList.remove('show');
   var s=score(),st=statut(s);
   var payload={{
