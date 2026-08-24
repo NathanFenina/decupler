@@ -129,6 +129,24 @@ def par_etape(cle):
 # une carte qui pointe vers une page encore en brouillon donne un 404 sur une
 # page publiee. On n'ajoute une entree qu'une fois la page en ligne.
 LIENS = {
+    'rapport-mensuel': 'https://decupler.com/agent-rapport-mensuel/',
+    'satisfaction': 'https://decupler.com/agent-satisfaction/',
+    'parrainage': 'https://decupler.com/agent-parrainage/',
+    'reponse-avis': 'https://decupler.com/repondre-aux-avis-google/',
+    'demande-avis': 'https://decupler.com/obtenir-des-avis-google/',
+    'reactivation': 'https://decupler.com/agent-reactivation/',
+    'relance-facture': 'https://decupler.com/agent-relance-facture/',
+    'rappel-rdv': 'https://decupler.com/agent-rappel-rdv/',
+    'relance-devis': 'https://decupler.com/agent-relance-devis/',
+    'agent-vocal': 'https://decupler.com/agent-vocal-ia/',
+    'estimation-en-ligne': 'https://decupler.com/agent-estimation-en-ligne/',
+    'messagerie-google': 'https://decupler.com/agent-messagerie-google/',
+    'chatbot': 'https://decupler.com/chatbot-wordpress/',
+    'sms-formulaire': 'https://decupler.com/agent-sms-formulaire/',
+    'sms-appel-manque': 'https://decupler.com/agent-sms-appel-manque/',
+    'mots-cles-locaux': 'https://decupler.com/agent-mots-cles-locaux/',
+    'posts-google': 'https://decupler.com/agent-posts-google/',
+    'fiche-google': 'https://decupler.com/agent-fiche-google/',
     'citations-locales': 'https://decupler.com/citations-locales/',
     'seo-local':         'https://decupler.com/seo-local/',
 }
@@ -137,24 +155,6 @@ LIENS = {
 # dans LIENS ci-dessus le jour ou la page passe en « publie », puis regenerer
 # le pilier et les pages metier.
 EN_ATTENTE = {
-    'fiche-google':       'https://decupler.com/agent-fiche-google/',
-    'posts-google':       'https://decupler.com/agent-posts-google/',
-    'mots-cles-locaux':   'https://decupler.com/agent-mots-cles-locaux/',
-    'sms-appel-manque':   'https://decupler.com/agent-sms-appel-manque/',
-    'sms-formulaire':     'https://decupler.com/agent-sms-formulaire/',
-    'chatbot':            'https://decupler.com/chatbot-wordpress/',
-    'messagerie-google':  'https://decupler.com/agent-messagerie-google/',
-    'estimation-en-ligne': 'https://decupler.com/agent-estimation-en-ligne/',
-    'agent-vocal':        'https://decupler.com/agent-vocal-ia/',
-    'relance-devis':      'https://decupler.com/agent-relance-devis/',
-    'rappel-rdv':         'https://decupler.com/agent-rappel-rdv/',
-    'relance-facture':    'https://decupler.com/agent-relance-facture/',
-    'reactivation':       'https://decupler.com/agent-reactivation/',
-    'demande-avis':       'https://decupler.com/obtenir-des-avis-google/',
-    'reponse-avis':       'https://decupler.com/repondre-aux-avis-google/',
-    'parrainage':         'https://decupler.com/agent-parrainage/',
-    'satisfaction':       'https://decupler.com/agent-satisfaction/',
-    'rapport-mensuel':    'https://decupler.com/agent-rapport-mensuel/',
 }
 
 # Les deux guides du cluster n'ont pas d'agent correspondant : ce sont des
