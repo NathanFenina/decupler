@@ -29,5 +29,11 @@ generated-images/
 *.log
 
 # Skills tierces installees via `npx skills add` (reinstallables depuis skills-lock.json)
-.agents/
+.agents/skills/
 .claude/skills/impeccable
+.claude/skills/frontend-design
+.claude/skills/design-taste-frontend
+.claude/skills/ai-seo
+.claude/skills/seo-audit
+.claude/skills/seo
+.claude/skills/seo-geo
