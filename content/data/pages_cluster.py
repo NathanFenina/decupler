@@ -2418,6 +2418,52 @@ PAGES = {
                "fabriquée, aucun rappel du montant. La séquence s'arrête dès la première réponse.",
        paras=["La réponse la plus fréquente n'est pas un refus&nbsp;: c'est « ah oui, pardon, j'avais oublié de vous "
               "répondre ». C'est exactement le devis que vous aviez perdu."])),
+     ('qr', dict(
+       eyebrow="En une phrase",
+       h2="Ce qu'on nous demande sur la relance de devis",
+       items=[
+        ("Au bout de combien de temps relancer&nbsp;?",
+         "Cinq à sept jours après l'envoi pour la première relance, deux semaines après pour la seconde. Plus tôt, "
+         "vous relancez quelqu'un qui n'a pas eu le temps de lire&nbsp;; plus tard, il a signé ailleurs ou remis "
+         "le projet à l'année prochaine."),
+        ("Combien de relances avant d'arrêter&nbsp;?",
+         "Deux, et on s'arrête. Une troisième relance ne convertit quasiment jamais et vous fait passer du "
+         "professionnel disponible au fournisseur insistant. Le client sait où vous trouver."),
+        ("Faut-il baisser le prix dans la relance&nbsp;?",
+         "Non, jamais dans une relance automatique. Une remise offerte sans être demandée dit que le premier prix "
+         "était gonflé, et elle enseigne au client qu'il suffit d'attendre. Si une négociation doit avoir lieu, "
+         "c'est vous au téléphone, pas un message programmé."),
+        ("Le message part à mon nom&nbsp;?",
+         "Oui, depuis votre adresse ou votre numéro, signé de vous. Un client qui reçoit une relance visiblement "
+         "envoyée par un robot répond moins bien qu'à trois lignes qui ressemblent à ce que vous auriez écrit."),
+        ("Comment savoir si un devis a été accepté ailleurs&nbsp;?",
+         "Souvent on ne le sait pas, et c'est justement l'intérêt de demander. La relance pose explicitement la "
+         "question&nbsp;— «&nbsp;le projet suit-il son cours&nbsp;?&nbsp;» — ce qui donne au client une occasion "
+         "polie de dire non. Un non clair vaut mieux qu'un devis en attente pendant six mois."),
+        ("Et si le devis est très ancien&nbsp;?",
+         "On ne relance pas au-delà de la validité annoncée. Passé ce délai, ce n'est plus une relance mais une "
+         "nouvelle proposition, et elle mérite un vrai message&nbsp;: les prix ont bougé, votre planning aussi."),
+       ])),
+
+     ('etapes', dict(
+       howto=True, eyebrow="Le déroulé", id="deroule",
+       h2="Ce qui se déclenche après l'envoi d'un devis",
+       items=[
+        ("Le devis part, l'horloge démarre",
+         "Dès qu'un devis est marqué comme envoyé, l'agent note la date et la validité annoncée. Rien d'autre ne "
+         "se passe&nbsp;: pas d'accusé, pas de message, on laisse le client lire."),
+        ("Première relance à J+6",
+         "Trois lignes à votre nom&nbsp;: le devis est toujours valable, vous restez disponible pour les "
+         "questions, et vous demandez si le projet suit son cours. Aucune remise, aucune urgence fabriquée."),
+        ("Seconde relance à J+20, puis arrêt",
+         "Même ton, plus court, avec une porte de sortie explicite&nbsp;: «&nbsp;si ce n'est plus d'actualité, "
+         "dites-le-moi simplement, ça ne me vexera pas.&nbsp;» C'est cette phrase qui débloque le plus de réponses."),
+        ("Toute réponse arrête la séquence",
+         "Un mot du client, même «&nbsp;on verra en septembre&nbsp;», coupe les relances suivantes et vous "
+         "remonte l'information. Rien n'est plus mauvais qu'une relance automatique qui arrive après que le client "
+         "a répondu."),
+       ])),
+
      ('cartes', dict(
        alt=True, eyebrow="Les limites", h2="Ce que cet agent ne fera pas", classe='non',
        items=[
@@ -2431,6 +2477,31 @@ PAGES = {
          "Vous relisez et validez le texte des deux relances avant qu'elles ne partent la première fois. Ensuite, "
          "elles tournent seules."),
        ])),
+     ('texte', dict(
+       eyebrow="Le trou", id="trou",
+       h2="Le devis non relancé est la fuite la plus chère",
+       paras=[
+        "C'est le poste où on trouve le plus d'argent chez les entreprises qu'on équipe, et de loin. Pas parce que "
+        "les gérants sont négligents&nbsp;: parce que la relance tombe dans un angle mort de l'organisation.",
+        "Un devis représente déjà tout le travail commercial&nbsp;: l'appel reçu, le déplacement, le métré, le "
+        "chiffrage, la mise en forme. Le coût d'acquisition est intégralement payé. Ce qui reste à faire — envoyer "
+        "trois lignes une semaine plus tard — est la seule étape gratuite de la chaîne, et c'est celle qu'on saute.",
+        "Pourquoi&nbsp;? Parce qu'elle n'a pas de déclencheur. L'appel sonne, le rendez-vous est dans l'agenda, la "
+        "facture est réclamée par le comptable. La relance, elle, ne réclame rien. Elle dépend d'une personne qui "
+        "y pense, un jour où elle n'a rien de plus urgent. Ce jour-là n'arrive jamais dans une entreprise qui "
+        "tourne.",
+        "S'y ajoute un frein psychologique dont personne ne parle&nbsp;: relancer, c'est se demander si on n'a pas "
+        "été trop cher. Beaucoup d'artisans préfèrent ne pas savoir. L'automatisation règle ce point mieux que "
+        "n'importe quel conseil commercial&nbsp;— le message part, quel que soit l'état d'esprit du jour.",
+        "Ce qu'on observe une fois la séquence en place, ce n'est pas seulement des devis signés. C'est aussi des "
+        "<strong>non clairs</strong>, qui libèrent le planning et arrêtent l'attente. Un devis en attente depuis "
+        "quatre mois occupe une place mentale et fausse la prévision d'activité&nbsp;: le fermer est un gain, "
+        "même quand la réponse est non."],
+       tip="Le chiffre à relever avant de commencer&nbsp;: sur vos vingt derniers devis, combien n'ont jamais eu "
+           "de réponse ni de relance&nbsp;? C'est ce nombre, multiplié par votre panier moyen, que vous laissez "
+           "sur la table chaque trimestre.",
+       tip_ic="💸")),
+
      ('agents', dict(
        eyebrow="Ce qui va avec", h2="Relancer, puis ne pas rater le rendez-vous",
        paras=[f"Le catalogue complet des quinze agents est sur la <a href=\"{PILIER}\">page de l'offre</a>."],
@@ -2439,6 +2510,18 @@ PAGES = {
                             "On regarde ensemble ce que ça représente.",
                       libelle="Prendre 15 minutes")),
      ('faq', dict(eyebrow="FAQ", h2="Les questions qu'on nous pose", items=[
+        ("Peut-on relancer par SMS plutôt que par mail&nbsp;?",
+         "Oui, et c'est souvent plus efficace chez les particuliers. Le mail garde l'avantage quand le devis est "
+         "en pièce jointe et que le destinataire est une entreprise. On règle le canal selon votre clientèle, pas "
+         "selon une règle générale."),
+        ("Et si j'ai déjà relancé moi-même&nbsp;?",
+         "Vous le signalez et la séquence s'arrête. C'est le point à surveiller quand plusieurs personnes "
+         "suivent les devis&nbsp;: rien n'est pire pour un client que deux relances le même jour, dont une "
+         "manifestement automatique."),
+        ("Vous relancez aussi les gros dossiers&nbsp;?",
+         "Non, et on vous le déconseille. Au-delà d'un certain montant, la relance est un appel, pas un message. "
+         "On fixe le seuil ensemble et l'agent vous rappelle de passer le coup de fil au lieu d'écrire à votre "
+         "place."),
         ("Comment l'agent sait qu'un devis est parti&nbsp;?",
          "Soit vous le marquez envoyé dans votre outil, soit vous mettez l'agent en copie de l'e-mail. Les deux "
          "fonctionnent&nbsp;; le second ne demande aucun changement d'habitude."),
@@ -2479,6 +2562,52 @@ PAGES = {
                "décaler, parce qu'un client qui décale la veille vaut infiniment mieux qu'un client qui ne vient pas.",
        paras=["La formulation compte&nbsp;: proposer le report ne fait pas annuler davantage. Ça fait annuler "
               "<em>plus tôt</em>, ce qui est exactement ce qu'on cherche."])),
+     ('qr', dict(
+       eyebrow="En une phrase",
+       h2="Ce qu'on nous demande sur le rappel de rendez-vous",
+       items=[
+        ("Un ou deux messages&nbsp;?",
+         "Deux, et ils ne servent pas à la même chose. Le premier, à la prise du rendez-vous, ancre la date et "
+         "donne une trace écrite&nbsp;: c'est lui qui évite l'erreur de créneau. Le second, la veille, sert à "
+         "décider — il propose explicitement de décaler."),
+        ("Pourquoi proposer de décaler&nbsp;? On perd le rendez-vous.",
+         "Non&nbsp;: on perd un rendez-vous qui n'aurait pas eu lieu, mais on le perd <strong>la veille</strong>. "
+         "Un créneau libéré 24&nbsp;heures à l'avance se recase. Un créneau découvert vide le matin même est "
+         "perdu sec, avec le déplacement en prime."),
+        ("À quelle heure envoyer le rappel de la veille&nbsp;?",
+         "En fin d'après-midi, entre 17 et 19&nbsp;heures. Le matin, le message est lu puis oublié dans la "
+         "journée&nbsp;; le soir tard, il agace. En fin de journée, la personne consulte son lendemain."),
+        ("Et pour les rendez-vous pris le jour même&nbsp;?",
+         "Un seul message, à la prise, avec la confirmation. Un rappel deux heures avant un rendez-vous pris le "
+         "matin n'apporte rien et donne l'impression qu'on doute du client."),
+        ("Ça marche avec quel agenda&nbsp;?",
+         "Les agendas courants et la plupart des logiciels de prise de rendez-vous. Ce qui compte, c'est que le "
+         "rendez-vous existe quelque part de manière structurée&nbsp;— un créneau noté sur un carnet ne déclenche "
+         "rien."),
+        ("Le client peut-il annuler en répondant&nbsp;?",
+         "Oui, et il faut le permettre. Une annulation qui demande d'appeler pendant les heures ouvrées, c'est "
+         "une annulation qui devient un rendez-vous manqué."),
+       ])),
+
+     ('etapes', dict(
+       howto=True, eyebrow="Le déroulé", id="deroule",
+       h2="Les deux messages, et ce qu'ils font",
+       items=[
+        ("À la prise du rendez-vous&nbsp;: la trace écrite",
+         "Date, heure, adresse, nom de la personne qui vient, et ce qu'il faut prévoir le cas échéant. C'est ce "
+         "message qu'on ressort quand quelqu'un dit «&nbsp;j'avais compris mardi&nbsp;», et il supprime à lui seul "
+         "une bonne part des erreurs de créneau."),
+        ("La veille en fin d'après-midi&nbsp;: la décision",
+         "Rappel court, avec une phrase qui compte&nbsp;: «&nbsp;si ça ne vous arrange plus, répondez et on "
+         "décale&nbsp;». On offre la sortie au moment où elle est encore utile pour vous."),
+        ("La réponse revient chez vous",
+         "Confirmation, demande de décalage ou annulation&nbsp;: tout arrive sur votre téléphone. Le créneau "
+         "libéré apparaît assez tôt pour être proposé à quelqu'un d'autre."),
+        ("Le décompte se fait tout seul",
+         "Rendez-vous confirmés, décalés, annulés à temps, non honorés. C'est ce décompte qui vous dit si le "
+         "dispositif sert à quelque chose chez vous — et il remonte dans le rapport mensuel."),
+       ])),
+
      ('cartes', dict(
        alt=True, eyebrow="Les limites", h2="Ce que cet agent ne fera pas", classe='non',
        items=[
@@ -2490,6 +2619,30 @@ PAGES = {
         ("chatbot", "Gérer votre agenda à votre place",
          "Il lit votre agenda, il ne le réorganise pas. Les arbitrages de planning restent les vôtres."),
        ])),
+     ('texte', dict(
+       eyebrow="Le calcul", id="calcul",
+       h2="Ce que coûte un rendez-vous non honoré",
+       paras=[
+        "Un lapin ne coûte pas le prix de la prestation manquée. Il coûte plus, et c'est ce que la plupart des "
+        "gérants sous-estiment quand ils décident que le sujet n'en vaut pas la peine.",
+        "<strong>Le créneau perdu</strong> d'abord&nbsp;: une heure ou deux qui ne se rattrapent pas, dans une "
+        "journée qui était pleine. Si vous refusiez du monde ce jour-là, la perte est double.",
+        "<strong>Le déplacement</strong> ensuite, pour les métiers qui se déplacent&nbsp;: le trajet aller-retour, "
+        "le carburant, et le temps de trajet qui n'est facturé à personne. Sur une intervention à trente minutes "
+        "de route, le lapin coûte plus cher que la prestation ne rapportait.",
+        "<strong>L'effet sur le planning</strong>, enfin, qui est le plus insidieux. Un professionnel qui subit "
+        "des rendez-vous non honorés se met à surbooker pour compenser. Le jour où tout le monde vient, il est en "
+        "retard partout, et ce retard produit des avis négatifs chez des clients qui, eux, étaient là.",
+        "Le rappel de la veille ne supprime pas les empêchements&nbsp;: il les fait remonter à temps. C'est une "
+        "différence de nature, pas de degré. Vous n'aurez pas moins de clients qui ont un imprévu&nbsp;— vous "
+        "l'apprendrez la veille au soir au lieu de le découvrir devant une porte fermée.",
+        "Une remarque qui vaut pour tous les métiers à rendez-vous&nbsp;: la personne qui ne vient pas n'est "
+        "presque jamais de mauvaise foi. Elle a oublié, ou elle n'osait pas annuler. Le message de la veille "
+        "traite les deux cas d'un coup, et il le fait sans reproche."],
+       tip="Le repère&nbsp;: si vous subissez plus d'un rendez-vous non honoré par semaine, le sujet est "
+           "rentable. En dessous, c'est du confort — utile, mais du confort.",
+       tip_ic="📅")),
+
      ('agents', dict(
        eyebrow="Ce qui va avec", h2="Le rendez-vous tenu n'est qu'une étape",
        paras=[f"Le catalogue complet des quinze agents est sur la <a href=\"{PILIER}\">page de l'offre</a>."],
@@ -2498,6 +2651,16 @@ PAGES = {
                             "on regarde ce chiffre ensemble.",
                       libelle="Prendre 15 minutes")),
      ('faq', dict(eyebrow="FAQ", h2="Les questions qu'on nous pose", items=[
+        ("Est-ce que le rappel réduit vraiment les rendez-vous manqués&nbsp;?",
+         "Il en transforme une partie en annulations anticipées, ce qui n'est pas la même chose et vaut mieux. Le "
+         "chiffre qu'on suit n'est donc pas seulement le taux de présence&nbsp;: c'est le délai moyen entre "
+         "l'annulation et le créneau, parce que c'est lui qui décide si on peut recaser."),
+        ("Peut-on demander un acompte plutôt&nbsp;?",
+         "C'est efficace et ça filtre aussi des clients légitimes qui n'ont pas envie de payer avant d'avoir vu. "
+         "Commencez par le rappel&nbsp;: c'est gratuit, indolore, et suffisant dans la plupart des métiers."),
+        ("Le message peut-il contenir un plan d'accès&nbsp;?",
+         "Oui, et c'est recommandé quand l'adresse est difficile à trouver. Un lien de navigation dans le message "
+         "de confirmation évite les retards, qui sont l'autre moitié du problème."),
         ("Ça se branche sur mon agenda&nbsp;?",
          "Sur les agendas courants, oui. Sinon l'agent fonctionne sur les rendez-vous saisis dans son propre "
          "calendrier, ce qui reste plus simple que de changer d'outil."),
@@ -2536,6 +2699,55 @@ PAGES = {
                "chantier laissé de côté. Un seul envoi, sans relance.",
        paras=["Le taux de réponse d'une réactivation bien écrite dépasse celui de n'importe quelle campagne vers des "
               "inconnus, pour une raison simple&nbsp;: ces gens vous connaissent et vous ont déjà payé."])),
+     ('qr', dict(
+       eyebrow="En une phrase",
+       h2="Ce qu'on nous demande sur la réactivation",
+       items=[
+        ("Au bout de combien de temps un client est-il « dormant »&nbsp;?",
+         "Ça dépend entièrement du cycle de votre métier. Un an chez un garagiste ou un dentiste, deux ans chez un "
+         "couvreur, six mois dans un institut. Le repère utile&nbsp;: le délai au-delà duquel il aurait dû "
+         "revenir s'il était resté client."),
+        ("Ce n'est pas une newsletter&nbsp;?",
+         "Non, et la différence est décisive. Une newsletter parle de vous à tout le monde en même temps. Ici, un "
+         "message court à une personne, qui rappelle la prestation faite chez elle et propose la suite logique. "
+         "Le taux de réponse n'a rien à voir."),
+        ("Faut-il un consentement pour recontacter un ancien client&nbsp;?",
+         "Pour une prestation analogue à celle déjà fournie, la prospection par voie électronique auprès d'un "
+         "client existant est admise, avec un moyen de refus simple à chaque message. On reste dans ce "
+         "cadre&nbsp;: pas de nouveauté sans rapport, pas de fichier acheté, jamais."),
+        ("Combien de messages par client et par an&nbsp;?",
+         "Un, deux au maximum. Un ancien client sollicité tous les mois n'est plus un ancien client, c'est "
+         "quelqu'un qui vous bloque. La rareté fait la moitié de l'efficacité de ce canal."),
+        ("Que fait-on de ceux qui ne répondent jamais&nbsp;?",
+         "On les sort de la liste après deux tentatives. Continuer à écrire à quelqu'un qui n'a jamais répondu "
+         "dégrade votre réputation d'expéditeur et ne produit rien."),
+        ("Et si je n'ai pas de fichier client propre&nbsp;?",
+         "C'est le cas le plus fréquent, et c'est la première chose qu'on regarde. Un carnet, des factures, un "
+         "historique de messages&nbsp;: il y a presque toujours de quoi reconstituer une liste exploitable. Sans "
+         "fichier, il n'y a pas de réactivation possible."),
+       ])),
+
+     ('etapes', dict(
+       howto=True, eyebrow="Le déroulé", id="deroule",
+       h2="Comment on repart d'un fichier client oublié",
+       items=[
+        ("On reconstitue et on nettoie",
+         "Factures, agenda, historique de SMS, carnet. On dédoublonne, on retire les erreurs manifestes et les "
+         "gens qui ont déjà demandé à ne plus être contactés. Cette étape prend plus de temps que la suite et "
+         "conditionne tout le reste."),
+        ("On segmente par prestation, pas par date",
+         "Ce qui déclenche un retour, c'est la pertinence du motif. Les clients qui ont eu une chaudière posée "
+         "il y a un an n'attendent pas le même message que ceux qui ont eu un dépannage ponctuel. Deux listes, "
+         "deux messages."),
+        ("On écrit un message par segment, court et daté",
+         "«&nbsp;Vous nous aviez appelés en mars dernier pour [la prestation]. C'est la période du [contrôle, "
+         "entretien, revoyure]&nbsp;: je peux passer avant l'hiver si vous voulez.&nbsp;» Le rappel du fait "
+         "précis est ce qui distingue le message d'un envoi de masse."),
+        ("On envoie par vagues et on regarde",
+         "Jamais tout le fichier d'un coup&nbsp;: vous ne pourriez pas absorber les retours, et une rafale "
+         "dégrade la délivrabilité. Par vagues, on mesure ce qui marche et on corrige le message avant la suite."),
+       ])),
+
      ('cartes', dict(
        alt=True, eyebrow="Les limites", h2="Ce que cet agent ne fera pas", classe='non',
        items=[
@@ -2549,6 +2761,32 @@ PAGES = {
          "L'agent envoie ce que vos données lui permettent d'envoyer. Si vos fiches clients sont vides, le message "
          "sera générique — et un message générique ne réactive personne."),
        ])),
+     ('texte', dict(
+       eyebrow="L'arithmétique", id="arithmetique",
+       h2="Pourquoi l'ancien client coûte dix fois moins cher",
+       paras=[
+        "Toutes les entreprises locales qu'on accompagne veulent la même chose&nbsp;: plus de clients. Presque "
+        "toutes regardent dans la même direction&nbsp;— dehors. Et presque toutes ont, dans un tiroir, une liste "
+        "de gens qui les ont déjà payées et qui n'ont plus donné de nouvelles.",
+        "L'écart de coût est structurel. Pour un nouveau client, il faut être trouvé, être choisi parmi trois "
+        "devis, rassurer sur la qualité, et souvent s'aligner sur un prix. Pour un ancien client&nbsp;: aucune de "
+        "ces étapes. Il sait où vous êtes, il connaît votre travail, il a déjà accepté vos tarifs une fois.",
+        "Ce qui manque n'est donc pas la confiance&nbsp;: <strong>c'est le rappel</strong>. Dans la quasi-totalité "
+        "des cas où un client ne revient pas, il n'est pas parti fâché. Il a simplement oublié, ou il n'a pas su "
+        "que la prestation suivante existait, ou il a appelé le premier nom qui lui est venu le jour où il en a eu "
+        "besoin — et ce n'était pas le vôtre parce que ça faisait dix-huit mois.",
+        "Il y a un effet secondaire qu'on n'anticipe pas&nbsp;: la réactivation produit des avis. Un ancien client "
+        "recontacté à bon escient est flatté qu'on se souvienne de lui, et c'est un des meilleurs moments pour "
+        "demander un avis Google — bien meilleur qu'après une première intervention.",
+        "Une mise en garde, pour finir. Ce canal ne supporte pas l'insistance. Il fonctionne parce que le message "
+        "est rare, personnel et pertinent. Envoyé tous les deux mois à tout le fichier, il produit exactement "
+        "l'inverse&nbsp;: des désabonnements, des signalements en spam, et une liste brûlée qu'on ne reconstitue "
+        "pas."],
+       tip="Le test avant d'envoyer&nbsp;: est-ce que vous seriez à l'aise si le client vous répondait «&nbsp;tu "
+           "m'écris juste pour me vendre quelque chose&nbsp;?&nbsp;» Si oui, le message est bon. Si non, le motif "
+           "n'est pas assez réel.",
+       tip_ic="🔁")),
+
      ('agents', dict(
        eyebrow="Ce qui va avec", h2="Réveiller, puis ne pas laisser retomber",
        paras=[f"Le catalogue complet des quinze agents est sur la <a href=\"{PILIER}\">page de l'offre</a>."],
@@ -2556,6 +2794,17 @@ PAGES = {
      ('relance', dict(texte="Combien de clients avez-vous servis il y a deux ans et jamais recontactés depuis&nbsp;?",
                       libelle="Prendre 15 minutes")),
      ('faq', dict(eyebrow="FAQ", h2="Les questions qu'on nous pose", items=[
+        ("Combien de retours espérer sur un fichier de 300 clients&nbsp;?",
+         "Ça dépend trop du métier et de l'âge du fichier pour qu'on avance un chiffre honnêtement. Ce qu'on peut "
+         "dire&nbsp;: le premier envoi sert surtout à mesurer, et le message se corrige à la deuxième vague. "
+         "Quiconque vous annonce un taux avant d'avoir vu votre fichier improvise."),
+        ("Peut-on réactiver par téléphone plutôt que par message&nbsp;?",
+         "Oui, et c'est plus efficace — mais ça ne s'automatise pas. Le montage qu'on préfère&nbsp;: le message "
+         "part, et vous appelez ceux qui ont répondu. Vous passez dix appels utiles au lieu de trois cents appels "
+         "à froid."),
+        ("Et les clients qui sont partis mécontents&nbsp;?",
+         "On les sort de la liste s'ils sont identifiés. Recontacter quelqu'un qui a mal vécu la prestation sans "
+         "traiter le fond, c'est provoquer l'avis négatif qu'il n'avait pas écrit."),
         ("Et le RGPD&nbsp;?",
          "Il s'agit de vos propres clients, contactés au sujet d'une prestation comparable à celle qu'ils ont déjà "
          "achetée&nbsp;: c'est le cadre habituel de la prospection vers une clientèle existante. Chaque message porte "
@@ -2599,6 +2848,51 @@ PAGES = {
                "rien.",
        paras=["La différence n'est pas cosmétique&nbsp;: dans un cas vous triez vos clients avant de les exposer, dans "
               "l'autre vous rattrapez un mécontent. Beaucoup d'outils vendent le premier en l'appelant le second."])),
+     ('qr', dict(
+       eyebrow="En une phrase",
+       h2="Ce qu'on nous demande sur le suivi de satisfaction",
+       items=[
+        ("Ce n'est pas du filtrage d'avis déguisé&nbsp;?",
+         "Non, et c'est le point sur lequel on ne transige pas. Le filtrage consiste à sonder d'abord et à "
+         "n'envoyer sur Google que les clients contents&nbsp;: c'est interdit et sanctionné jusqu'à la suspension "
+         "du profil. Ici, la demande d'avis part à tout le monde. Le sondage sert à vous prévenir, pas à trier."),
+        ("Alors à quoi sert le sondage&nbsp;?",
+         "À l'apprendre le soir même plutôt que samedi sur Google. Un client mécontent recontacté dans les heures "
+         "qui suivent est un problème qu'on répare&nbsp;; le même client trois jours plus tard est un avis à une "
+         "étoile qu'on ne supprimera pas."),
+        ("Quand part le message&nbsp;?",
+         "Le jour même ou le lendemain de la prestation, jamais plus tard. La mémoire du détail — ce qui a plu, "
+         "ce qui a gêné — s'efface en quarante-huit heures, et avec elle l'utilité du retour."),
+        ("Une question ou plusieurs&nbsp;?",
+         "Une seule, à laquelle on répond en une seconde. Un questionnaire à cinq items obtient un taux de réponse "
+         "dérisoire chez les particuliers. Ce qu'on cherche, c'est un signal, pas une étude."),
+        ("Et si personne ne répond&nbsp;?",
+         "C'est fréquent et ce n'est pas grave&nbsp;: l'absence de réponse ne bloque rien, la demande d'avis part "
+         "quand même. Le sondage est un filet, pas un péage."),
+        ("Que fait-on d'un retour négatif&nbsp;?",
+         "Il vous arrive immédiatement, avec le nom et le numéro. À vous d'appeler. Aucun automatisme ne remplace "
+         "ce coup de fil, et c'est précisément ce qu'on cherche à provoquer."),
+       ])),
+
+     ('etapes', dict(
+       howto=True, eyebrow="Le déroulé", id="deroule",
+       h2="Du chantier terminé à l'avis publié",
+       items=[
+        ("La prestation est marquée terminée",
+         "Depuis votre agenda, votre logiciel ou un simple message. C'est le seul geste qui vous incombe, et il "
+         "prend deux secondes."),
+        ("Le sondage part dans la foulée",
+         "Une question, une réponse en un clic. Le message est court et signé de vous. Il ne demande rien "
+         "d'autre&nbsp;— pas de note sur dix, pas de commentaire obligatoire."),
+        ("Un retour négatif vous alerte tout de suite",
+         "Nom, numéro, ce qui a été répondu. Vous rappelez le soir même. C'est l'unique moment où le problème "
+         "coûte encore un coup de fil et pas un avis public."),
+        ("La demande d'avis part à tout le monde",
+         "Contents ou non, sans distinction&nbsp;: c'est la règle, et c'est aussi ce qui rend le flux d'avis "
+         "crédible. Une fiche qui n'a que des cinq étoiles inspire moins confiance qu'une fiche à 4,7 avec "
+         "quelques réserves auxquelles vous avez répondu."),
+       ])),
+
      ('cartes', dict(
        alt=True, eyebrow="Les limites", h2="Ce que cet agent ne fera pas", classe='non',
        items=[
@@ -2612,6 +2906,36 @@ PAGES = {
          "Les deux agents sont indépendants par construction. On refuse de les enchaîner, même quand on nous le "
          "demande&nbsp;— voir <a href=\"https://decupler.com/obtenir-des-avis-google/\">obtenir des avis Google</a>."),
        ])),
+     ('texte', dict(
+       eyebrow="La règle", id="regle",
+       h2="Pourquoi on refuse de trier les clients avant la demande d'avis",
+       paras=[
+        "C'est le service qu'on nous demande le plus souvent, et le seul qu'on refuse systématiquement. La demande "
+        "est toujours formulée gentiment&nbsp;: «&nbsp;on pourrait n'envoyer le lien Google qu'aux clients "
+        "satisfaits, non&nbsp;?&nbsp;» La réponse est non, et il y a trois raisons plutôt qu'une.",
+        "<strong>C'est interdit.</strong> Les règles de Google visent explicitement la sollicitation sélective "
+        "d'avis&nbsp;— le fait de solliciter en fonction de l'expérience présumée du client. La sanction ne se "
+        "limite pas au retrait des avis concernés&nbsp;: elle va jusqu'à la suspension du profil, avec la perte "
+        "de tout l'historique. Des années de collecte honnête effacées pour un raccourci.",
+        "<strong>C'est détectable.</strong> Une fiche qui affiche 5,0 sur cent quarante avis, sans une seule "
+        "réserve, ne ressemble pas à une entreprise irréprochable&nbsp;: elle ressemble à une fiche filtrée. Les "
+        "acheteurs le savent, et beaucoup lisent désormais les avis négatifs en premier. Une note parfaite est "
+        "devenue un signal d'alarme.",
+        "<strong>Ça vous prive de l'information la plus utile.</strong> Le client mécontent qu'on écarte du "
+        "circuit est celui qui vous dit ce qui cloche dans votre organisation. Le filtrage vous protège d'un avis "
+        "et vous prive du diagnostic.",
+        "Ce qu'on met en place à la place fait le même travail, dans l'autre sens&nbsp;: on ne cache pas le "
+        "mécontentement, on le fait remonter avant qu'il ne s'écrive. Ce n'est pas un contournement élégant de la "
+        "règle&nbsp;— c'est simplement la bonne façon de faire, qui se trouve être aussi la seule autorisée.",
+        "Et sur le fond&nbsp;: une entreprise qui a besoin de filtrer ses avis pour tenir sa note a un problème "
+        "que le marketing ne réglera pas."],
+       sources=[("règles de Google sur le contenu des avis", G_REGLES[0])],
+       tip="Le raisonnement qu'on propose aux gérants réticents&nbsp;: sur cent clients, combien sont réellement "
+           "mécontents&nbsp;? Deux, trois&nbsp;? Ces deux ou trois avis, noyés dans quatre-vingt-dix-sept autres "
+           "et suivis d'une réponse posée de votre part, ne vous coûtent rien. C'est la fiche à douze avis qui ne "
+           "supporte pas un négatif.",
+       tip_ic="🛡️")),
+
      ('agents', dict(
        eyebrow="Ce qui va avec", h2="Savoir, répondre, et faire venir les bons avis",
        paras=[f"Le catalogue complet des quinze agents est sur la <a href=\"{PILIER}\">page de l'offre</a>."],
@@ -2620,6 +2944,16 @@ PAGES = {
                             "d'être écrits&nbsp;?",
                       libelle="Prendre 15 minutes")),
      ('faq', dict(eyebrow="FAQ", h2="Les questions qu'on nous pose", items=[
+        ("Le sondage peut-il faire fuir un client qui allait laisser un bon avis&nbsp;?",
+         "Non&nbsp;: c'est une question unique, à laquelle on répond en une seconde, et la demande d'avis part de "
+         "toute façon. Le sondage n'ajoute pas une étape sur le chemin de l'avis, il tourne à côté."),
+        ("Peut-on l'utiliser pour évaluer les collaborateurs&nbsp;?",
+         "Techniquement oui, et prudence&nbsp;: dès que le retour porte sur une personne identifiée, c'est un "
+         "traitement de données la concernant, avec information et cadre à respecter. On le fait quand c'est "
+         "demandé, jamais en douce."),
+        ("Combien de temps garde-t-on les retours&nbsp;?",
+         "Le temps de traiter la demande et d'alimenter le rapport mensuel. Il n'y a aucune raison de conserver "
+         "indéfiniment le mécontentement nominatif d'un client de l'an dernier."),
         ("Le SMS demande une note&nbsp;?",
          "Une question simple, en une ligne, avec une réponse en un mot ou une note courte. Plus le message est "
          "court, plus il obtient de réponses."),
