@@ -369,9 +369,9 @@ PAGES = {
 # ══ 2. Répondre aux avis Google — 110/mois, difficulté 22 ═════════════════
 "repondre-aux-avis-google": dict(
     mot_cle="répondre aux avis google",
-    titre_seo="Répondre aux avis Google : la méthode en 4 temps",
-    meta=("Répondre aux avis Google, positifs comme négatifs : la structure d'une bonne réponse, "
-          "les erreurs qui coûtent cher, et ce que Google en fait vraiment."),
+    titre_seo="Répondre aux avis Google : la méthode et 6 exemples",
+    meta=("Répondre aux avis Google, positifs comme négatifs : la méthode en 4 temps, 6 exemples de "
+          "réponses à copier, et quoi faire quand le bouton n'apparaît pas."),
     signature=SIG_AVIS,
     sections=[
      ('hero', dict(
@@ -398,7 +398,7 @@ PAGES = {
        paras=["Un point souvent mal compris&nbsp;: la réponse n'a pas pour cible l'auteur de l'avis. Il a déjà son "
               "opinion. Elle a pour cible les dizaines de personnes qui liront l'échange dans les mois qui viennent."])),
 
-     ('etapes', dict(
+     ('etapes', dict(howto=True, id="methode", 
        alt=True, eyebrow="La structure",
        h2="Une réponse à un avis négatif tient en quatre temps",
        paras=["Cinq lignes maximum. Au-delà, on lit un plaidoyer, et un plaidoyer donne raison à l'autre."],
@@ -417,6 +417,34 @@ PAGES = {
          "«&nbsp;Appelez-nous au 01&nbsp;xx, on regarde ça ensemble&nbsp;». Ça clôt l'échange public, ça montre que "
          "vous ne fuyez pas, et ça laisse une porte ouverte à une modification de l'avis par son auteur — la seule "
          "façon rapide de le voir disparaître."),
+       ])),
+
+     ('qr', dict(
+       alt=True, eyebrow="En une phrase",
+       h2="Ce que les gérants nous demandent avant de se lancer",
+       items=[
+        ("Faut-il répondre à tous les avis Google&nbsp;?",
+         "Oui, aux négatifs comme aux positifs. Google indique lui-même que répondre aux avis améliore la visibilité "
+         "locale, et un profil où le gérant répond systématiquement rassure davantage qu'un profil sans une seule "
+         "réponse, quelle que soit la note."),
+        ("Sous quel délai faut-il répondre&nbsp;?",
+         "Sous 48&nbsp;heures pour un avis négatif, une semaine pour les autres. Passé un mois, la réponse ne sert "
+         "plus le client qui l'a écrit&nbsp;— elle sert encore les prospects qui liront la fiche, donc elle vaut "
+         "toujours d'être écrite."),
+        ("Qui peut répondre aux avis d'une fiche&nbsp;?",
+         "Seuls les comptes ayant le rôle propriétaire ou gestionnaire sur la fiche d'établissement. Un employé "
+         "connecté à son compte Google personnel ne verra pas le bouton, même sur place et même sur le bon appareil."),
+        ("Peut-on modifier ou supprimer une réponse déjà publiée&nbsp;?",
+         "Oui, à tout moment et sans limite. C'est une différence importante avec l'avis lui-même&nbsp;: une réponse "
+         "écrite à chaud se corrige, et il vaut mieux la corriger tard que la laisser."),
+        ("Pourquoi le bouton «&nbsp;Répondre&nbsp;» n'apparaît-il pas&nbsp;?",
+         "Trois causes, dans l'ordre de fréquence&nbsp;: la fiche n'est pas vérifiée, l'avis se trouve sur une fiche "
+         "en doublon dont vous n'êtes pas gestionnaire, ou votre compte n'a pas les droits. Une fiche suspendue "
+         "bloque également les réponses."),
+        ("Peut-on répondre aux avis avec une IA&nbsp;?",
+         "Rien ne l'interdit, et Google propose lui-même des suggestions de réponse. Ce qui se voit et se retourne "
+         "contre vous, c'est la réponse générique&nbsp;: quatre avis différents qui reçoivent la même formule, "
+         "lisibles à la suite sur la même fiche."),
        ])),
 
      ('cartes', dict(
@@ -442,6 +470,117 @@ PAGES = {
            "la prestation citée. Elle ajoute du vocabulaire réel à votre fiche, celui que vos futurs clients tapent.",
        tip_ic="💡")),
 
+     ('cartes', dict(
+       alt=True, eyebrow="Le blocage", id="ou-repondre",
+       h2="Où répondre&nbsp;— et pourquoi le bouton n'apparaît pas",
+       paras=["On répond depuis la fiche d'établissement, jamais depuis Google Maps en tant que simple visiteur. "
+              "Sur ordinateur, cherchez votre entreprise dans Google en étant connecté au bon compte&nbsp;: le "
+              "panneau de gestion s'affiche directement dans les résultats, avec l'onglet «&nbsp;Avis&nbsp;». Sur "
+              "mobile, l'application Google Maps expose la même chose dans l'onglet «&nbsp;Entreprise&nbsp;». Si le "
+              "bouton reste introuvable, c'est l'une de ces quatre raisons."],
+       items=[
+        ("fiche-google", "La fiche n'est pas vérifiée",
+         "Tant que la validation n'est pas allée à son terme, la fiche existe pour les visiteurs mais vous n'en êtes "
+         "pas officiellement gestionnaire. Vous voyez les avis, vous ne pouvez pas y répondre. C'est la cause "
+         "numéro un, et la plus longue à corriger."),
+        ("citations-locales", "L'avis est sur un doublon",
+         "Une même entreprise peut exister deux fois&nbsp;: ancienne adresse, ancienne raison sociale, fiche créée "
+         "par un tiers. Les avis se répartissent entre les deux, et vous ne gérez que l'une. Demandez la fusion "
+         "plutôt que de créer une troisième fiche."),
+        ("messagerie-google", "Votre compte n'a pas les droits",
+         "Seuls les rôles propriétaire et gestionnaire peuvent répondre. Un salarié ajouté en simple accès, ou "
+         "connecté à son compte personnel, ne verra rien. Vérifiez avec quel compte vous êtes connecté avant de "
+         "chercher plus loin&nbsp;: c'est l'erreur la plus fréquente, et la plus vite réglée."),
+        ("reponse-avis", "La fiche est suspendue",
+         "Une suspension gèle tout&nbsp;: réponses, modifications, photos. Elle fait souvent suite à un changement "
+         "d'informations massif, à une catégorie interdite, ou à une vague d'avis jugée suspecte. Il faut demander "
+         "le rétablissement avant de pouvoir répondre à quoi que ce soit."),
+       ],
+       tip="Un avis qui date de plus de trois ans reste répondable&nbsp;: il n'y a pas de délai de forclusion. Si "
+           "vous reprenez une fiche laissée à l'abandon, commencez par les avis les plus lus, pas les plus récents.",
+       tip_ic="🔑")),
+
+     ('texte', dict(
+       eyebrow="Le vrai enjeu", id="pourquoi",
+       h2="À qui s'adresse vraiment une réponse",
+       paras=[
+        "L'erreur de cadrage la plus courante&nbsp;: écrire à la personne qui a laissé l'avis. Elle est déjà partie, "
+        "elle a dit ce qu'elle avait à dire, et dans la plupart des cas elle ne reviendra pas lire. "
+        "<strong>Votre réponse est écrite pour les gens qui liront cette fiche dans six mois.</strong> Ce sont eux "
+        "qui décideront d'appeler ou pas.",
+        "Ça change tout à la manière d'écrire. Un prospect qui tombe sur un avis à une étoile ne cherche pas à savoir "
+        "qui avait raison&nbsp;— il cherche à savoir ce qui se passe quand ça se passe mal chez vous. La réponse "
+        "lui donne exactement cette information. Un gérant qui reconnaît, explique et propose une solution vaut mieux "
+        "qu'un gérant sans un seul avis négatif&nbsp;: le premier a été mis à l'épreuve, le second est une inconnue.",
+        "Google, de son côté, indique dans sa documentation que répondre aux avis contribue à la visibilité locale, "
+        "au même titre que la complétude de la fiche et la régularité de l'activité. On ne connaît pas le poids exact "
+        "de ce signal, et personne ne le connaît&nbsp;— méfiez-vous de qui vous annonce un pourcentage. Ce qu'on "
+        "observe en revanche sur les fiches qu'on gère, c'est qu'une fiche où le gérant répond systématiquement "
+        "reçoit des avis plus longs et plus détaillés&nbsp;: les gens écrivent davantage quand ils savent qu'on lit.",
+        "Le corollaire est désagréable&nbsp;: <strong>répondre à un avis sur trois est pire que ne jamais "
+        "répondre</strong>. Une fiche où seuls les avis positifs ont une réponse raconte au lecteur exactement ce "
+        "que vous n'aviez pas prévu de lui dire."],
+       tip="Si vous devez choisir par manque de temps, répondez aux avis à deux et trois étoiles avant les autres. "
+           "Ce sont ceux que les prospects lisent en premier pour se faire une idée&nbsp;: ni dithyrambe, ni "
+           "règlement de comptes.",
+       tip_ic="🎯")),
+
+     ('tableau', dict(
+       eyebrow="Les modèles", id="exemples",
+       h2="Six situations, et ce que vous écrivez dans chacune",
+       paras=["Ces réponses sont courtes volontairement. Une réponse longue à un avis négatif donne du poids à "
+              "l'avis&nbsp;: le lecteur y passe plus de temps, et vous avez l'air de vous justifier. Remplacez ce qui "
+              "est entre crochets, et rien d'autre."],
+       colonnes=["La situation", "Ce que vous écrivez"],
+       lignes=[
+        ["<strong>Avis négatif justifié</strong>&nbsp;— le client a raison, vous le savez.",
+         "«&nbsp;Bonjour [prénom], vous avez raison et je suis désolé pour [le fait précis]. Nous avons changé "
+         "[ce qui a changé] depuis. Si vous voulez qu'on répare ça, je suis joignable au [numéro].&nbsp;»"],
+        ["<strong>Avis négatif injuste</strong>&nbsp;— votre version diffère de la sienne.",
+         "«&nbsp;Bonjour [prénom], notre relevé indique [le fait, sans polémique]. Je comprends que l'expérience "
+         "vous ait déçu. Appelez-moi au [numéro], je reprends le dossier avec vous.&nbsp;» Aucune contradiction "
+         "frontale&nbsp;: le lecteur tranche, pas vous."],
+        ["<strong>Avis d'une personne qui n'est pas cliente.</strong>",
+         "«&nbsp;Bonjour, nous ne retrouvons pas de passage à votre nom dans nos dossiers. Il s'agit peut-être d'une "
+         "confusion d'établissement. Écrivez-nous à [adresse], nous vérifierons ensemble.&nbsp;» Signalez en "
+         "parallèle&nbsp;: la réponse ne remplace pas le signalement."],
+        ["<strong>Avis à trois étoiles</strong>&nbsp;— ni bon ni mauvais, souvent ignoré.",
+         "«&nbsp;Merci [prénom]. Vous avez apprécié [ce qui est cité], et il manquait [ce qui est reproché]&nbsp;: "
+         "c'est noté. Dites-nous si [action corrective] vous conviendrait mieux la prochaine fois.&nbsp;»"],
+        ["<strong>Avis positif détaillé</strong>&nbsp;— le plus rentable, et le plus bâclé.",
+         "«&nbsp;Merci [prénom]. [Le collaborateur cité] sera content de le lire. Au plaisir pour "
+         "[la prochaine prestation].&nbsp;» Reprenez un mot de l'avis&nbsp;: c'est ce qui prouve que vous l'avez lu."],
+        ["<strong>Cinq étoiles sans commentaire.</strong>",
+         "«&nbsp;Merci pour ces cinq étoiles. Si vous avez deux minutes pour dire ce qui vous a plu, ça aide "
+         "beaucoup les personnes qui hésitent.&nbsp;» Une note seule pèse peu&nbsp;; un texte pèse."],
+       ])),
+
+     ('texte', dict(
+       eyebrow="L'IA dans la boucle", id="ia",
+       h2="Répondre avec une IA&nbsp;: ce qui marche, et ce qui se voit",
+       paras=[
+        "La question revient à chaque rendez-vous, et la réponse honnête n'est ni oui ni non. Rien n'interdit "
+        "d'utiliser un modèle pour rédiger une réponse&nbsp;— Google propose lui-même des suggestions dans son "
+        "interface. Ce qui pose problème, c'est la manière.",
+        "<strong>Ce qui se voit immédiatement</strong>&nbsp;: la réponse qui commence par «&nbsp;Nous vous "
+        "remercions chaleureusement pour votre retour&nbsp;» quatre fois de suite sur la même page. Un visiteur qui "
+        "fait défiler vos avis lit vos réponses à la file. La répétition est le seul indice dont il a besoin, et "
+        "elle transforme une preuve d'attention en preuve d'automatisme.",
+        "<strong>Ce qui marche</strong>&nbsp;: donner au modèle ce qu'il ne peut pas deviner. Le nom du "
+        "collaborateur concerné, la date du passage, ce qui a été corrigé depuis, votre façon de parler. Une réponse "
+        "générée qui cite un fait vérifiable ne ressemble plus à une réponse générée&nbsp;— parce qu'elle n'en est "
+        "plus vraiment une.",
+        "<strong>Ce qu'on ne délègue jamais</strong>&nbsp;: l'avis négatif sérieux, celui qui touche à la sécurité, "
+        "à la santé, à l'argent ou à une personne nommée. Là, une formule polie mais à côté de la plaque coûte plus "
+        "cher que l'avis. Notre règle chez Décupler est simple&nbsp;: l'IA propose sur les positifs et les tièdes, "
+        "un humain écrit les négatifs.",
+        "Un dernier point, souvent oublié&nbsp;: ne mettez jamais dans une réponse publique une information que le "
+        "client ne vous a pas donnée publiquement. Son numéro de dossier, son adresse, le détail de son "
+        "intervention. Vous répondez à une personne devant tout le monde."],
+       tip="Test simple avant de publier&nbsp;: relisez vos six dernières réponses à la suite. Si elles pourraient "
+           "être interverties sans que rien ne cloche, elles ne disent rien.",
+       tip_ic="🪞")),
+
      ('agents', dict(
        alt=True, eyebrow="Ce qu'on met en place",
        h2="Répondre systématiquement, sans y passer vos soirées",
@@ -457,6 +596,21 @@ PAGES = {
      ('faq', dict(
        eyebrow="FAQ", h2="Les questions qu'on nous pose",
        items=[
+        ("Peut-on répondre à un avis Google depuis un téléphone&nbsp;?",
+         "Oui, dans l'application Google Maps, onglet «&nbsp;Entreprise&nbsp;» puis «&nbsp;Avis&nbsp;», avec le "
+         "compte gestionnaire. C'est le plus rapide au quotidien&nbsp;— mais écrivez les réponses délicates sur un "
+         "clavier d'ordinateur, on se relit mieux."),
+        ("Que répondre à un avis positif qui n'a pas de texte&nbsp;?",
+         "Remerciez en une ligne et demandez deux mots. Une note seule pèse peu dans la décision d'un prospect&nbsp;: "
+         "c'est le texte qu'on lit. Votre réponse est la seule occasion polie de le demander."),
+        ("Combien de temps la réponse met-elle à s'afficher&nbsp;?",
+         "Quelques minutes en général, parfois quelques heures. Si elle n'apparaît toujours pas au bout d'un jour, "
+         "vérifiez qu'elle ne contient pas de numéro de téléphone ou de lien&nbsp;: c'est ce qui déclenche le plus "
+         "souvent un filtrage."),
+        ("Faut-il répondre à un avis manifestement faux, ou seulement le signaler&nbsp;?",
+         "Les deux, et dans cet ordre&nbsp;: signalez d'abord, répondez ensuite. Le signalement peut échouer&nbsp;; "
+         "la réponse, elle, sera lue quoi qu'il arrive. Restez factuel et court&nbsp;— accuser publiquement l'auteur "
+         "d'être un faux client se retourne contre vous s'il ne l'est pas."),
         ("Répondre aux avis améliore-t-il mon référencement local&nbsp;?",
          "Google indique que répondre aux avis contribue à la confiance accordée à un établissement, et une fiche "
          "active envoie un signal de vitalité. Ne comptez pas dessus comme sur un levier de position&nbsp;: comptez "
@@ -515,6 +669,36 @@ PAGES = {
               "satisfaction&nbsp;» — est le point qui a changé. Beaucoup d'outils le proposent encore. Le fait qu'un "
               "logiciel le fasse pour vous ne le rend pas conforme&nbsp;: c'est votre fiche qui saute, pas la sienne."])),
 
+     ('qr', dict(
+       alt=True, eyebrow="En une phrase",
+       h2="Les six questions qui reviennent à chaque rendez-vous",
+       items=[
+        ("Où trouver le lien pour demander un avis Google&nbsp;?",
+         "Dans votre fiche d'établissement, section «&nbsp;Demander des avis&nbsp;»&nbsp;: Google génère un lien "
+         "court en <code>g.page/r/…/review</code> qui ouvre directement la fenêtre de notation. C'est ce lien-là "
+         "qu'on envoie, jamais l'adresse de la fiche&nbsp;— qui oblige le client à chercher le bouton."),
+        ("Comment créer un QR code d'avis Google&nbsp;?",
+         "Encodez ce même lien court dans n'importe quel générateur de QR code. Google en propose un dans les "
+         "supports téléchargeables de la fiche. Sur un comptoir ou une facture, le QR code convertit mieux qu'une "
+         "adresse à recopier&nbsp;— mais moins bien qu'un SMS reçu deux heures après le passage."),
+        ("Peut-on demander un avis à ses clients&nbsp;?",
+         "Oui, c'est explicitement autorisé et encouragé par Google. Ce qui est interdit, c'est de choisir à qui "
+         "vous le demandez selon sa satisfaction supposée, et d'offrir une contrepartie. Demandez à tout le "
+         "monde&nbsp;: c'est la seule règle qui compte."),
+        ("Peut-on offrir une réduction contre un avis&nbsp;?",
+         "Non. Toute contrepartie — remise, cadeau, tirage au sort, point de fidélité — enfreint les règles de "
+         "Google, et un avis obtenu contre rémunération relève en France de la pratique commerciale trompeuse. "
+         "Le risque n'est pas seulement la purge des avis&nbsp;: c'est la suspension du profil."),
+        ("Combien d'avis faut-il pour que ça change quelque chose&nbsp;?",
+         "Il n'y a pas de seuil publié par Google. Ce qu'on observe, c'est qu'en dessous d'une quinzaine d'avis un "
+         "seul avis négatif commande la lecture, et qu'au-delà de la centaine la moyenne prend le dessus. Le rythme "
+         "compte autant que le total&nbsp;: une fiche dont le dernier avis date de deux ans inquiète."),
+        ("Pourquoi mes nouveaux avis disparaissent-ils&nbsp;?",
+         "Presque toujours les filtres anti-spam&nbsp;: plusieurs avis déposés depuis le même réseau Wi-Fi dans la "
+         "même heure, depuis une tablette posée à l'accueil, ou par des comptes sans historique. Faites déposer les "
+         "avis plus tard, depuis chez le client, sur son propre téléphone."),
+       ])),
+
      ('cartes', dict(
        alt=True, eyebrow="Les interdits",
        h2="Trois méthodes qui font suspendre un profil",
@@ -536,7 +720,7 @@ PAGES = {
        tip_ic="⚖️",
        sources=[("règles de Google sur le contenu des avis", G_REGLES[0])])),
 
-     ('etapes', dict(
+     ('etapes', dict(howto=True, id="methode", 
        eyebrow="La méthode",
        h2="Ce qui fait passer une fiche de 12 avis à 140",
        items=[
@@ -554,6 +738,115 @@ PAGES = {
          "presque rien et transforme une demande en harcèlement."),
        ])),
 
+     ('texte', dict(
+       eyebrow="Le vrai blocage", id="pourquoi",
+       h2="Pourquoi un client content n'écrit rien",
+       paras=[
+        "Il n'y a pas de mystère à résoudre&nbsp;: la satisfaction ne produit pas d'action. Un client mécontent a "
+        "quelque chose à obtenir en écrivant&nbsp;— réparation, exutoire, mise en garde. Un client content, lui, a "
+        "déjà eu ce qu'il voulait. L'affaire est close de son point de vue, et écrire un avis est un service qu'il "
+        "vous rend, pas un besoin qu'il satisfait.",
+        "C'est pour ça que le déséquilibre est structurel, et pas une malchance qui vous frappe vous. Sur une fiche "
+        "laissée à elle-même, la proportion d'avis négatifs est mécaniquement plus forte que la proportion de "
+        "clients mécontents. Vous ne lisez pas votre qualité de service&nbsp;: vous lisez qui a eu une raison "
+        "d'écrire.",
+        "La conséquence pratique est nette&nbsp;: <strong>tant que vous ne demandez pas, vous ne collectez que les "
+        "mécontents</strong>. Et demander une fois, à l'occasion, quand on y pense, ne suffit pas — c'est la "
+        "régularité qui renverse la pente, pas l'intensité.",
+        "Le deuxième blocage est le frottement. Entre l'envie vague de laisser un avis et l'avis publié, il y a "
+        "chercher l'entreprise, trouver le bouton, se connecter au bon compte, écrire. Chaque étape perd du monde. "
+        "Un lien direct reçu par SMS supprime les trois premières&nbsp;: c'est toute la différence entre "
+        "«&nbsp;laissez-nous un avis sur Google&nbsp;» sur une facture et un message qui ouvre directement la "
+        "fenêtre de notation.",
+        "Le troisième, plus banal&nbsp;: on n'ose pas demander. C'est pourtant la demande explicite, faite de vive "
+        "voix par la personne qui a réalisé la prestation, qui obtient le meilleur taux — largement devant "
+        "n'importe quel automatisme envoyé seul. L'automatisation ne remplace pas la demande, elle la rend "
+        "systématique."],
+       tip="Une fiche de douze avis dont deux négatifs affiche 3,8. La même entreprise, avec la même qualité de "
+           "service et cent quarante avis demandés à tout le monde, affiche 4,7. Rien n'a changé dans le travail.",
+       tip_ic="⚖️")),
+
+     ('cartes', dict(
+       alt=True, eyebrow="La mise en œuvre", id="erreurs",
+       h2="Quatre façons de saboter une collecte pourtant autorisée",
+       classe='non',
+       paras=["Ces erreurs-là ne sont pas des infractions&nbsp;: elles font simplement perdre les avis qu'on vient "
+              "de collecter, ou les font filtrer par Google. On les voit sur presque toutes les fiches qu'on reprend."],
+       items=[
+        ("demande-avis", "La tablette posée à l'accueil",
+         "Dix avis déposés le même jour, depuis la même adresse IP, souvent depuis des comptes créés sur place&nbsp;: "
+         "c'est le schéma que les filtres anti-spam repèrent le mieux. Les avis partent, et parfois les précédents "
+         "avec. Faites déposer l'avis plus tard, depuis le téléphone du client."),
+        ("sms-formulaire", "Le mailing groupé à tout le fichier",
+         "Trois cents demandes envoyées le même matin produisent une rafale d'avis anormale sur une fiche qui en "
+         "recevait deux par mois. Étalez&nbsp;: la demande doit suivre la prestation, pas le calendrier marketing."),
+        ("rappel-rdv", "La demande trois semaines après",
+         "Passé quelques jours, le souvenir s'est émoussé et la reconnaissance aussi. L'avis, s'il arrive, est court "
+         "et générique — donc peu utile au prospect qui le lira. La fenêtre utile se compte en heures, pas en mois."),
+        ("citations-locales", "Le QR code sans phrase",
+         "Un carré noir sans contexte ne se scanne pas. Il faut dire ce qu'il y a derrière et combien de temps ça "
+         "prend. «&nbsp;Votre avis en 30 secondes&nbsp;» au-dessus du code change tout, et coûte une ligne "
+         "d'impression."),
+       ])),
+
+     ('tableau', dict(
+       eyebrow="Les messages", id="modeles",
+       h2="Ce qu'on écrit pour demander un avis, selon le canal",
+       paras=["Trois règles avant les modèles. <strong>Le lien direct</strong>, jamais l'adresse de la "
+              "fiche. <strong>Le bon moment</strong>&nbsp;: entre deux heures et un jour après la prestation, "
+              "quand le souvenir est net et la reconnaissance encore vive. <strong>Une seule relance</strong>, "
+              "quatre jours plus tard, et on s'arrête là."],
+       colonnes=["Le canal", "Le message"],
+       lignes=[
+        ["<strong>SMS, deux heures après</strong>&nbsp;— le plus efficace, et de loin.",
+         "«&nbsp;Bonjour [prénom], [prénom du technicien] de [entreprise]. Content d'avoir pu vous dépanner "
+         "aujourd'hui. Si vous avez trente secondes, votre avis nous aide beaucoup&nbsp;: [lien]. Merci&nbsp;!&nbsp;»"],
+        ["<strong>E-mail, le lendemain</strong>&nbsp;— pour les prestations longues.",
+         "Objet&nbsp;: «&nbsp;Un mot sur [la prestation]&nbsp;?&nbsp;» — Corps&nbsp;: «&nbsp;Bonjour [prénom], "
+         "j'espère que [le résultat] vous convient. Un avis en deux lignes aide les personnes qui hésitent à nous "
+         "appeler&nbsp;: [lien]. Et s'il y a quoi que ce soit à reprendre, répondez-moi directement.&nbsp;»"],
+        ["<strong>De vive voix, à la fin du rendez-vous.</strong>",
+         "«&nbsp;Si vous êtes content, je vous envoie un lien par SMS&nbsp;— un avis Google, c'est ce qui nous "
+         "amène nos clients.&nbsp;» Annoncer le SMS double son taux d'ouverture&nbsp;: il n'arrive plus par surprise."],
+        ["<strong>QR code au comptoir ou sur la facture.</strong>",
+         "«&nbsp;Votre avis en 30 secondes&nbsp;» au-dessus du code. Un QR code sans phrase ne se scanne pas. "
+         "Précisez ce qui se passe après le scan&nbsp;: personne ne scanne dans le vide."],
+        ["<strong>La relance, quatre jours plus tard.</strong>",
+         "«&nbsp;Bonjour [prénom], je me permets un dernier message&nbsp;: si vous avez un instant pour un avis, "
+         "c'est ici [lien]. Sinon, aucun souci, bonne journée.&nbsp;» La porte de sortie explicite fait passer la "
+         "relance de harcèlement à politesse."],
+        ["<strong>Ce qu'on n'écrit jamais.</strong>",
+         "«&nbsp;Laissez-nous 5&nbsp;étoiles&nbsp;», «&nbsp;10&nbsp;% de remise contre un avis&nbsp;», "
+         "«&nbsp;Si vous n'êtes pas satisfait, appelez-nous plutôt que d'écrire&nbsp;». Les trois enfreignent les "
+         "règles de Google, et la dernière est celle qui fait suspendre les profils."],
+       ])),
+
+     ('texte', dict(
+       eyebrow="Le marché noir", id="acheter",
+       h2="Acheter des avis Google&nbsp;: ce que vous achetez vraiment",
+       paras=[
+        "La requête existe, les offres aussi&nbsp;: une dizaine d'euros l'avis, livré en quarante-huit heures, "
+        "avec des «&nbsp;comptes réels et vieillis&nbsp;». Il faut savoir ce qu'on achète, parce que ce n'est pas "
+        "ce qui est annoncé.",
+        "<strong>Sur le plan technique</strong>, ces avis proviennent de comptes qui déposent des dizaines d'avis "
+        "sans lien géographique cohérent. C'est exactement le motif que les filtres de Google détectent le mieux. "
+        "La purge arrive rarement le jour même&nbsp;— souvent quelques mois plus tard, et elle emporte au passage "
+        "les vrais avis déposés dans la même période.",
+        "<strong>Sur le plan légal</strong>, c'est plus lourd que ce que la plupart des gérants imaginent. Publier "
+        "ou faire publier de faux avis de consommateurs est une pratique commerciale trompeuse, punie par "
+        "l'article&nbsp;L132-2 du code de la consommation de deux ans d'emprisonnement et 300&nbsp;000&nbsp;euros "
+        "d'amende, montant pouvant être porté à un pourcentage du chiffre d'affaires. La DGCCRF contrôle ce terrain "
+        "et publie ses sanctions. Le donneur d'ordre est l'entreprise, pas le prestataire.",
+        "<strong>Sur le plan commercial</strong>, enfin&nbsp;: cinq avis élogieux sans détail, déposés la même "
+        "semaine, sur une fiche qui n'en avait aucun, ne convainquent personne. Un prospect lit les avis dans "
+        "l'ordre chronologique. Le contraste saute aux yeux avant même la lecture.",
+        "La vraie alternative n'est pas plus lente qu'on ne croit. Une entreprise locale qui demande un avis à "
+        "chaque client, systématiquement et par SMS, passe de quelques avis à plusieurs dizaines en un "
+        "trimestre&nbsp;— avec des textes qui parlent de vraies prestations, et qui restent en ligne."],
+       tip="Le test&nbsp;: si un prestataire ne vous demande pas votre fichier client, c'est qu'il ne compte pas "
+           "s'en servir. Il n'y a que deux façons d'obtenir un avis&nbsp;— le demander à un client, ou le fabriquer.",
+       tip_ic="🚫")),
+
      ('agents', dict(
        alt=True, eyebrow="Ce qu'on met en place",
        h2="La demande d'avis qui tourne sans vous",
@@ -569,6 +862,22 @@ PAGES = {
      ('faq', dict(
        eyebrow="FAQ", h2="Les questions qu'on nous pose",
        items=[
+        ("Comment récupérer le lien d'avis si je n'ai pas accès à la fiche&nbsp;?",
+         "Il faut d'abord récupérer la fiche&nbsp;: revendiquez-la depuis Google, la procédure passe par une "
+         "vérification par courrier, téléphone ou vidéo. Sans accès gestionnaire, pas de lien court, pas de "
+         "réponses aux avis, pas de statistiques."),
+        ("Peut-on demander un avis à un client mécontent&nbsp;?",
+         "Oui, et il faut le faire&nbsp;— c'est même toute la logique de la règle. Ce qui est interdit, c'est de "
+         "l'écarter. En pratique, un client mécontent recontacté avant la demande d'avis écrit rarement un avis "
+         "négatif&nbsp;: c'est le suivi de satisfaction qui règle ça, pas le filtrage."),
+        ("Les avis sur d'autres plateformes comptent-ils pour Google&nbsp;?",
+         "Pas dans la note de votre fiche, qui ne reflète que les avis Google. Mais ils comptent pour la décision "
+         "du prospect, qui compare souvent deux ou trois sources, et pour les moteurs génératifs, qui puisent "
+         "largement hors de Google."),
+        ("Faut-il répondre aux avis qu'on vient de recevoir&nbsp;?",
+         "Oui, systématiquement, et c'est ce qui entretient le flux&nbsp;: les clients suivants voient qu'on lit. "
+         "La méthode est détaillée sur notre page <a href=\"https://decupler.com/repondre-aux-avis-google/\">"
+         "répondre aux avis Google</a>."),
         ("Combien d'avis faut-il pour être crédible&nbsp;?",
          "Il n'y a pas de seuil officiel, mais la comparaison est locale&nbsp;: ce qui compte, c'est votre nombre "
          "d'avis face à celui des trois établissements que Google affiche à côté de vous. Regardez-les, c'est votre "
