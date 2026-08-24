@@ -71,7 +71,7 @@ BODY = f"""{FONTS}
     <h1 class="rise">Un site moderne, <em>offert</em>, aux artisans, libéraux et professionnels de santé qui candidatent.</h1>
     <p class="lead rise">On lance une nouvelle offre d'agents IA pour les entreprises locales (rattraper les appels manqués, relancer les devis, récolter les avis). Pour la faire connaître, on offre le site à {PLACES} professionnels&nbsp;— en échange d'un retour honnête sur ce que ça change pour vous.</p>
     <p class="lead rise">Deux minutes pour candidater. On répond à tout le monde avant le {CLOTURE}.</p>
-    <div class="dcp-act rise"><a class="dcp-cta" href="#candidature-form" rel="noopener">Candidater</a></div>
+    <div class="dcp-act rise"><a class="dcp-cta" href="#candidature-form" data-open-form rel="noopener">Candidater</a></div>
     <p class="rt-trust rise">On a aussi travaillé avec <b>Sodexo</b> · <b>Décathlon</b> · <b>Société Générale</b></p>
   </div>
 </div></section>
@@ -82,9 +82,7 @@ BODY = f"""{FONTS}
   <div class="etapes">{calendrier_html}</div>
 </div></section>
 
-<section class="dcp-sec"><div class="in">
-  {FORM.render(photo_url=PHOTO_HERO, photo_alt=PHOTO_HERO_ALT)}
-</div></section>
+{FORM.render(photo_url=PHOTO_HERO, photo_alt=PHOTO_HERO_ALT)}
 
 <section class="dcp-sec alt"><div class="in">
   <div class="eyebrow rise">FAQ</div>

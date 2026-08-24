@@ -23,9 +23,15 @@ CSS = """<style>
 .rf{--rv:#7B5CFA;--rv2:#9d86ff;--rg:#00E5A0;--rink:#0f1120;--rmut:#5b6072;--rline:rgba(123,92,250,.18);
  position:relative;margin:0;padding:0;font-family:'DM Sans',system-ui,sans-serif}
 .rf *{box-sizing:border-box}
-.rf .rf-w{max-width:640px;margin:0 auto;padding:0 22px}
-.rf .rf-card{background:#fff;border:1px solid var(--rline);border-radius:18px;padding:36px;box-shadow:0 24px 60px -30px rgba(15,17,32,.28);min-height:360px;display:flex;flex-direction:column}
-.rf .rf-top{display:flex;align-items:center;justify-content:space-between;gap:14px;margin:0 0 20px}
+.rf.rf-overlay{display:none;position:fixed;inset:0;z-index:99999;background:rgba(15,17,32,.55);
+ align-items:flex-start;justify-content:center;padding:5vh 16px;overflow-y:auto}
+.rf.rf-overlay.active{display:flex}
+.rf .rf-w{max-width:640px;width:100%;margin:0;padding:0}
+.rf .rf-card{position:relative;background:#fff;border:1px solid var(--rline);border-radius:18px;padding:36px;box-shadow:0 30px 80px -20px rgba(0,0,0,.5);min-height:360px;display:flex;flex-direction:column}
+.rf .rf-x{position:absolute;top:14px;right:14px;width:32px;height:32px;border-radius:9px;border:none;
+ background:#f7f7fd;color:var(--rmut);font-size:1.3rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.rf .rf-x:hover{background:#f0eefe;color:var(--rink)}
+.rf .rf-top{display:flex;align-items:center;justify-content:space-between;gap:14px;margin:0 36px 20px 0}
 .rf .rf-places{display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono',ui-monospace,monospace;
  font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--rv);
  background:rgba(123,92,250,.09);border:1px solid rgba(123,92,250,.22);border-radius:20px;padding:5px 12px;white-space:nowrap}
@@ -64,6 +70,7 @@ CSS = """<style>
 .rf .rf-next:hover,.rf .rf-submit:hover{transform:translateY(-1px);box-shadow:0 14px 26px -12px rgba(123,92,250,.55)}
 .rf .rf-back{background:none;border:none;color:var(--rmut);font-weight:600;font-size:.88rem;cursor:pointer;padding:8px}
 .rf .rf-back:hover{color:var(--rink)}
+.rf .rf-back-hide{visibility:hidden}
 .rf .rf-spacer{flex:1}
 .rf .rf-err{display:none;color:#c0392b;font-size:.82rem;margin-top:10px}
 .rf .rf-err.show{display:block}
@@ -131,8 +138,9 @@ STEPS = [
 
 def _step_html(i, titre, sous, contenu, is_last):
     sub_html = f'<p class="rf-sub">{sous}</p>' if sous else ''
+    back_cls = 'rf-back rf-back-hide' if i == 0 else 'rf-back'
     nav = (
-        f'<button type="button" class="rf-back" data-back {"style=visibility:hidden" if i == 0 else ""}>&larr; Retour</button>'
+        f'<button type="button" class="{back_cls}" data-back>&larr; Retour</button>'
         '<div class="rf-spacer"></div>'
         + (f'<button type="button" class="rf-submit" id="rf-submit">Envoyer ma candidature</button>' if is_last
            else f'<button type="button" class="rf-next" data-next>Suivant &rarr;</button>')
@@ -156,7 +164,8 @@ def render(photo_url=None, photo_alt=""):
         "[" + ",".join(f"'{r}'" for r in req) + "]" for (_t, _s, _c, req) in STEPS
     ) + "]"
 
-    markup = f"""<section class="rf" id="candidature-form"><div class="rf-w"><div class="rf-card">
+    markup = f"""<div class="rf rf-overlay" id="candidature-form"><div class="rf-w"><div class="rf-card">
+<button type="button" class="rf-x" data-close-form aria-label="Fermer">&times;</button>
 <div class="rf-top">
   <div class="rf-places">🎯 {PLACES} places · clôture {CLOTURE}</div>
   <div class="rf-count" id="rf-count">Étape 1 sur {N_STEPS}</div>
@@ -182,16 +191,25 @@ def render(photo_url=None, photo_alt=""):
   <p>Cette édition est calibrée pour un petit nombre de profils&nbsp;: on garde la vôtre de côté et on vous recontacte si une place se libère.</p>
 </div>
 
-</div></div></section>"""
+</div></div></div>"""
 
     js = f"""<div class="dcp-js"><script>
-(function(){{
+document.addEventListener('DOMContentLoaded',function(){{
 var SUPA_URL='{SUPABASE_URL}',SUPA_KEY='{SUPABASE_ANON_KEY}';
 var root=document.getElementById('candidature-form');
 if(!root)return;
+function openForm(e){{if(e)e.preventDefault();root.classList.add('active');document.body.style.overflow='hidden'}}
+function closeForm(){{root.classList.remove('active');document.body.style.overflow=''}}
+document.querySelectorAll('[data-open-form]').forEach(function(t){{t.addEventListener('click',openForm)}});
+root.querySelectorAll('[data-close-form]').forEach(function(t){{t.addEventListener('click',closeForm)}});
+root.addEventListener('click',function(e){{if(e.target===root)closeForm()}});
+document.addEventListener('keydown',function(e){{if(e.key==='Escape')closeForm()}});
 var N={N_STEPS},cur=0;
 var REQUIRED={required_json};
 function steps(){{return root.querySelectorAll('.rf-step')}}
+root.querySelectorAll('input,select,textarea').forEach(function(e){{
+  e.addEventListener('input',function(){{e.style.borderColor=''}});
+}});
 function val(id){{var e=root.querySelector('#'+id);return e?e.value.trim():''}}
 function checked(id){{var e=root.querySelector('#'+id);return !!(e&&e.checked)}}
 function goTo(i){{
@@ -210,12 +228,21 @@ root.querySelectorAll('[data-check]').forEach(function(lbl){{
   var cb=lbl.querySelector('input');
   cb.addEventListener('change',function(){{lbl.classList.toggle('sel',cb.checked)}});
 }});
+function markInvalid(id,bad){{var e=root.querySelector('#'+id);if(e)e.style.borderColor=bad?'#c0392b':''}}
 root.querySelectorAll('[data-next]').forEach(function(btn){{
   btn.addEventListener('click',function(){{
-    var req=REQUIRED[cur]||[],err=root.querySelector('#rf-err-'+cur),ok=true;
-    for(var k=0;k<req.length;k++){{if(!val(req[k]))ok=false}}
-    if(req.indexOf('rf-email')!==-1 && val('rf-email').indexOf('@')===-1)ok=false;
-    if(!ok){{if(err)err.classList.add('show');return}}
+    var req=REQUIRED[cur]||[],err=root.querySelector('#rf-err-'+cur),ok=true,firstBad=null;
+    for(var k=0;k<req.length;k++){{
+      var bad=!val(req[k])||(req[k]==='rf-email'&&val(req[k]).indexOf('@')===-1);
+      markInvalid(req[k],bad);
+      if(bad){{ok=false;if(!firstBad)firstBad=req[k]}}
+    }}
+    if(!ok){{
+      if(err)err.classList.add('show');
+      var badEl=root.querySelector('#'+firstBad);
+      if(badEl)badEl.scrollIntoView({{block:'center',behavior:'smooth'}});
+      return;
+    }}
     if(err)err.classList.remove('show');
     if(cur<N-1)goTo(cur+1);
   }});
@@ -275,7 +302,7 @@ btn.addEventListener('click',function(){{
     if(err){{err.textContent='Un problème est survenu, réessayez.';err.classList.add('show')}}
   }});
 }});
-}})();
+}});
 </script></div>"""
 
     return CSS + "\n" + markup + "\n" + js
