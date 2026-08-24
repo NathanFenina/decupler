@@ -31,17 +31,20 @@ from visuels import VIZ
 
 def agents_html():
     out = ''
-    for i, (cle, titre, chapo) in enumerate(A.ETAPES, 1):
+    for i, (cle, titre_etape, chapo) in enumerate(A.ETAPES, 1):
         cards = ''
         for slug, nom, _, promesse, meca, preuve in A.par_etape(cle):
-            titre = f'<a href="{A.LIENS[slug]}">{nom}</a>' if slug in A.LIENS else nom
+            # Variable distincte de titre_etape : les deux coexistaient sous le
+            # meme nom, et le <h3> de la section affichait en ligne le nom du
+            # dernier agent de la grille au lieu du titre de l'etape.
+            titre_carte = f'<a href="{A.LIENS[slug]}">{nom}</a>' if slug in A.LIENS else nom
             cards += (f'<div class="ag2">{I.bloc(slug, "ag2-ic")}'
-                      f'<div class="ag2-tx"><h4>{titre}</h4><p>{promesse}</p></div></div>')
+                      f'<div class="ag2-tx"><h4>{titre_carte}</h4><p>{promesse}</p></div></div>')
         flip = ' flip' if i % 2 == 0 else ''
         alt = ' alt' if i % 2 == 1 else ''
         out += f"""
 <section class="dcp-sec{alt}"><div class="in">
-  <div class="step-lab rise">{I.bloc(cle, "si")}<div class="n">{i:02d}</div><h3>{titre}</h3></div>
+  <div class="step-lab rise">{I.bloc(cle, "si")}<div class="n">{i:02d}</div><h3>{titre_etape}</h3></div>
   <p class="step-chapo rise">{chapo}</p>
   <div class="duo{flip}">{VIZ[cle]}<div class="rise">{cards}</div></div>
 </div></section>"""

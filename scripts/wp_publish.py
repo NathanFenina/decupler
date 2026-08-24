@@ -22,6 +22,7 @@ Options :
 import os
 import sys
 import json
+import time
 import base64
 import argparse
 import urllib.request
@@ -92,14 +93,22 @@ def main():
             "User-Agent": "DecuplerClaude/1.0",
         },
     )
-    try:
-        with urllib.request.urlopen(req, timeout=30) as r:
-            data = json.load(r)
-    except urllib.error.HTTPError as e:
-        body = e.read().decode("utf-8", errors="replace")
-        sys.exit(f"❌ Erreur {e.code} : {body[:500]}")
-    except Exception as e:
-        sys.exit(f"❌ Échec de connexion : {e}")
+    # L'hebergeur coupe la connexion par intermittence, surtout sur les pages
+    # lourdes : une tentative unique fait echouer une publication qui aurait
+    # abouti a la seconde. Les erreurs HTTP, elles, ne se retentent pas.
+    data = None
+    for essai in range(6):
+        try:
+            with urllib.request.urlopen(req, timeout=120) as r:
+                data = json.load(r)
+            break
+        except urllib.error.HTTPError as e:
+            body = e.read().decode("utf-8", errors="replace")
+            sys.exit(f"❌ Erreur {e.code} : {body[:500]}")
+        except Exception as e:
+            if essai == 5:
+                sys.exit(f"❌ Échec de connexion après 6 tentatives : {e}")
+            time.sleep(2 ** essai)
 
     print("✅ Publié !")
     print(f"   Type   : {args.type}")

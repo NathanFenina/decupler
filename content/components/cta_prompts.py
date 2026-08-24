@@ -7,7 +7,7 @@ Markup wpautop-safe. Animations desactivees si prefers-reduced-motion.
 CALENDLY = "https://calendly.com/fenina-nathan/consultationstrategique"
 
 CSS = """<style>
-.pcta{--pv:#6366f1;--pv2:#8b5cf6;--pg:#10b981;--pink:#0f172a;--pmut:#475569;
+.pcta{--pv:#4f46e5;--pv2:#7c3aed;--pg:#10b981;--pink:#0f172a;--pmut:#475569;
  position:relative;overflow:hidden;margin:0;padding:72px 0;
  background:radial-gradient(120% 140% at 15% 0%,#f4f4fe 0%,#eceefb 55%,#e8ebfa 100%);
  border-top:1px solid rgba(99,102,241,.14);
@@ -23,10 +23,12 @@ CSS = """<style>
 .pcta .pcta-w{position:relative;z-index:1;max-width:800px;margin:0 auto;padding:0 24px;text-align:center}
 .pcta h2{font-family:'Syne',sans-serif;font-size:clamp(1.55rem,3.6vw,2.5rem);font-weight:800;
  line-height:1.14;letter-spacing:-.022em;color:var(--pink);margin:0 0 18px}
-.pcta h2 .pcta-hl{position:relative;display:inline-block;white-space:nowrap;
- background:linear-gradient(120deg,var(--pv) 0%,var(--pv2) 50%,var(--pv) 100%);
- background-size:220% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
- animation:pctaShine 5.5s linear infinite}
+.pcta h2{isolation:isolate}
+.pcta h2 .pcta-hl{position:relative;display:inline-block;white-space:nowrap;color:var(--pv2)}
+.pcta h2 .pcta-hl::after{content:'';position:absolute;left:-.08em;right:-.08em;bottom:.01em;height:.3em;
+ border-radius:3px;z-index:-1;transform-origin:left center;
+ background:linear-gradient(90deg,rgba(79,70,229,.2),rgba(124,58,237,.34),rgba(79,70,229,.2));
+ background-size:220% 100%;animation:pctaShine 5.5s linear infinite}
 @keyframes pctaShine{to{background-position:-220% 0}}
 .pcta .pcta-lead{font-size:clamp(1rem,1.6vw,1.12rem);line-height:1.6;color:var(--pmut);margin:0 auto 30px;max-width:640px}
 .pcta .pcta-lead b{color:var(--pink);font-weight:700;white-space:nowrap}
@@ -44,8 +46,8 @@ CSS = """<style>
  text-transform:uppercase;color:var(--pmut);margin:16px 0 0;opacity:.8}
 @media(max-width:640px){.pcta{padding:52px 0}.pcta h2 .pcta-hl{white-space:normal}}
 @media(prefers-reduced-motion:reduce){
- .pcta::before,.pcta::after,.pcta h2 .pcta-hl,.pcta .pcta-btn::before{animation:none}
- .pcta h2 .pcta-hl{background-position:0 0}}
+ .pcta::before,.pcta::after,.pcta h2 .pcta-hl::after,.pcta .pcta-btn::before{animation:none}
+ .pcta h2 .pcta-hl::after{background-position:0 0}}
 </style>"""
 
 COPY = {

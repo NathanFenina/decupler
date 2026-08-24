@@ -86,7 +86,7 @@ nav.post-navigation{display:none!important}
   transition:transform .2s,box-shadow .2s}
 .dcp-cta:hover{transform:translateY(-2px);box-shadow:0 16px 30px -14px rgba(20,21,43,.6);color:#fff!important}
 .dcp-cta::after{content:"\2192"}
-.dcp-under{font-family:var(--mono);font-size:.75rem;letter-spacing:.05em;text-transform:uppercase;
+.dcp-under{font-family:var(--mono);font-size:.78rem;letter-spacing:.03em;
   color:var(--faint);margin:15px 0 0}
 
 /* ── Le téléphone qui rejoue la scène ───────────────────────────────────── */
@@ -169,6 +169,15 @@ nav.post-navigation{display:none!important}
 .ag2 h3,.ag2 h4{font-family:var(--display);font-size:1.03rem;font-weight:800;margin:0 0 7px;color:var(--ink)}
 .ag2-tx{min-width:0}
 .ag2 p{font-size:.9rem;color:var(--soft);margin:0;line-height:1.55}
+/* Titre de carte cliquable. Sans ca, le lien herite du style de lien du
+   theme — violet souligne — et une grille de dix-huit cartes ressemble a une
+   liste de liens bruts. L'affordance passe par le survol. */
+.ag2 h3 a,.ag2 h4 a{color:inherit;text-decoration:none;
+  background-image:linear-gradient(var(--vio),var(--vio));
+  background-size:0 2px;background-position:0 100%;background-repeat:no-repeat;
+  transition:background-size .25s ease}
+.ag2:hover h3 a,.ag2:hover h4 a,.ag2 h3 a:hover,.ag2 h4 a:hover{background-size:100% 2px}
+.ag2 h3 a:focus-visible,.ag2 h4 a:focus-visible{outline:2px solid var(--vio-t);outline-offset:3px;border-radius:3px}
 
 /* Grille de cartes agent, hors du duo visuel/cartes des pages pilier. */
 .ag-grille{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:26px}
@@ -375,6 +384,29 @@ nav.post-navigation{display:none!important}
 .dcp a{color:var(--vio-t)}
 .dcp :focus-visible{outline:2px solid var(--vio);outline-offset:3px;border-radius:4px}
 
+/* Tableau verdict : les deux colonnes ne disent pas la meme chose, elles
+   s'opposent. La couleur encode l'opposition, elle ne decore pas le tableau. */
+.dcp table.verdict thead th:first-child{color:var(--red-t);background:var(--red-bg)}
+.dcp table.verdict thead th:last-child{color:var(--grn-t);background:var(--grn-bg)}
+.dcp table.verdict td{position:relative;padding-left:34px}
+.dcp table.verdict td::before{position:absolute;left:14px;top:1.05em;
+  font-family:var(--mono);font-size:.9rem;font-weight:700;line-height:1}
+.dcp table.verdict td:first-child::before{content:'\2715';color:var(--red-t)}
+.dcp table.verdict td:last-child::before{content:'\2713';color:var(--grn-t)}
+.dcp table.verdict tbody tr:hover td:first-child{background:rgba(224,71,95,.04)}
+.dcp table.verdict tbody tr:hover td:last-child{background:rgba(0,184,127,.05)}
+
+/* Réponses courtes. Visibles et non repliées, contrairement à la FAQ du bas :
+   c'est ce bloc qu'un moteur génératif peut extraire tel quel. Le filet
+   sépare, il ne décore pas — une réponse par cellule, rien d'autre. */
+.qr-grille{display:grid;grid-template-columns:1fr 1fr;margin-top:26px;
+  border-top:1px solid var(--edge)}
+.qr{padding:22px 26px;border-bottom:1px solid var(--edge)}
+.qr:nth-child(2n){border-left:1px solid var(--edge)}
+.qr h3{font-family:var(--display);font-size:1.02rem;font-weight:800;
+  margin:0 0 9px;color:var(--ink);line-height:1.3}
+.qr p{margin:0;font-size:.92rem;line-height:1.6;color:var(--soft)}
+.qr b,.qr strong{color:var(--ink);font-weight:700}
 @media(prefers-reduced-motion:reduce){
   .dcp .ic-svg>*{stroke-dashoffset:0!important;transition:none}
   .arrow{animation:none;opacity:.45}
@@ -387,7 +419,8 @@ nav.post-navigation{display:none!important}
   .dcp .photo img{transform:none!important}}
 @media(max-width:760px){
   .dcp .in{padding:0 20px}
-  .dcp-grid,.duo,.cib,.ag-grille{grid-template-columns:1fr}
+  .dcp-grid,.duo,.cib,.ag-grille,.qr-grille{grid-template-columns:1fr}
+  .qr,.qr:nth-child(2n){padding:20px 22px;border-left:0}
   .duo.flip>*:first-child{order:0}
   .viz{position:static}
   .dcp-band .in{grid-template-columns:1fr}

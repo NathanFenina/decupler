@@ -1,0 +1,920 @@
+<!-- ============================================================
+     DECUPLER — HEADER COMPLET (Logo + Menu Desktop + Menu Mobile + CTAs)
+     À coller dans un widget HTML Elementor unique
+     ============================================================ -->
+
+<style>
+/* ============ RESET SCOPÉ ============ */
+.dcp-header, .dcp-header *, .dcp-header *::before, .dcp-header *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* ============ HEADER WRAPPER (grille 3 colonnes : logo / menu centré / CTAs) ============ */
+.dcp-header {
+  display: grid !important;
+  grid-template-columns: auto 1fr auto;
+  align-items: center !important;
+  width: 100%;
+  max-width: 1360px;
+  margin: 0 auto !important;
+  gap: 24px;
+  padding: 14px 32px;
+  position: relative;
+  z-index: 100;
+  font-family: 'DM Sans', sans-serif;
+}
+
+/* ============ LOGO ============ */
+.dcp-logo {
+  display: flex !important;
+  align-items: center;
+  flex-shrink: 0;
+  text-decoration: none;
+}
+.dcp-logo img {
+  height: 42px;
+  width: auto;
+  display: block;
+}
+
+/* ============ ZONE CENTRALE (nav desktop) — centrée dans la colonne du milieu ============ */
+.dcp-nav-zone {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ============ MENU DESKTOP ============ */
+.decupler-navbar { position: relative; z-index: 100; }
+.d-main-menu {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.d-main-menu > li { position: relative; }
+.d-main-menu > li > a {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 14px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: #333333;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+.d-main-menu > li > a:hover {
+  background: rgba(102,126,234,0.07);
+  color: #667eea;
+}
+.d-arrow {
+  font-size: 11px;
+  opacity: 0.5;
+  transition: transform 0.2s;
+}
+.d-has-mega:hover .d-arrow { transform: rotate(180deg); }
+
+/* ====== MEGA BOX ====== */
+.d-mega-box {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #ffffff;
+  border: 1px solid rgba(0,0,0,0.07);
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+  z-index: 200;
+  overflow: hidden;
+  min-width: 560px;
+  margin-top: 8px;
+}
+.d-has-mega:hover .d-mega-box,
+.d-has-mega:focus-within .d-mega-box { display: flex; }
+/* Pont invisible : comble l'espace entre le lien et le menu pour ne jamais perdre le :hover */
+.d-has-mega::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 16px;
+}
+/* Les derniers items du menu sont trop a droite pour ouvrir leur panneau vers
+   la droite : il sortirait de l'ecran sur un portable large ou un 13 pouces. */
+.d-mega-right .d-mega-box { left: auto; right: 0; }
+
+/* ====== SIDE NAV ====== */
+.d-side-nav {
+  width: 200px;
+  background: #f8f7ff;
+  border-right: 1px solid rgba(102,126,234,0.1);
+  padding: 12px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex-shrink: 0;
+}
+.d-side-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: #4a4a6a;
+  cursor: pointer;
+  transition: all 0.15s;
+  white-space: nowrap;
+  justify-content: space-between;
+}
+.d-side-item:hover, .d-side-item.active {
+  background: #ffffff;
+  color: #667eea;
+  box-shadow: 0 2px 8px rgba(102,126,234,0.12);
+}
+.d-side-item-inner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.d-side-chevron {
+  font-size: 10px;
+  opacity: 0.4;
+  transition: opacity 0.15s;
+}
+.d-side-item.active .d-side-chevron,
+.d-side-item:hover .d-side-chevron { opacity: 1; }
+
+/* ====== ICÔNES SVG STYLE ====== */
+.d-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, rgba(102,126,234,0.18), rgba(118,75,162,0.18));
+  border: 1px solid rgba(102,126,234,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.15s;
+}
+.d-side-item:hover .d-icon,
+.d-side-item.active .d-icon {
+  background: linear-gradient(135deg, rgba(102,126,234,0.28), rgba(118,75,162,0.28));
+  border-color: rgba(102,126,234,0.4);
+}
+.d-icon svg {
+  width: 15px;
+  height: 15px;
+  stroke: #667eea;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ====== SIDE CONTENT ====== */
+.d-side-content {
+  flex: 1;
+  padding: 16px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+.d-tab-content {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+}
+.d-tab-content.d-active { display: flex; }
+
+/* ====== ITEMS ====== */
+.d-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: background 0.15s;
+  width: 100%;
+}
+.d-item:hover { background: #f8f7ff; }
+.d-txt {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.d-title {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: #1a1a2e;
+  line-height: 1.3;
+}
+.d-desc {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  color: #888;
+  line-height: 1.3;
+}
+.d-item:hover .d-title { color: #667eea; }
+
+/* ====== ONGLETS À DEUX NIVEAUX (Nos Pépites, Les agents) ======
+   La regle etait ecrite sur #tab-pepites : elle est portee par une classe
+   pour servir aussi a l'onglet des agents, sans la dupliquer. */
+.d-tab-2n {
+  display: none;
+  flex-direction: row !important;
+  padding: 0 !important;
+  gap: 0 !important;
+  align-items: stretch !important;
+  min-width: 520px;
+}
+.d-tab-2n.d-active { display: flex !important; }
+.d-sub-nav {
+  width: 140px;
+  background: #ffffff;
+  border-right: 1px solid rgba(102,126,234,0.1);
+  padding: 12px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex-shrink: 0;
+  align-self: stretch;
+}
+/* « Capitaliser » et « Être trouvé » ne tiennent pas dans 140 px. */
+.d-sub-nav-large { width: 168px; }
+.d-sub-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: #4a4a6a;
+  cursor: pointer;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+.d-sub-item:hover, .d-sub-item.active {
+  background: #f0eeff;
+  color: #667eea;
+  box-shadow: 0 2px 8px rgba(102,126,234,0.12);
+}
+.d-sub-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.d-sub-content {
+  flex: 1;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  min-width: 0;
+}
+.d-sub-tab {
+  display: none;
+  flex-direction: column;
+  gap: 2px;
+}
+.d-sub-tab.d-active { display: flex; }
+
+/* ============ CTAs DESKTOP ============ */
+.dcp-header-ctas {
+  display: flex !important;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+.dcp-btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  border: 1.5px solid rgba(102,126,234,0.35);
+  border-radius: 24px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #4f46e5 !important;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: all 0.2s;
+  background: transparent;
+}
+.dcp-btn-outline:hover {
+  background: rgba(102,126,234,0.06);
+  border-color: #667eea;
+}
+.dcp-btn-solid {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 22px;
+  background: linear-gradient(135deg, #4f46e5, #7c3aed);
+  border-radius: 24px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: #ffffff !important;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: opacity 0.2s;
+}
+.dcp-btn-solid:hover { opacity: 0.88; }
+
+/* Focus visible au clavier : le menu s'ouvrait au survol uniquement. */
+.dcp-header a:focus-visible,
+.dcp-header .d-side-item:focus-visible,
+.dcp-header .d-sub-item:focus-visible,
+.dcp-header .d-burger:focus-visible {
+  outline: 2px solid #4f46e5;
+  outline-offset: 2px;
+  border-radius: 8px;
+}
+
+/* ============ MOBILE NAV (burger) ============ */
+.d-mobile-nav { display: none; align-items: center; }
+.d-burger {
+  width: 26px;
+  height: 20px;
+  position: relative;
+  cursor: pointer;
+  flex-shrink: 0;
+  z-index: 210;
+}
+.d-burger span {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #1a1a2e;
+  border-radius: 2px;
+  transition: all 0.25s ease;
+}
+.d-burger span:nth-child(1) { top: 0; }
+.d-burger span:nth-child(2) { top: 9px; }
+.d-burger span:nth-child(3) { top: 18px; }
+.d-burger.open span:nth-child(1) { top: 9px; transform: rotate(45deg); }
+.d-burger.open span:nth-child(2) { opacity: 0; }
+.d-burger.open span:nth-child(3) { top: 9px; transform: rotate(-45deg); }
+
+.d-mobile-menu-wrapper {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: #ffffff;
+  z-index: 200;
+  overflow-y: auto;
+  padding: 90px 20px 40px;
+  opacity: 0;
+  transform: translateY(-8px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.d-mobile-menu-wrapper.open {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+.d-mobile-list { display: flex; flex-direction: column; gap: 2px; }
+.d-mobile-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 4px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 17px;
+  font-weight: 600;
+  color: #1a1a2e;
+  text-decoration: none;
+  cursor: pointer;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+.d-mobile-arrow { font-size: 13px; opacity: 0.5; transition: transform 0.2s; }
+.d-mobile-has-sub.active > .d-mobile-link .d-mobile-arrow { transform: rotate(180deg); }
+.d-mobile-sub {
+  display: none;
+  flex-direction: column;
+  padding-left: 12px;
+}
+.d-mobile-has-sub.active > .d-mobile-sub { display: flex; }
+
+.d-mobile-link2 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 4px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: #4a4a6a;
+  cursor: pointer;
+}
+.d-mobile-arrow2 { font-size: 11px; opacity: 0.4; transition: transform 0.2s; }
+.d-mobile-has-sub2.active2 > .d-mobile-link2 .d-mobile-arrow2 { transform: rotate(180deg); }
+.d-mobile-sub2 {
+  display: none;
+  flex-direction: column;
+  padding-left: 14px;
+  gap: 2px;
+}
+.d-mobile-has-sub2.active2 > .d-mobile-sub2 { display: flex; }
+.d-mobile-sub2 li a {
+  display: block;
+  padding: 10px 4px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #666;
+  text-decoration: none;
+}
+.d-mobile-sub2 li a:hover { color: #667eea; }
+
+/* Liens directs de niveau 1, sans second niveau */
+.d-mobile-sub > li > a {
+  display: block;
+  padding: 12px 4px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #666;
+  text-decoration: none;
+}
+.d-mobile-sub > li > a:hover { color: #667eea; }
+
+.d-mobile-cta {
+  margin-top: 14px;
+  text-align: center;
+  justify-content: center !important;
+  border: none;
+  border-radius: 24px;
+  padding: 14px 4px !important;
+  background: linear-gradient(135deg, #4f46e5, #7c3aed);
+  color: #ffffff !important;
+  font-weight: 700 !important;
+}
+.d-mobile-cta-outline {
+  margin-top: 8px;
+  background: transparent;
+  border: 1.5px solid rgba(102,126,234,0.35);
+  color: #4f46e5 !important;
+}
+
+/* ============ RESPONSIVE BREAKPOINT ============ */
+@media (max-width: 1024px) {
+  .dcp-header { position: relative !important; display: flex !important; justify-content: flex-start !important; }
+  .dcp-nav-zone { display: none !important; }
+  .dcp-header-ctas { display: none !important; }
+  .d-mobile-nav { display: flex !important; }
+
+  /* Burger à gauche (seul élément restant dans le flux flex) */
+  .d-mobile-nav { order: 1; }
+
+  /* Logo centré, indépendant du flux flex */
+  .dcp-logo {
+    position: absolute !important;
+    left: 50% !important;
+    top: 50% !important;
+    transform: translate(-50%, -50%) !important;
+  }
+}
+@media (min-width: 1025px) {
+  .d-mobile-nav { display: none !important; }
+  .d-mobile-menu-wrapper { display: none !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .dcp-header *, .d-mobile-menu-wrapper { transition: none !important; }
+}
+</style>
+
+<div class="dcp-header">
+
+  <!-- ============ LOGO ============ -->
+  <a href="https://decupler.com" class="dcp-logo" aria-label="Décupler - Accueil">
+    <img src="https://decupler.com/wp-content/uploads/2025/10/Sans-titre-200-x-70-px.png" alt="Décupler">
+  </a>
+
+  <!-- ============ MENU DESKTOP ============ -->
+  <div class="dcp-nav-zone">
+    <nav class="decupler-navbar" aria-label="Navigation principale">
+      <ul class="d-main-menu">
+        <!-- EXPERTISES -->
+        <li class="d-has-mega">
+          <a href="#">Expertises <span class="d-arrow">⌵</span></a>
+          <div class="d-mega-box d-senek-style">
+            <div class="d-side-nav">
+              <div class="d-side-item active" data-target="tab-seo">
+                <div class="d-side-item-inner">
+                  <div class="d-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16" y2="16"/></svg></div>
+                  SEO
+                </div>
+              </div>
+              <div class="d-side-item" data-target="tab-geo">
+                <div class="d-side-item-inner">
+                  <div class="d-icon"><svg viewBox="0 0 24 24"><path d="M12 3l1.9 5.6L19.5 10.5l-5.6 1.9L12 18l-1.9-5.6L4.5 10.5l5.6-1.9z"/><path d="M18.5 3.5l.7 2 2 .7-2 .7-.7 2-.7-2-2-.7 2-.7z"/></svg></div>
+                  GEO
+                </div>
+              </div>
+              <div class="d-side-item" data-target="tab-app">
+                <div class="d-side-item-inner">
+                  <div class="d-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></div>
+                  Nos Outils
+                </div>
+                <span class="d-side-chevron">›</span>
+              </div>
+              <div class="d-side-item" data-target="tab-pepites">
+                <div class="d-side-item-inner">
+                  <div class="d-icon"><svg viewBox="0 0 24 24"><path d="M6 3h12l4 6-10 13L2 9z"/><path d="M2 9h20"/><path d="M12 22L6 9l6-6 6 6z"/></svg></div>
+                  Nos Pépites
+                </div>
+                <span class="d-side-chevron">›</span>
+              </div>
+              <div class="d-side-item" data-target="tab-secteur">
+                <div class="d-side-item-inner">
+                  <div class="d-icon"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+                  Les secteurs
+                </div>
+              </div>
+              <div class="d-side-item" data-target="tab-offre">
+                <div class="d-side-item-inner">
+                  <div class="d-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18"/><circle cx="6.5" cy="6.5" r=".6"/></svg></div>
+                  Site offert
+                </div>
+              </div>
+            </div>
+            <div class="d-side-content">
+              <!-- SEO -->
+              <div class="d-tab-content d-active" id="tab-seo">
+                <a href="/agence-seo/" class="d-item"><div class="d-txt"><span class="d-title">Agence SEO</span><span class="d-desc">Stratégie sur-mesure</span></div></a>
+                <a href="/accompagnement-seo/" class="d-item"><div class="d-txt"><span class="d-title">Notre Accompagnement</span><span class="d-desc">Stratégie pour le Référencement Naturel</span></div></a>
+                <a href="https://decupler.com/visibilite-en-ligne/" class="d-item"><div class="d-txt"><span class="d-title">Visibilité en Ligne</span><span class="d-desc">Soyez visible là où vos clients vous cherchent</span></div></a>
+                <a href="/seo-local/" class="d-item"><div class="d-txt"><span class="d-title">SEO Local</span><span class="d-desc">Optimiser votre visibilité locale</span></div></a>
+                <a href="/citations-locales/" class="d-item"><div class="d-txt"><span class="d-title">100 citations professionnelles</span><span class="d-desc">Boostez votre visibilité locale</span></div></a>
+                <a href="/organic-opportunity-map/" class="d-item"><div class="d-txt"><span class="d-title">Organic Opportunity Map</span><span class="d-desc">Découvrez vos opportunités</span></div></a>
+              </div>
+              <!-- GEO -->
+              <div class="d-tab-content" id="tab-geo">
+                <a href="/agence-geo/" class="d-item"><div class="d-txt"><span class="d-title">Agence GEO</span><span class="d-desc">Visibilité sur les Moteurs IA</span></div></a>
+                <a href="/visibilite-llm/" class="d-item"><div class="d-txt"><span class="d-title">Visibilité LLM</span><span class="d-desc">Soyez cité par ChatGPT, Perplexity et Gemini</span></div></a>
+                <a href="/mesurer-sa-visibilite/" class="d-item"><div class="d-txt"><span class="d-title">Mesurer sa Visibilité IA</span><span class="d-desc">Votre Share of Model sur les moteurs IA</span></div></a>
+                <a href="/reddit-pour-le-geo/" class="d-item"><div class="d-txt"><span class="d-title">Reddit pour le GEO</span><span class="d-desc">La plateforme que les IA citent le plus</span></div></a>
+                <a href="/devenir-la-reference/" class="d-item"><div class="d-txt"><span class="d-title">Devenir la Référence</span><span class="d-desc">Dans les réponses IA</span></div></a>
+              </div>
+              <!-- NOS OUTILS -->
+              <div class="d-tab-content" id="tab-app">
+                <a href="https://decupler.com/app/" class="d-item"><div class="d-txt"><span class="d-title">Application Decupler</span><span class="d-desc">Notre outil qui automatise votre SEO et GEO</span></div></a>
+                <a href="/generer-un-article-seo/" class="d-item"><div class="d-txt"><span class="d-title">Générer un article SEO</span><span class="d-desc">Vos articles SEO par l'IA, sans sacrifier la qualité</span></div></a>
+                <a href="/maillage-interne-wordpress/" class="d-item"><div class="d-txt"><span class="d-title">Maillage Interne</span><span class="d-desc">Automatisez en 5 min avec nos scripts</span></div></a>
+                <a href="/automatisation-seo/" class="d-item"><div class="d-txt"><span class="d-title">Automatisation SEO</span><span class="d-desc">Le guide en 5 étapes pour dominer Google et l'IA</span></div></a>
+                <a href="/audit-geo/" class="d-item"><div class="d-txt"><span class="d-title">Audit GEO (app)</span><span class="d-desc">Votre diagnostic de visibilité IA en quelques clics</span></div></a>
+                <a href="/eeat-google/" class="d-item"><div class="d-txt"><span class="d-title">E-E-A-T</span><span class="d-desc">Renforcez la crédibilité de votre marque</span></div></a>
+                <a href="/cartographie-ia/" class="d-item"><div class="d-txt"><span class="d-title">Cartographie IA</span><span class="d-desc">Visualisez votre présence sur les moteurs IA</span></div></a>
+              </div>
+              <!-- NOS PÉPITES -->
+              <div class="d-tab-content d-tab-2n" id="tab-pepites">
+                <div class="d-sub-nav">
+                  <div class="d-sub-item active" data-subtarget="sub-geo"><div class="d-sub-label">GEO</div><span style="font-size:10px;opacity:0.4;">›</span></div>
+                  <div class="d-sub-item" data-subtarget="sub-ia"><div class="d-sub-label">IA</div><span style="font-size:10px;opacity:0.4;">›</span></div>
+                  <div class="d-sub-item" data-subtarget="sub-seo"><div class="d-sub-label">SEO</div><span style="font-size:10px;opacity:0.4;">›</span></div>
+                </div>
+                <div class="d-sub-content">
+                  <div class="d-sub-tab d-active" id="sub-geo">
+                    <a href="/worflow-recherche-prompt-geo/" class="d-item"><div class="d-txt"><span class="d-title">Prompts GEO</span><span class="d-desc">Workflow de Recherche de Prompts GEO</span></div></a>
+                    <a href="/matrice-gap-geo/" class="d-item"><div class="d-txt"><span class="d-title">Matrice de Gap GEO</span><span class="d-desc">Où tes concurrents te battent sur les IA</span></div></a>
+                    <a href="/reddit-pour-les-llms/" class="d-item"><div class="d-txt"><span class="d-title">Reddit pour les LLM</span><span class="d-desc">Faire citer ta marque par ChatGPT</span></div></a>
+                    <a href="/dominer-les-moteurs-de-recherche-ia/" class="d-item"><div class="d-txt"><span class="d-title">Moteurs IA</span><span class="d-desc">Préparez-vous à l'ère du GEO</span></div></a>
+                    <a href="/audit-geo-claude-code/" class="d-item"><div class="d-txt"><span class="d-title">Audit GEO Claude Code</span><span class="d-desc">Analysez votre visibilité sur les moteurs IA</span></div></a>
+                  </div>
+                  <div class="d-sub-tab" id="sub-ia">
+                    <a href="/machine-de-guerre-seo/" class="d-item"><div class="d-txt"><span class="d-title">Machine de Guerre</span><span class="d-desc">SEO+GEO dans Claude Code</span></div></a>
+                    <a href="/seo-geo-team/" class="d-item"><div class="d-txt"><span class="d-title">12 agents IA</span><span class="d-desc">Automatisez le SEO et la visibilité IA</span></div></a>
+                    <a href="/openclawseo/" class="d-item"><div class="d-txt"><span class="d-title">OpenClaw</span><span class="d-desc">L'agent IA qui fait votre SEO</span></div></a>
+                    <a href="/claude-skills-repo-github/" class="d-item"><div class="d-txt"><span class="d-title">Claude Skills GitHub</span><span class="d-desc">Terminé le SEO manuel en 2026</span></div></a>
+                    <a href="/installer-mcp-data-for-seo-sur-chatgpt/" class="d-item"><div class="d-txt"><span class="d-title">MCP Data for SEO</span><span class="d-desc">Data For SEO sur ChatGPT</span></div></a>
+                  </div>
+                  <div class="d-sub-tab" id="sub-seo">
+                    <a href="/claude-skills-seo/" class="d-item"><div class="d-txt"><span class="d-title">10 Skills Claude</span><span class="d-desc">Dominez Google & la Recherche IA</span></div></a>
+                    <a href="/creer-app-ecommerce/" class="d-item"><div class="d-txt"><span class="d-title">Outil e-commerce</span><span class="d-desc">+100 fiches produits en 5min</span></div></a>
+                    <a href="/guide-site-ia-creer-un-site-premium-en-24h/" class="d-item"><div class="d-txt"><span class="d-title">Guide Site IA</span><span class="d-desc">Créez un site Premium en 24h</span></div></a>
+                  </div>
+                </div>
+              </div>
+              <!-- LES SECTEURS -->
+              <div class="d-tab-content" id="tab-secteur">
+                <a href="/seo-e-commerce/" class="d-item"><div class="d-txt"><span class="d-title">E-commerce</span><span class="d-desc">Nos services pour les e-commerce</span></div></a>
+                <a href="/seo-saas/" class="d-item"><div class="d-txt"><span class="d-title">SaaS</span><span class="d-desc">Accélérez votre MRR</span></div></a>
+                <a href="/site-internet-offert/" class="d-item"><div class="d-txt"><span class="d-title">Services Locaux</span><span class="d-desc">Le site offert et les agents qui rattrapent</span></div></a>
+              </div>
+              <!-- SITE OFFERT -->
+              <div class="d-tab-content" id="tab-offre">
+                <a href="/site-internet-offert/" class="d-item"><div class="d-txt"><span class="d-title">Site internet offert</span><span class="d-desc">Le site à 0 €, vous payez ce qui vous rapporte des clients</span></div></a>
+                <a href="/creation-site-internet-dentiste/" class="d-item"><div class="d-txt"><span class="d-title">Dentistes et cabinets</span><span class="d-desc">Le site et les agents pour un cabinet dentaire</span></div></a>
+                <a href="/creation-site-internet-plombier/" class="d-item"><div class="d-txt"><span class="d-title">Plombiers et dépannage</span><span class="d-desc">Ne plus rater un appel d'urgence</span></div></a>
+                <a href="/creation-site-internet-electricien/" class="d-item"><div class="d-txt"><span class="d-title">Électriciens</span><span class="d-desc">Devis, relances et avis, automatisés</span></div></a>
+                <a href="/creation-site-internet-institut-de-beaute/" class="d-item"><div class="d-txt"><span class="d-title">Instituts et spas</span><span class="d-desc">Agenda rempli, rendez-vous honorés</span></div></a>
+                <a href="/supprimer-un-avis-google/" class="d-item"><div class="d-txt"><span class="d-title">Supprimer un avis Google</span><span class="d-desc">Les motifs que Google accepte, et le recours</span></div></a>
+                <a href="/agent-vocal-ia/" class="d-item"><div class="d-txt"><span class="d-title">Agent vocal IA</span><span class="d-desc">Une voix décroche quand vous ne pouvez pas</span></div></a>
+              </div>
+            </div>
+          </div>
+        </li>
+        <!-- CAS CLIENTS -->
+        <li class="d-has-mega">
+          <a href="/cas-clients/">Cas Clients <span class="d-arrow">⌵</span></a>
+          <div class="d-mega-box d-senek-style">
+            <div class="d-side-nav">
+              <div class="d-side-item active" data-target="tab-btp">
+                <div class="d-side-item-inner">
+                  <div class="d-icon"><svg viewBox="0 0 24 24"><rect x="3" y="10" width="18" height="11" rx="1"/><path d="M3 10l9-7 9 7"/><line x1="9" y1="21" x2="9" y2="14"/><line x1="15" y1="21" x2="15" y2="14"/><rect x="9" y="14" width="6" height="7"/></svg></div>
+                  BTP &amp; Travaux
+                </div>
+              </div>
+              <div class="d-side-item" data-target="tab-finance">
+                <div class="d-side-item-inner">
+                  <div class="d-icon"><svg viewBox="0 0 24 24"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div>
+                  Finance &amp; Médias
+                </div>
+              </div>
+              <div class="d-side-item" data-target="tab-ecom">
+                <div class="d-side-item-inner">
+                  <div class="d-icon"><svg viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg></div>
+                  E-commerce
+                </div>
+              </div>
+            </div>
+            <div class="d-side-content">
+              <div class="d-tab-content d-active" id="tab-btp">
+                <a href="/etude-de-cas-seo-speed-inter/" class="d-item"><div class="d-txt"><span class="d-title">Speed Inter</span></div></a>
+                <a href="/etude-de-cas-seo-reux-travaux/" class="d-item"><div class="d-txt"><span class="d-title">Reux Travaux</span></div></a>
+                <a href="/etude-de-cas-sea/" class="d-item"><div class="d-txt"><span class="d-title">SEA</span></div></a>
+              </div>
+              <div class="d-tab-content" id="tab-finance">
+                <a href="/etude-de-cas-seo-spigao/" class="d-item"><div class="d-txt"><span class="d-title">Spigao</span></div></a>
+                <a href="/etude-de-cas-seo-double-trade/" class="d-item"><div class="d-txt"><span class="d-title">Double Trade</span></div></a>
+                <a href="/etude-de-cas-seo-le-point/" class="d-item"><div class="d-txt"><span class="d-title">Le Point</span></div></a>
+                <a href="/etude-de-cas-sea-allianz/" class="d-item"><div class="d-txt"><span class="d-title">Allianz</span></div></a>
+                <a href="/etude-de-cas-seo-atoo-energie/" class="d-item"><div class="d-txt"><span class="d-title">Atoo</span></div></a>
+              </div>
+              <div class="d-tab-content" id="tab-ecom">
+                <a href="/etude-de-cas-seo-decathlon/" class="d-item"><div class="d-txt"><span class="d-title">Decathlon</span></div></a>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li><a href="/blog/">Blog</a></li>
+        <li><a href="https://decupler.com/newsletter">Newsletter</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <!-- ============ CTAs DESKTOP ============ -->
+  <div class="dcp-header-ctas">
+    <a href="https://calendly.com/fenina-nathan/consultationstrategique" class="dcp-btn-outline">Audit Stratégique</a>
+    <a href="https://decupler.com/app/" class="dcp-btn-solid">Notre Application</a>
+  </div>
+
+  <!-- ============ MOBILE NAV (burger) ============ -->
+  <nav class="d-mobile-nav" aria-label="Navigation mobile">
+    <div class="d-burger" id="d-burger-trigger" role="button" tabindex="0"
+         aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="d-mobile-wrapper">
+      <span></span><span></span><span></span>
+    </div>
+    <div class="d-mobile-menu-wrapper" id="d-mobile-wrapper">
+      <ul class="d-mobile-list">
+        <li class="d-mobile-has-sub">
+          <div class="d-mobile-link">Expertises <span class="d-mobile-arrow">⌵</span></div>
+          <ul class="d-mobile-sub">
+            <li class="d-mobile-has-sub2">
+              <div class="d-mobile-link2">SEO <span class="d-mobile-arrow2">⌵</span></div>
+              <ul class="d-mobile-sub2">
+                <li><a href="/agence-seo/">Agence SEO</a></li>
+                <li><a href="/accompagnement-seo/">Notre Accompagnement</a></li>
+                <li><a href="https://decupler.com/visibilite-en-ligne/">Visibilité en Ligne</a></li>
+                <li><a href="/seo-local/">SEO Local</a></li>
+                <li><a href="/citations-locales/">100 citations locales</a></li>
+                <li><a href="/organic-opportunity-map/">Organic Opportunity Map</a></li>
+              </ul>
+            </li>
+            <li class="d-mobile-has-sub2">
+              <div class="d-mobile-link2">GEO <span class="d-mobile-arrow2">⌵</span></div>
+              <ul class="d-mobile-sub2">
+                <li><a href="/agence-geo/">Agence GEO</a></li>
+                <li><a href="/visibilite-llm/">Visibilité LLM</a></li>
+                <li><a href="/mesurer-sa-visibilite/">Mesurer sa Visibilité IA</a></li>
+                <li><a href="/reddit-pour-le-geo/">Reddit pour le GEO</a></li>
+                <li><a href="/devenir-la-reference/">Devenir la Référence</a></li>
+              </ul>
+            </li>
+            <li class="d-mobile-has-sub2">
+              <div class="d-mobile-link2">Nos Outils <span class="d-mobile-arrow2">⌵</span></div>
+              <ul class="d-mobile-sub2">
+                <li><a href="https://decupler.com/app/">Application Decupler</a></li>
+                <li><a href="/generer-un-article-seo/">Générer un article SEO</a></li>
+                <li><a href="/maillage-interne-wordpress/">Maillage Interne</a></li>
+                <li><a href="/automatisation-seo/">Automatisation SEO</a></li>
+                <li><a href="/audit-geo/">Audit GEO (app)</a></li>
+                <li><a href="/eeat-google/">E-E-A-T</a></li>
+                <li><a href="/cartographie-ia/">Cartographie IA</a></li>
+              </ul>
+            </li>
+            <li class="d-mobile-has-sub2">
+              <div class="d-mobile-link2">Nos Pépites <span class="d-mobile-arrow2">⌵</span></div>
+              <ul class="d-mobile-sub2">
+                <li><a href="/machine-de-guerre-seo/">Machine de Guerre SEO</a></li>
+                <li><a href="/worflow-recherche-prompt-geo/">Prompts GEO</a></li>
+                <li><a href="/matrice-gap-geo/">Matrice de Gap GEO</a></li>
+                <li><a href="/reddit-pour-les-llms/">Reddit pour les LLM</a></li>
+                <li><a href="/dominer-les-moteurs-de-recherche-ia/">Moteurs IA</a></li>
+                <li><a href="/audit-geo-claude-code/">Audit GEO Claude Code</a></li>
+                <li><a href="/seo-geo-team/">12 Agents IA</a></li>
+                <li><a href="/openclawseo/">OpenClaw</a></li>
+                <li><a href="/claude-skills-repo-github/">Claude Skills GitHub</a></li>
+                <li><a href="/installer-mcp-data-for-seo-sur-chatgpt/">MCP Data for SEO</a></li>
+                <li><a href="/claude-skills-seo/">10 Skills Claude</a></li>
+                <li><a href="/creer-app-ecommerce/">Outil e-commerce</a></li>
+                <li><a href="/guide-site-ia-creer-un-site-premium-en-24h/">Guide Site IA</a></li>
+              </ul>
+            </li>
+            <li class="d-mobile-has-sub2">
+              <div class="d-mobile-link2">Les Secteurs <span class="d-mobile-arrow2">⌵</span></div>
+              <ul class="d-mobile-sub2">
+                <li><a href="/seo-e-commerce/">E-commerce</a></li>
+                <li><a href="/seo-saas/">SaaS</a></li>
+                <li><a href="/site-internet-offert/">Services Locaux</a></li>
+              </ul>
+            </li>
+            <li class="d-mobile-has-sub2">
+              <div class="d-mobile-link2">Site offert <span class="d-mobile-arrow2">⌵</span></div>
+              <ul class="d-mobile-sub2">
+                <li><a href="/site-internet-offert/">Site internet offert</a></li>
+                <li><a href="/creation-site-internet-dentiste/">Dentistes et cabinets</a></li>
+                <li><a href="/creation-site-internet-plombier/">Plombiers et dépannage</a></li>
+                <li><a href="/creation-site-internet-electricien/">Électriciens</a></li>
+                <li><a href="/creation-site-internet-institut-de-beaute/">Instituts et spas</a></li>
+                <li><a href="/supprimer-un-avis-google/">Supprimer un avis Google</a></li>
+                <li><a href="/agent-vocal-ia/">Agent vocal IA</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li class="d-mobile-has-sub">
+          <div class="d-mobile-link">Cas Clients <span class="d-mobile-arrow">⌵</span></div>
+          <ul class="d-mobile-sub">
+            <li class="d-mobile-has-sub2">
+              <div class="d-mobile-link2">BTP &amp; Travaux <span class="d-mobile-arrow2">⌵</span></div>
+              <ul class="d-mobile-sub2">
+                <li><a href="/etude-de-cas-seo-speed-inter/">Speed Inter</a></li>
+                <li><a href="/etude-de-cas-seo-reux-travaux/">Reux Travaux</a></li>
+                <li><a href="/etude-de-cas-sea/">SEA</a></li>
+              </ul>
+            </li>
+            <li class="d-mobile-has-sub2">
+              <div class="d-mobile-link2">Finance &amp; Médias <span class="d-mobile-arrow2">⌵</span></div>
+              <ul class="d-mobile-sub2">
+                <li><a href="/etude-de-cas-seo-spigao/">Spigao</a></li>
+                <li><a href="/etude-de-cas-seo-double-trade/">Double Trade</a></li>
+                <li><a href="/etude-de-cas-seo-le-point/">Le Point</a></li>
+                <li><a href="/etude-de-cas-sea-allianz/">Allianz</a></li>
+                <li><a href="/etude-de-cas-seo-atoo-energie/">Atoo</a></li>
+              </ul>
+            </li>
+            <li class="d-mobile-has-sub2">
+              <div class="d-mobile-link2">E-commerce <span class="d-mobile-arrow2">⌵</span></div>
+              <ul class="d-mobile-sub2">
+                <li><a href="/etude-de-cas-seo-decathlon/">Decathlon</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="/blog/" class="d-mobile-link">Blog</a></li>
+        <li><a href="https://decupler.com/newsletter" class="d-mobile-link">Newsletter</a></li>
+        <li><a href="https://calendly.com/fenina-nathan/consultationstrategique" class="d-mobile-link d-mobile-cta">Audit Stratégique</a></li>
+        <li><a href="https://decupler.com/app/" class="d-mobile-link d-mobile-cta d-mobile-cta-outline">Notre Application</a></li>
+      </ul>
+    </div>
+  </nav>
+
+</div>
+
+<script>
+(function() {
+  const initMenu = () => {
+    // --- Mega menu desktop : survol ET focus clavier sur side-item ---
+    const activer = (item) => {
+      const parentBox = item.closest('.d-mega-box');
+      const targetId = item.getAttribute('data-target');
+      if (!targetId || !parentBox) return;
+      parentBox.querySelectorAll('.d-side-item').forEach(el => el.classList.remove('active'));
+      parentBox.querySelectorAll('.d-side-content > .d-tab-content').forEach(el => el.classList.remove('d-active'));
+      item.classList.add('active');
+      const target = parentBox.querySelector('#' + targetId);
+      if (target) target.classList.add('d-active');
+    };
+    document.querySelectorAll('.d-side-item').forEach(item => {
+      if (item.dataset.bound) return;
+      item.dataset.bound = 'true';
+      // Atteignable au clavier : ce sont des balises div, pas focusables seules.
+      item.setAttribute('tabindex', '0');
+      item.addEventListener('mouseenter', () => activer(item));
+      item.addEventListener('focus', () => activer(item));
+      item.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activer(item); }
+      });
+    });
+
+    // --- Sous-niveau à deux étages (Nos Pépites, Les agents) ---
+    const activerSous = (item) => {
+      const parentTab = item.closest('.d-tab-2n');
+      const subTargetId = item.getAttribute('data-subtarget');
+      if (!subTargetId || !parentTab) return;
+      parentTab.querySelectorAll('.d-sub-item').forEach(el => el.classList.remove('active'));
+      parentTab.querySelectorAll('.d-sub-tab').forEach(el => el.classList.remove('d-active'));
+      item.classList.add('active');
+      const subTarget = parentTab.querySelector('#' + subTargetId);
+      if (subTarget) subTarget.classList.add('d-active');
+    };
+    document.querySelectorAll('.d-sub-item').forEach(item => {
+      if (item.dataset.bound) return;
+      item.dataset.bound = 'true';
+      item.setAttribute('tabindex', '0');
+      item.addEventListener('mouseenter', () => activerSous(item));
+      item.addEventListener('focus', () => activerSous(item));
+      item.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activerSous(item); }
+      });
+    });
+
+    // --- Burger mobile (JS pur, pas de dépendance jQuery) ---
+    const burger = document.getElementById('d-burger-trigger');
+    const mobileWrapper = document.getElementById('d-mobile-wrapper');
+    if (burger && !burger.dataset.bound) {
+      burger.dataset.bound = 'true';
+      const bascule = () => {
+        burger.classList.toggle('open');
+        mobileWrapper.classList.toggle('open');
+        const ouvert = mobileWrapper.classList.contains('open');
+        burger.setAttribute('aria-expanded', ouvert ? 'true' : 'false');
+        burger.setAttribute('aria-label', ouvert ? 'Fermer le menu' : 'Ouvrir le menu');
+        document.body.style.overflow = ouvert ? 'hidden' : 'auto';
+      };
+      burger.addEventListener('click', bascule);
+      burger.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); bascule(); }
+      });
+      // Échap ferme le menu : sans ça, sur mobile, on reste piégé si le burger
+      // sort du champ après un défilement.
+      document.addEventListener('keydown', e => {
+        if (e.key === 'Escape' && mobileWrapper.classList.contains('open')) bascule();
+      });
+    }
+
+    // --- Accordéons niveau 1 mobile ---
+    document.querySelectorAll('.d-mobile-has-sub > .d-mobile-link').forEach(link => {
+      if (link.dataset.bound) return;
+      link.dataset.bound = 'true';
+      link.addEventListener('click', function() {
+        const parent = this.parentElement;
+        document.querySelectorAll('.d-mobile-has-sub').forEach(el => {
+          if (el !== parent) el.classList.remove('active');
+        });
+        parent.classList.toggle('active');
+      });
+    });
+
+    // --- Accordéons niveau 2 mobile ---
+    document.querySelectorAll('.d-mobile-has-sub2 > .d-mobile-link2').forEach(link => {
+      if (link.dataset.bound) return;
+      link.dataset.bound = 'true';
+      link.addEventListener('click', function() {
+        const parent = this.parentElement;
+        parent.parentElement.querySelectorAll('.d-mobile-has-sub2').forEach(el => {
+          if (el !== parent) el.classList.remove('active2');
+        });
+        parent.classList.toggle('active2');
+      });
+    });
+  };
+
+  window.addEventListener('load', initMenu);
+  document.addEventListener('DOMContentLoaded', initMenu);
+  if (window.elementorFrontend) { initMenu(); }
+})();
+</script>
