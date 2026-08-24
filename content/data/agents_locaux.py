@@ -124,7 +124,42 @@ def par_etape(cle):
 
 # Agents qui renvoient vers une page existante du site. Les autres n'ont pas
 # encore de page : ne rien mettre plutot qu'un lien mort.
+# Un agent devient cliquable dans les grilles de la page pilier et des pages
+# metier des lors qu'il figure ici. C'est volontairement une liste manuelle :
+# une carte qui pointe vers une page encore en brouillon donne un 404 sur une
+# page publiee. On n'ajoute une entree qu'une fois la page en ligne.
 LIENS = {
     'citations-locales': 'https://decupler.com/citations-locales/',
-    'seo-local': 'https://decupler.com/seo-local/',
+    'seo-local':         'https://decupler.com/seo-local/',
+}
+
+# Les pages du cluster qui attendent leur publication. Basculer une entree
+# dans LIENS ci-dessus le jour ou la page passe en « publie », puis regenerer
+# le pilier et les pages metier.
+EN_ATTENTE = {
+    'fiche-google':       'https://decupler.com/agent-fiche-google/',
+    'posts-google':       'https://decupler.com/agent-posts-google/',
+    'mots-cles-locaux':   'https://decupler.com/agent-mots-cles-locaux/',
+    'sms-appel-manque':   'https://decupler.com/agent-sms-appel-manque/',
+    'sms-formulaire':     'https://decupler.com/agent-sms-formulaire/',
+    'chatbot':            'https://decupler.com/chatbot-wordpress/',
+    'messagerie-google':  'https://decupler.com/agent-messagerie-google/',
+    'estimation-en-ligne': 'https://decupler.com/agent-estimation-en-ligne/',
+    'agent-vocal':        'https://decupler.com/agent-vocal-ia/',
+    'relance-devis':      'https://decupler.com/agent-relance-devis/',
+    'rappel-rdv':         'https://decupler.com/agent-rappel-rdv/',
+    'relance-facture':    'https://decupler.com/agent-relance-facture/',
+    'reactivation':       'https://decupler.com/agent-reactivation/',
+    'demande-avis':       'https://decupler.com/obtenir-des-avis-google/',
+    'reponse-avis':       'https://decupler.com/repondre-aux-avis-google/',
+    'parrainage':         'https://decupler.com/agent-parrainage/',
+    'satisfaction':       'https://decupler.com/agent-satisfaction/',
+    'rapport-mensuel':    'https://decupler.com/agent-rapport-mensuel/',
+}
+
+# Les deux guides du cluster n'ont pas d'agent correspondant : ce sont des
+# pages d'intention informationnelle, reliees depuis le corps des pages.
+GUIDES = {
+    'supprimer un avis Google':      'https://decupler.com/supprimer-un-avis-google/',
+    'standard téléphonique IA':      'https://decupler.com/standard-telephonique-ia/',
 }

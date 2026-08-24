@@ -194,7 +194,7 @@ def construis(slug):
     return wpcss.harden(body)
 
 
-MAJ = '21 août 2026'
+MAJ = '24 août 2026'
 
 
 def mini_cta(phrase, libelle):
