@@ -13,19 +13,26 @@ await p.setContent(page_html,{waitUntil:'load'});
 await new Promise(r=>setTimeout(r,600));
 await p.screenshot({path:'/tmp/menu-ferme.png'});
 // ouvrir « Site offert »
-await p.evaluate(()=>{ document.querySelectorAll('.d-has-mega')[0].querySelector('.d-mega-box').style.display='flex'; });
+await p.evaluate(()=>{
+  const box=document.querySelectorAll('.d-has-mega')[0].querySelector('.d-mega-box');
+  box.style.display='flex';
+  box.querySelectorAll('.d-side-item').forEach(e=>e.classList.remove('active'));
+  box.querySelectorAll('.d-tab-content').forEach(e=>e.classList.remove('d-active'));
+  box.querySelector('[data-target="tab-offre"]').classList.add('active');
+  box.querySelector('#tab-offre').classList.add('d-active');
+});
 await new Promise(r=>setTimeout(r,300));
 await p.screenshot({path:'/tmp/menu-offre.png'});
-// onglet Les agents
+// onglet SEO, pour verifier que les autres colonnes n'ont pas bouge
 await p.evaluate(()=>{
   const box=document.querySelectorAll('.d-has-mega')[0].querySelector('.d-mega-box');
   box.querySelectorAll('.d-side-item').forEach(e=>e.classList.remove('active'));
   box.querySelectorAll('.d-tab-content').forEach(e=>e.classList.remove('d-active'));
-  box.querySelector('[data-target="tab-agents"]').classList.add('active');
-  box.querySelector('#tab-agents').classList.add('d-active');
+  box.querySelector('[data-target="tab-seo"]').classList.add('active');
+  box.querySelector('#tab-seo').classList.add('d-active');
 });
 await new Promise(r=>setTimeout(r,300));
-await p.screenshot({path:'/tmp/menu-agents.png'});
+await p.screenshot({path:'/tmp/menu-seo.png'});
 const w = await p.evaluate(()=>document.documentElement.scrollWidth);
 console.log('scrollWidth', w);
 await b.close();

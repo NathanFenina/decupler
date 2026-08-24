@@ -5,16 +5,22 @@ Il se colle en entier — il porte son CSS, son balisage et son script.
 
 ## Ce que fait `menu_offre.py`
 
-L'entrée « Site offert » du menu, desktop et mobile, est générée à partir de
-`content/data/agents_locaux.py` : le menu et la page pilier décrivent la même
-chose, les écrire deux fois à la main c'est garantir qu'ils divergeront.
+L'onglet « Site offert » vit dans le méga-menu **Expertises**, en sixième
+colonne. Ses liens sont générés plutôt qu'écrits à la main : le menu et la
+page pilier décrivent la même offre, et deux sources tenues à la main
+finissent toujours par diverger.
 
 ```bash
-python3 content/header/menu_offre.py     # écrit /tmp/menu_desktop.html et /tmp/menu_mobile.html
+python3 content/header/menu_offre.py
 ```
 
-Puis réinjecter les deux blocs dans `header.html`, entre les commentaires
-`<!-- SITE OFFERT -->` et `<!-- EXPERTISES -->`.
+Trois fichiers sortent dans `/tmp` :
+
+| Fichier | Où le coller dans `header.html` |
+|---|---|
+| `menu_colonne.html` | après la colonne « Les secteurs », dans `.d-side-nav` |
+| `menu_onglet.html` | après `<div class="d-tab-content" id="tab-secteur">…</div>` |
+| `menu_mobile.html` | après « Les Secteurs », dans le `.d-mobile-sub` d'Expertises |
 
 ## Vérifier avant de coller
 
