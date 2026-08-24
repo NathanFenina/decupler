@@ -343,6 +343,7 @@ nav.post-navigation{display:none!important}
 .cib-c:hover .cib-ic{background:var(--grn-t);color:#fff}
 .cib-c h3{font-family:var(--display);font-size:1rem;font-weight:800;margin:0 0 6px;color:var(--ink)}
 .cib-c p{font-size:.86rem;color:var(--soft);margin:0;line-height:1.5}
+.cib-plus{font-size:.93rem;color:var(--soft);margin:20px 0 0}
 
 /* ── Étapes ─────────────────────────────────────────────────────────────── */
 .etapes{counter-reset:et;margin-top:26px}

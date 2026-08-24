@@ -15,6 +15,7 @@ for d in ('content/data', 'content/components', 'scripts/lib'):
     sys.path.insert(0, str(RACINE / d))
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import agents_locaux as A
+import metiers_locaux as ML
 import cta_prompts as CTA
 import wpcss
 import icones as I
@@ -51,13 +52,14 @@ def agents_html():
 # Les pages metier du cluster. Tant qu'elles sont en brouillon, les cartes ne
 # pointent nulle part : un lien vers un brouillon est un 404 pour un visiteur.
 # Basculer a True le jour ou elles passent en ligne.
-CLUSTER_EN_LIGNE = False
+CLUSTER_EN_LIGNE = True
 CIBLE_LIEN = {
-    'Paysagistes': 'creation-site-internet-paysagiste',
-    'Artisans du bâtiment': 'creation-site-internet-artisan',
     'Dentistes et cabinets': 'creation-site-internet-dentiste',
     'Spas et instituts': 'creation-site-internet-institut-de-beaute',
 }
+
+NOM_PAGE = {'dentiste': 'dentiste', 'plombier': 'plombier',
+            'electricien': 'électricien', 'institut-de-beaute': 'institut de beauté'}
 
 CIBLE_IC = {'Paysagistes': 'paysagiste', 'Artisans du batiment': 'artisan',
             'Artisans du bâtiment': 'artisan', 'Dentistes et cabinets': 'dentiste',
@@ -75,7 +77,14 @@ def cibles_html():
             titre = f'<a href="https://decupler.com/{CIBLE_LIEN[nom]}/">{nom}</a>'
         cartes.append(f'<div class="cib-c rise">{I.bloc(CIBLE_IC[nom], "cib-ic")}'
                       f'<h3>{titre}</h3><p>{txt}</p></div>')
-    return '<div class="cib">' + ''.join(cartes) + '</div>'
+    grille = '<div class="cib">' + ''.join(cartes) + '</div>'
+    if not CLUSTER_EN_LIGNE or not ML.METIERS:
+        return grille
+    liens = ', '.join(
+        f'<a href="https://decupler.com/creation-site-internet-{slug}/">{NOM_PAGE[slug]}</a>'
+        for slug in ML.METIERS if slug in NOM_PAGE)
+    return (grille + '<p class="cib-plus rise">On détaille la mécanique métier par métier&nbsp;: '
+            + liens + '.</p>')
 
 
 RDV = 'https://calendly.com/fenina-nathan/consultationstrategique'

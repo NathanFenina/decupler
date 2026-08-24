@@ -28,6 +28,11 @@ AGENTS = [
   "On crée et on aligne vos fiches sur les annuaires qui comptent dans votre secteur. La moindre variation d'adresse "
   "entre deux annuaires affaiblit votre fiche&nbsp;: on la corrige partout.",
   "C'est le socle du référencement local : sans citations cohérentes, une fiche Google plafonne."),
+ ("seo-local", "SEO local", "trouve",
+  "Le site est construit pour sortir sur votre métier dans votre ville, pas pour être joli sur une plaquette.",
+  "Pages de zone, vocabulaire de votre secteur, structure des données, maillage interne&nbsp;: le travail de fond "
+  "qui décide de votre place dans les résultats locaux, au-delà de la fiche Google.",
+  "C'est notre métier de départ : on est agence SEO avant d'être fournisseur de sites."),
  ("mots-cles-locaux", "Recherche de mots-clés locaux", "trouve",
   "On arrête de se battre sur « plombier Paris » pour viser ce que vos clients tapent vraiment.",
   "Analyse des requêtes de votre zone pour isoler celles à forte intention et faible concurrence.",
@@ -100,4 +105,5 @@ def par_etape(cle):
 # encore de page : ne rien mettre plutot qu'un lien mort.
 LIENS = {
     'citations-locales': 'https://decupler.com/citations-locales/',
+    'seo-local': 'https://decupler.com/seo-local/',
 }

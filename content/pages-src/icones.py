@@ -20,6 +20,7 @@ _D = {
  "fiche-google":     '<path d="M12 21s7-5.3 7-11a7 7 0 1 0-14 0c0 5.7 7 11 7 11Z"/><path d="m9 10 2 2 4-4"/>',
  "posts-google":     '<rect x="3" y="5" width="18" height="14" rx="2.5"/><circle cx="8.5" cy="10" r="1.6"/><path d="m4 17 4.5-4.2a2 2 0 0 1 2.7 0L20 20"/>',
  "citations-locales":  '<path d="M9 20s5-3.8 5-8a5 5 0 1 0-10 0c0 4.2 5 8 5 8Z"/><circle cx="9" cy="12" r="1.7"/><path d="M15.5 5.5h5M15.5 9h5M15.5 12.5h3"/>',
+ "seo-local":         '<path d="M12 21s6.5-5 6.5-10.5a6.5 6.5 0 1 0-13 0C5.5 16 12 21 12 21Z"/><path d="M9.6 11.2h4.8M12 8.8v4.8"/>',
  "mots-cles-locaux": '<circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/><path d="M8.5 11h5"/>',
  # ── Ne rater aucun appel ─────────────────────────────────────────────────
  "sms-appel-manque": '<path d="M5 4h3l1.6 4-2 1.4a12 12 0 0 0 5.6 5.6l1.4-2 4 1.6v3a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 3 6.2 2 2 0 0 1 5 4Z"/><path d="M15.5 3.5 21 9"/><path d="M21 3.5 15.5 9"/>',
