@@ -428,7 +428,7 @@ PAGES = {
     mot_cle="agent vocal ia",
     titre_seo="Agent vocal IA : décrocher quand vous ne pouvez pas",
     meta=("Agent vocal IA pour entreprise locale : il décroche quand personne ne répond, qualifie "
-          "l'appel et pose le rendez-vous. Ce qu'il fait, ce qu'il ne fait pas, ce que ça coûte."),
+          "l'appel et pose le rendez-vous. Ce qu'il fait, et ce qu'il coûte."),
     signature=SIG_AGENT,
     sections=[
      ('hero', dict(
