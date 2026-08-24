@@ -2993,6 +2993,33 @@ PAGES = {
        paras=["Ce qu'on ne compte pas&nbsp;: les « vues », les « impressions » et tout ce qui gonfle un rapport sans "
               "rien prouver. Le seul chiffre qui compte est celui que vous pouvez rapprocher de votre chiffre "
               "d'affaires."])),
+     ('qr', dict(
+       eyebrow="En une phrase",
+       h2="Ce qu'on nous demande sur le rapport mensuel",
+       items=[
+        ("Qu'est-ce qu'il y a dedans&nbsp;?",
+         "Des événements, pas des impressions&nbsp;: appels manqués qui ont reçu un SMS, devis relancés et "
+         "réponses obtenues, avis nouveaux et avis répondus, rendez-vous confirmés et créneaux libérés à temps. "
+         "Ce qui s'est produit, avec un compte."),
+        ("Pourquoi pas les positions Google&nbsp;?",
+         "Parce qu'une position ne paie personne. On la donne si vous la demandez, mais elle ne figure pas au "
+         "premier plan&nbsp;: un rapport qui met en avant ce qui ne se transforme pas en argent finit par ne plus "
+         "être lu."),
+        ("Sous quelle forme arrive-t-il&nbsp;?",
+         "Une page lisible en deux minutes, envoyée le premier lundi du mois. Pas un PDF de vingt pages&nbsp;: "
+         "personne ne lit un PDF de vingt pages, et surtout pas un gérant le lundi matin."),
+        ("Et si un mois est mauvais&nbsp;?",
+         "Il est mauvais dans le rapport. Un rapport qui n'affiche jamais de baisse ne mesure rien&nbsp;— et le "
+         "jour où le client s'en aperçoit, il ne croit plus aucun chiffre, y compris les vrais."),
+        ("Peut-on comparer d'un mois sur l'autre&nbsp;?",
+         "Oui, c'est même le seul intérêt réel&nbsp;: un chiffre isolé ne dit rien. On compare au mois précédent "
+         "et au même mois de l'année précédente quand l'historique existe, pour ne pas confondre une baisse "
+         "saisonnière avec un problème."),
+        ("Est-ce que je peux vérifier les chiffres&nbsp;?",
+         "Oui, et il faut le faire. Chaque chiffre renvoie à la liste des événements qui le composent&nbsp;: les "
+         "appels, les devis, les avis. Un rapport dont on ne peut pas ouvrir le détail est un argumentaire."),
+       ])),
+
      ('cartes', dict(
        alt=True, eyebrow="Les limites", h2="Ce que ce rapport ne prétend pas être", classe='non',
        items=[
@@ -3006,6 +3033,34 @@ PAGES = {
          "Si les chiffres sont mauvais deux mois de suite, c'est qu'il faut changer quelque chose ou arrêter. Le "
          "rapport sert autant à ça qu'à justifier l'abonnement."),
        ])),
+     ('texte', dict(
+       eyebrow="Le vrai sujet", id="preuve",
+       h2="Sans preuve chiffrée, un abonnement finit résilié",
+       paras=[
+        "C'est vrai de tous les prestataires, et c'est vrai de nous. Un service qui tourne en arrière-plan devient "
+        "invisible au bout de trois mois. Le client ne voit plus ce qui a changé&nbsp;: il voit une ligne de "
+        "prélèvement. Et une ligne de prélèvement sans contrepartie visible finit toujours par sauter, y compris "
+        "quand le service fonctionne parfaitement.",
+        "Le paradoxe est réel&nbsp;: <strong>plus les agents marchent bien, moins on les remarque</strong>. Les "
+        "appels manqués ne sont plus manqués, donc on ne les compte plus. Les devis reçoivent une réponse, donc "
+        "on oublie qu'ils restaient sans suite. Le succès efface le problème qu'il résolvait, et avec lui la "
+        "justification de la dépense.",
+        "Le rapport existe pour ça, et pour une raison qui nous est aussi utile qu'à vous&nbsp;: il nous oblige à "
+        "produire des chiffres tous les mois. Un prestataire qui ne mesure pas peut se raconter des histoires "
+        "pendant un an. Devoir aligner des événements comptés, mois après mois, discipline le travail plus "
+        "sûrement que n'importe quel engagement contractuel.",
+        "C'est aussi ce qui rend une discussion possible quand un mois déçoit. Sans chiffres, on échange des "
+        "impressions&nbsp;: «&nbsp;j'ai l'impression que ça marche moins bien&nbsp;». Avec des chiffres, on "
+        "regarde ce qui a bougé et on décide quoi corriger. La deuxième conversation est nettement plus utile "
+        "que la première, pour les deux parties.",
+        "Notre règle sur ce rapport&nbsp;: rien qui ne soit vérifiable, rien qui ne soit un événement daté. Pas "
+        "d'estimation de chiffre d'affaires généré, pas de retour sur investissement calculé sur des hypothèses "
+        "maison. Ces chiffres-là sont faciles à produire et impossibles à défendre&nbsp;— et le jour où le client "
+        "les met en doute, tout le reste tombe avec."],
+       tip="Le rapport arrive le premier lundi du mois, avant que vous ne le demandiez. Un rapport qu'il faut "
+           "réclamer est un rapport dont le prestataire n'est pas fier.",
+       tip_ic="📊")),
+
      ('agents', dict(
        eyebrow="Ce qui va avec", h2="Il ne mesure que ce qui tourne",
        paras=["Un rapport sur un système sans agents branchés est une page vide. Le catalogue complet est sur la "
@@ -3014,6 +3069,15 @@ PAGES = {
      ('relance', dict(texte="Je vous montre un rapport réel, avec les chiffres d'un mois entier.",
                       libelle="Prendre 15 minutes")),
      ('faq', dict(eyebrow="FAQ", h2="Les questions qu'on nous pose", items=[
+        ("Le rapport remplace-t-il un point téléphonique&nbsp;?",
+         "Non&nbsp;: il le prépare. Un point de quinze minutes sur des chiffres qu'on a lus tous les deux vaut "
+         "mieux qu'une heure passée à découvrir les données ensemble."),
+        ("Puis-je le partager à mon comptable ou à mon associé&nbsp;?",
+         "Oui, c'est fait pour&nbsp;: c'est une page qu'on transmet. Une bonne partie de son intérêt est de rendre "
+         "le travail lisible par quelqu'un qui n'était pas dans la boucle."),
+        ("Que se passe-t-il le premier mois&nbsp;?",
+         "Il n'y a pas de comparaison possible, donc le premier rapport sert de point de départ. C'est aussi lui "
+         "qui révèle souvent le volume réel d'appels manqués ou de devis sans réponse — le chiffre qui surprend."),
         ("Je reçois ça comment&nbsp;?",
          "Par SMS et par e-mail, le même jour chaque mois. Quatre chiffres dans le message, le détail dans le lien "
          "si vous voulez creuser."),
@@ -3057,6 +3121,52 @@ PAGES = {
        paras=["Ce que ça change vraiment&nbsp;: le premier rappel part le lendemain de l'échéance, pas six semaines "
               "après. Une facture relancée dans la semaine se paie&nbsp;; une facture relancée au bout de deux mois "
               "se négocie."])),
+     ('qr', dict(
+       eyebrow="En une phrase",
+       h2="Ce qu'on nous demande sur la relance de facture",
+       items=[
+        ("Au bout de combien de jours relancer&nbsp;?",
+         "Le lendemain de l'échéance pour le premier message, quinze jours après pour le second. Attendre un mois "
+         "par gêne est la meilleure façon de laisser une créance devenir difficile&nbsp;: plus on relance tôt, "
+         "moins le ton a besoin d'être ferme."),
+        ("Quel ton adopter&nbsp;?",
+         "Neutre et court. Dans la grande majorité des cas c'est un oubli, pas un refus de payer. Le premier "
+         "message rappelle l'échéance passée et joint la facture, sans reproche ni menace&nbsp;— une relance "
+         "agressive sur un oubli abîme une relation client pour rien."),
+        ("Peut-on facturer des pénalités de retard&nbsp;?",
+         "Entre professionnels, elles sont dues de plein droit dès le lendemain de l'échéance, avec une indemnité "
+         "forfaitaire de recouvrement, à condition qu'elles figurent sur la facture et dans vos conditions de "
+         "vente. Envers un particulier, le régime est différent&nbsp;: vérifiez ce que prévoit votre contrat."),
+        ("Que fait l'agent quand la facture est réglée&nbsp;?",
+         "Il s'arrête, à condition que le paiement soit marqué quelque part. C'est le point de vigilance de tout "
+         "le dispositif&nbsp;: une relance envoyée à un client qui a déjà payé coûte plus qu'elle ne rapporte."),
+        ("Et si le client conteste&nbsp;?",
+         "La séquence s'arrête et l'information vous remonte. Une contestation ne se traite pas par message "
+         "automatique&nbsp;: c'est un appel, et parfois un avoir."),
+        ("Jusqu'où va l'agent&nbsp;?",
+         "Deux relances, puis un récapitulatif pour vous. La mise en demeure, le recouvrement, l'injonction de "
+         "payer&nbsp;: ce sont des actes qui vous engagent, ils ne s'automatisent pas et ne se délèguent pas à un "
+         "prestataire marketing."),
+       ])),
+
+     ('etapes', dict(
+       howto=True, eyebrow="Le déroulé", id="deroule",
+       h2="Ce qui part, et quand",
+       items=[
+        ("L'échéance passe",
+         "L'agent suit la date d'échéance portée sur la facture, pas la date d'émission. Tant qu'elle n'est pas "
+         "dépassée, rien ne bouge — relancer avant terme est le plus sûr moyen de passer pour désorganisé."),
+        ("J+1&nbsp;: le rappel neutre",
+         "«&nbsp;Bonjour, la facture n°… du … est arrivée à échéance hier. Je vous la joins de nouveau au cas où "
+         "elle se serait perdue. Bien cordialement.&nbsp;» Rien de plus. Ce message règle la majorité des cas."),
+        ("J+15&nbsp;: le récapitulatif",
+         "Montant, numéro, date d'échéance, moyens de paiement, et le rappel des conditions prévues au contrat. "
+         "Le ton reste courtois&nbsp;: c'est le contenu qui devient précis, pas la voix."),
+        ("Ensuite&nbsp;: ça revient chez vous",
+         "Aucun troisième message automatique. Vous recevez la liste des factures encore ouvertes avec leur "
+         "ancienneté, et vous décidez&nbsp;: appel, mise en demeure, ou abandon. La décision vous appartient."),
+       ])),
+
      ('cartes', dict(
        alt=True, eyebrow="Les limites", h2="Ce que cet agent ne fera pas", classe='non',
        items=[
@@ -3070,6 +3180,33 @@ PAGES = {
          "Il lit les échéances que vous lui donnez. Si vos factures ne sont pas suivies quelque part, il n'a rien à "
          "relancer&nbsp;— et c'est souvent le vrai problème à régler d'abord."),
        ])),
+     ('texte', dict(
+       eyebrow="Le vrai sujet", id="tresorerie",
+       h2="Ce que le retard de paiement fait à une petite entreprise",
+       paras=[
+        "Une facture impayée n'est pas une perte&nbsp;: c'est de la trésorerie qui manque au moment où on en a "
+        "besoin. La nuance a l'air théorique jusqu'au jour où il faut payer un fournisseur avec un compte vide "
+        "alors que quatre clients doivent de l'argent.",
+        "Le mécanisme est toujours le même dans les petites structures. Le travail est fait, la facture est "
+        "envoyée, et le suivi s'arrête là&nbsp;— parce qu'il n'y a personne dont c'est le métier. Le gérant "
+        "s'aperçoit du retard en faisant ses comptes, souvent des semaines plus tard, et découvre trois factures "
+        "en souffrance au lieu d'une.",
+        "S'y ajoute une gêne bien réelle&nbsp;: réclamer son dû à un client avec qui on veut continuer à "
+        "travailler est inconfortable. Beaucoup d'artisans repoussent, puis finissent par écrire un message trop "
+        "sec parce que l'agacement s'est accumulé. <strong>La relance automatique règle les deux problèmes&nbsp;: "
+        "elle part à temps, et elle part sans humeur.</strong>",
+        "Un point de droit utile à connaître&nbsp;: entre professionnels, le délai de paiement convenu ne peut "
+        "dépasser soixante jours à compter de l'émission de la facture, ou quarante-cinq jours fin de mois. "
+        "Au-delà, les pénalités de retard sont dues de plein droit, sans qu'un rappel soit nécessaire, et une "
+        "indemnité forfaitaire pour frais de recouvrement s'ajoute par facture. Encore faut-il que ces mentions "
+        "figurent sur vos factures et dans vos conditions de vente&nbsp;— c'est la première chose qu'on vérifie.",
+        "Ce qu'on constate en pratique&nbsp;: la relance à J+1 récupère l'essentiel, parce que l'essentiel des "
+        "retards sont des oublis. Ce sont les factures relancées au bout de deux mois qui deviennent des dossiers."],
+       tip="Le geste qui rapporte le plus, avant toute automatisation&nbsp;: vérifier que vos factures portent "
+           "bien la date d'échéance, le taux des pénalités et l'indemnité forfaitaire. Sans ces mentions, vous "
+           "négociez au lieu de réclamer.",
+       tip_ic="💶")),
+
      ('agents', dict(
        eyebrow="Ce qui va avec", h2="Du devis à l'encaissement",
        paras=[f"Le catalogue complet des vingt agents est sur la <a href=\"{PILIER}\">page de l'offre</a>."],
@@ -3077,6 +3214,16 @@ PAGES = {
      ('relance', dict(texte="Combien avez-vous en attente de paiement en ce moment&nbsp;? On regarde ce que la relance "
                             "automatique changerait.", libelle="Prendre 15 minutes")),
      ('faq', dict(eyebrow="FAQ", h2="Les questions qu'on nous pose", items=[
+        ("Peut-on relancer par SMS&nbsp;?",
+         "Pour un particulier, oui, et c'est souvent plus efficace qu'un mail perdu. Pour un professionnel, le "
+         "mail reste la référence parce qu'il laisse une trace exploitable et qu'il atteint la comptabilité."),
+        ("L'agent peut-il envoyer une mise en demeure&nbsp;?",
+         "Non, et il ne le fera pas. Une mise en demeure est un acte qui vous engage et qui prépare une "
+         "procédure&nbsp;: elle se rédige avec quelqu'un dont c'est le métier, et elle s'envoie sciemment."),
+        ("Comment l'agent sait-il qu'une facture est payée&nbsp;?",
+         "Par le statut que vous ou votre logiciel lui donnez. Si le suivi de paiement n'existe nulle part sous "
+         "forme exploitable, on commence par ça — automatiser des relances sur des données fausses est pire que "
+         "ne rien automatiser."),
         ("Ça se branche sur mon logiciel de facturation&nbsp;?",
          "Sur les outils courants, oui. Sinon l'agent travaille sur les échéances que vous lui transmettez, ce qui "
          "reste plus simple que de changer de logiciel pour ça."),
@@ -3117,6 +3264,53 @@ PAGES = {
        paras=["C'est le pendant, sur Google, de l'assistant du site. Même logique, même liste d'interdits, mais sur "
               "un canal que la plupart des entreprises laissent en friche&nbsp;— donc avec beaucoup moins de "
               "concurrence sur la rapidité de réponse."])),
+     ('qr', dict(
+       eyebrow="En une phrase",
+       h2="Ce qu'on nous demande sur la messagerie de la fiche",
+       items=[
+        ("Où sont ces messages, exactement&nbsp;?",
+         "Dans la fiche d'établissement, onglet messages, accessible depuis Google Maps ou le panneau de gestion. "
+         "Ce n'est ni votre boîte mail ni votre formulaire de contact&nbsp;— c'est une boîte de réception séparée "
+         "que beaucoup de gérants n'ont jamais ouverte."),
+        ("Le délai de réponse est-il visible par les clients&nbsp;?",
+         "Google affiche une indication de réactivité sur les fiches qui échangent des messages. Une messagerie "
+         "activée mais jamais relevée est donc pire que pas de messagerie du tout&nbsp;: elle promet une "
+         "disponibilité que vous ne tenez pas."),
+        ("Peut-on désactiver la messagerie&nbsp;?",
+         "Oui, et c'est un choix défendable si personne ne peut la suivre. Mieux vaut une fiche sans messagerie "
+         "qu'une fiche où les questions restent sans réponse pendant une semaine."),
+        ("L'agent répond-il tout seul&nbsp;?",
+         "Aux questions courantes uniquement&nbsp;— horaires, zone d'intervention, prestations, disponibilité — "
+         "à partir de ce qu'il sait de votre activité. Tout le reste vous est transmis avec le contexte."),
+        ("Les messages sont-ils publics&nbsp;?",
+         "Non, contrairement aux avis et à la section questions-réponses de la fiche. C'est une conversation "
+         "privée, ce qui change le registre&nbsp;: on peut y traiter un cas particulier sans que la terre entière "
+         "le lise."),
+        ("Qu'est-ce que les gens demandent&nbsp;?",
+         "Presque toujours la même chose&nbsp;: est-ce que vous vous déplacez chez moi, êtes-vous ouvert "
+         "maintenant, combien ça coûte, quand pouvez-vous venir. Quatre questions, qui se traitent une fois pour "
+         "toutes."),
+       ])),
+
+     ('etapes', dict(
+       howto=True, eyebrow="Le déroulé", id="deroule",
+       h2="D'un message ignoré à un rendez-vous",
+       items=[
+        ("On active et on relève",
+         "Première étape, souvent la plus révélatrice&nbsp;: ouvrir la boîte et lire ce qui traîne. Il y a "
+         "régulièrement des demandes vieilles de plusieurs mois, dont certaines valaient une intervention."),
+        ("On écrit les réponses aux quatre questions récurrentes",
+         "Zone, horaires, prestations, délai. Formulées avec vos mots, validées par vous. C'est ce texte-là que "
+         "l'agent utilise&nbsp;— il ne compose rien à partir de rien."),
+        ("L'agent répond dans la minute, ou passe la main",
+         "Question connue&nbsp;: réponse immédiate, ce qui compte double sur un canal où la réactivité est "
+         "affichée. Question inconnue&nbsp;: il annonce un rappel et vous transmet le message avec le contexte."),
+        ("Les demandes sérieuses basculent vers un vrai contact",
+         "L'objectif n'est pas d'entretenir une conversation dans Google Maps&nbsp;: c'est de récupérer un numéro "
+         "et de fixer un rendez-vous. Une messagerie qui produit des échanges sans jamais produire d'appel ne sert "
+         "à rien."),
+       ])),
+
      ('cartes', dict(
        alt=True, eyebrow="Les limites", h2="Ce que cet agent ne fera pas", classe='non',
        items=[
@@ -3131,6 +3325,31 @@ PAGES = {
          "même démarche que celui qui a ouvert votre site. Voir "
          "<a href=\"https://decupler.com/chatbot-wordpress/\">chatbot WordPress</a>."),
        ])),
+     ('texte', dict(
+       eyebrow="L'angle mort", id="angle-mort",
+       h2="La boîte de réception que personne ne relève",
+       paras=[
+        "Il y a, sur la plupart des fiches d'entreprises locales, un canal actif dont le gérant ignore "
+        "l'existence. Pas un canal théorique&nbsp;: des gens y écrivent, avec une intention d'achat, et attendent "
+        "une réponse qui ne vient pas.",
+        "L'origine du problème est banale&nbsp;: la messagerie s'active parfois seule, les notifications "
+        "n'arrivent pas sur le bon appareil, et rien ne signale qu'un message attend. Contrairement à un e-mail "
+        "qui s'empile dans une boîte qu'on ouvre tous les jours, ces messages-là vivent dans une interface qu'on "
+        "n'ouvre jamais.",
+        "Ce qui rend l'angle mort coûteux, c'est le profil de ceux qui écrivent. Quelqu'un qui envoie un message "
+        "depuis une fiche Google est <strong>déjà sur votre fiche</strong>&nbsp;: il vous a trouvé, il a lu vos "
+        "avis, il a choisi de vous contacter plutôt que le concurrent d'à côté. C'est le prospect le plus avancé "
+        "de toute la chaîne, et c'est celui qu'on laisse sans réponse.",
+        "Il y a pire que le silence&nbsp;: la promesse non tenue. Google indique la réactivité de l'entreprise "
+        "sur les fiches qui échangent des messages. Une messagerie ouverte et jamais relevée affiche donc au "
+        "monde entier que vous ne répondez pas. Dans ce cas précis, la désactiver vaut mieux que la laisser en "
+        "l'état — et c'est la première recommandation qu'on fait quand personne ne peut la suivre.",
+        "La bonne nouvelle, c'est le faible volume. On parle de quelques messages par semaine, pas de centaines. "
+        "Une fois les quatre réponses récurrentes écrites, le canal se tient presque tout seul."],
+       tip="À faire ce soir, sans nous&nbsp;: ouvrez la messagerie de votre fiche et regardez la date du message "
+           "le plus ancien non lu. C'est le seul diagnostic dont vous avez besoin.",
+       tip_ic="📬")),
+
      ('agents', dict(
        eyebrow="Ce qui va avec", h2="La fiche complète, vivante, et qui répond",
        paras=[f"Le catalogue complet des vingt agents est sur la <a href=\"{PILIER}\">page de l'offre</a>."],
@@ -3138,6 +3357,15 @@ PAGES = {
      ('relance', dict(texte="Je regarde si votre fiche a des messages en attente&nbsp;— il y en a presque toujours.",
                       libelle="Prendre 15 minutes")),
      ('faq', dict(eyebrow="FAQ", h2="Les questions qu'on nous pose", items=[
+        ("Ça remplace le formulaire de contact du site&nbsp;?",
+         "Non, ce sont deux publics&nbsp;: celui qui est sur votre fiche et celui qui est sur votre site. Les deux "
+         "existent, et les deux méritent une réponse rapide."),
+        ("Peut-on répondre depuis son téléphone&nbsp;?",
+         "Oui, depuis l'application Google Maps avec le compte gestionnaire. C'est même le plus pratique — encore "
+         "faut-il penser à regarder, ce qui est exactement le problème que l'agent résout."),
+        ("Que se passe-t-il si un message contient une réclamation&nbsp;?",
+         "Il vous est transmis immédiatement, sans réponse automatique. Une réclamation traitée par un robot "
+         "produit un avis négatif&nbsp;: c'est le cas type où l'automatisme doit s'effacer."),
         ("Je ne savais pas que ma fiche avait une messagerie.",
          "C'est le cas de la plupart des gens, et c'est bien le problème. Si elle est activée et sans réponse depuis "
          "des mois, mieux vaut la désactiver que de laisser des messages sans réponse&nbsp;— on regarde ça ensemble."),
@@ -3178,6 +3406,51 @@ PAGES = {
                "C'est le canal le moins cher qui existe, et celui qu'on oublie systématiquement de demander.",
        paras=["Le déclencheur compte plus que le message. L'agent ne demande jamais à froid&nbsp;: il ne se déclenche "
               "qu'après un retour de satisfaction positif, donc auprès de gens qui viennent de dire du bien de vous."])),
+     ('qr', dict(
+       eyebrow="En une phrase",
+       h2="Ce qu'on nous demande sur le parrainage",
+       items=[
+        ("Quand la demande part-elle&nbsp;?",
+         "Uniquement après un retour de satisfaction positif, donc auprès de gens qui viennent d'écrire du bien de "
+         "vous. Jamais à froid, jamais à tout le fichier. Le déclencheur fait la moitié du résultat."),
+        ("Faut-il offrir quelque chose au parrain&nbsp;?",
+         "Pas nécessairement, et ça marche mieux qu'on ne le croit sans contrepartie. Si vous voulez en offrir "
+         "une, c'est votre décision et on l'écrit clairement&nbsp;— une récompense floue ou implicite est pire "
+         "que pas de récompense du tout."),
+        ("Que reçoit le client, concrètement&nbsp;?",
+         "Un message court qui le remercie et lui propose un texte tout prêt à transférer à qui il veut. C'est ce "
+         "texte prêt à l'emploi qui fait la différence&nbsp;: sans lui, la bonne intention se perd au moment de "
+         "trouver les mots."),
+        ("Combien de fois peut-on demander&nbsp;?",
+         "Une par client, après une intervention réussie. Un client relancé sur le parrainage devient un client "
+         "qui se sent utilisé — et le canal ne pardonne pas ça."),
+        ("Ça marche dans tous les métiers&nbsp;?",
+         "Mieux là où la prestation se raconte&nbsp;: travaux, santé, beauté, services à la personne. Moins bien "
+         "sur les achats banals ou intimes, où personne n'a envie d'en parler autour de soi. On vous le dira si "
+         "votre métier ne s'y prête pas."),
+        ("Comment sait-on qu'un client est venu par parrainage&nbsp;?",
+         "En le demandant à la prise de contact, tout simplement. C'est la seule méthode fiable, et elle suppose "
+         "d'ajouter une question à votre routine d'accueil. Sans ça, le canal reste invisible dans vos chiffres."),
+       ])),
+
+     ('etapes', dict(
+       howto=True, eyebrow="Le déroulé", id="deroule",
+       h2="Du retour positif au filleul",
+       items=[
+        ("Le suivi de satisfaction remonte un retour positif",
+         "C'est le seul déclencheur. Sans agent de satisfaction en amont, il n'y a pas de moment identifiable où "
+         "demander — et c'est précisément pour ça que le parrainage ne se met jamais en place tout seul."),
+        ("La proposition part dans la foulée",
+         "Court, à votre nom, sans emphase&nbsp;: «&nbsp;Ravi que ça vous ait plu. Si quelqu'un autour de vous en "
+         "a besoin, voici un message tout prêt à transférer.&nbsp;»"),
+        ("Le message à transférer est déjà écrit",
+         "Deux lignes qui présentent votre activité et votre zone, avec votre numéro. Le client n'a qu'à "
+         "transférer. Lui demander de rédiger, c'est lui demander un effort qu'il ne fera pas."),
+        ("Le filleul appelle, et vous le savez",
+         "Une question à l'accueil suffit à identifier l'origine. C'est ce qui permet de remercier le parrain — "
+         "et un parrain remercié recommande une deuxième fois."),
+       ])),
+
      ('cartes', dict(
        alt=True, eyebrow="Les limites", h2="Ce que cet agent ne fera pas", classe='non',
        items=[
@@ -3192,6 +3465,35 @@ PAGES = {
          "Une proposition par client, après une intervention réussie. Un client relancé sur le parrainage devient un "
          "client qui ne répond plus au suivi de satisfaction."),
        ])),
+     ('texte', dict(
+       eyebrow="Le canal oublié", id="canal",
+       h2="Pourquoi le meilleur canal d'acquisition n'est jamais organisé",
+       paras=[
+        "Demandez à un artisan d'où viennent ses clients&nbsp;: il répondra «&nbsp;le bouche-à-oreille&nbsp;» avant "
+        "toute autre réponse. Demandez-lui ensuite ce qu'il fait pour l'entretenir&nbsp;: il n'y a généralement "
+        "pas de réponse. Le canal qui produit le plus est le seul qu'on laisse entièrement au hasard.",
+        "La raison n'est pas la paresse. C'est que le bouche-à-oreille ressemble à quelque chose qui ne se pilote "
+        "pas — on ne va tout de même pas demander aux gens de parler de nous. Sauf que si, et il se trouve que "
+        "beaucoup le feraient volontiers&nbsp;: ils n'y pensent simplement pas au bon moment.",
+        "Le bon moment est très court. Un client qui vient de dire qu'il est content est dans le seul état "
+        "d'esprit où demander ne coûte rien&nbsp;— il est reconnaissant, la prestation est fraîche, il a envie de "
+        "rendre la pareille. Trois jours plus tard, il est passé à autre chose et la même demande devient une "
+        "sollicitation commerciale.",
+        "Le second obstacle est encore plus bête&nbsp;: <strong>il faut trouver les mots</strong>. Un client bien "
+        "disposé à qui on dit «&nbsp;parlez de nous autour de vous&nbsp;» ne fera rien, parce qu'il faudrait "
+        "rédiger un message, expliquer ce que vous faites, retrouver votre numéro. Le même client, à qui on donne "
+        "un texte de deux lignes à transférer, le transfère.",
+        "C'est l'intégralité du dispositif&nbsp;: le bon moment, et le message déjà écrit. Il n'y a rien "
+        "d'ingénieux là-dedans, et c'est pour ça que ça marche. Ce qui manquait n'était pas une idée&nbsp;— c'était "
+        "quelqu'un pour le faire à chaque fois.",
+        "Un mot sur l'économie de ce canal, parce qu'elle est sans équivalent&nbsp;: le filleul arrive sans "
+        "comparer trois devis, sans négocier, et avec une confiance déjà accordée. Le coût d'acquisition est nul "
+        "et le taux de transformation est le plus élevé de tous vos canaux. Aucun budget publicitaire n'approche "
+        "ce rapport."],
+       tip="Le geste qui coûte le moins et rapporte le plus&nbsp;: remercier le parrain quand le filleul appelle. "
+           "Un message, pas un cadeau. C'est ce qui déclenche la deuxième recommandation.",
+       tip_ic="🤝")),
+
      ('agents', dict(
        eyebrow="Ce qui va avec", h2="Il ne se déclenche jamais seul",
        paras=["Sans suivi de satisfaction, l'agent de parrainage n'a aucun signal pour se déclencher au bon moment. "
@@ -3200,6 +3502,15 @@ PAGES = {
      ('relance', dict(texte="Combien de vos clients de l'an dernier vous ont amené quelqu'un&nbsp;? Et combien "
                             "auraient pu&nbsp;?", libelle="Prendre 15 minutes")),
      ('faq', dict(eyebrow="FAQ", h2="Les questions qu'on nous pose", items=[
+        ("Peut-on parrainer avec un code de réduction&nbsp;?",
+         "Oui si vous le voulez, et il faut alors que ce soit clair et tenu&nbsp;: qui reçoit quoi, à quel moment, "
+         "sous quelle condition. Une promesse de récompense mal honorée coûte plus qu'elle ne rapporte."),
+        ("Et si le client ne veut pas&nbsp;?",
+         "Il ne répond pas, et il ne se passe rien. Une seule proposition, pas de rappel&nbsp;: c'est ce qui rend "
+         "la demande acceptable."),
+        ("Ça remplace la demande d'avis Google&nbsp;?",
+         "Non, ce sont deux agents distincts et deux messages séparés. Mélanger les deux dans un même envoi fait "
+         "perdre les deux&nbsp;: le client choisit l'action la plus facile, ou aucune."),
         ("Ça ne fait pas insistant&nbsp;?",
          "Le message part une fois, juste après un retour positif, et il propose sans rien demander en retour. C'est "
          "le moment qui fait tout&nbsp;: la même phrase envoyée à froid serait déplacée."),
@@ -3237,6 +3548,52 @@ PAGES = {
                "écarter les malentendus, pas à vous engager. Le devis reste le vôtre, après visite ou échange.",
        paras=["L'effet le plus net n'est pas le nombre de demandes&nbsp;— il baisse souvent. C'est leur qualité&nbsp;: "
               "vous rappelez des gens qui ont vu un ordre de grandeur et qui appellent quand même."])),
+     ('qr', dict(
+       eyebrow="En une phrase",
+       h2="Ce qu'on nous demande sur l'estimation en ligne",
+       items=[
+        ("Est-ce que ça engage sur le prix&nbsp;?",
+         "Non, et la page le dit explicitement au visiteur&nbsp;: c'est une fourchette indicative, calculée à "
+         "partir de vos tarifs, qui ne remplace pas un devis. Un chiffre présenté comme ferme sans visite vous "
+         "engagerait — on ne le fait pas."),
+        ("Ça ne va pas faire fuir les clients&nbsp;?",
+         "Ça fait fuir ceux dont le budget ne correspond pas, et c'est le but. Ces gens-là appelaient quand même, "
+         "vous vous déplaciez, et l'affaire se terminait sur un devis refusé. L'estimation déplace ce tri avant "
+         "le déplacement."),
+        ("Et si mes prix varient trop pour être estimés&nbsp;?",
+         "Alors on n'installe pas d'estimation, ou on la limite aux prestations standardisables. Certains métiers "
+         "s'y prêtent mal, et forcer produit des fourchettes si larges qu'elles n'informent personne."),
+        ("Les concurrents vont voir mes prix.",
+         "Ils les connaissent déjà&nbsp;: il leur suffit de demander un devis. La vraie question est de savoir si "
+         "vos prix se défendent&nbsp;— si oui, les afficher vous distingue de ceux qui n'osent pas."),
+        ("Qu'est-ce qu'on récupère au bout&nbsp;?",
+         "Un contact qualifié, avec le détail de ce qu'il a saisi&nbsp;: type de prestation, surface, urgence, "
+         "zone. Vous rappelez en sachant déjà de quoi il s'agit et si c'est dans vos cordes."),
+        ("Faut-il afficher un prix pour être en règle&nbsp;?",
+         "Pour plusieurs métiers, l'affichage des prix est obligatoire, y compris en ligne&nbsp;— c'est notamment "
+         "le cas des prestations de dépannage, réparation et entretien dans le bâtiment. Une estimation bien faite "
+         "vous rapproche de cette obligation au lieu de vous en éloigner."),
+       ])),
+
+     ('etapes', dict(
+       howto=True, eyebrow="Le déroulé", id="deroule",
+       h2="De vos tarifs à la fourchette affichée",
+       items=[
+        ("On part de vos vrais prix",
+         "Pas d'une moyenne de marché&nbsp;: votre grille, vos forfaits, vos majorations. S'ils n'existent que "
+         "dans votre tête, cette étape consiste d'abord à les écrire — et c'est souvent le vrai bénéfice de "
+         "l'exercice."),
+        ("On choisit trois ou quatre paramètres, pas dix",
+         "Type de prestation, surface ou quantité, urgence, zone. Un formulaire à douze questions n'est jamais "
+         "rempli jusqu'au bout&nbsp;: chaque champ supplémentaire coûte des visiteurs."),
+        ("On affiche une fourchette, jamais un prix",
+         "«&nbsp;Entre X et Y&nbsp;€&nbsp;», avec ce qui la fait varier expliqué en une ligne. La fourchette "
+         "protège autant le client que vous, et elle est plus crédible qu'un chiffre rond."),
+        ("On récupère le contact et on vous le transmet",
+         "Le visiteur laisse son numéro pour recevoir l'estimation détaillée. Vous récupérez un prospect qui "
+         "connaît déjà l'ordre de grandeur et qui n'a pas fui&nbsp;: c'est le meilleur type d'appel qui soit."),
+       ])),
+
      ('cartes', dict(
        alt=True, eyebrow="Les limites", h2="Ce que cet agent ne fera pas", classe='non',
        items=[
@@ -3250,6 +3607,33 @@ PAGES = {
          "Elle en amène souvent moins. Ce sont les demandes hors budget qui disparaissent&nbsp;— celles qui vous "
          "faisaient perdre une heure au téléphone."),
        ])),
+     ('texte', dict(
+       eyebrow="Le tri", id="tri",
+       h2="Le premier appel sert à découvrir que ça ne colle pas",
+       paras=[
+        "Comptez le temps que vous passez, chaque semaine, à parler à des gens qui ne deviendront jamais clients. "
+        "Pas parce que vous vendez mal&nbsp;: parce que leur budget, leur zone ou leur besoin ne correspondaient "
+        "pas, et que personne ne pouvait le savoir avant de décrocher.",
+        "Sur un chantier moyen, ce tri coûte un appel de vingt minutes, parfois un déplacement, souvent un devis "
+        "rédigé le soir. Le tout pour une réponse qu'on connaissait dès la première question de prix. Multiplié "
+        "par trois ou quatre par semaine, c'est une demi-journée par mois — la vôtre, celle qui n'est facturée "
+        "à personne.",
+        "L'estimation en ligne fait ce tri avant vous, et elle le fait sans vexer personne. Le visiteur qui "
+        "découvre une fourchette hors de son budget s'en va de lui-même&nbsp;; celui qui reste sait à quoi "
+        "s'attendre. <strong>Vous ne perdez pas de clients&nbsp;: vous perdez des conversations qui "
+        "n'aboutissaient pas.</strong>",
+        "Il y a un effet secondaire qu'on n'attend pas&nbsp;: la négociation disparaît presque. Un prospect qui a "
+        "vu la fourchette avant d'appeler a intégré l'ordre de grandeur. Le devis ne provoque plus de surprise, "
+        "donc plus de discussion sur le principe du prix — au pire une discussion sur le périmètre, qui est une "
+        "conversation utile.",
+        "Le contre-argument classique mérite une réponse honnête&nbsp;: oui, afficher des prix expose. Un "
+        "concurrent moins cher pourra s'aligner. Mais il pouvait déjà le faire en demandant un devis, et "
+        "l'entreprise qui gagne sur le prix seul gagne rarement longtemps. Ce que vous gagnez en échange, c'est "
+        "la confiance de ceux qui en ont assez des devis opaques&nbsp;— et ils sont majoritaires."],
+       tip="Le signe qu'il vous faut une estimation en ligne&nbsp;: si la première question au téléphone est "
+           "presque toujours «&nbsp;ça coûte combien&nbsp;?&nbsp;», autant y répondre avant l'appel.",
+       tip_ic="🧾")),
+
      ('agents', dict(
        eyebrow="Ce qui va avec", h2="Qualifier avant, relancer après",
        paras=[f"Le catalogue complet des vingt agents est sur la <a href=\"{PILIER}\">page de l'offre</a>."],
@@ -3257,6 +3641,16 @@ PAGES = {
      ('relance', dict(texte="Donnez-moi vos trois prestations les plus demandées et leurs tarifs&nbsp;: je vous montre "
                             "l'estimation qui en sortirait.", libelle="Prendre 15 minutes")),
      ('faq', dict(eyebrow="FAQ", h2="Les questions qu'on nous pose", items=[
+        ("Où se place l'estimation sur le site&nbsp;?",
+         "Sur les pages de prestation, là où la question du prix se pose, et pas seulement sur une page dédiée que "
+         "personne ne visite. Un bloc dans la page vaut mieux qu'un onglet dans le menu."),
+        ("Peut-on l'utiliser sans site&nbsp;?",
+         "Oui, sur une page autonome qu'on met en lien depuis votre fiche Google. C'est même une bonne première "
+         "brique quand le site n'existe pas encore."),
+        ("Que se passe-t-il si l'estimation est fausse&nbsp;?",
+         "Elle est indicative et présentée comme telle, mais une fourchette systématiquement trop basse abîme la "
+         "confiance au moment du devis. On les corrige avec vous après les premières semaines, en comparant "
+         "l'estimation affichée et le devis réellement établi."),
         ("Je ne veux pas afficher mes prix.",
          "Une fourchette n'est pas un tarif public&nbsp;: elle dépend des réponses du visiteur et elle s'affiche à "
          "lui seul. Cela dit, si vous faites du dépannage à domicile, l'affichage de certains prix vous est de toute "
