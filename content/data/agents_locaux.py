@@ -50,6 +50,17 @@ AGENTS = [
   "Il est 21&nbsp;h, un visiteur hésite. Il obtient une vraie réponse&nbsp;— pas un formulaire à remplir.",
   "L'assistant est entraîné sur vos prestations, vos horaires et votre zone. Il répond, qualifie, et vous transmet le contact.",
   "La majorité des recherches locales se font hors de vos heures d'ouverture."),
+ ("messagerie-google", "Messagerie de la fiche Google", "capte",
+  "Les messages envoyés depuis votre fiche Google reçoivent une réponse. Aujourd'hui, presque personne n'y répond.",
+  "L'agent surveille la messagerie de la fiche, répond aux questions courantes — horaires, zone, disponibilité — "
+  "et vous transmet le contact dès qu'il s'agit d'un vrai projet.",
+  "Google affiche le délai de réponse moyen sur votre fiche. Un délai long se voit."),
+ ("estimation-en-ligne", "Estimation en ligne", "capte",
+  "Le visiteur obtient une fourchette de prix sur le site, et vous ne rappelez que des gens qui savent déjà à quoi "
+  "s'attendre.",
+  "Quelques questions sur le site donnent un ordre de grandeur calculé à partir de vos propres tarifs. Vous recevez "
+  "la demande déjà chiffrée.",
+  "Sans estimation, le premier échange sert à découvrir que le budget ne colle pas."),
  ("agent-vocal", "Agent vocal hors horaires", "capte",
   "Le téléphone sonne un samedi matin. Une voix décroche, comprend le besoin, et pose le rendez-vous dans votre agenda.",
   "L'agent ne se déclenche que si personne ne décroche. Il qualifie l'appel et pose le rendez-vous dans votre agenda.",
@@ -63,6 +74,11 @@ AGENTS = [
   "Le client confirme la veille. Vous ne vous déplacez plus pour rien.",
   "SMS de confirmation à la prise de rendez-vous, rappel automatique 24&nbsp;h avant.",
   "Un déplacement à vide coûte une demi-journée."),
+ ("relance-facture", "Relance de facture impayée", "transforme",
+  "Vos factures en retard sont relancées à échéance, poliment, sans que vous ayez à jouer le rôle du créancier.",
+  "L'agent suit les échéances et envoie un rappel courtois à J+1, puis un second à J+15 avec le récapitulatif. "
+  "La séquence s'arrête au paiement.",
+  "Une facture relancée dans la semaine se paie ; une facture relancée au bout de deux mois se négocie."),
  ("reactivation", "Réactivation des clients dormants", "transforme",
   "Vos clients d'il y a deux ans reçoivent un mot. Il y en a toujours quelques-uns qui avaient un projet en tête.",
   "L'agent repère les clients sans contact depuis 12 mois et envoie un message adapté à votre métier.",
@@ -76,6 +92,11 @@ AGENTS = [
   "Chaque avis reçoit une réponse personnalisée, y compris les mauvais.",
   "L'agent rédige une réponse qui reprend le contenu de l'avis. Les avis négatifs vous sont signalés avant publication de la réponse.",
   "Un avis à 2 étoiles bien traité en public rassure plus qu'un 5 étoiles de plus."),
+ ("parrainage", "Demande de parrainage", "capitalise",
+  "Un client qui vient de dire qu'il est content est le seul moment où demander s'il connaît quelqu'un ne coûte rien.",
+  "Quand le suivi de satisfaction remonte un retour positif, l'agent propose au client de vous recommander, avec un "
+  "message tout prêt qu'il n'a qu'à transférer.",
+  "Le parrainage est le canal le moins cher qui existe, et celui qu'on oublie systématiquement de demander."),
  ("satisfaction", "Suivi de satisfaction", "capitalise",
   "Vous savez qu'un client est mécontent avant qu'il ne l'écrive sur Google.",
   "Un SMS de satisfaction part à la fin de l'intervention. S'il est négatif, vous êtes alerté pour rappeler.",
