@@ -1200,6 +1200,36 @@ PAGES = {
        paras=["La question n'est presque jamais «&nbsp;l'un ou l'autre&nbsp;». Elle est «&nbsp;qui prend l'appel de "
               "19&nbsp;h&nbsp;41&nbsp;», parce qu'aujourd'hui la réponse est «&nbsp;personne&nbsp;»."])),
 
+     ('qr', dict(
+       eyebrow="En une phrase",
+       h2="Les six questions qu'on nous pose au téléphone",
+       items=[
+        ("Qu'est-ce qu'un standard téléphonique IA&nbsp;?",
+         "Un système qui décroche, comprend une demande formulée librement, y répond ou l'oriente vers la bonne "
+         "personne. La différence avec un serveur vocal classique tient en une phrase&nbsp;: on parle au lieu de "
+         "taper&nbsp;1, et le système traite ce qui n'était pas prévu au menu."),
+        ("Quelle différence avec un IPBX ou un standard IP&nbsp;?",
+         "Ce ne sont pas des concurrents mais deux étages. Un IPBX achemine les appels sur internet — c'est de la "
+         "plomberie. Le standard IA est ce qui parle à l'appelant. On peut poser l'un sur l'autre, ou brancher "
+         "l'IA directement sur une ligne classique par renvoi."),
+        ("Combien ça coûte&nbsp;?",
+         "Quelques dizaines d'euros par mois plus la consommation à la minute pour les offres du marché. Le repère "
+         "utile n'est pas le prix mensuel&nbsp;: c'est le coût d'un appel manqué dans votre métier. Chez un "
+         "artisan, un seul appel rattrapé par mois couvre l'abonnement."),
+        ("Faut-il changer d'opérateur ou de numéro&nbsp;?",
+         "Non. Un renvoi conditionnel sur votre ligne existante suffit&nbsp;: l'IA ne décroche qu'après quelques "
+         "sonneries sans réponse, ou hors horaires. Vous gardez votre numéro, votre opérateur, et vous coupez "
+         "quand vous voulez."),
+        ("Combien d'appels simultanés peut-il traiter&nbsp;?",
+         "C'est là que l'écart avec un humain est le plus net&nbsp;: un standard IA prend plusieurs appels en même "
+         "temps sans file d'attente. Le jour où une publication marche et où le téléphone sonne dix fois en dix "
+         "minutes, personne n'attend."),
+        ("Que dit la CNIL sur l'enregistrement des appels&nbsp;?",
+         "Que l'enregistrement doit rester l'exception justifiée, pas le réglage par défaut&nbsp;: information des "
+         "personnes, base légale, conservation limitée. Et si vos salariés sont sur la ligne, ils doivent être "
+         "informés et consultés — un enregistrement permanent des postes est un dispositif de surveillance."),
+       ])),
+
      ('tableau', dict(
        alt=True, eyebrow="Le comparatif",
        h2="Ce que chacun sait faire",
@@ -1233,7 +1263,7 @@ PAGES = {
            "tout. Il est médiocre sur ceux où votre présence fait la différence. Ce sont rarement les mêmes.",
        tip_ic="⚖️")),
 
-     ('etapes', dict(
+     ('etapes', dict(howto=True, id="mise-en-place", 
        alt=True, eyebrow="La mise en place",
        h2="De la ligne existante au premier appel traité",
        items=[
@@ -1251,6 +1281,92 @@ PAGES = {
          "branche pas."),
        ])),
 
+     ('texte', dict(
+       eyebrow="Le calcul", id="calcul",
+       h2="Faites le calcul avec vos chiffres, pas les nôtres",
+       paras=[
+        "On vous vendra des moyennes de marché. Elles ne veulent rien dire&nbsp;: un appel manqué chez un "
+        "serrurier d'urgence et un appel manqué chez un fleuriste n'ont pas le même prix. Voici comment obtenir "
+        "le vôtre en dix minutes, avec ce que vous avez déjà sous la main.",
+        "<strong>Un&nbsp;: comptez vos appels manqués.</strong> Le journal d'appels de votre mobile les liste, et "
+        "les statistiques de votre fiche Google donnent le nombre d'appels reçus depuis la fiche. Prenez un mois "
+        "complet, pas une semaine — le volume varie trop.",
+        "<strong>Deux&nbsp;: estimez combien rappellent.</strong> C'est le chiffre que personne n'a, et vous "
+        "pouvez l'approcher&nbsp;: sur vos dix derniers nouveaux clients, combien avaient appelé une première fois "
+        "sans réponse&nbsp;? Demandez-le, la réponse surprend souvent. Le reste, ce sont les gens qui ont composé "
+        "le numéro suivant sans que vous le sachiez jamais.",
+        "<strong>Trois&nbsp;: prenez votre panier moyen, pas votre chiffre d'affaires.</strong> Ce qui compte, "
+        "c'est ce que rapporte une intervention type, marge comprise. Et si votre métier fidélise — un cabinet, "
+        "un institut, un garage — comptez la valeur sur deux ans, pas la première prestation.",
+        "<strong>Quatre&nbsp;: multipliez.</strong> Appels manqués × part qui ne rappelle pas × valeur d'un "
+        "client. Le résultat est le budget maximal que dépenser sur ce problème a du sens. En dessous de ce "
+        "montant, n'importe quelle solution qui fonctionne est rentable&nbsp;; au-dessus, aucune ne l'est, quelle "
+        "que soit la promesse commerciale.",
+        "Ce calcul a un mérite secondaire&nbsp;: il vous dit aussi quand la réponse n'est <strong>pas</strong> un "
+        "standard IA. Si vous manquez trois appels par mois et que votre panier moyen est de quarante euros, le "
+        "sujet n'en est pas un&nbsp;— et on vous le dira."],
+       tip="Le chiffre qu'on regarde en premier en rendez-vous, c'est la part de vos appels qui arrive hors "
+           "horaires. Au-delà d'un tiers, la question n'est plus de savoir s'il faut décrocher autrement&nbsp;: "
+           "c'est de savoir comment.",
+       tip_ic="🧮")),
+
+     ('texte', dict(
+       eyebrow="Le vocabulaire", id="vocabulaire",
+       h2="Standard IA, SVI, IPBX, permanence&nbsp;: qui fait quoi",
+       paras=[
+        "Quatre mots reviennent dans les devis, et les fournisseurs ne les emploient pas tous de la même façon. "
+        "Voilà ce qu'ils désignent réellement, parce qu'un devis se compare mal quand chacun nomme autrement la "
+        "même chose.",
+        "<strong>L'IPBX</strong>, ou standard téléphonique IP, est l'infrastructure&nbsp;: il fait transiter les "
+        "appels par internet plutôt que par une ligne cuivre, gère les postes, les transferts, les groupes d'appel. "
+        "Il ne parle à personne. C'est ce que remplacent la plupart des opérateurs depuis l'arrêt du réseau "
+        "téléphonique commuté.",
+        "<strong>Le SVI</strong>, serveur vocal interactif, est le menu&nbsp;: «&nbsp;tapez&nbsp;1 pour le "
+        "service commercial&nbsp;». Il oriente sans comprendre. Il coûte peu et fonctionne parfaitement quand "
+        "l'arborescence est courte&nbsp;— et il exaspère dès qu'elle passe trois options ou que la demande n'entre "
+        "dans aucune case.",
+        "<strong>Le standard téléphonique IA</strong> remplace le menu, pas l'infrastructure. L'appelant dit ce "
+        "qu'il veut avec ses mots, le système comprend, répond aux questions courantes, prend un message structuré "
+        "ou transfère. C'est le seul des quatre qui traite une demande imprévue.",
+        "<strong>La permanence téléphonique</strong>, enfin&nbsp;: des humains, chez un prestataire, qui décrochent "
+        "à votre nom. Ils gèrent la nuance, l'émotion, le client difficile. Ils coûtent plus cher, sont facturés "
+        "à l'appel ou au forfait, et ne prennent qu'un appel à la fois par opérateur disponible.",
+        "En pratique, les combinaisons qui marchent sont simples&nbsp;: IA seule pour une petite structure qui "
+        "veut arrêter de perdre des appels&nbsp;; IA en débordement d'un accueil humain quand le volume monte&nbsp;; "
+        "permanence humaine sur les créneaux sensibles et IA le reste du temps. Ce qui ne marche pas, c'est "
+        "d'empiler un SVI devant une IA&nbsp;: on demande à l'appelant de taper un chiffre avant de lui dire qu'il "
+        "peut parler."],
+       tip="Sur un devis, la question qui tranche&nbsp;: «&nbsp;que se passe-t-il si l'appelant dit quelque chose "
+           "qui n'était pas prévu&nbsp;?&nbsp;» Un SVI vous répondra qu'il repropose le menu. C'est toute la "
+           "différence.",
+       tip_ic="🗂️")),
+
+     ('texte', dict(
+       alt=True, eyebrow="Le cadre légal", id="cadre",
+       h2="Ce que la loi impose quand une machine décroche à votre place",
+       paras=[
+        "Trois obligations, qu'on applique par défaut. Aucune n'est compliquée, toutes sont oubliées par la "
+        "plupart des installations qu'on reprend.",
+        "<strong>Annoncer le système.</strong> Le règlement européen sur l'intelligence artificielle impose "
+        "d'informer la personne qu'elle s'adresse à un système d'IA, sauf si c'est manifeste. Au téléphone, ce "
+        "n'est jamais manifeste — une voix de synthèse récente ne se distingue plus d'une voix humaine sur les "
+        "premières secondes. Une phrase d'accueil règle la question.",
+        "<strong>Encadrer l'enregistrement.</strong> Une voix identifie une personne&nbsp;: dès qu'un appel est "
+        "enregistré ou transcrit, le RGPD s'applique. Information de l'appelant, finalité précise, durée de "
+        "conservation courte, effacement sur demande. La position de la CNIL est constante&nbsp;: l'enregistrement "
+        "systématique de tous les appels ne se justifie que très rarement, et surtout pas «&nbsp;pour améliorer "
+        "la qualité&nbsp;» sans autre précision.",
+        "<strong>Prévenir vos salariés.</strong> C'est le point que les dirigeants découvrent le plus tard. Si le "
+        "standard écoute ou transcrit des appels sur lesquels vos salariés interviennent, c'est un traitement de "
+        "données les concernant&nbsp;: information individuelle, consultation des représentants du personnel "
+        "lorsqu'il y en a, et inscription au registre des traitements. Un dispositif installé en douce se retourne "
+        "contre l'employeur en cas de litige.",
+        "Ce qu'on fait chez Décupler&nbsp;: annonce systématique, transcription conservée le temps de traiter la "
+        "demande, pas d'enregistrement audio par défaut. Si vous voulez l'audio, on l'active et on écrit pourquoi."],
+       tip="Le raccourci qui évite 90&nbsp;% des ennuis&nbsp;: transcrire au lieu d'enregistrer, et effacer la "
+           "transcription une fois le rendez-vous pris. Vous gardez l'utile, vous ne stockez pas la voix.",
+       tip_ic="⚖️")),
+
      ('agents', dict(
        eyebrow="Ce qui va avec",
        h2="Le standard n'est qu'une porte d'entrée",
@@ -1266,6 +1382,19 @@ PAGES = {
      ('faq', dict(
        alt=True, eyebrow="FAQ", h2="Les questions qu'on nous pose",
        items=[
+        ("Peut-on garder son standard actuel et ajouter l'IA par-dessus&nbsp;?",
+         "Oui, c'est même le montage le plus courant&nbsp;: l'IA se place en débordement. Les appels sonnent "
+         "d'abord chez vous, et ne basculent que si personne ne décroche. Rien à remplacer, rien à désinstaller."),
+        ("L'IA peut-elle transférer vers le bon collaborateur&nbsp;?",
+         "Oui, à condition de lui dire qui fait quoi. C'est le paramétrage qui prend le plus de temps et qui "
+         "produit le plus d'effet&nbsp;: un transfert bien routé vaut mieux qu'une réponse approximative."),
+        ("Que devient un appel pendant une coupure internet&nbsp;?",
+         "Il faut prévoir le repli à la configuration&nbsp;: retour vers votre ligne mobile, ou vers un répondeur "
+         "classique. Un prestataire qui n'aborde pas ce point ne l'a pas prévu."),
+        ("Combien de temps avant que ça tienne vraiment la route&nbsp;?",
+         "Deux semaines. La première semaine sert à écouter ce que les gens demandent réellement, qui n'est jamais "
+         "tout à fait ce qu'on avait imaginé. C'est cette correction-là qui fait la qualité, pas le choix du "
+         "modèle."),
         ("Combien coûte un standard téléphonique IA&nbsp;?",
          "Chez nous, il n'est pas facturé à l'appel&nbsp;: il fait partie de l'abonnement mensuel qui démarre à "
          "199&nbsp;€ et qui monte selon le nombre d'agents branchés. L'intérêt du forfait fixe est qu'un mois chargé "
@@ -1294,8 +1423,8 @@ PAGES = {
 "chatbot-wordpress": dict(
     mot_cle="chatbot wordpress",
     titre_seo="Chatbot WordPress : lequel installer, et comment",
-    meta=("Chatbot WordPress pour une entreprise locale : plugin ou script, ce qu'il faut lui "
-          "apprendre, l'impact sur la vitesse du site, et ce qu'il ne doit jamais faire."),
+    meta=("Chatbot WordPress : les 5 façons de l'installer comparées, ce qu'il faut lui apprendre "
+          "pour qu'il n'invente pas, l'impact sur la vitesse et le consentement."),
     signature=SIG_AGENT,
     sections=[
      ('hero', dict(
@@ -1327,6 +1456,35 @@ PAGES = {
               "activité. Un assistant branché sur un modèle générique répond poliment à côté du sujet. Et un "
               "visiteur qui reçoit une réponse à côté ne revient pas."])),
 
+     ('qr', dict(
+       eyebrow="En une phrase",
+       h2="Ce qu'on demande avant d'installer quoi que ce soit",
+       items=[
+        ("Existe-t-il un chatbot WordPress gratuit&nbsp;?",
+         "Oui, plusieurs plugins ont une version gratuite complète pour du chat simple ou une FAQ scriptée. Ce qui "
+         "devient payant, c'est l'IA générative&nbsp;: elle consomme des jetons, donc quelqu'un paie — vous "
+         "directement, ou l'éditeur qui vous facture un abonnement."),
+        ("Faut-il une clé OpenAI&nbsp;?",
+         "Pour les plugins qui branchent un modèle sur votre compte, oui, et vous payez la consommation au réel. "
+         "D'autres éditeurs incluent le modèle dans leur abonnement. La première formule coûte moins cher à faible "
+         "volume et devient imprévisible si le trafic monte."),
+        ("Est-ce que ça ralentit le site&nbsp;?",
+         "Oui, tous ajoutent du JavaScript. L'écart va d'une centaine de kilo-octets chargés en différé à près "
+         "d'un méga-octet bloquant. Chargez le widget après le reste de la page et jamais sur les pages qui n'en "
+         "ont pas l'usage."),
+        ("Ça marche avec Elementor, Divi ou un thème sur mesure&nbsp;?",
+         "Oui&nbsp;: le widget s'injecte dans le pied de page, il ne dépend pas du constructeur. Un chatbot qui "
+         "exige un bloc dans le contenu est un mauvais signe — il ne sera pas présent sur les pages qui comptent."),
+        ("Faut-il un bandeau de consentement&nbsp;?",
+         "Dès que le chatbot dépose un cookie ou un identifiant pour reconnaître le visiteur, oui, et il doit être "
+         "bloqué avant acceptation. Un chatbot qui ne stocke rien tant que le visiteur n'écrit pas évite le sujet "
+         "et convertit mieux."),
+        ("Peut-on le brancher sur WhatsApp&nbsp;?",
+         "Oui, la plupart des plugins proposent une bascule vers WhatsApp, et c'est souvent le meilleur réglage "
+         "pour une entreprise locale&nbsp;: la conversation continue sur un canal que le visiteur consulte, et "
+         "vous récupérez un numéro plutôt qu'une session anonyme."),
+       ])),
+
      ('texte', dict(
        alt=True, eyebrow="Le vrai problème",
        h2="Ce n'est pas la conversation qui manque, c'est l'horaire",
@@ -1344,7 +1502,7 @@ PAGES = {
            "de contacts obtenus la nuit et le week-end, quand vous n'auriez rien eu.",
        tip_ic="🌙")),
 
-     ('etapes', dict(
+     ('etapes', dict(howto=True, id="mise-en-place", 
        eyebrow="Ce qu'il doit savoir",
        h2="Quatre choses, et il devient utile",
        paras=["Un assistant qui ne sait que ce qui est déjà écrit sur le site ne sert à rien&nbsp;: le visiteur "
@@ -1381,6 +1539,67 @@ PAGES = {
          "chose, c'est qu'on lui a menti. L'assistant se présente comme tel, et ça ne coûte rien en conversion."),
        ])),
 
+     ('tableau', dict(
+       eyebrow="Le choix", id="comparatif",
+       h2="Cinq façons de mettre un chatbot sur WordPress",
+       paras=["Le nom du plugin importe moins que la catégorie à laquelle il appartient. Chacune a un coût, un "
+              "plafond et un mode de défaillance qui lui est propre. Situez-vous d'abord, comparez les marques "
+              "ensuite."],
+       colonnes=["La catégorie", "Ce qu'elle vaut"],
+       lignes=[
+        ["<strong>Le chat en direct avec une personne au bout</strong> (Crisp, Tidio et équivalents, en version "
+         "gratuite).",
+         "Le meilleur taux de conversion&nbsp;— quand quelqu'un répond. Le piège est là&nbsp;: une bulle sans "
+         "réponse pendant deux heures fait plus de mal que pas de bulle du tout. À réserver aux structures qui ont "
+         "réellement une permanence."],
+        ["<strong>La FAQ scriptée</strong>&nbsp;: des boutons, des réponses écrites d'avance.",
+         "Gratuit, léger, incassable, et parfaitement suffisant pour horaires, tarifs, zone d'intervention et prise "
+         "de rendez-vous. Ne répond à rien d'imprévu. C'est ce qu'on installe quand le besoin réel est de filtrer "
+         "les quatre questions qui reviennent."],
+        ["<strong>Un plugin IA branché sur votre clé</strong> (AI Engine, WPBot, Kognetiks et consorts).",
+         "Vous payez la consommation au réel et gardez la main sur le modèle. La qualité dépend entièrement de ce "
+         "que vous lui donnez à lire&nbsp;: branché sur rien, il invente&nbsp;; branché sur vos pages, il devient "
+         "utile. Prévoyez un plafond de dépense."],
+        ["<strong>Un montage maison</strong>&nbsp;: webhook WordPress vers un outil d'automatisation type n8n, "
+         "puis modèle.",
+         "Souple, peu coûteux à l'usage, et à votre charge quand ça casse — y compris le dimanche. Adapté si "
+         "quelqu'un chez vous tient déjà ce genre de chaîne. Sinon, c'est une dette technique déguisée en économie."],
+        ["<strong>Un assistant paramétré sur votre activité</strong>, ce qu'on installe.",
+         "Base de connaissances tirée de vos vraies pages, périmètre de réponse défini, escalade vers un humain, "
+         "et surtout&nbsp;: la conversation qui repart en SMS chez vous quand le visiteur laisse un numéro. Le "
+         "chatbot n'est pas la fin, c'est le début du rappel."],
+       ])),
+
+     ('texte', dict(
+       alt=True, eyebrow="Le défaut de fabrication", id="hallucination",
+       h2="Pourquoi un chatbot IA raconte n'importe quoi sur vos tarifs",
+       paras=[
+        "C'est la crainte numéro un, et elle est fondée. Un modèle de langage produit une réponse plausible, pas "
+        "une réponse vraie. Interrogé sur vos délais d'intervention sans rien savoir de votre entreprise, il "
+        "répondra quelque chose de crédible — et faux. Sur un tarif ou un délai, une réponse fausse vous engage "
+        "commercialement devant le client qui l'a lue.",
+        "La parade n'est pas de mieux formuler la consigne. <strong>C'est de lui donner à lire vos pages, et de "
+        "lui interdire de répondre en dehors.</strong> Techniquement, le contenu de votre site est découpé, indexé, "
+        "et à chaque question le système va chercher les passages pertinents avant de répondre. Le modèle ne "
+        "puise plus dans ce qu'il croit savoir&nbsp;: il reformule ce qui est écrit chez vous.",
+        "Ça déplace le problème au bon endroit&nbsp;: la qualité du chatbot devient la qualité de vos pages. Si "
+        "vos tarifs ne sont écrits nulle part, aucun réglage ne les lui fera connaître. C'est d'ailleurs le "
+        "bénéfice caché de l'exercice — pour équiper un chatbot correctement, il faut écrire noir sur blanc ce "
+        "qu'on facture, où on intervient et sous quel délai. Beaucoup d'entreprises découvrent à cette occasion "
+        "que ces informations n'existaient pas.",
+        "Deuxième garde-fou, non négociable&nbsp;: <strong>la phrase d'aveu</strong>. «&nbsp;Je n'ai pas cette "
+        "information, je fais suivre à l'équipe.&nbsp;» Un assistant qui sait dire qu'il ne sait pas vaut mieux "
+        "qu'un assistant brillant neuf fois sur dix. La dixième réponse est celle qui vous coûte un client, ou "
+        "pire.",
+        "Troisième&nbsp;: les sujets interdits, listés explicitement. Pas de devis chiffré, pas d'engagement de "
+        "délai ferme, pas de conseil réglementaire, rien sur la santé. Sur ces questions, l'assistant récupère le "
+        "numéro et passe la main. C'est moins impressionnant en démonstration, et c'est ce qui fait qu'on le "
+        "laisse en ligne au bout de trois mois."],
+       tip="Le test avant mise en ligne&nbsp;: posez-lui dix questions dont trois auxquelles votre site ne répond "
+           "pas. S'il improvise sur les trois, il n'est pas prêt, quelle que soit sa performance sur les sept "
+           "autres.",
+       tip_ic="🎭")),
+
      ('agents', dict(
        eyebrow="Ce qui va avec",
        h2="Le chat couvre le soir. Il ne couvre pas le téléphone",
@@ -1396,6 +1615,21 @@ PAGES = {
      ('faq', dict(
        eyebrow="FAQ", h2="Les questions qu'on nous pose",
        items=[
+        ("Quel est le meilleur chatbot WordPress&nbsp;?",
+         "La question utile n'est pas la marque mais la catégorie&nbsp;: chat humain, FAQ scriptée, plugin IA ou "
+         "assistant paramétré. Le <a href=\"#comparatif\">comparatif ci-dessus</a> situe les cinq voies. Pour une "
+         "entreprise locale sans permanence, une FAQ scriptée bien écrite bat un chatbot IA mal nourri."),
+        ("Combien de temps pour l'installer&nbsp;?",
+         "Le plugin, dix minutes. Ce qui prend du temps, c'est de rassembler ce qu'il doit savoir — horaires, "
+         "zone, tarifs, délais, ce qu'on ne fait pas — et de décider ce qu'il fait quand il ne sait pas. Comptez "
+         "une demi-journée pour un résultat qui tient."),
+        ("Le chatbot remplace-t-il un formulaire de contact&nbsp;?",
+         "Non, il le complète. Gardez le formulaire&nbsp;: certains visiteurs préfèrent écrire une fois et "
+         "attendre. Le chat capte ceux qui seraient partis sans rien laisser, ce qui n'est pas la même population."),
+        ("Que se passe-t-il si personne ne répond au chat&nbsp;?",
+         "C'est exactement le scénario à éviter. Soit une personne répond dans l'heure ouvrée, soit l'assistant "
+         "annonce clairement le délai de rappel et récupère un numéro. La pire configuration est celle qui laisse "
+         "croire à une présence qui n'existe pas."),
         ("Un chatbot ralentit-il un site WordPress&nbsp;?",
          "Il peut, et c'est le principal reproche à faire à beaucoup de plugins&nbsp;: ils chargent leurs ressources "
          "sur toutes les pages. Un script qui ne charge la fenêtre qu'au clic a un impact quasi nul. C'est le premier "
