@@ -80,6 +80,8 @@ BODY = f"""{FONTS}
   <div class="eyebrow rise">Comment ça se passe</div>
   <h2 class="rise">Trois étapes, et une place n'est jamais donnée au hasard</h2>
   <div class="etapes">{calendrier_html}</div>
+  <div class="dcp-mini rise"><p class="dcp-mini-t">Prêt à candidater&nbsp;? Ça prend deux minutes.</p>
+  <p class="dcp-mini-a"><a class="dcp-cta" href="#candidature-form" data-open-form rel="noopener">Candidater</a></p></div>
 </div></section>
 
 {FORM.render(photo_url=PHOTO_HERO, photo_alt=PHOTO_HERO_ALT)}
@@ -96,7 +98,7 @@ BODY = f"""{FONTS}
 <div class="dcp-js"><script>
 (function(){{
   document.querySelectorAll('.entry-header,.entry-title,.ast-single-entry-banner,.page-header')
-    .forEach(function(e){{e&&e.remove&&e.remove()}});
+    .forEach(function(e){{if(e){{if(e.remove){{e.remove()}}}}}});
   function bleed(){{
     var d=document.querySelector('.dcp'); if(!d) return;
     var r=d.getBoundingClientRect(), w=document.documentElement.clientWidth, st=document.documentElement.style;

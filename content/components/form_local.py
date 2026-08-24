@@ -211,7 +211,7 @@ root.querySelectorAll('input,select,textarea').forEach(function(e){{
   e.addEventListener('input',function(){{e.style.borderColor=''}});
 }});
 function val(id){{var e=root.querySelector('#'+id);return e?e.value.trim():''}}
-function checked(id){{var e=root.querySelector('#'+id);return !!(e&&e.checked)}}
+function checked(id){{var e=root.querySelector('#'+id);return e?!!e.checked:false}}
 function goTo(i){{
   cur=i;
   steps().forEach(function(s){{s.classList.toggle('active',+s.getAttribute('data-step')===i)}});
@@ -233,7 +233,8 @@ root.querySelectorAll('[data-next]').forEach(function(btn){{
   btn.addEventListener('click',function(){{
     var req=REQUIRED[cur]||[],err=root.querySelector('#rf-err-'+cur),ok=true,firstBad=null;
     for(var k=0;k<req.length;k++){{
-      var bad=!val(req[k])||(req[k]==='rf-email'&&val(req[k]).indexOf('@')===-1);
+      var emailBad=(req[k]==='rf-email')?(val(req[k]).indexOf('@')===-1):false;
+      var bad=!val(req[k])||emailBad;
       markInvalid(req[k],bad);
       if(bad){{ok=false;if(!firstBad)firstBad=req[k]}}
     }}

@@ -66,6 +66,16 @@ def audit(html: str):
         if re.search(r'\n\s*\n', bloc):
             problemes.append(f'script {i}: ligne vide (wpautop y insérera </p><p> '
                              f'et le script ne parsera plus)')
+        if '&' in bloc:
+            # WordPress convertit tout `&` isolé (donc aussi `&&`) en `&#038;`
+            # a l'enregistrement, meme a l'interieur d'un <script> — le JS ne
+            # parse plus. Vu en production sur /site-gratuit-local/ le 24 aout
+            # 2026 : `&&` devenait `&#038;&#038;`. Jamais de `&` litteral dans
+            # un script ; utiliser un ternaire (A?B:false) au lieu de `A&&B`.
+            n = bloc.count('&')
+            problemes.append(f"script {i}: {n} caractere(s) '&' — WordPress les "
+                              f"transforme en '&#038;' et casse le JS (pas de && ; "
+                              f"remplacer A&&B par A?B:false)")
     for i, bloc in enumerate(re.findall(r'<noscript>(.*?)</noscript>', html, flags=re.S)):
         if '\n' in bloc:
             problemes.append(f'noscript {i}: saut de ligne (wpautop le coupera en deux)')
