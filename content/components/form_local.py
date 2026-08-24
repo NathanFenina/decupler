@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 """Formulaire de candidature — page « Site gratuit » pour entreprises locales
-(artisans, libéraux, médical). Un seul public, pas de routage — voir
-form_rentree.py pour l'ancienne version multi-branches (conservée pour PME
-et SEO, à venir).
+(artisans, libéraux, médical). Assistant pas-à-pas (une question par écran,
+façon Typeform), pas un formulaire long qui scrolle.
 
 Écrit dans Supabase (projet « LinkedIn App », table `candidatures_local`,
 policy INSERT publique / aucune lecture anonyme).
@@ -10,9 +9,6 @@ policy INSERT publique / aucune lecture anonyme).
 Choix : le téléphone est obligatoire (canal principal de relance pour cette
 audience — on les appelle, on ne compte pas sur eux pour réserver un
 Calendly). Calendly reste proposé en bonus aux profils "verts" seulement.
-
-⚠️ Brackets CA / enveloppe "payant après" posés à vue de nez — à corriger
-avec Nathan une fois les premières vraies réponses en main.
 """
 
 SUPABASE_URL = "https://bhgsnoybkxldkzkwkbku.supabase.co"
@@ -21,43 +17,58 @@ CALENDLY = "https://calendly.com/fenina-nathan/consultationstrategique"
 
 PLACES = 10
 CLOTURE = "dimanche 6 septembre"
+N_STEPS = 9
 
 CSS = """<style>
 .rf{--rv:#7B5CFA;--rv2:#9d86ff;--rg:#00E5A0;--rink:#0f1120;--rmut:#5b6072;--rline:rgba(123,92,250,.18);
  position:relative;margin:0;padding:0;font-family:'DM Sans',system-ui,sans-serif}
 .rf *{box-sizing:border-box}
-.rf .rf-w{max-width:760px;margin:0 auto;padding:0 22px}
-.rf .rf-card{background:#fff;border:1px solid var(--rline);border-radius:18px;padding:32px;box-shadow:0 24px 60px -30px rgba(15,17,32,.28)}
+.rf .rf-w{max-width:640px;margin:0 auto;padding:0 22px}
+.rf .rf-card{background:#fff;border:1px solid var(--rline);border-radius:18px;padding:36px;box-shadow:0 24px 60px -30px rgba(15,17,32,.28);min-height:360px;display:flex;flex-direction:column}
+.rf .rf-top{display:flex;align-items:center;justify-content:space-between;gap:14px;margin:0 0 20px}
 .rf .rf-places{display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono',ui-monospace,monospace;
- font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--rv);
- background:rgba(123,92,250,.09);border:1px solid rgba(123,92,250,.22);border-radius:20px;padding:6px 14px;margin:0 0 18px}
+ font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--rv);
+ background:rgba(123,92,250,.09);border:1px solid rgba(123,92,250,.22);border-radius:20px;padding:5px 12px;white-space:nowrap}
+.rf .rf-count{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:.7rem;color:var(--rmut);white-space:nowrap}
+.rf .rf-bar{height:4px;border-radius:4px;background:var(--rline);overflow:hidden;margin:0 0 26px}
+.rf .rf-bar-fill{height:100%;background:linear-gradient(90deg,var(--rv),var(--rg));border-radius:4px;transition:width .3s ease}
 .rf .rf-photo{margin:0 0 22px;border-radius:14px;overflow:hidden;border:1px solid var(--rline)}
 .rf .rf-photo img{display:block;width:100%;height:auto}
-.rf .rf-step{display:none}
-.rf .rf-step.active{display:block}
-.rf h3.rf-q{font-family:'Syne',sans-serif;font-size:1.28rem;font-weight:800;color:var(--rink);margin:0 0 18px;line-height:1.28}
-.rf label.rf-lbl{display:block;font-size:.86rem;font-weight:700;color:var(--rink);margin:16px 0 6px}
+.rf .rf-step{display:none;flex:1;flex-direction:column}
+.rf .rf-step.active{display:flex}
+.rf h3.rf-q{font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:800;color:var(--rink);margin:0 0 6px;line-height:1.28}
+.rf .rf-sub{font-size:.86rem;color:var(--rmut);margin:0 0 20px}
+.rf label.rf-lbl{display:block;font-size:.86rem;font-weight:700;color:var(--rink);margin:14px 0 6px}
 .rf label.rf-lbl:first-child{margin-top:0}
-.rf input[type=text],.rf input[type=email],.rf input[type=tel],.rf textarea{
- width:100%;font:inherit;font-size:.96rem;padding:12px 14px;border:1.5px solid var(--rline);border-radius:10px;
+.rf input[type=text],.rf input[type=email],.rf input[type=tel],.rf input[type=url],.rf textarea{
+ width:100%;font:inherit;font-size:1.02rem;padding:13px 15px;border:1.5px solid var(--rline);border-radius:10px;
  background:#fbfbfe;color:var(--rink)}
 .rf input:focus,.rf textarea:focus,.rf select:focus{outline:none;border-color:var(--rv)}
-.rf textarea{min-height:76px;resize:vertical}
-.rf select{width:100%;font:inherit;font-size:.96rem;padding:12px 14px;border:1.5px solid var(--rline);border-radius:10px;
+.rf textarea{min-height:90px;resize:vertical}
+.rf select{width:100%;font:inherit;font-size:1.02rem;padding:13px 15px;border:1.5px solid var(--rline);border-radius:10px;
  background:#fbfbfe;color:var(--rink)}
-.rf .rf-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.rf .rf-check-grid{display:grid;gap:8px;margin:0 0 6px}
+.rf .rf-check{display:flex;align-items:center;gap:10px;background:#f7f7fd;border:1.5px solid var(--rline);border-radius:10px;
+ padding:12px 14px;cursor:pointer;transition:border-color .18s,background .18s}
+.rf .rf-check:hover{border-color:var(--rv)}
+.rf .rf-check.sel{border-color:var(--rv);background:#f0eefe}
+.rf .rf-check input{width:16px;height:16px;accent-color:var(--rv);flex:0 0 auto}
+.rf .rf-check span{font-size:.95rem;font-weight:600;color:var(--rink)}
 .rf .rf-eng{display:flex;align-items:flex-start;gap:10px;background:#f7f7fd;border:1px solid var(--rline);
  border-radius:12px;padding:14px 16px;margin:18px 0 4px}
 .rf .rf-eng input{margin-top:3px}
 .rf .rf-eng p{margin:0;font-size:.88rem;line-height:1.5;color:var(--rmut)}
-.rf .rf-nav{display:flex;justify-content:flex-end;align-items:center;margin-top:24px;gap:12px}
-.rf .rf-submit{background:linear-gradient(135deg,var(--rv),var(--rv2));color:#fff;border:none;
+.rf .rf-nav{display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:24px;gap:12px}
+.rf .rf-next,.rf .rf-submit{background:linear-gradient(135deg,var(--rv),var(--rv2));color:#fff;border:none;
  font-weight:700;font-size:.96rem;padding:13px 26px;border-radius:10px;cursor:pointer;transition:transform .18s,box-shadow .18s}
-.rf .rf-submit:hover{transform:translateY(-1px);box-shadow:0 14px 26px -12px rgba(123,92,250,.55)}
+.rf .rf-next:hover,.rf .rf-submit:hover{transform:translateY(-1px);box-shadow:0 14px 26px -12px rgba(123,92,250,.55)}
+.rf .rf-back{background:none;border:none;color:var(--rmut);font-weight:600;font-size:.88rem;cursor:pointer;padding:8px}
+.rf .rf-back:hover{color:var(--rink)}
+.rf .rf-spacer{flex:1}
 .rf .rf-err{display:none;color:#c0392b;font-size:.82rem;margin-top:10px}
 .rf .rf-err.show{display:block}
-.rf .rf-outcome{display:none;text-align:center;padding:12px 4px}
-.rf .rf-outcome.active{display:block}
+.rf .rf-outcome{display:none;text-align:center;padding:12px 4px;flex:1;flex-direction:column;justify-content:center}
+.rf .rf-outcome.active{display:flex}
 .rf .rf-outcome .ic{font-size:2.2rem;margin:0 0 12px}
 .rf .rf-outcome h3{font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:800;color:var(--rink);margin:0 0 12px}
 .rf .rf-outcome p{font-size:.98rem;line-height:1.6;color:var(--rmut);margin:0 0 22px}
@@ -65,50 +76,94 @@ CSS = """<style>
 .rf .rf-cal{display:inline-flex;align-items:center;gap:9px;background:linear-gradient(135deg,var(--rv),var(--rv2));
  color:#fff!important;text-decoration:none!important;font-weight:700;font-size:1rem;padding:15px 30px;border-radius:11px;
  box-shadow:0 12px 26px -10px rgba(123,92,250,.6)}
-@media(max-width:640px){.rf .rf-row{grid-template-columns:1fr}.rf .rf-card{padding:24px 20px}}
+@media(max-width:640px){.rf .rf-card{padding:26px 20px}}
 </style>"""
 
-FORM_HTML = """
-<div class="rf-row">
-  <div><label class="rf-lbl">Prénom &amp; nom</label><input type="text" id="rf-nom" required></div>
-  <div><label class="rf-lbl">Métier</label><input type="text" id="rf-metier" placeholder="ex. plombier, dentiste, kiné, institut…" required></div>
-</div>
-<div class="rf-row">
-  <div><label class="rf-lbl">Entreprise / cabinet</label><input type="text" id="rf-entreprise"></div>
-  <div><label class="rf-lbl">Ville</label><input type="text" id="rf-ville"></div>
-</div>
-<div class="rf-row">
-  <div><label class="rf-lbl">Téléphone</label><input type="tel" id="rf-tel" required placeholder="C'est nous qui vous appelons"></div>
-  <div><label class="rf-lbl">Email</label><input type="email" id="rf-email" required></div>
-</div>
-<label class="rf-lbl">Site web actuel</label>
-<select id="rf-site"><option value="non">Je n'en ai pas</option><option value="oui-a-refaire">J'en ai un, mais il est à refaire</option><option value="oui-ok">J'en ai un qui me convient</option></select>
-<label class="rf-lbl">Chiffre d'affaires annuel, environ</label>
-<select id="rf-ca"><option value="ne-sait-pas">Je préfère ne pas dire</option><option value="-30k">Moins de 30&nbsp;000&nbsp;€</option><option value="30-60k">30 000 à 60 000&nbsp;€</option><option value="60-120k">60 000 à 120 000&nbsp;€</option><option value="120k+">Plus de 120 000&nbsp;€</option></select>
-<label class="rf-lbl">Une fois le site en ligne, de quoi auriez-vous le plus besoin&nbsp;?</label>
-<select id="rf-besoin"><option value="ne-sait-pas">Je ne sais pas encore</option><option value="agent-sms">Rattraper les appels manqués (agent SMS)</option><option value="agent-vocal">Un agent vocal qui répond à ma place</option><option value="ads">De la publicité (Ads)</option><option value="seo-local">Être mieux classé sur Google (SEO local)</option><option value="geo">Être visible dans les réponses des IA (GEO)</option></select>
-<label class="rf-lbl">Le site est gratuit. Une fois que vous l'aurez vu, seriez-vous prêt à payer un service ensuite&nbsp;? Combien&nbsp;?</label>
-<select id="rf-payant"><option value="non">Non, je ne pense pas</option><option value="peut-etre">Peut-être, à voir selon le résultat</option><option value="-150">Oui, jusqu'à 150&nbsp;€/mois</option><option value="150-300">Oui, entre 150 et 300&nbsp;€/mois</option><option value="300+">Oui, plus de 300&nbsp;€/mois</option></select>
-<label class="rf-lbl">Délai souhaité de mise en ligne</label>
-<select id="rf-delai"><option value="pas-presse">Je ne suis pas pressé</option><option value="ce-mois">Ce mois-ci</option><option value="cette-semaine">Cette semaine</option></select>
-<label class="rf-lbl">Pourquoi vous&nbsp;?</label>
-<textarea id="rf-pourquoi" placeholder="Un mot sur votre situation, ce qui vous bloque aujourd'hui, pourquoi maintenant…"></textarea>
-<div class="rf-eng"><input type="checkbox" id="rf-engagement"><p>Ok pour qu'on vous appelle et pour fournir quelques photos/infos sous 7 jours si votre candidature est retenue&nbsp;? (clôture {cloture})</p></div>
-<p class="rf-err" id="rf-err">Merci de remplir au moins votre nom, votre métier, votre téléphone et votre email.</p>
-<div class="rf-nav"><button type="button" class="rf-submit" id="rf-submit">Envoyer ma candidature</button></div>
-""".format(cloture=CLOTURE)
+BESOINS = [
+    ("avis", "Avoir plus d'avis sur Maps"),
+    ("auto", "Répondre automatiquement aux clients"),
+    ("form", "Un formulaire sur mon site pour récupérer les messages"),
+    ("chatbot", "Un chatbot"),
+    ("devis", "Un agent pour les devis et les factures"),
+]
+besoin_html = "".join(
+    f'<label class="rf-check" data-check><input type="checkbox" id="rf-besoin-{k}"><span>{lbl}</span></label>'
+    for k, lbl in BESOINS)
+
+STEPS = [
+    # (titre, sous-titre, contenu HTML, ids requis pour passer au suivant)
+    ("Pour commencer, vos coordonnées", "On vous appelle si votre candidature est retenue.",
+     """<label class="rf-lbl">Prénom &amp; nom</label><input type="text" id="rf-nom" placeholder="Votre nom">
+<label class="rf-lbl">Téléphone</label><input type="tel" id="rf-tel" placeholder="C'est nous qui vous appelons">""",
+     ["rf-nom", "rf-tel"]),
+    ("Comment vous joindre par écrit", "",
+     """<label class="rf-lbl">Email</label><input type="email" id="rf-email" placeholder="vous@exemple.fr">
+<label class="rf-lbl">Métier</label><input type="text" id="rf-metier" placeholder="ex. plombier, dentiste, kiné, institut…">""",
+     ["rf-email", "rf-metier"]),
+    ("Votre activité", "",
+     """<label class="rf-lbl">Entreprise / cabinet</label><input type="text" id="rf-entreprise">
+<label class="rf-lbl">Ville</label><input type="text" id="rf-ville">""",
+     []),
+    ("Avez-vous déjà un site&nbsp;?", "",
+     """<select id="rf-site"><option value="non">Non, je n'en ai pas</option><option value="oui-a-refaire">Oui, mais il est à refaire</option><option value="oui-ok">Oui, il me convient</option></select>
+<div id="rf-site-url-wrap" style="display:none"><label class="rf-lbl">L'adresse de votre site actuel</label><input type="url" id="rf-site-url" placeholder="https://…"></div>""",
+     []),
+    ("Chiffre d'affaires annuel, environ", "Ça reste entre nous — ça nous aide juste à prioriser.",
+     """<select id="rf-ca"><option value="ne-sait-pas">Je préfère ne pas dire</option><option value="-30k">Moins de 30&nbsp;000&nbsp;€</option><option value="30-60k">30 000 à 60 000&nbsp;€</option><option value="60-120k">60 000 à 120 000&nbsp;€</option><option value="120k+">Plus de 120 000&nbsp;€</option></select>""",
+     []),
+    ("De quoi auriez-vous le plus besoin&nbsp;?", "Cochez tout ce qui vous parle.",
+     f"""<div class="rf-check-grid">{besoin_html}</div>
+<label class="rf-lbl">Autre chose&nbsp;?</label><input type="text" id="rf-besoin-autre" placeholder="Précisez si besoin">""",
+     []),
+    ("Le site est gratuit.", "Une fois que vous l'aurez vu, seriez-vous prêt à payer un service ensuite&nbsp;? Combien&nbsp;?",
+     """<label class="rf-lbl">Quel(s) service(s)&nbsp;?</label><input type="text" id="rf-service" placeholder="ex. agent SMS, chatbot, plus de visibilité…">
+<label class="rf-lbl">À quel prix par mois, environ&nbsp;?</label><input type="text" id="rf-prix" placeholder="ex. 100€, ou une fourchette">""",
+     []),
+    ("Délai souhaité de mise en ligne", "",
+     """<select id="rf-delai"><option value="pas-presse">Je ne suis pas pressé</option><option value="ce-mois">Ce mois-ci</option><option value="cette-semaine">Cette semaine</option></select>""",
+     []),
+    ("Dernière chose", "Pourquoi vous, plutôt qu'un autre&nbsp;?",
+     """<textarea id="rf-pourquoi" placeholder="Un mot sur votre situation, ce qui vous bloque aujourd'hui, pourquoi maintenant…"></textarea>
+<div class="rf-eng"><input type="checkbox" id="rf-engagement"><p>Ok pour qu'on vous appelle et pour fournir quelques photos/infos sous 7 jours si votre candidature est retenue&nbsp;? (clôture {cloture})</p></div>""".format(cloture=CLOTURE),
+     []),
+]
+
+
+def _step_html(i, titre, sous, contenu, is_last):
+    sub_html = f'<p class="rf-sub">{sous}</p>' if sous else ''
+    nav = (
+        f'<button type="button" class="rf-back" data-back {"style=visibility:hidden" if i == 0 else ""}>&larr; Retour</button>'
+        '<div class="rf-spacer"></div>'
+        + (f'<button type="button" class="rf-submit" id="rf-submit">Envoyer ma candidature</button>' if is_last
+           else f'<button type="button" class="rf-next" data-next>Suivant &rarr;</button>')
+    )
+    return f"""<div class="rf-step{' active' if i == 0 else ''}" data-step="{i}">
+  <h3 class="rf-q">{titre}</h3>
+  {sub_html}
+  {contenu}
+  <p class="rf-err" id="rf-err-{i}">Merci de remplir ce champ avant de continuer.</p>
+  <div class="rf-nav">{nav}</div>
+</div>"""
 
 
 def render(photo_url=None, photo_alt=""):
     photo_html = (f'<div class="rf-photo"><img src="{photo_url}" alt="{photo_alt}" loading="lazy" decoding="async"></div>'
                   if photo_url else '')
+    steps_html = "".join(
+        _step_html(i, titre, sous, contenu, i == len(STEPS) - 1)
+        for i, (titre, sous, contenu, _req) in enumerate(STEPS))
+    required_json = "[" + ",".join(
+        "[" + ",".join(f"'{r}'" for r in req) + "]" for (_t, _s, _c, req) in STEPS
+    ) + "]"
+
     markup = f"""<section class="rf" id="candidature-form"><div class="rf-w"><div class="rf-card">
-<div class="rf-places" id="rf-places">🎯 {PLACES} places · clôture {CLOTURE}</div>
-{photo_html}
-<div class="rf-step active" data-step="form">
-  <h3 class="rf-q">Votre candidature</h3>
-  {FORM_HTML}
+<div class="rf-top">
+  <div class="rf-places">🎯 {PLACES} places · clôture {CLOTURE}</div>
+  <div class="rf-count" id="rf-count">Étape 1 sur {N_STEPS}</div>
 </div>
+<div class="rf-bar"><div class="rf-bar-fill" id="rf-bar-fill" style="width:{round(100/N_STEPS)}%"></div></div>
+{photo_html}
+{steps_html}
 
 <div class="rf-outcome" data-outcome="vert">
   <div class="ic">🟢</div>
@@ -134,32 +189,72 @@ def render(photo_url=None, photo_alt=""):
 var SUPA_URL='{SUPABASE_URL}',SUPA_KEY='{SUPABASE_ANON_KEY}';
 var root=document.getElementById('candidature-form');
 if(!root)return;
+var N={N_STEPS},cur=0;
+var REQUIRED={required_json};
+function steps(){{return root.querySelectorAll('.rf-step')}}
 function val(id){{var e=root.querySelector('#'+id);return e?e.value.trim():''}}
 function checked(id){{var e=root.querySelector('#'+id);return !!(e&&e.checked)}}
-var PAYANT={{'non':0,'peut-etre':1,'-150':2,'150-300':3,'300+':3}};
+function goTo(i){{
+  cur=i;
+  steps().forEach(function(s){{s.classList.toggle('active',+s.getAttribute('data-step')===i)}});
+  root.querySelector('#rf-count').textContent='Étape '+(i+1)+' sur '+N;
+  root.querySelector('#rf-bar-fill').style.width=Math.round(((i+1)/N)*100)+'%';
+}}
+var siteSel=root.querySelector('#rf-site'),siteWrap=root.querySelector('#rf-site-url-wrap');
+if(siteSel){{
+  siteSel.addEventListener('change',function(){{
+    siteWrap.style.display=siteSel.value==='non'?'none':'block';
+  }});
+}}
+root.querySelectorAll('[data-check]').forEach(function(lbl){{
+  var cb=lbl.querySelector('input');
+  cb.addEventListener('change',function(){{lbl.classList.toggle('sel',cb.checked)}});
+}});
+root.querySelectorAll('[data-next]').forEach(function(btn){{
+  btn.addEventListener('click',function(){{
+    var req=REQUIRED[cur]||[],err=root.querySelector('#rf-err-'+cur),ok=true;
+    for(var k=0;k<req.length;k++){{if(!val(req[k]))ok=false}}
+    if(req.indexOf('rf-email')!==-1 && val('rf-email').indexOf('@')===-1)ok=false;
+    if(!ok){{if(err)err.classList.add('show');return}}
+    if(err)err.classList.remove('show');
+    if(cur<N-1)goTo(cur+1);
+  }});
+}});
+root.querySelectorAll('[data-back]').forEach(function(btn){{
+  btn.addEventListener('click',function(){{if(cur>0)goTo(cur-1)}});
+}});
+var PAYANT_HINT=0;
 var DELAI={{'pas-presse':0,'ce-mois':1,'cette-semaine':2}};
 var CA={{'ne-sait-pas':0,'-30k':0,'30-60k':1,'60-120k':2,'120k+':3}};
 function score(){{
   var s=0;
-  s+=PAYANT[val('rf-payant')]||0;
   s+=DELAI[val('rf-delai')]||0;
   s+=CA[val('rf-ca')]||0;
   s+=checked('rf-engagement')?2:0;
+  s+=(val('rf-service').length>1||val('rf-prix').length>1)?1:0;
   return s;
 }}
-function statut(s){{if(s>=6)return'vert';if(s>=3)return'orange';return'rouge'}}
+function statut(s){{if(s>=5)return'vert';if(s>=2)return'orange';return'rouge'}}
+function besoinsList(){{
+  var keys=['avis','auto','form','chatbot','devis'],out=[];
+  keys.forEach(function(k){{if(checked('rf-besoin-'+k))out.push(k)}});
+  var autre=val('rf-besoin-autre');if(autre)out.push('autre: '+autre);
+  return out.join(', ');
+}}
 var btn=root.querySelector('#rf-submit');
 btn.addEventListener('click',function(){{
-  var nom=val('rf-nom'),metier=val('rf-metier'),tel=val('rf-tel'),email=val('rf-email');
-  var err=root.querySelector('#rf-err');
-  if(!nom||!metier||!tel||!email||email.indexOf('@')===-1){{if(err)err.classList.add('show');return}}
+  var nom=val('rf-nom'),tel=val('rf-tel'),email=val('rf-email'),metier=val('rf-metier');
+  var err=root.querySelector('#rf-err-'+(N-1));
+  if(!nom||!tel||!email||!metier||email.indexOf('@')===-1){{if(err)err.classList.add('show');return}}
   if(err)err.classList.remove('show');
   var s=score(),st=statut(s);
   var payload={{
     statut:st,score:s,nom:nom,metier:metier,
     entreprise:val('rf-entreprise'),ville:val('rf-ville'),
-    email:email,telephone:tel,site_actuel:val('rf-site'),
-    ca:val('rf-ca'),besoin:val('rf-besoin'),payant_apres:val('rf-payant'),
+    email:email,telephone:tel,
+    site_actuel:(val('rf-site')||'non')+(val('rf-site-url')?(' — '+val('rf-site-url')):''),
+    ca:val('rf-ca'),besoin:besoinsList(),
+    payant_apres:(val('rf-service')||val('rf-prix'))?(val('rf-service')+' / '+val('rf-prix')+' par mois'):'',
     delai:val('rf-delai'),engagement_call:checked('rf-engagement'),
     pourquoi_toi:val('rf-pourquoi'),
     source_canal:(new URLSearchParams(location.search)).get('utm_source')||'',
@@ -171,7 +266,7 @@ btn.addEventListener('click',function(){{
     'Content-Type':'application/json','Prefer':'return=minimal'
   }},body:JSON.stringify(payload)}}).then(function(r){{
     if(!r.ok)throw new Error('http '+r.status);
-    root.querySelector('[data-step="form"]').classList.remove('active');
+    steps().forEach(function(s){{s.classList.remove('active')}});
     root.querySelectorAll('.rf-outcome').forEach(function(o){{
       o.classList.toggle('active',o.getAttribute('data-outcome')===st)
     }});

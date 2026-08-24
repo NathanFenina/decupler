@@ -25,7 +25,6 @@ FONTS = ('<link rel="stylesheet" href="https://fonts.googleapis.com/css2?'
 
 CLOTURE = FORM.CLOTURE
 PLACES = FORM.PLACES
-MAJ = '24 août 2026'
 # Photo deja en ligne (page /site-internet-offert/), meme recit
 # artisan/appel-manque : on la reutilise plutot que d'en regenerer une.
 PHOTO_HERO = 'https://decupler.com/wp-content/uploads/2026/08/offre-hero.jpg'
@@ -73,7 +72,7 @@ BODY = f"""{FONTS}
     <p class="lead rise">On lance une nouvelle offre d'agents IA pour les entreprises locales (rattraper les appels manqués, relancer les devis, récolter les avis). Pour la faire connaître, on offre le site à {PLACES} professionnels&nbsp;— en échange d'un retour honnête sur ce que ça change pour vous.</p>
     <p class="lead rise">Deux minutes pour candidater. On répond à tout le monde avant le {CLOTURE}.</p>
     <div class="dcp-act rise"><a class="dcp-cta" href="#candidature-form" rel="noopener">Candidater</a></div>
-    <p class="rt-trust rise">Déjà au travail avec <b>Apogea</b> · <b>Pluxee</b> · <b>BeTomorrow</b></p>
+    <p class="rt-trust rise">On a aussi travaillé avec <b>Sodexo</b> · <b>Décathlon</b> · <b>Société Générale</b></p>
   </div>
 </div></section>
 
@@ -91,10 +90,6 @@ BODY = f"""{FONTS}
   <div class="eyebrow rise">FAQ</div>
   <h2 class="rise">Les questions qu'on nous pose</h2>
   {faq_html}
-  <div class="dcp-sign rise">
-    <p class="dcp-sign-t">Écrit par <strong>Nathan Fenina</strong>, fondateur de <strong>Décupler</strong>, agence SEO et GEO. Voir <a href="https://decupler.com/site-internet-offert/">l'offre site gratuit détaillée</a> et <a href="https://decupler.com/cas-clients/">nos cas clients</a>.</p>
-    <p class="dcp-sign-d">Dernière mise à jour&nbsp;: {MAJ}</p>
-  </div>
 </div></section>
 
 </div>
