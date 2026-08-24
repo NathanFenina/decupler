@@ -1681,6 +1681,59 @@ PAGES = {
                "secondaires. Puis on maintient&nbsp;: horaires exceptionnels, nouvelles photos, nouveaux services.",
        paras=["La catégorie principale est le champ qui pèse le plus lourd, et c'est celui qui est le plus souvent "
               "mal choisi. Un « entrepreneur général » qui pose des fenêtres ne sortira jamais sur « menuisier »."])),
+     ('qr', dict(
+       eyebrow="En une phrase",
+       h2="Ce qu'on nous demande sur l'optimisation de fiche",
+       items=[
+        ("Combien de temps avant de voir un effet&nbsp;?",
+         "Les champs remplis sont pris en compte en quelques jours, mais le déplacement dans le pack local se "
+         "mesure sur deux à trois mois. Une fiche complétée un lundi ne remonte pas le mardi&nbsp;: ce qui bouge "
+         "vite, c'est le taux d'appel de ceux qui la voient déjà."),
+        ("Faut-il tout remplir, vraiment tout&nbsp;?",
+         "Oui, sauf ce qui serait faux. Une fiche complète à 60&nbsp;% laisse Google deviner le reste, et il "
+         "devine mal. Les champs que presque personne ne remplit — services détaillés, zones desservies, "
+         "attributs — sont justement ceux qui vous distinguent des concurrents."),
+        ("Est-ce qu'on peut changer la catégorie principale&nbsp;?",
+         "Oui, et c'est souvent le geste le plus rentable de toute l'optimisation. Une catégorie principale mal "
+         "choisie vous fait concourir dans la mauvaise liste. On la change une fois, prudemment, et on observe "
+         "trois semaines avant de toucher autre chose."),
+        ("Les zones desservies remplacent-elles des pages villes&nbsp;?",
+         "Non, elles se complètent. La zone desservie dit à Google jusqu'où vous allez&nbsp;; une page ville dit "
+         "ce que vous y faites. L'une agit sur la carte, l'autre sur les résultats classiques."),
+        ("Que se passe-t-il si Google refuse mes modifications&nbsp;?",
+         "Certains changements passent en revue manuelle, surtout le nom, l'adresse et la catégorie. Un refus "
+         "n'est pas définitif&nbsp;: on reformule, on documente, on redemande. Ce qui déclenche une suspension, "
+         "en revanche, c'est de modifier plusieurs champs sensibles le même jour."),
+        ("Faut-il mettre son mot-clé dans le nom de l'établissement&nbsp;?",
+         "Non. Le nom doit être votre nom réel, celui de votre devanture et de vos documents. «&nbsp;Dupont "
+         "Plomberie Paris 11 Dépannage&nbsp;» est une infraction caractérisée, fréquemment signalée par les "
+         "concurrents, et une cause classique de suspension."),
+       ])),
+
+     ('etapes', dict(howto=True, 
+       eyebrow="Le déroulé", id="deroule",
+       h2="Ce qu'on fait sur une fiche, dans l'ordre",
+       paras=["L'ordre n'est pas décoratif&nbsp;: on commence par ce qui ne déclenche jamais de revue manuelle, et "
+              "on garde les champs sensibles pour la fin, une fois que la fiche a repris de l'activité."],
+       items=[
+        ("On relève l'existant, y compris les doublons",
+         "Avant de toucher quoi que ce soit&nbsp;: photo de l'état actuel, recherche des fiches en doublon "
+         "— ancienne adresse, ancienne raison sociale, fiche créée par un tiers — et vérification que vous êtes "
+         "bien propriétaire. Une optimisation faite sur la mauvaise fiche ne produit rien."),
+        ("On remplit ce qui ne se discute pas",
+         "Horaires réels, y compris les jours fériés, description longue, services listés un par un, attributs, "
+         "moyens de paiement, accessibilité. Ce sont des dizaines de petits champs, tous inoffensifs, et c'est "
+         "ce qui manque sur 90&nbsp;% des fiches d'entreprises locales."),
+        ("On traite les zones et les catégories",
+         "Zones desservies commune par commune, catégories secondaires ajoutées une par une. La catégorie "
+         "principale ne change qu'en dernier, et seulement si elle est manifestement mauvaise&nbsp;— c'est le "
+         "seul champ qui peut faire perdre des positions en cas d'erreur."),
+        ("On installe le rythme",
+         "Une fiche optimisée puis abandonnée retombe. À partir de là, ce sont les autres agents qui prennent le "
+         "relais&nbsp;: photos publiées, avis demandés, réponses écrites, messagerie surveillée. L'optimisation "
+         "est un point de départ, pas un livrable."),
+       ])),
+
      ('cartes', dict(
        alt=True, eyebrow="Les limites", h2="Ce que cet agent ne fera pas", classe='non',
        items=[
@@ -1696,6 +1749,37 @@ PAGES = {
          "Une fiche parfaite avec une adresse écrite différemment sur trois annuaires reste bancale. C'est le travail "
          "des <a href=\"https://decupler.com/citations-locales/\">citations locales</a>, qu'on branche en même temps."),
        ])),
+     ('tableau', dict(
+       eyebrow="Le détail", id="champs",
+       h2="Les champs que presque personne ne remplit",
+       paras=["Ce ne sont pas les champs évidents qui font la différence — nom, adresse, téléphone sont remplis "
+              "partout. Ce sont ceux-là, qu'on trouve vides sur la quasi-totalité des fiches qu'on reprend."],
+       colonnes=["Le champ", "Ce qu'on y met, et pourquoi"],
+       lignes=[
+        ["<strong>Services</strong>&nbsp;— listés un par un, pas en bloc.",
+         "Chaque prestation devient une entrée séparée, avec son intitulé tel que les clients le disent. "
+         "«&nbsp;Débouchage de canalisation&nbsp;» et «&nbsp;recherche de fuite&nbsp;» sont deux services, pas "
+         "une ligne «&nbsp;plomberie générale&nbsp;». C'est ce niveau de détail que Google recoupe avec la requête."],
+        ["<strong>Zones desservies</strong>&nbsp;— commune par commune.",
+         "Pas «&nbsp;Île-de-France&nbsp;» mais la liste réelle des communes où vous vous déplacez. Ça borne votre "
+         "affichage sur la carte et ça évite les appels hors zone, qui vous coûtent du temps et vous valent des "
+         "avis négatifs injustes."],
+        ["<strong>Description longue</strong>&nbsp;— 750 caractères disponibles.",
+         "Rarement remplie, jamais en entier. On y écrit ce que vous faites, pour qui, depuis quand et sur quel "
+         "périmètre, en langage humain. Pas d'accumulation de mots-clés&nbsp;: la description est lue par des "
+         "gens, et elle est modérée."],
+        ["<strong>Attributs</strong>&nbsp;— accessibilité, paiement, public.",
+         "Cases à cocher que tout le monde ignore. Certaines apparaissent comme filtres dans la recherche "
+         "locale&nbsp;: ne pas les cocher, c'est se retirer de listes auxquelles on avait droit."],
+        ["<strong>Horaires spéciaux</strong>&nbsp;— fériés et fermetures.",
+         "Une fiche qui affiche «&nbsp;ouvert&nbsp;» un 15&nbsp;août alors que personne ne décroche génère un "
+         "appel manqué et parfois un avis. Les horaires exceptionnels se renseignent à l'avance, une fois par an."],
+        ["<strong>Questions / réponses</strong>&nbsp;— la section fantôme.",
+         "N'importe qui peut poser une question publique sur votre fiche, et n'importe qui peut y répondre — y "
+         "compris un concurrent. On y pose les vraies questions fréquentes et on y répond soi-même, avant que "
+         "quelqu'un d'autre ne s'en charge."],
+       ])),
+
      ('agents', dict(
        eyebrow="Ce qui va avec", h2="La fiche n'est qu'une porte",
        paras=["Être trouvé ne sert à rien si l'appel qui suit n'est pas décroché. Le catalogue complet des quinze "
@@ -1704,6 +1788,18 @@ PAGES = {
      ('relance', dict(texte="Je regarde votre fiche en direct et je vous dis ce qui manque, champ par champ.",
                       libelle="Prendre 15 minutes")),
      ('faq', dict(alt=True, eyebrow="FAQ", h2="Les questions qu'on nous pose", items=[
+        ("Puis-je optimiser ma fiche moi-même&nbsp;?",
+         "Oui, entièrement&nbsp;: tout ce qui est décrit ici est accessible depuis votre compte, gratuitement. Ce "
+         "qu'on vend, c'est de le faire, et surtout de continuer à le faire — la fiche optimisée puis abandonnée "
+         "est le cas le plus fréquent."),
+        ("Ma fiche a été suspendue. Vous pouvez la récupérer&nbsp;?",
+         "On peut monter le dossier de rétablissement et le suivre, sans garantie de résultat&nbsp;: la décision "
+         "appartient à Google. Méfiez-vous de qui vous promet une réintégration certaine, surtout contre paiement "
+         "d'avance."),
+        ("Combien de catégories secondaires faut-il&nbsp;?",
+         "Autant qu'il en existe qui décrivent réellement ce que vous faites, et pas une de plus. Ajouter des "
+         "catégories que vous n'exercez pas dilue le signal principal et vous fait sortir sur des requêtes que "
+         "vous ne saurez pas honorer."),
         ("Ma fiche existe déjà, vous la refaites&nbsp;?",
          "Non, on la complète. On ne crée une fiche que si vous n'en avez pas, ou si un doublon traîne&nbsp;— auquel "
          "cas on fait fusionner, ce qui est souvent la première chose à régler."),
@@ -1744,6 +1840,53 @@ PAGES = {
                "et publie sur votre fiche. Vous recevez le post en retour&nbsp;: un mot suffit à le faire retirer.",
        paras=["Ce que ça vaut&nbsp;: chaque post ajoute à votre fiche du vocabulaire réel — un nom de prestation, une "
               "commune, un matériau — que vous n'aviez nulle part ailleurs."])),
+     ('qr', dict(
+       eyebrow="En une phrase",
+       h2="Les questions qu'on nous pose sur les posts Google",
+       items=[
+        ("À quoi servent vraiment les posts Google&nbsp;?",
+         "À montrer que l'entreprise existe et travaille. Ils apparaissent sur votre fiche et alimentent la "
+         "section photos, qui est la première chose regardée après la note. Une fiche dont la dernière photo date "
+         "de deux ans laisse penser à une activité arrêtée."),
+        ("À quelle fréquence faut-il publier&nbsp;?",
+         "Une fois par semaine suffit largement, et la régularité compte plus que le volume. Quatre posts en une "
+         "journée puis rien pendant trois mois valent moins qu'un post hebdomadaire tenu sur un an."),
+        ("Combien de temps un post reste-t-il visible&nbsp;?",
+         "Les posts d'actualité s'effacent de la vue principale après une semaine environ, mais restent "
+         "accessibles. Les photos, elles, restent indéfiniment&nbsp;— raison pour laquelle on soigne l'image "
+         "autant que le texte."),
+        ("Faut-il une belle photo, prise avec un vrai appareil&nbsp;?",
+         "Non, et c'est même contre-productif. Une photo de chantier prise au téléphone fait plus vraie qu'une "
+         "banque d'images. Ce qui compte&nbsp;: la lumière, le cadrage sur le travail réalisé, et l'absence de "
+         "visage identifiable sans accord."),
+        ("Peut-on publier une photo de chez un client&nbsp;?",
+         "Le lieu, oui, en général&nbsp;— sous réserve de son accord si l'intérieur est reconnaissable. Les "
+         "personnes, jamais sans autorisation. On règle ça une fois, à l'écrit, dans vos conditions."),
+        ("Est-ce que ça remplace les réseaux sociaux&nbsp;?",
+         "Non, ça les alimente. Le même envoi peut partir sur la fiche Google et ailleurs. Mais si vous ne devez "
+         "en tenir qu'un, tenez la fiche Google&nbsp;: c'est celui que consultent les gens qui cherchent votre "
+         "métier maintenant, pas ceux qui font défiler un fil."),
+       ])),
+
+     ('etapes', dict(howto=True, 
+       eyebrow="Le déroulé", id="deroule",
+       h2="De la photo dans votre poche au post en ligne",
+       items=[
+        ("Vous envoyez la photo, point",
+         "Un numéro dédié, enregistré dans vos contacts. Vous prenez la photo en fin de chantier et vous "
+         "l'envoyez, avec deux mots si vous voulez préciser quelque chose. Pas d'application à ouvrir, pas de "
+         "compte à retenir&nbsp;— c'est la seule façon que ça tienne dans le temps."),
+        ("L'agent écrit et vous montre",
+         "Il identifie la prestation, rédige un texte court qui intègre votre métier et la commune, et vous "
+         "renvoie le brouillon. Vous validez d'un mot, ou vous corrigez. Rien ne part sans votre accord."),
+        ("Le post est publié et daté",
+         "Publication sur la fiche, photo ajoutée à la galerie, texte intégrant les termes que les gens tapent "
+         "réellement. Vous n'avez pas ouvert l'interface Google une seule fois."),
+        ("Le rythme est tenu à votre place",
+         "Si rien n'est arrivé depuis dix jours, l'agent vous le rappelle&nbsp;— une fois, pas trois. C'est ce "
+         "rappel qui fait la différence entre une fiche vivante et une fiche qu'on a alimentée deux semaines."),
+       ])),
+
      ('cartes', dict(
        alt=True, eyebrow="Les limites", h2="Ce que cet agent ne fera pas", classe='non',
        items=[
@@ -1757,6 +1900,32 @@ PAGES = {
          "Le post reprend le vocabulaire qu'on lui a donné. C'est la recherche de mots-clés locaux qui décide de ce "
          "vocabulaire, pas l'agent de publication."),
        ])),
+     ('texte', dict(
+       eyebrow="La vraie objection", id="quoi-photographier",
+       h2="«&nbsp;Mon métier n'a rien de photogénique&nbsp;»",
+       paras=[
+        "C'est la phrase qu'on entend à chaque rendez-vous, et elle est presque toujours fausse. Elle vient d'une "
+        "confusion&nbsp;: on croit qu'il faut une belle photo, alors qu'il faut une <strong>photo qui prouve</strong>. "
+        "Ce ne sont pas les mêmes images, et la deuxième catégorie est infiniment plus facile à produire.",
+        "<strong>L'avant-après</strong> fonctionne dans tous les métiers manuels, sans exception. Une canalisation "
+        "dégagée, un tableau électrique refait, une façade nettoyée, un parquet poncé. Prenez le «&nbsp;avant&nbsp;» "
+        "en arrivant&nbsp;— c'est la moitié qu'on oublie, et sans elle l'après ne raconte rien.",
+        "<strong>Le détail technique</strong> ensuite&nbsp;: une soudure propre, un raccord aux normes, un joint "
+        "bien tiré. Ça ne parle pas au grand public, et c'est justement l'intérêt&nbsp;— ça parle à la personne qui "
+        "vient de se faire poser un travail bâclé et qui cherche quelqu'un de sérieux.",
+        "<strong>Le chantier en cours</strong>, avec le matériel en place et personne dessus. C'est la photo la "
+        "plus simple à prendre et celle qu'on prend le moins&nbsp;: on pense à photographier quand c'est fini, "
+        "rarement quand c'est en train de se faire.",
+        "<strong>Le véhicule, l'atelier, le stock.</strong> Une camionnette floquée devant un chantier dit "
+        "l'existence de l'entreprise mieux qu'une page «&nbsp;à propos&nbsp;». Pour les métiers de service sans "
+        "réalisation visible, c'est souvent la seule image disponible — et elle suffit.",
+        "Ce qui ne marche pas, en revanche&nbsp;: les images de banque, les visuels avec du texte incrusté, les "
+        "montages. Ils sont immédiatement identifiés comme du remplissage, par les visiteurs comme par Google. "
+        "Une photo médiocre de votre vrai travail bat une belle image générique, à chaque fois."],
+       tip="La règle qu'on donne&nbsp;: une photo par chantier, prise avant de ranger les outils. Si elle n'est "
+           "pas prise à ce moment-là, elle ne sera jamais prise.",
+       tip_ic="📷")),
+
      ('agents', dict(
        eyebrow="Ce qui va avec", h2="Publier ne suffit pas à être trouvé",
        paras=[f"Le catalogue complet des quinze agents est sur la <a href=\"{PILIER}\">page de l'offre</a>."],
@@ -1764,6 +1933,17 @@ PAGES = {
      ('relance', dict(texte="Envoyez-moi une photo de votre dernier chantier&nbsp;: je vous montre le post qui en sortirait.",
                       libelle="Prendre 15 minutes")),
      ('faq', dict(eyebrow="FAQ", h2="Les questions qu'on nous pose", items=[
+        ("Combien de photos faut-il sur une fiche&nbsp;?",
+         "Il n'y a pas de nombre cible. Ce qui compte, c'est qu'il y en ait de récentes&nbsp;: une fiche avec "
+         "quarante photos toutes datées de l'ouverture paraît plus morte qu'une fiche avec huit photos dont la "
+         "dernière date de mardi."),
+        ("Les posts améliorent-ils le classement&nbsp;?",
+         "Google ne le confirme pas, et personne ne peut le chiffrer honnêtement. Ce qu'on constate, c'est leur "
+         "effet sur le taux de contact&nbsp;: une fiche active reçoit plus d'appels à position égale. C'est cet "
+         "effet-là qu'on vend, pas une promesse de position."),
+        ("Que se passe-t-il si j'envoie une photo ratée&nbsp;?",
+         "Rien&nbsp;: vous voyez le brouillon avant publication, vous répondez «&nbsp;non&nbsp;» et l'agent "
+         "s'arrête là. Aucun post ne part sans validation."),
         ("Je dois envoyer une photo tous les combien&nbsp;?",
          "Une à deux par mois suffisent à tenir une fiche vivante. Il n'y a aucune obligation&nbsp;: le reste du "
          "système tourne même si vous n'envoyez jamais rien."),
@@ -1801,6 +1981,35 @@ PAGES = {
                "vaut mieux qu'une requête à 3 000 sur laquelle vous serez toujours en page trois.",
        paras=["C'est exactement le raisonnement qu'on applique à notre propre site&nbsp;: on ne vise que ce qu'on peut "
               "prendre, et on le dit quand une requête est hors de portée."])),
+     ('qr', dict(
+       alt=True, eyebrow="En une phrase",
+       h2="Ce qu'on nous demande sur la recherche de mots-clés locaux",
+       items=[
+        ("Un mot-clé à 40 recherches par mois, ça vaut le coup&nbsp;?",
+         "Souvent plus qu'un mot-clé à 4&nbsp;000. Quarante recherches où vous sortez premier, avec une intention "
+         "d'achat claire et dans votre zone, valent mieux que quatre mille où vous êtes trentième face à des "
+         "annuaires nationaux."),
+        ("Faut-il viser « plombier Paris » ou « plombier Paris 11 »&nbsp;?",
+         "Le second, et même plus fin encore. Les requêtes larges sont trustées par les plateformes de mise en "
+         "relation, qui ont les budgets et les backlinks. La granularité — quartier, prestation précise, urgence "
+         "— est le seul terrain où une entreprise locale gagne."),
+        ("Combien de mots-clés faut-il travailler&nbsp;?",
+         "Une dizaine sérieusement, pas cinquante mollement. Chaque mot-clé retenu implique une page qui lui "
+         "répond vraiment. Une liste de cent mots-clés sans pages associées est un document, pas une stratégie."),
+        ("Les volumes affichés par les outils sont-ils fiables&nbsp;?",
+         "Ce sont des estimations, souvent fausses de moitié sur les petites requêtes locales, et parfois "
+         "affichées à zéro alors que la requête existe. On les prend comme un ordre de grandeur, jamais comme une "
+         "mesure&nbsp;— et on les recoupe avec ce que vos clients disent réellement au téléphone."),
+        ("Comment sait-on si une requête est à notre portée&nbsp;?",
+         "En regardant qui occupe les dix premières places. Si ce sont trois annuaires, un comparateur et deux "
+         "sites nationaux, passez votre chemin. Si ce sont des entreprises comme la vôtre, avec des sites "
+         "ordinaires, la place est prenable."),
+        ("Et les recherches vocales, ou celles faites dans une IA&nbsp;?",
+         "Elles sont plus longues et formulées en phrases&nbsp;: «&nbsp;quel plombier peut venir ce soir dans le "
+         "11e&nbsp;». C'est une raison de plus de travailler des requêtes précises plutôt que des mots-clés "
+         "génériques&nbsp;— une page qui répond à une question précise est citable, une page vitrine ne l'est pas."),
+       ])),
+
      ('etapes', dict(
        alt=True, eyebrow="La méthode", h2="Comment on trie",
        items=[
@@ -1816,6 +2025,48 @@ PAGES = {
          "Une requête par page, jamais deux pages sur la même&nbsp;: c'est comme ça qu'on évite de se cannibaliser "
          "soi-même."),
        ])),
+     ('tableau', dict(
+       eyebrow="La grille", id="grille",
+       h2="Ce qui fait qu'une requête mérite une page",
+       paras=["Quatre critères, appliqués dans cet ordre. Une requête qui échoue au premier ne passe pas les "
+              "suivants, quel que soit son volume."],
+       colonnes=["Le critère", "Ce qu'on vérifie"],
+       lignes=[
+        ["<strong>L'intention</strong>&nbsp;— acheter, ou se renseigner&nbsp;?",
+         "«&nbsp;Prix remplacement chauffe-eau&nbsp;» annonce un achat. «&nbsp;Comment fonctionne un "
+         "chauffe-eau&nbsp;» annonce une lecture. La deuxième amène du trafic qui ne convertira pas et occupera "
+         "votre temps de production pour rien."],
+        ["<strong>La géographie</strong>&nbsp;— la requête est-elle tapée chez vous&nbsp;?",
+         "Un volume national ne dit rien de votre zone. Une requête à 500 recherches en France peut valoir 12 dans "
+         "votre agglomération — et ces douze-là sont les seules qui peuvent devenir des clients."],
+        ["<strong>La concurrence réelle</strong>&nbsp;— qui occupe la première page&nbsp;?",
+         "On regarde les dix résultats, pas un indice de difficulté. Des annuaires et des places de marché&nbsp;: "
+         "terrain perdu. Des entreprises locales avec des sites ordinaires&nbsp;: terrain jouable, souvent en "
+         "quelques mois."],
+        ["<strong>La capacité à répondre</strong>&nbsp;— avez-vous quelque chose à dire&nbsp;?",
+         "Le critère qu'on oublie. Se positionner sur une prestation qu'on fait mal, ou dans une commune où on ne "
+         "se déplace pas volontiers, produit des appels qu'on refuse et des avis négatifs. Un bon mot-clé est un "
+         "mot-clé qu'on veut honorer."],
+       ])),
+
+     ('cartes', dict(
+       alt=True, eyebrow="Les limites", h2="Ce que cet agent ne fera pas", classe='non',
+       items=[
+        ("mots-cles-locaux", "Vous promettre la première place",
+         "Personne ne contrôle le classement de Google, et un prestataire qui garantit une position garantit "
+         "quelque chose qui ne lui appartient pas. Ce qu'on peut promettre&nbsp;: viser des requêtes prenables "
+         "plutôt que des requêtes flatteuses."),
+        ("seo-local", "Vous sortir une liste de mille mots-clés",
+         "Un export brut n'aide personne&nbsp;: il donne l'illusion du travail et laisse le tri à faire. On "
+         "remonte une dizaine de requêtes assumées, avec pour chacune la page qui doit y répondre."),
+        ("citations-locales", "Vous positionner sur ce que vous ne voulez pas faire",
+         "Un mot-clé qui amène des demandes que vous refusez — hors zone, hors métier, hors budget — vous coûte du "
+         "temps et vous vaut des avis injustes. On écarte ces requêtes-là même quand le volume est tentant."),
+        ("rapport-mensuel", "Remplacer ce que vous savez de vos clients",
+         "Les outils ne connaissent pas les mots que vos clients emploient au téléphone. Le premier entretien sert "
+         "à récupérer votre vocabulaire réel&nbsp;: c'est souvent lui qui fait apparaître les meilleures requêtes."),
+       ])),
+
      ('agents', dict(
        eyebrow="Ce qui va avec", h2="Savoir quoi viser, puis le viser",
        paras=[f"Le catalogue complet des quinze agents est sur la <a href=\"{PILIER}\">page de l'offre</a>."],
@@ -1823,6 +2074,17 @@ PAGES = {
      ('relance', dict(texte="Donnez-moi votre métier et votre ville&nbsp;: je vous sors les requêtes libres dans votre zone.",
                       libelle="Prendre 15 minutes")),
      ('faq', dict(eyebrow="FAQ", h2="Les questions qu'on nous pose", items=[
+        ("Faut-il une page par commune&nbsp;?",
+         "Seulement si vous avez quelque chose de différent à y dire&nbsp;: des réalisations, des délais, des "
+         "contraintes propres à cette commune. Vingt pages identiques où seul le nom de ville change sont "
+         "détectées comme telles et ne rankent pas."),
+        ("Combien de temps avant de sortir sur un mot-clé local&nbsp;?",
+         "Deux à six mois sur une requête à votre portée, davantage si le site part de zéro. Quiconque vous "
+         "annonce trois semaines vend autre chose que du référencement naturel."),
+        ("Vous utilisez quels outils&nbsp;?",
+         "Search Console pour ce que vous recevez déjà — c'est la seule donnée qui vous concerne réellement — et "
+         "des outils de volume pour l'ordre de grandeur. Le tri final se fait en regardant les résultats à la "
+         "main, requête par requête."),
         ("Vous garantissez la première page&nbsp;?",
          "Non, et personne ne le peut honnêtement. Ce qu'on garantit, c'est de ne viser que des requêtes à votre "
          "portée et de vous montrer chaque mois où vous en êtes."),
@@ -1872,6 +2134,34 @@ PAGES = {
                "forfait.",
        paras=["C'est l'agent le plus simple du catalogue et souvent le premier qu'on branche&nbsp;: il ne demande "
               "aucune décision, aucun apprentissage, et il travaille dès le premier appel raté."])),
+     ('qr', dict(
+       eyebrow="En une phrase",
+       h2="Ce qu'on nous demande sur le SMS d'appel manqué",
+       items=[
+        ("Faut-il changer de numéro&nbsp;?",
+         "Non. Un numéro de suivi géographique et non surtaxé se pose devant votre ligne et renvoie sur votre "
+         "portable. Vous continuez à décrocher normalement&nbsp;; le système ne fait quelque chose que si personne "
+         "ne répond."),
+        ("Au bout de combien de sonneries&nbsp;?",
+         "Vous choisissez, en général quatre ou cinq. Trop tôt, vous coupez des appels que vous auriez pris. Trop "
+         "tard, l'appelant a raccroché et composé le numéro suivant avant que le renvoi ne se déclenche."),
+        ("Que dit le SMS&nbsp;?",
+         "Trois lignes à votre nom&nbsp;: on a vu votre appel, on est en intervention, on rappelle sous tel délai — "
+         "et un lien si vous voulez qu'il précise sa demande tout de suite. Pas de promotion, pas de lien de "
+         "réservation compliqué."),
+        ("Et si l'appelant répond au SMS&nbsp;?",
+         "Sa réponse vous arrive. C'est un cas fréquent et précieux&nbsp;: il détaille souvent son problème par "
+         "écrit, ce qui vous fait gagner le premier appel de qualification."),
+        ("Est-ce que c'est légal d'envoyer ce SMS&nbsp;?",
+         "Oui&nbsp;: c'est une réponse à une sollicitation directe, pas de la prospection. La personne vient de "
+         "vous appeler. On ne conserve pas le numéro pour un usage commercial ultérieur, et c'est la limite à "
+         "tenir."),
+        ("Combien d'appels manqués ai-je vraiment&nbsp;?",
+         "Regardez le journal d'appels de votre mobile sur un mois complet et les statistiques d'appels de votre "
+         "fiche Google. Le chiffre surprend presque toujours&nbsp;— surtout chez ceux qui affirment ne jamais "
+         "rater d'appel."),
+       ])),
+
      ('cartes', dict(
        alt=True, eyebrow="Les limites", h2="Ce que cet agent ne fera pas", classe='non',
        items=[
@@ -1885,6 +2175,50 @@ PAGES = {
          "Il ne réduit pas votre charge d'appels, il l'augmente&nbsp;— parce que vous rappelez des gens qui seraient "
          "partis. C'est du chiffre d'affaires, pas du confort. Autant le dire avant."),
        ])),
+     ('texte', dict(
+       eyebrow="Le calcul", id="calcul",
+       h2="Ce que coûte un appel manqué chez vous",
+       paras=[
+        "Les moyennes de marché ne valent rien ici&nbsp;: un appel manqué chez un serrurier d'urgence et chez un "
+        "fleuriste n'ont pas le même prix. Voici comment obtenir le vôtre, avec ce que vous avez déjà.",
+        "<strong>Le nombre.</strong> Journal d'appels du mobile sur un mois entier, plus les statistiques d'appels "
+        "de la fiche Google. Prenez un mois représentatif, pas une semaine creuse.",
+        "<strong>La part qui ne rappelle pas.</strong> C'est le chiffre que personne n'a. Approchez-le en "
+        "demandant à vos dix derniers nouveaux clients s'ils avaient déjà appelé une fois sans réponse. Les autres "
+        "— ceux qui n'ont jamais rappelé — sont invisibles par construction&nbsp;: c'est exactement le problème.",
+        "<strong>La valeur d'un client.</strong> Pas votre chiffre d'affaires&nbsp;: la marge d'une intervention "
+        "type. Et si votre métier fidélise, comptez sur deux ans, pas sur la première facture.",
+        "<strong>Le produit des trois</strong> vous donne la perte mensuelle. C'est aussi le budget au-delà duquel "
+        "aucune solution n'est rentable, quelle que soit la promesse commerciale — et en dessous duquel presque "
+        "toutes le sont.",
+        "Un dernier repère, qui compte autant que le calcul&nbsp;: <strong>un appelant qui reçoit un SMS dans la "
+        "minute ne compose pas le numéro suivant.</strong> Ce n'est pas le SMS qui vend, c'est le fait qu'il "
+        "arrive avant la décision d'appeler ailleurs. Passé dix minutes, le message est poli mais l'affaire est "
+        "faite ailleurs."],
+       tip="Le moment où ça se joue&nbsp;: entre la fin de la sonnerie et le prochain numéro composé. On parle de "
+           "secondes, pas d'heures. C'est pour ça que ce SMS-là ne se délègue pas à un rappel en fin de journée.",
+       tip_ic="⏱️")),
+
+     ('etapes', dict(
+       howto=True, eyebrow="Le déroulé", id="deroule",
+       h2="De la sonnerie au rappel, minute par minute",
+       items=[
+        ("L'appel arrive et sonne chez vous",
+         "Rien ne change pour vous&nbsp;: le numéro de suivi renvoie sur votre portable, vous décrochez comme "
+         "d'habitude. Neuf appels sur dix ne déclenchent rien du tout — le système ne sert qu'au dixième."),
+        ("Personne ne décroche après le nombre de sonneries choisi",
+         "Le système enregistre l'appel manqué, avec le numéro et l'horodatage. C'est déjà, en soi, une donnée que "
+         "vous n'aviez pas&nbsp;: la plupart des artisans découvrent leur volume réel d'appels manqués à ce "
+         "moment-là."),
+        ("Le SMS part dans la minute",
+         "Trois lignes à votre nom&nbsp;: on a vu l'appel, on est en intervention, on rappelle sous tel délai. "
+         "L'appelant sait qu'il a été vu, ce qui suffit dans la majorité des cas à ce qu'il n'appelle pas ailleurs."),
+        ("Vous récupérez la liste, pas juste une notification",
+         "Les appels manqués s'accumulent dans un récapitulatif&nbsp;: qui a appelé, quand, qui a répondu au SMS, "
+         "qui a été rappelé. C'est ce qui transforme un rattrapage ponctuel en habitude — et ce qui alimente le "
+         "rapport mensuel."),
+       ])),
+
      ('agents', dict(
        eyebrow="Ce qui va avec", h2="Le SMS rattrape. Il ne convertit pas",
        paras=[f"Le catalogue complet des quinze agents est sur la <a href=\"{PILIER}\">page de l'offre</a>."],
@@ -1892,6 +2226,16 @@ PAGES = {
      ('relance', dict(texte="Quinze minutes&nbsp;: on regarde combien d'appels vous ratez vraiment dans une semaine.",
                       libelle="Prendre 15 minutes")),
      ('faq', dict(eyebrow="FAQ", h2="Les questions qu'on nous pose", items=[
+        ("Le SMS part-il aussi la nuit&nbsp;?",
+         "Vous décidez de la plage. La plupart de nos clients l'activent 24&nbsp;h/24 pour l'urgence, et le "
+         "message change hors horaires&nbsp;: il annonce un rappel le lendemain matin au lieu d'un rappel dans "
+         "l'heure."),
+        ("Et si c'est un démarcheur qui appelle&nbsp;?",
+         "Il reçoit un SMS, ce qui n'a aucune conséquence. Les numéros masqués, eux, ne reçoivent rien&nbsp;: il "
+         "n'y a pas de numéro où écrire."),
+        ("Peut-on combiner avec un agent vocal&nbsp;?",
+         "Oui, et c'est le montage le plus complet&nbsp;: la voix décroche quand elle peut, le SMS prend le "
+         "relais quand l'appelant raccroche avant. Les deux se règlent ensemble pour ne pas se doubler."),
         ("Le numéro de suivi est-il surtaxé&nbsp;?",
          "Non. C'est un numéro géographique classique&nbsp;: l'appelant paie un appel local. C'est l'inverse des "
          "réseaux de dépannage qui facturent la mise en relation."),
@@ -1932,6 +2276,32 @@ PAGES = {
                "nom, le numéro et le motif&nbsp;; le prospect reçoit une confirmation à votre nom.",
        paras=["Le message qui part au prospect compte autant que celui qui vous arrive&nbsp;: il évite le doute — "
               "« est-ce que ça a marché&nbsp;? » — qui pousse à remplir le formulaire du concurrent d'à côté."])),
+     ('qr', dict(
+       eyebrow="En une phrase",
+       h2="Ce qu'on nous demande sur l'alerte SMS de formulaire",
+       items=[
+        ("Le client reçoit-il aussi quelque chose&nbsp;?",
+         "Oui, et c'est la moitié de l'intérêt. Il reçoit un accusé immédiat qui confirme la réception et annonce "
+         "le délai de rappel. Une demande envoyée dans le vide est une demande qu'on refait chez un concurrent "
+         "dix minutes plus tard."),
+        ("Ça marche avec quel formulaire&nbsp;?",
+         "N'importe lequel, du moment qu'il peut déclencher un webhook ou envoyer un e-mail&nbsp;: les extensions "
+         "WordPress courantes, un formulaire sur mesure, un module de constructeur de pages. On branche l'existant, "
+         "on ne le remplace pas."),
+        ("Pourquoi un SMS plutôt qu'un e-mail&nbsp;?",
+         "Parce qu'un e-mail professionnel se lit le soir, et une demande de devis se joue dans l'heure. Le SMS "
+         "est lu dans les minutes qui suivent, y compris quand vous êtes sur un chantier avec les mains sales."),
+        ("Et si je suis en réunion ou en intervention&nbsp;?",
+         "Le SMS attend, et l'accusé envoyé au client a déjà annoncé un délai. Vous rappelez quand vous pouvez, "
+         "sans que le prospect ait l'impression d'avoir écrit dans le vide."),
+        ("Est-ce que ça filtre le spam&nbsp;?",
+         "Oui, sinon vous recevriez vingt SMS par nuit. Les envois automatisés sont écartés avant l'alerte, et "
+         "seules les demandes qui ressemblent à des demandes réelles vous parviennent."),
+        ("Peut-on envoyer l'alerte à plusieurs personnes&nbsp;?",
+         "Oui, avec une règle&nbsp;: une seule est responsable du rappel. Une alerte envoyée à trois personnes "
+         "sans désignation produit trois personnes qui pensent que quelqu'un d'autre s'en occupe."),
+       ])),
+
      ('cartes', dict(
        alt=True, eyebrow="Les limites", h2="Ce que cet agent ne fera pas", classe='non',
        items=[
@@ -1946,6 +2316,52 @@ PAGES = {
          "Vous recevrez aussi des demandes creuses. On préfère vous laisser juger&nbsp;: un filtre automatique finit "
          "toujours par écarter un vrai client."),
        ])),
+     ('texte', dict(
+       eyebrow="Le délai", id="delai",
+       h2="Ce qui se passe entre l'envoi du formulaire et votre rappel",
+       paras=[
+        "Un visiteur qui remplit un formulaire de devis n'a pas décidé de travailler avec vous. Il a décidé de "
+        "commencer à chercher. Dans la plupart des cas, il remplit deux ou trois formulaires dans la même session, "
+        "sur trois sites ouverts en onglets. Ce qui suit décide de qui obtient le rendez-vous.",
+        "<strong>Les dix premières minutes</strong> sont celles où il est encore devant son écran, encore dans le "
+        "sujet, encore disponible pour répondre au téléphone. Un rappel à ce moment-là tombe sur quelqu'un qui "
+        "vous attend.",
+        "<strong>Au bout d'une heure</strong>, il est passé à autre chose. Le rappel devient une interruption. Il "
+        "répond, mais il a peut-être déjà parlé à quelqu'un d'autre entre-temps — et le premier à qui on parle "
+        "fixe la référence.",
+        "<strong>Le lendemain</strong>, vous n'êtes plus en concurrence sur la qualité de votre offre&nbsp;: vous "
+        "êtes en train de rattraper un retard. C'est une position commerciale nettement moins bonne, pour un "
+        "travail identique.",
+        "L'accusé de réception immédiat change ce calcul sans que vous ayez à rappeler dans la minute. Il dit au "
+        "visiteur&nbsp;: c'est arrivé, quelqu'un l'a vu, on vous rappelle avant telle heure. <strong>Il achète du "
+        "temps</strong>, et il vous place en tête de la liste mentale du prospect même si vous rappelez le "
+        "deuxième.",
+        "Une précision qui a son importance&nbsp;: l'accusé doit annoncer un délai que vous tenez. «&nbsp;Nous "
+        "vous rappelons sous 2&nbsp;heures&nbsp;» suivi d'un rappel le lendemain fait plus de mal que pas "
+        "d'accusé du tout."],
+       tip="Le réglage qu'on recommande&nbsp;: un délai annoncé large et toujours tenu, plutôt qu'un délai "
+           "ambitieux tenu une fois sur deux. «&nbsp;Rappel dans la demi-journée&nbsp;» honoré vaut mieux que "
+           "«&nbsp;sous 30 minutes&nbsp;» raté.",
+       tip_ic="⏳")),
+
+     ('etapes', dict(
+       howto=True, eyebrow="Le déroulé", id="deroule",
+       h2="Ce qui se passe quand quelqu'un envoie le formulaire",
+       items=[
+        ("Le formulaire est envoyé, le visiteur voit une confirmation",
+         "Pas un simple «&nbsp;merci&nbsp;»&nbsp;: un message qui annonce le délai de rappel. C'est la première "
+         "chose qui distingue votre site de celui d'à côté, et elle ne coûte rien à mettre en place."),
+        ("Le spam est écarté avant l'alerte",
+         "Envois automatisés, champs incohérents, adresses jetables. Sans ce filtre, l'alerte SMS devient un "
+         "bruit qu'on finit par ignorer — et le jour où une vraie demande arrive, plus personne ne regarde."),
+        ("Vous recevez le SMS dans la minute",
+         "Nom, téléphone, deux lignes de contexte. De quoi décider si vous rappelez tout de suite ou en fin de "
+         "journée, sans ouvrir votre boîte mail ni votre ordinateur."),
+        ("Le client reçoit son accusé",
+         "En parallèle, un message court qui confirme la réception et redit le délai. Le prospect arrête de "
+         "chercher pendant ce délai&nbsp;: c'est exactement ce qu'on achète."),
+       ])),
+
      ('agents', dict(
        eyebrow="Ce qui va avec", h2="Recevoir vite, puis ne pas laisser retomber",
        paras=[f"Le catalogue complet des quinze agents est sur la <a href=\"{PILIER}\">page de l'offre</a>."],
@@ -1953,6 +2369,17 @@ PAGES = {
      ('relance', dict(texte="On regarde votre formulaire actuel et ce qu'il devient une fois envoyé.",
                       libelle="Prendre 15 minutes")),
      ('faq', dict(eyebrow="FAQ", h2="Les questions qu'on nous pose", items=[
+        ("Le SMS contient-il toute la demande&nbsp;?",
+         "L'essentiel&nbsp;: nom, téléphone, deux lignes de contexte. Le détail complet reste dans votre boîte "
+         "mail et dans le tableau de suivi. L'alerte sert à décider si vous rappelez maintenant, pas à lire le "
+         "dossier."),
+        ("Que se passe-t-il si le formulaire tombe en panne&nbsp;?",
+         "C'est un angle mort classique&nbsp;: un formulaire cassé ne prévient personne, et on s'en aperçoit des "
+         "semaines plus tard. On surveille l'absence anormale de demandes et on vous alerte — le silence est "
+         "aussi une information."),
+        ("Peut-on router selon le type de demande&nbsp;?",
+         "Oui&nbsp;: une demande de dépannage et une demande de devis travaux n'ont pas la même urgence ni "
+         "forcément le même destinataire. Le tri se fait sur les champs du formulaire."),
         ("Je reçois le SMS sur combien de numéros&nbsp;?",
          "Autant que vous voulez&nbsp;: vous, votre associé, votre assistante. Chacun peut avoir sa règle selon le "
          "type de demande."),
