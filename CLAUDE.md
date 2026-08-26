@@ -72,3 +72,11 @@ sans CSS inline ni classes Elementor, pour bien s'intégrer au thème du freelan
   `content/cleaned/inventory.md`).
 - Sécurité WordPress (côté hébergeur/freelance) : minimum de plugins, Wordfence,
   MAJ auto, sauvegardes externes.
+
+## Google Search Console
+- Acces direct via OAuth : `scripts/gsc.py sites | perf | inspect`.
+- Les identifiants (`GSC_CLIENT_ID`, `GSC_CLIENT_SECRET`, `GSC_REFRESH_TOKEN`)
+  s'obtiennent une seule fois avec `scripts/gsc_auth.py`, en local, puis se
+  posent dans les secrets d'environnement — jamais dans le dépôt ni le chat.
+- Pas de compte de service : il faudrait l'inviter propriété par propriété.
+  OAuth ouvre d'un coup les 23 propriétés du compte.
