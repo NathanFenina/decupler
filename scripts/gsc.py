@@ -61,6 +61,32 @@ def _b64(donnees):
     return base64.urlsafe_b64encode(donnees).decode().rstrip("=")
 
 
+def lis_cle(brut):
+    """Accepte le JSON tel quel, ou sa version base64.
+
+    Le fichier de cle contient des retours a la ligne, y compris a l'interieur
+    de la cle privee. Certains formulaires de secrets les avalent, et on se
+    retrouve avec une cle illisible sans message clair. Le base64 tient sur une
+    ligne et ne contient aucun caractere special.
+    """
+    brut = brut.strip()
+    if not brut.startswith("{"):
+        try:
+            brut = base64.b64decode(brut).decode("utf-8")
+        except Exception:
+            sys.exit("❌ GSC_SA_JSON n'est ni du JSON ni du base64 lisible.")
+    try:
+        sa = json.loads(brut)
+    except json.JSONDecodeError as e:
+        sys.exit(f"❌ GSC_SA_JSON n'est pas du JSON valide ({e}). Colle le fichier "
+                 f"de cle en entier, ou sa version base64.")
+    manque = [k for k in ("client_email", "private_key") if k not in sa]
+    if manque:
+        sys.exit(f"❌ Il manque {', '.join(manque)} dans la cle : ce n'est pas un "
+                 f"fichier de compte de service.")
+    return sa
+
+
 def jeton_compte_de_service(sa):
     """Signe un JWT et l'echange contre un access token.
 
@@ -100,11 +126,7 @@ def jeton():
     c = env()
 
     if c["GSC_SA_JSON"]:
-        try:
-            sa = json.loads(c["GSC_SA_JSON"])
-        except json.JSONDecodeError:
-            sys.exit("❌ GSC_SA_JSON n'est pas du JSON valide. Colle le contenu "
-                     "entier du fichier de cle, accolades comprises.")
+        sa = lis_cle(c["GSC_SA_JSON"])
         d = jeton_compte_de_service(sa)
     elif all(c[k] for k in ("GSC_CLIENT_ID", "GSC_CLIENT_SECRET", "GSC_REFRESH_TOKEN")):
         data = urllib.parse.urlencode({
