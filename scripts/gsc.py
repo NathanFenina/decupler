@@ -69,11 +69,19 @@ def lis_cle(brut):
     retrouve avec une cle illisible sans message clair. Le base64 tient sur une
     ligne et ne contient aucun caractere special.
     """
-    brut = brut.strip()
+    brut = "".join(brut.split())          # espaces et retours a la ligne colles
     if not brut.startswith("{"):
-        try:
-            brut = base64.b64decode(brut).decode("utf-8")
-        except Exception:
+        # Le champ de secrets refuse les accolades et les guillemets, donc on
+        # accepte du base64. Le remplissage « = » saute souvent au passage :
+        # on le remet. L'alphabet urlsafe est accepte aussi.
+        rembourre = brut + "=" * (-len(brut) % 4)
+        for decode in (base64.b64decode, base64.urlsafe_b64decode):
+            try:
+                brut = decode(rembourre).decode("utf-8")
+                break
+            except Exception:
+                continue
+        else:
             sys.exit("❌ GSC_SA_JSON n'est ni du JSON ni du base64 lisible.")
     try:
         sa = json.loads(brut)
