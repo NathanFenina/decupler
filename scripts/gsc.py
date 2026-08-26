@@ -2,9 +2,21 @@
 # -*- coding: utf-8 -*-
 """Google Search Console en direct, sans intermediaire.
 
-Lit GSC_CLIENT_ID, GSC_CLIENT_SECRET et GSC_REFRESH_TOKEN dans .env ou dans
-l'environnement (secrets Claude Code). Voir scripts/gsc_auth.py pour les
-obtenir. Aucune dependance : urllib suffit.
+Deux facons de s'authentifier, la premiere trouvee gagne :
+
+  1. **Compte de service** — `GSC_SA_JSON`, le contenu du fichier JSON de la
+     cle, en une seule variable. C'est la voie recommandee : pas d'ecran de
+     consentement, pas de testeurs a declarer, pas de jeton qui expire au bout
+     de sept jours. En echange, l'adresse du compte de service doit etre
+     ajoutee comme utilisateur dans Search Console, propriete par propriete.
+
+  2. **OAuth utilisateur** — `GSC_CLIENT_ID`, `GSC_CLIENT_SECRET`,
+     `GSC_REFRESH_TOKEN` (voir scripts/gsc_auth.py). Ouvre d'un coup toutes
+     les proprietes du compte, mais demande un ecran de consentement complet.
+
+Le compte de service signe un JWT en RS256, ce que la bibliotheque standard ne
+sait pas faire : `cryptography` est la seule dependance, et seulement dans ce
+mode-la.
 
     python3 scripts/gsc.py sites
     python3 scripts/gsc.py perf --site https://decupler.com/ --jours 28
@@ -16,6 +28,7 @@ import os
 import sys
 import json
 import time
+import base64
 import argparse
 import datetime
 import urllib.error
@@ -27,6 +40,9 @@ API = "https://www.googleapis.com/webmasters/v3"
 INSPECT = "https://searchconsole.googleapis.com/v1/urlInspection/index:inspect"
 
 
+CLES = ("GSC_SA_JSON", "GSC_CLIENT_ID", "GSC_CLIENT_SECRET", "GSC_REFRESH_TOKEN")
+
+
 def env():
     cle = {}
     chemin = os.path.join(ROOT, ".env")
@@ -36,13 +52,42 @@ def env():
             if ligne and not ligne.startswith("#") and "=" in ligne:
                 k, v = ligne.split("=", 1)
                 cle[k.strip()] = v.strip()
-    for k in ("GSC_CLIENT_ID", "GSC_CLIENT_SECRET", "GSC_REFRESH_TOKEN"):
+    for k in CLES:
         cle[k] = cle.get(k) or os.environ.get(k, "")
-    manque = [k for k, v in cle.items() if not v and k.startswith("GSC_")]
-    if manque:
-        sys.exit(f"❌ Manque {', '.join(manque)}. Lance scripts/gsc_auth.py sur ta "
-                 f"machine, puis mets les valeurs dans les secrets d'environnement.")
     return cle
+
+
+def _b64(donnees):
+    return base64.urlsafe_b64encode(donnees).decode().rstrip("=")
+
+
+def jeton_compte_de_service(sa):
+    """Signe un JWT et l'echange contre un access token.
+
+    Google appelle ca le flux « JWT bearer » : on s'auto-declare, signe avec la
+    cle privee, et le serveur verifie avec la publique qu'il connait deja. Pas
+    de navigateur, pas de consentement, rien qui expire.
+    """
+    from cryptography.hazmat.primitives import hashes, serialization
+    from cryptography.hazmat.primitives.asymmetric import padding
+
+    maintenant = int(time.time())
+    entete = _b64(json.dumps({"alg": "RS256", "typ": "JWT"}).encode())
+    corps = _b64(json.dumps({
+        "iss": sa["client_email"],
+        "scope": "https://www.googleapis.com/auth/webmasters.readonly",
+        "aud": "https://oauth2.googleapis.com/token",
+        "iat": maintenant, "exp": maintenant + 3600}).encode())
+    a_signer = f"{entete}.{corps}".encode()
+    cle = serialization.load_pem_private_key(sa["private_key"].encode(), password=None)
+    signature = _b64(cle.sign(a_signer, padding.PKCS1v15(), hashes.SHA256()))
+
+    data = urllib.parse.urlencode({
+        "grant_type": "urn:ietf:params:oauth:grant-type:jwt-bearer",
+        "assertion": f"{entete}.{corps}.{signature}"}).encode()
+    r = urllib.request.Request("https://oauth2.googleapis.com/token", data=data)
+    with urllib.request.urlopen(r, timeout=60) as rep:
+        return json.load(rep)
 
 
 _jeton = {"valeur": None, "expire": 0}
@@ -53,12 +98,26 @@ def jeton():
     if _jeton["valeur"] and time.time() < _jeton["expire"] - 120:
         return _jeton["valeur"]
     c = env()
-    data = urllib.parse.urlencode({
-        "client_id": c["GSC_CLIENT_ID"], "client_secret": c["GSC_CLIENT_SECRET"],
-        "refresh_token": c["GSC_REFRESH_TOKEN"], "grant_type": "refresh_token"}).encode()
-    r = urllib.request.Request("https://oauth2.googleapis.com/token", data=data)
-    with urllib.request.urlopen(r, timeout=60) as rep:
-        d = json.load(rep)
+
+    if c["GSC_SA_JSON"]:
+        try:
+            sa = json.loads(c["GSC_SA_JSON"])
+        except json.JSONDecodeError:
+            sys.exit("❌ GSC_SA_JSON n'est pas du JSON valide. Colle le contenu "
+                     "entier du fichier de cle, accolades comprises.")
+        d = jeton_compte_de_service(sa)
+    elif all(c[k] for k in ("GSC_CLIENT_ID", "GSC_CLIENT_SECRET", "GSC_REFRESH_TOKEN")):
+        data = urllib.parse.urlencode({
+            "client_id": c["GSC_CLIENT_ID"], "client_secret": c["GSC_CLIENT_SECRET"],
+            "refresh_token": c["GSC_REFRESH_TOKEN"], "grant_type": "refresh_token"}).encode()
+        r = urllib.request.Request("https://oauth2.googleapis.com/token", data=data)
+        with urllib.request.urlopen(r, timeout=60) as rep:
+            d = json.load(rep)
+    else:
+        sys.exit("❌ Aucun identifiant. Definis GSC_SA_JSON (compte de service, "
+                 "recommande) ou le trio GSC_CLIENT_ID / GSC_CLIENT_SECRET / "
+                 "GSC_REFRESH_TOKEN dans les secrets d'environnement.")
+
     _jeton.update(valeur=d["access_token"], expire=time.time() + d.get("expires_in", 3600))
     return _jeton["valeur"]
 
@@ -81,6 +140,11 @@ def appel(url, corps=None):
             if e.code in (429, 500, 502, 503) and essai < 4:
                 time.sleep(2 ** essai)
                 continue
+            if e.code == 403 and "GSC_SA_JSON" in os.environ:
+                sys.exit(f"❌ HTTP 403. Le compte de service n'a probablement pas ete "
+                         f"ajoute comme utilisateur sur cette propriete : Search Console "
+                         f"→ Parametres → Utilisateurs et autorisations → Ajouter, avec "
+                         f"l'adresse client_email de la cle.\n{corps_err[:300]}")
             sys.exit(f"❌ HTTP {e.code} : {corps_err[:400]}")
         except Exception as e:
             if essai == 4:

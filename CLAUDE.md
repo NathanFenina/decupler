@@ -74,9 +74,13 @@ sans CSS inline ni classes Elementor, pour bien s'intégrer au thème du freelan
   MAJ auto, sauvegardes externes.
 
 ## Google Search Console
-- Acces direct via OAuth : `scripts/gsc.py sites | perf | inspect`.
-- Les identifiants (`GSC_CLIENT_ID`, `GSC_CLIENT_SECRET`, `GSC_REFRESH_TOKEN`)
-  s'obtiennent une seule fois avec `scripts/gsc_auth.py`, en local, puis se
-  posent dans les secrets d'environnement — jamais dans le dépôt ni le chat.
-- Pas de compte de service : il faudrait l'inviter propriété par propriété.
-  OAuth ouvre d'un coup les 23 propriétés du compte.
+- `scripts/gsc.py sites | perf | inspect`, sans intermédiaire.
+- **Compte de service** (recommandé) : `GSC_SA_JSON` = le contenu entier du
+  fichier de clé. Pas d'écran de consentement, pas de jeton qui expire. Il faut
+  ajouter le `client_email` de la clé comme utilisateur dans Search Console,
+  propriété par propriété.
+- **OAuth utilisateur** (alternative) : `GSC_CLIENT_ID`, `GSC_CLIENT_SECRET`,
+  `GSC_REFRESH_TOKEN` via `scripts/gsc_auth.py`. Ouvre les 23 propriétés d'un
+  coup, mais l'écran de consentement Google est laborieux et le jeton expire
+  tous les 7 jours tant que l'app reste en mode test.
+- Les secrets vont dans l'environnement — jamais dans le dépôt ni le chat.
