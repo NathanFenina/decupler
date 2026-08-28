@@ -95,7 +95,7 @@ def lis_cle(brut):
     return sa
 
 
-def jeton_compte_de_service(sa):
+def jeton_compte_de_service(sa, scope="https://www.googleapis.com/auth/webmasters.readonly"):
     """Signe un JWT et l'echange contre un access token.
 
     Google appelle ca le flux « JWT bearer » : on s'auto-declare, signe avec la
@@ -109,7 +109,7 @@ def jeton_compte_de_service(sa):
     entete = _b64(json.dumps({"alg": "RS256", "typ": "JWT"}).encode())
     corps = _b64(json.dumps({
         "iss": sa["client_email"],
-        "scope": "https://www.googleapis.com/auth/webmasters.readonly",
+        "scope": scope,
         "aud": "https://oauth2.googleapis.com/token",
         "iat": maintenant, "exp": maintenant + 3600}).encode())
     a_signer = f"{entete}.{corps}".encode()
@@ -127,15 +127,22 @@ def jeton_compte_de_service(sa):
 _jeton = {"valeur": None, "expire": 0}
 
 
-def jeton():
-    """Un access token vit une heure ; on le remint quand il approche."""
-    if _jeton["valeur"] and time.time() < _jeton["expire"] - 120:
-        return _jeton["valeur"]
+def jeton(ecriture=False):
+    """Un access token vit une heure ; on le remint quand il approche.
+
+    En lecture seule par defaut. Le peu qui ecrit — resoumettre un sitemap —
+    demande le scope complet, et on ne le prend que pour ces appels-la.
+    """
+    cache = "valeur_w" if ecriture else "valeur"
+    if _jeton.get(cache) and time.time() < _jeton["expire"] - 120:
+        return _jeton[cache]
     c = env()
+    scope = ("https://www.googleapis.com/auth/webmasters" if ecriture
+             else "https://www.googleapis.com/auth/webmasters.readonly")
 
     if c["GSC_SA_JSON"]:
         sa = lis_cle(c["GSC_SA_JSON"])
-        d = jeton_compte_de_service(sa)
+        d = jeton_compte_de_service(sa, scope)
     elif all(c[k] for k in ("GSC_CLIENT_ID", "GSC_CLIENT_SECRET", "GSC_REFRESH_TOKEN")):
         data = urllib.parse.urlencode({
             "client_id": c["GSC_CLIENT_ID"], "client_secret": c["GSC_CLIENT_SECRET"],
@@ -148,8 +155,9 @@ def jeton():
                  "recommande) ou le trio GSC_CLIENT_ID / GSC_CLIENT_SECRET / "
                  "GSC_REFRESH_TOKEN dans les secrets d'environnement.")
 
-    _jeton.update(valeur=d["access_token"], expire=time.time() + d.get("expires_in", 3600))
-    return _jeton["valeur"]
+    _jeton[cache] = d["access_token"]
+    _jeton["expire"] = time.time() + d.get("expires_in", 3600)
+    return _jeton[cache]
 
 
 def appel(url, corps=None):
@@ -250,6 +258,42 @@ def cmd_perf(a):
         print(ligne)
 
 
+def cmd_sitemap(a):
+    """Liste les sitemaps connus, et les resoumet si on le demande.
+
+    Resoumettre ne force pas l'indexation : ca redit a Google « regarde ici ».
+    Le bouton « Demander l'indexation » de l'interface n'a pas d'equivalent
+    public dans l'API — l'Indexing API ne couvre que JobPosting et
+    BroadcastEvent, l'utiliser pour autre chose est hors des regles.
+    """
+    base = f"{API}/sites/{urllib.parse.quote(a.site, safe='')}/sitemaps"
+    d = appel(base)
+    smaps = d.get("sitemap", [])
+    print(f"\n{len(smaps)} sitemap(s) declare(s) :\n")
+    for sm in smaps:
+        # L'API renvoie des nombres sous forme de chaines : "0" est vrai en
+        # Python. Tester la valeur telle quelle affiche « ERREURS » sur un
+        # sitemap parfaitement sain.
+        err, avert = int(sm.get("errors", 0)), int(sm.get("warnings", 0))
+        par_type = {c["type"]: int(c.get("submitted", 0)) for c in sm.get("contents", [])}
+        detail = " · ".join(f"{n} {t}" for t, n in par_type.items())
+        etat = "✔ sain" if not err and not avert else f"✖ {err} erreur(s), {avert} avertissement(s)"
+        print(f"  {sm['path']}")
+        print(f"      {detail} · telecharge le {sm.get('lastDownloaded','jamais')[:10]} · {etat}")
+    if not a.resoumettre:
+        return
+    print()
+    for sm in smaps:
+        url = f"{base}/{urllib.parse.quote(sm['path'], safe='')}"
+        r = urllib.request.Request(url, method="PUT",
+            headers={"Authorization": "Bearer " + jeton(ecriture=True)})
+        try:
+            urllib.request.urlopen(r, timeout=90)
+            print(f"  ✔ resoumis : {sm['path']}")
+        except urllib.error.HTTPError as e:
+            print(f"  ✖ {sm['path']} : HTTP {e.code} {e.read().decode()[:200]}")
+
+
 def cmd_inspect(a):
     urls = a.url or [u.strip() for u in open(a.fichier, encoding="utf-8") if u.strip()]
     print(f"\n{len(urls)} URL à inspecter · quota 2 000/jour\n")
@@ -288,6 +332,11 @@ def main():
     p.add_argument("--compare", action="store_true", help="vs la periode precedente")
     p.add_argument("--json", action="store_true")
     p.set_defaults(f=cmd_perf)
+
+    p = sub.add_parser("sitemap", help="etat des sitemaps, et resoumission")
+    p.add_argument("--site", required=True)
+    p.add_argument("--resoumettre", action="store_true")
+    p.set_defaults(f=cmd_sitemap)
 
     p = sub.add_parser("inspect", help="etat d'indexation (API URL Inspection)")
     p.add_argument("--site", required=True)
