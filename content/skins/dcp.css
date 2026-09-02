@@ -668,4 +668,46 @@ body .site-content,body #content{margin-bottom:0!important;padding-bottom:0!impo
   .ao.inv .ao-b .ao-v{order:0}
   .ao-l{grid-template-columns:1fr}
 }
+/* ══ Les trois visuels de données ══════════════════════════════════════
+   Palette validee par scripts/validate_palette.js du skill dataviz :
+   #7B5CFA et #007752 sur fond #fbfbfe passent les six controles. Le vert
+   clair #00B87F, lui, tombe a 2,49:1 contre la surface : il ne porte donc
+   jamais de sens seul, toujours double d'un libelle en encre.            */
+
+/* ── La courbe de trafic ─────────────────────────────────────────────── */
+.cx{display:block;width:100%;height:auto;margin:4px 0 2px;overflow:visible}
+.cx-b{stroke:var(--edge);stroke-width:1}
+.cx-l{fill:none;stroke:var(--vio);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.cx-p{fill:var(--vio-t);stroke:var(--surface);stroke-width:2}
+/* Le texte porte un jeton d'encre, jamais la couleur de la serie : la
+   couleur identifie la marque, pas ses valeurs. */
+.cx-v{fill:var(--ink);font-family:var(--display);font-size:11px;font-weight:800}
+.cx-m{fill:var(--faint);font-family:var(--mono);font-size:8.5px;text-anchor:middle}
+.viz-note{margin:8px 0 0;font-size:.79rem;color:var(--faint);line-height:1.45}
+
+/* ── Le workflow de l'agent ──────────────────────────────────────────── */
+.flw{list-style:none;margin:2px 0 0;padding:0;position:relative}
+.flw li{position:relative;padding:0 0 14px 30px}
+.flw li:last-child{padding-bottom:0}
+/* Le connecteur relie les etapes : sans lui, quatre lignes empilees ne
+   disent pas qu'elles se suivent. */
+.flw li::before{content:"";position:absolute;left:8.5px;top:16px;bottom:0;
+  width:1px;background:var(--edge)}
+.flw li:last-child::before{display:none}
+.flw li::after{content:"";position:absolute;left:4px;top:5px;width:11px;height:11px;
+  border-radius:50%;background:var(--surface);border:2px solid var(--vio)}
+.flw .flw-e::after{border-color:var(--red)}
+.flw .flw-s::after{border-color:var(--grn);background:var(--grn)}
+.flw b{display:block;font-size:.9rem;color:var(--ink);font-weight:700;line-height:1.35}
+.flw span{display:block;margin-top:2px;font-size:.79rem;color:var(--faint);line-height:1.45}
+
+/* ── Les tuiles de chiffres ──────────────────────────────────────────── */
+/* Quatre nombres de tete : une rangee de tuiles, pas un graphique en
+   barres — un histogramme a quatre unites differentes ne compare rien. */
+.kpi{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:2px 0 12px}
+.kpi-c{background:var(--ground);border:1px solid var(--edge2);border-radius:9px;padding:9px 11px}
+.kpi-l{display:block;font-size:.73rem;color:var(--faint);letter-spacing:.01em}
+.kpi-v{display:block;margin-top:2px;font-family:var(--display);font-weight:800;
+  font-size:1.18rem;letter-spacing:-.02em;color:var(--ink);
+  font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1}
 </style>

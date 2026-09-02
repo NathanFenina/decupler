@@ -66,7 +66,7 @@ SOCLE = [
 # Chaque module porte sa maquette. Une photo générique ne dirait rien de ce
 # qu'on achète ; montrer l'agent en train de travailler, si.
 MODULES = [
-    ("dès 297 €", "par mois", "capte",
+    ("dès 297 €", "par mois", "agents-flow",
      "Les agents IA",
      "Ils travaillent pendant que vous êtes sur le terrain : ils rattrapent "
      "les appels manqués, relancent les devis en attente et récoltent les avis. "
@@ -74,7 +74,7 @@ MODULES = [
      ["Récolte d'avis Google", "Réponse aux avis", "Posts sur la fiche Google",
       "SMS après appel manqué", "SMS après formulaire", "Chatbot IA sur le site",
       "Chatbot WhatsApp", "Agent vocal qui décroche"]),
-    ("dès 397 €", "par mois", "trouve",
+    ("dès 397 €", "par mois", "seo-courbe",
      "Le SEO et le GEO",
      "Être trouvé sur Google, et être cité par ChatGPT, Perplexity et les "
      "réponses IA de Google — là où une partie de vos clients cherche déjà, "
@@ -82,7 +82,7 @@ MODULES = [
      ["Fiche Google optimisée", "Pages et articles rédigés",
       "Contenu en plusieurs formats", "Citations locales et backlinks",
       "Corrections techniques", "Suivi des positions"]),
-    ("dès 397 €", "par mois, budget média en sus", "annonce",
+    ("dès 397 €", "par mois, budget média en sus", "ads-board",
      "La publicité",
      "Pour aller chercher des appels tout de suite, pendant que le "
      "référencement met ses trois à six mois à produire.",
