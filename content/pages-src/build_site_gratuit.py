@@ -35,6 +35,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import wpcss                                              # noqa: E402
 import icones as I                                        # noqa: E402
 import pied_technique as PT                               # noqa: E402
+from visuels import VIZ                                   # noqa: E402
 
 SKIN = open(RACINE / 'content/skins/dcp.css', encoding='utf-8').read()
 FONTS = ('<link rel="stylesheet" href="https://fonts.googleapis.com/css2?'
@@ -62,25 +63,29 @@ SOCLE = [
 ]
 
 # ── Les modules : parallèles, facultatifs, ajoutables quand on veut ───────
+# Chaque module porte sa maquette. Une photo générique ne dirait rien de ce
+# qu'on achète ; montrer l'agent en train de travailler, si.
 MODULES = [
-    ("dès 297 €", "par mois",
+    ("dès 297 €", "par mois", "capte",
      "Les agents IA",
      "Ils travaillent pendant que vous êtes sur le terrain : ils rattrapent "
-     "les appels manqués, relancent les devis en attente et récoltent les avis.",
+     "les appels manqués, relancent les devis en attente et récoltent les avis. "
+     "Vous ne perdez plus une affaire parce que vous aviez les mains prises.",
      ["Récolte d'avis Google", "Réponse aux avis", "Posts sur la fiche Google",
       "SMS après appel manqué", "SMS après formulaire", "Chatbot IA sur le site",
       "Chatbot WhatsApp", "Agent vocal qui décroche"]),
-    ("dès 397 €", "par mois",
+    ("dès 397 €", "par mois", "trouve",
      "Le SEO et le GEO",
      "Être trouvé sur Google, et être cité par ChatGPT, Perplexity et les "
-     "réponses IA de Google — là où une partie de vos clients cherche déjà.",
+     "réponses IA de Google — là où une partie de vos clients cherche déjà, "
+     "et où trois entreprises seulement sont nommées.",
      ["Fiche Google optimisée", "Pages et articles rédigés",
       "Contenu en plusieurs formats", "Citations locales et backlinks",
-      "Corrections techniques"]),
-    ("dès 397 €", "par mois, budget média en sus",
+      "Corrections techniques", "Suivi des positions"]),
+    ("dès 397 €", "par mois, budget média en sus", "annonce",
      "La publicité",
-     "Pour aller chercher des appels tout de suite, pendant que le référencement "
-     "met ses trois à six mois à produire.",
+     "Pour aller chercher des appels tout de suite, pendant que le "
+     "référencement met ses trois à six mois à produire.",
      ["Google Ads local", "Local Services Ads (badge Google)",
       "Publicités Meta géolocalisées", "Retargeting",
       "Pages d'atterrissage dédiées", "Suivi des appels"]),
@@ -249,14 +254,21 @@ def socle_html():
 
 
 def modules_html():
+    """Un encadré par module, la maquette d'un côté puis de l'autre.
+
+    L'alternance n'est pas décorative : trois blocs identiques d'affilée se
+    lisent comme un tableau, et on cesse de les regarder au deuxième.
+    """
     out = ''
-    for prix, cadence, titre, chapo, items in MODULES:
+    for i, (prix, cadence, viz, titre, chapo, items) in enumerate(MODULES):
         li = ''.join(f'<li>{x}</li>' for x in items)
-        out += (f'<div class="mod"><div class="mod-p prix">{prix}'
-                f'<small>{cadence}</small></div>'
-                f'<div><h3>{titre}</h3><p>{chapo}</p>'
-                f'<ul class="mod-l">{li}</ul></div></div>')
-    return f'<div class="mods rise">{out}</div>'
+        inv = ' inv' if i % 2 else ''
+        out += (f'<div class="ao{inv} rise">'
+                f'<div class="ao-h"><div class="ao-p">{prix}<small>{cadence}</small></div>'
+                f'<div><h3>{titre}</h3><p>{chapo}</p></div></div>'
+                f'<div class="ao-b"><div class="ao-v">{VIZ[viz]}</div>'
+                f'<ul class="ao-l">{li}</ul></div></div>')
+    return out
 
 
 def fuites_html():

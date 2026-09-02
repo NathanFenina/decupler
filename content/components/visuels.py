@@ -48,3 +48,18 @@ VIZ = {
   <div class="rep-l"><span>Nouveaux avis</span><b>7</b></div>
   <div class="rep-l"><span>Rendez-vous pris</span><b>4</b></div>
 </div>"""}
+
+# Le module publicite n'avait pas de visuel : les cinq maquettes existantes
+# couvrent les agents et le SEO, pas l'annonce locale. Celle-ci montre ce
+# qu'un client voit quand il cherche — c'est le seul endroit ou le badge
+# « Garanti par Google » des Local Services Ads se comprend sans explication.
+VIZ['annonce'] = """
+<div class="viz rise">
+  <div class="viz-h"><strong>plombier à Nice</strong><span class="tag">annonce locale</span></div>
+  <div class="lsa">
+    <div class="lsa-l vous"><div class="lsa-t"><b>Votre entreprise</b><span class="lsa-g">Garanti par Google</span></div><span class="lsa-n">★ 4,9 · ouvert · rappelle sous 10 min</span></div>
+    <div class="lsa-l"><div class="lsa-t"><b>Un concurrent</b></div><span class="lsa-n">★ 4,6 · ferme à 18 h</span></div>
+    <div class="lsa-l"><div class="lsa-t"><b>Un autre</b></div><span class="lsa-n">★ 4,4 · fermé</span></div>
+  </div>
+</div>
+"""
