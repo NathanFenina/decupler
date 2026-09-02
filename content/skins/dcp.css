@@ -554,4 +554,66 @@ nav.post-navigation{display:none!important}
   .recu dt{white-space:normal;overflow:visible;padding-right:4px}
   .recu dt::after{display:none}
 }
+/* ══ Vitrine : les sites qu'on livre ═══════════════════════════════════
+   Une page qui vend des sites et n'en montre aucun demande au visiteur de
+   la croire sur parole. Les captures vivent sur le fond sombre : trois
+   maquettes claires sur de l'encre, c'est la seule bande de la page ou
+   l'image porte l'argument toute seule.                                   */
+.vit{margin:34px 0 0}
+.vit-l{margin:0 0 26px}
+.vit-duo{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+/* Les deux legendes ne font pas le meme nombre de lignes : sans colonne
+   flex, les cadres finissent a des hauteurs differentes et la rangee
+   devient bancale. */
+.vit-duo .shot{display:flex;flex-direction:column}
+.vit-duo .shot-cap{flex:1 1 auto}
+
+/* Le cadre de navigateur transforme une image en site. Sans lui, la capture
+   se lit comme une illustration ; avec, comme quelque chose qui existe. */
+.shot{display:block;border-radius:14px;overflow:hidden;background:#0f1020;
+  border:1px solid rgba(255,255,255,.11);
+  box-shadow:0 26px 54px -26px rgba(0,0,0,.75);
+  transform:translateZ(0);
+  transition:transform .5s cubic-bezier(.2,.8,.2,1),box-shadow .5s cubic-bezier(.2,.8,.2,1),
+             border-color .5s ease}
+.shot:hover,.shot:focus-visible{transform:translateY(-7px);
+  box-shadow:0 40px 70px -28px rgba(0,0,0,.85);border-color:rgba(123,92,250,.6)}
+.shot-bar{display:flex;align-items:center;gap:7px;padding:10px 13px;
+  background:rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.08)}
+.shot-bar i{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.22)}
+.shot-bar b{margin-left:8px;font-family:var(--mono);font-size:.71rem;font-weight:400;
+  letter-spacing:.02em;color:rgba(255,255,255,.5);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.shot img{display:block;width:100%;height:auto;margin:0}
+.shot-cap{padding:15px 16px 16px;background:rgba(255,255,255,.045)}
+.shot-cap h3{font-family:var(--display);font-size:1rem;font-weight:700;color:#fff;margin:0 0 4px}
+.shot-cap p{font-size:.86rem;color:rgba(255,255,255,.58);margin:0;line-height:1.5}
+
+/* Une seule cascade authorée sur la page : les trois maquettes arrivent
+   l'une apres l'autre. Le reste du site utilise .rise sans decalage. */
+.dcp .rise.d1{transition-delay:.09s}
+.dcp .rise.d2{transition-delay:.18s}
+.dcp .rise.d3{transition-delay:.27s}
+
+@media(max-width:760px){
+  .vit-duo{grid-template-columns:1fr;gap:22px}
+  .shot:hover{transform:none}
+}
+@media(prefers-reduced-motion:reduce){
+  .dcp .rise{transition:none}
+  .dcp .rise.d1,.dcp .rise.d2,.dcp .rise.d3{transition-delay:0s}
+  .shot{transition:none}
+  .shot:hover{transform:none}
+}
+
+/* ══ L'espace mort avant le pied de page ═══════════════════════════════
+   La derniere bande est pleine largeur et coloree : les marges basses que
+   le theme Astra pose sur l'article et son conteneur laissent une bande
+   claire entre elle et le footer. Le skin annulait deja le padding ; il
+   restait les marges et le padding de #main.                              */
+.dcp-band:last-child{margin-bottom:0}
+body .site-content .ast-article-single,body .site-content .entry-content,
+body .site-content #primary,body .site-content #main,body .site-content .site-main,
+body #content .ast-container{margin-bottom:0!important;padding-bottom:0!important}
+body .site-content,body #content{margin-bottom:0!important;padding-bottom:0!important}
+.dcp+*:empty,.dcp~p:empty{display:none!important}
 </style>

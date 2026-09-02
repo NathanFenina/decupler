@@ -176,6 +176,48 @@ RECU = [
 ]
 
 
+# Trois sites réellement construits, capturés depuis les maquettes livrées.
+# Le domaine affiché dans la barre du navigateur est celui de la maquette :
+# ne pas inventer de domaine en ligne pour un site qui n'est pas publié.
+SITES = [
+    ("zimmer.jpg", "zimmer-elagage.fr", "Zimmer Élagage — élagueur à Rezé",
+     "Photo pleine page, devis en un écran, numéro cliquable partout. "
+     "Serif chaleureux, vert forêt et écorce.",
+     "Page d'accueil du site Zimmer Élagage, élagueur à Rezé"),
+    ("lm-paysage.jpg", "lm-paysage.fr", "LM Paysage — paysagiste",
+     "Un carnet de pépinière : papier, mousse, étiquettes de plants.",
+     "Page d'accueil du site LM Paysage, entreprise de paysagisme"),
+    ("vdar.jpg", "vdar-couverture.fr", "VDAR — couvreur à Nantes",
+     "Anthracite et rouge brique, sombre par défaut. Rien à voir avec les deux autres.",
+     "Page d'accueil du site VDAR Couverture de l'habitat, couvreur à Nantes"),
+]
+MEDIA = "https://decupler.com/wp-content/uploads/2026/09/"
+
+
+def shot(fichier, domaine, titre, note, alt, retard='', large=False):
+    """Une maquette dans un cadre de navigateur.
+
+    `width`/`height` sont posés en dur : sans eux la page saute quand les
+    trois images arrivent, et le saut se voit d'autant plus que la section
+    est la première chose sous le pli.
+    """
+    d = f' {retard}' if retard else ''
+    w, h = (2016, 1288) if large else (2016, 1288)
+    return (f'<figure class="shot rise{d}">'
+            f'<div class="shot-bar"><i></i><i></i><i></i><b>{domaine}</b></div>'
+            f'<img src="{MEDIA}{fichier}" alt="{alt}" width="{w}" height="{h}" '
+            f'loading="lazy" decoding="async">'
+            f'<figcaption class="shot-cap"><h3>{titre}</h3><p>{note}</p></figcaption>'
+            f'</figure>')
+
+
+def vitrine_html():
+    lead = shot(*SITES[0][:5], retard='d1')
+    duo = ''.join(shot(*s[:5], retard=r) for s, r in zip(SITES[1:], ('d2', 'd3')))
+    return (f'<div class="vit"><div class="vit-l">{lead}</div>'
+            f'<div class="vit-duo">{duo}</div></div>')
+
+
 def recu_html():
     """L'offre en devis. Les trois dernières lignes sont grisées : elles sont
     facultatives, et un devis dit ça mieux qu'un paragraphe."""
@@ -257,12 +299,12 @@ def page():
   {recu_html()}
 </div></section>
 
-<section class="dcp-band" id="pourquoi"><div class="in plein">
-  <h2>Pourquoi c'est gratuit</h2>
-  <p class="band-p">
-  C'est la première question qu'on nous pose, alors on y répond ici plutôt
-  qu'en bas de page.</p>
-  <div class="pq">{pq}</div>
+<section class="dcp-band" id="sites"><div class="in plein">
+  <h2>Voilà ce qu'on livre</h2>
+  <p class="band-p">Trois artisans, trois sites, trois identités. On ne décline
+  pas un modèle en changeant le logo et la couleur — c'est justement ce que
+  vous avez déjà refusé ailleurs.</p>
+  {vitrine_html()}
 </div></section>
 
 <section class="dcp-sec" id="prix"><div class="in">
@@ -278,6 +320,14 @@ def page():
   <p>Le site est à vous dès qu'on vous l'a présenté en rendez-vous. Il n'est
   pas mis en ligne tant que l'hébergement n'est pas pris — l'héberger à nos
   frais pour quelqu'un qui n'en veut pas, on ne sait pas le faire.</p></div>
+</div></section>
+
+<section class="dcp-band" id="pourquoi"><div class="in plein">
+  <h2>Pourquoi c'est gratuit</h2>
+  <p class="band-p">
+  C'est la première question qu'on nous pose, alors on y répond ici plutôt
+  qu'en bas de page.</p>
+  <div class="pq">{pq}</div>
 </div></section>
 
 {fuites_html()}
