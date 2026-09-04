@@ -1,0 +1,13 @@
+import puppeteer from 'puppeteer'; import fs from 'node:fs'; import http from 'node:http';
+const html=fs.readFileSync(process.argv[2],'utf8');
+const shell=`<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><style>html,body{margin:0;background:#fbfbfe;font-family:system-ui}.entry-content{margin:0 20px}pre{background:#f4f4f6;border:1px solid #e3e3e8;padding:12px}</style><div class="entry-content">${html}</div>`;
+const srv=http.createServer((q,r)=>{r.writeHead(200,{'Content-Type':'text/html; charset=utf-8'});r.end(shell)});
+await new Promise(r=>srv.listen(0,'127.0.0.1',r)); const PORT=srv.address().port;
+const b=await puppeteer.launch({headless:true,executablePath:'/opt/pw-browsers/chromium-1194/chrome-linux/chrome',args:['--no-sandbox','--disable-dev-shm-usage']});
+const p=await b.newPage(); await p.setViewport({width:+(process.argv[4]||1280),height:820,deviceScaleFactor:2});
+await p.goto(`http://127.0.0.1:${PORT}/`,{waitUntil:'domcontentloaded'});
+await new Promise(r=>setTimeout(r,1600));
+await p.evaluate(()=>document.querySelector('[data-depot]').click());
+await new Promise(r=>setTimeout(r,700));
+await p.screenshot({path:process.argv[3]});
+console.log('→',process.argv[3]); await b.close(); srv.close();

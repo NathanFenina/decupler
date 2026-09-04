@@ -839,34 +839,67 @@ body .site-content,body #content{margin-bottom:0!important;padding-bottom:0!impo
   .av{font-size:.88rem}
   .av th:not(:first-child),.av td:not(:first-child){width:26%}
 }
-/* ── Capture email ────────────────────────────────────────────────────── */
-.nl{background:var(--surface);border:1px solid var(--edge);border-radius:16px;
-  padding:26px 28px;box-shadow:0 22px 44px -32px rgba(20,21,43,.32);
-  max-width:560px;margin:26px 0 0}
-.dcp-band .nl{background:rgba(255,255,255,.055);border-color:rgba(255,255,255,.14);
-  box-shadow:none}
-.nl h3{font-family:var(--display);font-size:1.06rem;font-weight:800;margin:0 0 6px;color:var(--ink)}
-.dcp-band .nl h3{color:#fff}
-.nl p{font-size:.92rem;color:var(--soft);margin:0 0 16px}
-.dcp-band .nl p{color:rgba(255,255,255,.6)}
-.nl form{display:flex;gap:9px;flex-wrap:wrap}
-.nl input[type=email]{flex:1 1 220px;min-width:0;font-family:var(--body);font-size:.95rem;
-  color:var(--ink);background:var(--ground);border:1px solid var(--edge);
-  border-radius:10px;padding:12px 14px}
-.dcp-band .nl input[type=email]{background:rgba(255,255,255,.08);
-  border-color:rgba(255,255,255,.18);color:#fff}
-.nl input[type=email]::placeholder{color:var(--faint)}
-.dcp-band .nl input[type=email]::placeholder{color:rgba(255,255,255,.42)}
-.nl input[type=email]:focus-visible{outline:2px solid var(--vio-t);outline-offset:2px;
-  border-color:var(--vio)}
-.nl button{font-family:var(--body);font-weight:700;font-size:.95rem;cursor:pointer;
-  background:var(--ink);color:#fff;border:none;border-radius:10px;padding:12px 20px;
-  transition:transform .2s ease,box-shadow .2s ease}
-.dcp-band .nl button{background:#00E5A0;color:#07080f}
-.nl button:hover{transform:translateY(-1px);box-shadow:0 12px 24px -12px rgba(20,21,43,.55)}
-.nl-fine{margin:12px 0 0;font-size:.79rem;color:var(--faint)}
-.dcp-band .nl-fine{color:rgba(255,255,255,.45)}
-.nl-cadre{display:none}
-.nl label.nl-cadre{display:block;position:absolute;width:1px;height:1px;
-  margin:-1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+/* ══ Le verrou ═════════════════════════════════════════════════════════
+   Le lien du dépôt ne s'ouvre qu'une fois l'email donné. La clé `lmg_sub`
+   est celle du reste du site : quelqu'un qui s'est déjà abonné sur une
+   autre page n'est pas redemandé.
+   Sans JavaScript, les boutons restent de vrais liens vers GitHub — mieux
+   vaut un visiteur non capturé qu'un visiteur bloqué devant une porte que
+   rien ne peut ouvrir.                                                    */
+.vrl{position:fixed;inset:0;z-index:99999;display:none;
+  align-items:center;justify-content:center;padding:22px;
+  background:rgba(7,8,15,.72);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px)}
+.vrl.on{display:flex;animation:vrlF .25s ease}
+@keyframes vrlF{from{opacity:0}to{opacity:1}}
+.vrl-c{position:relative;width:100%;max-width:432px;background:#12132a;
+  border:1px solid rgba(255,255,255,.13);border-radius:18px;padding:32px 30px 26px;
+  box-shadow:0 40px 90px -30px rgba(0,0,0,.85);animation:vrlU .32s cubic-bezier(.2,.8,.2,1)}
+@keyframes vrlU{from{opacity:0;transform:translateY(16px) scale(.98)}to{opacity:1;transform:none}}
+.vrl-x{position:absolute;top:12px;right:12px;width:32px;height:32px;border:none;
+  border-radius:9px;background:rgba(255,255,255,.07);color:rgba(255,255,255,.6);
+  font-size:1.05rem;line-height:1;cursor:pointer;transition:background .2s ease,color .2s ease}
+.vrl-x:hover{background:rgba(255,255,255,.14);color:#fff}
+.vrl-c h2{font-family:var(--display);font-size:1.32rem;font-weight:800;letter-spacing:-.02em;
+  color:#fff;margin:0 0 8px;line-height:1.2}
+.vrl-c p{font-size:.93rem;color:rgba(255,255,255,.6);margin:0 0 20px;line-height:1.55}
+
+/* Champ et bouton forment un seul objet : deux blocs separes par une
+   gouttiere lisaient comme un formulaire par defaut. */
+.vrl-f{display:flex;align-items:stretch;background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.16);border-radius:12px;overflow:hidden;
+  transition:border-color .2s ease,box-shadow .2s ease}
+.vrl-f:focus-within{border-color:var(--vio2);box-shadow:0 0 0 3px rgba(123,92,250,.24)}
+.vrl-f input{flex:1 1 200px;min-width:0;height:48px;padding:0 15px;border:none;
+  background:none;color:#fff;font-family:var(--body);font-size:.95rem}
+.vrl-f input:focus{outline:none}
+.vrl-f input::placeholder{color:rgba(255,255,255,.36)}
+.vrl-f button{flex:0 0 auto;height:48px;padding:0 24px;border:none;cursor:pointer;
+  background:#00E5A0;color:#07080f;font-family:var(--body);font-weight:700;font-size:.92rem;
+  white-space:nowrap;transition:background .2s ease}
+.vrl-f button:hover{background:#4dffc4}
+.vrl-f button:disabled{opacity:.6;cursor:default}
+.vrl-fine{margin:14px 0 0!important;font-size:.79rem;color:rgba(255,255,255,.4)!important}
+.vrl-ok{display:none;text-align:center}
+.vrl.done .vrl-f,.vrl.done .vrl-fine,.vrl.done .vrl-i{display:none}
+.vrl.done .vrl-ok{display:block}
+.vrl-ok .dcp-cta{margin-top:6px}
+.vrl-i{font-family:var(--mono);font-size:.72rem;letter-spacing:.09em;text-transform:uppercase;
+  color:#00E5A0;margin:0 0 10px!important}
+
+/* Le bouton d'ouverture du dépôt, en gros, la où il faut. */
+.dcp .depot-cta{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin:26px 0 0}
+.dcp .depot-cta .note{font-family:var(--mono);font-size:.78rem;color:var(--faint)}
+.dcp-band .depot-cta .note{color:rgba(255,255,255,.45)}
+@media(max-width:560px){
+  .vrl-f{flex-wrap:wrap}
+  .vrl-f input,.vrl-f button{flex:1 1 100%;width:100%}
+  .vrl-f button{border-top:1px solid rgba(255,255,255,.16)}
+}
+/* Le cadre d'envoi et le label restent dans l'arbre d'accessibilite mais
+   hors de l'ecran : display:none retirerait le label aux lecteurs d'ecran
+   et rendrait l'iframe capricieuse comme cible de formulaire. */
+.vrl-cadre{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none;border:0}
+.vrl-lbl{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;
+  clip-path:inset(50%);white-space:nowrap}
+@media(prefers-reduced-motion:reduce){.vrl.on,.vrl-c{animation:none}}
 </style>

@@ -18,6 +18,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import wpcss                                              # noqa: E402
 import pied_technique as PT                               # noqa: E402
 import depot_claude_seo as D                              # noqa: E402
+import verrou as V                                        # noqa: E402
 
 SKIN = open(RACINE / 'content/skins/dcp.css', encoding='utf-8').read()
 FONTS = ('<link rel="stylesheet" href="https://fonts.googleapis.com/css2?'
@@ -65,20 +66,14 @@ TERM = """<div class="term rise"><div class="term-bar"><i></i><i></i><i></i><b>c
 # iframe invisible : c'est le dispositif deja en place sur le reste du site,
 # et on ne le change pas ici pour une seule page. Sa limite est connue —
 # aucune reponse n'est lue, donc un refus de Substack passe inapercu.
-NEWSLETTER = """<div class="nl rise">
-  <h3>Ce qu'on publie avant tout le monde</h3>
-  <p>Les skills qu'on ajoute au dépôt, ce qui casse chez Google, ce que les
-  moteurs IA changent pour de vrai. Une fois par semaine, sans remplissage.</p>
-  <form action="https://decupler.substack.com/api/v1/free" method="post" target="dcp_nl">
-    <label class="nl-cadre" for="nl-email">Votre adresse email</label>
-    <input id="nl-email" type="email" name="email" placeholder="vous@exemple.fr" required autocomplete="email">
-    <input type="hidden" name="first_url" value="https://decupler.substack.com">
-    <input type="hidden" name="first_referrer" value="https://decupler.com">
-    <button type="submit">Recevoir la newsletter</button>
-  </form>
-  <p class="nl-fine">Désabonnement en un clic. Votre adresse ne sert qu'à ça.</p>
-  <iframe name="dcp_nl" title="Inscription newsletter" class="nl-cadre" aria-hidden="true" tabindex="-1"></iframe>
-</div>"""
+def cta_depot(note="Licence MIT · gratuit · 2 minutes à installer", classe=""):
+    """Le bouton d'ouverture du dépôt. Le href est réel : sans JavaScript il
+    marche, et c'est l'écouteur du verrou qui l'intercepte."""
+    return (f'<p class="depot-cta{classe}">'
+            f'<a class="dcp-cta" href="{DEPOT}" data-depot target="_blank" rel="noopener">'
+            f'Ouvrir le dépôt sur GitHub</a>'
+            f'<span class="note">{note}</span></p>')
+
 
 CHIFFRES = [(N_SKILLS, "skills"), (len(D.AGENTS), "agents"),
             (len(D.COMMANDES), "commandes"), (len(MCP), "MCP branchés")]
@@ -155,8 +150,7 @@ def page():
     <p class="lead">{N_SKILLS} skills, {len(D.AGENTS)} agents et {len(D.COMMANDES)} commandes
     pour Claude Code. Ça audite, ça corrige, ça rédige, ça publie, ça mesure —
     en français, et en autonomie.</p>
-    <p><a class="dcp-cta" href="{DEPOT}" target="_blank" rel="noopener">Ouvrir le dépôt sur GitHub</a></p>
-    <p class="dcp-under">Licence MIT · installation en une commande · {len(MCP)} MCP optionnels</p>
+    {cta_depot(f"Licence MIT · {len(MCP)} MCP optionnels")}
   </div>
   {TERM}
 </div></section>
@@ -169,7 +163,7 @@ def page():
   sont pas des gains théoriques : c'est le temps que prend la même sortie,
   faite à la main puis faite par les agents.</p>
   {avant_apres_html()}
-  {NEWSLETTER}
+  {cta_depot("Les 40 skills sont dedans, gratuitement")}
 </div></section>
 
 <section class="dcp-sec" id="skills"><div class="in">
@@ -178,6 +172,7 @@ def page():
   concerne. Vous n'avez pas à retenir cette liste — elle est là pour que vous
   sachiez ce qui est couvert avant d'installer.</p>
   {blocs_html()}
+  {cta_depot("Tout est dans le dépôt")}
 </div></section>
 
 <section class="dcp-band" id="agents"><div class="in plein">
@@ -248,10 +243,14 @@ def page():
   <h2>Le dépôt est ouvert.<br>Servez-vous.</h2>
   <p class="band-p">Licence MIT, {N_SKILLS} skills, {len(D.AGENTS)} agents.
   Et si vous voulez ce qu'on publie avant tout le monde, la newsletter est là.</p>
-  <p class="band-act"><a class="dcp-cta vert" href="{DEPOT}" target="_blank" rel="noopener">Ouvrir le dépôt</a></p>
-  {NEWSLETTER}
+  <p class="band-act"><a class="dcp-cta vert" href="{DEPOT}" data-depot target="_blank" rel="noopener">Ouvrir le dépôt</a></p>
 </div></section>
 
+{V.modale(DEPOT,
+    "Laissez votre email, le dépôt s'ouvre",
+    "40 skills, 14 agents, 15 commandes. Gratuit, licence MIT. En échange, "
+    "vous recevez ce qu'on publie avant tout le monde — une fois par semaine, "
+    "sans remplissage.")}
 {PT.rendu(FAQ)}
 </div>"""
 
