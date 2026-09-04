@@ -18,9 +18,22 @@ await p.setContent(shell,{waitUntil:'domcontentloaded'});
 await new Promise(r=>setTimeout(r,2500));
 const r = await p.evaluate((W)=>{
   const res = {scrollW: document.documentElement.scrollWidth, viewport: W, debord: [], contraste: [], etats: {}};
+  // Un bloc large qui defile dans son propre conteneur overflow-x:auto est
+  // le comportement voulu, pas un debordement : ses enfants depassent le
+  // viewport par construction. Sans cette exception, tout bloc de code fait
+  // crier le controle et on finit par ne plus le lire.
+  const dansUnDefilement = e => {
+    for (let n = e.parentElement; n; n = n.parentElement) {
+      const ox = getComputedStyle(n).overflowX;
+      if (ox === 'auto' || ox === 'scroll') return true;
+      if (n.classList && n.classList.contains('dcp')) return false;
+    }
+    return false;
+  };
   document.querySelectorAll('.dcp, .dcp *').forEach(e=>{
     const b = e.getBoundingClientRect();
-    if (b.right > W + 1) res.debord.push(`${e.tagName.toLowerCase()}.${(e.className||'').toString().slice(0,34)} w=${Math.round(b.width)} right=${Math.round(b.right)}`);
+    if (b.right > W + 1 && !dansUnDefilement(e))
+      res.debord.push(`${e.tagName.toLowerCase()}.${(e.className||'').toString().slice(0,34)} w=${Math.round(b.width)} right=${Math.round(b.right)}`);
   });
   res.debord = res.debord.slice(0, 8);
   // contraste texte

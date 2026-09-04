@@ -710,4 +710,67 @@ body .site-content,body #content{margin-bottom:0!important;padding-bottom:0!impo
 .kpi-v{display:block;margin-top:2px;font-family:var(--display);font-weight:800;
   font-size:1.18rem;letter-spacing:-.02em;color:var(--ink);
   font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1}
+/* ══ Page dépôt : le terminal ══════════════════════════════════════════
+   La cible de cette page vit dans un terminal. C'est l'objet de son monde,
+   et il vaut mieux qu'une photo d'ordinateur portable : il montre ce que
+   l'outil fait, pas a quoi il ressemble.                                  */
+/* min-width:0 est indispensable : un element de grille ou de flex vaut
+   `min-width:auto`, donc il s'elargit jusqu'au contenu et le
+   `overflow-x:auto` du <pre> ne sert plus a rien. Constate a 390px : 827px
+   de large sur un viewport de 390. */
+.term{background:#0d0e1c;border:1px solid rgba(255,255,255,.1);border-radius:14px;
+  overflow:hidden;box-shadow:0 28px 56px -30px rgba(0,0,0,.7);min-width:0;max-width:100%}
+.dcp-grid>*,.et-l>*,.ao-b>*{min-width:0}
+.term-bar{display:flex;align-items:center;gap:7px;padding:10px 13px;
+  background:rgba(255,255,255,.05);border-bottom:1px solid rgba(255,255,255,.08)}
+.term-bar i{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.2)}
+.term-bar b{margin-left:8px;font-family:var(--mono);font-size:.76rem;font-weight:400;
+  color:rgba(255,255,255,.5)}
+.term pre{margin:0;padding:16px 17px 18px;font-family:var(--mono);font-size:.79rem;
+  line-height:1.75;color:rgba(255,255,255,.72);white-space:pre;overflow-x:auto;
+  -webkit-overflow-scrolling:touch}
+.term .tp{color:#7B5CFA}
+.term .tc{color:#fff;font-weight:700}
+.term .tm{color:rgba(255,255,255,.42)}
+.term .tok{color:#00E5A0}
+.term .tw{color:#ffc46b}
+
+/* ── Les blocs de skills ─────────────────────────────────────────────── */
+.blc+.blc{margin-top:34px}
+.blc-h{display:flex;align-items:baseline;gap:12px;margin:0 0 4px}
+.blc-h h3{font-family:var(--display);font-size:1.14rem;font-weight:800;margin:0;
+  letter-spacing:-.02em;color:var(--ink)}
+.blc-h span{font-family:var(--mono);font-size:.74rem;color:var(--faint)}
+.blc-l{list-style:none;margin:14px 0 0;padding:0;
+  display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--edge);
+  border:1px solid var(--edge);border-radius:12px;overflow:hidden}
+.blc-l li{background:var(--surface);padding:13px 15px}
+.blc-l code{display:block;font-family:var(--mono);font-size:.79rem;font-weight:700;
+  color:var(--vio-t);margin:0 0 3px;background:none;padding:0}
+.blc-l span{font-size:.86rem;color:var(--soft);line-height:1.5}
+
+/* ── Agents, commandes, MCP : des jetons, pas des cartes ─────────────── */
+/* Deux colonnes plutot que du flex-wrap : les descriptions n'ont pas la meme
+   longueur, et en flux libre la rangee devient un escalier illisible. Les
+   jetons sans description (les MCP) gardent le flux, eux. */
+.jet{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:16px 0 0;padding:0;list-style:none}
+.jet.mcp{display:flex;flex-wrap:wrap}
+.jet li{background:var(--surface);border:1px solid var(--edge);border-radius:9px;
+  padding:8px 12px;font-size:.86rem;color:var(--ink)}
+.jet li b{font-family:var(--mono);font-size:.8rem;font-weight:700;color:var(--vio-t)}
+.jet li span{display:block;font-size:.79rem;color:var(--faint);margin-top:2px;line-height:1.5}
+.jet.mcp li{font-family:var(--mono);font-size:.81rem;color:var(--soft)}
+
+/* Sur fond sombre, les jetons prennent la surface de la bande. */
+.dcp-band .jet li{background:rgba(255,255,255,.055);border-color:rgba(255,255,255,.11);color:#fff}
+.dcp-band .jet li b{color:#a58cff}
+.dcp-band .jet li span{color:rgba(255,255,255,.55)}
+.dcp-band .jet.mcp li{color:rgba(255,255,255,.78)}
+
+@media(max-width:760px){.blc-l,.jet{grid-template-columns:1fr}}
+/* La bande de chiffres du dépôt en porte quatre ; `.dcp-band .in` est en
+   trois colonnes pour le compteur de la page pilier. */
+.dcp-band .in.chiffres{grid-template-columns:repeat(4,1fr);gap:20px}
+.dcp .lead.suite{margin-top:22px}
+@media(max-width:700px){.dcp-band .in.chiffres{grid-template-columns:1fr 1fr;gap:26px}}
 </style>
