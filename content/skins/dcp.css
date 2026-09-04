@@ -727,6 +727,11 @@ body .site-content,body #content{margin-bottom:0!important;padding-bottom:0!impo
 .term-bar i{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.2)}
 .term-bar b{margin-left:8px;font-family:var(--mono);font-size:.76rem;font-weight:400;
   color:rgba(255,255,255,.5)}
+/* Astra pose un fond clair sur <pre>. Ma regle ne peignait que `.term`, donc
+   le <pre> repeignait par-dessus : terminal blanc, texte en blanc casse
+   dessus, illisible. Constate en production le 4 septembre 2026. */
+.dcp .term pre{background:transparent!important;border:none!important;
+  color:rgba(255,255,255,.72)!important;border-radius:0}
 .term pre{margin:0;padding:16px 17px 18px;font-family:var(--mono);font-size:.79rem;
   line-height:1.75;color:rgba(255,255,255,.72);white-space:pre;overflow-x:auto;
   -webkit-overflow-scrolling:touch}
@@ -834,4 +839,34 @@ body .site-content,body #content{margin-bottom:0!important;padding-bottom:0!impo
   .av{font-size:.88rem}
   .av th:not(:first-child),.av td:not(:first-child){width:26%}
 }
+/* ── Capture email ────────────────────────────────────────────────────── */
+.nl{background:var(--surface);border:1px solid var(--edge);border-radius:16px;
+  padding:26px 28px;box-shadow:0 22px 44px -32px rgba(20,21,43,.32);
+  max-width:560px;margin:26px 0 0}
+.dcp-band .nl{background:rgba(255,255,255,.055);border-color:rgba(255,255,255,.14);
+  box-shadow:none}
+.nl h3{font-family:var(--display);font-size:1.06rem;font-weight:800;margin:0 0 6px;color:var(--ink)}
+.dcp-band .nl h3{color:#fff}
+.nl p{font-size:.92rem;color:var(--soft);margin:0 0 16px}
+.dcp-band .nl p{color:rgba(255,255,255,.6)}
+.nl form{display:flex;gap:9px;flex-wrap:wrap}
+.nl input[type=email]{flex:1 1 220px;min-width:0;font-family:var(--body);font-size:.95rem;
+  color:var(--ink);background:var(--ground);border:1px solid var(--edge);
+  border-radius:10px;padding:12px 14px}
+.dcp-band .nl input[type=email]{background:rgba(255,255,255,.08);
+  border-color:rgba(255,255,255,.18);color:#fff}
+.nl input[type=email]::placeholder{color:var(--faint)}
+.dcp-band .nl input[type=email]::placeholder{color:rgba(255,255,255,.42)}
+.nl input[type=email]:focus-visible{outline:2px solid var(--vio-t);outline-offset:2px;
+  border-color:var(--vio)}
+.nl button{font-family:var(--body);font-weight:700;font-size:.95rem;cursor:pointer;
+  background:var(--ink);color:#fff;border:none;border-radius:10px;padding:12px 20px;
+  transition:transform .2s ease,box-shadow .2s ease}
+.dcp-band .nl button{background:#00E5A0;color:#07080f}
+.nl button:hover{transform:translateY(-1px);box-shadow:0 12px 24px -12px rgba(20,21,43,.55)}
+.nl-fine{margin:12px 0 0;font-size:.79rem;color:var(--faint)}
+.dcp-band .nl-fine{color:rgba(255,255,255,.45)}
+.nl-cadre{display:none}
+.nl label.nl-cadre{display:block;position:absolute;width:1px;height:1px;
+  margin:-1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 </style>

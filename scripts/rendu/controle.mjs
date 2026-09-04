@@ -10,7 +10,8 @@ import puppeteer from 'puppeteer';
 import fs from 'node:fs';
 const html = fs.readFileSync(process.argv[2], 'utf8');
 const W = Number(process.argv[3] || 390);
-const shell = `<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><style>html,body{margin:0;padding:0;background:#fff;font-family:system-ui}.ast-container{max-width:1280px;margin:0 auto}.entry-content{margin:0 20px}</style><div class="ast-container"><div class="site-content"><main><article class="ast-article-single"><div class="entry-content">${html}</div></article></main></div></div>`;
+const shell = `<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><style>html,body{margin:0;padding:0;background:#fff;font-family:system-ui}.ast-container{max-width:1280px;margin:0 auto}.entry-content{margin:0 20px}/* Astra peint les <pre> en clair : sans cette regle le harnais
+   valide un terminal sombre que la production affiche blanc. */pre{background:#f4f4f6;border:1px solid #e3e3e8;border-radius:4px;padding:12px}</style><div class="ast-container"><div class="site-content"><main><article class="ast-article-single"><div class="entry-content">${html}</div></article></main></div></div>`;
 const b = await puppeteer.launch({headless:true, executablePath:'/opt/pw-browsers/chromium-1194/chrome-linux/chrome', args:['--no-sandbox','--disable-dev-shm-usage']});
 const p = await b.newPage();
 await p.setViewport({width:W, height:900});

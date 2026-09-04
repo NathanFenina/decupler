@@ -60,6 +60,26 @@ TERM = """<div class="term rise"><div class="term-bar"><i></i><i></i><i></i><b>c
 <span class="ln l9"><span class="tm">Score</span> <span class="tc">58/100</span><span class="tm"> · plan écrit dans</span> <span class="tc">audit.md</span></span>
 <span class="ln l10"><span class="tp">›</span> <span class="tc">/seo-fix --auto</span>   <span class="tm">9 correctifs appliqués</span></span></pre></div>"""
 
+
+# La capture email. Le formulaire poste directement chez Substack, dans une
+# iframe invisible : c'est le dispositif deja en place sur le reste du site,
+# et on ne le change pas ici pour une seule page. Sa limite est connue —
+# aucune reponse n'est lue, donc un refus de Substack passe inapercu.
+NEWSLETTER = """<div class="nl rise">
+  <h3>Ce qu'on publie avant tout le monde</h3>
+  <p>Les skills qu'on ajoute au dépôt, ce qui casse chez Google, ce que les
+  moteurs IA changent pour de vrai. Une fois par semaine, sans remplissage.</p>
+  <form action="https://decupler.substack.com/api/v1/free" method="post" target="dcp_nl">
+    <label class="nl-cadre" for="nl-email">Votre adresse email</label>
+    <input id="nl-email" type="email" name="email" placeholder="vous@exemple.fr" required autocomplete="email">
+    <input type="hidden" name="first_url" value="https://decupler.substack.com">
+    <input type="hidden" name="first_referrer" value="https://decupler.com">
+    <button type="submit">Recevoir la newsletter</button>
+  </form>
+  <p class="nl-fine">Désabonnement en un clic. Votre adresse ne sert qu'à ça.</p>
+  <iframe name="dcp_nl" title="Inscription newsletter" class="nl-cadre" aria-hidden="true" tabindex="-1"></iframe>
+</div>"""
+
 CHIFFRES = [(N_SKILLS, "skills"), (len(D.AGENTS), "agents"),
             (len(D.COMMANDES), "commandes"), (len(MCP), "MCP branchés")]
 
@@ -149,6 +169,7 @@ def page():
   sont pas des gains théoriques : c'est le temps que prend la même sortie,
   faite à la main puis faite par les agents.</p>
   {avant_apres_html()}
+  {NEWSLETTER}
 </div></section>
 
 <section class="dcp-sec" id="skills"><div class="in">
@@ -227,8 +248,8 @@ def page():
   <h2>Le dépôt est ouvert.<br>Servez-vous.</h2>
   <p class="band-p">Licence MIT, {N_SKILLS} skills, {len(D.AGENTS)} agents.
   Et si vous voulez ce qu'on publie avant tout le monde, la newsletter est là.</p>
-  <p class="band-act"><a class="dcp-cta vert" href="{DEPOT}" target="_blank" rel="noopener">Ouvrir le dépôt</a>
-  &nbsp;<a class="dcp-cta" href="https://decupler.substack.com" target="_blank" rel="noopener">La newsletter</a></p>
+  <p class="band-act"><a class="dcp-cta vert" href="{DEPOT}" target="_blank" rel="noopener">Ouvrir le dépôt</a></p>
+  {NEWSLETTER}
 </div></section>
 
 {PT.rendu(FAQ)}
