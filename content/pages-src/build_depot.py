@@ -27,6 +27,18 @@ FONTS = ('<link rel="stylesheet" href="https://fonts.googleapis.com/css2?'
 DEPOT = "https://github.com/NathanFenina/claude-seo"
 N_SKILLS = sum(len(v) for _, v in D.BLOCS)
 
+# Le tableau du README du dépôt, repris tel quel. Ce sont les mesures que le
+# dépôt annonce : la page les relaie, elle ne les invente pas et ne les
+# arrondit pas dans le bon sens.
+AVANT_APRES = [
+    ("Quick wins du mois", "~2 h", "6 min"),
+    ("Brief adossé à la SERP", "~1 h 30", "4 min"),
+    ("Article + visuels + publication", "~4 h", "9 min"),
+    ("Mesure de visibilité IA", "~2 h", "5 min"),
+    ("Rapport mensuel", "~3 h", "3 min"),
+]
+TOTAL = ("12 h 30", "27 min")
+
 MCP = ["dataforseo", "ahrefs", "semrush", "ubersuggest", "search-console",
        "google-analytics", "firecrawl", "chrome-devtools", "wordpress",
        "webflow", "notion", "perplexity", "reddit"]
@@ -36,19 +48,29 @@ MCP = ["dataforseo", "ahrefs", "semrush", "ubersuggest", "search-console",
 TERM = """<div class="term rise"><div class="term-bar"><i></i><i></i><i></i><b>claude code — votre-site.fr</b></div><pre><span class="tp">›</span> <span class="tc">/seo-audit votre-site.fr</span>
 <span class="tm">8 agents lancés en parallèle…</span>
 
-  <span class="tok">✓</span> technique     <span class="tm">14 problèmes · 9 corrigés</span>
-  <span class="tok">✓</span> performance   <span class="tm">LCP 4,1 s · causes localisées</span>
-  <span class="tok">✓</span> contenu       <span class="tm">6 pages minces</span>
-  <span class="tok">✓</span> schema        <span class="tm">JSON-LD absent · 31 pages</span>
-  <span class="tw">!</span> geo           <span class="tm">0 citation IA sur 12 requêtes</span>
-  <span class="tok">✓</span> serp · data · concurrence
+<span class="ln l1">  <span class="st s1"><span class="run tm">⠿</span><span class="ok tok">✓</span></span> <span class="tc">seo-technique</span>     <span class="tm">14 problèmes · 9 corrigés</span></span>
+<span class="ln l2">  <span class="st s2"><span class="run tm">⠿</span><span class="ok tok">✓</span></span> <span class="tc">seo-performance</span>   <span class="tm">LCP 4,1 s · causes localisées</span></span>
+<span class="ln l3">  <span class="st s3"><span class="run tm">⠿</span><span class="ok tok">✓</span></span> <span class="tc">seo-crawler</span>       <span class="tm">312 URL · 6 orphelines</span></span>
+<span class="ln l4">  <span class="st s4"><span class="run tm">⠿</span><span class="ok tok">✓</span></span> <span class="tc">seo-contenu</span>       <span class="tm">6 pages minces</span></span>
+<span class="ln l5">  <span class="st s5"><span class="run tm">⠿</span><span class="ok tok">✓</span></span> <span class="tc">seo-schema</span>        <span class="tm">JSON-LD absent · 31 pages</span></span>
+<span class="ln l6">  <span class="st s6"><span class="run tm">⠿</span><span class="ok tok">✓</span></span> <span class="tc">seo-eeat</span>          <span class="tm">score 22/40</span></span>
+<span class="ln l7">  <span class="st s7"><span class="run tm">⠿</span><span class="ok tok">✓</span></span> <span class="tc">seo-geo</span>           <span class="tm">0 citation IA sur 12 requêtes</span></span>
+<span class="ln l8">  <span class="st s8"><span class="run tm">⠿</span><span class="ok tok">✓</span></span> <span class="tc">seo-data</span>          <span class="tm">Search Console · 90 jours</span></span>
 
-<span class="tm">Score</span> <span class="tc">58/100</span><span class="tm"> · plan écrit dans</span> <span class="tc">audit.md</span>
-<span class="tp">›</span> <span class="tc">/seo-fix --auto</span>
-<span class="tm">9 correctifs appliqués. 5 à valider.</span></pre></div>"""
+<span class="ln l9"><span class="tm">Score</span> <span class="tc">58/100</span><span class="tm"> · plan écrit dans</span> <span class="tc">audit.md</span></span>
+<span class="ln l10"><span class="tp">›</span> <span class="tc">/seo-fix --auto</span>   <span class="tm">9 correctifs appliqués</span></span></pre></div>"""
 
 CHIFFRES = [(N_SKILLS, "skills"), (len(D.AGENTS), "agents"),
             (len(D.COMMANDES), "commandes"), (len(MCP), "MCP branchés")]
+
+
+def avant_apres_html():
+    li = ''.join(f'<tr><td>{t}</td><td class="main">{a}</td>'
+                 f'<td class="ici">{b}</td></tr>' for t, a, b in AVANT_APRES)
+    return (f'<table class="av rise"><thead><tr><th>Tâche</th><th>À la main</th>'
+            f'<th>Ici</th></tr></thead><tbody>{li}</tbody>'
+            f'<tfoot><tr><td>Sur un mois</td><td class="main">{TOTAL[0]}</td>'
+            f'<td class="ici">{TOTAL[1]}</td></tr></tfoot></table>')
 
 
 def blocs_html():
@@ -120,6 +142,14 @@ def page():
 </div></section>
 
 <section class="dcp-band" id="chiffres"><div class="in chiffres">{ch}</div></section>
+
+<section class="dcp-band" id="ce-que-ca-change"><div class="in plein">
+  <h2>{TOTAL[0]} de SEO à la main<br>→ <em class="vert">{TOTAL[1]}</em></h2>
+  <p class="band-p">Les mesures annoncées par le dépôt, tâche par tâche. Ce ne
+  sont pas des gains théoriques : c'est le temps que prend la même sortie,
+  faite à la main puis faite par les agents.</p>
+  {avant_apres_html()}
+</div></section>
 
 <section class="dcp-sec" id="skills"><div class="in">
   <h2>Les {N_SKILLS} skills, rangés par ce qu'ils font</h2>

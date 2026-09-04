@@ -508,6 +508,7 @@ nav.post-navigation{display:none!important}
 .dcp-band .in.plein{display:block}
 .dcp-band.centre .in{text-align:center}
 .dcp-band h2{color:#fff}
+.dcp-band h2 em.vert{color:#00E5A0;font-style:normal}
 .dcp-band .band-p{color:rgba(255,255,255,.66);max-width:60ch;margin:0}
 .dcp-band.centre .band-p{margin:0 auto 22px;max-width:52ch}
 .dcp-band .band-act{margin:0}
@@ -773,4 +774,64 @@ body .site-content,body #content{margin-bottom:0!important;padding-bottom:0!impo
 .dcp-band .in.chiffres{grid-template-columns:repeat(4,1fr);gap:20px}
 .dcp .lead.suite{margin-top:22px}
 @media(max-width:700px){.dcp-band .in.chiffres{grid-template-columns:1fr 1fr;gap:26px}}
+/* ── Le terminal qui joue ────────────────────────────────────────────────
+   L'unique moment animé de la page : les huit agents arrivent, tournent,
+   puis basculent en « ok » l'un après l'autre. Déclenché par `.vu`, que
+   l'observateur pose au scroll — donc jamais joué hors de l'écran, et joué
+   une seule fois.                                                          */
+.term .ln{display:block;opacity:0}
+.term.vu .ln{animation:lnIn .34s cubic-bezier(.2,.8,.2,1) forwards}
+@keyframes lnIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+.term .st{position:relative;display:inline-block}
+.term .st .run,.term .st .ok{transition:none}
+.term .st .ok{position:absolute;left:0;top:0;opacity:0;white-space:nowrap}
+.term.vu .st .run{animation:stOut .3s ease forwards}
+.term.vu .st .ok{animation:stIn .3s ease forwards}
+@keyframes stOut{to{opacity:0}}
+@keyframes stIn{to{opacity:1}}
+/* Huit paliers : les lignes entrent, puis les états basculent dans le même
+   ordre. Les valeurs sont écrites une fois ici plutôt que dans le HTML. */
+.term .l1{animation-delay:.10s}.term .l2{animation-delay:.19s}
+.term .l3{animation-delay:.28s}.term .l4{animation-delay:.37s}
+.term .l5{animation-delay:.46s}.term .l6{animation-delay:.55s}
+.term .l7{animation-delay:.64s}.term .l8{animation-delay:.73s}
+.term .l9{animation-delay:1.5s}.term .l10{animation-delay:1.7s}
+.term .s1 .run,.term .s1 .ok{animation-delay:.95s}
+.term .s2 .run,.term .s2 .ok{animation-delay:1.03s}
+.term .s3 .run,.term .s3 .ok{animation-delay:1.11s}
+.term .s4 .run,.term .s4 .ok{animation-delay:1.19s}
+.term .s5 .run,.term .s5 .ok{animation-delay:1.27s}
+.term .s6 .run,.term .s6 .ok{animation-delay:1.35s}
+.term .s7 .run,.term .s7 .ok{animation-delay:1.43s}
+.term .s8 .run,.term .s8 .ok{animation-delay:1.51s}
+
+/* ── Avant / après ───────────────────────────────────────────────────── */
+.dcp table.av{width:100%;border-collapse:collapse;margin:22px 0 0;font-size:.94rem;background:transparent;border:none;box-shadow:none;border-radius:0}
+/* `.dcp thead th` pose un fond clair : sur la bande sombre il ressortait
+   en barre blanche au-dessus du tableau. */
+.dcp .av thead th{background:transparent}
+.dcp .av th{text-align:left;font-family:var(--mono);font-size:.73rem;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.42);
+  padding:0 0 11px;border-bottom:1px solid rgba(255,255,255,.12)}
+.dcp .av th:not(:first-child),.dcp .av td:not(:first-child){text-align:right;width:22%}
+.dcp .av td{padding:13px 0;border-bottom:1px solid rgba(255,255,255,.07);color:#fff}
+.dcp .av tr:last-child td{border-bottom:none}
+.dcp .av .main{color:rgba(255,255,255,.5);font-variant-numeric:tabular-nums;
+  font-feature-settings:"tnum" 1;text-decoration:line-through;
+  text-decoration-color:rgba(255,255,255,.3)}
+.dcp .av .ici{font-family:var(--display);font-weight:800;color:#00E5A0;
+  font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1}
+.dcp .av tfoot td{padding-top:15px;border-top:1px solid rgba(255,255,255,.18);
+  font-family:var(--display);font-weight:800;font-size:1.02rem}
+.dcp .av tfoot .ici{font-size:1.24rem}
+
+@media(prefers-reduced-motion:reduce){
+  .term .ln,.term.vu .ln{opacity:1;animation:none}
+  .term .st .ok{position:static;opacity:1}
+  .term .st .run{display:none}
+}
+@media(max-width:620px){
+  .av{font-size:.88rem}
+  .av th:not(:first-child),.av td:not(:first-child){width:26%}
+}
 </style>
