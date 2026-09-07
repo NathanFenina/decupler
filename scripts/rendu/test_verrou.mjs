@@ -47,6 +47,37 @@ await t('après envoi, le verrou s’ouvre et la clé est posée', async ()=>{
   return p.evaluate(()=>document.getElementById('vrl').classList.contains('done')
     && localStorage.getItem('lmg_sub')==='true');
 });
+
+await t('le défilement ouvre la modale', async ()=>{
+  await p.evaluate(()=>{ localStorage.removeItem('lmg_sub');
+    document.cookie='lmg_sub=;path=/;max-age=0'; });
+  await p.reload({waitUntil:'domcontentloaded'}); await new Promise(r=>setTimeout(r,900));
+  await p.mouse.move(640,400);
+  await p.mouse.wheel({deltaY:2600});
+  await new Promise(r=>setTimeout(r,600));
+  return p.evaluate(()=>document.getElementById('vrl').classList.contains('on'));
+});
+await t('après fermeture, le délai de 5 s ne la rouvre pas', async ()=>{
+  await p.keyboard.press('Escape'); await new Promise(r=>setTimeout(r,6200));
+  return p.evaluate(()=>document.getElementById('vrl').hidden===true);
+});
+await t('mais le clic sur le bouton dépôt la rouvre', async ()=>{
+  await p.evaluate(()=>document.querySelector('[data-depot]').click());
+  return p.evaluate(()=>document.getElementById('vrl').classList.contains('on'));
+});
+await t('sans défiler, elle s’ouvre seule après 5 s', async ()=>{
+  await p.reload({waitUntil:'domcontentloaded'});
+  await new Promise(r=>setTimeout(r,5900));
+  return p.evaluate(()=>document.getElementById('vrl').classList.contains('on'));
+});
+await t('un abonné n’est jamais dérangé, ni au scroll ni au délai', async ()=>{
+  await p.evaluate(()=>localStorage.setItem('lmg_sub','true'));
+  await p.reload({waitUntil:'domcontentloaded'});
+  await p.mouse.move(640,400); await p.mouse.wheel({deltaY:3000});
+  await new Promise(r=>setTimeout(r,6200));
+  return p.evaluate(()=>document.getElementById('vrl').hidden===true);
+});
+
 console.log(ok.join('\n'));
 console.log('\n' + (ok.every(l=>l.startsWith('  ok')) ? 'TOUS LES CONTROLES PASSENT' : 'AU MOINS UN ECHEC'));
 await b.close(); srv.close();

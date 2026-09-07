@@ -162,6 +162,7 @@
   function fermer(){
     m.classList.remove('on'); m.hidden=true;
     document.documentElement.style.overflow='';
+    ferme=true; desarmer();
     if(rendu&&rendu.focus) rendu.focus();
   }
   document.getElementById('vrl-x').addEventListener('click',fermer);
@@ -184,6 +185,32 @@
       });
     })(b[i]);
   }
+  /* Trois declencheurs. Le clic sur un bouton depot est une demande
+     explicite : il ouvre toujours. Le defilement et le delai sont des
+     ouvertures automatiques — elles ne se produisent qu'une fois, et plus
+     jamais si le visiteur a deja ferme la modale. Reproposer une popup a
+     quelqu'un qui vient de la fermer, c'est la faire fermer plus vite. */
+  var autoFait=false, ferme=false;
+  function auto(){
+    if(autoFait||ferme||abonne()) return;
+    if(m.classList.contains('on')) return;
+    autoFait=true; desarmer(); ouvrir(null);
+  }
+  var minuteur=setTimeout(auto,5000);
+  /* Un seuil en pixels ne veut rien dire sur une page de 8000px comme sur
+     une de 1200 : on declenche a 12% de ce qui reste a lire, plancher a
+     300px pour que le geste soit intentionnel. */
+  function seuil(){
+    var h=document.documentElement.scrollHeight-window.innerHeight;
+    return Math.max(300, h*0.12);
+  }
+  function auScroll(){ if((window.scrollY||window.pageYOffset)>seuil()) auto(); }
+  function desarmer(){
+    clearTimeout(minuteur);
+    window.removeEventListener('scroll',auScroll);
+  }
+  window.addEventListener('scroll',auScroll,{passive:true});
+  auScroll();
   f.addEventListener('submit',function(){
     envoye=true;
     var s=f.querySelector('button[type=submit]');

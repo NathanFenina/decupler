@@ -9,7 +9,11 @@ Trois décisions qui tiennent le dispositif :
 2. **Sans JavaScript, les boutons restent de vrais liens.** Le `href` pointe
    vers GitHub et c'est le script qui l'intercepte. Un visiteur non capturé
    vaut mieux qu'un visiteur devant une porte que rien ne peut ouvrir.
-3. **Le succès ouvre le dépôt dans la foulée.** On ne fait pas remplir un
+3. **Trois déclencheurs.** Le clic sur un bouton dépôt est une demande
+   explicite : il ouvre toujours. Le défilement (12 % de la page, plancher
+   à 300 px) et le délai de 5 s sont automatiques — une seule fois, et plus
+   jamais si le visiteur a déjà fermé la modale.
+4. **Le succès ouvre le dépôt dans la foulée.** On ne fait pas remplir un
    formulaire pour ensuite demander de recliquer.
 
 Limite connue et non corrigée ici : le formulaire poste dans une iframe et
@@ -70,6 +74,7 @@ JS = """
   function fermer(){
     m.classList.remove('on'); m.hidden=true;
     document.documentElement.style.overflow='';
+    ferme=true; desarmer();
     if(rendu&&rendu.focus) rendu.focus();
   }
   document.getElementById('vrl-x').addEventListener('click',fermer);
@@ -92,6 +97,33 @@ JS = """
       });
     })(b[i]);
   }
+
+  /* Trois declencheurs. Le clic sur un bouton depot est une demande
+     explicite : il ouvre toujours. Le defilement et le delai sont des
+     ouvertures automatiques — elles ne se produisent qu'une fois, et plus
+     jamais si le visiteur a deja ferme la modale. Reproposer une popup a
+     quelqu'un qui vient de la fermer, c'est la faire fermer plus vite. */
+  var autoFait=false, ferme=false;
+  function auto(){
+    if(autoFait||ferme||abonne()) return;
+    if(m.classList.contains('on')) return;
+    autoFait=true; desarmer(); ouvrir(null);
+  }
+  var minuteur=setTimeout(auto,5000);
+  /* Un seuil en pixels ne veut rien dire sur une page de 8000px comme sur
+     une de 1200 : on declenche a 12% de ce qui reste a lire, plancher a
+     300px pour que le geste soit intentionnel. */
+  function seuil(){
+    var h=document.documentElement.scrollHeight-window.innerHeight;
+    return Math.max(300, h*0.12);
+  }
+  function auScroll(){ if((window.scrollY||window.pageYOffset)>seuil()) auto(); }
+  function desarmer(){
+    clearTimeout(minuteur);
+    window.removeEventListener('scroll',auScroll);
+  }
+  window.addEventListener('scroll',auScroll,{passive:true});
+  auScroll();
   f.addEventListener('submit',function(){
     envoye=true;
     var s=f.querySelector('button[type=submit]');
