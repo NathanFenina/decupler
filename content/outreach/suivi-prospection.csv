@@ -1,0 +1,16 @@
+cible,type,effectif,ville,contact,email,source_email,gabarit,envoye,relance_1,statut,notes
+Agence Comback (Cedric Messina),agence sans SEO + CCI,36,Nice,Cedric Messina,,linkedin,appel,,,a_faire,VP CCI Cote d'Azur + MEDEF + French Tech - passer par LinkedIn pas par email
+Groupe Ferrua Ribes,expert-comptable,52,Nice,Jerome Ribes / Geoffrey Benmergui,contact@ferrua-ribes.com,site public,email-11,,,a_envoyer,2 associes identifies - adresses nominatives via enrichissement
+Trintignac & Associes,expert-comptable,50,Le Cannet,,cta@trintignac.fr,site public,email-11,,,a_envoyer,cabinet fonde en 1931
+Fidexcom,expert-comptable,24,Roquebrune-Cap-Martin,,secretariat@fidex.fr,site public,email-11,,,a_envoyer,
+Wilson & Co,expert-comptable,20,Nice,,accueil@fiduciaire-wilson.com,site public,email-11,,,a_envoyer,fait deja du conseil au dirigeant - bon terrain
+JB Audit Conseil,expert-comptable,19,Nice,,contact@jbaudit.com,site public,email-11,,,a_envoyer,3 bureaux (Nice Antibes Mouans-Sartoux)
+Ansemble Duo Decimal,expert-comptable,16,Nice,,contact@duodecimal.fr,site public,email-11,,,a_envoyer,
+AUDELIA,expert-comptable,7,Nice,,contact@audelia-nice.fr,site public,email-11,,,a_envoyer,
+MPL Region Sud Cote d'Azur,reseau professions liberales,10,Nice,,araplca@araplca.org,site public,email-11-variante,,,a_envoyer,acces direct aux professions liberales du 06
+CCI Nice Cote d'Azur,institution,423,Nice,,allocci@cote-azur.cci.fr,site public,appel,,,a_faire,passer par Cedric Messina et non par l'accueil
+Panacee Expertise,expert-comptable,6,Nice,,,aucune adresse publique,email-11,,,bloque,enrichissement necessaire
+NOVACEA,expert-comptable,8,Cagnes-sur-Mer,,,aucune adresse publique,email-11,,,bloque,enrichissement necessaire
+CONSEILIANCE,expert-comptable,9,Nice,,,pas de domaine,email-11,,,bloque,a chercher manuellement
+Bosphore Sense,agence sans SEO,16,Nice,,,aucune adresse publique,email-11,,,bloque,sante & beaute - colle avec nos pages dentiste et institut
+ANECS / CJEC Cote d'Azur,reseau experts-comptables,6,Nice,,,aucune adresse publique,email-11-variante,,,bloque,jeunes experts-comptables - meilleur relais vers les cabinets

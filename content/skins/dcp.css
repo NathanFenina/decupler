@@ -426,4 +426,480 @@ nav.post-navigation{display:none!important}
   .dcp-band .in{grid-template-columns:1fr}
   .arrow{transform:rotate(90deg)}
   .dcp table{display:block;overflow-x:auto}}
+
+
+/* ══ Page « site gratuit » — l'offre présentée comme un socle + des modules ══
+   Structure : un socle indivisible (le site à 0 € et sa mise en ligne à 97 €),
+   puis trois modules qu'on ajoute quand on veut. Ce n'est pas un escalier :
+   les deux modules a 397 € sont paralleles, pas successifs. Les presenter en
+   cinq cartes egales mentirait sur la forme reelle de l'offre.               */
+
+/* Les prix s'alignent verticalement d'une ligne a l'autre : chiffres a
+   chasse fixe. Sans ca, le « 1 » de 197 decale toute la colonne. */
+.dcp .prix{font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1}
+
+/* ── Le socle ─────────────────────────────────────────────────────────── */
+.socle{display:grid;grid-template-columns:1fr auto 1fr;align-items:stretch;gap:0;
+  background:var(--surface);border:1px solid var(--edge);border-radius:16px;
+  box-shadow:0 22px 44px -30px rgba(20,21,43,.32);overflow:hidden}
+.socle-c{padding:34px 32px}
+.socle-c+.socle-c{border-left:1px solid var(--edge2)}
+.socle-plus{display:grid;place-items:center;width:52px;background:var(--vio-bg);
+  border-left:1px solid var(--edge2);border-right:1px solid var(--edge2);
+  font-family:var(--display);font-size:1.5rem;font-weight:800;color:var(--vio-t)}
+.socle .p-nb{font-family:var(--display);font-weight:800;line-height:1;letter-spacing:-.03em;
+  font-size:clamp(2.6rem,6vw,3.9rem);color:var(--ink);display:block}
+.socle .p-nb .u{font-size:.42em;letter-spacing:0;color:var(--faint);margin-left:6px}
+.socle .p-quoi{font-family:var(--display);font-size:1.06rem;font-weight:700;margin:14px 0 6px}
+.socle .p-txt{font-size:.94rem;color:var(--soft);margin:0}
+.socle ul{list-style:none;margin:14px 0 0;padding:0;font-size:.9rem;color:var(--soft)}
+.socle li{padding:0 0 0 20px;margin:0 0 6px;position:relative}
+.socle li::before{content:"";position:absolute;left:0;top:.52em;width:9px;height:9px;
+  border-radius:50%;border:2px solid var(--grn)}
+
+/* ── Les modules ──────────────────────────────────────────────────────── */
+.mods{margin:26px 0 0;border:1px solid var(--edge);border-radius:16px;
+  background:var(--surface);overflow:hidden}
+.mod{display:grid;grid-template-columns:172px 1fr;gap:26px;padding:26px 30px;align-items:start}
+.mod+.mod{border-top:1px solid var(--edge2)}
+.mod-p{font-family:var(--display);font-weight:800;font-size:1.55rem;line-height:1.1;
+  letter-spacing:-.025em;color:var(--vio-t);text-align:right}
+.mod-p small{display:block;font-family:var(--body);font-size:.78rem;font-weight:500;
+  letter-spacing:.02em;color:var(--faint);margin-top:5px;line-height:1.45}
+.mod h3{font-family:var(--display);font-size:1.08rem;font-weight:700;margin:0 0 4px;color:var(--ink)}
+.mod>div>p{font-size:.93rem;color:var(--soft);margin:0 0 12px;max-width:62ch}
+.mod-l{list-style:none;display:flex;flex-wrap:wrap;gap:7px;margin:0;padding:0}
+.mod-l li{font-size:.83rem;color:var(--soft);background:var(--ground);
+  border:1px solid var(--edge2);border-radius:8px;padding:5px 11px}
+
+/* ── « Pourquoi c'est gratuit » : trois affirmations, pas trois cartes ── */
+.pq{display:grid;grid-template-columns:repeat(3,1fr);gap:34px;margin:30px 0 0}
+.pq h3{font-family:var(--display);font-size:1rem;font-weight:700;color:#fff;margin:0 0 8px}
+.pq p{font-size:.92rem;color:rgba(255,255,255,.66);margin:0}
+.pq .r{display:block;width:26px;height:2px;background:#00E5A0;margin:0 0 15px;border-radius:2px}
+
+/* ── La condition, dite en clair et pas cachée dans la FAQ ───────────── */
+.cond{margin:30px 0 0;padding:22px 26px;border-radius:14px;
+  background:var(--vio-bg);border:1px solid rgba(123,92,250,.22)}
+.cond b{font-family:var(--display);font-size:1rem;color:var(--vio-t);display:block;margin:0 0 6px}
+.cond p{margin:0;font-size:.94rem;color:var(--soft)}
+
+@media(max-width:860px){
+  .socle{grid-template-columns:1fr}
+  .socle-c+.socle-c{border-left:0;border-top:1px solid var(--edge2)}
+  .socle-plus{width:auto;height:44px;border:0;border-top:1px solid var(--edge2);
+    border-bottom:1px solid var(--edge2)}
+  .mod{grid-template-columns:1fr;gap:12px}
+  .mod-p{text-align:left}
+  .pq{grid-template-columns:1fr;gap:26px}
+}
+
+/* ── Surfaces du navigateur : elles font partie du design ──────────────── */
+.dcp ::selection{background:rgba(123,92,250,.22);color:var(--ink)}
+.dcp{caret-color:var(--vio-t);scrollbar-color:rgba(123,92,250,.42) transparent}
+.dcp a:focus-visible,.dcp button:focus-visible,.dcp .dcp-cta:focus-visible{
+  outline:2px solid var(--vio-t);outline-offset:3px;border-radius:6px}
+.dcp a{text-underline-offset:3px}
+
+/* ── Bande sombre en une colonne ───────────────────────────────────────
+   `.dcp-band .in` est en grid trois colonnes pour le compteur de la page
+   pilier. Ici la bande porte du texte suivi : on remet une seule colonne
+   plutot que de poser un style inline, que la charte du projet interdit. */
+.dcp-band .in.plein{display:block}
+.dcp-band.centre .in{text-align:center}
+.dcp-band h2{color:#fff}
+.dcp-band h2 em.vert{color:#00E5A0;font-style:normal}
+.dcp-band .band-p{color:rgba(255,255,255,.66);max-width:60ch;margin:0}
+.dcp-band.centre .band-p{margin:0 auto 22px;max-width:52ch}
+.dcp-band .band-act{margin:0}
+.dcp-cta.vert{background:#00E5A0;color:#07080f!important}
+.dcp-cta.vert:hover{box-shadow:0 16px 30px -14px rgba(0,229,160,.55);color:#07080f!important}
+/* `.dcp p{margin:0 0 16px}` porte une specificite de (0,1,1) : une classe
+   seule ne peut pas la battre, et la marge etait ignoree en silence. */
+.dcp .mods-intro{margin:56px 0 14px}
+/* ── Le devis du hero ──────────────────────────────────────────────────
+   Un artisan lit des devis toute la journee : c'est l'objet de son monde
+   qui rend la structure de l'offre lisible d'un coup d'oeil. La ligne qui
+   porte la page est la derniere, « a payer aujourd'hui ».
+   Chiffres a chasse fixe et points de conduite : sans eux, les montants ne
+   s'alignent pas et l'objet ne ressemble plus a un devis.               */
+.recu{background:var(--surface);border:1px solid var(--edge);border-radius:16px;
+  box-shadow:0 24px 48px -32px rgba(20,21,43,.4);padding:26px 28px 24px;
+  font-size:.92rem;max-width:420px;margin-left:auto}
+.recu-t{font-family:var(--mono);font-size:.72rem;font-weight:700;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--faint);margin:0 0 18px}
+.recu dl{margin:0;display:grid;grid-template-columns:1fr auto;gap:0 14px;align-items:baseline}
+/* Chaque ligne est un <div> pour porter la classe .opt ; sans display:contents
+   c'est le div qui devient l'element de grille et les deux colonnes tombent. */
+.recu dl>div{display:contents}
+/* ...sauf le separateur : display:contents effacerait le div qui PORTE le
+   trait, et la ligne disparaitrait sans rien signaler. */
+.recu dl>div.sep{display:block}
+.recu dt{color:var(--soft);padding:9px 0;position:relative;overflow:hidden;white-space:nowrap}
+.recu dt::after{content:"";position:absolute;bottom:.42em;margin-left:8px;
+  width:100%;border-bottom:1px dotted var(--edge)}
+.recu dd{margin:0;padding:9px 0;text-align:right;font-variant-numeric:tabular-nums;
+  font-feature-settings:"tnum" 1;color:var(--ink);font-weight:500;white-space:nowrap}
+.recu .opt dt,.recu .opt dd{color:var(--faint);font-weight:400}
+.recu .sep{grid-column:1/-1;height:1px;background:var(--edge);margin:7px 0}
+.recu .tot dt{color:var(--ink);font-family:var(--display);font-weight:700;font-size:1rem}
+.recu .tot dt::after{border-bottom-color:transparent}
+.recu .tot dd{font-family:var(--display);font-weight:800;font-size:1.7rem;
+  letter-spacing:-.02em;color:var(--grn-t)}
+.recu-p{margin:18px 0 0;font-size:.82rem;color:var(--faint);line-height:1.5}
+@media(max-width:860px){.recu{margin:30px auto 0}}
+/* Sous 520px la colonne du libelle devient trop courte : les points de
+   conduite tronquaient « Mise en ligne et maintenance ». Le trait est un
+   confort de bureau, le libelle entier ne l'est pas — on garde le libelle. */
+@media(max-width:520px){
+  .recu dt{white-space:normal;overflow:visible;padding-right:4px}
+  .recu dt::after{display:none}
+}
+/* ══ Vitrine : les sites qu'on livre ═══════════════════════════════════
+   Une page qui vend des sites et n'en montre aucun demande au visiteur de
+   la croire sur parole. Les captures vivent sur le fond sombre : trois
+   maquettes claires sur de l'encre, c'est la seule bande de la page ou
+   l'image porte l'argument toute seule.                                   */
+.vit{margin:34px 0 0}
+.vit-l{margin:0 0 26px}
+.vit-duo{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+/* Les deux legendes ne font pas le meme nombre de lignes : sans colonne
+   flex, les cadres finissent a des hauteurs differentes et la rangee
+   devient bancale. */
+.vit-duo .shot{display:flex;flex-direction:column}
+.vit-duo .shot-cap{flex:1 1 auto}
+
+/* Le cadre de navigateur transforme une image en site. Sans lui, la capture
+   se lit comme une illustration ; avec, comme quelque chose qui existe. */
+.shot{display:block;border-radius:14px;overflow:hidden;background:#0f1020;
+  border:1px solid rgba(255,255,255,.11);
+  box-shadow:0 26px 54px -26px rgba(0,0,0,.75);
+  transform:translateZ(0);
+  transition:transform .5s cubic-bezier(.2,.8,.2,1),box-shadow .5s cubic-bezier(.2,.8,.2,1),
+             border-color .5s ease}
+.shot:hover,.shot:focus-visible{transform:translateY(-7px);
+  box-shadow:0 40px 70px -28px rgba(0,0,0,.85);border-color:rgba(123,92,250,.6)}
+.shot-bar{display:flex;align-items:center;gap:7px;padding:10px 13px;
+  background:rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.08)}
+.shot-bar i{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.22)}
+.shot-bar b{margin-left:8px;font-family:var(--mono);font-size:.71rem;font-weight:400;
+  letter-spacing:.02em;color:rgba(255,255,255,.5);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.shot img{display:block;width:100%;height:auto;margin:0}
+.shot-cap{padding:15px 16px 16px;background:rgba(255,255,255,.045)}
+.shot-cap h3{font-family:var(--display);font-size:1rem;font-weight:700;color:#fff;margin:0 0 4px}
+.shot-cap p{font-size:.86rem;color:rgba(255,255,255,.58);margin:0;line-height:1.5}
+
+/* Une seule cascade authorée sur la page : les trois maquettes arrivent
+   l'une apres l'autre. Le reste du site utilise .rise sans decalage. */
+.dcp .rise.d1{transition-delay:.09s}
+.dcp .rise.d2{transition-delay:.18s}
+.dcp .rise.d3{transition-delay:.27s}
+
+@media(max-width:760px){
+  .vit-duo{grid-template-columns:1fr;gap:22px}
+  .shot:hover{transform:none}
+}
+@media(prefers-reduced-motion:reduce){
+  .dcp .rise{transition:none}
+  .dcp .rise.d1,.dcp .rise.d2,.dcp .rise.d3{transition-delay:0s}
+  .shot{transition:none}
+  .shot:hover{transform:none}
+}
+
+/* ══ L'espace mort avant le pied de page ═══════════════════════════════
+   La derniere bande est pleine largeur et coloree : les marges basses que
+   le theme Astra pose sur l'article et son conteneur laissent une bande
+   claire entre elle et le footer. Le skin annulait deja le padding ; il
+   restait les marges et le padding de #main.                              */
+.dcp-band:last-child{margin-bottom:0}
+body .site-content .ast-article-single,body .site-content .entry-content,
+body .site-content #primary,body .site-content #main,body .site-content .site-main,
+body #content .ast-container{margin-bottom:0!important;padding-bottom:0!important}
+body .site-content,body #content{margin-bottom:0!important;padding-bottom:0!important}
+.dcp+*:empty,.dcp~p:empty{display:none!important}
+/* ══ Les modules, en encadres ══════════════════════════════════════════
+   La version en rangees compressait chaque module sur trois lignes et une
+   grappe d'etiquettes : impossible de comprendre ce qu'on achete. Chaque
+   module reprend donc la place d'un bloc a lui — prix, promesse, maquette
+   et liste — et alterne le cote de la maquette pour donner un rythme.     */
+.ao{background:var(--surface);border:1px solid var(--edge);border-radius:18px;
+  overflow:hidden;box-shadow:0 24px 48px -34px rgba(20,21,43,.34)}
+.ao+.ao{margin-top:22px}
+.ao-h{display:grid;grid-template-columns:auto 1fr;gap:26px;align-items:start;
+  padding:28px 30px 22px;border-bottom:1px solid var(--edge2)}
+.ao-p{font-family:var(--display);font-weight:800;font-size:1.75rem;line-height:1;
+  letter-spacing:-.03em;color:var(--vio-t);white-space:nowrap;
+  font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1}
+.ao-p small{display:block;font-family:var(--body);font-size:.76rem;font-weight:500;
+  letter-spacing:.01em;color:var(--faint);margin-top:7px;white-space:normal;max-width:15ch}
+.ao-h h3{font-family:var(--display);font-size:1.24rem;font-weight:800;margin:0 0 7px;
+  letter-spacing:-.02em;color:var(--ink)}
+.ao-h p{font-size:.96rem;color:var(--soft);margin:0;max-width:56ch;line-height:1.6}
+.ao-b{display:grid;grid-template-columns:minmax(0,340px) 1fr;gap:34px;
+  padding:28px 30px 30px;align-items:center;background:var(--ground)}
+.ao.inv .ao-b{grid-template-columns:1fr minmax(0,340px)}
+.ao.inv .ao-b .ao-v{order:2}
+
+/* La liste porte le detail de l'offre : deux colonnes, une puce dessinee,
+   jamais un caractere Unicode en guise d'icone. */
+.ao-l{list-style:none;margin:0;padding:0;display:grid;
+  grid-template-columns:1fr 1fr;gap:9px 22px}
+.ao-l li{position:relative;padding-left:25px;font-size:.93rem;color:var(--ink)}
+.ao-l li::before{content:"";position:absolute;left:0;top:.36em;width:15px;height:15px;
+  border-radius:5px;background:var(--grn-bg);border:1px solid rgba(0,184,127,.34)}
+.ao-l li::after{content:"";position:absolute;left:4.5px;top:.62em;width:6px;height:3px;
+  border-left:1.6px solid var(--grn-t);border-bottom:1.6px solid var(--grn-t);
+  transform:rotate(-45deg)}
+
+/* ── Le resultat de recherche local ─────────────────────────────────── */
+.lsa{display:flex;flex-direction:column;gap:8px}
+.lsa-l{background:var(--surface);border:1px solid var(--edge);border-radius:10px;padding:10px 12px}
+.lsa-l.vous{border-color:rgba(123,92,250,.55);background:var(--vio-bg)}
+.lsa-t{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.lsa-t b{font-size:.9rem;color:var(--ink)}
+.lsa-g{font-family:var(--mono);font-size:.73rem;font-weight:700;letter-spacing:.04em;
+  color:var(--grn-t);background:var(--grn-bg);border:1px solid rgba(0,184,127,.3);
+  border-radius:5px;padding:2px 6px;white-space:nowrap}
+.lsa-n{display:block;margin-top:4px;font-size:.79rem;color:var(--faint)}
+
+@media(max-width:820px){
+  .ao-h{grid-template-columns:1fr;gap:14px;padding:24px 22px 18px}
+  .ao-p small{max-width:none}
+  .ao-b,.ao.inv .ao-b{grid-template-columns:1fr;gap:24px;padding:24px 22px 26px}
+  .ao.inv .ao-b .ao-v{order:0}
+  .ao-l{grid-template-columns:1fr}
+}
+/* ══ Les trois visuels de données ══════════════════════════════════════
+   Palette validee par scripts/validate_palette.js du skill dataviz :
+   #7B5CFA et #007752 sur fond #fbfbfe passent les six controles. Le vert
+   clair #00B87F, lui, tombe a 2,49:1 contre la surface : il ne porte donc
+   jamais de sens seul, toujours double d'un libelle en encre.            */
+
+/* ── La courbe de trafic ─────────────────────────────────────────────── */
+.cx{display:block;width:100%;height:auto;margin:4px 0 2px;overflow:visible}
+.cx-b{stroke:var(--edge);stroke-width:1}
+.cx-l{fill:none;stroke:var(--vio);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.cx-p{fill:var(--vio-t);stroke:var(--surface);stroke-width:2}
+/* Le texte porte un jeton d'encre, jamais la couleur de la serie : la
+   couleur identifie la marque, pas ses valeurs. */
+.cx-v{fill:var(--ink);font-family:var(--display);font-size:11px;font-weight:800}
+.cx-m{fill:var(--faint);font-family:var(--mono);font-size:8.5px;text-anchor:middle}
+.viz-note{margin:8px 0 0;font-size:.79rem;color:var(--faint);line-height:1.45}
+
+/* ── Le workflow de l'agent ──────────────────────────────────────────── */
+.flw{list-style:none;margin:2px 0 0;padding:0;position:relative}
+.flw li{position:relative;padding:0 0 14px 30px}
+.flw li:last-child{padding-bottom:0}
+/* Le connecteur relie les etapes : sans lui, quatre lignes empilees ne
+   disent pas qu'elles se suivent. */
+.flw li::before{content:"";position:absolute;left:8.5px;top:16px;bottom:0;
+  width:1px;background:var(--edge)}
+.flw li:last-child::before{display:none}
+.flw li::after{content:"";position:absolute;left:4px;top:5px;width:11px;height:11px;
+  border-radius:50%;background:var(--surface);border:2px solid var(--vio)}
+.flw .flw-e::after{border-color:var(--red)}
+.flw .flw-s::after{border-color:var(--grn);background:var(--grn)}
+.flw b{display:block;font-size:.9rem;color:var(--ink);font-weight:700;line-height:1.35}
+.flw span{display:block;margin-top:2px;font-size:.79rem;color:var(--faint);line-height:1.45}
+
+/* ── Les tuiles de chiffres ──────────────────────────────────────────── */
+/* Quatre nombres de tete : une rangee de tuiles, pas un graphique en
+   barres — un histogramme a quatre unites differentes ne compare rien. */
+.kpi{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:2px 0 12px}
+.kpi-c{background:var(--ground);border:1px solid var(--edge2);border-radius:9px;padding:9px 11px}
+.kpi-l{display:block;font-size:.73rem;color:var(--faint);letter-spacing:.01em}
+.kpi-v{display:block;margin-top:2px;font-family:var(--display);font-weight:800;
+  font-size:1.18rem;letter-spacing:-.02em;color:var(--ink);
+  font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1}
+/* ══ Page dépôt : le terminal ══════════════════════════════════════════
+   La cible de cette page vit dans un terminal. C'est l'objet de son monde,
+   et il vaut mieux qu'une photo d'ordinateur portable : il montre ce que
+   l'outil fait, pas a quoi il ressemble.                                  */
+/* min-width:0 est indispensable : un element de grille ou de flex vaut
+   `min-width:auto`, donc il s'elargit jusqu'au contenu et le
+   `overflow-x:auto` du <pre> ne sert plus a rien. Constate a 390px : 827px
+   de large sur un viewport de 390. */
+.term{background:#0d0e1c;border:1px solid rgba(255,255,255,.1);border-radius:14px;
+  overflow:hidden;box-shadow:0 28px 56px -30px rgba(0,0,0,.7);min-width:0;max-width:100%}
+.dcp-grid>*,.et-l>*,.ao-b>*{min-width:0}
+.term-bar{display:flex;align-items:center;gap:7px;padding:10px 13px;
+  background:rgba(255,255,255,.05);border-bottom:1px solid rgba(255,255,255,.08)}
+.term-bar i{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.2)}
+.term-bar b{margin-left:8px;font-family:var(--mono);font-size:.76rem;font-weight:400;
+  color:rgba(255,255,255,.5)}
+/* Astra pose un fond clair sur <pre>. Ma regle ne peignait que `.term`, donc
+   le <pre> repeignait par-dessus : terminal blanc, texte en blanc casse
+   dessus, illisible. Constate en production le 4 septembre 2026. */
+.dcp .term pre{background:transparent!important;border:none!important;
+  color:rgba(255,255,255,.72)!important;border-radius:0}
+.term pre{margin:0;padding:16px 17px 18px;font-family:var(--mono);font-size:.79rem;
+  line-height:1.75;color:rgba(255,255,255,.72);white-space:pre;overflow-x:auto;
+  -webkit-overflow-scrolling:touch}
+.term .tp{color:#7B5CFA}
+.term .tc{color:#fff;font-weight:700}
+.term .tm{color:rgba(255,255,255,.42)}
+.term .tok{color:#00E5A0}
+.term .tw{color:#ffc46b}
+
+/* ── Les blocs de skills ─────────────────────────────────────────────── */
+.blc+.blc{margin-top:34px}
+.blc-h{display:flex;align-items:baseline;gap:12px;margin:0 0 4px}
+.blc-h h3{font-family:var(--display);font-size:1.14rem;font-weight:800;margin:0;
+  letter-spacing:-.02em;color:var(--ink)}
+.blc-h span{font-family:var(--mono);font-size:.74rem;color:var(--faint)}
+.blc-l{list-style:none;margin:14px 0 0;padding:0;
+  display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--edge);
+  border:1px solid var(--edge);border-radius:12px;overflow:hidden}
+.blc-l li{background:var(--surface);padding:13px 15px}
+.blc-l code{display:block;font-family:var(--mono);font-size:.79rem;font-weight:700;
+  color:var(--vio-t);margin:0 0 3px;background:none;padding:0}
+.blc-l span{font-size:.86rem;color:var(--soft);line-height:1.5}
+
+/* ── Agents, commandes, MCP : des jetons, pas des cartes ─────────────── */
+/* Deux colonnes plutot que du flex-wrap : les descriptions n'ont pas la meme
+   longueur, et en flux libre la rangee devient un escalier illisible. Les
+   jetons sans description (les MCP) gardent le flux, eux. */
+.jet{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:16px 0 0;padding:0;list-style:none}
+.jet.mcp{display:flex;flex-wrap:wrap}
+.jet li{background:var(--surface);border:1px solid var(--edge);border-radius:9px;
+  padding:8px 12px;font-size:.86rem;color:var(--ink)}
+.jet li b{font-family:var(--mono);font-size:.8rem;font-weight:700;color:var(--vio-t)}
+.jet li span{display:block;font-size:.79rem;color:var(--faint);margin-top:2px;line-height:1.5}
+.jet.mcp li{font-family:var(--mono);font-size:.81rem;color:var(--soft)}
+
+/* Sur fond sombre, les jetons prennent la surface de la bande. */
+.dcp-band .jet li{background:rgba(255,255,255,.055);border-color:rgba(255,255,255,.11);color:#fff}
+.dcp-band .jet li b{color:#a58cff}
+.dcp-band .jet li span{color:rgba(255,255,255,.55)}
+.dcp-band .jet.mcp li{color:rgba(255,255,255,.78)}
+
+@media(max-width:760px){.blc-l,.jet{grid-template-columns:1fr}}
+/* La bande de chiffres du dépôt en porte quatre ; `.dcp-band .in` est en
+   trois colonnes pour le compteur de la page pilier. */
+.dcp-band .in.chiffres{grid-template-columns:repeat(4,1fr);gap:20px}
+.dcp .lead.suite{margin-top:22px}
+@media(max-width:700px){.dcp-band .in.chiffres{grid-template-columns:1fr 1fr;gap:26px}}
+/* ── Le terminal qui joue ────────────────────────────────────────────────
+   L'unique moment animé de la page : les huit agents arrivent, tournent,
+   puis basculent en « ok » l'un après l'autre. Déclenché par `.vu`, que
+   l'observateur pose au scroll — donc jamais joué hors de l'écran, et joué
+   une seule fois.                                                          */
+.term .ln{display:block;opacity:0}
+.term.vu .ln{animation:lnIn .34s cubic-bezier(.2,.8,.2,1) forwards}
+@keyframes lnIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+.term .st{position:relative;display:inline-block}
+.term .st .run,.term .st .ok{transition:none}
+.term .st .ok{position:absolute;left:0;top:0;opacity:0;white-space:nowrap}
+.term.vu .st .run{animation:stOut .3s ease forwards}
+.term.vu .st .ok{animation:stIn .3s ease forwards}
+@keyframes stOut{to{opacity:0}}
+@keyframes stIn{to{opacity:1}}
+/* Huit paliers : les lignes entrent, puis les états basculent dans le même
+   ordre. Les valeurs sont écrites une fois ici plutôt que dans le HTML. */
+.term .l1{animation-delay:.10s}.term .l2{animation-delay:.19s}
+.term .l3{animation-delay:.28s}.term .l4{animation-delay:.37s}
+.term .l5{animation-delay:.46s}.term .l6{animation-delay:.55s}
+.term .l7{animation-delay:.64s}.term .l8{animation-delay:.73s}
+.term .l9{animation-delay:1.5s}.term .l10{animation-delay:1.7s}
+.term .s1 .run,.term .s1 .ok{animation-delay:.95s}
+.term .s2 .run,.term .s2 .ok{animation-delay:1.03s}
+.term .s3 .run,.term .s3 .ok{animation-delay:1.11s}
+.term .s4 .run,.term .s4 .ok{animation-delay:1.19s}
+.term .s5 .run,.term .s5 .ok{animation-delay:1.27s}
+.term .s6 .run,.term .s6 .ok{animation-delay:1.35s}
+.term .s7 .run,.term .s7 .ok{animation-delay:1.43s}
+.term .s8 .run,.term .s8 .ok{animation-delay:1.51s}
+
+/* ── Avant / après ───────────────────────────────────────────────────── */
+.dcp table.av{width:100%;border-collapse:collapse;margin:22px 0 0;font-size:.94rem;background:transparent;border:none;box-shadow:none;border-radius:0}
+/* `.dcp thead th` pose un fond clair : sur la bande sombre il ressortait
+   en barre blanche au-dessus du tableau. */
+.dcp .av thead th{background:transparent}
+.dcp .av th{text-align:left;font-family:var(--mono);font-size:.73rem;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.42);
+  padding:0 0 11px;border-bottom:1px solid rgba(255,255,255,.12)}
+.dcp .av th:not(:first-child),.dcp .av td:not(:first-child){text-align:right;width:22%}
+.dcp .av td{padding:13px 0;border-bottom:1px solid rgba(255,255,255,.07);color:#fff}
+.dcp .av tr:last-child td{border-bottom:none}
+.dcp .av .main{color:rgba(255,255,255,.5);font-variant-numeric:tabular-nums;
+  font-feature-settings:"tnum" 1;text-decoration:line-through;
+  text-decoration-color:rgba(255,255,255,.3)}
+.dcp .av .ici{font-family:var(--display);font-weight:800;color:#00E5A0;
+  font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1}
+.dcp .av tfoot td{padding-top:15px;border-top:1px solid rgba(255,255,255,.18);
+  font-family:var(--display);font-weight:800;font-size:1.02rem}
+.dcp .av tfoot .ici{font-size:1.24rem}
+
+@media(prefers-reduced-motion:reduce){
+  .term .ln,.term.vu .ln{opacity:1;animation:none}
+  .term .st .ok{position:static;opacity:1}
+  .term .st .run{display:none}
+}
+@media(max-width:620px){
+  .av{font-size:.88rem}
+  .av th:not(:first-child),.av td:not(:first-child){width:26%}
+}
+/* ══ Le verrou ═════════════════════════════════════════════════════════
+   Le lien du dépôt ne s'ouvre qu'une fois l'email donné. La clé `lmg_sub`
+   est celle du reste du site : quelqu'un qui s'est déjà abonné sur une
+   autre page n'est pas redemandé.
+   Sans JavaScript, les boutons restent de vrais liens vers GitHub — mieux
+   vaut un visiteur non capturé qu'un visiteur bloqué devant une porte que
+   rien ne peut ouvrir.                                                    */
+.vrl{position:fixed;inset:0;z-index:99999;display:none;
+  align-items:center;justify-content:center;padding:22px;
+  background:rgba(7,8,15,.72);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px)}
+.vrl.on{display:flex;animation:vrlF .25s ease}
+@keyframes vrlF{from{opacity:0}to{opacity:1}}
+.vrl-c{position:relative;width:100%;max-width:432px;background:#12132a;
+  border:1px solid rgba(255,255,255,.13);border-radius:18px;padding:32px 30px 26px;
+  box-shadow:0 40px 90px -30px rgba(0,0,0,.85);animation:vrlU .32s cubic-bezier(.2,.8,.2,1)}
+@keyframes vrlU{from{opacity:0;transform:translateY(16px) scale(.98)}to{opacity:1;transform:none}}
+.vrl-x{position:absolute;top:12px;right:12px;width:32px;height:32px;border:none;
+  border-radius:9px;background:rgba(255,255,255,.07);color:rgba(255,255,255,.6);
+  font-size:1.05rem;line-height:1;cursor:pointer;transition:background .2s ease,color .2s ease}
+.vrl-x:hover{background:rgba(255,255,255,.14);color:#fff}
+.vrl-c h2{font-family:var(--display);font-size:1.32rem;font-weight:800;letter-spacing:-.02em;
+  color:#fff;margin:0 0 8px;line-height:1.2}
+.vrl-c p{font-size:.93rem;color:rgba(255,255,255,.6);margin:0 0 20px;line-height:1.55}
+
+/* Champ et bouton forment un seul objet : deux blocs separes par une
+   gouttiere lisaient comme un formulaire par defaut. */
+.vrl-f{display:flex;align-items:stretch;background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.16);border-radius:12px;overflow:hidden;
+  transition:border-color .2s ease,box-shadow .2s ease}
+.vrl-f:focus-within{border-color:var(--vio2);box-shadow:0 0 0 3px rgba(123,92,250,.24)}
+.vrl-f input{flex:1 1 200px;min-width:0;height:48px;padding:0 15px;border:none;
+  background:none;color:#fff;font-family:var(--body);font-size:.95rem}
+.vrl-f input:focus{outline:none}
+.vrl-f input::placeholder{color:rgba(255,255,255,.36)}
+.vrl-f button{flex:0 0 auto;height:48px;padding:0 24px;border:none;cursor:pointer;
+  background:#00E5A0;color:#07080f;font-family:var(--body);font-weight:700;font-size:.92rem;
+  white-space:nowrap;transition:background .2s ease}
+.vrl-f button:hover{background:#4dffc4}
+.vrl-f button:disabled{opacity:.6;cursor:default}
+.vrl-fine{margin:14px 0 0!important;font-size:.79rem;color:rgba(255,255,255,.4)!important}
+.vrl-ok{display:none;text-align:center}
+.vrl.done .vrl-f,.vrl.done .vrl-fine,.vrl.done .vrl-i{display:none}
+.vrl.done .vrl-ok{display:block}
+.vrl-ok .dcp-cta{margin-top:6px}
+.vrl-i{font-family:var(--mono);font-size:.72rem;letter-spacing:.09em;text-transform:uppercase;
+  color:#00E5A0;margin:0 0 10px!important}
+
+/* Le bouton d'ouverture du dépôt, en gros, la où il faut. */
+.dcp .depot-cta{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin:26px 0 0}
+.dcp .depot-cta .note{font-family:var(--mono);font-size:.78rem;color:var(--faint)}
+.dcp-band .depot-cta .note{color:rgba(255,255,255,.45)}
+@media(max-width:560px){
+  .vrl-f{flex-wrap:wrap}
+  .vrl-f input,.vrl-f button{flex:1 1 100%;width:100%}
+  .vrl-f button{border-top:1px solid rgba(255,255,255,.16)}
+}
+/* Le cadre d'envoi et le label restent dans l'arbre d'accessibilite mais
+   hors de l'ecran : display:none retirerait le label aux lecteurs d'ecran
+   et rendrait l'iframe capricieuse comme cible de formulaire. */
+.vrl-cadre{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none;border:0}
+.vrl-lbl{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;
+  clip-path:inset(50%);white-space:nowrap}
+@media(prefers-reduced-motion:reduce){.vrl.on,.vrl-c{animation:none}}
 </style>
