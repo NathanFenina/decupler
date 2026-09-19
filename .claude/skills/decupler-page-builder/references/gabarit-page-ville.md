@@ -1,17 +1,57 @@
 # Gabarit — page ville
 
-Post type `pages`. **Yoast non écrivable par l'API** : fournir title, meta
-description et focus keyword à Nathan pour saisie manuelle.
+Post type `pages`. Yoast est désormais **écrivable par l'API** via le mu-plugin
+`wordpress/mu-plugins/decupler-yoast-rest.php` (à déposer dans
+`wp-content/mu-plugins/`). Sans ce fichier, l'API renvoie 200 et jette
+silencieusement les champs : il faut alors repasser par la saisie manuelle.
 
 Requête type : `agence GEO {ville}`. Structure inspirée de junto.fr, adaptée à
 la charte Décupler.
 
 ---
 
+## 0. Ce que dit la SERP réelle — relevé du 19/09/2026
+
+Mesuré sur `agence seo marseille` (2 400 de volume), via Firecrawl.
+
+| | Jones and Co **#1** | Digimood **#3** | Ce gabarit (avant) |
+|---|---|---|---|
+| Mots | ~850 | 1 345 | ≥ 1 715 |
+| Mot-clé exact | ~5× | 5× | ≥ 20× |
+| FAQ | aucune | aucune | 9 questions |
+| H2 / H3 | 1 / 3 | 5 / 6 | 12 blocs |
+| Codes postaux / communes | non | **oui** | oui |
+| Logos + témoignages | non | **oui** | non prévu |
+| Chiffres de résultats | non | **oui** | non prévu |
+| Adresse physique locale | — | **oui** | non prévu |
+
+**Junto, dont ce gabarit s'inspirait, est 10ᵉ.**
+
+Trois conséquences, appliquées dans `scripts/validate_page.py` :
+
+1. **Ni la longueur ni la densité ne décident** sur ces requêtes. Les seuils
+   `page-ville` passent à 6 occurrences et 1 100 mots (contre 20 et 1 715 pour
+   les articles, inchangés). Produire 1 900 mots nous rendrait deux fois plus
+   longs que la page #1 sans gagner le facteur discriminant.
+2. **Le facteur discriminant est la preuve locale.** Le validateur exige
+   désormais, pour `page-ville` : un code postal cité, un JSON-LD
+   `LocalBusiness`, et un lien vers une étude de cas chiffrée.
+3. **2 des 8 premiers résultats sont des comparatifs** (« les 15 meilleures
+   agences SEO à Marseille »). L'intention est mixte : sur les gros volumes,
+   la page d'agence seule ne couvre pas toute la SERP.
+
+**Limite à connaître.** Décupler n'a qu'une adresse Côte d'Azur et aucune fiche
+Google Business par ville. Sur les villes hors 06/83 — Marseille en tête — on
+attaque donc sans le levier qui fait gagner Digimood. Les pages 06/83 (Nice,
+Cannes, Antibes, Monaco, Grasse, Menton, Toulon, Fréjus) sont les seules où
+l'ancrage est crédible ; ailleurs, privilégier l'angle comparatif.
+
+---
+
 ## 1. Contraintes propres au local
 
-- **Mot-clé exact ≥ 20 fois** (`agence GEO Toulouse`), densité ≤ 3,5 %.
-  Mot-clé de 3 mots → 1715 mots minimum, viser 1900.
+- **Mot-clé exact ≥ 6 fois**, densité ~1 %, 1 100 à 1 400 mots (voir §0).
+  L'ancienne règle des 20 occurrences reste valable pour les **articles**.
 - **Codes postaux** de la ville, cités explicitement dans le texte.
 - **Communes limitrophes** : 8 à 12, en grille, dans la section « zone
   d'intervention ». Ce sont elles qui font la profondeur locale.

@@ -57,6 +57,22 @@ LIENS_MIN = 8
 MOTS_PLANCHER = 1500
 DUPLI_SEUIL = 4            # phrases communes tolerees entre deux contenus
 
+# Seuils par type. Les valeurs "page-ville" ne sont pas les regles maison
+# habituelles : elles viennent du releve SERP du 19/09/2026 sur
+# « agence seo marseille » (2 400 de volume).
+#
+#   Jones and Co  (position 1) : ~850 mots,  5 occurrences, aucune FAQ
+#   Digimood      (position 3) : 1 345 mots, 5 occurrences, aucune FAQ
+#   Junto         (position 10, modele du gabarit d'origine)
+#
+# Exiger 20 occurrences et 1 715 mots produirait des pages deux fois plus
+# longues que celles qui rankent, sans toucher au facteur reellement
+# discriminant : la preuve locale (adresse, communes, references chiffrees).
+# D'ou les controles PREUVE_LOCALE ci-dessous, propres a page-ville.
+OCCURRENCES_TYPE = {"article": 20, "page-ville": 6, "page-service": 20}
+MOTS_PLANCHER_TYPE = {"article": 1500, "page-ville": 1100, "page-service": 1500}
+FAQ_MIN_TYPE = {"article": 6, "page-ville": 4, "page-service": 6}
+
 SEUILS_TYPE = {
     # type          title      meta        H2 min
     "article":     ((50, 60), (120, 156), 6),
@@ -70,10 +86,16 @@ def sansacc(t):
                    if not unicodedata.combining(c))
 
 
-def mots_min(kw):
-    """20 occurrences sans depasser 3,5 % de densite."""
+def occurrences_min(typ):
+    return OCCURRENCES_TYPE.get(typ, OCCURRENCES_MIN)
+
+
+def mots_min(kw, typ="article"):
+    """Assez de mots pour porter les occurrences du type sans depasser 3,5 %."""
     n = len(kw.split())
-    return max(MOTS_PLANCHER, int(OCCURRENCES_MIN * n / (DENSITE_MAX / 100)) + 1)
+    occ = occurrences_min(typ)
+    plancher = MOTS_PLANCHER_TYPE.get(typ, MOTS_PLANCHER)
+    return max(plancher, int(occ * n / (DENSITE_MAX / 100)) + 1)
 
 
 def hors_css(html):
@@ -222,23 +244,37 @@ def valide(html, kw, slug, typ="article", title=None, meta=None,
         e.append("cross-citation Nathan Fenina absente")
 
     # ── FAQ ────────────────────────────────────────────────────────────────
+    faq_min = FAQ_MIN_TYPE.get(typ, 6)
     nb_faq = html.count("decupler-faq-item")
-    if nb_faq < 6:
-        e.append(f"{nb_faq} questions de FAQ (<6)")
+    if nb_faq < faq_min:
+        e.append(f"{nb_faq} questions de FAQ (<{faq_min})")
     if "decupler-faq-answer-inner" not in html:
         e.append("FAQ sans .decupler-faq-answer-inner (aucun padding)")
     if "FAQPage" not in html:
         e.append("JSON-LD FAQPage absent")
 
+    # ── preuve locale : ce qui separe reellement les pages villes ──────────
+    # Digimood (#3) affiche adresse, communes, logos et temoignages ; la page
+    # #1 n'a aucune preuve mais porte l'autorite d'un domaine marseillais.
+    # Sans adresse locale, la preuve chiffree est notre seul levier.
+    if typ == "page-ville":
+        if not re.search(r"\b\d{5}\b", html):
+            e.append("PREUVE LOCALE : aucun code postal cite")
+        if "LocalBusiness" not in html:
+            e.append("PREUVE LOCALE : JSON-LD LocalBusiness absent")
+        if "etude-de-cas" not in html:
+            e.append("PREUVE LOCALE : aucun lien vers une etude de cas chiffree")
+
     # ── mesures deleguees ──────────────────────────────────────────────────
     m = mesures(html, kw)
     if m:
-        cible = mots_min(kw)
+        cible = mots_min(kw, typ)
+        occ_min = occurrences_min(typ)
         if m["mots"] < cible:
-            e.append(f"{m['mots']} mots (<{cible} pour {OCCURRENCES_MIN} "
+            e.append(f"{m['mots']} mots (<{cible} pour {occ_min} "
                      f"occurrences a {DENSITE_MAX}%)")
-        if m["occurrences_exactes"] < OCCURRENCES_MIN:
-            e.append(f"{m['occurrences_exactes']} occurrences (<{OCCURRENCES_MIN})")
+        if m["occurrences_exactes"] < occ_min:
+            e.append(f"{m['occurrences_exactes']} occurrences (<{occ_min})")
         if m["densite_effective_pct"] > DENSITE_MAX:
             e.append(f"SUR-OPTIMISATION densite {m['densite_effective_pct']}% "
                      f"— ajouter du texte, pas retirer des occurrences")
