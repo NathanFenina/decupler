@@ -33,18 +33,28 @@ Trois conséquences, appliquées dans `scripts/validate_page.py` :
    `page-ville` passent à 6 occurrences et 1 100 mots (contre 20 et 1 715 pour
    les articles, inchangés). Produire 1 900 mots nous rendrait deux fois plus
    longs que la page #1 sans gagner le facteur discriminant.
-2. **Le facteur discriminant est la preuve locale.** Le validateur exige
-   désormais, pour `page-ville` : un code postal cité, un JSON-LD
-   `LocalBusiness`, et un lien vers une étude de cas chiffrée.
+2. **Le facteur discriminant est la preuve.** Le validateur exige désormais,
+   pour `page-ville` : un code postal cité, un JSON-LD `LocalBusiness` **ou**
+   `areaServed`, et un lien vers une étude de cas chiffrée. Voir la correction
+   du 21/09 ci-dessous : l'adresse locale n'est pas requise.
 3. **2 des 8 premiers résultats sont des comparatifs** (« les 15 meilleures
    agences SEO à Marseille »). L'intention est mixte : sur les gros volumes,
    la page d'agence seule ne couvre pas toute la SERP.
 
-**Limite à connaître.** Décupler n'a qu'une adresse Côte d'Azur et aucune fiche
-Google Business par ville. Sur les villes hors 06/83 — Marseille en tête — on
-attaque donc sans le levier qui fait gagner Digimood. Les pages 06/83 (Nice,
-Cannes, Antibes, Monaco, Grasse, Menton, Toulon, Fréjus) sont les seules où
-l'ancrage est crédible ; ailleurs, privilégier l'angle comparatif.
+**Correction du 21/09/2026 — l'adresse locale n'est pas requise.** Le premier
+relevé, fait sur la page Marseille de Digimood (où ils ont un bureau), avait
+conclu qu'une adresse locale était le facteur décisif. Vérification sur leur
+page Nice (`digimood.com/agence-seo/nice/`) : **610 mots, 6 H2, aucune adresse,
+aucun LocalBusiness, aucune FAQ, aucun logo, aucun témoignage**, dernière
+modification janvier 2021 — et elle ranke. Leur H1 dit « à proximité de Nice »,
+avec une section « Digimood présent en PACA ».
+
+Donc, sur une ville satellite : `areaServed` et un cadrage honnête suffisent.
+
+**Règle absolue : on n'invente jamais d'adresse.** Une adresse fictive en
+LocalBusiness est un faux signal local, sanctionné par Google et mensonger
+envers le prospect. Une seule adresse réelle (Nice) portée par le schéma
+`Organization` du site, et `areaServed` sur chaque page ville.
 
 ---
 
@@ -65,11 +75,14 @@ l'ancrage est crédible ; ailleurs, privilégier l'angle comparatif.
 
 ## 2. Structure
 
-Dans l'ordre, chaque bloc en pleine largeur (`width:100vw`) :
+Structure d'origine, calibrée `agence GEO {ville}` en 12 blocs. Sur une page
+**SEO** ville, viser 1 100-1 400 mots : garder les blocs 1, 2, 3, 7, 10, 11, 12
+et traiter 5, 6, 8, 9 en une seule section courte. Chaque bloc en pleine
+largeur (`width:100vw`) :
 
 | # | Bloc | Contenu | CTA |
 |---|---|---|---|
-| 1 | **Hero** | H1 avec le mot-clé, sous-titre, cartes flottantes, bande de confiance (4 chiffres) | oui |
+| 1 | **Hero** | H1 avec le mot-clé, sous-titre, bande de confiance (chiffres réels, attribués à la mission) | oui |
 | 2 | **Contexte** | H2 en prompt : « Pourquoi une agence GEO à {ville} ? » — 2-3 paragraphes propres à la ville | — |
 | 3 | **Bénéfices** | 6 bénéfices en H3, formulés localement | — |
 | 4 | **Bandeau lila** | pourquoi le local compte pour les moteurs + un visuel | oui |
@@ -78,7 +91,7 @@ Dans l'ordre, chaque bloc en pleine largeur (`width:100vw`) :
 | 7 | **Zone d'intervention** | codes postaux + grille de communes + photo de la ville | oui |
 | 8 | **Secteurs** | 4 secteurs dominants de la ville, nommés | — |
 | 9 | **Budget** | fourchettes et ce qui les fait varier | oui |
-| 10 | **FAQ** | 9 questions, dont 3 spécifiquement locales | — |
+| 10 | **FAQ** | 4 à 6 questions, dont 2 spécifiquement locales | — |
 | 11 | **Bandeau E-E-A-T** | Nathan Fenina, photo, LinkedIn, Calendly | oui |
 | 12 | **Bande CTA** | clôture | oui |
 
@@ -113,7 +126,7 @@ rédhibitoire.
 - l'introduction du tableau comparatif
 - le deuxième paragraphe de budget
 - le texte du CTA final
-- au moins 3 des 9 questions de FAQ
+- au moins 2 des questions de FAQ
 
 Structurer les données en deux fichiers : un fichier de **données** (slug,
 gentilé, département, codes postaux, communes, statistique locale, secteurs,

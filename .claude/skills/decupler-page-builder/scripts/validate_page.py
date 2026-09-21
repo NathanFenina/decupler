@@ -257,11 +257,18 @@ def valide(html, kw, slug, typ="article", title=None, meta=None,
     # Digimood (#3) affiche adresse, communes, logos et temoignages ; la page
     # #1 n'a aucune preuve mais porte l'autorite d'un domaine marseillais.
     # Sans adresse locale, la preuve chiffree est notre seul levier.
+    # Correction du 21/09/2026 : le controle initial exigeait un LocalBusiness
+    # sur chaque page ville. C'etait une sur-generalisation depuis la page
+    # Marseille de Digimood, ou ils ont un bureau. Leur page Nice
+    # (digimood.com/agence-seo/nice/) ranke avec 610 mots, aucune adresse,
+    # aucun LocalBusiness, aucune FAQ et aucun temoignage. Sur une ville
+    # satellite, areaServed et un cadrage honnete (« a proximite de »)
+    # suffisent. On n'invente jamais d'adresse : faux signal local.
     if typ == "page-ville":
         if not re.search(r"\b\d{5}\b", html):
             e.append("PREUVE LOCALE : aucun code postal cite")
-        if "LocalBusiness" not in html:
-            e.append("PREUVE LOCALE : JSON-LD LocalBusiness absent")
+        if "LocalBusiness" not in html and "areaServed" not in html:
+            e.append("PREUVE LOCALE : ni LocalBusiness ni areaServed dans le JSON-LD")
         if "etude-de-cas" not in html:
             e.append("PREUVE LOCALE : aucun lien vers une etude de cas chiffree")
 
