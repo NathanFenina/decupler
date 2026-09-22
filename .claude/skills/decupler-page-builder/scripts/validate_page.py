@@ -147,7 +147,12 @@ def mesures(html, kw):
     if not os.path.exists(ANALYZE):
         return None
     tmp = os.path.join(SKILL, "_tmp_validate.html")
-    open(tmp, "w", encoding="utf-8").write(html)
+    # Le bloc <style> ne doit JAMAIS partir a l'analyseur : il retire les
+    # balises avant de compter, donc tout commentaire CSS un peu bavard se
+    # retrouve compte comme du texte de page. Symptome observe le 22/09 : les
+    # quatre pages du lot renvoyaient le meme nombre de mots (3 344) et zero
+    # occurrence, parce qu'on mesurait la feuille de style.
+    open(tmp, "w", encoding="utf-8").write(hors_css(html))
     try:
         r = subprocess.run([sys.executable, ANALYZE, "--file", tmp,
                             "--keyword", kw],
