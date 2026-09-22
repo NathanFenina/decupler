@@ -201,7 +201,12 @@ def valide(html, kw, slug, typ="article", title=None, meta=None,
     if meta is not None and not (m_min <= len(meta) <= m_max):
         e.append(f"meta {len(meta)} car. ({m_min}-{m_max})")
     if typ != "article" and (title or meta):
-        e.append("RAPPEL page : Yoast non ecrivable par l'API, saisie manuelle")
+        # Vrai jusqu'au 22/09/2026. Depuis, le plugin decupler-yoast-rest expose
+        # _yoast_wpseo_title/_metadesc/_focuskw a l'API sur post et page (verifie :
+        # ecriture puis relecture OK sur la page 20732). Le rappel ne vaut plus que
+        # si le plugin est desactive.
+        e.append("RAPPEL page : verifier que le plugin decupler-yoast-rest est actif, "
+                 "sinon Yoast se saisit a la main")
 
     # ── maillage ───────────────────────────────────────────────────────────
     liens = re.findall(r'href="(?:https://decupler\.com)?(/[^"#]*)"', html)
