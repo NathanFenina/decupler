@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Décupler — Budget de crawl
  * Description:       Trois correctifs mesurés le 22/09/2026 sur decupler.com : un robots.txt propre, une page « disparue » légère au lieu de 151 Ko, et un 404 sur la pagination hors limites. Objectif : arrêter de faire télécharger 1,5 Go à Googlebot pour lui apprendre que 12 000 pages n'existent plus.
- * Version:           1.0.0
+ * Version:           1.1.0
  * Author:            Décupler
  * License:           GPL-2.0-or-later
  * Requires at least: 6.0
@@ -33,13 +33,40 @@
  * WordPress. Si un fichier robots.txt physique existe à la racine, le serveur
  * le sert et ce plugin n'a aucun effet sur lui. L'écran Réglages du plugin le
  * signale.
+ *
+ * ---------------------------------------------------------------------------
+ * 1.1.0 — 22/09/2026, après vérification en ligne des trois correctifs.
+ *
+ * Deux des trois ne marchaient pas, et une mesure valait mieux que la
+ * confiance :
+ *
+ *   - robots.txt : le fichier servi fait 66 octets, sans les lignes de
+ *     marquage du plugin, avec un « Allow: / » et un last-modified au
+ *     12/06/2026 et AUCUN en-tête x-powered-by. C'est donc un fichier
+ *     PHYSIQUE à la racine (probablement posé lors de la réparation après
+ *     piratage), servi par Apache avant que PHP ne s'exécute. Le filtre
+ *     robots_txt ne pouvait rien y faire. Comme Nathan n'a pas d'accès FTP,
+ *     la 1.1.0 ajoute un bouton qui renomme ce fichier — réversible, et
+ *     sans quitter l'administration.
+ *
+ *   - pagination : /page/9999/ renvoyait toujours 200 avec 347 Ko. La cause
+ *     est que la page d'accueil est une page statique : WordPress résout
+ *     /page/9999/ en pagination de CETTE page, donc is_singular() est vrai
+ *     et le garde-fou de la 1.0.0 sortait immédiatement. Corrigé en traitant
+ *     explicitement le cas d'un contenu singulier paginé.
+ *
+ *   - page « disparue » légère : celle-là fonctionne. Un 404 pèse désormais
+ *     708 octets contre ~151 Ko, et porte bien x-robots-tag: noindex.
+ *
+ * La 1.1.0 ajoute aussi /llms.txt, absent du site (404) — ce qui est gênant
+ * pour une agence qui vend du GEO.
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-const DCP_CRAWL_VERSION = '1.0.0';
+const DCP_CRAWL_VERSION = '1.1.0';
 
 /* -------------------------------------------------------------------------
  * 1. robots.txt
@@ -194,20 +221,54 @@ add_action(
 add_action(
 	'template_redirect',
 	function () {
-		global $wp_query;
+		global $wp_query, $post;
 
-		if ( is_admin() || is_404() || is_singular() ) {
+		if ( is_admin() ) {
+			return;
+		}
+		if ( is_404() ) {
+			return; // Déjà traité, et servi léger par le correctif 2.
+		}
+
+		// Deux variables distinctes, et c'est tout le sujet du correctif :
+		//   'paged' = pagination d'une LISTE (blog, archive, page d'accueil
+		//             en mode liste) ;
+		//   'page'  = pagination D'UN CONTENU, découpé par <!--nextpage-->.
+		// Sur decupler.com la page d'accueil est une page statique, donc
+		// /page/9999/ alimente l'une ou l'autre selon la configuration — et
+		// dans les deux cas is_singular() est vrai. La version 1.0.0 sortait
+		// sur is_singular() et ne voyait donc jamais le problème : mesure du
+		// 22/09, /page/9999/ renvoyait 200 avec 347 Ko.
+		$demandee = max(
+			(int) get_query_var( 'paged' ),
+			(int) get_query_var( 'page' )
+		);
+		if ( $demandee < 2 ) {
 			return;
 		}
 
-		$page = (int) get_query_var( 'paged' );
-		if ( $page < 2 ) {
-			return;
-		}
-
-		$max = isset( $wp_query->max_num_pages ) ? (int) $wp_query->max_num_pages : 0;
-		if ( $max > 0 && $page <= $max ) {
-			return;
+		if ( is_singular() || is_front_page() ) {
+			// Nombre réel de pages du contenu : compter les <!--nextpage-->.
+			$dispo = 1;
+			if ( $post instanceof WP_Post ) {
+				$dispo = 1 + (int) preg_match_all(
+					'/<!--nextpage-->/',
+					(string) $post->post_content
+				);
+			}
+			// Une page statique en mode liste peut aussi être légitimement
+			// paginée (blog posé sur une page) : on respecte max_num_pages
+			// quand il existe.
+			$max_liste = isset( $wp_query->max_num_pages )
+				? (int) $wp_query->max_num_pages : 0;
+			if ( $demandee <= $dispo || ( $max_liste > 1 && $demandee <= $max_liste ) ) {
+				return;
+			}
+		} else {
+			$max = isset( $wp_query->max_num_pages ) ? (int) $wp_query->max_num_pages : 0;
+			if ( $max > 0 && $demandee <= $max ) {
+				return;
+			}
 		}
 
 		$wp_query->set_404();
@@ -217,8 +278,186 @@ add_action(
 	0
 );
 
+
 /* -------------------------------------------------------------------------
- * 4. Écran de contrôle
+ * 3 bis. Reprendre la main sur un robots.txt physique
+ * ---------------------------------------------------------------------- */
+
+/**
+ * Chemin du robots.txt physique, s'il existe.
+ *
+ * Mesure du 22/09/2026 : decupler.com sert un robots.txt de 66 octets, daté
+ * du 12/06/2026, sans en-tête x-powered-by — donc un fichier sur disque,
+ * servi par Apache avant que WordPress ne s'exécute. Tant qu'il est là, le
+ * filtre robots_txt de ce plugin est inopérant, quoi qu'affiche son écran.
+ */
+function dcp_crawl_robots_physique() {
+	$chemin = ABSPATH . 'robots.txt';
+
+	return file_exists( $chemin ) ? $chemin : '';
+}
+
+/**
+ * Renomme le robots.txt physique, ou le remet en place.
+ *
+ * Renommer plutôt que supprimer : le fichier d'origine reste récupérable
+ * d'un clic, et on ne détruit rien qu'on ne sait pas reconstruire. Le nom de
+ * sauvegarde est daté pour qu'un second passage n'écrase pas le premier.
+ *
+ * Aucune écriture n'est tentée sans vérifier que le répertoire est
+ * inscriptible : sur un hébergement durci, la racine ne l'est pas, et il
+ * vaut mieux le dire que d'échouer silencieusement.
+ */
+function dcp_crawl_bascule_robots() {
+	if ( ! current_user_can( 'manage_options' ) ) {
+		wp_die( 'Droits insuffisants.' );
+	}
+	check_admin_referer( 'dcp_crawl_robots' );
+
+	$action  = isset( $_POST['dcp_action'] ) ? sanitize_key( $_POST['dcp_action'] ) : '';
+	$vivant  = ABSPATH . 'robots.txt';
+	$message = '';
+
+	if ( 'desactiver' === $action ) {
+		if ( ! file_exists( $vivant ) ) {
+			$message = 'rien';
+		} elseif ( ! is_writable( ABSPATH ) ) {
+			$message = 'lecture-seule';
+		} else {
+			$sauve = ABSPATH . 'robots.txt.desactive-' . gmdate( 'Ymd-His' );
+			$message = rename( $vivant, $sauve ) ? 'desactive' : 'echec';
+		}
+	} elseif ( 'restaurer' === $action ) {
+		$sauves = glob( ABSPATH . 'robots.txt.desactive-*' );
+		if ( empty( $sauves ) ) {
+			$message = 'rien-a-restaurer';
+		} elseif ( file_exists( $vivant ) ) {
+			$message = 'deja-la';
+		} else {
+			// Le plus récent : c'est celui que l'utilisateur vient de ranger.
+			sort( $sauves );
+			$message = rename( end( $sauves ), $vivant ) ? 'restaure' : 'echec';
+		}
+	}
+
+	wp_safe_redirect(
+		add_query_arg(
+			array( 'page' => 'dcp-crawl-fix', 'dcp_msg' => $message ),
+			admin_url( 'options-general.php' )
+		)
+	);
+	exit;
+}
+add_action( 'admin_post_dcp_crawl_robots', 'dcp_crawl_bascule_robots' );
+
+/* -------------------------------------------------------------------------
+ * 4. /llms.txt
+ * ---------------------------------------------------------------------- */
+
+/**
+ * Sert un /llms.txt construit depuis le contenu réellement publié.
+ *
+ * Le site renvoyait 404 sur cette adresse (mesure du 22/09), ce qui est
+ * gênant pour une agence qui vend de la visibilité dans les moteurs
+ * génératifs. Le fichier liste les pages et les articles publiés, avec leur
+ * titre et leur description — c'est un sommaire lisible par une machine, pas
+ * une directive : aucun moteur n'est obligé de le lire.
+ *
+ * Généré depuis la base et mis en cache 12 heures : pas de fichier à
+ * maintenir à la main, et pas une requête par visite de robot.
+ */
+function dcp_crawl_llms_txt() {
+	$cache = get_transient( 'dcp_crawl_llms' );
+	if ( is_string( $cache ) && '' !== $cache ) {
+		return $cache;
+	}
+
+	$nom  = get_bloginfo( 'name' );
+	$desc = get_bloginfo( 'description' );
+	$out  = array( '# ' . $nom );
+	if ( $desc ) {
+		$out[] = '';
+		$out[] = '> ' . $desc;
+	}
+	$out[] = '';
+	$out[] = 'Site : ' . home_url( '/' );
+	$out[] = 'Sitemap : ' . home_url( '/sitemap_index.xml' );
+	$out[] = '';
+
+	foreach ( array( 'page' => 'Pages', 'post' => 'Articles' ) as $type => $titre ) {
+		$q = new WP_Query(
+			array(
+				'post_type'           => $type,
+				'post_status'         => 'publish',
+				'posts_per_page'      => ( 'page' === $type ) ? 120 : 200,
+				'orderby'             => ( 'page' === $type ) ? 'title' : 'date',
+				'order'               => ( 'page' === $type ) ? 'ASC' : 'DESC',
+				'ignore_sticky_posts' => true,
+				'no_found_rows'       => true,
+			)
+		);
+		if ( ! $q->have_posts() ) {
+			continue;
+		}
+		$out[] = '## ' . $titre;
+		$out[] = '';
+		foreach ( $q->posts as $p ) {
+			// On ne publie que ce qui est indexable : une page en noindex n'a
+			// aucune raison d'être recommandée à un moteur par ailleurs.
+			if ( 'noindex' === get_post_meta( $p->ID, '_yoast_wpseo_meta-robots-noindex', true ) ) {
+				continue;
+			}
+			$resume = get_post_meta( $p->ID, '_yoast_wpseo_metadesc', true );
+			if ( ! $resume ) {
+				$resume = wp_strip_all_tags( get_the_excerpt( $p ) );
+			}
+			$resume = trim( preg_replace( '/\s+/', ' ', (string) $resume ) );
+			$ligne  = '- [' . wp_strip_all_tags( get_the_title( $p ) ) . ']('
+				. get_permalink( $p ) . ')';
+			if ( $resume ) {
+				$ligne .= ' : ' . mb_substr( $resume, 0, 180 );
+			}
+			$out[] = $ligne;
+		}
+		$out[] = '';
+	}
+
+	$txt = implode( "\n", $out ) . "\n";
+	set_transient( 'dcp_crawl_llms', $txt, 12 * HOUR_IN_SECONDS );
+
+	return $txt;
+}
+
+/**
+ * Le vidage du cache à chaque publication : sinon un article neuf n'apparaît
+ * dans /llms.txt qu'au bout de douze heures.
+ */
+add_action( 'save_post', function () { delete_transient( 'dcp_crawl_llms' ); } );
+
+add_action(
+	'init',
+	function () {
+		// Comparaison sur le chemin seul : /llms.txt?v=2 doit répondre aussi.
+		$chemin = wp_parse_url( $_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH );
+		if ( '/llms.txt' !== $chemin ) {
+			return;
+		}
+		// Un fichier physique, s'il en existe un, garde la priorité : Apache
+		// l'aura de toute façon servi avant nous.
+		if ( file_exists( ABSPATH . 'llms.txt' ) ) {
+			return;
+		}
+		status_header( 200 );
+		header( 'Content-Type: text/plain; charset=utf-8' );
+		header( 'Cache-Control: public, max-age=3600' );
+		echo dcp_crawl_llms_txt(); // phpcs:ignore WordPress.Security.EscapeOutput
+		exit;
+	},
+	1
+);
+
+/* -------------------------------------------------------------------------
+ * 5. Écran de contrôle
  * ---------------------------------------------------------------------- */
 
 add_action(
@@ -239,25 +478,86 @@ function dcp_crawl_ecran() {
 		return;
 	}
 
-	$physique = file_exists( ABSPATH . 'robots.txt' );
+	$physique = dcp_crawl_robots_physique();
+	$sauves   = glob( ABSPATH . 'robots.txt.desactive-*' );
 
 	echo '<div class="wrap"><h1>Décupler — Budget de crawl</h1>';
 
+	// Retour de l'action de bascule.
+	$msgs = array(
+		'desactive'        => array( 'success', 'Le fichier physique a été rangé. '
+			. 'WordPress reprend la main : rechargez /robots.txt pour voir '
+			. 'apparaître les lignes de marquage.' ),
+		'restaure'         => array( 'success', 'Le fichier physique est remis en '
+			. 'place. Les règles de ce plugin sont de nouveau inopérantes.' ),
+		'lecture-seule'    => array( 'error', 'La racine du site n\'est pas '
+			. 'inscriptible par PHP : le fichier ne peut pas être renommé depuis '
+			. 'ici. Il faut passer par le gestionnaire de fichiers de '
+			. 'l\'hébergeur.' ),
+		'echec'            => array( 'error', 'Le renommage a échoué. Droits du '
+			. 'fichier ou du répertoire.' ),
+		'rien'             => array( 'warning', 'Aucun fichier physique à ranger.' ),
+		'rien-a-restaurer' => array( 'warning', 'Aucune sauvegarde à restaurer.' ),
+		'deja-la'          => array( 'warning', 'Un robots.txt physique est déjà '
+			. 'en place : rangez-le d\'abord.' ),
+	);
+	$msg = isset( $_GET['dcp_msg'] ) ? sanitize_key( $_GET['dcp_msg'] ) : '';
+	if ( isset( $msgs[ $msg ] ) ) {
+		echo '<div class="notice notice-' . esc_attr( $msgs[ $msg ][0] )
+			. ' is-dismissible"><p>' . esc_html( $msgs[ $msg ][1] ) . '</p></div>';
+	}
+
 	echo '<h2>1. robots.txt</h2>';
 	if ( $physique ) {
+		$actuel = (string) file_get_contents( $physique );
 		echo '<div class="notice notice-error inline"><p><strong>Un fichier '
-			. 'robots.txt physique existe à la racine.</strong> Le serveur le sert '
-			. 'en priorité : les règles de ce plugin ne s\'appliquent pas. '
-			. 'Supprimez ou renommez <code>' . esc_html( ABSPATH ) . 'robots.txt</code>'
-			. ' pour que WordPress reprenne la main.</p></div>';
+			. 'robots.txt physique existe à la racine et c\'est LUI qui est '
+			. 'servi.</strong> Apache le rend avant que WordPress ne s\'exécute, '
+			. 'donc les règles de ce plugin n\'ont aucun effet. Mesuré le '
+			. '22/09/2026 : 66 octets, daté du 12/06/2026 — probablement posé '
+			. 'lors de la réparation après piratage.</p>'
+			. '<p>Contenu réellement servi aujourd\'hui :</p>'
+			. '<pre style="background:#fff;border:1px solid #c3c4c7;padding:10px;'
+			. 'max-height:160px;overflow:auto">' . esc_html( $actuel ) . '</pre>'
+			. '<p>Le bouton ci-dessous le <strong>renomme</strong> (il ne le '
+			. 'supprime pas) en <code>robots.txt.desactive-<em>date</em></code>. '
+			. 'WordPress reprend alors la main et sert la version de ce plugin. '
+			. 'C\'est réversible d\'un clic, et ça évite un passage en FTP.</p>';
+		echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) )
+			. '">';
+		wp_nonce_field( 'dcp_crawl_robots' );
+		echo '<input type="hidden" name="action" value="dcp_crawl_robots">'
+			. '<input type="hidden" name="dcp_action" value="desactiver">'
+			. '<p><button type="submit" class="button button-primary">Ranger le '
+			. 'fichier physique et reprendre la main</button></p></form>';
+		if ( ! is_writable( ABSPATH ) ) {
+			echo '<p><em>Attention : la racine du site ne semble pas inscriptible '
+				. 'par PHP. Le bouton vous le dira, mais il y a de fortes chances '
+				. 'qu\'il faille passer par le gestionnaire de fichiers de '
+				. 'l\'hébergeur.</em></p>';
+		}
+		echo '</div>';
 	} else {
 		echo '<p>Aucun fichier physique : WordPress sert le robots.txt virtuel, '
 			. 'et ce plugin le remplit. Vérifiez-le sur <a href="'
 			. esc_url( home_url( '/robots.txt' ) ) . '" target="_blank">'
 			. esc_html( home_url( '/robots.txt' ) ) . '</a>.</p>';
 	}
+	echo '<p><strong>Ce que ce plugin sert (ou servirait) :</strong></p>';
 	echo '<pre style="background:#fff;border:1px solid #c3c4c7;padding:14px;'
 		. 'overflow:auto">' . esc_html( dcp_crawl_robots_voulu() ) . '</pre>';
+	if ( ! empty( $sauves ) && ! $physique ) {
+		sort( $sauves );
+		echo '<p>Sauvegarde conservée : <code>'
+			. esc_html( basename( (string) end( $sauves ) ) ) . '</code>.</p>';
+		echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) )
+			. '">';
+		wp_nonce_field( 'dcp_crawl_robots' );
+		echo '<input type="hidden" name="action" value="dcp_crawl_robots">'
+			. '<input type="hidden" name="dcp_action" value="restaurer">'
+			. '<p><button type="submit" class="button">Remettre l\'ancien fichier '
+			. 'physique en place</button></p></form>';
+	}
 
 	echo '<h2>2. Page « disparue » légère</h2>';
 	echo '<p>Les réponses 404 et 410 servent désormais un corps d\'environ 2 Ko '
@@ -270,6 +570,16 @@ function dcp_crawl_ecran() {
 	echo '<p>Au-delà de la dernière page réelle, la pagination renvoie 404 au '
 		. 'lieu de 200. Test : <a href="'
 		. esc_url( home_url( '/page/9999/' ) ) . '" target="_blank">/page/9999/</a>.</p>';
+
+	echo '<h2>4. /llms.txt</h2>';
+	echo '<p>Le site renvoyait 404 sur cette adresse — gênant pour une agence '
+		. 'qui vend du GEO. Ce plugin la sert désormais, construite depuis les '
+		. 'pages et les articles publiés (les contenus en noindex sont exclus), '
+		. 'avec un cache de 12 heures vidé à chaque publication. Vérifier : '
+		. '<a href="' . esc_url( home_url( '/llms.txt' ) ) . '" target="_blank">'
+		. esc_html( home_url( '/llms.txt' ) ) . '</a>.</p>';
+	echo '<p><em>Ce n\'est pas une directive : aucun moteur n\'est obligé de '
+		. 'lire ce fichier. C\'est un sommaire lisible par une machine.</em></p>';
 
 	echo '<h2>Après activation</h2>';
 	echo '<ol><li>Vérifier les trois tests ci-dessus.</li>'
