@@ -74,6 +74,12 @@ page fuit sur le reste du site.
 
 ## 3. Les blocs
 
+> **Direction artistique :** ce tableau donne les briques. Le rythme, la
+> règle d'alternance des bandes et la boucle de vérification au rendu réel
+> sont dans le skill **`decupler-direction-artistique`** — à lire avant de
+> pousser une page, c'est lui qui répond à « c'est trop générique » et
+> « le bas de page est vide ».
+
 | Bloc | Classe | Quand |
 |---|---|---|
 | Hero canvas « graphe de citations » | `.hero` + `.cv` | Page d'accueil, landing GEO |
@@ -86,6 +92,16 @@ page fuit sur le reste du site.
 | FAQ + JSON-LD | `.faq` | `.decupler-faq-answer-inner` **obligatoire**, elle porte le padding |
 | Bandeau E-E-A-T | `.eeat` | Photo de Nathan, fonction, LinkedIn, Calendly |
 | CTA de clôture | `.cta` | Un par page, en fin |
+| **Bande photo pleine largeur** | `.bphoto` | Une vraie photo du lieu, texte en surimpression, crédit CC affiché. Une par page |
+| **Ruban de faits** | `.ruban` | Bande fine et sombre, rôle purement rythmique entre deux grandes sections |
+| **Bande sombre éditoriale** | `.bl-dk` | Le parti pris, première personne, signé. Une par page, jamais deux |
+| **Livrables** | `.livr` | Six cellules, ce qui arrive chaque mois et à quelle cadence |
+| **On fait / on ne fait pas** | `.duo` | Deux colonnes, la seconde barrée. Le bloc le moins imitable d'une page |
+| **Bande auteur (E-E-A-T)** | `.aut` | Grande photo verticale + biographie, en pied. Remplace l'ancien `.eeat` à 60 px |
+
+Les six derniers sont définis dans
+`../decupler-page-ville-seo/assets/skin-ville.css` (ajouts du 22/09) et
+assemblés par `build_ville.py`.
 
 ## 4. Le hero canvas
 
