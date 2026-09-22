@@ -24,8 +24,15 @@ body .ast-article-single > .entry-header, .entry-title { display:none !important
   --tx:#1a1a2e; --tx2:#4a4a6a; --tx3:#8b8ba7;
   --bg:#ffffff; --bg2:#f7f5fd; --lav:#ece9f8; --bd:#e6e3f2;
   --ft:"Sora",system-ui,sans-serif; --fb:"Inter",system-ui,sans-serif;
-  width:100vw; max-width:100vw;
-  margin-left:calc(50% - 50vw) !important; margin-right:calc(50% - 50vw) !important;
+  /* PAS de width:100vw. Mesure du 22/09 : 100vw inclut la barre de
+     defilement, donc le bloc faisait 500 px pour un viewport de 485 — 15 px
+     de debordement, que overflow-x:hidden decoupait. Invisible a 1440 px,
+     mais sur mobile ca rognait la fin des mots : le H1 se lisait « Agence SEO
+     Monaco : p ». Le pleine largeur vient desormais du conteneur : chaque
+     page poussee recoit ast-site-content-layout = full-width-container, et
+     les regles de neutralisation ci-dessus mettent les ancetres a 100 %. */
+  width:100%; max-width:100%;
+  margin-left:0 !important; margin-right:0 !important;
   background:var(--bg); color:var(--tx2); font-family:var(--fb);
   font-size:16px; line-height:1.68; overflow-x:hidden;
 }
@@ -340,4 +347,19 @@ body .ast-article-single > .entry-header, .entry-title { display:none !important
   .dcp-v .vcard:hover::before{transform:scaleY(1)}
   .dcp-v .vcard:hover .vf::after{transform:translateX(5px)}
   .dcp-v .vcard:hover{transform:none;box-shadow:0 16px 38px rgba(81,41,144,.1)}
+}
+
+/* La bande de confiance porte 4 chiffres. En flex libre, elle tombait en
+   3 + 1 sous 700 px — le meme defaut que Nathan a signale sur les grilles
+   (« tu mets 3 puis 2 »). En dessous de 760 px on force deux colonnes : les
+   4 items remplissent deux lignes pleines. */
+@media (max-width:760px){
+  .dcp-v .trust > div{flex:0 0 50%;min-width:0}
+  .dcp-v .trust > div:nth-child(2n){border-right:0}
+  .dcp-v .trust > div:nth-child(-n+2){border-bottom:1px solid var(--bd)}
+}
+@media (max-width:420px){
+  .dcp-v .trust > div{flex:0 0 100%;border-right:0;
+    border-bottom:1px solid var(--bd)}
+  .dcp-v .trust > div:last-child{border-bottom:0}
 }
