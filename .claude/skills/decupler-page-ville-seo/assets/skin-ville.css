@@ -1,0 +1,188 @@
+
+body .ast-article-single > .entry-header, .entry-title { display:none !important; }
+.site-content .ast-container, .site-content #primary, .entry-content,
+.site-content, #content, main#main.site-main, article.page {
+  max-width:100% !important; padding-top:0 !important; padding-bottom:0 !important;
+  margin-top:0 !important; margin-bottom:0 !important;
+}
+.dcp-v{
+  --vio:#667eea; --vio2:#764ba2; --vio-d:#512990; --vio-l:#7c3aed;
+  --grad:linear-gradient(135deg,#667eea 0%,#764ba2 100%);
+  --tx:#1a1a2e; --tx2:#4a4a6a; --tx3:#8b8ba7;
+  --bg:#ffffff; --bg2:#f7f5fd; --lav:#ece9f8; --bd:#e6e3f2;
+  --ft:"Sora",system-ui,sans-serif; --fb:"Inter",system-ui,sans-serif;
+  width:100vw; max-width:100vw;
+  margin-left:calc(50% - 50vw) !important; margin-right:calc(50% - 50vw) !important;
+  background:var(--bg); color:var(--tx2); font-family:var(--fb);
+  font-size:16px; line-height:1.68; overflow-x:hidden;
+}
+.dcp-v *{box-sizing:border-box}
+.dcp-v .in{max-width:1180px;margin:0 auto;padding-left:26px;padding-right:26px}
+.dcp-v .nr{max-width:70ch}
+/* Astra pose un color explicite sur h1/h2/h3 : une regle explicite bat la
+   valeur heritee, il faut donc la redeclarer ici. */
+.dcp-v h1,.dcp-v h2,.dcp-v h3,.dcp-v h4{font-family:var(--ft) !important;color:var(--tx) !important;
+  margin:0;text-wrap:balance;letter-spacing:-.02em}
+.dcp-v h1{font-size:clamp(2.05rem,4.4vw,3.15rem);font-weight:700;line-height:1.14}
+.dcp-v h1 em{font-style:normal;color:var(--vio)}
+.dcp-v h2{font-size:clamp(1.42rem,2.9vw,2.1rem);font-weight:700;line-height:1.2}
+.dcp-v h3{font-size:1.01rem;font-weight:700;line-height:1.36}
+.dcp-v p{margin:0}
+.dcp-v a{color:inherit}
+.dcp-v .pill{display:inline-block;background:var(--lav);color:var(--vio-d);font-size:.685rem;
+  font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:7px 15px;border-radius:999px}
+.dcp-v .lead{color:var(--tx2);font-size:1.035rem}
+.dcp-v .sub{color:var(--tx3);font-size:.815rem}
+.dcp-v .st{display:flex;flex-direction:column;gap:18px}
+.dcp-v .st-s{display:flex;flex-direction:column;gap:12px}
+.dcp-v .row{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.dcp-v .bl{padding-top:clamp(56px,6.5vw,92px);padding-bottom:clamp(56px,6.5vw,92px)}
+.dcp-v .bl-lav{background:var(--bg2)}
+.dcp-v .bl-lav2{background:var(--lav)}
+/* boutons */
+.dcp-v .btn{display:inline-flex;align-items:center;background:var(--grad);color:#fff !important;
+  font-family:var(--ft);font-weight:700;font-size:.925rem;padding:14px 26px;border-radius:10px;
+  text-decoration:none;box-shadow:0 6px 18px rgba(102,126,234,.28)}
+.dcp-v .btn:hover{filter:brightness(1.07)}
+.dcp-v .btn-o{display:inline-flex;align-items:center;background:#fff;color:var(--vio-d) !important;
+  font-family:var(--ft);font-weight:700;font-size:.925rem;padding:13px 25px;border-radius:10px;
+  text-decoration:none;border:1px solid var(--bd)}
+.dcp-v .btn-o:hover{border-color:var(--vio);color:var(--vio) !important}
+.dcp-v .lnk{color:var(--vio-d);text-decoration:underline;text-underline-offset:2px;font-weight:500}
+.dcp-v .lnk:hover{color:var(--vio)}
+/* hero */
+.dcp-v .hero{background:linear-gradient(170deg,#f3f0fd 0%,#faf9fe 58%,#ffffff 100%);
+  padding-top:clamp(52px,6vw,82px);padding-bottom:clamp(52px,6vw,78px);position:relative;overflow:hidden}
+.dcp-v .hgrid{display:grid;grid-template-columns:1.32fr .68fr;gap:clamp(26px,4vw,54px);align-items:start}
+.dcp-v .cards{display:flex;flex-direction:column;gap:14px;padding-top:12px}
+.dcp-v .card{background:#fff;border:1px solid var(--bd);border-radius:13px;padding:14px 18px;
+  box-shadow:0 8px 24px rgba(81,41,144,.07)}
+.dcp-v .card .k{font-size:.62rem;letter-spacing:.13em;text-transform:uppercase;color:var(--tx3);font-weight:700}
+.dcp-v .card .v{font-family:var(--ft);font-weight:700;font-size:.97rem;color:var(--tx);margin-top:3px}
+.dcp-v .trust{display:flex;flex-wrap:wrap;background:#fff;border:1px solid var(--bd);border-radius:13px;
+  margin-top:30px;box-shadow:0 8px 24px rgba(81,41,144,.06);overflow:hidden}
+.dcp-v .trust > div{flex:1 1 150px;padding:17px 22px;border-right:1px solid var(--bd)}
+.dcp-v .trust > div:last-child{border-right:0}
+.dcp-v .trust .n{font-family:var(--ft);font-weight:700;font-size:1.32rem;color:var(--vio);line-height:1.1}
+.dcp-v .trust .l{font-size:.78rem;color:var(--tx3);margin-top:3px;line-height:1.4}
+/* grille numerotee */
+.dcp-v .num2{display:grid;grid-template-columns:repeat(auto-fit,minmax(296px,1fr));gap:16px;margin-top:26px}
+.dcp-v .num2 > div{background:#fff;border:1px solid var(--bd);border-radius:13px;padding:22px 24px}
+.dcp-v .num2 .b{width:26px;height:26px;border-radius:999px;background:var(--lav);color:var(--vio-d);
+  font-family:var(--ft);font-weight:700;font-size:.78rem;display:flex;align-items:center;
+  justify-content:center;margin-bottom:11px}
+.dcp-v .num2 .d{color:var(--tx2);font-size:.9rem;line-height:1.6;margin-top:5px}
+/* maquette requete IA */
+.dcp-v .mock{background:#fff;border:1px solid var(--bd);border-radius:16px;padding:20px;
+  box-shadow:0 18px 44px rgba(81,41,144,.1)}
+.dcp-v .mock .k{font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--tx3);font-weight:700}
+.dcp-v .mock .q{background:var(--bg2);border:1px solid var(--bd);border-radius:9px;padding:12px 14px;
+  margin-top:8px;color:var(--tx);font-size:.875rem;line-height:1.5}
+.dcp-v .mock .ans{margin-top:16px;display:flex;flex-direction:column;gap:9px}
+.dcp-v .mock .ans > div{display:grid;grid-template-columns:15px 1fr;gap:10px;align-items:center;font-size:.875rem}
+.dcp-v .mock .dot{width:11px;height:11px;border-radius:999px;border:2px solid var(--bd);display:block}
+.dcp-v .mock .on .dot{border-color:var(--vio);background:var(--vio);box-shadow:0 0 0 3px rgba(102,126,234,.16)}
+.dcp-v .mock .on span{color:var(--tx);font-weight:600}
+.dcp-v .mock .off span{color:var(--tx3)}
+.dcp-v .mock .ft{font-size:.72rem;color:var(--tx3);margin-top:15px;padding-top:13px;border-top:1px solid var(--bd)}
+/* methode */
+.dcp-v .split{display:grid;grid-template-columns:.95fr 1.05fr;gap:clamp(26px,4.5vw,64px);align-items:center}
+.dcp-v .steps{display:flex;flex-direction:column;gap:15px;margin-top:6px}
+.dcp-v .steps > div{display:grid;grid-template-columns:25px 1fr;gap:14px;align-items:start}
+.dcp-v .steps .b{width:25px;height:25px;border-radius:999px;background:#fff;border:1px solid var(--bd);
+  color:var(--tx2);font-family:var(--ft);font-weight:700;font-size:.74rem;display:flex;
+  align-items:center;justify-content:center}
+.dcp-v .steps .t{font-size:.93rem;line-height:1.6;color:var(--tx2)}
+.dcp-v .steps .t b{color:var(--tx);font-weight:700}
+/* tableau */
+.dcp-v .tw{overflow-x:auto;border:1px solid var(--bd);border-radius:13px;background:#fff;margin-top:24px}
+.dcp-v table{border-collapse:collapse;width:100%;min-width:660px;font-size:.89rem}
+.dcp-v thead th{background:var(--grad);color:#fff;font-family:var(--ft);font-weight:700;font-size:.69rem;
+  letter-spacing:.11em;text-transform:uppercase;text-align:left;padding:14px 18px}
+.dcp-v tbody td{padding:14px 18px;border-bottom:1px solid var(--bd);border-right:1px solid var(--bd);
+  color:var(--tx2);vertical-align:top}
+.dcp-v tbody td:last-child{border-right:0}
+.dcp-v tbody tr:last-child td{border-bottom:0}
+.dcp-v tbody td:first-child{font-weight:600;color:var(--tx);font-family:var(--ft);font-size:.86rem}
+/* liste cochee */
+.dcp-v .chk{display:flex;flex-direction:column;gap:10px;margin-top:16px}
+.dcp-v .chk > div{display:grid;grid-template-columns:19px 1fr;gap:11px;align-items:start;
+  font-size:.925rem;color:var(--tx2);line-height:1.58}
+.dcp-v .chk .c{width:19px;height:19px;border-radius:999px;background:var(--lav);color:var(--vio-d);
+  font-size:.66rem;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:2px}
+/* photo ville + communes */
+.dcp-v .ph{border-radius:16px;overflow:hidden;position:relative;border:1px solid var(--bd);
+  background:var(--bg2);box-shadow:0 18px 44px rgba(81,41,144,.1);aspect-ratio:3/4;max-width:100%}
+.dcp-v .ph img{width:100%;height:100%;object-fit:cover;display:block}
+.dcp-v .ph .cap{position:absolute;left:0;right:0;bottom:0;padding:14px 18px;color:#fff;font-size:.78rem;
+  font-weight:600;background:linear-gradient(to top,rgba(20,10,40,.72),rgba(20,10,40,0))}
+.dcp-v .ph .slot{display:flex;align-items:center;justify-content:center;height:100%;padding:26px;
+  text-align:center;color:var(--tx3);font-size:.83rem;line-height:1.6}
+.dcp-v .comm{display:grid;grid-template-columns:repeat(auto-fit,minmax(178px,1fr));gap:12px;margin-top:26px}
+.dcp-v .comm > div{background:#fff;border:1px solid var(--bd);border-radius:11px;padding:13px 16px}
+.dcp-v .comm .n{font-family:var(--ft);font-weight:700;font-size:.9rem;color:var(--tx)}
+.dcp-v .comm .l{font-size:.73rem;color:var(--tx3);margin-top:2px}
+.dcp-v .cp{font-family:var(--ft);font-weight:700;color:var(--vio);font-size:.97rem}
+/* Bande de logos. Fond CLAIR : grayscale + opacite, jamais invert (qui les
+   rendrait blancs donc invisibles). max-height pour egaliser des logos de
+   ratios differents. */
+.dcp-v .logos{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;
+  gap:clamp(20px,4vw,52px);margin-top:34px;padding-top:26px;padding-bottom:4px;border-top:1px solid var(--bd)}
+.dcp-v .logos .lb{font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--tx3);font-weight:700;flex:0 0 auto}
+.dcp-v .logos .cell{height:30px;display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+.dcp-v .logos img{max-height:30px;max-width:116px;width:auto;height:auto;object-fit:contain;
+  display:block;filter:grayscale(1);opacity:.52}
+.dcp-v .logos img:hover{filter:none;opacity:1}
+/* Images editoriales */
+.dcp-v .fig{border-radius:16px;overflow:hidden;border:1px solid var(--bd);
+  box-shadow:0 18px 44px rgba(81,41,144,.1);position:relative;background:var(--bg2)}
+.dcp-v .fig img{width:100%;height:auto;display:block}
+.dcp-v .fig .cap{position:absolute;left:0;right:0;bottom:0;padding:13px 17px;color:#fff;
+  font-size:.765rem;font-weight:600;background:linear-gradient(to top,rgba(20,10,40,.74),rgba(20,10,40,0))}
+.dcp-v .band{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(26px,4.5vw,58px);align-items:center}
+@media (max-width:920px){.dcp-v .band{grid-template-columns:1fr}}
+/* secteurs & budget */
+.dcp-v .grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:16px;margin-top:26px}
+.dcp-v .grid2 > div{background:#fff;border:1px solid var(--bd);border-radius:13px;padding:22px 24px}
+.dcp-v .grid2 .d{color:var(--tx2);font-size:.9rem;line-height:1.6;margin-top:6px}
+.dcp-v .bud{display:grid;grid-template-columns:repeat(auto-fit,minmax(238px,1fr));gap:16px;margin-top:26px}
+.dcp-v .bud > div{background:#fff;border:1px solid var(--bd);border-radius:13px;padding:24px;
+  display:flex;flex-direction:column;gap:6px}
+.dcp-v .bud .f{font-family:var(--ft);font-weight:700;font-size:1.13rem;color:var(--vio-d)}
+.dcp-v .bud .q{color:var(--tx2);font-size:.885rem;line-height:1.58}
+/* FAQ */
+.dcp-v .faq{display:flex;flex-direction:column;gap:12px;margin-top:26px}
+.dcp-v .decupler-faq-item{background:#fff;border:1px solid var(--bd);border-radius:13px}
+.dcp-v .decupler-faq-question{font-family:var(--ft);font-weight:700;font-size:1rem;line-height:1.4;
+  color:var(--tx);padding:20px 24px 0 24px}
+.dcp-v .decupler-faq-answer-inner{padding:9px 24px 20px 24px;color:var(--tx2);font-size:.915rem;
+  line-height:1.68;max-width:78ch}
+.dcp-v .decupler-faq-answer-inner a{color:var(--vio-d);text-decoration:underline;text-underline-offset:2px}
+/* E-E-A-T */
+.dcp-v .eeat{display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:center;background:#fff;
+  border:1px solid var(--bd);border-radius:14px;padding:22px 24px;margin-top:24px}
+.dcp-v .eeat .av{width:66px;height:66px;border-radius:999px;overflow:hidden;background:var(--lav);display:block}
+.dcp-v .eeat .av img{width:100%;height:100%;object-fit:cover;display:block}
+.dcp-v .eeat .nf{display:flex;flex-direction:column;gap:4px}
+.dcp-v .eeat .nf .n{font-family:var(--ft);font-weight:700;font-size:1.03rem;color:var(--tx)}
+.dcp-v .eeat .nf .r{color:var(--tx2);font-size:.885rem;max-width:60ch}
+/* bande CTA finale */
+.dcp-v .final{background:var(--grad);border-radius:0}
+.dcp-v .final h2{color:#fff !important}
+.dcp-v .final .lead{color:rgba(255,255,255,.88)}
+.dcp-v .final .btn{background:#fff;color:var(--vio-d) !important;box-shadow:0 8px 22px rgba(0,0,0,.16)}
+.dcp-v .final .btn-o{background:transparent;color:#fff !important;border-color:rgba(255,255,255,.5)}
+@media (max-width:920px){
+  .dcp-v .hgrid,.dcp-v .split{grid-template-columns:1fr}
+  .dcp-v .cards{flex-direction:row;flex-wrap:wrap;padding-top:0}
+  .dcp-v .cards .card{flex:1 1 168px}
+}
+/* Translation seulement : jamais d'opacite, sinon le texte disparait pour les
+   crawlers qui n'executent pas JS. */
+@keyframes dcpIn{from{transform:translateY(14px)}to{transform:none}}
+@media (prefers-reduced-motion:no-preference){
+  .dcp-v .a1{animation:dcpIn .65s cubic-bezier(.2,.7,.2,1) both}
+  .dcp-v .a2{animation:dcpIn .65s cubic-bezier(.2,.7,.2,1) .08s both}
+  .dcp-v .a3{animation:dcpIn .65s cubic-bezier(.2,.7,.2,1) .16s both}
+}
