@@ -488,3 +488,10 @@ body .ast-article-single > .entry-header, .entry-title { display:none !important
 @media (max-width:920px){
   .dcp-v .hvis .ph2:not(.pay) img{aspect-ratio:4/5;object-position:center 14%}
 }
+
+/* Les cartes-liens sont desormais dans un div (regle wpautop). Le div porte la
+   cellule de grille, le lien remplit la cellule. */
+.dcp-v .vgrid > .vcell{display:flex}
+.dcp-v .vcell > .vcard{flex:1 1 auto}
+.dcp-v .hvis > .hcell{display:flex}
+.dcp-v .hcell > .hpr{flex:1 1 auto}

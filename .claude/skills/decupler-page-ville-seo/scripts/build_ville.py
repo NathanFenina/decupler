@@ -143,8 +143,8 @@ def construis(slug):
         # paysage dans un cadre portrait la charcute (premier essai : le
         # visage sortait du cadre). Portrait -> 4/5, paysage -> 4/3.
         classe = "ph2" if h > w else "ph2 pay"
-        a(f'<div class="{classe}">')
-        a(f'<img src="{src}" alt="{alt}" width="{w}" height="{h}">')
+        a(f'<div class="{classe}"><img src="{src}" alt="{alt}" '
+          f'width="{w}" height="{h}">')
         a(f'<div class="bdg"><div class="k">{bk}</div><div class="v">{bv}</div></div>')
         a("</div>")
         a('<div class="mot">')
@@ -157,11 +157,12 @@ def construis(slug):
         # l'air : un chiffre attribue, haut dans la page, qui mene a l'etude.
         if b.get("hero_preuve"):
             chiffre, libelle, url = b["hero_preuve"]
-            a(f'<a class="hpr" href="{url}">')
+            a(f'<div class="hcell"><a class="hpr" href="{url}">')
             a(f'<div class="n">{chiffre}</div>')
             a(f'<div class="l">{libelle}</div>')
             a('<div class="f">Voir l\'étude de cas</div>')
             a("</a>")
+            a("</div>")
         a("</div>")
     else:
         a('<div class="cards a3">')
@@ -332,9 +333,10 @@ def construis(slug):
         a(f'<p class="lead nr">{b["voisines_intro"]}</p>')
         a('<div class="vgrid" data-dcp="chrome">')
         for titre, sous, url in b["voisines"]:
-            a(f'<a class="vcard" href="{url}"><div class="vt">{titre}</div>'
+            a(f'<div class="vcell"><a class="vcard" href="{url}">'
+              f'<div class="vt">{titre}</div>'
               f'<div class="vs">{sous}</div>'
-              f'<div class="vf">Voir la page</div></a>')
+              f'<div class="vf">Voir la page</div></a></div>')
         a("</div>")
         a("</div>")
         a("</div>")

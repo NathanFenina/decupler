@@ -213,13 +213,29 @@ def inline_orphelins(html):
         <div>…</div><span>x</span>   ou   <span>x</span><div>…</div>
     """
     c = hors_css(html)
-    inline = r"span|svg|b|i|em|strong|small|code"
+    # « a » et « img » manquaient, alors que la regle 5 du skill design les
+    # cite nommement. C'est exactement ce trou qui a laisse passer en
+    # production un bloc de cartes-liens ou wpautop a enveloppe le premier
+    # <a class="vcard"> dans un <p> : l'ouverture du <p> a avale la fermeture
+    # de la carte suivante, et le rendu montrait des cartes vides entre les
+    # cartes remplies. Un controle qui ne cherche pas ce que sa propre
+    # documentation signale ne sert a rien.
+    inline = r"a|img|span|svg|b|i|em|strong|small|code"
     bloc = r"div|section|ul|ol|table|figure|blockquote"
     fautifs = []
     for m in re.finditer(rf"</(?:{bloc})>\s*<(?:{inline})\b", c):
         fautifs.append(c[max(0, m.start() - 40):m.end()])
     for m in re.finditer(rf"</(?:{inline})>\s*<(?:{bloc})[ >]", c):
         fautifs.append(c[max(0, m.start() - 40):m.end()])
+    # Troisieme regle, celle qui manquait vraiment. wpautop enveloppe tout
+    # element inline pose SEUL SUR SA LIGNE au niveau bloc — meme quand son
+    # frere precedent est une balise OUVRANTE. C'est le cas qui est passe en
+    # production : <div class="vgrid"> puis <a class="vcard"> a la ligne. Les
+    # deux regles ci-dessus ne cherchaient que les balises fermantes, donc
+    # elles ne voyaient rien.
+    for ligne in c.split("\n"):
+        if re.match(rf"\s*<(?:{inline})\b", ligne):
+            fautifs.append("ligne commencant par un inline : " + ligne.strip())
     return fautifs[:3]
 
 
