@@ -338,3 +338,148 @@ BLOCS = {
              "vous dit ce qui se joue vraiment. À nos bureaux du port ou en visio, "
              "sans engagement.",
 }
+
+# ── Ajouts du 22/09 (soir) ────────────────────────────────────────────────
+# Ecrits pour Nice, registre AGENCE. Les deux faits qui n'existent nulle part
+# ailleurs dans le lot : c'est la seule ville ou Decupler a une adresse reelle
+# (10 avenue Lympia privee), et la seule ou la demande est franchement
+# saisonniere et multilingue.
+BLOCS.update({
+    "photo_ville": {
+        "src": "https://decupler.com/wp-content/uploads/2026/09/bandeau-nice.jpg",
+        "alt": "Vue aérienne de Nice : la baie des Anges, la promenade des "
+               "Anglais et le Vieux-Nice",
+        "w": 2000, "h": 858,
+        "k": "Notre ville, pas une zone couverte",
+        "h2": "Nos bureaux sont à quinze minutes de ce que vous voyez",
+        "p": "La baie des Anges, la promenade, le Vieux-Nice et le port : "
+             "Décupler travaille depuis le quartier du port, 10 avenue Lympia "
+             "privée. C'est la seule ville de cette série où nous pouvons "
+             "l'écrire, parce que c'est la seule où nous avons une adresse. "
+             "Ailleurs nous nous déplaçons ; ici nous habitons.",
+        "chips": ["10 avenue Lympia privée", "06000 · 06100 · 06200 · 06300",
+                  "Rendez-vous sur place", "FR · EN · IT"],
+        "credit": "Nice, la baie des Anges et le Vieux-Nice — photo Décupler",
+    },
+    "ruban": [
+        ("4 codes postaux", "06000, 06100, 06200 et 06300 — toute la commune"),
+        ("×3", "l'écart de demande entre février et août sur certains métiers"),
+        ("3 langues", "français, anglais, italien : la clientèle niçoise réelle"),
+        ("Adresse réelle", "10 avenue Lympia privée, quartier du port"),
+    ],
+
+    "h2_livrables": "Que recevez-vous chaque mois, concrètement ?",
+    "livrables_intro": "Une agence se juge à ce qui arrive vraiment, pas à ce "
+                       "qu'elle promet en rendez-vous. Voici les six livrables "
+                       "d'un accompagnement niçois, avec leur cadence.",
+    "livrables": [
+        ("01", "Relevé de positions depuis Nice",
+         "Un classement n'existe pas dans l'absolu : il se mesure depuis un "
+         "point. Nous relevons vos requêtes géolocalisées à Nice, et non depuis "
+         "un serveur parisien qui vous montrerait un autre Google.",
+         "Hebdomadaire"),
+        ("02", "Suivi de vos citations par les IA",
+         "Les mêmes questions posées à ChatGPT, Perplexity, Gemini et Claude, "
+         "en français et en anglais, avec la trace de qui est cité. C'est là "
+         "qu'une partie de vos futurs clients commence désormais à chercher.",
+         "Mensuel"),
+        ("03", "Contenus écrits et mis en ligne",
+         "Deux à quatre pages ou articles par mois, rédigés puis publiés dans "
+         "votre site. Nous ne livrons pas des recommandations à faire exécuter "
+         "ailleurs : nous publions nous-mêmes.",
+         "2 à 4 par mois"),
+        ("04", "Corrections techniques appliquées",
+         "Vitesse, balises, données structurées, erreurs d'exploration, "
+         "sécurité. Chaque correction est mesurée avant et après — un site "
+         "niçois hacké, nous savons ce que ça coûte, c'est arrivé au nôtre.",
+         "En continu"),
+        ("05", "Fiche Google Business Profile tenue",
+         "Photos, horaires, catégories, questions-réponses, réponses aux avis. "
+         "À Nice, sur une recherche faite à pied dans le Vieux-Nice, c'est la "
+         "fiche qui décide avant le site.",
+         "Mensuel"),
+        ("06", "Point mensuel de 45 minutes",
+         "Avec Nathan, en visio ou dans nos bureaux du port. Ce qui a bougé, ce "
+         "qui n'a pas marché, ce qu'on change. Pas de compte rendu générique.",
+         "Mensuel"),
+    ],
+    "livrables_note": "Sur les métiers saisonniers, la cadence de production "
+                      "est volontairement déséquilibrée : on écrit en hiver ce "
+                      "qui doit ranker en été, parce qu'une page met deux à "
+                      "quatre mois à s'installer.",
+
+    "h2_duo": "Ce que nous faisons, et ce que nous refusons",
+    "duo_intro": "Autant l'écrire une fois pour toutes, y compris la colonne "
+                 "de droite — celle qui nous fait perdre des contrats en "
+                 "rendez-vous.",
+    "duo": (
+        "Ce que nous faisons à Nice",
+        [
+            "<b>Tenir compte de la saison.</b> Un hôtel, un restaurant ou un "
+            "loueur qui commence son SEO en juin a déjà perdu son été. On cale "
+            "le calendrier de production sur le vôtre.",
+            "<b>Travailler l'anglais et l'italien.</b> Une part réelle de la "
+            "demande niçoise arrive dans ces deux langues, et une page française "
+            "seule les laisse à la concurrence.",
+            "<b>Descendre à l'échelle du quartier.</b> Vieux-Nice, port, "
+            "Libération, Cimiez, Ouest : les intentions de recherche et la "
+            "concurrence n'y sont pas les mêmes.",
+            "<b>Mesurer les demandes, pas les courbes.</b> Appels, formulaires, "
+            "réservations. Une position qui monte sans téléphone qui sonne n'est "
+            "pas un résultat.",
+            "<b>Vous recevoir.</b> 10 avenue Lympia privée, quartier du port. "
+            "Le dossier se comprend mieux autour d'une table.",
+        ],
+        "Ce que nous ne faisons pas",
+        [
+            "<b>Des liens achetés.</b> Ni réseaux privés, ni annuaires payants, "
+            "ni échanges en volume. C'est votre site qui prendrait la sanction.",
+            "<b>Des contenus générés puis publiés tels quels.</b> L'IA sert à la "
+            "recherche et au cadrage ; ce qui est mis en ligne est relu et "
+            "corrigé.",
+            "<b>Des engagements de douze mois.</b> Préavis d'un mois, sans "
+            "pénalité. Si le travail ne vaut rien, rien ne doit vous retenir.",
+            "<b>Des garanties de première position.</b> Personne ne pilote "
+            "l'algorithme. Une garantie de ce type porte toujours sur une "
+            "requête que personne ne tape.",
+            "<b>Deux concurrents du même métier à Nice.</b> Un seul client par "
+            "activité et par zone : faire gagner les deux est impossible.",
+        ],
+    ),
+
+    "parti_pill": "Parti pris",
+    "h2_parti": "Pourquoi nous refusons de démarrer certains dossiers en juin",
+    "parti_pris": [
+        "C'est la conversation la plus fréquente de notre printemps. Un "
+        "restaurateur ou un hôtelier niçois appelle début juin, la saison "
+        "démarre, il veut « être visible tout de suite ». Nous répondons "
+        "presque toujours la même chose : <strong>ce n'est pas le bon "
+        "moment</strong>, et voici pourquoi.",
+        "Une page mise en ligne aujourd'hui met deux à quatre mois à trouver sa "
+        "place. Sur un marché où la demande triple entre février et août, "
+        "publier en juin revient à payer un travail qui produira ses effets en "
+        "septembre, quand la promenade se vide. Le même budget dépensé en "
+        "janvier aurait travaillé pendant toute la haute saison.",
+        "Alors nous proposons l'inverse : on prépare l'hiver, on écrit "
+        "pendant la basse saison, et on utilise l'été pour mesurer et corriger. "
+        "<strong>Ça nous fait perdre des contrats au mois de juin.</strong> "
+        "Nous préférons ça à encaisser trois mois d'honoraires en sachant que "
+        "le client sera déçu — surtout dans une ville où tout le monde se "
+        "connaît et où la recommandation fait plus de chiffre que Google.",
+    ],
+    "parti_role": "Fondateur de Décupler · 10 avenue Lympia privée, Nice",
+})
+
+# Biographie developpee de la bande auteur : ce qui rend Nathan verifiable
+# sur CE marche. Ecrite ville par ville — le controle de duplication du
+# validateur rejette (a raison) un paragraphe recopie.
+BLOCS["eeat_plus"] = [
+    "Nathan Fenina dirige Décupler depuis Nice, où la société est "
+    "immatriculée et installée : 10 avenue Lympia privée, dans le quartier "
+    "du port. C'est la seule ville de cette série où nous pouvons donner une "
+    "adresse, parce que c'est la seule où nous en avons une.",
+    "Ses analyses sur le référencement dans les moteurs génératifs sont "
+    "publiées sur ce site et discutées publiquement sur LinkedIn : vous "
+    "pouvez vérifier ce qu'il pense avant de le rencontrer, ce qui est le "
+    "minimum qu'on puisse demander à un prestataire.",
+]

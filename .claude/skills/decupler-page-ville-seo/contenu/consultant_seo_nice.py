@@ -302,3 +302,149 @@ BLOCS = {
              "à votre place et dans quel ordre. Si la réponse est « rien pour "
              "l'instant », vous l'entendrez aussi.",
 }
+
+# ── Ajouts du 22/09 (soir) ────────────────────────────────────────────────
+# Registre CONSULTANT : voix « je », entite Nathan Fenina. Le point de vue
+# n'est pas celui d'une structure qui livre, mais d'une personne dont le
+# temps est la ressource rare. Les livrables sont donc formules comme des
+# engagements personnels, et la colonne « ce que je ne fais pas » porte sur
+# la disponibilite — c'est la vraie difference avec la page agence.
+BLOCS.update({
+    "photo_ville": {
+        "src": "https://decupler.com/wp-content/uploads/2026/09/bandeau-nice.jpg",
+        "alt": "Nice vue d'en haut : la baie des Anges et le Vieux-Nice, où "
+               "travaille Nathan Fenina",
+        "w": 2000, "h": 858,
+        "k": "Là où je travaille",
+        "h2": "Je vis ici, et ça change deux choses à votre dossier",
+        "p": "La première : je peux passer vous voir. Un commerce du "
+             "Vieux-Nice, un cabinet à Cimiez, une PME dans la plaine du Var — "
+             "j'y vais, et je comprends en une heure ce que trois visios ne "
+             "montrent pas. La seconde : je connais vos concurrents, parce que "
+             "je passe devant leurs vitrines.",
+        "chips": ["Basé au port de Nice", "Rendez-vous sur place",
+                  "06000 · 06100 · 06200 · 06300", "8 ans de SEO"],
+        "credit": "Nice, la baie des Anges et le Vieux-Nice — photo Décupler",
+    },
+    "ruban": [
+        ("1 interlocuteur", "vous n'êtes jamais transféré à un junior"),
+        ("6 clients", "le maximum que je suis capable de suivre sérieusement"),
+        ("48 h", "mon délai de réponse maximum sur un dossier en cours"),
+        ("1 mois", "de préavis, sans pénalité, à tout moment"),
+    ],
+
+    "h2_livrables": "Sur quoi est-ce que je m'engage, chaque mois ?",
+    "livrables_intro": "Un consultant indépendant vend du temps et du "
+                       "jugement. Voici où passe ce temps, pour que vous "
+                       "puissiez vérifier que je tiens ma part.",
+    "livrables": [
+        ("01", "Je relève vos positions depuis Nice",
+         "Vos requêtes, géolocalisées ici, chaque semaine. Et je vous dis ce "
+         "qui a bougé dans le classement de vos trois concurrents directs — pas "
+         "seulement le vôtre.",
+         "Chaque semaine"),
+        ("02", "J'interroge les IA sur votre métier",
+         "Les questions que vos clients posent à ChatGPT, Perplexity, Gemini et "
+         "Claude, avec la liste de qui est cité. Quand vous n'y êtes pas, je "
+         "vous dis pourquoi et ce qui manque.",
+         "Chaque mois"),
+        ("03", "J'écris et je publie",
+         "Deux à quatre contenus par mois, de ma main, mis en ligne dans votre "
+         "site. Je ne sous-traite pas la rédaction : c'est là que se joue la "
+         "différence, donc c'est moi qui le fais.",
+         "2 à 4 par mois"),
+        ("04", "Je corrige la technique",
+         "Vitesse, balises, données structurées, erreurs d'exploration. "
+         "J'interviens directement dans le site quand j'y ai accès, ou je "
+         "transmets un correctif prêt à appliquer à votre développeur.",
+         "En continu"),
+        ("05", "Je tiens votre fiche Google",
+         "Photos, horaires, catégories, questions-réponses, avis. Sur une "
+         "recherche faite dans la rue, à Nice, c'est cette fiche qui décide et "
+         "elle se néglige vite.",
+         "Chaque mois"),
+        ("06", "Je vous appelle 45 minutes",
+         "Tous les mois, en visio ou autour d'un café. Je vous dis aussi ce qui "
+         "n'a pas marché : c'est la moitié utile de la conversation.",
+         "Chaque mois"),
+    ],
+    "livrables_note": "Entre deux points mensuels, vous m'écrivez directement. "
+                      "Je réponds sous 48 heures ouvrées, et je le tiens parce "
+                      "que je limite volontairement le nombre de dossiers.",
+
+    "h2_duo": "Qu'est-ce que je fais, et qu'est-ce que je refuse ?",
+    "duo_intro": "La colonne de droite est la plus utile des deux : elle vous "
+                 "évite de me confier un travail pour lequel je ne suis pas le "
+                 "bon choix.",
+    "duo": (
+        "Ce dont je m'occupe",
+        [
+            "<b>La stratégie et l'exécution.</b> Je ne rends pas un audit de "
+            "quarante pages à faire appliquer par quelqu'un d'autre : "
+            "j'applique.",
+            "<b>Le contenu, de ma main.</b> Recherche, plan, rédaction, "
+            "publication. L'IA m'aide à défricher, elle n'écrit pas la version "
+            "publiée.",
+            "<b>Votre visibilité dans les IA autant que dans Google.</b> C'est "
+            "le même travail de fond, et c'est là que l'écart se creuse en ce "
+            "moment.",
+            "<b>Vous former si vous voulez reprendre la main.</b> Certains "
+            "clients veulent être autonomes au bout d'un an. C'est une réussite, "
+            "pas une perte.",
+            "<b>Vous dire non.</b> Quand votre problème n'est pas le SEO — un "
+            "site illisible, une offre floue, un prix hors marché — je le dis "
+            "avant de prendre un centime.",
+        ],
+        "Ce que je ne fais pas",
+        [
+            "<b>Plus de six dossiers à la fois.</b> Au-delà je fais du mauvais "
+            "travail sur tous. Si je suis complet, je le dis et je vous donne "
+            "une date.",
+            "<b>Du référencement payant.</b> Google Ads est un autre métier ; "
+            "je vous oriente vers quelqu'un plutôt que d'improviser.",
+            "<b>Des liens achetés.</b> Jamais, sur aucun dossier. C'est votre "
+            "site qui encaisserait la sanction, pas moi.",
+            "<b>Des promesses de position.</b> Je m'engage sur le travail livré "
+            "et sur les demandes entrantes mesurées, pas sur un rang que "
+            "personne ne contrôle.",
+            "<b>Deux clients concurrents à Nice.</b> Un seul par métier : je ne "
+            "peux pas faire gagner deux entreprises sur la même requête.",
+        ],
+    ),
+
+    "parti_pill": "Mon parti pris",
+    "h2_parti": "Pourquoi plafonner à six clients quand on pourrait en "
+                "prendre vingt ?",
+    "parti_pris": [
+        "C'est la question qu'on me pose le plus souvent, et la réponse est "
+        "moins noble qu'elle en a l'air : <strong>je sais ce que je vaux quand "
+        "je suis débordé</strong>. Au-delà de six dossiers suivis "
+        "personnellement, je commence à rendre du travail correct au lieu de "
+        "travail utile, et le client ne s'en aperçoit qu'au bout de quatre mois.",
+        "La sortie classique de ce problème, c'est de recruter et de devenir "
+        "une agence : un junior produit, je relis, je facture le double. Ça "
+        "fonctionne, beaucoup le font bien. Mais ce n'est plus la prestation "
+        "que j'ai envie de vendre, parce que ce qui fait la différence sur un "
+        "dossier, c'est justement <strong>l'heure où l'on comprend le "
+        "métier du client</strong> — et cette heure ne se délègue pas.",
+        "Concrètement, ça veut dire que je suis parfois complet et que je vous "
+        "donne une date au lieu d'un devis. Ça veut dire aussi que quand je "
+        "prends votre dossier, vous avez la même personne du premier appel à la "
+        "dernière publication, qui se souvient de ce qu'on a essayé en mars et "
+        "pourquoi ça n'a pas marché. À Nice, où la recommandation fait plus de "
+        "chiffre d'affaires que Google, c'est le seul modèle qui tient.",
+    ],
+    "parti_role": "Consultant SEO indépendant · Nice, quartier du port",
+})
+
+# Registre consultant : la biographie est a la premiere personne, et ce
+# qu'elle promet est un acces direct — c'est le seul argument qu'une agence
+# ne peut pas copier.
+BLOCS["eeat_plus"] = [
+    "Je travaille depuis le quartier du port de Nice et je me déplace dans "
+    "toute la commune — Vieux-Nice, Libération, Cimiez, l'Ouest, la plaine "
+    "du Var. Vous aurez mon numéro direct, pas celui d'un standard.",
+    "J'écris publiquement sur le référencement dans les moteurs génératifs, "
+    "ici et sur LinkedIn. Lisez-moi avant de m'appeler : c'est la façon la "
+    "plus rapide de savoir si ma manière de travailler vous convient.",
+]

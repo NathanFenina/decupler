@@ -495,3 +495,183 @@ body .ast-article-single > .entry-header, .entry-title { display:none !important
 .dcp-v .vcell > .vcard{flex:1 1 auto}
 .dcp-v .hvis > .hcell{display:flex}
 .dcp-v .hcell > .hpr{flex:1 1 auto}
+
+/* ===================================================================
+   AJOUTS DU 22/09 (soir) — types de bande supplementaires.
+
+   Retour de Nathan sur les pages du 22/09 : « regarde le bas et y'a pas de
+   photo, y'a pas assez de matiere, y'a pas assez baniere differente, c'est
+   trop claude comme page ». Diagnostic honnete : le bas de page enchainait
+   cinq bandes blanc / lavande sans une seule image, et il n'existait que
+   deux fonds possibles (.bl et .bl-lav). D'ou quatre nouveaux types de
+   bande, chacun avec un role et un rythme distincts.
+   =================================================================== */
+
+/* --- 1. Bande photo pleine largeur ---------------------------------
+   Une vraie photo de la ville, plein cadre, avec le texte en surimpression.
+   Les photos viennent de Wikimedia Commons sous licence CC : le credit et la
+   licence sont affiches, c'est la condition de la licence et ca vaut mieux
+   qu'une ville inventee par un modele. */
+.dcp-v .bphoto{position:relative;overflow:hidden;background:#0f1020}
+.dcp-v .bphoto > div:first-child{display:block;line-height:0}
+.dcp-v .bphoto img{width:100%;height:100%;display:block;object-fit:cover;
+  /* Pas de hauteur fixe : la bande suit le rapport de la source, et
+     aspect-ratio ne s'applique que si height:auto est declare — les
+     attributs width/height du HTML sont des indications de presentation
+     qui autrement gagnent. */
+  aspect-ratio:2000/858;height:auto;object-position:center 52%}
+/* Voile : le texte doit rester lisible sur un ciel clair comme sur une mer
+   sombre. Degrade depuis le bas-gauche, pas un aplat : on garde la photo. */
+.dcp-v .bphoto .voile{position:absolute;inset:0;
+  background:linear-gradient(90deg,rgba(12,10,28,.86) 0%,rgba(12,10,28,.62) 42%,
+    rgba(12,10,28,.12) 74%,rgba(12,10,28,.30) 100%)}
+.dcp-v .bphoto .ov{position:absolute;inset:0;display:flex;align-items:center}
+.dcp-v .bphoto .ovin{max-width:1180px;margin:0 auto;width:100%;
+  padding:0 26px;display:flex;flex-direction:column;gap:13px}
+.dcp-v .bphoto .ovk{font-size:.665rem;letter-spacing:.15em;text-transform:uppercase;
+  font-weight:700;color:#c9bdfb}
+.dcp-v .bphoto h2{color:#fff !important;max-width:22ch}
+.dcp-v .bphoto .ovp{color:rgba(255,255,255,.9);font-size:1.015rem;max-width:52ch;line-height:1.62}
+.dcp-v .bphoto .ovf{display:flex;flex-wrap:wrap;gap:9px;margin-top:4px}
+.dcp-v .bphoto .ovf > div{background:rgba(14,12,32,.46);border:1px solid rgba(255,255,255,.3);
+  color:#fff;font-size:.775rem;font-weight:600;padding:6px 13px;border-radius:999px;
+  backdrop-filter:blur(4px);text-shadow:0 1px 2px rgba(0,0,0,.5)}
+/* Credit : discret mais present, en bas a droite. */
+.dcp-v .bphoto .cred{position:absolute;right:10px;bottom:8px;font-size:.64rem;
+  color:rgba(255,255,255,.88);text-align:right;max-width:58%;line-height:1.45;
+  background:rgba(10,9,24,.52);padding:4px 9px;border-radius:7px;
+  backdrop-filter:blur(3px)}
+.dcp-v .bphoto .cred a{color:rgba(255,255,255,.78);text-decoration:underline}
+@media (max-width:920px){
+  /* En dessous de 920 px un 21:9 ne fait plus que 130 px de haut : le texte
+     ne tient pas par-dessus. On passe la photo en 4:3 et le texte dessous. */
+  .dcp-v .bphoto img{aspect-ratio:4/3;object-position:center 48%}
+  .dcp-v .bphoto .voile{background:linear-gradient(180deg,rgba(12,10,28,.30) 0%,
+    rgba(12,10,28,.55) 46%,rgba(12,10,28,.90) 100%)}
+  .dcp-v .bphoto .ov{align-items:flex-end;padding-bottom:34px}
+  .dcp-v .bphoto h2{max-width:none}
+}
+
+/* --- 2. Ruban de faits ---------------------------------------------
+   Bande fine et sombre, quatre faits separes par des points. Elle ne dit
+   presque rien de neuf : son role est rythmique, couper deux grandes
+   sections au lieu d'enchainer blanc / lavande / blanc. */
+.dcp-v .ruban{background:#14122b;padding:17px 0}
+.dcp-v .ruban .rin{max-width:1180px;margin:0 auto;padding:0 26px;
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:center;
+  gap:10px 26px;text-align:center}
+.dcp-v .ruban .f{color:rgba(255,255,255,.9);font-size:.845rem;font-weight:500;
+  display:flex;align-items:center;gap:9px}
+.dcp-v .ruban .f b{color:#a58bff;font-family:var(--ft);font-weight:700}
+.dcp-v .ruban .f .p{width:4px;height:4px;border-radius:999px;background:rgba(255,255,255,.3)}
+.dcp-v .ruban .f:first-child .p{display:none}
+
+/* --- 3. Bande sombre editoriale -------------------------------------
+   Le parti pris, a la premiere personne, en gros. Un seul bloc de texte,
+   large mesure, sur fond sombre. C'est la bande qui ressemble le moins a
+   une page de service — et c'est le but. */
+.dcp-v .bl-dk{background:radial-gradient(1200px 520px at 18% 0%,#221b46 0%,#14122b 62%,#100e23 100%);
+  padding-top:clamp(58px,6.8vw,96px);padding-bottom:clamp(58px,6.8vw,96px)}
+.dcp-v .bl-dk h2{color:#fff !important}
+.dcp-v .bl-dk .pill{background:rgba(165,139,255,.16);color:#c9bdfb}
+.dcp-v .bl-dk .edit{display:grid;grid-template-columns:.34fr .66fr;
+  gap:clamp(24px,4vw,56px);align-items:start}
+@media (max-width:920px){.dcp-v .bl-dk .edit{grid-template-columns:1fr}}
+/* Le texte du parti pris : plus grand que le corps normal, avec une barre
+   violette a gauche. C'est une prise de parole, pas un paragraphe de page. */
+.dcp-v .bl-dk .ed{border-left:2px solid #7c5cfa;padding-left:clamp(18px,2.4vw,30px);
+  display:flex;flex-direction:column;gap:15px}
+.dcp-v .bl-dk .ed p{color:rgba(255,255,255,.86);font-size:clamp(1.03rem,1.55vw,1.19rem);
+  line-height:1.66;max-width:64ch}
+.dcp-v .bl-dk .ed p strong{color:#fff;font-weight:600}
+.dcp-v .bl-dk .sig{display:flex;align-items:center;gap:13px;margin-top:6px}
+.dcp-v .bl-dk .sig .av{width:46px;height:46px;border-radius:999px;overflow:hidden;
+  flex:0 0 auto;background:#2a2450;display:block}
+.dcp-v .bl-dk .sig .av img{width:100%;height:100%;object-fit:cover;display:block}
+.dcp-v .bl-dk .sig .nn{font-family:var(--ft);font-weight:700;color:#fff;font-size:.95rem}
+.dcp-v .bl-dk .sig .rr{color:rgba(255,255,255,.55);font-size:.785rem}
+.dcp-v .bl-dk .lead{color:rgba(255,255,255,.72)}
+
+/* --- 4. Livrables ---------------------------------------------------
+   « Pas assez de matiere » : la reponse la plus utile n'est pas un
+   paragraphe de plus, c'est la liste de ce qui arrive chaque mois. Grille
+   de six — un multiple de 3 et de 2, donc jamais de cellule orpheline. */
+.dcp-v .livr{display:grid;grid-template-columns:repeat(3,1fr);
+  gap:clamp(13px,1.7vw,20px);margin-top:8px}
+@media (max-width:920px){.dcp-v .livr{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.dcp-v .livr{grid-template-columns:1fr}}
+.dcp-v .livr > div{background:#fff;border:1px solid var(--bd);border-radius:14px;
+  padding:19px 20px 21px;display:flex;flex-direction:column;gap:7px;
+  box-shadow:0 6px 18px rgba(81,41,144,.05)}
+.dcp-v .livr .rg{font-family:var(--ft);font-weight:700;font-size:.66rem;
+  letter-spacing:.1em;color:var(--vio);text-transform:uppercase}
+.dcp-v .livr h3{font-size:.985rem}
+.dcp-v .livr .d{color:var(--tx2);font-size:.885rem;line-height:1.6}
+.dcp-v .livr .q{color:var(--tx3);font-size:.775rem;margin-top:auto;padding-top:9px;
+  border-top:1px dashed var(--bd)}
+
+/* --- 5. Ce qu'on fait / ce qu'on ne fait pas ------------------------
+   Le bloc qui differencie le plus : dire non est concret, verifiable, et
+   personne ne l'ecrit par defaut. Deux colonnes, la seconde barree. */
+.dcp-v .duo{display:grid;grid-template-columns:1fr 1fr;gap:clamp(16px,2.4vw,30px);margin-top:10px}
+@media (max-width:820px){.dcp-v .duo{grid-template-columns:1fr}}
+.dcp-v .duo .col{background:#fff;border:1px solid var(--bd);border-radius:16px;padding:22px 24px 24px}
+.dcp-v .duo .col.non{background:#fbfaff;border-color:#e2def1}
+.dcp-v .duo .ct{font-family:var(--ft);font-weight:700;font-size:1.0rem;color:var(--tx);
+  display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.dcp-v .duo .ct .s{width:24px;height:24px;border-radius:999px;flex:0 0 auto;
+  display:flex;align-items:center;justify-content:center;font-size:.78rem;
+  font-weight:700;color:#fff;background:var(--grad);font-family:var(--fb)}
+.dcp-v .duo .col.non .ct .s{background:#b9b3d4}
+.dcp-v .duo ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:11px}
+.dcp-v .duo li{position:relative;padding-left:20px;color:var(--tx2);font-size:.9rem;line-height:1.6}
+/* Le marqueur est un ::before, pas un <span> : un element inline frere d'un
+   bloc se fait avaler par wpautop (regle 5 du skill design). */
+.dcp-v .duo li::before{content:"";position:absolute;left:3px;top:.55em;width:7px;height:7px;
+  border-radius:2px;background:var(--vio)}
+.dcp-v .duo .col.non li::before{background:#c9c3de;transform:rotate(45deg);border-radius:1px}
+.dcp-v .duo .col.non li{color:var(--tx3)}
+.dcp-v .duo li b{color:var(--tx);font-weight:600}
+.dcp-v .duo .col.non li b{color:var(--tx2);font-weight:600}
+
+/* --- 6. Bande auteur (E-E-A-T) --------------------------------------
+   L'ancien bloc .eeat etait un filet blanc avec un avatar de 60 px, pose
+   entre deux bandes sans fond : 180 px de blanc au-dessus, autant en
+   dessous. C'est le « bas de page vide » du retour du 22/09. Ici : fond
+   lavande, photo verticale a gauche, biographie a droite. Une page qui
+   vend de l'expertise se termine par la personne qui l'exerce. */
+.dcp-v .aut{display:grid;grid-template-columns:clamp(190px,22vw,280px) 1fr;
+  gap:clamp(24px,3.6vw,48px);align-items:stretch;background:#fff;
+  border:1px solid var(--bd);border-radius:20px;padding:clamp(20px,2.6vw,32px);
+  box-shadow:0 14px 40px rgba(81,41,144,.07)}
+@media (max-width:760px){.dcp-v .aut{grid-template-columns:1fr}}
+.dcp-v .aut .ph{border-radius:14px;overflow:hidden;background:var(--lav);
+  border:1px solid var(--bd);align-self:start}
+/* height:auto est obligatoire : les attributs width/height du HTML sont des
+   indications de presentation, et quand les deux sont poses ils gagnent
+   contre aspect-ratio. Incident du 22/09 sur la photo du hero. */
+.dcp-v .aut .ph img{width:100%;height:auto;display:block;
+  /* 3/4 laissait la photo depasser le bas du texte d'une centaine de
+     pixels (releve du 22/09) : le 4/5 tombe juste avec la biographie
+     developpee, et le align-items:stretch rattrape le reste. */
+  aspect-ratio:4/5;object-fit:cover;object-position:center 20%}
+@media (max-width:760px){
+  /* En une colonne, un 3/4 pleine largeur fait 500 px de haut : trop. */
+  .dcp-v .aut .ph img{aspect-ratio:16/10;object-position:center 18%}
+}
+.dcp-v .aut .tx{display:flex;flex-direction:column;gap:11px}
+.dcp-v .aut .nm{font-family:var(--ft);font-weight:700;font-size:clamp(1.22rem,2vw,1.6rem);
+  color:var(--tx);line-height:1.15;margin-top:3px}
+.dcp-v .aut .rl{color:var(--vio-d);font-size:.885rem;font-weight:600}
+.dcp-v .aut .row{margin-top:5px}
+.dcp-v .aut .sub{margin-top:3px}
+
+/* Retouche de la bande sombre : la signature est passee dans la colonne de
+   gauche, sous le titre, parce qu'elle y etait vide sur la moitie de sa
+   hauteur. */
+.dcp-v .bl-dk .edit > .st-s{gap:18px}
+.dcp-v .bl-dk .sig{margin-top:4px}
+
+/* Le credit photo etait a la limite du lisible sur un ciel clair (releve du
+   22/09). Une ombre portee suffit : un fond opaque mangerait la photo. */
+.dcp-v .bphoto .cred a{color:#fff;text-decoration:underline}

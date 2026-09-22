@@ -325,3 +325,151 @@ BLOCS = {
              "des deux marchés votre site tient réellement aujourd'hui. La réponse "
              "surprend souvent.",
 }
+
+# ── Ajouts du 22/09 (soir) ────────────────────────────────────────────────
+# Ecrits pour Antibes : la particularite de la commune est d'abriter deux
+# marches qui n'ont rien a voir — le yachting de Port Vauban et la tech de
+# Sophia Antipolis — sur un seul code INSEE. Les livrables et le parti pris
+# tournent autour de ce dedoublement.
+BLOCS.update({
+    "photo_ville": {
+        "src": "https://decupler.com/wp-content/uploads/2026/09/bandeau-antibes.jpg",
+        "alt": "Antibes vue de la mer : les remparts, la vieille ville et le fort",
+        "w": 2000, "h": 858,
+        "k": "Une commune, deux économies",
+        "h2": "Les remparts d'un côté, un parc technologique de l'autre",
+        "p": "Vue de la mer, Antibes ressemble à une ville d'histoire : les "
+             "remparts, le Vieil Antibes, les mâts de Port Vauban. À trois "
+             "kilomètres derrière la colline commence Sophia Antipolis et ses "
+             "entreprises de logiciel, d'électronique et de santé. Deux marchés, "
+             "deux vocabulaires, deux façons d'être cherché — sur un seul et "
+             "même nom de ville.",
+        "chips": ["Port Vauban · yachting", "Sophia Antipolis · tech",
+                  "Juan-les-Pins · hôtellerie", "06600 · 06160"],
+        "credit": 'Antibes vue de la mer — photo Helge Høifødt, '
+                  '<a href="https://commons.wikimedia.org/wiki/File:Antibes_old_'
+                  'city.jpg" rel="nofollow noopener" target="_blank">CC BY-SA '
+                  '4.0</a>, via Wikimedia Commons',
+    },
+    "ruban": [
+        ("06600 · 06160", "Antibes et Juan-les-Pins, deux codes postaux"),
+        ("25 min", "de notre bureau niçois par la pénétrante"),
+        ("2 marchés", "le yachting et la tech, jamais la même stratégie"),
+        ("4 moteurs", "Google et les trois IA que vos clients interrogent"),
+    ],
+
+    "h2_livrables": "Que produit-on chaque mois, et pour lequel de vos deux marchés ?",
+    "livrables_intro": "À Antibes, la première question n'est pas « combien de "
+                       "contenus » mais « pour quel public ». Le dispositif "
+                       "ci-dessous se décline différemment selon que vous "
+                       "vendez à un capitaine de yacht ou à un directeur "
+                       "technique de Sophia.",
+    "livrables": [
+        ("01", "Relevé de positions par segment",
+         "Deux paniers de requêtes suivis séparément : le vocabulaire du port "
+         "(refit, shipchandler, avitaillement) et celui de Sophia (intégration, "
+         "conformité, éditeur de logiciel). Les mélanger masque les deux.",
+         "Hebdomadaire"),
+        ("02", "Suivi des citations IA, en français et en anglais",
+         "Port Vauban est un marché anglophone : la moitié des questions posées "
+         "à ChatGPT sur le yachting antibois le sont en anglais. Les deux "
+         "langues sont interrogées.",
+         "Mensuel"),
+        ("03", "Contenus rédigés puis publiés",
+         "Deux à quatre par mois, attribués à un segment. Une page « refit "
+         "Port Vauban » et un article « conformité RGPD pour éditeur SaaS » ne "
+         "partagent rien, ni le ton ni la structure.",
+         "2 à 4 par mois"),
+        ("04", "Corrections techniques appliquées",
+         "Vitesse, balises, données structurées, erreurs d'exploration. Sur les "
+         "sites de Sophia, souvent : un site vitrine anglais mal déclaré qui "
+         "cannibalise la version française.",
+         "En continu"),
+        ("05", "Fiche Google Business Profile tenue",
+         "Déterminante côté port et côté Juan-les-Pins, où la recherche est "
+         "souvent faite sur mobile et à proximité. Beaucoup moins pour une "
+         "société de Sophia qui vend dans toute l'Europe — on le dit plutôt "
+         "que de facturer les deux.",
+         "Mensuel"),
+        ("06", "Point de 45 minutes avec Nathan",
+         "En visio ou sur place : Antibes est à 25 minutes de Nice. Ce qui a "
+         "bougé sur chaque segment, et l'arbitrage du mois suivant.",
+         "Mensuel"),
+    ],
+    "livrables_note": "Si l'un des deux segments ne vous concerne pas, il "
+                      "sort du périmètre et du devis — nous ne facturons pas "
+                      "un dispositif que vous n'utiliserez pas.",
+
+    "h2_duo": "Ce que nous faisons à Antibes, et ce que nous ne ferons pas",
+    "duo_intro": "Sur une commune coupée en deux, la plus grosse erreur est de "
+                 "vouloir tout couvrir. Voici où nous allons, et où nous nous "
+                 "arrêtons.",
+    "duo": (
+        "Ce que nous faisons",
+        [
+            "<b>Choisir un segment avant d'écrire une ligne.</b> Port Vauban ou "
+            "Sophia Antipolis. Vouloir ranker sur les deux avec le même site, "
+            "c'est se retrouver crédible sur aucun.",
+            "<b>Travailler en anglais quand le marché l'exige.</b> Le yachting "
+            "antibois se vend en anglais ; une page française seule vous coupe "
+            "de la moitié de la demande.",
+            "<b>Écrire pour des acheteurs experts.</b> Un capitaine connaît son "
+            "métier mieux que nous ; une page qui survole se repère en trois "
+            "lignes et ne rapporte rien.",
+            "<b>Distinguer Antibes de Juan-les-Pins.</b> Deux codes postaux, "
+            "deux intentions, parfois deux pages — et pas un doublon.",
+            "<b>Mesurer les demandes entrantes.</b> Formulaires, appels, "
+            "messages : c'est le seul chiffre qui vous intéresse en fin de mois.",
+        ],
+        "Ce que nous ne faisons pas",
+        [
+            "<b>Vendre du SEO local à une société de Sophia qui exporte.</b> "
+            "Si votre marché est européen, la page ville n'est pas votre "
+            "priorité, et nous vous le dirons au premier rendez-vous.",
+            "<b>Des liens achetés.</b> Ni réseau privé, ni annuaire payant, ni "
+            "échange en volume.",
+            "<b>Des traductions automatiques.</b> Sur un marché anglophone "
+            "exigeant, une page traduite à la machine fait plus de dégâts que "
+            "pas de page anglaise du tout.",
+            "<b>Des engagements longs.</b> Préavis d'un mois, sans pénalité.",
+            "<b>Deux concurrents directs sur le même segment antibois.</b> Un "
+            "seul client par métier et par marché.",
+        ],
+    ),
+
+    "parti_pill": "Parti pris",
+    "h2_parti": "Pourquoi je commence tout rendez-vous antibois par une question "
+                "désagréable",
+    "parti_pris": [
+        "« Vos clients viennent du port ou de Sophia ? » La question surprend, "
+        "parfois elle agace. Mais tant qu'elle n'est pas tranchée, tout ce qu'on "
+        "écrit ensuite est à moitié faux : <strong>Antibes est la seule commune "
+        "du 06 où deux économies étrangères l'une à l'autre partagent un nom de "
+        "ville</strong>.",
+        "J'ai vu un site tenter les deux. Page d'accueil parlant d'innovation et "
+        "de transformation numérique, page « services » listant du gardiennage "
+        "de bateau. Google a fait ce qu'il fait toujours dans ce cas : il n'a "
+        "compris ni l'un ni l'autre, et le site est resté en page trois sur les "
+        "deux fronts.",
+        "Choisir fait mal, parce qu'on a l'impression de renoncer à la moitié du "
+        "marché. En pratique c'est le contraire : <strong>une page qui sait à "
+        "qui elle parle finit par ramener aussi l'autre public</strong>, par "
+        "réputation. Une page qui parle à tout le monde ne ramène personne — et "
+        "c'est encore plus vrai depuis que des IA résument le web, parce qu'une "
+        "machine a besoin de savoir en une phrase ce que vous faites.",
+    ],
+    "parti_role": "Fondateur de Décupler · Nice, à 25 minutes d'Antibes",
+})
+
+# Biographie developpee : la question du segment est tranchee par Nathan
+# lui-meme, c'est le point ou le dossier antibois se gagne ou se perd.
+BLOCS["eeat_plus"] = [
+    "Nathan Fenina dirige Décupler depuis Nice, à vingt-cinq minutes "
+    "d'Antibes. Il tranche lui-même, au premier rendez-vous, la question qui "
+    "détermine tout le reste sur cette commune : votre marché est-il celui "
+    "du port ou celui de Sophia Antipolis ?",
+    "Ses publications sur le référencement dans les moteurs génératifs sont "
+    "accessibles sur ce site et sur LinkedIn — utile quand vos "
+    "interlocuteurs sont des directeurs techniques qui lisent avant de "
+    "répondre.",
+]

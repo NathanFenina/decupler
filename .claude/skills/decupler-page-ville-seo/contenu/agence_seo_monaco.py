@@ -322,3 +322,146 @@ BLOCS = {
              "monégasques à forte valeur. Vous saurez quoi faire, avec ou sans "
              "nous.",
 }
+
+# ── Ajouts du 22/09 (soir) ────────────────────────────────────────────────
+# Ecrits pour Monaco : la contrainte dominante n'est pas la concurrence mais
+# la juridiction (hors France, domaines .mc, TVA, multilingue) et la taille
+# du territoire — 2 km2, donc aucune requete « pres de moi » n'a de sens.
+BLOCS.update({
+    "photo_ville": {
+        "src": "https://decupler.com/wp-content/uploads/2026/09/bandeau-monaco.jpg",
+        "alt": "Monaco vu d'en haut : le port Hercule, le Rocher et Fontvieille",
+        "w": 2000, "h": 858,
+        "k": "Deux kilomètres carrés",
+        "h2": "Un territoire où la géolocalisation ne sert à rien",
+        "p": "Le port Hercule, le Rocher, Fontvieille : tout ce que vous voyez "
+             "tient dans 2,08 km². Aucun habitant n'est à plus de dix minutes à "
+             "pied d'un autre, ce qui vide de son sens la mécanique du « près de "
+             "moi » sur laquelle repose le SEO local ordinaire. Ce qui décide "
+             "ici, c'est la langue de la requête et la crédibilité de l'entité.",
+        "chips": ["2,08 km²", "Hors Union européenne", "Domaines .mc",
+                  "FR · EN · IT · RU"],
+        "credit": 'Monaco, le port Hercule et le Rocher — photo Tobi 87, '
+                  '<a href="https://commons.wikimedia.org/wiki/File:Hafen_und_'
+                  'Felsen_von_Monaco-La_Turbie.jpg" rel="nofollow noopener" '
+                  'target="_blank">CC BY-SA 3.0</a>, via Wikimedia Commons',
+    },
+    "ruban": [
+        ("98000", "l'unique code postal de la Principauté"),
+        ("30 min", "de notre bureau niçois, par la basse corniche"),
+        ("4 langues", "français, anglais, italien, russe — selon la clientèle"),
+        ("Hors UE", "TVA, RGPD, mentions légales : un cadre à part"),
+    ],
+
+    "h2_livrables": "Qu'est-ce qui arrive chaque mois sur un dossier monégasque ?",
+    "livrables_intro": "Le dispositif est le même qu'ailleurs sur le papier, "
+                       "mais deux livrables changent de nature dès qu'on passe "
+                       "la frontière : le relevé de positions et la couche "
+                       "juridique.",
+    "livrables": [
+        ("01", "Relevé depuis Monaco et depuis la France",
+         "La même requête ne donne pas le même résultat selon qu'elle est tapée à "
+         "Monaco ou à Nice. Nous relevons les deux, parce que votre clientèle est "
+         "des deux côtés de la frontière.",
+         "Hebdomadaire"),
+        ("02", "Suivi multilingue des réponses IA",
+         "« Meilleur avocat d'affaires Monaco » et « best family office in "
+         "Monaco » ne ramènent pas les mêmes noms. Les quatre moteurs sont "
+         "interrogés dans les langues de votre clientèle réelle.",
+         "Mensuel"),
+        ("03", "Pages traduites, pas seulement adaptées",
+         "Une traduction automatique se repère au premier paragraphe et coûte la "
+         "confiance d'un client qui arbitre entre Monaco, Genève et Dubaï. Les "
+         "versions anglaise et italienne sont écrites, pas passées à la machine.",
+         "2 à 3 par mois"),
+        ("04", "Cohérence de l'entité entre .mc, .com et annuaires",
+         "Nom, adresse, numéro RCI, mentions : le moindre écart entre vos "
+         "supports fait hésiter un moteur sur votre identité. On aligne, et on "
+         "surveille que ça reste aligné.",
+         "Mensuel"),
+        ("05", "Balises hreflang et signaux de territoire",
+         "Le point technique où presque tous les sites monégasques se trompent : "
+         "un .mc mal déclaré se fait traiter comme un site français, ou "
+         "disparaît des résultats italiens.",
+         "Audit trimestriel"),
+        ("06", "Point de 45 minutes avec Nathan",
+         "En visio, ou à Monaco : depuis Nice c'est une demi-heure de route. "
+         "Ce qui a bougé, ce qui n'a pas marché, la suite.",
+         "Mensuel"),
+    ],
+    "livrables_note": "Sur les dossiers monégasques, le compte rendu est fourni "
+                      "en français et en anglais — c'est souvent un conseil ou "
+                      "un siège étranger qui le relit.",
+
+    "h2_duo": "Ce que nous prenons en charge, et ce que nous laissons de côté",
+    "duo_intro": "Monaco est un marché où l'on se recommande entre voisins. "
+                 "Autant dire d'emblée où s'arrête notre périmètre.",
+    "duo": (
+        "Ce que nous faisons en Principauté",
+        [
+            "<b>Traiter Monaco comme un pays, pas comme une ville du 06.</b> "
+            "Ciblage géographique, devise, mentions légales, hreflang : tout est "
+            "à régler séparément de la France.",
+            "<b>Écrire dans la langue de vos clients.</b> Anglais et italien "
+            "d'abord, russe quand la clientèle le justifie. Rédigé par des "
+            "humains qui parlent la langue.",
+            "<b>Travailler la notoriété de l'entité.</b> À cette échelle, être "
+            "cité correctement par une IA compte autant qu'un classement : la "
+            "recommandation remplace souvent la recherche.",
+            "<b>Documenter les contraintes réglementaires.</b> Un site "
+            "monégasque n'a pas les mêmes obligations qu'un site français, et "
+            "s'en apercevoir après une mise en demeure coûte cher.",
+            "<b>Rester joignable.</b> Un déplacement à Monaco se décide la "
+            "veille ; depuis Nice c'est trente minutes.",
+        ],
+        "Ce que nous ne faisons pas",
+        [
+            "<b>Du conseil juridique ou fiscal.</b> Nous signalons un point "
+            "d'attention, votre conseil tranche. Nous ne sommes pas avocats.",
+            "<b>Des pages « Monaco » plaquées sur un site français.</b> "
+            "Dupliquer une page en changeant le nom de la ville ne trompe plus "
+            "Google depuis longtemps, et ne trompe aucun lecteur.",
+            "<b>Des liens achetés.</b> Aucun réseau privé, aucun annuaire "
+            "payant. Sur un marché de réputation, le risque est disproportionné.",
+            "<b>Des garanties de classement.</b> Sur des requêtes à dix "
+            "résultats disputés par des acteurs internationaux, promettre la "
+            "première place serait malhonnête.",
+            "<b>Deux clients concurrents dans la Principauté.</b> Un seul par "
+            "métier : la place est trop étroite pour faire semblant.",
+        ],
+    ),
+
+    "parti_pill": "Parti pris",
+    "h2_parti": "Ce que j'ai appris en travaillant à trente minutes d'une frontière",
+    "parti_pris": [
+        "La première fois qu'on m'a demandé de positionner une société "
+        "monégasque, j'ai commencé comme pour Nice : fiche Google, pages de "
+        "service, maillage. Résultat, le site ressortait bien… <strong>en "
+        "France</strong>, pour des gens qui n'allaient jamais devenir clients. "
+        "Le ciblage était faux dès le départ.",
+        "Monaco n'est pas une ville du département voisin, c'est un État. Tant "
+        "qu'on ne l'a pas admis, on empile des erreurs invisibles : un "
+        "hreflang mal posé, une adresse qui n'existe pas dans les référentiels "
+        "français, une page anglaise traduite à la machine qu'un family office "
+        "lit en dix secondes.",
+        "Ce que je retiens, et ce que je dis désormais au premier rendez-vous : "
+        "sur 2 km², <strong>la question n'est pas d'être trouvé mais d'être "
+        "reconnu</strong>. Un moteur, humain ou artificiel, doit pouvoir dire "
+        "qui vous êtes, dans quelle langue, sous quelle juridiction, sans "
+        "hésiter. Tout le reste en découle.",
+    ],
+    "parti_role": "Fondateur de Décupler · Nice, à 30 minutes de Monaco",
+})
+
+# Biographie developpee : en Principaute, le compte rendu est souvent relu
+# par un conseil ou un siege etranger. La bio le dit.
+BLOCS["eeat_plus"] = [
+    "Nathan Fenina dirige Décupler depuis Nice, à trente minutes de la "
+    "Principauté par la basse corniche. Les dossiers monégasques sont suivis "
+    "par lui directement, et les comptes rendus sont fournis en français et "
+    "en anglais quand un conseil ou un siège étranger les relit.",
+    "Il publie ses analyses sur la visibilité dans les moteurs génératifs "
+    "sur ce site et sur LinkedIn. Dans un marché où la recommandation vaut "
+    "plus qu'une plaquette, pouvoir lire quelqu'un avant de le recevoir a "
+    "une valeur réelle.",
+]

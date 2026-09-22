@@ -323,3 +323,152 @@ BLOCS = {
              "demandes entrantes. Si la réponse est « pas grand-chose pour "
              "l'instant », vous l'entendrez aussi.",
 }
+
+# ── Ajouts du 22/09 (soir) ────────────────────────────────────────────────
+# Retour de Nathan : le bas de page manquait de matiere, de photo et de
+# variete de bandes. Les blocs ci-dessous sont ecrits pour Toulon, pas
+# recopies : les livrables parlent d'appels d'offres et de referencement
+# fournisseur, ce qui n'a aucun sens a Cannes ou a Monaco.
+BLOCS.update({
+    "photo_ville": {
+        "src": "https://decupler.com/wp-content/uploads/2026/09/bandeau-toulon.jpg",
+        "alt": "Toulon vue du Mont Faron : la ville, l'arsenal et la petite rade",
+        "w": 2000, "h": 858,
+        "k": "Notre terrain dans le Var",
+        "h2": "La deuxième rade de Méditerranée, et presque aucun de ses "
+              "fournisseurs en ligne",
+        "p": "Vue du Mont Faron, Toulon donne l'échelle du marché : l'arsenal et "
+             "le port militaire au centre, la zone logistique à l'est, et derrière "
+             "les collines des centaines de PME de mécanique, d'électronique et de "
+             "maintenance dont le site web n'a pas bougé depuis dix ans. C'est là "
+             "que se gagnent les requêtes qui valent quelque chose.",
+        "chips": ["Arsenal &amp; sous-traitance", "Logistique portuaire",
+                  "BTP &amp; ingénierie", "Santé"],
+        "credit": 'Toulon vue du Mont Faron — photo Pierre Sénard, '
+                  '<a href="https://commons.wikimedia.org/wiki/File:Petite_rade_de_'
+                  'Toulon_(vue_du_Mont_Faron).jpg" rel="nofollow noopener" '
+                  'target="_blank">CC BY-SA 3.0</a>, via Wikimedia Commons',
+    },
+    "ruban": [
+        ("83000 · 83100 · 83200", "les trois codes postaux de Toulon intra-muros"),
+        ("1 h 30", "de Nice, donc des réunions sur site et pas seulement en visio"),
+        ("4 moteurs", "Google, ChatGPT, Perplexity, Gemini — suivis chaque semaine"),
+        ("500 €/mois", "le point d'entrée, sans engagement de durée"),
+    ],
+
+    "h2_livrables": "Que recevez-vous concrètement chaque mois ?",
+    "livrables_intro": "Un prestataire SEO se juge à ce qui arrive dans votre "
+                       "boîte mail. Voici la liste, sans habillage : ce sont les "
+                       "mêmes livrables pour un sous-traitant de l'arsenal que "
+                       "pour une clinique, avec un contenu différent.",
+    "livrables": [
+        ("01", "Relevé de positions",
+         "Les requêtes qui vous concernent vraiment — « usinage pièces navales "
+         "Toulon », « maintenance industrielle Var » — relevées à Toulon, pas à "
+         "Paris, parce qu'un classement se lit toujours depuis un lieu.",
+         "Hebdomadaire"),
+        ("02", "Suivi de citation par les IA",
+         "Les mêmes questions posées à ChatGPT, Perplexity, Gemini et Claude, avec "
+         "la trace de qui est cité et à quel rang. C'est le canal où vos "
+         "concurrents ne sont pas encore, et où les acheteurs commencent à "
+         "présélectionner.",
+         "Mensuel"),
+        ("03", "Contenus écrits et publiés",
+         "Deux à quatre pages ou articles par mois, rédigés puis mis en ligne. "
+         "Pas de « recommandations » à faire exécuter par quelqu'un d'autre : "
+         "nous publions.",
+         "2 à 4 par mois"),
+        ("04", "Corrections techniques appliquées",
+         "Vitesse, balises, données structurées, erreurs d'exploration : on "
+         "corrige dans votre WordPress ou on transmet un patch à votre "
+         "développeur, avec le avant/après mesuré.",
+         "En continu"),
+        ("05", "Fiche Google Business Profile tenue",
+         "Photos, horaires, catégories, questions-réponses, réponses aux avis. "
+         "Sur une recherche « près de moi » dans l'agglomération, c'est la fiche "
+         "qui décide, pas le site.",
+         "Mensuel"),
+        ("06", "Point de 45 minutes avec Nathan",
+         "Le même interlocuteur du premier jour au dernier : ce qui a bougé, ce "
+         "qui n'a pas marché, ce qu'on fait le mois suivant. Sans slide "
+         "préfabriquée.",
+         "Mensuel"),
+    ],
+    "livrables_note": "Chaque livrable est daté et archivé : à la fin d'un "
+                      "trimestre, vous pouvez relire ce qui a été fait, ligne "
+                      "à ligne.",
+
+    "h2_duo": "Ce que nous faisons, et ce que nous refusons de faire",
+    "duo_intro": "Sur un marché industriel, les promesses se vérifient. Voici "
+                 "donc les deux listes, y compris celle qui nous fait perdre "
+                 "des contrats.",
+    "duo": (
+        "Ce que nous faisons à Toulon",
+        [
+            "<b>Comprendre votre cycle d'achat.</b> Un donneur d'ordre qui "
+            "consulte trois fournisseurs avant de lancer un appel d'offres ne se "
+            "capte pas comme un particulier qui cherche un plombier.",
+            "<b>Travailler des requêtes à faible volume.</b> « Rectification "
+            "cylindrique Var » fait dix recherches par mois. Ces dix-là valent "
+            "plus que mille visites de curieux.",
+            "<b>Écrire des pages techniques.</b> Tolérances, normes, "
+            "certifications, matières : c'est ce que votre acheteur cherche, et "
+            "c'est ce que les IA reprennent quand elles vous citent.",
+            "<b>Mesurer en euros.</b> Formulaires, appels, demandes de devis — pas "
+            "seulement des positions et des courbes qui montent.",
+            "<b>Venir sur place.</b> Toulon est à 1 h 30 de Nice. Un atelier, on "
+            "le comprend en le visitant.",
+        ],
+        "Ce que nous ne faisons pas",
+        [
+            "<b>Des liens achetés.</b> Ni réseaux privés, ni annuaires payants, ni "
+            "échanges massifs. Le risque est pour vous, pas pour nous.",
+            "<b>Des textes générés puis publiés tels quels.</b> Nous utilisons l'IA "
+            "pour la recherche et le cadrage ; une page publiée est relue et "
+            "corrigée par un humain qui connaît le sujet.",
+            "<b>Des engagements de 12 mois.</b> Le préavis est d'un mois. Si le "
+            "travail est bon, vous restez ; sinon, rien ne vous retient.",
+            "<b>Des promesses de première position.</b> Personne ne contrôle "
+            "l'algorithme de Google. Ceux qui le garantissent vous mentent ou "
+            "visent une requête que personne ne tape.",
+            "<b>Le SEO d'un concurrent direct du même secteur dans le Var.</b> Un "
+            "seul client par métier et par zone : on ne peut pas faire gagner "
+            "deux entreprises sur la même requête.",
+        ],
+    ),
+
+    "parti_pill": "Parti pris",
+    "h2_parti": "Pourquoi je refuse d'appliquer à Toulon ce qui marche à Nice",
+    "parti_pris": [
+        "J'ai vu des dizaines de prestataires vendre le même dispositif à un "
+        "restaurant du Vieux-Nice et à un sous-traitant de l'arsenal : une fiche "
+        "Google, quinze articles de blog, des liens en annuaire. Sur la Côte, ça "
+        "produit parfois du trafic. À Toulon, <strong>ça ne produit rien du "
+        "tout</strong> — parce que les gens qui achètent ici ne cherchent pas "
+        "comme ça.",
+        "Un acheteur industriel arrive avec un cahier des charges. Il tape une "
+        "spécification, pas un besoin. Il lit une page technique, pas un article "
+        "« les 7 avantages de l'usinage ». Et depuis dix-huit mois, de plus en "
+        "plus souvent, <strong>il demande d'abord à ChatGPT une liste de "
+        "fournisseurs</strong> avant d'ouvrir Google.",
+        "C'est pour ça que je préfère perdre un rendez-vous en disant non à une "
+        "prestation standard. Le travail utile, sur ce marché, c'est de rendre "
+        "une entreprise lisible par une machine et crédible pour un ingénieur. "
+        "Les deux se font avec la même matière : de la précision technique, "
+        "écrite noir sur blanc, à un endroit où on peut la trouver.",
+    ],
+    "parti_role": "Fondateur de Décupler · 8 ans de SEO · basé à Nice",
+})
+
+# Biographie developpee : sur un marche industriel, on verifie un
+# fournisseur avant de l'appeler. Autant lui donner de quoi verifier.
+BLOCS["eeat_plus"] = [
+    "Nathan Fenina dirige Décupler depuis Nice et suit personnellement les "
+    "dossiers varois, Toulon comprise. Une heure et demie de route sépare "
+    "les deux villes : les cadrages et les points importants se font sur "
+    "place, le reste en visio.",
+    "Ses publications sur le référencement dans les moteurs génératifs sont "
+    "en ligne sur ce site et sur LinkedIn. Sur un marché où un acheteur "
+    "consulte trois fournisseurs avant d'ouvrir un appel d'offres, pouvoir "
+    "lire quelqu'un compte autant qu'une plaquette.",
+]

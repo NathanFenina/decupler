@@ -71,6 +71,23 @@ def txt(x):
     return re.sub(r"\s+", " ", html.unescape(re.sub(r"<[^>]+>", " ", x))).strip()
 
 
+def css_pour_la_page():
+    """Le CSS du skin, sans ses commentaires.
+
+    Le fichier source est abondamment commente : chaque regle bizarre dit
+    quel incident l'a rendue necessaire, et c'est ce qui evite de la retirer
+    six mois plus tard. Mais ces commentaires n'ont rien a faire dans le HTML
+    servi au visiteur — ils y pesaient plus de 13 Ko par page. On les retire
+    ici, a l'assemblage, et seulement ici.
+    """
+    brut = open(CSS, encoding="utf-8").read()
+    sans = re.sub(r"/\*.*?\*/", "", brut, flags=re.S)
+    # Les lignes devenues vides, et les espaces de fin : le fichier reste
+    # lisible, simplement sans la prose.
+    lignes = [l.rstrip() for l in sans.split("\n")]
+    return "\n".join(l for l in lignes if l.strip())
+
+
 def bloc_logos():
     sortie = ['<div class="logos" data-dcp="chrome">',
               '<div class="lb">Elles nous font confiance</div>', '<div class="gr">']
@@ -90,13 +107,129 @@ REVEAL = (
     ".matches)return;"
     "if(!('IntersectionObserver' in window))return;"
     "var c=r.querySelectorAll('.num2>div,.grid2>div,.bud>div,.comm>div,"
-    ".vgrid>a,.steps>div,.decupler-faq-item,.fig,.mock,.tw');"
+    ".vgrid>a,.steps>div,.decupler-faq-item,.fig,.mock,.tw,"
+    ".livr>div,.duo>div,.bl-dk .ed,.bphoto .ovin');"
     "for(var i=0;i<c.length;i++){c[i].classList.add('dcp-att');}"
     "var o=new IntersectionObserver(function(es){es.forEach(function(e){"
     "if(e.isIntersecting){e.target.classList.add('dcp-vu');o.unobserve(e.target);}"
     "});},{rootMargin:'0px 0px -12% 0px',threshold:0.08});"
     "for(var j=0;j<c.length;j++){o.observe(c[j]);}})();"
 )
+
+
+def bande_photo(b):
+    """Bande photo pleine largeur, texte en surimpression.
+
+    Nathan : « il manque des photos », « pas assez de banniere differente ».
+    Les photos sont de vraies vues de la ville, prises sur Wikimedia Commons
+    sous licence CC — pas des images generees. Le credit et la licence sont
+    affiches dans la bande : c'est la condition de la licence, et une photo
+    reelle creditee vaut mieux qu'une ville plausible mais fausse.
+
+    Aucune balise inline en debut de ligne (regle 5 du skill design) : l'img
+    et le lien de credit partent sur la ligne de leur conteneur.
+    """
+    ph = b["photo_ville"]
+    o = ['<div class="bphoto">']
+    o.append(f'<div><img src="{ph["src"]}" alt="{ph["alt"]}" '
+             f'width="{ph["w"]}" height="{ph["h"]}" loading="lazy"></div>')
+    o.append('<div class="voile"></div>')
+    o.append('<div class="ov">')
+    o.append('<div class="ovin">')
+    o.append(f'<div class="ovk">{ph["k"]}</div>')
+    o.append(f'<h2>{ph["h2"]}</h2>')
+    o.append(f'<p class="ovp">{ph["p"]}</p>')
+    if ph.get("chips"):
+        o.append('<div class="ovf">')
+        for c in ph["chips"]:
+            o.append(f'<div>{c}</div>')
+        o.append('</div>')
+    o.append('</div>')
+    o.append('</div>')
+    o.append(f'<div class="cred" data-dcp="chrome">{ph["credit"]}</div>')
+    o.append('</div>')
+    return o
+
+
+def ruban(b):
+    """Bande fine et sombre entre deux grandes sections.
+
+    Son role est rythmique : sans elle la page enchaine blanc / lavande /
+    blanc sur toute sa hauteur, ce qui est exactement ce que Nathan a
+    appele « trop claude comme page ».
+    """
+    o = ['<div class="ruban" data-dcp="chrome">', '<div class="rin">']
+    for val, lib in b["ruban"]:
+        o.append(f'<div class="f"><div class="p"></div><div><b>{val}</b> {lib}</div></div>')
+    return o + ['</div>', '</div>']
+
+
+def livrables(b):
+    """Ce qui arrive concretement chaque mois.
+
+    « Pas assez de matiere » : la matiere la plus utile sur une page de
+    prestation n'est pas un paragraphe de plus sur l'importance du SEO local,
+    c'est la liste de ce que le client recoit et a quelle cadence.
+    """
+    o = ['<div class="bl">', '<div class="in st-s">',
+         f'<h2>{b["h2_livrables"]}</h2>',
+         f'<p class="lead nr">{b["livrables_intro"]}</p>', '<div class="livr">']
+    for rang, titre, detail, cadence in b["livrables"]:
+        o.append(f'<div><div class="rg">{rang}</div><h3>{titre}</h3>'
+                 f'<div class="d">{detail}</div><div class="q">{cadence}</div></div>')
+    o += ['</div>']
+    if b.get("livrables_note"):
+        o.append(f'<p class="sub" style="margin-top:16px">{b["livrables_note"]}</p>')
+    return o + ['</div>', '</div>']
+
+
+def duo(b):
+    """Ce qu'on fait / ce qu'on ne fait pas.
+
+    Le bloc le plus differenciant de la page, et le moins imitable : dire
+    non est concret et verifiable. C'est aussi ce qui fait qu'une page ne se
+    lit pas comme un texte produit en serie.
+    """
+    oui_t, oui, non_t, non = b["duo"]
+    o = ['<div class="bl bl-lav">', '<div class="in st-s">',
+         f'<h2>{b["h2_duo"]}</h2>',
+         f'<p class="lead nr">{b["duo_intro"]}</p>', '<div class="duo">']
+    for titre, items, cls, marque in ((oui_t, oui, "col", "\u2713"),
+                                      (non_t, non, "col non", "\u2715")):
+        o.append(f'<div class="{cls}">')
+        o.append(f'<div class="ct"><div class="s">{marque}</div><div>{titre}</div></div>')
+        o.append('<ul>')
+        for it in items:
+            o.append(f'<li>{it}</li>')
+        o.append('</ul>')
+        o.append('</div>')
+    return o + ['</div>', '</div>', '</div>']
+
+
+def parti_pris(b, photo):
+    """Bande sombre editoriale : la prise de parole de Nathan.
+
+    Une page de ville se termine partout pareil — FAQ, villes voisines, CTA.
+    Cette bande casse la serie : fond sombre, texte plus grand, premiere
+    personne, signature avec la photo. C'est la ou se dit ce qu'une page
+    generique ne dit jamais.
+    """
+    o = ['<div class="bl bl-dk">', '<div class="in">', '<div class="edit">']
+    o.append('<div class="st-s">')
+    o.append(f'<div><span class="pill">{b["parti_pill"]}</span></div>')
+    o.append(f'<h2>{b["h2_parti"]}</h2>')
+    o.append('<div class="sig">')
+    o.append(f'<div class="av"><img src="{photo}" alt="Nathan Fenina, '
+             f'fondateur de Décupler" width="200" height="200" loading="lazy"></div>')
+    o.append('<div><div class="nn">Nathan Fenina</div>'
+             f'<div class="rr">{b["parti_role"]}</div></div>')
+    o.append('</div>')
+    o.append('</div>')
+    o.append('<div class="ed">')
+    for pp in b["parti_pris"]:
+        o.append(f'<p>{pp}</p>')
+    o.append('</div>')
+    return o + ['</div>', '</div>', '</div>']
 
 
 def construis(slug):
@@ -111,7 +244,7 @@ def construis(slug):
     a('<link rel="stylesheet" href="https://fonts.googleapis.com/css2?'
       'family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap">')
     a("<style>")
-    a(open(CSS, encoding="utf-8").read().rstrip())
+    a(css_pour_la_page())
     # La grille de logos est en flex dans le skin d'origine ; en grille elle
     # s'aligne vraiment, ce que le releve du 22/09 a montre preferable.
     a(".dcp-v .logos .gr{display:grid;grid-template-columns:repeat(7,1fr);"
@@ -251,6 +384,11 @@ def construis(slug):
     a("</div>")
     a("</div>")
 
+    # ── bande photo de la ville, pleine largeur ────────────────────────────
+    if b.get("photo_ville"):
+        for x in bande_photo(b):
+            a(x)
+
     # ── 5. zone d'intervention ─────────────────────────────────────────────
     a('<div class="bl">')
     a('<div class="in st-s">')
@@ -268,6 +406,11 @@ def construis(slug):
     a("</div>")
     a("</div>")
 
+    # ── ruban de faits ─────────────────────────────────────────────────────
+    if b.get("ruban"):
+        for x in ruban(b):
+            a(x)
+
     # ── 6. budget ──────────────────────────────────────────────────────────
     a('<div class="bl bl-lav">')
     a('<div class="in st-s">')
@@ -280,6 +423,11 @@ def construis(slug):
     a(f'<p class="lead nr" style="margin-top:22px">{b["budget_note"]}</p>')
     a("</div>")
     a("</div>")
+
+    # ── livrables ──────────────────────────────────────────────────────────
+    if b.get("livrables"):
+        for x in livrables(b):
+            a(x)
 
     # ── bandeau photo. Nathan : « il manque des photos ». Une photo reelle
     #    d'une personne identifiable vaut tous les visuels generes.
@@ -300,6 +448,16 @@ def construis(slug):
         a("</div>")
         a("</div>")
         a("</div>")
+
+    # ── ce qu'on fait / ce qu'on ne fait pas ───────────────────────────────
+    if b.get("duo"):
+        for x in duo(b):
+            a(x)
+
+    # ── bande sombre editoriale ────────────────────────────────────────────
+    if b.get("parti_pris"):
+        for x in parti_pris(b, PHOTO_NATHAN):
+            a(x)
 
     # ── 7. le bloc qui absorbe les variantes de requete ────────────────────
     a('<div class="bl">')
@@ -341,22 +499,34 @@ def construis(slug):
         a("</div>")
         a("</div>")
 
-    # ── E-E-A-T ────────────────────────────────────────────────────────────
-    a('<div class="bl">')
-    a('<div class="in st-s">')
-    a('<div class="eeat" data-dcp="chrome">')
+    # ── bande auteur (E-E-A-T) ─────────────────────────────────────────────
+    #    Version precedente : un avatar de 60 px dans un filet blanc, coince
+    #    entre deux bandes sans fond — 180 px de vide au-dessus et en dessous.
+    #    C'est ce que Nathan a vu en disant « regarde le bas, y'a pas de
+    #    photo, y'a pas assez de matiere ». Desormais : fond lavande, grande
+    #    photo verticale, biographie, et la signature d'auteur que Google
+    #    comme les moteurs IA cherchent en fin de page.
     alt_nathan = b.get("photo_alt", "Nathan Fenina, fondateur de Décupler")
-    a(f'<div class="av"><img src="{PHOTO_NATHAN}" alt="{alt_nathan}" '
-      f'width="200" height="200" loading="lazy"></div>')
-    a('<div class="nf">')
-    a('<div class="n">Nathan Fenina</div>')
-    a(f'<div class="r">{b["eeat"]}</div>')
-    a(f'<div class="row" style="margin-top:8px"><a class="btn-o" href="{LI}">'
-      f'Profil LinkedIn</a><a class="btn-o" href="{CAL}">Échanger 30 minutes</a></div>')
+    a('<div class="bl bl-lav">')
+    a('<div class="in">')
+    a('<div class="aut" data-dcp="chrome">')
+    a(f'<div class="ph"><img src="{PHOTO_NATHAN_LARGE}" alt="{alt_nathan}" '
+      f'width="1000" height="1332" loading="lazy"></div>')
+    a('<div class="tx">')
+    a('<div><span class="pill">Qui écrit et qui exécute</span></div>')
+    a('<div class="nm">Nathan Fenina</div>')
+    a(f'<div class="rl">{b["parti_role"]}</div>')
+    a(f'<p class="lead nr">{b["eeat"]}</p>')
+    if b.get("eeat_plus"):
+        for pp in b["eeat_plus"]:
+            a(f'<p class="lead nr">{pp}</p>')
+    a('<div class="row"><a class="btn-o" href="' + LI + '">Profil LinkedIn</a>'
+      f'<a class="btn" href="{CAL}">Échanger 30 minutes</a></div>')
+    a(f'<p class="sub">Décupler — {siege["adresse"]}, '
+      f'{siege["code_postal"]} {siege["ville"]}. '
+      f'Zone d\'intervention : {ville} et {v["departement"]}.</p>')
     a("</div>")
     a("</div>")
-    a(f'<p class="sub" data-dcp="chrome">Décupler — {siege["adresse"]}, '
-      f'{siege["code_postal"]} {siege["ville"]}.</p>')
     a("</div>")
     a("</div>")
 
