@@ -14,7 +14,7 @@ fabrique un.
 
 ## 1. Identifier le type de page
 
-Tout part de là. Les trois types n'ont ni la même structure, ni les mêmes
+Tout part de là. Les types n'ont ni la même structure, ni les mêmes
 contraintes, ni les mêmes pièges de publication.
 
 | Le sujet est… | Type | Gabarit | Post type WP |
@@ -22,11 +22,22 @@ contraintes, ni les mêmes pièges de publication.
 | une question, un concept, un « comment faire » | **article** | `references/gabarit-article.md` | `posts` |
 | « agence GEO {ville} », un service + une ville | **page ville** | `references/gabarit-page-ville.md` | `pages` |
 | une offre commerciale (audit, cartographie…) | **page service** | `references/gabarit-page-service.md` | `pages` |
+| la page d'accueil | **home** | pas de gabarit : partir de la home en production | `pages` |
 
-**Conséquence immédiate, à connaître avant d'écrire :** les champs Yoast
-(`_yoast_wpseo_title`, `_metadesc`, `_focuskw`) sont **écrivables par l'API sur
-les articles, pas sur les pages**. Pour une page ville ou service, il faut
-prévenir Nathan qu'il devra les saisir à la main, et lui fournir les valeurs.
+**Yoast par l'API :** les champs `_yoast_wpseo_title`, `_metadesc` et
+`_focuskw` sont écrivables sur les articles **et sur les pages** depuis le
+22/09/2026, grâce au plugin `decupler-yoast-rest` (installé sur le site,
+source dans `wordpress/mu-plugins/`). Si le plugin est désactivé, l'API
+répond 200 et **perd silencieusement les valeurs** : vérifier en relisant
+avec `?context=edit`, et sinon fournir les valeurs à Nathan pour saisie
+manuelle.
+
+**Le type `home` ne se contrôle pas comme les autres.** La page d'accueil se
+classe sur la marque : le validateur n'y vérifie donc ni occurrences, ni
+densité, ni mot-clé dans le slug, ni H2 formulés en question, ni liens internes
+répétés (les CTA pointent volontairement plusieurs fois vers la même page). Il
+garde le plancher de mots (900), la FAQ (5 questions), le maillage, les alt et
+les contrôles wpautop.
 
 ## 2. Les consignes qui s'appliquent aux trois types
 
