@@ -133,11 +133,46 @@ def texte(html):
     return re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", c))
 
 
+def sans_chrome(html):
+    """Retire les blocs marques data-dcp="chrome".
+
+    Sur un lot de pages villes, la bande de logos, le bloc « villes voisines »,
+    le bandeau E-E-A-T avec l'adresse du siege, le CTA final et les legendes
+    d'images sont IDENTIQUES par construction : c'est du chrome, pas du
+    contenu. Sans ce retrait, le controle de duplication signale l'adresse du
+    siege et les libelles de boutons comme des phrases dupliquees, et on finit
+    par ignorer ses alertes — alors qu'il est la pour attraper la vraie
+    duplication editoriale.
+    """
+    # Bloc a profondeur variable : on coupe au marqueur et on recolle apres le
+    # nombre de fermetures correspondant, en comptant les div imbriques.
+    while 'data-dcp="chrome"' in html:
+        i = html.index('data-dcp="chrome"')
+        deb = html.rindex("<", 0, i)
+        j, prof = deb, 0
+        while j < len(html):
+            m = re.compile(r"</?(?:div|p|span)\b").search(html, j)
+            if not m:
+                j = len(html)
+                break
+            if html[m.start():m.start() + 2] == "</":
+                prof -= 1
+                if prof == 0:
+                    j = html.index(">", m.start()) + 1
+                    break
+            else:
+                prof += 1
+            j = m.end()
+        html = html[:deb] + " " + html[j:]
+    return html
+
+
 def phrases(html, sidebar=""):
-    """Phrases de >= 8 mots, sidebar exclue (identique sur tous les contenus)."""
+    """Phrases de >= 8 mots, sidebar et chrome exclus."""
     if sidebar:
         html = html.replace(sidebar, "")
     html = re.sub(r'<div class="dcp-sidebar".*?</div>\s*</div>', "", html, flags=re.S)
+    html = sans_chrome(html)
     return {p.strip() for p in re.split(r"[.!?]", texte(html))
             if len(p.strip().split()) >= 8}
 

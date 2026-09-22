@@ -68,7 +68,7 @@ def txt(x):
 
 
 def bloc_logos():
-    sortie = ['<div class="logos">',
+    sortie = ['<div class="logos" data-dcp="chrome">',
               '<div class="lb">Elles nous font confiance</div>', '<div class="gr">']
     for f, alt, w, h in LOGOS:
         sortie.append(
@@ -260,7 +260,7 @@ def construis(slug):
         a("</div>")
         src, alt, w, h, cap = img
         a(f'<div class="fig"><img src="{src}" alt="{alt}" width="{w}" height="{h}" '
-          f'loading="lazy"><div class="cap">{cap}</div></div>')
+          f'loading="lazy"><div class="cap" data-dcp="chrome">{cap}</div></div>')
         a("</div>")
         a("</div>")
         a("</div>")
@@ -295,7 +295,7 @@ def construis(slug):
         a('<div class="in st-s">')
         a(f'<h2>{b["h2_voisines"]}</h2>')
         a(f'<p class="lead nr">{b["voisines_intro"]}</p>')
-        a('<div class="vgrid">')
+        a('<div class="vgrid" data-dcp="chrome">')
         for titre, sous, url in b["voisines"]:
             a(f'<a class="vcard" href="{url}"><div class="vt">{titre}</div>'
               f'<div class="vs">{sous}</div>'
@@ -307,7 +307,7 @@ def construis(slug):
     # ── E-E-A-T ────────────────────────────────────────────────────────────
     a('<div class="bl">')
     a('<div class="in st-s">')
-    a('<div class="eeat">')
+    a('<div class="eeat" data-dcp="chrome">')
     alt_nathan = b.get("photo_alt", "Nathan Fenina, fondateur de Décupler")
     a(f'<div class="av"><img src="{PHOTO_NATHAN}" alt="{alt_nathan}" '
       f'width="200" height="200" loading="lazy"></div>')
@@ -318,13 +318,13 @@ def construis(slug):
       f'Profil LinkedIn</a><a class="btn-o" href="{CAL}">Échanger 30 minutes</a></div>')
     a("</div>")
     a("</div>")
-    a(f'<p class="sub" style="margin-top:16px">Décupler — {siege["adresse"]}, '
+    a(f'<p class="sub" data-dcp="chrome">Décupler — {siege["adresse"]}, '
       f'{siege["code_postal"]} {siege["ville"]}.</p>')
     a("</div>")
     a("</div>")
 
     # ── CTA final ──────────────────────────────────────────────────────────
-    a('<div class="bl final">')
+    a('<div class="bl final" data-dcp="chrome">')
     a('<div class="in st-s">')
     a(f'<h2>{b["h2_final"]}</h2>')
     a(f'<p class="lead nr">{b["final"]}</p>')

@@ -18,9 +18,13 @@
  *     thème rend une page complète. 12 787 × 151 Ko ≈ 1,9 Go par passage.
  *   - /page/9999/ renvoie 200 au lieu de 404 : espace d'URL infini.
  *   - /?s=<n'importe quoi> renvoie 200 (155 Ko), en noindex mais exploré.
- *   - robots.txt ne contient aucune règle et déclare un sitemap mort
- *     (https://decupler.com/sitemap.xml ne répond pas ; le vrai est
- *     /sitemap_index.xml).
+ *   - robots.txt ne contient aucune règle d'exploration.
+ *
+ * Correction du 22/09 : j'avais d'abord ecrit que le sitemap declare etait
+ * mort, parce que mes requetes se faisaient couper. Search Console dit le
+ * contraire — /sitemap.xml et /sitemap_index.xml sont tous deux « sains »,
+ * 142 URL web, telecharges les 19 et 21/09. Le sitemap de Yoast fonctionne :
+ * ce plugin n'y touche pas et se contente de le declarer.
  *
  * Ce plugin corrige les trois premiers points côté PHP, sans accès FTP, et le
  * quatrième via le filtre robots_txt de WordPress.
@@ -52,6 +56,18 @@ const DCP_CRAWL_VERSION = '1.0.0';
  */
 function dcp_crawl_robots_voulu() {
 	$lignes = array(
+		// Marqueur demande par Nathan : permet de savoir d'un coup d'oeil, en
+		// ouvrant decupler.com/robots.txt, QUELLE source a servi le fichier.
+		// Si ces trois lignes sont absentes, c'est qu'un robots.txt physique
+		// existe a la racine et que le serveur le sert a la place du plugin.
+		'# ====================================================================',
+		'# robots.txt servi par le plugin « Décupler — Budget de crawl » v'
+			. DCP_CRAWL_VERSION . '.',
+		'# Si vous lisez cette ligne, c\'est CE fichier qui est actif — pas un',
+		'# fichier physique a la racine, ni l\'editeur de Yoast.',
+		'# Yoast gere le sitemap ; ce plugin gere les regles d\'exploration.',
+		'# ====================================================================',
+		'',
 		'User-agent: *',
 		'',
 		'# Recherche interne : espace d\'URL infini, aucune valeur pour Google.',
