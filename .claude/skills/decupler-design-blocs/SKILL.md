@@ -145,9 +145,33 @@ Pas de photo d'illustration générique, pas de dégradé autre que celui de la
 marque, pas de bleu `#5174B4` ailleurs que sur la bannière à la une, pas de bloc
 de liens en pied de contenu.
 
-**Deux chartes coexistent dans le dépôt** et ce n'est pas tranché :
-`design-system/tokens.css` (violet `#7B5CFA`, vert `#00E5A0`, Syne / DM Sans,
-fond `#07080f`) que `CLAUDE.md` déclare source unique de vérité, et
-`decupler-page-builder/references/charte-da.md` (violet `#667eea → #764ba2`,
-Sora / Inter) qu'utilisent les articles existants. Les blocs de ce skill sont en
-`tokens.css`. Demander laquelle appliquer avant de produire une série.
+## 8. La charte réelle — tranché par relevé le 22/09/2026
+
+**C'est `charte-da.md` qui est en production, pas `tokens.css`.** Vérifié en
+extrayant les couleurs et les polices de `decupler.com/agence-geo-nice/`, la
+page que Nathan désigne comme référence :
+
+| | Site réel (mesuré) | `tokens.css` (théorique) |
+|---|---|---|
+| Fond | **blanc `#ffffff`**, bandes `#f7f5fd` et `#ece9f8` | `#07080f` (dark) |
+| Violet | **`#667eea` (18×) → `#764ba2` (9×)** | `#7B5CFA` |
+| Texte | `#1a1a2e`, secondaire `#4a4a6a`, tertiaire `#8b8ba7` | `#e8e9f2` |
+| Titres | **Sora** 700 | Syne 800 |
+| Corps | **Inter** | DM Sans |
+| Vert | absent | `#00E5A0` |
+
+`CLAUDE.md` déclare `tokens.css` « source unique de vérité » : **c'est faux**,
+aucune page du site ne l'applique. Construire en dark violet/vert produit une
+page qui ne ressemble pas au site — erreur commise deux fois cette semaine.
+
+**Toujours partir de `assets/reference-page-ville.html`**, qui reproduit le
+langage réel : pill d'eyebrow lavande, H1 avec une partie en `<em>` violet, deux
+CTA (violet dégradé plein + blanc outline) suivis d'une micro-mention grise,
+cartes flottantes à droite du hero, bande de confiance à 4 chiffres, grille
+numérotée à badges ronds, maquette « requête posée à ChatGPT », méthode en liste
+numérotée, tableau comparatif à en-tête dégradé, photo de ville en carte 3:4
+avec légende en overlay, grille de communes, bande CTA finale en dégradé plein.
+
+Les blocs de `assets/skin.css` et `assets/blocs-v2.html` sont en dark
+(`tokens.css`) : ils ne servent que si Nathan valide un jour ce basculement.
+Par défaut, utiliser la référence claire.
