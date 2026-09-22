@@ -232,6 +232,40 @@ def parti_pris(b, photo):
     return o + ['</div>', '</div>', '</div>']
 
 
+# U+202F, espace fine insecable : la ponctuation haute francaise s'y accroche.
+FINE = " "
+
+
+def _ponctue(texte):
+    """Colle : ; ! ? et les guillemets francais au mot qui precede."""
+    texte = re.sub(r"[  ]+([:;!?])", FINE + r"\g<1>", texte)
+    texte = re.sub(r"«[  ]+", "«" + FINE, texte)
+    texte = re.sub(r"[  ]+»", FINE + "»", texte)
+    return texte
+
+
+def typo_fr(page):
+    """Applique la ponctuation francaise aux seuls titres de la page.
+
+    Releve du 22/09 sur la page de Cannes : le H1 se cassait en « Agence SEO
+    Cannes / : ranker avant le / salon » — le deux-points ouvrait une ligne.
+    Une espace fine insecable avant la ponctuation haute est de toute facon
+    la regle en francais, et c'est precisement ce qui empeche ce rejet.
+
+    Limite aux h1/h2/h3 : c'est la que la casse se voit, et ca evite de
+    toucher au corps du texte comme au contenu des attributs.
+
+    Piege paye ici : dans une chaine NON brute, "\\1" n'est pas un renvoi de
+    groupe mais le caractere U+0001. Le premier jet a donc remplace les
+    points d'interrogation des titres par un caractere de controle — et le
+    validateur a eu raison de signaler 0 H2 formule en question.
+    """
+    return re.sub(
+        r"(<h([123])\b[^>]*>)(.*?)(</h\2>)",
+        lambda m: m.group(1) + _ponctue(m.group(3)) + m.group(4),
+        page, flags=re.S)
+
+
 def construis(slug):
     v, base = fiche(slug)
     b = charge_contenu(slug)
@@ -593,7 +627,9 @@ def construis(slug):
     # fait un <p></p> parasite, parfois au milieu d'une grille flex.
     tete, _, queue = page.partition("</style>")
     queue = "\n".join(l for l in queue.split("\n") if l.strip())
-    return tete + "</style>\n" + queue
+    # La ponctuation haute des titres est collee en dernier : sur le HTML
+    # final, donc une seule fois, et sans risque de toucher le <style>.
+    return tete + "</style>\n" + typo_fr(queue)
 
 
 def main():
