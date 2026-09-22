@@ -186,7 +186,10 @@ def construis(slug):
     a('<div class="in st-s">')
     a(f'<h2>{b["h2_preuve"]}</h2>')
     a(f'<p class="lead nr">{b["preuve_intro"]}</p>')
-    a('<div class="grid2">')
+    # Grille a 2 colonnes : les blocs de preuve vont par 4, et en 3 colonnes la
+    # quatrieme carte reste seule sur sa ligne — le defaut que le skill design
+    # signale (« mettre un multiple du nombre de colonnes »).
+    a('<div class="grid2 preuves">')
     for t, d, url, ancre in b["preuves"]:
         a(f'<div><h3>{t}</h3><div class="d">{d}</div>'
           f'<div style="margin-top:12px"><a class="lnk" href="{url}">{ancre}</a></div></div>')

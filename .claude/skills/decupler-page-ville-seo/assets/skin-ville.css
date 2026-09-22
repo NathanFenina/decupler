@@ -186,3 +186,63 @@ body .ast-article-single > .entry-header, .entry-title { display:none !important
   .dcp-v .a2{animation:dcpIn .65s cubic-bezier(.2,.7,.2,1) .08s both}
   .dcp-v .a3{animation:dcpIn .65s cubic-bezier(.2,.7,.2,1) .16s both}
 }
+
+/* ── Passe d'alignement et d'animation du 22/09/2026 ────────────────────────
+   Nathan : « aligne bien les encadrés » + « ajoute animation ». Trois regles :
+   1. Les cartes d'une meme grille ont la meme hauteur ET leur lien cale en bas,
+      sinon les liens flottent a des hauteurs differentes et la grille bave.
+   2. Les colonnes de la bande de confiance sont d'egale largeur (flex-basis 0),
+      pas dimensionnees par leur contenu.
+   3. L'animation reste une TRANSLATION seule, jamais d'opacite : une entree en
+      opacity:0 rend le texte invisible pour tout crawler qui n'execute pas JS,
+      ce qui est auto-destructeur sur un site qui vend du GEO. */
+
+/* 1. cartes de meme hauteur, contenu reparti, lien en bas */
+.dcp-v .num2 > div,
+.dcp-v .grid2 > div,
+.dcp-v .bud > div{display:flex;flex-direction:column;height:100%}
+.dcp-v .num2 > div > .d,
+.dcp-v .grid2 > div > .d{flex:1 1 auto}
+.dcp-v .num2 > div > div:last-child:not(.d):not(.b),
+.dcp-v .grid2 > div > div:last-child:not(.d){margin-top:auto;padding-top:12px}
+.dcp-v .bud .q{flex:1 1 auto}
+.dcp-v .comm > div,.dcp-v .card{display:flex;flex-direction:column;justify-content:center}
+
+/* 2. colonnes de confiance strictement egales */
+.dcp-v .trust > div{flex:1 1 0;min-width:140px}
+
+/* 3. relief au survol, pour que les encadres se lisent comme des objets */
+.dcp-v .num2 > div,.dcp-v .grid2 > div,.dcp-v .bud > div,.dcp-v .card{
+  transition:transform .25s cubic-bezier(.2,.7,.2,1),box-shadow .25s ease,border-color .25s ease}
+@media (hover:hover){
+  .dcp-v .num2 > div:hover,.dcp-v .grid2 > div:hover,.dcp-v .bud > div:hover{
+    transform:translateY(-3px);box-shadow:0 14px 34px rgba(81,41,144,.1);border-color:#d9d4ef}
+  .dcp-v .card:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(81,41,144,.12)}
+}
+
+/* 4. entree en cascade des grilles — translation seule, et decalages courts
+      pour que la page paraisse vivante sans se faire attendre */
+@media (prefers-reduced-motion:no-preference){
+  .dcp-v .num2 > div,.dcp-v .grid2 > div,.dcp-v .bud > div,
+  .dcp-v .comm > div,.dcp-v .logos .cell,.dcp-v .steps > div{
+    animation:dcpIn .55s cubic-bezier(.2,.7,.2,1) both}
+  .dcp-v .num2 > div:nth-child(2),.dcp-v .grid2 > div:nth-child(2),
+  .dcp-v .bud > div:nth-child(2),.dcp-v .steps > div:nth-child(2){animation-delay:.05s}
+  .dcp-v .num2 > div:nth-child(3),.dcp-v .grid2 > div:nth-child(3),
+  .dcp-v .bud > div:nth-child(3),.dcp-v .steps > div:nth-child(3){animation-delay:.1s}
+  .dcp-v .num2 > div:nth-child(4),.dcp-v .grid2 > div:nth-child(4),
+  .dcp-v .steps > div:nth-child(4){animation-delay:.15s}
+  .dcp-v .num2 > div:nth-child(5),.dcp-v .grid2 > div:nth-child(5){animation-delay:.2s}
+  .dcp-v .num2 > div:nth-child(6),.dcp-v .grid2 > div:nth-child(6){animation-delay:.25s}
+  .dcp-v .logos .cell:nth-child(3){animation-delay:.04s}
+  .dcp-v .logos .cell:nth-child(4){animation-delay:.08s}
+  .dcp-v .logos .cell:nth-child(5){animation-delay:.12s}
+  .dcp-v .logos .cell:nth-child(6){animation-delay:.16s}
+  .dcp-v .logos .cell:nth-child(7){animation-delay:.2s}
+  .dcp-v .logos .cell:nth-child(8){animation-delay:.24s}
+}
+
+/* Les preuves vont par 4 : en 2 colonnes elles remplissent deux lignes pleines,
+   la ou 3 colonnes laissent la quatrieme carte orpheline. */
+.dcp-v .grid2.preuves{grid-template-columns:repeat(2,1fr)}
+@media (max-width:760px){.dcp-v .grid2.preuves{grid-template-columns:1fr}}
