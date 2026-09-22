@@ -31,6 +31,10 @@ CAL = "https://calendly.com/fenina-nathan/consultationstrategique"
 LI = "https://www.linkedin.com/in/nathan-fenina/"
 PHOTO_NATHAN = ("https://decupler.com/wp-content/uploads/2026/09/nathan-fenina-portrait.jpg")
 PHOTO_NATHAN_LARGE = ("https://decupler.com/wp-content/uploads/2026/09/nathan-fenina-nice.jpg")
+# Bande des moteurs : Google, Perplexity, Claude, OpenAI. Actif deja en
+# ligne et deja utilise sur la home — on ne cree pas d'exposition de
+# marque supplementaire, et le visuel reste coherent avec le reste du site.
+MOTEURS = ("https://decupler.com/wp-content/uploads/2025/10/Sans-titre-200-x-70-px-2.png")
 LOGOS = [
     ("decathlon.png", "Decathlon", 376, 126),
     ("le-point.png", "Le Point", 378, 138),
@@ -132,10 +136,39 @@ def construis(slug):
       f'<a class="btn-o" href="{b["cta2_url"]}">{b["cta2"]}</a></div>')
     a(f'<p class="sub a3">{b["micro"]}</p>')
     a("</div>")
-    a('<div class="cards a3">')
-    for k, val in b["cards"]:
-        a(f'<div class="card"><div class="k">{k}</div><div class="v">{val}</div></div>')
-    a("</div>")
+    if b.get("visuel"):
+        src, alt, w, h, bk, bv = b["visuel"]
+        a('<div class="hvis a3">')
+        # Le rapport du cadre suit celui de la source : forcer une photo
+        # paysage dans un cadre portrait la charcute (premier essai : le
+        # visage sortait du cadre). Portrait -> 4/5, paysage -> 4/3.
+        classe = "ph2" if h > w else "ph2 pay"
+        a(f'<div class="{classe}">')
+        a(f'<img src="{src}" alt="{alt}" width="{w}" height="{h}">')
+        a(f'<div class="bdg"><div class="k">{bk}</div><div class="v">{bv}</div></div>')
+        a("</div>")
+        a('<div class="mot">')
+        a('<div class="l">Moteurs suivis</div>')
+        a(f'<div class="mi"><img src="{MOTEURS}" alt="Google, Perplexity, Claude '
+          f'et ChatGPT" width="400" height="140" loading="lazy"></div>')
+        a("</div>")
+        # La colonne de droite laissait un vide sous la bande des moteurs. On
+        # le remplit avec une preuve chiffree et sourcee plutot qu'avec de
+        # l'air : un chiffre attribue, haut dans la page, qui mene a l'etude.
+        if b.get("hero_preuve"):
+            chiffre, libelle, url = b["hero_preuve"]
+            a(f'<a class="hpr" href="{url}">')
+            a(f'<div class="n">{chiffre}</div>')
+            a(f'<div class="l">{libelle}</div>')
+            a('<div class="f">Voir l\'étude de cas</div>')
+            a("</a>")
+        a("</div>")
+    else:
+        a('<div class="cards a3">')
+        for k, val in b["cards"]:
+            a(f'<div class="card"><div class="k">{k}</div>'
+              f'<div class="v">{val}</div></div>')
+        a("</div>")
     a("</div>")
     a('<div class="trust">')
     for n, l in b["trust"]:
@@ -225,8 +258,10 @@ def construis(slug):
     cp = " · ".join(v["codes_postaux"])
     a(f'<p class="lead nr">Codes postaux couverts : <span class="cp">{cp}</span>.</p>')
     a('<div class="comm">')
+    # Le nom du departement repete sous chaque commune etait du bruit : il est
+    # deja dit dans l'intro de la section et dans les codes postaux.
     for c in v["communes"]:
-        a(f'<div><div class="n">{c}</div><div class="l">{v["departement"]}</div></div>')
+        a(f'<div><div class="n">{c}</div></div>')
     a("</div>")
     a(f'<p class="sub" style="margin-top:18px">{b["zone_note"]}</p>')
     a("</div>")

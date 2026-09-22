@@ -32,6 +32,16 @@ BLOCS = {
     "cta2": "Voir notre page GEO Nice",
     "cta2_url": "https://decupler.com/agence-geo-nice/",
     "micro": "30 minutes avec Nathan, à Nice ou en visio. Sans engagement.",
+    # Visuel du hero : une photo reelle et un badge qui porte le fait
+    # differenciant de la ville. Remplace les trois encadres de texte.
+    "visuel": (
+        "https://decupler.com/wp-content/uploads/2026/09/decupler-equipe-seo-ia.jpg",
+        "L'équipe de l'agence SEO Nice Décupler devant un tableau de bord de trafic organique",
+        1400, 933,
+        "Nos bureaux", "10 avenue Lympia privée · 06300 Nice"),
+    "hero_preuve": ("+450 %",
+        "de clics sur une page de service en 3 mois — Reux Travaux, artisanat",
+        "https://decupler.com/etude-de-cas-seo-reux-travaux/"),
     "cards": [
         ("Nos bureaux", "10 av. Lympia privée · 06300"),
         ("Zone", "Nice et Alpes-Maritimes"),

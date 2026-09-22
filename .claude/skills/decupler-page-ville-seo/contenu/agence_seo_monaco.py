@@ -35,6 +35,16 @@ BLOCS = {
     "cta2_url": "https://decupler.com/agence-seo/",
     "micro": "30 minutes avec Nathan. Monaco est à vingt minutes de nos bureaux "
              "de Nice.",
+    # Visuel du hero : une photo reelle et un badge qui porte le fait
+    # differenciant de la ville. Remplace les trois encadres de texte.
+    "visuel": (
+        "https://decupler.com/wp-content/uploads/2026/09/decupler-equipe-seo-ia.jpg",
+        "Experts de l'agence SEO Monaco Décupler devant un tableau de bord de trafic organique",
+        1400, 933,
+        "Langues travaillées", "Français · anglais · italien"),
+    "hero_preuve": ("ROI ×3",
+        "de 1,8× à 5,4× à budget constant, en 4 mois — Allianz",
+        "https://decupler.com/etude-de-cas-sea-allianz/"),
     "cards": [
         ("Territoire", "Principauté de Monaco · 98000"),
         ("Langues travaillées", "FR · EN · IT"),

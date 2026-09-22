@@ -34,6 +34,16 @@ BLOCS = {
     "cta2_url": "https://decupler.com/cas-clients/",
     "micro": "30 minutes avec Nathan. Antibes est à vingt minutes de nos bureaux "
              "de Nice.",
+    # Visuel du hero : une photo reelle et un badge qui porte le fait
+    # differenciant de la ville. Remplace les trois encadres de texte.
+    "visuel": (
+        "https://decupler.com/wp-content/uploads/2026/09/decupler-equipe-seo-ia.jpg",
+        "Experts de l'agence SEO Antibes Décupler devant un tableau de bord de trafic organique",
+        1400, 933,
+        "Deux marchés", "Port Vauban · Sophia Antipolis"),
+    "hero_preuve": ("+250 %",
+        "de trafic et +180 % de leads en 6 mois — Spigao, SaaS B2B",
+        "https://decupler.com/etude-de-cas-seo-spigao/"),
     "cards": [
         ("Zone", "Antibes · Juan-les-Pins · 06600 · 06160"),
         ("Deux marchés", "Littoral et yachting · Sophia Antipolis"),

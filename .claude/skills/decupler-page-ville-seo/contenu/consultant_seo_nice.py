@@ -35,6 +35,16 @@ BLOCS = {
     "cta2_url": "https://decupler.com/agence-seo-nice/",
     "micro": "Je réponds moi-même. Pas de commercial, pas de qualification en trois "
              "appels.",
+    # Visuel du hero : une photo reelle et un badge qui porte le fait
+    # differenciant de la ville. Remplace les trois encadres de texte.
+    "visuel": (
+        "https://decupler.com/wp-content/uploads/2026/09/nathan-fenina-nice.jpg",
+        "Nathan Fenina, consultant SEO à Nice, au-dessus de la baie des Anges",
+        1000, 1332,
+        "Votre interlocuteur", "Nathan Fenina · Nice, port Lympia"),
+    "hero_preuve": ("×3,2",
+        "le trafic d'un article en 12 semaines, sans nouveau contenu — Le Point",
+        "https://decupler.com/etude-de-cas-seo-le-point/"),
     "cards": [
         ("Interlocuteur", "Nathan Fenina, en direct"),
         ("Basé à", "Nice · port Lympia · 06300"),

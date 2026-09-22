@@ -283,8 +283,11 @@ def valide(html, kw, slug, typ="article", title=None, meta=None,
     # l'ancrage editorial. Le controle des liens repetes ne vise que la prose,
     # ou repeter la meme ancre est du bourrage. Ces liens restent comptes dans
     # le total du maillage.
-    nav = re.findall(r'<a class="vcard" href="(?:https://decupler\.com)?(/[^"#]*)"',
-                     html)
+    # .vcard : bloc de navigation « villes voisines ».
+    # .hpr   : carte de preuve du hero, qui mene a l'etude de cas detaillee
+    #          plus bas — c'est un renvoi, pas une ancre de prose.
+    nav = re.findall(r'<a class="(?:vcard|hpr)" href="(?:https://decupler\.com)?'
+                     r'(/[^"#]*)"', html)
     prose = list(liens)
     for u in nav:
         if u in prose:

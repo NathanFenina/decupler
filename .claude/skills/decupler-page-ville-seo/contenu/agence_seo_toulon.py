@@ -31,6 +31,16 @@ BLOCS = {
     "cta2": "Voir nos études de cas",
     "cta2_url": "https://decupler.com/cas-clients/",
     "micro": "30 minutes avec Nathan, en visio ou à Toulon. Sans engagement.",
+    # Visuel du hero : une photo reelle et un badge qui porte le fait
+    # differenciant de la ville. Remplace les trois encadres de texte.
+    "visuel": (
+        "https://decupler.com/wp-content/uploads/2026/09/decupler-equipe-seo-ia.jpg",
+        "Experts de l'agence SEO Toulon Décupler analysant un tableau de bord de trafic organique",
+        1400, 933,
+        "Marchés visés", "Naval · logistique · BTP · santé"),
+    "hero_preuve": ("+15 %",
+        "de clics et 80 erreurs techniques corrigées en 3 mois — Atoo Énergie",
+        "https://decupler.com/etude-de-cas-seo-atoo-energie/"),
     "cards": [
         ("Zone", "Toulon · 83000 · 83100 · 83200"),
         ("Marchés visés", "Naval · logistique · BTP · santé"),
