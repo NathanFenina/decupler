@@ -101,6 +101,52 @@ BLOCS = {
          "cette liste demande un contenu découpable, balisé, et des mentions hors "
          "de votre site. C'est l'objet de notre <a class=\"lnk\" "
          "href=\"https://decupler.com/mesurer-sa-visibilite/\">mesure de la visibilité IA</a>."),
+        ("Les avis en langue étrangère",
+        "Un avis en anglais ou en italien pèse double à Nice : il rassure le "
+        "prospect étranger et signale à Google que vous servez cette clientèle. "
+        "Presque aucun établissement niçois ne les sollicite."),
+    ],
+
+    # Sixieme levier : la grille est a 3 colonnes, 5 items laissaient un trou
+    # sur la deuxieme ligne. Six remplissent deux lignes pleines.
+
+    "bandeau": ("Qui vous aurez au téléphone",
+        ["Chez Décupler, le premier rendez-vous se fait avec Nathan Fenina, le "
+         "fondateur — pas avec un commercial qui repassera le dossier à "
+         "quelqu'un d'autre. C'est lui qui regarde votre Search Console, qui vous "
+         "dit ce qu'il ferait, et qui vous le dit franchement même quand la "
+         "réponse est « pas de SEO pour l'instant ».",
+         "Nos bureaux sont au port Lympia. Vous pouvez venir, et nous pouvons "
+         "venir chez vous : c'est l'intérêt d'avoir une agence à vingt minutes "
+         "plutôt qu'à sept cents kilomètres."],
+        ("https://decupler.com/wp-content/uploads/2026/09/nathan-fenina-nice.jpg", "Nathan Fenina, fondateur de l'agence SEO Nice Décupler, "
+         "au-dessus de la baie des Anges", 1000, 1332,
+         "Nathan Fenina, fondateur de Décupler — Nice.")),
+
+    "h2_voisines": "Nous intervenons aussi dans ces villes",
+    "voisines_intro": "Chaque page décrit le marché local réel, pas un gabarit "
+                      "avec le nom de la ville changé. Si votre entreprise est "
+                      "ailleurs sur la Côte d'Azur, commencez par celle qui vous "
+                      "correspond.",
+    "voisines": [
+        ("Agence SEO Cannes", "Événementiel, luxe, immobilier, yachting — un "
+         "marché qui suit le calendrier du Palais des Festivals.",
+         "https://decupler.com/agence-seo-cannes/"),
+        ("Agence SEO Toulon", "Naval, logistique portuaire, BTP : faibles "
+         "volumes, forte intention, cycles d'achat longs.",
+         "https://decupler.com/agence-seo-toulon/"),
+        ("Agence SEO Monaco", "Finance, immobilier de prestige, yachting. "
+         "Multilingue, hors de France, sans SEO de proximité.",
+         "https://decupler.com/agence-seo-monaco/"),
+        ("Consultant SEO Nice", "L'accompagnement en direct avec Nathan, quand "
+         "vous voulez un interlocuteur plutôt qu'une équipe.",
+         "https://decupler.com/consultant-seo-nice/"),
+        ("Agence GEO Nice", "L'autre versant : être cité dans les réponses de "
+         "ChatGPT, Claude, Gemini et Perplexity.",
+         "https://decupler.com/agence-geo-nice/"),
+        ("Le guide du SEO local", "La méthode complète, applicable sans nous : "
+         "fiche d'établissement, avis, citations.",
+         "https://decupler.com/seo-local/"),
     ],
 
     "h2_methode": "Comment on travaille sur un projet niçois ?",

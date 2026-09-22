@@ -101,6 +101,43 @@ BLOCS = {
          "contenu découpable, un balisage propre et des mentions externes — c'est "
          "l'objet de notre <a class=\"lnk\" "
          "href=\"https://decupler.com/agence-geo/\">pôle GEO</a>."),
+        ("Le suivi des positions par pays, pas seulement par mot-clé",
+        "Un cabinet monégasque peut être premier depuis la France et invisible "
+        "depuis l'Italie sur la même requête. Sans un suivi par pays, on "
+        "optimise sans voir la moitié du marché."),
+    ],
+
+
+    "bandeau": ("Ce que vous obtenez concrètement",
+        ["Une équipe qui produit — six agents IA spécialisés sur l'analyse, les "
+         "briefs, la rédaction, le maillage et la publication — et un expert "
+         "SEO qui relit, corrige et valide chaque page avant mise en ligne. Sur "
+         "un marché où votre lecteur est un investisseur ou un family office, "
+         "cette relecture n'est pas négociable.",
+         "Et un interlocuteur à vingt minutes, qui peut passer vous voir plutôt "
+         "que de vous envoyer un rapport PDF tous les trente jours."],
+        ("https://decupler.com/wp-content/uploads/2026/09/decupler-equipe-seo-ia.jpg", "Experts de l'agence SEO Monaco Décupler devant un tableau de "
+         "bord de trafic organique", 1400, 933,
+         "IA + humain : l'agent produit, l'expert valide et publie.")),
+
+    "h2_voisines": "Nos zones d'intervention autour de la Principauté",
+    "voisines_intro": "Nous couvrons les Alpes-Maritimes et le Var depuis Nice. "
+                      "Chaque page décrit le marché réel de sa ville : les "
+                      "leviers monégasques n'ont presque rien en commun avec "
+                      "ceux de Toulon.",
+    "voisines": [
+        ("Agence SEO Nice", "Notre siège, à vingt minutes. Marché saisonnier et "
+         "multilingue.",
+         "https://decupler.com/agence-seo-nice/"),
+        ("Agence SEO Cannes", "Événementiel, luxe et yachting, au rythme du "
+         "Palais des Festivals.",
+         "https://decupler.com/agence-seo-cannes/"),
+        ("Agence SEO Toulon", "Le B2B industriel varois : arsenal, logistique "
+         "portuaire, BTP.",
+         "https://decupler.com/agence-seo-toulon/"),
+        ("Consultant SEO Monaco", "L'accompagnement en direct avec Nathan, "
+         "pour un interlocuteur unique.",
+         "https://decupler.com/consultant-seo-monaco/"),
     ],
 
     "h2_methode": "Comment on travaille sur un projet monégasque ?",

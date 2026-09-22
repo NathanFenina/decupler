@@ -98,6 +98,41 @@ BLOCS = {
          "propre et des mentions ailleurs que chez vous. Je le traite comme une "
          "mission à part — voir <a class=\"lnk\" "
          "href=\"https://decupler.com/consultant-geo/\">consultant GEO</a>."),
+        ("La reprise d'un site pénalisé ou décroché",
+        "Une chute brutale après une mise à jour, un site piraté, une migration "
+        "ratée. Ce sont les missions où un diagnostic rapide vaut le plus cher, "
+        "et où l'erreur coûte des mois."),
+    ],
+
+
+    "bandeau": ("Pourquoi je limite le nombre de missions",
+        ["« Un seul interlocuteur » ne veut rien dire si j'en prends quinze en "
+         "parallèle. Je plafonne volontairement le nombre de projets que je "
+         "suis en direct, ce qui veut dire que je refuse des dossiers — et que "
+         "quand j'en accepte un, vous avez vraiment quelqu'un au bout du fil.",
+         "Je travaille depuis Nice, au port Lympia. Pour les entreprises "
+         "azuréennes on se voit ; ailleurs c'est la visio, et ça n'a jamais "
+         "gêné une mission."],
+        ("https://decupler.com/wp-content/uploads/2026/09/nathan-fenina-nice.jpg", "Nathan Fenina, consultant SEO à Nice, au-dessus de la baie "
+         "des Anges", 1000, 1332, "Nathan Fenina — Nice, port Lympia.")),
+
+    "h2_voisines": "Vous êtes ailleurs sur la Côte d'Azur ?",
+    "voisines_intro": "Je prends des missions dans tout le 06 et le 83. Voici "
+                      "les pages qui décrivent chaque marché — et l'offre "
+                      "agence, si c'est du volume qu'il vous faut.",
+    "voisines": [
+        ("Agence SEO Nice", "L'offre complète : l'équipe, les six agents IA, la "
+         "production en continu.",
+         "https://decupler.com/agence-seo-nice/"),
+        ("Agence SEO Cannes", "Le marché cannois, calé sur le calendrier du "
+         "Palais des Festivals.",
+         "https://decupler.com/agence-seo-cannes/"),
+        ("Agence SEO Toulon", "Le B2B industriel varois : arsenal, logistique, "
+         "BTP.",
+         "https://decupler.com/agence-seo-toulon/"),
+        ("Consultant GEO", "Se faire citer par ChatGPT et Perplexity : je le "
+         "traite comme une mission distincte.",
+         "https://decupler.com/consultant-geo/"),
     ],
 
     "h2_methode": "Comment se passe une mission avec moi ?",

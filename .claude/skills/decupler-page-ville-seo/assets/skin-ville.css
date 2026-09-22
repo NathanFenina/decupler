@@ -246,3 +246,50 @@ body .ast-article-single > .entry-header, .entry-title { display:none !important
    la ou 3 colonnes laissent la quatrieme carte orpheline. */
 .dcp-v .grid2.preuves{grid-template-columns:repeat(2,1fr)}
 @media (max-width:760px){.dcp-v .grid2.preuves{grid-template-columns:1fr}}
+
+/* ── Retours de Nathan du 22/09/2026 ───────────────────────────────────────
+   « il manque des animations » : les entrees a l'ouverture ne se voient pas
+   sous la ligne de flottaison — elles sont terminees quand on y arrive. Elles
+   sont donc declenchees a l'apparition, par IntersectionObserver.
+
+   La classe .dcp-att n'est posee QUE par le JS. Un crawler qui n'execute pas
+   JS ne la voit jamais : les blocs restent a leur place definitive, visibles.
+   Et l'animation ne touche que la translation, jamais l'opacite. */
+.dcp-v .dcp-att{transform:translateY(16px)}
+.dcp-v .dcp-vu{animation:dcpIn .6s cubic-bezier(.2,.7,.2,1) both}
+/* L'entree au chargement est reservee au hero : ailleurs, le reveal prend le
+   relais, sinon les deux animations se chevauchent. */
+@media (prefers-reduced-motion:no-preference){
+  .dcp-v .bl .num2 > div,.dcp-v .bl .grid2 > div,.dcp-v .bl .bud > div,
+  .dcp-v .bl .comm > div,.dcp-v .bl .steps > div{animation:none}
+}
+
+/* « les pages des autres villes peuvent etre cliquables » : cartes-liens. */
+.dcp-v .vgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(232px,1fr));
+  gap:14px;margin-top:26px}
+.dcp-v .vcard{display:flex;flex-direction:column;gap:3px;background:#fff;
+  border:1px solid var(--bd);border-radius:13px;padding:20px 22px;
+  text-decoration:none;height:100%;
+  transition:transform .25s cubic-bezier(.2,.7,.2,1),box-shadow .25s ease,
+             border-color .25s ease}
+.dcp-v .vcard .vt{font-family:var(--ft);font-weight:700;font-size:.97rem;color:var(--tx)}
+.dcp-v .vcard .vs{font-size:.83rem;color:var(--tx3);line-height:1.5}
+.dcp-v .vcard .vf{margin-top:auto;padding-top:12px;font-size:.82rem;font-weight:600;
+  color:var(--vio-d)}
+@media (hover:hover){
+  .dcp-v .vcard:hover{transform:translateY(-3px);border-color:var(--vio);
+    box-shadow:0 14px 34px rgba(102,126,234,.14)}
+  .dcp-v .vcard:hover .vf{color:var(--vio)}
+}
+.dcp-v .vcard:focus-visible{outline:2px solid var(--vio);outline-offset:3px}
+
+/* Le bandeau photo : la photo a droite, cadrage portrait, jamais etiree. */
+.dcp-v .band .fig img{max-height:520px;object-fit:cover;object-position:center 22%}
+
+/* Avatar E-E-A-T un peu plus grand : c'est une vraie photo maintenant, elle
+   merite d'etre lisible. */
+.dcp-v .eeat .av{width:92px;height:92px}
+@media (max-width:620px){
+  .dcp-v .eeat{grid-template-columns:1fr;text-align:left}
+  .dcp-v .eeat .av{width:76px;height:76px}
+}

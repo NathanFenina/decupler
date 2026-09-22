@@ -99,6 +99,45 @@ BLOCS = {
          "découper, un balisage propre et des mentions ailleurs que chez vous — "
          "c'est le travail de <a class=\"lnk\" "
          "href=\"https://decupler.com/agence-geo/\">notre pôle GEO</a>."),
+        ("Les fiches produit et les catalogues techniques",
+        "Beaucoup de PME varoises ont leur catalogue en PDF, invisible pour "
+        "Google. Le passer en pages HTML indexables est souvent le gisement le "
+        "plus gros du site, et personne n'y touche."),
+    ],
+
+
+    "bandeau": ("L'équipe qui produit, l'expert qui valide",
+        ["Sur un projet industriel, le vocabulaire ne se devine pas. Nos agents "
+         "IA produisent la matière — analyse de la SERP, briefs, premières "
+         "versions — et un expert SEO reprend, corrige et valide chaque page "
+         "avant mise en ligne. Sur du contenu technique, on vous fait aussi "
+         "valider le vocabulaire métier : une erreur de norme vous discrédite "
+         "auprès du seul lecteur qui compte.",
+         "C'est ce qui permet de tenir le volume sans livrer du contenu "
+         "interchangeable, celui que Google comme les moteurs IA apprennent "
+         "justement à écarter."],
+        ("https://decupler.com/wp-content/uploads/2026/09/decupler-equipe-seo-ia.jpg", "Experts SEO de l'agence SEO Toulon Décupler analysant un "
+         "tableau de bord de trafic organique", 1400, 933,
+         "IA + humain : l'agent produit, l'expert valide et publie.")),
+
+    "h2_voisines": "Nos autres zones d'intervention",
+    "voisines_intro": "Le Var et les Alpes-Maritimes sont nos deux départements. "
+                      "Chaque page décrit le marché réel de sa ville — les "
+                      "leviers ne sont pas les mêmes d'un marché industriel à un "
+                      "marché touristique.",
+    "voisines": [
+        ("Agence SEO Nice", "Notre siège, au port Lympia. Marché saisonnier et "
+         "multilingue.",
+         "https://decupler.com/agence-seo-nice/"),
+        ("Agence SEO Cannes", "Événementiel et luxe, au rythme du Palais des "
+         "Festivals.",
+         "https://decupler.com/agence-seo-cannes/"),
+        ("Agence SEO Monaco", "Finance et immobilier de prestige, en plusieurs "
+         "langues.",
+         "https://decupler.com/agence-seo-monaco/"),
+        ("Consultant SEO Toulon", "L'accompagnement en direct avec Nathan, sans "
+         "l'équipe.",
+         "https://decupler.com/consultant-seo-toulon/"),
     ],
 
     "h2_methode": "Comment on travaille sur un projet varois ?",

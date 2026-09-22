@@ -29,7 +29,8 @@ CONTENU = os.path.join(SKILL, "contenu")
 
 CAL = "https://calendly.com/fenina-nathan/consultationstrategique"
 LI = "https://www.linkedin.com/in/nathan-fenina/"
-PHOTO_NATHAN = "https://decupler.com/wp-content/uploads/2026/06/nathanfenina.png"
+PHOTO_NATHAN = ("https://decupler.com/wp-content/uploads/2026/09/nathan-fenina-portrait.jpg")
+PHOTO_NATHAN_LARGE = ("https://decupler.com/wp-content/uploads/2026/09/nathan-fenina-nice.jpg")
 LOGOS = [
     ("decathlon.png", "Decathlon", 376, 126),
     ("le-point.png", "Le Point", 378, 138),
@@ -74,6 +75,24 @@ def bloc_logos():
             f'<div class="cell"><img src="https://decupler.com/wp-content/uploads/'
             f'2025/10/{f}" alt="{alt}" width="{w}" height="{h}" loading="lazy"></div>')
     return sortie + ["</div>", "</div>"]
+
+
+# Observateur d'apparition. Deux garde-fous : on ne touche a l'opacite nulle
+# part, et on n'ajoute la classe d'attente qu'en JS — donc un crawler sans JS
+# voit la page a sa place definitive.
+REVEAL = (
+    "(function(){var r=document.querySelector('.dcp-v');if(!r)return;"
+    "if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)')"
+    ".matches)return;"
+    "if(!('IntersectionObserver' in window))return;"
+    "var c=r.querySelectorAll('.num2>div,.grid2>div,.bud>div,.comm>div,"
+    ".vgrid>a,.steps>div,.decupler-faq-item,.fig,.mock,.tw');"
+    "for(var i=0;i<c.length;i++){c[i].classList.add('dcp-att');}"
+    "var o=new IntersectionObserver(function(es){es.forEach(function(e){"
+    "if(e.isIntersecting){e.target.classList.add('dcp-vu');o.unobserve(e.target);}"
+    "});},{rootMargin:'0px 0px -12% 0px',threshold:0.08});"
+    "for(var j=0;j<c.length;j++){o.observe(c[j]);}})();"
+)
 
 
 def construis(slug):
@@ -226,6 +245,26 @@ def construis(slug):
     a("</div>")
     a("</div>")
 
+    # ── bandeau photo. Nathan : « il manque des photos ». Une photo reelle
+    #    d'une personne identifiable vaut tous les visuels generes.
+    if b.get("bandeau"):
+        titre, paras, img = b["bandeau"]
+        a('<div class="bl">')
+        a('<div class="in">')
+        a('<div class="band">')
+        a('<div class="st-s">')
+        a(f'<h2>{titre}</h2>')
+        for pp in paras:
+            a(f'<p class="lead nr">{pp}</p>')
+        a(f'<div class="row"><a class="btn" href="{CAL}">{b["cta1"]}</a></div>')
+        a("</div>")
+        src, alt, w, h, cap = img
+        a(f'<div class="fig"><img src="{src}" alt="{alt}" width="{w}" height="{h}" '
+          f'loading="lazy"><div class="cap">{cap}</div></div>')
+        a("</div>")
+        a("</div>")
+        a("</div>")
+
     # ── 7. le bloc qui absorbe les variantes de requete ────────────────────
     a('<div class="bl">')
     a('<div class="in st-s">')
@@ -249,6 +288,21 @@ def construis(slug):
     a("</div>")
     a("</div>")
     a("</div>")
+
+    # ── villes voisines, cliquables ────────────────────────────────────────
+    if b.get("voisines"):
+        a('<div class="bl">')
+        a('<div class="in st-s">')
+        a(f'<h2>{b["h2_voisines"]}</h2>')
+        a(f'<p class="lead nr">{b["voisines_intro"]}</p>')
+        a('<div class="vgrid">')
+        for titre, sous, url in b["voisines"]:
+            a(f'<a class="vcard" href="{url}"><div class="vt">{titre}</div>'
+              f'<div class="vs">{sous}</div>'
+              f'<div class="vf">Voir la page</div></a>')
+        a("</div>")
+        a("</div>")
+        a("</div>")
 
     # ── E-E-A-T ────────────────────────────────────────────────────────────
     a('<div class="bl">')
@@ -321,6 +375,10 @@ def construis(slug):
     a('<script type="application/ld+json">'
       + json.dumps(ent, ensure_ascii=False) + "</script>")
     a("</div>")
+    a("</div>")
+
+    a('<div class="ldjson">')
+    a("<script>" + REVEAL + "</script>")
     a("</div>")
 
     page = "\n".join(o)

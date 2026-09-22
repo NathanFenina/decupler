@@ -238,10 +238,21 @@ def valide(html, kw, slug, typ="article", title=None, meta=None,
     # ── maillage ───────────────────────────────────────────────────────────
     liens = re.findall(r'href="(?:https://decupler\.com)?(/[^"#]*)"', html)
     liens = [u for u in liens if not u.startswith("/wp-content")]
+    # Un bloc de navigation « villes voisines » (.vcard) reprend forcement des
+    # destinations deja citees dans le texte : c'est de la navigation, pas de
+    # l'ancrage editorial. Le controle des liens repetes ne vise que la prose,
+    # ou repeter la meme ancre est du bourrage. Ces liens restent comptes dans
+    # le total du maillage.
+    nav = re.findall(r'<a class="vcard" href="(?:https://decupler\.com)?(/[^"#]*)"',
+                     html)
+    prose = list(liens)
+    for u in nav:
+        if u in prose:
+            prose.remove(u)
     if len(set(liens)) < LIENS_MIN:
         e.append(f"{len(set(liens))} liens internes (<{LIENS_MIN})")
-    if typ != "home" and len(liens) != len(set(liens)):
-        rep = [u for u in set(liens) if liens.count(u) > 1]
+    if typ != "home" and len(prose) != len(set(prose)):
+        rep = [u for u in set(prose) if prose.count(u) > 1]
         e.append("lien interne repete : " + ", ".join(sorted(rep)))
     if f"/{slug}/" in liens:
         e.append("lien vers soi-meme")
