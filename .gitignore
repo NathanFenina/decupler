@@ -13,6 +13,7 @@
 *.pyc
 .DS_Store
 .agents/skills/
+.claude/agents/impeccable-*
 .claude/skills/ai-seo
 .claude/skills/decupler-page-ville-seo/build/
 .claude/skills/design-taste-frontend

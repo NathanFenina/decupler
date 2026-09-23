@@ -136,7 +136,9 @@ def bande_photo(b):
     o.append('<div class="voile"></div>')
     o.append('<div class="ov">')
     o.append('<div class="ovin">')
-    o.append(f'<div class="ovk">{ph["k"]}</div>')
+    # Pas de sur-titre au-dessus du H2 : le couple « petite etiquette en
+    # capitales + gros titre » est le signal « kicker-above-heading ». Les
+    # pastilles sous le texte portent deja l'information.
     o.append(f'<h2>{ph["h2"]}</h2>')
     o.append(f'<p class="ovp">{ph["p"]}</p>')
     if ph.get("chips"):
@@ -174,9 +176,14 @@ def livrables(b):
     o = ['<div class="bl">', '<div class="in st-s">',
          f'<h2>{b["h2_livrables"]}</h2>',
          f'<p class="lead nr">{b["livrables_intro"]}</p>', '<div class="livr">']
-    for rang, titre, detail, cadence in b["livrables"]:
-        o.append(f'<div><div class="rg">{rang}</div><h3>{titre}</h3>'
-                 f'<div class="d">{detail}</div><div class="q">{cadence}</div></div>')
+    # Pas de numerotation « 01 … 06 » : ces livrables ne sont pas une
+    # sequence, et une petite etiquette numerotee au-dessus de chaque titre
+    # est l'echafaudage editorial que le detecteur d'Impeccable signale
+    # (« numbered-section-labels »). L'etiquette porte la cadence, qui est
+    # l'information utile : le lecteur voit d'abord QUAND il recoit quoi.
+    for _rang, titre, detail, cadence in b["livrables"]:
+        o.append(f'<div><div class="rg">{cadence}</div><h3>{titre}</h3>'
+                 f'<div class="d">{detail}</div></div>')
     o += ['</div>']
     if b.get("livrables_note"):
         o.append(f'<p class="sub" style="margin-top:16px">{b["livrables_note"]}</p>')

@@ -193,7 +193,91 @@ GET /wp-json/wp/v2/pages/{id}?_fields=content
 Compter `<p><a>`, `<p><img>`, `<p><div>`, `<p></p>`. **Les quatre à zéro.**
 C'est ce contrôle qui a rattrapé les cartes vides du bloc « villes voisines ».
 
-## 8. Ce qui reste interdit
+## 8. Le détecteur Impeccable — la mesure qui remplace l'opinion
+
+« C'est trop Claude comme page » est une impression. Impeccable la transforme
+en liste : 61 règles déterministes qui repèrent les signes d'une interface
+générée. Sur la page de Toulon du 22/09 : **94 signaux**. Après la passe du
+23/09 : **18**, dont 8 relèvent de la charte assumée et 10 de faux positifs
+documentés ci-dessous — **zéro défaut réel**.
+
+### Installation (une fois par session, le moteur pèse 18 Mo et n'est pas versionné)
+
+```bash
+cd /tmp && mkdir -p imp && cd imp && npm init -y >/dev/null \
+  && npm install --no-audit --no-fund impeccable@4.1.0
+cd /home/user/decupler && /tmp/imp/node_modules/.bin/impeccable install \
+  -y --providers=claude --scope=project --no-hooks
+```
+
+`--no-hooks` : sans lui, Impeccable pose des hooks dans les réglages du
+projet. Ne pas les installer sans que Nathan l'ait demandé.
+
+Le skill `impeccable` apporte 25 commandes : `/critique`, `/audit`,
+`/polish`, `/layout`, `/typeset`, `/bolder`, `/quieter`, `/distill`,
+`/clarify`, `/animate`… À lancer sur une page avant de la pousser.
+
+### Mesurer — toujours en mode navigateur
+
+```bash
+# Chromium refuse de tourner en root sans --no-sandbox : un lanceur.
+printf '#!/bin/sh\nexec /opt/pw-browsers/chromium-1194/chrome-linux/chrome --no-sandbox --disable-gpu "$@"\n' > /tmp/chrome-ns
+chmod +x /tmp/chrome-ns
+# Servir la page rendue (celle de scripts/rendre.py, polices et images locales)
+python3 -m http.server 8201 --bind 127.0.0.1 &
+IMPECCABLE_BROWSER=/tmp/chrome-ns .claude/skills/impeccable/scripts/impeccable \
+  detect --json http://127.0.0.1:8201/r-agence-seo-toulon.html
+```
+
+**Jamais en mode fichier.** L'analyse statique ne résout pas `clamp()` : elle
+a signalé 15 « marges écrasées » qui n'existaient pas. En mode navigateur,
+elles disparaissent — le mode navigateur lit les styles calculés.
+
+### Ce que la passe a corrigé — les règles qui en sortent
+
+| Signal | Cause sur nos pages | Règle |
+|---|---|---|
+| Contraste (37) | `#8b8ba7` sur blanc = 3,3:1 ; `#667eea` en texte = 3,7:1 | `--tx3:#666687` (5,5:1). `--vio-t:#4c47c9` (6,9:1) pour tout texte violet. `#667eea` réservé aux aplats |
+| Bouton | Blanc sur `#667eea` = 3,7:1 | `--grad-btn` : même dégradé, 5 % plus sombre, 4,7:1 |
+| Texte < 11 px (13) | Pastilles et étiquettes entre 9,7 et 11 px | Plancher à 12 px (`.75rem`) pour tout texte porteur d'information |
+| Longueur de ligne (23) | Voir l'encadré sur `ch` ci-dessous | Mesures en `em` : ~36em pour 72 caractères |
+| Barre latérale (« side-tab ») | 4 px de dégradé sur le bord gauche des cartes | **Interdit.** Le signal n°1 d'une interface générée |
+| Halo coloré (« dark-glow ») | Ombres `rgba(102,126,234,…)` | Élévation neutre `rgba(20,18,43,…)` |
+| Bordure fine + ombre large | 1 px de bord et 40 px de flou sur la même carte | Choisir : bord net OU élévation |
+| Numérotation « 01-06 » | Étiquettes numérotées sur des éléments qui ne sont pas une séquence | Numéroter seulement une vraie séquence. L'étiquette porte l'info utile (ici : la cadence) |
+| Sur-titre au-dessus du H2 | Petite étiquette en capitales + gros titre | Retiré ; les pastilles sous le texte portent l'information |
+| Capitales sur 35+ caractères | Pastille d'en-tête « Agence SEO Cannes · Alpes-Maritimes » | Capitales seulement sur 2-3 mots |
+
+### Trois pièges que la passe a coûtés
+
+**1. En Inter, `ch` ment de 35 %.** L'unité `ch` vaut la largeur du « 0 »,
+large en Inter (~0,745 em) : `66ch` affichent ~90 caractères de français,
+pas 66. Trois corrections successives en `ch` n'ont rien changé au
+détecteur. **Mesures de lecture en `em`.**
+
+**2. Surcharger en fin de fichier laisse du code mort — et le détecteur le
+voit.** Il lit aussi les règles écrasées : la barre latérale et les halos
+restaient signalés après surcharge. **Corriger la règle à sa source.**
+
+**3. Ne jamais supposer les couleurs d'un composant.** J'ai passé les
+pastilles numérotées en aplat foncé en croyant qu'elles portaient un chiffre
+blanc ; elles portaient un chiffre violet foncé sur lavande. Résultat :
+1,5:1, illisible. Le détecteur l'a attrapé au passage suivant. **Relire la
+règle avant de la modifier.**
+
+### Ce qui reste signalé, et pourquoi on le garde
+
+- **Violet de marque et Inter** (8 signaux) : c'est la charte relevée sur le
+  site, et Impeccable dit lui-même « the brief wins ». On a en revanche
+  réduit le dégradé au bouton principal et à la bande finale.
+- **« Contraste au pixel » sur les pastilles posées sur photo** (6) : le
+  minimum tombe à 1:1 sur les pixels d'anticrénelage, la **médiane** est
+  entre 8 et 10:1. Faux positif.
+- **« ~88 caractères par ligne »** (4) : estimation du détecteur, figée
+  quels que soient les changements. Mesure réelle au DOM : 68 à 76
+  caractères sur tous les blocs de plus de trois lignes. Faux positif.
+
+## 9. Ce qui reste interdit
 
 - Inventer une adresse, un chiffre client, une note ou un avis. Le siège réel
   est **10 avenue Lympia privée, 06300 Nice** — et c'est le seul. Ailleurs :
