@@ -465,3 +465,14 @@ BLOCS["eeat_plus"] = [
     "plus qu'une plaquette, pouvoir lire quelqu'un avant de le recevoir a "
     "une valeur réelle.",
 ]
+
+# ── Visuels réels (23/09) ───────────────────────────────────────────────
+# L'image « équipe » de ce brouillon avait été générée par OpenAI lors de la
+# session précédente et présentée comme « deux experts SEO de Décupler ».
+# Des personnes inventées présentées comme l'équipe : retirée. Hero = vraie
+# photo de la ville (Wikimedia Commons, crédit affiché) ; bandeau = Nathan,
+# photo studio ; la bande auteur prend d'elle-même l'autre photo de Nathan.
+BLOCS["visuel_photo"] = "hero-monaco"
+BLOCS["visuel_badge"] = BLOCS["visuel"][4:6]
+BLOCS["bandeau_photo"] = "nathan-bras"
+BLOCS["bandeau_cap"] = "Nathan Fenina suit personnellement les dossiers monégasques."

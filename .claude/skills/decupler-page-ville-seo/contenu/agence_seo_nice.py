@@ -483,3 +483,14 @@ BLOCS["eeat_plus"] = [
     "pouvez vérifier ce qu'il pense avant de le rencontrer, ce qui est le "
     "minimum qu'on puisse demander à un prestataire.",
 ]
+
+# ── Visuels réels (23/09) ───────────────────────────────────────────────
+# L'image « équipe » de ce brouillon avait été générée par OpenAI lors de la
+# session précédente et présentée comme « deux experts SEO de Décupler ».
+# Des personnes inventées présentées comme l'équipe : retirée. Hero = vraie
+# photo de la ville (Wikimedia Commons, crédit affiché) ; bandeau = Nathan,
+# photo studio ; la bande auteur prend d'elle-même l'autre photo de Nathan.
+BLOCS["visuel_photo"] = "hero-nice"
+BLOCS["visuel_badge"] = BLOCS["visuel"][4:6]
+BLOCS["bandeau_photo"] = "nathan-bras"
+BLOCS["bandeau_cap"] = "Nathan Fenina, celui que vous aurez au téléphone."

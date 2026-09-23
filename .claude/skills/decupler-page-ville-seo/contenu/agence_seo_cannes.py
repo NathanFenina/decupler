@@ -479,3 +479,23 @@ BLOCS = {
 
     "photo_alt": "Nathan Fenina, fondateur de Décupler, agence SEO à Cannes",
 }
+
+# ── Visuels réels (23/09) ───────────────────────────────────────────────
+# L'image « équipe » de ce brouillon avait été générée par OpenAI lors de la
+# session précédente et présentée comme « deux experts SEO de Décupler ».
+# Des personnes inventées présentées comme l'équipe : retirée. Hero = vraie
+# photo de la ville (Wikimedia Commons, crédit affiché) ; bandeau = Nathan,
+# photo studio ; la bande auteur prend d'elle-même l'autre photo de Nathan.
+BLOCS["visuel_photo"] = "hero-cannes"
+BLOCS["visuel_badge"] = BLOCS["visuel"][4:6]
+BLOCS["bandeau_photo"] = "nathan-bras"
+BLOCS["bandeau_cap"] = "Nathan Fenina relit et valide chaque page avant sa mise en ligne."
+# Le « tableau de bord d'une entreprise cannoise » de la méthode était
+# aussi une image générée, présentée comme un vrai suivi client. Retirée :
+# la maquette HTML de la question posée à ChatGPT prend sa place — texte
+# réel, lisible par Google et par les moteurs IA.
+BLOCS.pop("image", None)
+# Alt descriptif de la vraie photo, qui situe aussi la page (le validateur
+# exige la requete dans au moins un alt ; l image generee qui la portait est
+# partie). Aucune presence locale pretendue : Decupler travaille depuis Nice.
+BLOCS["visuel_alt"] = "La plage de la Croisette — agence SEO Cannes Décupler, depuis Nice"

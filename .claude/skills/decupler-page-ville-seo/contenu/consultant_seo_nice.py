@@ -448,3 +448,13 @@ BLOCS["eeat_plus"] = [
     "ici et sur LinkedIn. Lisez-moi avant de m'appeler : c'est la façon la "
     "plus rapide de savoir si ma manière de travailler vous convient.",
 ]
+
+# ── Visuels réels (23/09) ───────────────────────────────────────────────
+# La même photo apparaissait trois fois sur cette page (hero, bandeau,
+# bande auteur). Page consultant : Nathan en hero, sa ville dans le
+# bandeau, la photo studio dans la bande auteur (choisie par l'assembleur).
+BLOCS["visuel_photo"] = "nathan-nice"
+BLOCS["visuel_badge"] = BLOCS["visuel"][4:6]
+BLOCS["visuel_alt"] = "Nathan Fenina, consultant SEO à Nice"
+BLOCS["bandeau_photo"] = "hero-nice"
+BLOCS["bandeau_cap"] = "Le cours Saleya, dans le Vieux-Nice"

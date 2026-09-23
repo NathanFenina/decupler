@@ -754,3 +754,16 @@ body .ast-article-single > .entry-header, .entry-title { display:none !important
 .dcp-v .cz-pays{font-family:var(--ft);font-size:11px;font-weight:700;letter-spacing:.22em;fill:#b3aecb}
 .dcp-v .cz-mer{fill:#dfe5fb}
 .dcp-v .carte{background:#faf9f6}
+
+/* --- Crédit de la photo du hero, et photos détourées -----------------
+   Photos réelles de Wikimedia Commons : la licence exige une attribution
+   VISIBLE. Dans le cadre, en haut à droite — le badge occupe le bas. */
+.dcp-v .hvis .ph2{position:relative}
+.dcp-v .hcred{position:absolute;top:8px;right:8px;max-width:78%;font-size:.72rem;line-height:1.4;
+  color:rgba(255,255,255,.92);background:rgba(14,12,32,.6);padding:3px 8px;border-radius:6px;
+  text-align:right}
+.dcp-v .hcred a{color:#fff;text-decoration:underline}
+/* Photo détourée (PNG transparent) : jamais recadrée, posée sur la lavande. */
+.dcp-v .fig.det{background:var(--lav)}
+.dcp-v .fig.det img,.dcp-v .aut .ph.det img{object-fit:contain;object-position:center bottom}
+.dcp-v .aut .ph.det{background:var(--lav)}

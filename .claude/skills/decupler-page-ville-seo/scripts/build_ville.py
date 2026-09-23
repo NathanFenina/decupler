@@ -25,6 +25,7 @@ ICI = os.path.dirname(os.path.abspath(__file__))
 SKILL = os.path.dirname(ICI)
 CSS = os.path.join(SKILL, "assets", "skin-ville.css")
 VILLES = os.path.join(SKILL, "references", "villes.json")
+PHOTOS = os.path.join(SKILL, "references", "photos.json")
 CONTENU = os.path.join(SKILL, "contenu")
 
 CAL = "https://calendly.com/fenina-nathan/consultationstrategique"
@@ -44,6 +45,43 @@ LOGOS = [
     ("outdoorsy-.png", "Outdoorsy", 444, 132),
     ("Capture-decran-2025-10-29-084247.png", "Atoo Énergie", 342, 134),
 ]
+
+
+def photo(cle):
+    """Un visuel du registre references/photos.json.
+
+    Registre unique, et reserve aux photos REELLES : Wikimedia Commons avec
+    credit, ou photos de Nathan. Le 23/09, une image generee de deux
+    personnes inventees etait presentee comme « deux experts SEO de
+    Decupler » dans quatre brouillons. Passer par ce registre rend ce cas
+    impossible a reproduire par inadvertance.
+    """
+    reg = json.load(open(PHOTOS, encoding="utf-8"))["photos"]
+    if cle not in reg:
+        raise SystemExit(f"❌ visuel « {cle} » absent de references/photos.json")
+    return reg[cle]
+
+
+def resout_visuels(b):
+    """Traduit les cles de visuels du contenu en tuples pour le gabarit."""
+    if b.get("visuel_photo"):
+        ph = photo(b["visuel_photo"])
+        k, v = b["visuel_badge"]
+        b["visuel"] = (ph["url"], b.get("visuel_alt") or ph["alt"], ph["w"], ph["h"], k, v)
+        b["visuel_credit"] = ph.get("credit")
+    if b.get("bandeau_photo") and b.get("bandeau"):
+        ph = photo(b["bandeau_photo"])
+        titre, paras, _ancien = b["bandeau"]
+        b["bandeau"] = (titre, paras, (ph["url"], b.get("bandeau_alt") or ph["alt"],
+                                       ph["w"], ph["h"], b.get("bandeau_cap") or ph["alt"]))
+        b["bandeau_detoure"] = ph.get("detoure", False)
+        b["bandeau_credit"] = ph.get("credit")
+    if isinstance(b.get("photo_ville"), dict) and b["photo_ville"].get("cle"):
+        ph = photo(b["photo_ville"]["cle"])
+        b["photo_ville"].update({"src": ph["url"], "w": ph["w"], "h": ph["h"]})
+        b["photo_ville"].setdefault("alt", ph["alt"])
+        b["photo_ville"].setdefault("credit", ph["credit"])
+    return b
 
 
 def charge_contenu(slug):
@@ -515,7 +553,7 @@ def carte_zone(ville):
 
 def construis(slug):
     v, base = fiche(slug)
-    b = charge_contenu(slug)
+    b = resout_visuels(charge_contenu(slug))
     reg = v.get("registre", "agence")
     ville = v["ville"]
     siege = base["_siege"]
@@ -559,6 +597,9 @@ def construis(slug):
         classe = "ph2" if h > w else "ph2 pay"
         a(f'<div class="{classe}"><img src="{src}" alt="{alt}" '
           f'width="{w}" height="{h}">')
+        if b.get("visuel_credit"):
+            # Condition de la licence CC : attribution visible, pas en note.
+            a(f'<div class="hcred">{b["visuel_credit"]}</div>')
         a(f'<div class="bdg"><div class="k">{bk}</div><div class="v">{bv}</div></div>')
         a("</div>")
         a('<div class="mot">')
@@ -729,7 +770,10 @@ def construis(slug):
         a(f'<div class="row"><a class="btn" href="{CAL}">{b["cta1"]}</a></div>')
         a("</div>")
         src, alt, w, h, cap = img
-        a(f'<div class="fig"><img src="{src}" alt="{alt}" width="{w}" height="{h}" '
+        cls = "fig det" if b.get("bandeau_detoure") else "fig"
+        if b.get("bandeau_credit"):
+            cap = f'{cap} — {b["bandeau_credit"]}'
+        a(f'<div class="{cls}"><img src="{src}" alt="{alt}" width="{w}" height="{h}" '
           f'loading="lazy"><div class="cap" data-dcp="chrome">{cap}</div></div>')
         a("</div>")
         a("</div>")
@@ -793,11 +837,17 @@ def construis(slug):
     #    photo verticale, biographie, et la signature d'auteur que Google
     #    comme les moteurs IA cherchent en fin de page.
     alt_nathan = b.get("photo_alt", "Nathan Fenina, fondateur de Décupler")
+    # La page consultant de Nice affichait trois fois la meme photo (hero,
+    # bandeau, bande auteur). On prend la premiere photo de Nathan qui n'est
+    # pas deja utilisee sur la page.
+    deja = {x[0] for x in (b.get("visuel"), (b.get("bandeau") or (0, 0, (None,)))[2]) if x}
+    choix = [photo("nathan-nice"), photo("nathan-bras"), photo("nathan-portrait")]
+    aut_ph = next((p for p in choix if p["url"] not in deja), choix[0])
     a('<div class="bl bl-lav">')
     a('<div class="in">')
     a('<div class="aut" data-dcp="chrome">')
-    a(f'<div class="ph"><img src="{PHOTO_NATHAN_LARGE}" alt="{alt_nathan}" '
-      f'width="1000" height="1332" loading="lazy"></div>')
+    a(f'<div class="ph{" det" if aut_ph.get("detoure") else ""}"><img src="{aut_ph["url"]}" '
+      f'alt="{alt_nathan}" width="{aut_ph["w"]}" height="{aut_ph["h"]}" loading="lazy"></div>')
     a('<div class="tx">')
     a('<div><span class="pill">Qui écrit et qui exécute</span></div>')
     a('<div class="nm">Nathan Fenina</div>')

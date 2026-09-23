@@ -1,0 +1,167 @@
+{
+ "_regle": "Registre unique des visuels des pages villes. Uniquement des photos REELLES : Wikimedia Commons (credit et licence affiches, c'est la condition de la licence) ou photos de Nathan. Aucune image generee : le 23/09, une image OpenAI de deux personnes inventees etait presentee comme « deux experts SEO de Décupler » dans quatre brouillons. Retiree.",
+ "photos": {
+  "hero-nice": {
+   "url": "https://decupler.com/wp-content/uploads/2026/09/hero-nice.jpg",
+   "w": 1400,
+   "h": 1050,
+   "alt": "Nice, le marché du cours Saleya",
+   "credit": "Photo GFreihalter, <a href=\"https://commons.wikimedia.org/wiki/File%3ANice_%2806%29_Cours_Saleya_802.jpg\" rel=\"nofollow noopener\" target=\"_blank\">CC BY-SA 4.0</a>, via Wikimedia Commons"
+  },
+  "hero-monaco": {
+   "url": "https://decupler.com/wp-content/uploads/2026/09/hero-monaco.jpg",
+   "w": 1400,
+   "h": 1050,
+   "alt": "Monaco, le Casino de Monte-Carlo",
+   "credit": "Photo Diego Delso, <a href=\"https://commons.wikimedia.org/wiki/File%3ACasino_de_Montecarlo%2C_M%C3%B3naco%2C_2016-06-23%2C_DD_04.jpg\" rel=\"nofollow noopener\" target=\"_blank\">CC BY-SA 4.0</a>, via Wikimedia Commons"
+  },
+  "hero-antibes": {
+   "url": "https://decupler.com/wp-content/uploads/2026/09/hero-antibes.jpg",
+   "w": 1400,
+   "h": 1050,
+   "alt": "Antibes, les yachts du port Vauban",
+   "credit": "Photo Abxbay, <a href=\"https://commons.wikimedia.org/wiki/File%3AShips_port_Vauban_in_Antibes.jpg\" rel=\"nofollow noopener\" target=\"_blank\">domaine public (CC0)</a>, via Wikimedia Commons"
+  },
+  "hero-cannes": {
+   "url": "https://decupler.com/wp-content/uploads/2026/09/hero-cannes.jpg",
+   "w": 1400,
+   "h": 1050,
+   "alt": "Cannes, la plage de la Croisette",
+   "credit": "Photo Kazimierz Mendlik, <a href=\"https://commons.wikimedia.org/wiki/File%3ACannes_Francja_widok_pla%C5%BC_i_bulwaru_La_Croisette_Cannes_%28_widok_od_strony_nowego_portu%29._-_panoramio.jpg\" rel=\"nofollow noopener\" target=\"_blank\">CC BY-SA 3.0</a>, via Wikimedia Commons"
+  },
+  "hero-toulon": {
+   "url": "https://decupler.com/wp-content/uploads/2026/09/hero-toulon.jpg",
+   "w": 1400,
+   "h": 1050,
+   "alt": "Toulon, bâtiments de la Marine nationale dans la rade",
+   "credit": "Photo Jean-Pierre Bazard Jpbazard, <a href=\"https://commons.wikimedia.org/wiki/File%3ALe_Port_de_Toulon.jpg\" rel=\"nofollow noopener\" target=\"_blank\">CC BY-SA 3.0</a>, via Wikimedia Commons"
+  },
+  "hero-grasse": {
+   "url": "https://decupler.com/wp-content/uploads/2026/09/hero-grasse.jpg",
+   "w": 1400,
+   "h": 1050,
+   "alt": "Grasse et son pays, face à la mer",
+   "credit": "Photo Bibliothèque &amp; Médiathèques de Grasse, <a href=\"https://commons.wikimedia.org/wiki/File%3APanorama_depuis_la_Villa_Saint-Hilaire.jpg\" rel=\"nofollow noopener\" target=\"_blank\">CC BY-SA 4.0</a>, via Wikimedia Commons"
+  },
+  "bandeau-grasse": {
+   "url": "https://decupler.com/wp-content/uploads/2026/09/bandeau-grasse.jpg",
+   "w": 2000,
+   "h": 858,
+   "alt": "Grasse, les toits de la vieille ville jusqu'à la mer",
+   "credit": "Photo Daniel Lepoittevin, <a href=\"https://commons.wikimedia.org/wiki/File%3AMy_Master_Piece_Panorama_Composed_Of_20_Photos_%28262333305%29.jpeg\" rel=\"nofollow noopener\" target=\"_blank\">CC BY-SA 3.0</a>, via Wikimedia Commons"
+  },
+  "hero-menton": {
+   "url": "https://decupler.com/wp-content/uploads/2026/09/hero-menton.jpg",
+   "w": 1400,
+   "h": 1050,
+   "alt": "Menton, la vieille ville et la basilique Saint-Michel",
+   "credit": "Photo Piexv, <a href=\"https://commons.wikimedia.org/wiki/File%3AMENTON.jpg\" rel=\"nofollow noopener\" target=\"_blank\">CC BY-SA 3.0</a>, via Wikimedia Commons"
+  },
+  "bandeau-menton": {
+   "url": "https://decupler.com/wp-content/uploads/2026/09/bandeau-menton.jpg",
+   "w": 2000,
+   "h": 858,
+   "alt": "Menton, le port et la vieille ville",
+   "credit": "Photo Claire2595, <a href=\"https://commons.wikimedia.org/wiki/File%3ALa_vieille_ville_de_Menton%2C_sa_basilique_et_sa_chapelle_surplombant_le_port_de_plaisance.JPG\" rel=\"nofollow noopener\" target=\"_blank\">CC BY-SA 3.0</a>, via Wikimedia Commons"
+  },
+  "hero-cagnes": {
+   "url": "https://decupler.com/wp-content/uploads/2026/09/hero-cagnes.jpg",
+   "w": 1400,
+   "h": 1050,
+   "alt": "Cagnes-sur-Mer, le château Grimaldi",
+   "credit": "Photo Miniwark, <a href=\"https://commons.wikimedia.org/wiki/File%3ACh%C3%A2teau_Grimaldi%2C_Cagnes-sur-Mer_P1030891.jpg\" rel=\"nofollow noopener\" target=\"_blank\">CC BY-SA 4.0</a>, via Wikimedia Commons"
+  },
+  "bandeau-cagnes": {
+   "url": "https://decupler.com/wp-content/uploads/2026/09/bandeau-cagnes.jpg",
+   "w": 2000,
+   "h": 858,
+   "alt": "Cagnes-sur-Mer vue d'en haut",
+   "credit": "Photo Copyleft, <a href=\"https://commons.wikimedia.org/wiki/File%3APANO_Grimaldi_castle_%28Haut-de-Cagnes%29_vue_Esterel.jpg\" rel=\"nofollow noopener\" target=\"_blank\">CC BY-SA 4.0</a>, via Wikimedia Commons"
+  },
+  "hero-06": {
+   "url": "https://decupler.com/wp-content/uploads/2026/09/hero-06.jpg",
+   "w": 1400,
+   "h": 1050,
+   "alt": "La rade de Villefranche-sur-Mer",
+   "credit": "Photo User:Vmenkov, <a href=\"https://commons.wikimedia.org/wiki/File%3AE5934-Villefranche-sur-Mer-Pullmantur-Cruises.jpg\" rel=\"nofollow noopener\" target=\"_blank\">CC BY-SA 3.0</a>, via Wikimedia Commons"
+  },
+  "bandeau-06": {
+   "url": "https://decupler.com/wp-content/uploads/2026/09/bandeau-06.jpg",
+   "w": 2000,
+   "h": 858,
+   "alt": "Le Mercantour, l'arrière-pays des Alpes-Maritimes",
+   "credit": "Photo Toni Barros, <a href=\"https://commons.wikimedia.org/wiki/File%3ALac_d%27Allos_trail_panorama.jpg\" rel=\"nofollow noopener\" target=\"_blank\">CC BY-SA 4.0</a>, via Wikimedia Commons"
+  },
+  "hero-frejus": {
+   "url": "https://decupler.com/wp-content/uploads/2026/09/hero-frejus.jpg",
+   "w": 1400,
+   "h": 1050,
+   "alt": "Fréjus, l'amphithéâtre romain",
+   "credit": "Photo Lionel Allorge, <a href=\"https://commons.wikimedia.org/wiki/File%3AAmphith%C3%A9%C3%A2tre_romain_%C3%A0_Fr%C3%A9jus_le_4_f%C3%A9vrier_2017_-_30.jpg\" rel=\"nofollow noopener\" target=\"_blank\">CC BY-SA 3.0</a>, via Wikimedia Commons"
+  },
+  "bandeau-frejus": {
+   "url": "https://decupler.com/wp-content/uploads/2026/09/bandeau-frejus.jpg",
+   "w": 2000,
+   "h": 858,
+   "alt": "Port-Fréjus",
+   "credit": "Photo Txllxt TxllxT, <a href=\"https://commons.wikimedia.org/wiki/File%3AFr%C3%A9jus_-_Port_Fr%C3%A9jus_-_View_SE.jpg\" rel=\"nofollow noopener\" target=\"_blank\">CC BY-SA 4.0</a>, via Wikimedia Commons"
+  },
+  "bandeau-toulon": {
+   "url": "https://decupler.com/wp-content/uploads/2026/09/bandeau-toulon.jpg",
+   "w": 2000,
+   "h": 858,
+   "alt": "Toulon vue du Mont Faron",
+   "credit": "Toulon vue du Mont Faron — photo Pierre Sénard, <a href=\"https://commons.wikimedia.org/wiki/File:Petite_rade_de_Toulon_(vue_du_Mont_Faron).jpg\" rel=\"nofollow noopener\" target=\"_blank\">CC BY-SA 3.0</a>, via Wikimedia Commons"
+  },
+  "bandeau-monaco": {
+   "url": "https://decupler.com/wp-content/uploads/2026/09/bandeau-monaco.jpg",
+   "w": 2000,
+   "h": 858,
+   "alt": "Monaco, le port Hercule et le Rocher",
+   "credit": "Monaco, le port Hercule et le Rocher — photo Tobi 87, <a href=\"https://commons.wikimedia.org/wiki/File:Hafen_und_Felsen_von_Monaco-La_Turbie.jpg\" rel=\"nofollow noopener\" target=\"_blank\">CC BY-SA 3.0</a>, via Wikimedia Commons"
+  },
+  "bandeau-antibes": {
+   "url": "https://decupler.com/wp-content/uploads/2026/09/bandeau-antibes.jpg",
+   "w": 2000,
+   "h": 858,
+   "alt": "Antibes vue de la mer",
+   "credit": "Antibes vue de la mer — photo Helge Høifødt, <a href=\"https://commons.wikimedia.org/wiki/File:Antibes_old_city.jpg\" rel=\"nofollow noopener\" target=\"_blank\">CC BY-SA 4.0</a>, via Wikimedia Commons"
+  },
+  "bandeau-cannes": {
+   "url": "https://decupler.com/wp-content/uploads/2026/09/bandeau-cannes.jpg",
+   "w": 2000,
+   "h": 858,
+   "alt": "Cannes, le Vieux Port et la Croisette",
+   "credit": "Cannes, le Vieux Port et la Croisette — photo Christophe Finot, <a href=\"https://commons.wikimedia.org/wiki/File:Cannes_-_port_et_croisette.jpg\" rel=\"nofollow noopener\" target=\"_blank\">CC BY-SA 2.5</a>, via Wikimedia Commons"
+  },
+  "bandeau-nice": {
+   "url": "https://decupler.com/wp-content/uploads/2026/09/bandeau-nice.jpg",
+   "w": 2000,
+   "h": 858,
+   "alt": "Nice, la baie des Anges et le Vieux-Nice",
+   "credit": "Nice, la baie des Anges et le Vieux-Nice — photo Décupler"
+  },
+  "nathan-nice": {
+   "url": "https://decupler.com/wp-content/uploads/2026/09/nathan-fenina-nice.jpg",
+   "w": 1000,
+   "h": 1332,
+   "alt": "Nathan Fenina, fondateur de Décupler, à Nice",
+   "credit": null
+  },
+  "nathan-bras": {
+   "url": "https://decupler.com/wp-content/uploads/2026/06/nathan_bras_croise-removebg-preview.png",
+   "w": 500,
+   "h": 500,
+   "alt": "Nathan Fenina, fondateur de Décupler",
+   "credit": null,
+   "detoure": true
+  },
+  "nathan-portrait": {
+   "url": "https://decupler.com/wp-content/uploads/2026/09/nathan-fenina-portrait.jpg",
+   "w": 512,
+   "h": 512,
+   "alt": "Nathan Fenina",
+   "credit": null
+  }
+ }
+}
