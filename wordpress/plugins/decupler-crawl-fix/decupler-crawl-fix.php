@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Décupler — Budget de crawl
  * Description:       Trois correctifs mesurés le 22/09/2026 sur decupler.com : un robots.txt propre, une page « disparue » légère au lieu de 151 Ko, et un 404 sur la pagination hors limites. Objectif : arrêter de faire télécharger 1,5 Go à Googlebot pour lui apprendre que 12 000 pages n'existent plus.
- * Version:           1.2.1
+ * Version:           1.3.0
  * Author:            Décupler
  * License:           GPL-2.0-or-later
  * Requires at least: 6.0
@@ -95,13 +95,23 @@
  *   moteurs-ia/ → /consultant-geo/. Les autres articles des grappes ChatGPT
  *   et avis Google restent en ligne : relus un par un, chacun porte une
  *   intention distincte. Ils sont désormais reliés à leur guide pilier.
+ *
+ * 1.3.0 — 23/09/2026. Les 144 URL du piratage répondaient bien 404, mais
+ *   l'inspection d'URL du jour montre que Google garde les 34 déclarées dans
+ *   Search Console en index : son dernier passage date de juin, il n'est pas
+ *   revenu constater la suppression. Deux leviers :
+ *   - 410 (« supprimée définitivement ») au lieu de 404 sur cette liste
+ *     FERMÉE (urls-piratage.php), que Google traite plus vite ;
+ *   - /sitemap-urls-supprimees.xml, un sitemap temporaire à soumettre dans
+ *     Search Console : il invite Google à repasser sur ces URL et à lire le
+ *     410. À retirer de Search Console une fois le compteur à zéro.
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-const DCP_CRAWL_VERSION = '1.2.1';
+const DCP_CRAWL_VERSION = '1.3.0';
 
 /* -------------------------------------------------------------------------
  * 1. robots.txt
@@ -245,6 +255,65 @@ add_action(
 		echo '<p>' . esc_html( $phrase ) . '</p>';
 		echo '<p><a href="' . $accueil . '">Retour à l\'accueil de ' . $nom . '</a></p>';
 		echo '</main></body></html>';
+		exit;
+	},
+	1
+);
+
+/* -------------------------------------------------------------------------
+ * 2 bis. URL du piratage : 410 et sitemap de re-exploration
+ * ---------------------------------------------------------------------- */
+
+/**
+ * Liste FERMÉE des chemins créés par le piratage (décodés, sans barres).
+ * Filtrable, mais jamais par motif : un 410 sur une vraie page la retire de
+ * Google.
+ */
+function dcp_crawl_urls_piratage() {
+	static $liste = null;
+	if ( null === $liste ) {
+		$liste = include __DIR__ . '/urls-piratage.php';
+		$liste = is_array( $liste ) ? $liste : array();
+	}
+	return apply_filters( 'dcp_crawl_urls_piratage', $liste );
+}
+
+/** Date de relevé de la liste, servie en lastmod du sitemap temporaire. */
+const DCP_CRAWL_DATE_PIRATAGE = '2026-09-23';
+
+// Le statut est posé AVANT la page légère (priorité 1), qui le reprend.
+add_action(
+	'template_redirect',
+	function () {
+		if ( ! is_404() ) {
+			return;
+		}
+		$chemin = rawurldecode( dcp_crawl_chemin_courant() );
+		if ( in_array( $chemin, dcp_crawl_urls_piratage(), true ) ) {
+			status_header( 410 );
+		}
+	},
+	0
+);
+
+add_action(
+	'init',
+	function () {
+		$chemin = wp_parse_url( $_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH );
+		if ( '/sitemap-urls-supprimees.xml' !== $chemin ) {
+			return;
+		}
+		status_header( 200 );
+		header( 'Content-Type: application/xml; charset=utf-8' );
+		header( 'X-Robots-Tag: noindex' );
+		echo '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
+		echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . "\n";
+		foreach ( dcp_crawl_urls_piratage() as $c ) {
+			$u = home_url( '/' . implode( '/', array_map( 'rawurlencode', explode( '/', $c ) ) ) . '/' );
+			echo '<url><loc>' . esc_url( $u ) . '</loc><lastmod>'
+				. DCP_CRAWL_DATE_PIRATAGE . '</lastmod></url>' . "\n";
+		}
+		echo '</urlset>';
 		exit;
 	},
 	1
@@ -924,9 +993,23 @@ function dcp_crawl_ecran() {
 			. esc_html( $de ) . '/</a></td><td>' . esc_html( $vers ) . '</td></tr>';
 	}
 	echo '</tbody></table>';
-	echo '<p><em>Seules les pages dont la cible couvre déjà le sujet sont '
-		. 'redirigées. Les grappes « ChatGPT » et « avis Google » attendent la '
-		. 'réécriture de leur page cible.</em></p>';
+	echo '<p><em>Seuls les vrais doublons d\'intention sont redirigés. Les '
+		. 'autres articles des grappes « ChatGPT » et « avis Google » restent en '
+		. 'ligne, reliés à leur guide pilier : relus un par un le 23/09, chacun '
+		. 'porte une intention distincte.</em></p>';
+
+	echo '<h2>8. URL du piratage</h2>';
+	echo '<p>' . count( dcp_crawl_urls_piratage() ) . ' adresses créées par le '
+		. 'piratage répondent <strong>410</strong> (supprimée définitivement) au '
+		. 'lieu de 404. Test : <a href="' . esc_url( home_url( '/casino-offre/' ) )
+		. '" target="_blank">une adresse de la liste</a> doit afficher « Cette '
+		. 'page n\'existe plus ».</p>';
+	echo '<p>Sitemap de re-exploration, à soumettre <strong>une fois</strong> dans '
+		. 'Search Console → Sitemaps : <code>sitemap-urls-supprimees.xml</code> '
+		. '(<a href="' . esc_url( home_url( '/sitemap-urls-supprimees.xml' ) )
+		. '" target="_blank">voir</a>). Search Console y signalera des erreurs '
+		. '410 : c\'est le but. Le retirer quand plus aucune de ces adresses '
+		. 'n\'est indexée.</p>';
 
 	echo '<h2>7. Cache Elementor</h2>';
 	echo '<p>Toute modification de <code>_elementor_data</code> — y compris par '

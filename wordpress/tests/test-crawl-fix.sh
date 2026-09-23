@@ -147,7 +147,19 @@ $WP eval 'update_post_meta(1,"_elementor_element_cache","ancien");
   update_post_meta(1,"_elementor_data","[]/*".microtime(true)."*/");' >/dev/null 2>&1
 attend "écrire _elementor_data purge le cache" "$($WP post meta get 1 _elementor_element_cache 2>/dev/null)" ""
 
-echo "== 8. Hygiène"
+echo "== 8. URL du piratage"
+attend "/casino-offre/ → 410" "$(code /casino-offre/)" "410"
+attend "410 servi en page légère" "$(curl -sS "$B/casino-offre/" | grep -c 'existe plus')" "1"
+attend "chemin accentué encodé → 410" "$(code '/o%C3%B9-jouer-roulette-en-ligne-en-france/')" "410"
+attend "adresse inconnue hors liste → 404" "$(code /une-page-qui-n-existe-pas/)" "404"
+attend "vraie page intacte" "$(code /agence-geo/)" "200"
+SX=$(curl -sS "$B/sitemap-urls-supprimees.xml")
+attend "sitemap temporaire → 200" "$(code /sitemap-urls-supprimees.xml)" "200"
+attend "144 URL dans le sitemap" "$(echo "$SX" | grep -o '<loc>' | wc -l | tr -d ' ')" "144"
+attend "accents encodés dans le sitemap" "$(echo "$SX" | grep -c '/o%C3%B9-jouer-roulette-en-ligne-en-france/')" "1"
+attend "XML bien formé" "$(echo "$SX" | php -r '$x=@simplexml_load_string(stream_get_contents(STDIN)); echo $x?"ok":"ko";')" "ok"
+
+echo "== 9. Hygiène"
 attend "aucune alerte PHP pendant les tests" "$(grep -ciE 'warning|notice|fatal' serveur.log)" "0"
 
 echo; echo "$OK réussis, $KO en échec."
