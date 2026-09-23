@@ -322,9 +322,15 @@ COORDS = {
     "Cagnes-sur-Mer": (43.6640, 7.1489), "Nice": (43.7102, 7.2620),
     "Monaco": (43.7384, 7.4246), "Menton": (43.7747, 7.4975),
 }
+# Villes suivies a distance, hors du reseau de la carte : elles n'apparaissent
+# que sur leur propre page. Sinon Marseille ajouterait un repere « hors cadre »
+# sur toutes les pages du 06.
+DISTANTES = {"Marseille": (43.2965, 5.3698)}
 # Trait de cote simplifie, d'ouest en est : La Seyne, les caps, les golfes.
 # C'est un schema — assez fidele pour situer, sans pretendre au cadastre.
-COTE = [(43.095, 5.86), (43.108, 5.93), (43.075, 6.02), (43.09, 6.13),
+COTE = [(43.37, 5.02), (43.36, 5.30), (43.30, 5.355), (43.24, 5.36),
+        (43.21, 5.44), (43.21, 5.535), (43.17, 5.61), (43.12, 5.72),
+        (43.095, 5.86), (43.108, 5.93), (43.075, 6.02), (43.09, 6.13),
         (43.14, 6.37), (43.17, 6.53), (43.26, 6.66), (43.31, 6.64),
         (43.42, 6.77), (43.435, 6.86), (43.505, 6.94), (43.548, 7.02),
         (43.565, 7.075), (43.545, 7.13), (43.585, 7.135), (43.655, 7.165),
@@ -341,6 +347,7 @@ FRONTIERE = [(43.785, 7.530), (43.815, 7.515), (43.86, 7.52)]
 # (premier rendu du 23/09, etiquettes empilees entre Cannes et Monaco).
 CADRE_06 = (6.60, 7.62, 43.36, 43.84)     # lon min, lon max, lat min, lat max
 CADRE_LARGE = (5.80, 7.62, 43.02, 43.84)
+CADRE_PROVENCE = (5.15, 7.62, 42.98, 43.84)
 LARGEUR, HAUTEUR = 600, 380
 
 
@@ -471,18 +478,29 @@ def _decoupe_ligne(pts, w, h):
     return traits
 
 
-def carte_zone(ville):
+def carte_zone(ville, registre="agence"):
     """La carte SVG de la zone, ville courante mise en avant.
 
     Tout sur UNE ligne : wpautop transforme un saut de ligne dans un SVG en
     <br> ou en <p>, et une ligne qui commence par <svg> se fait envelopper
     (regle 5 du skill design). Les etiquettes restent du texte.
     """
+    coords = dict(COORDS)
+    if ville in DISTANTES:
+        coords[ville] = DISTANTES[ville]
     cadre = CADRE_06
-    if ville in COORDS:
-        la, lo = COORDS[ville]
-        if not (cadre[0] <= lo <= cadre[1] and cadre[2] <= la <= cadre[3]):
-            cadre = CADRE_LARGE
+    if ville in coords:
+        la, lo = coords[ville]
+        for c in (CADRE_06, CADRE_LARGE, CADRE_PROVENCE):
+            cadre = c
+            if c[0] <= lo <= c[1] and c[2] <= la <= c[3]:
+                break
+    # A l'echelle de la Provence, les communes du 06 tiennent en 60 px :
+    # leurs etiquettes se chevauchaient et Monaco sortait du cadre (rendu du
+    # 23/09). On ne garde que les reperes qui situent la ville.
+    if cadre == CADRE_PROVENCE:
+        coords = {n: c for n, c in coords.items()
+                  if n in (ville, "Nice", "Cannes", "Fréjus", "Toulon")}
     proj, ech = _projection(cadre)
     nice = COORDS["Nice"]
     cote = [proj(*c) for c in COTE]
@@ -510,13 +528,13 @@ def carte_zone(ville):
         gx, gy = proj(43.74, 6.76) if cadre == CADRE_06 else proj(43.62, 6.25)
         o.append(f'<text class="cz-pays" x="{gx}" y="{gy}" text-anchor="middle">FRANCE</text>')
 
-    ici = COORDS.get(ville)
+    ici = coords.get(ville)
     if ici and ville != "Nice":
         (x1, y1), (x2, y2) = proj(*nice), proj(*ici)
         o.append(f'<line class="cz-trajet" x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}"/>')
 
     points, hors = [], []
-    for nom, c in COORDS.items():
+    for nom, c in coords.items():
         x, y = proj(*c)
         if not (0 <= x <= LARGEUR and 0 <= y <= HAUTEUR):
             hors.append((nom, c))
@@ -538,12 +556,17 @@ def carte_zone(ville):
     o.append(f'<line class="cz-ech" x1="16" y1="22" x2="{16 + L}" y2="22"/>'
              f'<text class="cz-ech-lb" x="{22 + L}" y="26">10 km</text>')
     o.append("</svg>")
+    # La legende suit le registre : « mon bureau » sur une page consultant,
+    # ecrite a la premiere personne du singulier.
+    je = registre == "consultant"
+    bureau = "mon bureau" if je else "notre bureau"
     if ici and ville != "Nice":
-        legende = (f"{ville} est à {_km(nice, ici)} km à vol d'oiseau de notre "
-                   "bureau, 10 avenue Lympia privée à Nice.")
+        legende = (f"{ville} est à {_km(nice, ici)} km à vol d'oiseau de "
+                   f"{bureau}, 10 avenue Lympia privée à Nice.")
     else:
-        legende = ("Notre bureau, 10 avenue Lympia privée. Chaque point est une "
-                   "commune où nous suivons des clients depuis Nice.")
+        legende = (f"{bureau[0].upper() + bureau[1:]}, 10 avenue Lympia privée. "
+                   "Chaque point est une commune "
+                   + ("que je couvre" if je else "que nous couvrons") + " depuis Nice.")
     # Le <svg> dans son propre <div> : frere direct du <div> de legende, il
     # se faisait signaler par le garde-fou wpautop (regle 5) — WordPress
     # l'aurait enveloppe dans un <p>.
@@ -728,7 +751,7 @@ def construis(slug):
     a("</div>")
     a(f'<p class="sub" style="margin-top:18px">{b["zone_note"]}</p>')
     a("</div>")
-    a(carte_zone(ville))
+    a(carte_zone(ville, reg))
     a("</div>")
     a("</div>")
     a("</div>")
@@ -858,9 +881,18 @@ def construis(slug):
             a(f'<p class="lead nr">{pp}</p>')
     a('<div class="row"><a class="btn-o" href="' + LI + '">Profil LinkedIn</a>'
       f'<a class="btn" href="{CAL}">Échanger 30 minutes</a></div>')
+    # « Monaco et Principauté de Monaco », « Alpes-Maritimes et
+    # Alpes-Maritimes » : la formule naive se repetait sur deux pages.
+    dep = v["departement"]
+    if ville == dep:
+        zone = dep
+    elif ville in dep:
+        zone = f"{dep} et communes françaises voisines"
+    else:
+        zone = f"{ville} et {dep}"
     a(f'<p class="sub">Décupler — {siege["adresse"]}, '
       f'{siege["code_postal"]} {siege["ville"]}. '
-      f'Zone d\'intervention : {ville} et {v["departement"]}.</p>')
+      f'Zone d\'intervention : {zone}.</p>')
     a("</div>")
     a("</div>")
     a("</div>")
@@ -881,6 +913,10 @@ def construis(slug):
 
     # ── JSON-LD. Encapsule dans un <div> : un <script> frere d'un <div> se
     #    fait envelopper par wpautop dans un <p> parasite.
+    # Monaco est un Etat, pas une division administrative francaise.
+    conteneur = ({"@type": "Country", "name": "Monaco"}
+                 if v.get("code_departement") == "98" else
+                 {"@type": "AdministrativeArea", "name": v["departement"]})
     faq_ld = {"@context": "https://schema.org", "@type": "FAQPage",
               "mainEntity": [{"@type": "Question", "name": txt(q),
                               "acceptedAnswer": {"@type": "Answer", "text": txt(r)}}
@@ -895,8 +931,7 @@ def construis(slug):
                "knowsAbout": ["Référencement naturel", "SEO local",
                               "Generative Engine Optimization"],
                "areaServed": {"@type": "City", "name": ville,
-                              "containedInPlace": {"@type": "AdministrativeArea",
-                                                   "name": v["departement"]}}}
+                              "containedInPlace": conteneur}}
     else:
         ent = {"@context": "https://schema.org", "@type": "ProfessionalService",
                "name": "Décupler", "url": f"https://decupler.com/{slug}/",
@@ -908,14 +943,15 @@ def construis(slug):
                            "addressRegion": siege["region"],
                            "addressCountry": siege["pays"]},
                "areaServed": {"@type": "City", "name": ville,
-                              "containedInPlace": {"@type": "AdministrativeArea",
-                                                   "name": v["departement"]}},
+                              "containedInPlace": conteneur},
                "founder": {"@type": "Person", "name": "Nathan Fenina",
                            "sameAs": LI}}
     a('<div class="ldjson">')
+    # Les deux blocs sur UNE ligne : separes par un saut, wpautop glissait
+    # un <br /> entre eux (constate sur les 15 brouillons du 23/09).
     a('<script type="application/ld+json">'
-      + json.dumps(faq_ld, ensure_ascii=False) + "</script>")
-    a('<script type="application/ld+json">'
+      + json.dumps(faq_ld, ensure_ascii=False) + "</script>"
+      + '<script type="application/ld+json">'
       + json.dumps(ent, ensure_ascii=False) + "</script>")
     a("</div>")
     a("</div>")

@@ -26,7 +26,7 @@ BLOCS = {
         "On cherche un consultant SEO Nice pour deux raisons opposées : soit on veut "
         "quelqu'un de plus léger qu'une agence, soit on veut quelqu'un de plus "
         "impliqué. Cette page-ci n'est pas celle de l'agence. Certains projets n'ont pas "
-        "besoin d'une équipe de six personnes : ils ont besoin de quelqu'un qui "
+        "besoin d'une équipe : ils ont besoin de quelqu'un qui "
         "comprend le dossier, décide vite et rend des comptes. Quand c'est le cas, "
         "je prends le projet en direct. Vous m'écrivez, c'est moi qui réponds.",
     ],

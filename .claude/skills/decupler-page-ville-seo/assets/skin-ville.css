@@ -106,7 +106,7 @@ body .ast-article-single > .entry-header, .entry-title { display:none !important
 .dcp-v .mock .on .dot{border-color:var(--vio);background:var(--vio);box-shadow:none}
 .dcp-v .mock .on span{color:var(--tx);font-weight:600}
 .dcp-v .mock .off span{color:var(--tx3)}
-.dcp-v .mock .ft{font-size:.72rem;color:var(--tx3);margin-top:15px;padding-top:13px;border-top:1px solid var(--bd)}
+.dcp-v .mock .ft{font-size:.75rem;color:var(--tx3);margin-top:15px;padding-top:13px;border-top:1px solid var(--bd)}
 /* methode */
 .dcp-v .split{display:grid;grid-template-columns:.95fr 1.05fr;gap:clamp(26px,4.5vw,64px);align-items:center}
 .dcp-v .steps{display:flex;flex-direction:column;gap:15px;margin-top:6px}
@@ -759,8 +759,8 @@ body .ast-article-single > .entry-header, .entry-title { display:none !important
    Photos réelles de Wikimedia Commons : la licence exige une attribution
    VISIBLE. Dans le cadre, en haut à droite — le badge occupe le bas. */
 .dcp-v .hvis .ph2{position:relative}
-.dcp-v .hcred{position:absolute;top:8px;right:8px;max-width:78%;font-size:.72rem;line-height:1.4;
-  color:rgba(255,255,255,.92);background:rgba(14,12,32,.6);padding:3px 8px;border-radius:6px;
+.dcp-v .hcred{position:absolute;top:8px;right:8px;max-width:78%;font-size:.75rem;line-height:1.4;
+  color:rgba(255,255,255,.92);background:rgba(14,12,32,.6);padding:4px 8px;border-radius:6px;
   text-align:right}
 .dcp-v .hcred a{color:#fff;text-decoration:underline}
 /* Photo détourée (PNG transparent) : jamais recadrée, posée sur la lavande. */

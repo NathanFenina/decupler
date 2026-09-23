@@ -230,8 +230,9 @@ BLOCS = {
         "naturel sa traduction française. Les deux formulations mènent au même "
         "besoin.",
         "Si vous cherchez un interlocuteur unique plutôt qu'une équipe, la page "
-        "<a class=\"lnk\" href=\"https://decupler.com/consultant-seo-antibes/\">"
-        "consultant SEO à Antibes</a> décrit l'accompagnement en direct.",
+        "<a class=\"lnk\" href=\"https://decupler.com/consultant-seo-nice/\">"
+        "consultant SEO à Nice</a> décrit l'accompagnement en direct, que "
+        "Nathan mène aussi à Antibes, à vingt minutes de son bureau.",
     ],
 
     "h2_faq": "Questions fréquentes sur le SEO à Antibes",

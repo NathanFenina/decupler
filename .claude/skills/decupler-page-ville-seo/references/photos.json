@@ -162,6 +162,20 @@
    "h": 512,
    "alt": "Nathan Fenina",
    "credit": null
+  },
+  "hero-marseille": {
+   "url": "https://decupler.com/wp-content/uploads/2026/09/hero-marseille.jpg",
+   "w": 1400,
+   "h": 1050,
+   "alt": "Marseille, le MuCEM, le fort Saint-Jean et la cathédrale de la Major",
+   "credit": "Photo Olena Ilnytska, <a href=\"https://commons.wikimedia.org/wiki/File%3AMucem_et_Cath%C3%A9drale_Sainte-Marie-Majeure_de_Marseille.jpg\" rel=\"nofollow noopener\" target=\"_blank\">CC BY-SA 4.0</a>, via Wikimedia Commons"
+  },
+  "bandeau-marseille": {
+   "url": "https://decupler.com/wp-content/uploads/2026/09/bandeau-marseille.jpg",
+   "w": 2000,
+   "h": 858,
+   "alt": "Marseille, le Vieux-Port vu de Notre-Dame-de-la-Garde",
+   "credit": "Photo Zairon, <a href=\"https://commons.wikimedia.org/wiki/File%3AMarseille_Basilique_Notre-Dame-de-la-Garde_Vue_sur_le_Vieux-Port_3.jpg\" rel=\"nofollow noopener\" target=\"_blank\">CC BY-SA 4.0</a>, via Wikimedia Commons"
   }
  }
 }

@@ -265,8 +265,12 @@ def valide(html, kw, slug, typ="article", title=None, meta=None,
         e.append("mot-cle absent du H1")
     if len(re.findall(r"<h1[^>]*>", html)) > 1:
         e.append("plusieurs H1")
+    # Le slug remplace les tirets par des espaces : il faut faire de meme
+    # avec le mot-cle, sinon toute ville a trait d'union echoue — Cagnes-
+    # sur-Mer a ete refusee le 23/09 alors que son slug etait exact.
     if typ != "home" and \
-       k.replace("'", "").replace("’", "") not in sansacc(slug.replace("-", " ")):
+       k.replace("'", "").replace("’", "").replace("-", " ") \
+       not in sansacc(slug.replace("-", " ")):
         e.append("mot-cle absent du slug")
     h2s = re.findall(r"<h2[^>]*>(.*?)</h2>", html, re.S)
     if len(h2s) < h2_min:
