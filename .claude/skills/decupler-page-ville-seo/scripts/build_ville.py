@@ -273,6 +273,246 @@ def typo_fr(page):
         page, flags=re.S)
 
 
+# ── Carte de la zone ─────────────────────────────────────────────────────
+# Coordonnees reelles (latitude, longitude) des communes du reseau. La carte
+# n'est pas une illustration : chaque point est a sa place, et la distance
+# affichee est calculee depuis Nice, pas estimee.
+COORDS = {
+    "Toulon": (43.1242, 5.9280), "Fréjus": (43.4331, 6.7370),
+    "Grasse": (43.6580, 6.9225), "Cannes": (43.5528, 7.0174),
+    "Le Cannet": (43.5769, 7.0191), "Antibes": (43.5808, 7.1251),
+    "Cagnes-sur-Mer": (43.6640, 7.1489), "Nice": (43.7102, 7.2620),
+    "Monaco": (43.7384, 7.4246), "Menton": (43.7747, 7.4975),
+}
+# Trait de cote simplifie, d'ouest en est : La Seyne, les caps, les golfes.
+# C'est un schema — assez fidele pour situer, sans pretendre au cadastre.
+COTE = [(43.095, 5.86), (43.108, 5.93), (43.075, 6.02), (43.09, 6.13),
+        (43.14, 6.37), (43.17, 6.53), (43.26, 6.66), (43.31, 6.64),
+        (43.42, 6.77), (43.435, 6.86), (43.505, 6.94), (43.548, 7.02),
+        (43.565, 7.075), (43.545, 7.13), (43.585, 7.135), (43.655, 7.165),
+        (43.695, 7.27), (43.68, 7.33), (43.735, 7.425), (43.775, 7.51),
+        (43.79, 7.56), (43.785, 7.63), (43.775, 7.70), (43.76, 7.80)]
+# La cote continue en Italie (Vintimille, Bordighera) : sans ces trois points
+# elle s'arretait apres Menton et la mer remontait en mur vertical sur le
+# bord droit — la ou il y a de la terre. Constate au rendu du 23/09.
+FRONTIERE = [(43.785, 7.530), (43.815, 7.515), (43.86, 7.52)]
+
+
+# Deux cadrages. Le reseau s'etend de Toulon a Menton, mais tout se joue
+# entre Frejus et Menton : cadrer sur Toulon ecrasait le 06 dans un coin
+# (premier rendu du 23/09, etiquettes empilees entre Cannes et Monaco).
+CADRE_06 = (6.60, 7.62, 43.36, 43.84)     # lon min, lon max, lat min, lat max
+CADRE_LARGE = (5.80, 7.62, 43.02, 43.84)
+LARGEUR, HAUTEUR = 600, 380
+
+
+def _projection(cadre):
+    """Equirectangulaire corrigee du cosinus : isotrope a cette echelle."""
+    import math
+    lo0, lo1, la0, la1 = cadre
+    k = math.cos(math.radians((la0 + la1) / 2))
+    ech = min(LARGEUR / ((lo1 - lo0) * k), HAUTEUR / (la1 - la0))
+    ox = (LARGEUR - (lo1 - lo0) * k * ech) / 2
+    oy = (HAUTEUR - (la1 - la0) * ech) / 2
+
+    def proj(lat, lon):
+        return (round(ox + (lon - lo0) * k * ech, 1),
+                round(oy + (la1 - lat) * ech, 1))
+    return proj, ech
+
+
+def _km(a, b):
+    import math
+    (la1, lo1), (la2, lo2) = a, b
+    p1, p2 = math.radians(la1), math.radians(la2)
+    d = (math.sin((p2 - p1) / 2) ** 2
+         + math.cos(p1) * math.cos(p2) * math.sin(math.radians(lo2 - lo1) / 2) ** 2)
+    return round(2 * 6371 * math.asin(math.sqrt(d)))
+
+
+def _place_etiquettes(points, taille):
+    """Place chaque etiquette sans chevaucher les autres ni les points.
+
+    Glouton : pour chaque point, essaie droite, gauche, dessus, dessous, et
+    garde la premiere position libre et dans le cadre. Largeur estimee a
+    0,58 em par caractere — une surestimation prudente pour Inter.
+    """
+    boites = [(x - 6, y - 6, x + 6, y + 6) for _, x, y, _ in points]
+    sortie = []
+    # Les points mis en avant se placent en premier : ils gardent la
+    # meilleure position.
+    for nom, x, y, fort in sorted(points, key=lambda p: not p[3]):
+        t = taille + (1.5 if fort else 0)
+        w, h = len(nom) * t * 0.58, t
+        essais = [(x + 10, y + h * 0.35, "start", (x + 9, y - h * 0.65, x + 11 + w, y + h * 0.45)),
+                  (x - 10, y + h * 0.35, "end", (x - 11 - w, y - h * 0.65, x - 9, y + h * 0.45)),
+                  (x, y - 11, "middle", (x - w / 2, y - 11 - h, x + w / 2, y - 9)),
+                  (x, y + 11 + h * 0.8, "middle", (x - w / 2, y + 9, x + w / 2, y + 13 + h))]
+        choix = essais[0]
+        for e in essais:
+            bx0, by0, bx1, by1 = e[3]
+            dedans = bx0 > 2 and bx1 < LARGEUR - 2 and by0 > 2 and by1 < HAUTEUR - 2
+            libre = all(bx1 < a0 or bx0 > a1 or by1 < b0 or by0 > b1
+                        for a0, b0, a1, b1 in boites)
+            if dedans and libre:
+                choix = e
+                break
+        boites.append(choix[3])
+        sortie.append((nom, choix[0], choix[1], choix[2], fort))
+    return sortie
+
+
+def _decoupe_polygone(pts, w, h):
+    """Sutherland-Hodgman : le polygone de la mer, coupe au cadre.
+
+    Sans decoupe, la mer et la cote debordaient geometriquement du SVG
+    (masquees a l'ecran, mais la sonde DOM les comptait comme debordements
+    a 505 px, et c'est de la geometrie sale). Constate le 23/09.
+    """
+    def coupe(pts, dedans, inter):
+        out = []
+        for i, cur in enumerate(pts):
+            prev = pts[i - 1]
+            if dedans(cur):
+                if not dedans(prev):
+                    out.append(inter(prev, cur))
+                out.append(cur)
+            elif dedans(prev):
+                out.append(inter(prev, cur))
+        return out
+
+    def ix(x0):
+        return lambda a, b: (x0, a[1] + (b[1] - a[1]) * (x0 - a[0]) / ((b[0] - a[0]) or 1e-9))
+
+    def iy(y0):
+        return lambda a, b: (a[0] + (b[0] - a[0]) * (y0 - a[1]) / ((b[1] - a[1]) or 1e-9), y0)
+
+    for dedans, inter in ((lambda p: p[0] >= 0, ix(0)), (lambda p: p[0] <= w, ix(w)),
+                          (lambda p: p[1] >= 0, iy(0)), (lambda p: p[1] <= h, iy(h))):
+        pts = coupe(pts, dedans, inter)
+        if not pts:
+            break
+    return [(round(x, 1), round(y, 1)) for x, y in pts]
+
+
+def _decoupe_ligne(pts, w, h):
+    """Liang-Barsky segment par segment : le trait de cote, coupe au cadre.
+    Renvoie une liste de polylignes (un trait peut sortir puis rentrer)."""
+    traits, cur = [], []
+    for (x0, y0), (x1, y1) in zip(pts, pts[1:]):
+        dx, dy = x1 - x0, y1 - y0
+        t0, t1, ok = 0.0, 1.0, True
+        for p, q in ((-dx, x0), (dx, w - x0), (-dy, y0), (dy, h - y0)):
+            if p == 0:
+                if q < 0:
+                    ok = False
+                    break
+            else:
+                r = q / p
+                if p < 0:
+                    t0 = max(t0, r)
+                else:
+                    t1 = min(t1, r)
+        if not ok or t0 > t1:
+            if cur:
+                traits.append(cur)
+                cur = []
+            continue
+        a = (round(x0 + t0 * dx, 1), round(y0 + t0 * dy, 1))
+        b = (round(x0 + t1 * dx, 1), round(y0 + t1 * dy, 1))
+        if not cur or cur[-1] != a:
+            if cur:
+                traits.append(cur)
+            cur = [a]
+        cur.append(b)
+        if t1 < 1:
+            traits.append(cur)
+            cur = []
+    if cur:
+        traits.append(cur)
+    return traits
+
+
+def carte_zone(ville):
+    """La carte SVG de la zone, ville courante mise en avant.
+
+    Tout sur UNE ligne : wpautop transforme un saut de ligne dans un SVG en
+    <br> ou en <p>, et une ligne qui commence par <svg> se fait envelopper
+    (regle 5 du skill design). Les etiquettes restent du texte.
+    """
+    cadre = CADRE_06
+    if ville in COORDS:
+        la, lo = COORDS[ville]
+        if not (cadre[0] <= lo <= cadre[1] and cadre[2] <= la <= cadre[3]):
+            cadre = CADRE_LARGE
+    proj, ech = _projection(cadre)
+    nice = COORDS["Nice"]
+    cote = [proj(*c) for c in COTE]
+    poly = _decoupe_polygone(cote + [(LARGEUR + 40, HAUTEUR + 40), (-40, HAUTEUR + 40)],
+                             LARGEUR, HAUTEUR)
+    mer = " ".join(f"{x},{y}" for x, y in poly)
+    traits = _decoupe_ligne(cote, LARGEUR, HAUTEUR)
+    o = [f'<svg class="cz" viewBox="0 0 {LARGEUR} {HAUTEUR}" role="img" '
+         f'aria-label="Carte : {ville} et les communes suivies depuis le bureau de Nice">']
+    o.append(f'<polygon class="cz-mer" points="{mer}"/>')
+    for t in traits:
+        o.append('<polyline class="cz-cote" points="'
+                 + " ".join(f"{x},{y}" for x, y in t) + '"/>')
+    o.append(f'<text class="cz-mer-lb" x="{LARGEUR * 0.56}" y="{HAUTEUR - 34}">Mer Méditerranée</text>')
+    # La frontiere italienne : c'est elle, plus que le trait de cote, qui
+    # fait lire le dessin comme une carte et non comme un graphique.
+    fr = [proj(*c) for c in FRONTIERE]
+    if any(0 <= x <= LARGEUR for x, _ in fr):
+        for t in _decoupe_ligne(fr, LARGEUR, HAUTEUR):
+            o.append('<polyline class="cz-front" points="'
+                     + " ".join(f"{x},{y}" for x, y in t) + '"/>')
+        fx, fy = proj(43.83, 7.585)
+        if fx < LARGEUR - 20:
+            o.append(f'<text class="cz-pays" x="{fx}" y="{fy}" text-anchor="middle">ITALIE</text>')
+        gx, gy = proj(43.74, 6.76) if cadre == CADRE_06 else proj(43.62, 6.25)
+        o.append(f'<text class="cz-pays" x="{gx}" y="{gy}" text-anchor="middle">FRANCE</text>')
+
+    ici = COORDS.get(ville)
+    if ici and ville != "Nice":
+        (x1, y1), (x2, y2) = proj(*nice), proj(*ici)
+        o.append(f'<line class="cz-trajet" x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}"/>')
+
+    points, hors = [], []
+    for nom, c in COORDS.items():
+        x, y = proj(*c)
+        if not (0 <= x <= LARGEUR and 0 <= y <= HAUTEUR):
+            hors.append((nom, c))
+            continue
+        cls = "cz-pt" + (" on" if nom == ville else "") + (" siege" if nom == "Nice" else "")
+        o.append(f'<circle class="{cls}" cx="{x}" cy="{y}" r="{6.5 if nom == ville else 4.2}"/>')
+        points.append((nom + (" · bureau" if nom == "Nice" else ""), x, y,
+                       nom in (ville, "Nice")))
+    for nom, x, y, ancre, fort in _place_etiquettes(points, 12.5):
+        o.append(f'<text class="cz-lb{" on" if fort else ""}" x="{round(x, 1)}" '
+                 f'y="{round(y, 1)}" text-anchor="{ancre}">{nom}</text>')
+    # Les communes hors cadre (Toulon, vue du 06) : un repere au bord, avec
+    # la distance. Elles existent, mais les dessiner ecraserait le reste.
+    for nom, c in hors:
+        o.append(f'<text class="cz-hors" x="10" y="{HAUTEUR - 14}">← {nom} · '
+                 f'{_km(nice, c)} km</text>')
+    # Echelle : 10 km.
+    L = round(10 * ech / 111.2, 1)
+    o.append(f'<line class="cz-ech" x1="16" y1="22" x2="{16 + L}" y2="22"/>'
+             f'<text class="cz-ech-lb" x="{22 + L}" y="26">10 km</text>')
+    o.append("</svg>")
+    if ici and ville != "Nice":
+        legende = (f"{ville} est à {_km(nice, ici)} km à vol d'oiseau de notre "
+                   "bureau, 10 avenue Lympia privée à Nice.")
+    else:
+        legende = ("Notre bureau, 10 avenue Lympia privée. Chaque point est une "
+                   "commune où nous suivons des clients depuis Nice.")
+    # Le <svg> dans son propre <div> : frere direct du <div> de legende, il
+    # se faisait signaler par le garde-fou wpautop (regle 5) — WordPress
+    # l'aurait enveloppe dans un <p>.
+    return ('<div class="carte" data-dcp="chrome"><div class="czw">' + "".join(o)
+            + f'</div><div class="cz-leg">{legende}</div></div>')
+
+
 def construis(slug):
     v, base = fiche(slug)
     b = charge_contenu(slug)
@@ -432,7 +672,9 @@ def construis(slug):
 
     # ── 5. zone d'intervention ─────────────────────────────────────────────
     a('<div class="bl">')
-    a('<div class="in st-s">')
+    a('<div class="in">')
+    a('<div class="zsplit">')
+    a('<div class="st-s">')
     a(f'<h2>{b["h2_zone"]}</h2>')
     a(f'<p class="lead nr">{b["zone_intro"]}</p>')
     cp = " · ".join(v["codes_postaux"])
@@ -444,6 +686,9 @@ def construis(slug):
         a(f'<div><div class="n">{c}</div></div>')
     a("</div>")
     a(f'<p class="sub" style="margin-top:18px">{b["zone_note"]}</p>')
+    a("</div>")
+    a(carte_zone(ville))
+    a("</div>")
     a("</div>")
     a("</div>")
 
