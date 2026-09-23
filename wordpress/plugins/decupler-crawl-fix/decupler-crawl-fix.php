@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Décupler — Budget de crawl
  * Description:       Trois correctifs mesurés le 22/09/2026 sur decupler.com : un robots.txt propre, une page « disparue » légère au lieu de 151 Ko, et un 404 sur la pagination hors limites. Objectif : arrêter de faire télécharger 1,5 Go à Googlebot pour lui apprendre que 12 000 pages n'existent plus.
- * Version:           1.3.1
+ * Version:           1.3.2
  * Author:            Décupler
  * License:           GPL-2.0-or-later
  * Requires at least: 6.0
@@ -110,13 +110,21 @@
  *   « Valider la correction » sur le groupe 404 de Search Console. C'est
  *   inutile ici, et même contre-productif : ce bouton sert quand on a RÉPARÉ
  *   des 404, pas quand on veut qu'elles le restent.
+ *
+ * 1.3.2 — 23/09/2026. Mesuré en ligne après installation : une fois le
+ *   fichier physique rangé, /robots.txt répond 404 — une page d'erreur
+ *   d'Apache, sans PHP. L'hébergeur ne transmet pas cette adresse à
+ *   WordPress (llms.txt, lui, passe). Le robots.txt virtuel ne peut donc
+ *   pas exister sur ce serveur. Le plugin sait désormais ÉCRIRE son
+ *   robots.txt dans un vrai fichier, le réécrit à chaque nouvelle version,
+ *   et l'écran de réglages vérifie ce que le serveur sert réellement.
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-const DCP_CRAWL_VERSION = '1.3.1';
+const DCP_CRAWL_VERSION = '1.3.2';
 
 /* -------------------------------------------------------------------------
  * 1. robots.txt
@@ -131,7 +139,17 @@ const DCP_CRAWL_VERSION = '1.3.1';
  * URL déjà non indexées (recherche interne en noindex) ou canonicalisées
  * (paramètres de suivi).
  */
-function dcp_crawl_robots_voulu() {
+function dcp_crawl_robots_voulu( $fichier = false ) {
+	$entete = $fichier
+		? array(
+			'# ====================================================================',
+			'# robots.txt ÉCRIT par le plugin « Décupler — Budget de crawl » v'
+				. DCP_CRAWL_VERSION . ', le ' . gmdate( 'Y-m-d' ) . '.',
+			'# Fichier physique : cet hébergeur ne transmet pas /robots.txt à',
+			'# WordPress. Le plugin le réécrit à chaque nouvelle version.',
+			'# ====================================================================',
+		)
+		: array();
 	$lignes = array(
 		// Marqueur demande par Nathan : permet de savoir d'un coup d'oeil, en
 		// ouvrant decupler.com/robots.txt, QUELLE source a servi le fichier.
@@ -166,6 +184,11 @@ function dcp_crawl_robots_voulu() {
 		'',
 		'Sitemap: ' . home_url( '/sitemap_index.xml' ),
 	);
+	if ( $fichier ) {
+		// Les six lignes du marqueur « servi par le plugin » sont remplacées
+		// par l'en-tête du fichier écrit.
+		$lignes = array_merge( $entete, array_slice( $lignes, 6 ) );
+	}
 
 	return implode( "\n", $lignes ) . "\n";
 }
@@ -443,15 +466,29 @@ function dcp_crawl_bascule_robots() {
 			$sauve = ABSPATH . 'robots.txt.desactive-' . gmdate( 'Ymd-His' );
 			$message = rename( $vivant, $sauve ) ? 'desactive' : 'echec';
 		}
+	} elseif ( 'ecrire' === $action ) {
+		if ( ! is_writable( ABSPATH ) ) {
+			$message = 'lecture-seule';
+		} else {
+			// Un fichier étranger est d'abord mis de côté, jamais écrasé.
+			if ( file_exists( $vivant ) && ! dcp_crawl_robots_est_le_notre( $vivant ) ) {
+				rename( $vivant, ABSPATH . 'robots.txt.desactive-' . gmdate( 'Ymd-His' ) );
+			}
+			$message = dcp_crawl_ecrit_robots() ? 'ecrit' : 'echec';
+		}
 	} elseif ( 'restaurer' === $action ) {
 		$sauves = glob( ABSPATH . 'robots.txt.desactive-*' );
 		if ( empty( $sauves ) ) {
 			$message = 'rien-a-restaurer';
-		} elseif ( file_exists( $vivant ) ) {
+		} elseif ( file_exists( $vivant ) && ! dcp_crawl_robots_est_le_notre( $vivant ) ) {
 			$message = 'deja-la';
 		} else {
 			// Le plus récent : c'est celui que l'utilisateur vient de ranger.
 			sort( $sauves );
+			// Le fichier écrit par le plugin cède la place à l'ancien.
+			if ( file_exists( $vivant ) ) {
+				unlink( $vivant );
+			}
 			$message = rename( end( $sauves ), $vivant ) ? 'restaure' : 'echec';
 		}
 	}
@@ -465,6 +502,46 @@ function dcp_crawl_bascule_robots() {
 	exit;
 }
 add_action( 'admin_post_dcp_crawl_robots', 'dcp_crawl_bascule_robots' );
+
+/** Le robots.txt physique a-t-il été écrit par ce plugin ? */
+function dcp_crawl_robots_est_le_notre( $chemin ) {
+	return false !== strpos( (string) @file_get_contents( $chemin ), 'Décupler — Budget de crawl' );
+}
+
+/** Écrit le robots.txt du plugin sur disque. */
+function dcp_crawl_ecrit_robots() {
+	return false !== @file_put_contents( ABSPATH . 'robots.txt', dcp_crawl_robots_voulu( true ) );
+}
+
+// À chaque nouvelle version, un robots.txt écrit par le plugin est réécrit :
+// sans cela, ses règles resteraient figées à la version qui l'a posé. Un
+// fichier qui n'est pas le nôtre n'est jamais touché.
+add_action(
+	'init',
+	function () {
+		if ( get_option( 'dcp_crawl_robots_version' ) === DCP_CRAWL_VERSION ) {
+			return;
+		}
+		$chemin = ABSPATH . 'robots.txt';
+		if ( file_exists( $chemin ) && dcp_crawl_robots_est_le_notre( $chemin ) ) {
+			dcp_crawl_ecrit_robots();
+		}
+		update_option( 'dcp_crawl_robots_version', DCP_CRAWL_VERSION, false );
+	}
+);
+
+/**
+ * Ce que le serveur sert VRAIMENT sur /robots.txt, vu de l'extérieur.
+ * Mesure au lieu de supposition : c'est elle qui a trouvé le 404 d'Apache.
+ */
+function dcp_crawl_robots_en_ligne() {
+	$r = wp_remote_get( home_url( '/robots.txt' ), array( 'timeout' => 8, 'sslverify' => false ) );
+	if ( is_wp_error( $r ) ) {
+		return array( 'code' => 0, 'corps' => $r->get_error_message() );
+	}
+	return array( 'code' => (int) wp_remote_retrieve_response_code( $r ),
+		'corps' => (string) wp_remote_retrieve_body( $r ) );
+}
 
 /* -------------------------------------------------------------------------
  * 4. /llms.txt
@@ -879,6 +956,11 @@ function dcp_crawl_ecran() {
 	}
 
 	$physique = dcp_crawl_robots_physique();
+	// Un fichier écrit par ce plugin n'est pas un fichier étranger à ranger.
+	$le_notre = $physique && dcp_crawl_robots_est_le_notre( $physique );
+	if ( $le_notre ) {
+		$physique = '';
+	}
 	$sauves   = glob( ABSPATH . 'robots.txt.desactive-*' );
 
 	echo '<div class="wrap"><h1>Décupler — Budget de crawl</h1>';
@@ -900,6 +982,8 @@ function dcp_crawl_ecran() {
 		'rien-a-restaurer' => array( 'warning', 'Aucune sauvegarde à restaurer.' ),
 		'deja-la'          => array( 'warning', 'Un robots.txt physique est déjà '
 			. 'en place : rangez-le d\'abord.' ),
+		'ecrit'            => array( 'success', 'Le robots.txt du plugin est écrit '
+			. 'dans un fichier à la racine. Rechargez /robots.txt pour vérifier.' ),
 	);
 	$msg = isset( $_GET['dcp_msg'] ) ? sanitize_key( $_GET['dcp_msg'] ) : '';
 	if ( isset( $msgs[ $msg ] ) ) {
@@ -938,10 +1022,29 @@ function dcp_crawl_ecran() {
 		}
 		echo '</div>';
 	} else {
-		echo '<p>Aucun fichier physique : WordPress sert le robots.txt virtuel, '
+		echo $le_notre
+			? '<p>Le robots.txt est un <strong>fichier écrit par ce plugin</strong>, '
+				. 'réécrit à chaque nouvelle version.'
+			: '<p>Aucun fichier physique : WordPress sert le robots.txt virtuel, '
 			. 'et ce plugin le remplit. Vérifiez-le sur <a href="'
 			. esc_url( home_url( '/robots.txt' ) ) . '" target="_blank">'
 			. esc_html( home_url( '/robots.txt' ) ) . '</a>.</p>';
+	}
+	$enligne = dcp_crawl_robots_en_ligne();
+	$bon     = 200 === $enligne['code'] && false !== strpos( $enligne['corps'], 'Budget de crawl' );
+	echo '<p><strong>Vérifié à l\'instant :</strong> ' . esc_html( home_url( '/robots.txt' ) )
+		. ' répond <code>' . (int) $enligne['code'] . '</code>'
+		. ( $bon ? ' avec les règles de ce plugin. ✅' : '.' ) . '</p>';
+	if ( ! $bon && ! $physique ) {
+		echo '<div class="notice notice-warning inline"><p><strong>L\'hébergeur ne '
+			. 'transmet pas /robots.txt à WordPress</strong> : le robots.txt virtuel '
+			. 'ne peut pas être servi. Écrivez-le dans un vrai fichier.</p>';
+		echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '">';
+		wp_nonce_field( 'dcp_crawl_robots' );
+		echo '<input type="hidden" name="action" value="dcp_crawl_robots">'
+			. '<input type="hidden" name="dcp_action" value="ecrire">'
+			. '<p><button type="submit" class="button button-primary">Écrire le '
+			. 'robots.txt du plugin dans un fichier</button></p></form></div>';
 	}
 	echo '<p><strong>Ce que ce plugin sert (ou servirait) :</strong></p>';
 	echo '<pre style="background:#fff;border:1px solid #c3c4c7;padding:14px;'

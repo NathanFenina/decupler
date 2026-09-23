@@ -147,6 +147,27 @@ $WP eval 'update_post_meta(1,"_elementor_element_cache","ancien");
   update_post_meta(1,"_elementor_data","[]/*".microtime(true)."*/");' >/dev/null 2>&1
 attend "écrire _elementor_data purge le cache" "$($WP post meta get 1 _elementor_element_cache 2>/dev/null)" ""
 
+echo "== 7 bis. robots.txt écrit dans un fichier (hébergeur qui ne transmet pas /robots.txt)"
+$WP eval 'wp_set_current_user(1); $_POST["dcp_action"]="ecrire";
+  $_REQUEST["_wpnonce"]=wp_create_nonce("dcp_crawl_robots");
+  add_filter("wp_redirect",function(){throw new Exception();});
+  try{dcp_crawl_bascule_robots();}catch(Exception $e){}' >/dev/null 2>&1
+RB=$(curl -sS "$B/robots.txt")
+attend "fichier robots.txt écrit" "$([ -f wordpress/robots.txt ] && echo oui || echo non)" "oui"
+attend "servi avec l'en-tête « ÉCRIT »" "$(echo "$RB" | grep -c 'ÉCRIT par le plugin')" "1"
+attend "un seul User-agent dans le fichier" "$(echo "$RB" | grep -c '^User-agent:')" "1"
+attend "règles présentes" "$(echo "$RB" | grep -c 'Disallow: /\*?s=')" "1"
+$WP option update dcp_crawl_robots_version ancienne >/dev/null 2>&1
+echo "# vieux" >> wordpress/robots.txt
+curl -sS -o /dev/null "$B/"
+attend "réécrit à la nouvelle version" "$(grep -c '# vieux' wordpress/robots.txt)" "0"
+# Remettre l'état « fichier rangé » pour les passages suivants du banc.
+$WP eval 'wp_set_current_user(1); $_POST["dcp_action"]="restaurer";
+  $_REQUEST["_wpnonce"]=wp_create_nonce("dcp_crawl_robots");
+  add_filter("wp_redirect",function(){throw new Exception();});
+  try{dcp_crawl_bascule_robots();}catch(Exception $e){}' >/dev/null 2>&1
+attend "restaurer remplace le fichier du plugin" "$(grep -c 'Budget de crawl' wordpress/robots.txt)" "0"
+
 echo "== 8. URL du piratage"
 attend "/casino-offre/ → 410" "$(code /casino-offre/)" "410"
 attend "410 servi en page légère" "$(curl -sS "$B/casino-offre/" | grep -c 'existe plus')" "1"
