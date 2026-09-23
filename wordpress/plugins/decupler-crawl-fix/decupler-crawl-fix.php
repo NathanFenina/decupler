@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Décupler — Budget de crawl
  * Description:       Trois correctifs mesurés le 22/09/2026 sur decupler.com : un robots.txt propre, une page « disparue » légère au lieu de 151 Ko, et un 404 sur la pagination hors limites. Objectif : arrêter de faire télécharger 1,5 Go à Googlebot pour lui apprendre que 12 000 pages n'existent plus.
- * Version:           1.3.0
+ * Version:           1.3.1
  * Author:            Décupler
  * License:           GPL-2.0-or-later
  * Requires at least: 6.0
@@ -105,13 +105,18 @@
  *   - /sitemap-urls-supprimees.xml, un sitemap temporaire à soumettre dans
  *     Search Console : il invite Google à repasser sur ces URL et à lire le
  *     410. À retirer de Search Console une fois le compteur à zéro.
+ *
+ * 1.3.1 — 23/09/2026. Texte de l'écran de réglages seulement : il conseillait
+ *   « Valider la correction » sur le groupe 404 de Search Console. C'est
+ *   inutile ici, et même contre-productif : ce bouton sert quand on a RÉPARÉ
+ *   des 404, pas quand on veut qu'elles le restent.
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-const DCP_CRAWL_VERSION = '1.3.0';
+const DCP_CRAWL_VERSION = '1.3.1';
 
 /* -------------------------------------------------------------------------
  * 1. robots.txt
@@ -1019,9 +1024,10 @@ function dcp_crawl_ecran() {
 
 	echo '<h2>Après activation</h2>';
 	echo '<ol><li>Vérifier les trois tests ci-dessus.</li>'
-		. '<li>Dans Search Console → Indexation → Pages, ouvrir le motif '
-		. '« Introuvable (404) » et cliquer <strong>Valider le correctif</strong> : '
-		. 'c\'est ce qui demande à Google de re-explorer le groupe en priorité.</li>'
+		. '<li>Dans Search Console → Sitemaps, soumettre '
+		. '<code>sitemap-urls-supprimees.xml</code> (section 8). Ne pas cliquer '
+		. '« Valider la correction » sur le groupe « Introuvable (404) » : ces '
+		. 'adresses DOIVENT rester introuvables, la validation échouerait.</li>'
 		. '<li>Ne pas ajouter de règle « Disallow » sur une URL qu\'on veut '
 		. 'désindexer : Google ne pourrait plus lire son 410.</li></ol>';
 
