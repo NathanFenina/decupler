@@ -90,6 +90,13 @@ Sur chaque page ville :
 - 8 à 12 communes limitrophes, en `<div>` (jamais `<span>` : wpautop)
 - gentilé au moins une fois (Cannois, Toulonnais, Niçois, Antibois…)
 
+**On n'invente pas non plus de clientèle.** « Nos clients cannois », « mes
+dossiers monégasques », « dans les entreprises que je vois » affirment une
+présence locale qu'on ne peut pas prouver. Écrire ce qui est vrai du marché
+(« une entreprise cannoise part rarement d'un site vierge »), pas une
+expérience supposée. Relecture faite sur tout le lot le 23/09 : sept phrases
+reprises.
+
 ## 4. Priorité de production
 
 L'ancrage n'est crédible qu'en **06 et 83**. Ailleurs — Marseille en tête — on
@@ -178,6 +185,17 @@ nommément et Décupler figure honnêtement dedans.**
 C'est l'angle où l'absence d'adresse locale ne pénalise pas.
 
 ## 9. Publication
+
+Avant tout push, le lot entier passe ces contrôles, dans cet ordre :
+
+1. `validate_page.py --manifeste` sur **toutes** les pages du lot — c'est ce
+   qui mesure la duplication entre pages (seuil : 4 phrases communes).
+2. Rendu réel à 1440 et 505 px avec sonde DOM : zéro débordement.
+3. Impeccable en mode navigateur (voir `decupler-direction-artistique` §8).
+4. Après le push, relire le rendu WordPress par l'API (`context=edit`) :
+   `raw` identique au build, zéro `<p>` parasite, zéro `<br />`, JSON-LD
+   valide, toutes les images en 200. C'est ce contrôle qui a trouvé le
+   `<br />` que wpautop glissait entre les deux blocs JSON-LD.
 
 - Post type `pages`, statut `draft`. **Ne jamais publier sans relecture.**
 - Chercher le slug avant de créer : sinon WordPress crée un doublon `-2`

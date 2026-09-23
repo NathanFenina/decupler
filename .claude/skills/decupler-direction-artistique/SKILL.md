@@ -105,6 +105,16 @@ Où trouver de vraies photos, dans l'ordre :
    maquette d'interface, texture. Jamais un lieu, jamais un visage, jamais
    un logo.
 
+**Le registre.** Toute photo d'une page ville passe par
+`decupler-page-ville-seo/references/photos.json` (URL, dimensions, alt,
+crédit). Le gabarit n'accepte qu'une clé de ce registre : une image qui n'y
+est pas ne peut pas atterrir sur une page par accident.
+
+**Les visages.** Seules les vraies photos de Nathan représentent Décupler.
+Le 23/09, une image générée de deux personnes inventées était légendée
+« deux experts SEO de Décupler » dans quatre brouillons : retirée partout.
+Une personne générée présentée comme un membre de l'équipe est un faux.
+
 **Recadrage.** Une bande fait 21:9 (2000 × 858). Le point d'ancrage vertical
 dépend de la photo et se choisit à l'œil, pas par défaut — sur une vue
 plongeante la ville est au milieu, sur un panorama de port elle est en haut.
@@ -118,6 +128,29 @@ fait avaler par wpautop, donc on l'encapsule — et à partir de là `.bloc > im
 ne matche plus. Utiliser le sélecteur descendant `.bloc img`. Ce bug a fait
 rendre une photo à 2 000 px dans un cadre de 490, découpée en silence par
 `overflow:hidden`.
+
+### La carte de zone
+
+Une carte SVG dessinée en texte, pas une capture : elle pèse 3 Ko, se lit
+par les moteurs, et chaque point est à sa place. Ce que les rendus du 23/09
+ont appris :
+
+- **Trois cadrages**, choisis selon la ville : le 06 seul (Fréjus → Menton),
+  le littoral large (Toulon), la Provence (Marseille). Cadrer tout le réseau
+  sur chaque page écrasait le 06 dans un coin.
+- **Au grand cadrage, moins de repères.** Vue de Marseille, les communes du
+  06 tiennent en 60 px : « Le Cannet » chevauchait « Antibes » et Monaco
+  sortait du cadre. On ne garde que la ville, Nice, Cannes, Fréjus, Toulon.
+- **La côte continue au-delà de la frontière**, sinon la mer remonte en mur
+  vertical au bord droit, là où il y a de la terre.
+- **Découper la géométrie** au cadre (Sutherland-Hodgman pour la mer,
+  Liang-Barsky pour les traits) : un tracé qui déborde du `viewBox` fait
+  déborder la page à 505 px.
+- **Le `<svg>` dans son propre `<div>`**, sur une seule ligne : sinon wpautop
+  l'enveloppe dans un `<p>` ou y glisse des `<br>`.
+- **La légende suit le registre** : « notre bureau » sur une page agence,
+  « mon bureau » sur une page consultant. La distance affichée est calculée
+  (haversine), et le ruban reprend le même chiffre que la carte.
 
 ## 4. La matière qui différencie
 

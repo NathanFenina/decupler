@@ -93,6 +93,7 @@ page fuit sur le reste du site.
 | Bandeau E-E-A-T | `.eeat` | Photo de Nathan, fonction, LinkedIn, Calendly |
 | CTA de clôture | `.cta` | Un par page, en fin |
 | **Bande photo pleine largeur** | `.bphoto` | Une vraie photo du lieu, texte en surimpression, crédit CC affiché. Une par page |
+| **Carte de zone** | `.carte` + `.cz` | SVG généré par `carte_zone()` : vraies coordonnées, distance calculée depuis Nice, texte réel (pas d'image). Dans `.zsplit`, à droite des communes |
 | **Ruban de faits** | `.ruban` | Bande fine et sombre, rôle purement rythmique entre deux grandes sections |
 | **Bande sombre éditoriale** | `.bl-dk` | Le parti pris, première personne, signé. Une par page, jamais deux |
 | **Livrables** | `.livr` | Six cellules, ce qui arrive chaque mois et à quelle cadence |
