@@ -119,7 +119,8 @@ body .ast-article-single > .entry-header, .entry-title { display:none !important
 /* tableau */
 .dcp-v .tw{overflow-x:auto;border:1px solid var(--bd);border-radius:13px;background:#fff;margin-top:24px}
 .dcp-v table{border-collapse:collapse;width:100%;min-width:660px;font-size:.89rem}
-.dcp-v thead th{background:var(--grad);color:#fff;font-family:var(--ft);font-weight:700;font-size:.75rem;
+/* Impeccable 23/09 : blanc sur le degrade #667eea = 3,7:1. Aplat violet texte : 6,9:1. */
+.dcp-v thead th{background:var(--vio-t);color:#fff;font-family:var(--ft);font-weight:700;font-size:.75rem;
   letter-spacing:.08em;text-transform:uppercase;text-align:left;padding:14px 18px}
 .dcp-v tbody td{padding:14px 18px;border-bottom:1px solid var(--bd);border-right:1px solid var(--bd);
   color:var(--tx2);vertical-align:top}
@@ -616,7 +617,7 @@ body .ast-article-single > .entry-header, .entry-title { display:none !important
 .dcp-v .duo .ct .s{width:24px;height:24px;border-radius:999px;flex:0 0 auto;
   display:flex;align-items:center;justify-content:center;font-size:.78rem;
   font-weight:700;color:#fff;background:var(--grad);font-family:var(--fb)}
-.dcp-v .duo .col.non .ct .s{background:#b9b3d4}
+.dcp-v .duo .col.non .ct .s{background:#6b6590}
 .dcp-v .duo ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:11px}
 .dcp-v .duo li{position:relative;padding-left:20px;color:var(--tx2);font-size:.9rem;line-height:1.6}
 /* Le marqueur est un ::before, pas un <span> : un element inline frere d'un
@@ -711,7 +712,8 @@ body .ast-article-single > .entry-header, .entry-title { display:none !important
 /* Marqueurs du bloc « on fait / on ne fait pas » : aplat au lieu du
    dégradé. Le dégradé reste sur le bouton principal et la bande finale. */
 .dcp-v .duo .ct .s{background:var(--vio-t)}
-.dcp-v .duo .col.non .ct .s{background:#9f99bd}
+/* blanc sur #9f99bd = 2,7:1 ; sur #6b6590 = 5,4:1 */
+.dcp-v .duo .col.non .ct .s{background:#6b6590}
 
 /* Mesure dans les cartes à deux colonnes : ~540 px en corps 14 px, soit
    91 caractères par ligne (4 signaux « line-length »). Le texte garde sa
