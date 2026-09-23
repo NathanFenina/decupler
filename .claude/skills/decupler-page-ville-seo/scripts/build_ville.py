@@ -325,7 +325,30 @@ COORDS = {
 # Villes suivies a distance, hors du reseau de la carte : elles n'apparaissent
 # que sur leur propre page. Sinon Marseille ajouterait un repere « hors cadre »
 # sur toutes les pages du 06.
-DISTANTES = {"Marseille": (43.2965, 5.3698)}
+DISTANTES = {"Marseille": (43.2965, 5.3698), "Aix-en-Provence": (43.5297, 5.4474)}
+# Villes hors du Sud-Est : la carte passe a l'echelle de la France. Les
+# dessiner sur le cadrage de la Cote aurait mis un point hors de la carte.
+LOINTAINES = {"Lyon": (45.7640, 4.8357), "Bordeaux": (44.8378, -0.5792),
+              "Toulouse": (43.6047, 1.4442), "Montpellier": (43.6108, 3.8767)}
+# Contour simplifie de la France metropolitaine continentale (lat, lon), dans
+# le sens des aiguilles d'une montre depuis Dunkerque. Un schema : assez juste
+# pour situer une ville, sans pretendre au trace des cotes.
+FRANCE = [(51.05, 2.37), (50.95, 1.85), (50.40, 1.55), (49.95, 1.45), (49.70, 0.20),
+          (49.45, 0.10), (49.30, -0.20), (49.35, -1.10), (49.65, -1.60), (49.70, -1.95),
+          (49.30, -1.80), (48.65, -1.55), (48.65, -2.00), (48.85, -3.00), (48.80, -3.60),
+          (48.70, -4.50), (48.40, -4.80), (48.05, -4.60), (47.80, -4.30), (47.70, -3.40),
+          (47.50, -2.80), (47.25, -2.20), (46.90, -2.10), (46.50, -1.80), (46.15, -1.20),
+          (45.60, -1.20), (45.00, -1.20), (44.60, -1.25), (43.95, -1.40), (43.45, -1.55),
+          (43.35, -1.75), (43.05, -1.20), (42.85, -0.40), (42.70, 0.70), (42.60, 1.50),
+          (42.45, 2.20), (42.43, 3.15), (42.70, 3.05), (43.10, 3.10), (43.30, 3.45),
+          (43.45, 3.75), (43.55, 4.10), (43.40, 4.60), (43.35, 5.00), (43.30, 5.35),
+          (43.20, 5.55), (43.10, 5.90), (43.10, 6.20), (43.25, 6.65), (43.45, 6.90),
+          (43.55, 7.05), (43.70, 7.30), (43.78, 7.50), (44.10, 7.70), (44.40, 6.90),
+          (45.10, 6.60), (45.40, 7.10), (45.90, 6.95), (46.20, 6.05), (46.60, 6.10),
+          (47.00, 6.70), (47.50, 7.00), (47.60, 7.60), (48.50, 7.80), (49.00, 8.20),
+          (49.10, 7.00), (49.50, 6.40), (49.50, 5.80), (49.80, 4.90), (50.10, 4.20),
+          (50.30, 3.70), (50.70, 3.20), (51.05, 2.55)]
+CADRE_FRANCE = (-5.2, 8.4, 42.2, 51.2)
 # Trait de cote simplifie, d'ouest en est : La Seyne, les caps, les golfes.
 # C'est un schema — assez fidele pour situer, sans pretendre au cadastre.
 COTE = [(43.37, 5.02), (43.36, 5.30), (43.30, 5.355), (43.24, 5.36),
@@ -375,14 +398,21 @@ def _km(a, b):
     return round(2 * 6371 * math.asin(math.sqrt(d)))
 
 
-def _place_etiquettes(points, taille):
-    """Place chaque etiquette sans chevaucher les autres ni les points.
+def _place_etiquettes(points, taille, traits=()):
+    """Place chaque etiquette sans chevaucher les autres ni les points, ni
+    le trait du trajet (Bordeaux, Toulouse, Aix : le libelle etait barre
+    par les pointilles, planche du 23/09).
 
     Glouton : pour chaque point, essaie droite, gauche, dessus, dessous, et
     garde la premiere position libre et dans le cadre. Largeur estimee a
     0,58 em par caractere — une surestimation prudente pour Inter.
     """
     boites = [(x - 6, y - 6, x + 6, y + 6) for _, x, y, _ in points]
+    # Le trajet, echantillonne en petits carres : assez fin pour un libelle.
+    for (xa, ya), (xb, yb) in traits:
+        for i in range(1, 60):
+            px, py = xa + (xb - xa) * i / 60, ya + (yb - ya) * i / 60
+            boites.append((px - 1, py - 1, px + 1, py + 1))
     sortie = []
     # Les points mis en avant se placent en premier : ils gardent la
     # meilleure position.
@@ -478,13 +508,44 @@ def _decoupe_ligne(pts, w, h):
     return traits
 
 
-def carte_zone(ville, registre="agence"):
+def carte_france(ville, registre):
+    """Carte a l'echelle de la France : la ville, le bureau de Nice, la
+    distance. Fond neutre, pays en aplat : la mer n'est pas dessinee."""
+    proj, ech = _projection(CADRE_FRANCE)
+    nice, ici = COORDS["Nice"], LOINTAINES[ville]
+    pts = " ".join(f"{x},{y}" for x, y in (proj(*c) for c in FRANCE))
+    o = [f'<svg class="cz" viewBox="0 0 {LARGEUR} {HAUTEUR}" role="img" '
+         f'aria-label="Carte : {ville} et le bureau de Nice">',
+         f'<polygon class="cz-terre" points="{pts}"/>']
+    (x1, y1), (x2, y2) = proj(*nice), proj(*ici)
+    o.append(f'<line class="cz-trajet" x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}"/>')
+    o.append(f'<circle class="cz-pt siege" cx="{x1}" cy="{y1}" r="4.2"/>')
+    o.append(f'<circle class="cz-pt on" cx="{x2}" cy="{y2}" r="6.5"/>')
+    for nom, x, y, ancre, fort in _place_etiquettes(
+            [("Nice · bureau", x1, y1, True), (ville, x2, y2, True)], 12.5,
+            [((x1, y1), (x2, y2))]):
+        o.append(f'<text class="cz-lb on" x="{round(x, 1)}" y="{round(y, 1)}" '
+                 f'text-anchor="{ancre}">{nom}</text>')
+    L = round(100 * ech / 111.2, 1)
+    o.append(f'<line class="cz-ech" x1="16" y1="22" x2="{16 + L}" y2="22"/>'
+             f'<text class="cz-ech-lb" x="{22 + L}" y="26">100 km</text>')
+    o.append("</svg>")
+    bureau = "mon bureau" if registre == "consultant" else "notre bureau"
+    legende = (f"{ville} est à {_km(nice, ici)} km à vol d'oiseau de {bureau}, "
+               "10 avenue Lympia privée à Nice.")
+    return ('<div class="carte" data-dcp="chrome"><div class="czw">' + "".join(o)
+            + f'</div><div class="cz-leg">{legende}</div></div>')
+
+
+def carte_zone(ville, registre="agence", force=None):
     """La carte SVG de la zone, ville courante mise en avant.
 
     Tout sur UNE ligne : wpautop transforme un saut de ligne dans un SVG en
     <br> ou en <p>, et une ligne qui commence par <svg> se fait envelopper
     (regle 5 du skill design). Les etiquettes restent du texte.
     """
+    if ville in LOINTAINES:
+        return carte_france(ville, registre)
     coords = dict(COORDS)
     if ville in DISTANTES:
         coords[ville] = DISTANTES[ville]
@@ -495,6 +556,10 @@ def carte_zone(ville, registre="agence"):
             cadre = c
             if c[0] <= lo <= c[1] and c[2] <= la <= c[3]:
                 break
+    # Une page departementale (le Var) n'a pas de point a elle : son cadrage
+    # est donne par la fiche de villes.json.
+    if force == "large":
+        cadre = CADRE_LARGE
     # A l'echelle de la Provence, les communes du 06 tiennent en 60 px :
     # leurs etiquettes se chevauchaient et Monaco sortait du cadre (rendu du
     # 23/09). On ne garde que les reperes qui situent la ville.
@@ -525,7 +590,9 @@ def carte_zone(ville, registre="agence"):
         fx, fy = proj(43.83, 7.585)
         if fx < LARGEUR - 20:
             o.append(f'<text class="cz-pays" x="{fx}" y="{fy}" text-anchor="middle">ITALIE</text>')
-        gx, gy = proj(43.74, 6.76) if cadre == CADRE_06 else proj(43.62, 6.25)
+        # Vue Provence : sous le trajet Aix-Nice, qui barrait le mot.
+        gx, gy = (proj(43.74, 6.76) if cadre == CADRE_06 else
+                  proj(43.42, 6.05) if cadre == CADRE_PROVENCE else proj(43.62, 6.25))
         o.append(f'<text class="cz-pays" x="{gx}" y="{gy}" text-anchor="middle">FRANCE</text>')
 
     ici = coords.get(ville)
@@ -543,7 +610,8 @@ def carte_zone(ville, registre="agence"):
         o.append(f'<circle class="{cls}" cx="{x}" cy="{y}" r="{6.5 if nom == ville else 4.2}"/>')
         points.append((nom + (" · bureau" if nom == "Nice" else ""), x, y,
                        nom in (ville, "Nice")))
-    for nom, x, y, ancre, fort in _place_etiquettes(points, 12.5):
+    traits = [(proj(*nice), proj(*ici))] if ici and ville != "Nice" else []
+    for nom, x, y, ancre, fort in _place_etiquettes(points, 12.5, traits):
         o.append(f'<text class="cz-lb{" on" if fort else ""}" x="{round(x, 1)}" '
                  f'y="{round(y, 1)}" text-anchor="{ancre}">{nom}</text>')
     # Les communes hors cadre (Toulon, vue du 06) : un repere au bord, avec
@@ -751,7 +819,7 @@ def construis(slug):
     a("</div>")
     a(f'<p class="sub" style="margin-top:18px">{b["zone_note"]}</p>')
     a("</div>")
-    a(carte_zone(ville, reg))
+    a(carte_zone(ville, reg, v.get("carte")))
     a("</div>")
     a("</div>")
     a("</div>")

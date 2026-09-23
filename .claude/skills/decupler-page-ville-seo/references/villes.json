@@ -529,6 +529,226 @@
    "statut": "brouillon WP 20855 (23/09)",
    "page_geo": null,
    "action": "Création. Absorbe « expert seo monaco » (30). Monaco n'est pas un département français : pas de code postal français, pas d'« Alpes-Maritimes », TVA à adapter."
+  },
+  {
+   "slug": "agence-seo-var",
+   "ville": "Var",
+   "gentile": "Varois",
+   "departement": "Var",
+   "code_departement": "83",
+   "codes_postaux": [
+    "83000",
+    "83400",
+    "83600",
+    "83700",
+    "83300"
+   ],
+   "communes": [
+    "Toulon",
+    "La Seyne-sur-Mer",
+    "Hyères",
+    "Fréjus",
+    "Saint-Raphaël",
+    "Draguignan",
+    "Six-Fours-les-Plages",
+    "Brignoles",
+    "Sainte-Maxime",
+    "Saint-Tropez"
+   ],
+   "secteurs": [
+    "défense et naval",
+    "tourisme et hôtellerie",
+    "nautisme",
+    "viticulture"
+   ],
+   "volume": 90,
+   "kd": 9,
+   "statut": "brouillon WP 20909 (23/09)",
+   "page_geo": null,
+   "action": "Création 23/09. Page départementale, comme le 06 : elle agrège Toulon et Fréjus sans les cannibaliser. Absorbe « agence référencement var » (90).",
+   "registre": "agence",
+   "carte": "large"
+  },
+  {
+   "slug": "consultant-seo-aix-en-provence",
+   "ville": "Aix-en-Provence",
+   "gentile": "Aixois",
+   "registre": "consultant",
+   "departement": "Bouches-du-Rhône",
+   "code_departement": "13",
+   "codes_postaux": [
+    "13080",
+    "13090",
+    "13100",
+    "13290",
+    "13540"
+   ],
+   "communes": [
+    "Venelles",
+    "Éguilles",
+    "Le Tholonet",
+    "Meyreuil",
+    "Gardanne",
+    "Bouc-Bel-Air",
+    "Rousset",
+    "Trets",
+    "Vitrolles",
+    "Fuveau"
+   ],
+   "secteurs": [
+    "micro-électronique",
+    "énergie et recherche",
+    "conseil et services",
+    "droit"
+   ],
+   "volume": 140,
+   "kd": 8,
+   "statut": "brouillon WP 20910 (23/09)",
+   "page_geo": null,
+   "action": "Création 23/09. Registre consultant, à distance : ne pas dupliquer consultant-seo-marseille (30 minutes l'une de l'autre)."
+  },
+  {
+   "slug": "consultant-seo-montpellier",
+   "ville": "Montpellier",
+   "gentile": "Montpelliérains",
+   "registre": "consultant",
+   "departement": "Hérault",
+   "code_departement": "34",
+   "codes_postaux": [
+    "34000",
+    "34070",
+    "34080",
+    "34090"
+   ],
+   "communes": [
+    "Castelnau-le-Lez",
+    "Lattes",
+    "Pérols",
+    "Mauguio",
+    "Juvignac",
+    "Saint-Jean-de-Védas",
+    "Grabels",
+    "Le Crès",
+    "Montferrier-sur-Lez",
+    "Jacou"
+   ],
+   "secteurs": [
+    "santé et recherche",
+    "numérique",
+    "tourisme",
+    "viticulture"
+   ],
+   "volume": 590,
+   "kd": 25,
+   "statut": "brouillon WP 20911 (23/09)",
+   "page_geo": null,
+   "action": "Création 23/09. Registre consultant, entièrement à distance."
+  },
+  {
+   "slug": "consultant-seo-lyon",
+   "ville": "Lyon",
+   "gentile": "Lyonnais",
+   "registre": "consultant",
+   "departement": "Rhône",
+   "code_departement": "69",
+   "codes_postaux": [
+    "69001 à 69009"
+   ],
+   "communes": [
+    "Villeurbanne",
+    "Vénissieux",
+    "Caluire-et-Cuire",
+    "Bron",
+    "Vaulx-en-Velin",
+    "Écully",
+    "Tassin-la-Demi-Lune",
+    "Saint-Priest",
+    "Limonest",
+    "Oullins-Pierre-Bénite"
+   ],
+   "secteurs": [
+    "santé et biotechnologies",
+    "chimie et industrie",
+    "numérique",
+    "commerce et gastronomie"
+   ],
+   "volume": 1600,
+   "kd": 30,
+   "statut": "brouillon WP 20912 (23/09)",
+   "page_geo": "agence-geo-lyon",
+   "action": "Création 23/09. Registre consultant, entièrement à distance. Le plus gros volume du lot."
+  },
+  {
+   "slug": "consultant-seo-bordeaux",
+   "ville": "Bordeaux",
+   "gentile": "Bordelais",
+   "registre": "consultant",
+   "departement": "Gironde",
+   "code_departement": "33",
+   "codes_postaux": [
+    "33000",
+    "33100",
+    "33200",
+    "33300",
+    "33800"
+   ],
+   "communes": [
+    "Mérignac",
+    "Pessac",
+    "Talence",
+    "Bègles",
+    "Le Bouscat",
+    "Lormont",
+    "Cenon",
+    "Villenave-d'Ornon",
+    "Gradignan",
+    "Bruges"
+   ],
+   "secteurs": [
+    "vin et négoce",
+    "aéronautique",
+    "tourisme",
+    "numérique"
+   ],
+   "volume": 480,
+   "kd": 10,
+   "statut": "brouillon WP 20913 (23/09)",
+   "page_geo": "agence-geo-bordeaux",
+   "action": "Création 23/09. Registre consultant, entièrement à distance."
+  },
+  {
+   "slug": "consultant-seo-toulouse",
+   "ville": "Toulouse",
+   "gentile": "Toulousains",
+   "registre": "consultant",
+   "departement": "Haute-Garonne",
+   "code_departement": "31",
+   "codes_postaux": [
+    "31000 à 31500"
+   ],
+   "communes": [
+    "Blagnac",
+    "Colomiers",
+    "Tournefeuille",
+    "Balma",
+    "L'Union",
+    "Ramonville-Saint-Agne",
+    "Labège",
+    "Muret",
+    "Cugnaux",
+    "Saint-Orens-de-Gameville"
+   ],
+   "secteurs": [
+    "aéronautique et spatial",
+    "santé",
+    "numérique",
+    "BTP"
+   ],
+   "volume": 320,
+   "kd": 8,
+   "statut": "brouillon WP 20914 (23/09)",
+   "page_geo": "agence-geo-toulouse",
+   "action": "Création 23/09. Registre consultant, entièrement à distance."
   }
  ],
  "comparatifs": [
@@ -611,10 +831,6 @@
    [
     "agence référencement toulon",
     50
-   ],
-   [
-    "agence référencement var",
-    140
    ]
   ],
   "agence-seo-monaco": [
@@ -672,7 +888,18 @@
    ]
   ],
   "consultant-seo-marseille": [],
-  "consultant-seo-toulon": []
+  "consultant-seo-toulon": [],
+  "agence-seo-var": [
+   [
+    "agence référencement var",
+    90
+   ]
+  ],
+  "consultant-seo-aix-en-provence": [],
+  "consultant-seo-montpellier": [],
+  "consultant-seo-lyon": [],
+  "consultant-seo-bordeaux": [],
+  "consultant-seo-toulouse": []
  },
  "hors_ancrage": {
   "_regle": "Aucun ancrage local credible : ni adresse, ni deplacement. Deux angles seulement — le comparatif, ou le registre consultant (une personne intervient a distance, une agence pretend etre sur place). Ne rien produire avant d'avoir rempli codes postaux, communes et secteurs : le reste du gabarit s'appuie dessus.",

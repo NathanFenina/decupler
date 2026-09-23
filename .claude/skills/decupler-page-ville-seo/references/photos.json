@@ -176,6 +176,90 @@
    "h": 858,
    "alt": "Marseille, le Vieux-Port vu de Notre-Dame-de-la-Garde",
    "credit": "Photo Zairon, <a href=\"https://commons.wikimedia.org/wiki/File%3AMarseille_Basilique_Notre-Dame-de-la-Garde_Vue_sur_le_Vieux-Port_3.jpg\" rel=\"nofollow noopener\" target=\"_blank\">CC BY-SA 4.0</a>, via Wikimedia Commons"
+  },
+  "hero-var": {
+   "url": "https://decupler.com/wp-content/uploads/2026/09/hero-var.jpg",
+   "w": 1400,
+   "h": 1050,
+   "alt": "Le Var, la plage Notre-Dame à Porquerolles",
+   "credit": "Photo Jean-pierre olivier, <a href=\"https://commons.wikimedia.org/wiki/File%3A2005_Plage_Notre-Dame_Porquerolles_22.jpg\" rel=\"nofollow noopener\" target=\"_blank\">CC BY-SA 4.0</a>, via Wikimedia Commons"
+  },
+  "bandeau-var": {
+   "url": "https://decupler.com/wp-content/uploads/2026/09/bandeau-var.jpg",
+   "w": 2000,
+   "h": 858,
+   "alt": "Le Var, les vignes des Côtes de Provence",
+   "credit": "Photo Bonvol, <a href=\"https://commons.wikimedia.org/wiki/File%3ACotes_de_Provence_between_Cuers_and_Pierrefeu-du-Var.jpg\" rel=\"nofollow noopener\" target=\"_blank\">CC BY-SA 3.0</a>, via Wikimedia Commons"
+  },
+  "hero-aix": {
+   "url": "https://decupler.com/wp-content/uploads/2026/09/hero-aix.jpg",
+   "w": 1400,
+   "h": 1050,
+   "alt": "Aix-en-Provence, le cours Mirabeau",
+   "credit": "Photo Pimlico27, <a href=\"https://commons.wikimedia.org/wiki/File%3ACours_Mirabeau%2C_Aix-en-Provence%2C_France.jpg\" rel=\"nofollow noopener\" target=\"_blank\">CC BY-SA 4.0</a>, via Wikimedia Commons"
+  },
+  "bandeau-aix": {
+   "url": "https://decupler.com/wp-content/uploads/2026/09/bandeau-aix.jpg",
+   "w": 2000,
+   "h": 858,
+   "alt": "La montagne Sainte-Victoire, près d'Aix-en-Provence",
+   "credit": "Photo Tmv, <a href=\"https://commons.wikimedia.org/wiki/File%3AMontagne_Sainte-Victoire_2018-8-17.jpg\" rel=\"nofollow noopener\" target=\"_blank\">CC BY-SA 4.0</a>, via Wikimedia Commons"
+  },
+  "hero-montpellier": {
+   "url": "https://decupler.com/wp-content/uploads/2026/09/hero-montpellier.jpg",
+   "w": 1400,
+   "h": 1050,
+   "alt": "Montpellier, la place de la Comédie",
+   "credit": "Photo Choinowski, <a href=\"https://commons.wikimedia.org/wiki/File%3APlace_de_la_Com%C3%A9die_Montpellier.jpg\" rel=\"nofollow noopener\" target=\"_blank\">CC BY-SA 4.0</a>, via Wikimedia Commons"
+  },
+  "bandeau-montpellier": {
+   "url": "https://decupler.com/wp-content/uploads/2026/09/bandeau-montpellier.jpg",
+   "w": 2000,
+   "h": 858,
+   "alt": "Montpellier, la promenade du Peyrou et l'arc de triomphe",
+   "credit": "Photo PierreSelim, <a href=\"https://commons.wikimedia.org/wiki/File%3APromenade_du_Peyrou_-_2012-08-26.jpg\" rel=\"nofollow noopener\" target=\"_blank\">CC BY 3.0</a>, via Wikimedia Commons"
+  },
+  "hero-lyon": {
+   "url": "https://decupler.com/wp-content/uploads/2026/09/hero-lyon.jpg",
+   "w": 1400,
+   "h": 1050,
+   "alt": "Lyon, la cathédrale Saint-Jean et Fourvière au bord de la Saône",
+   "credit": "Photo Herbert Frank from Wien AT, <a href=\"https://commons.wikimedia.org/wiki/File%3ALyon%2C_an_der_Sa%C3%B4ne%2C_Cath%C3%A9drale_Saint-Jean-Baptiste_%2812.%29%2C_hinten_Notre-Dame_de_Fourvi%C3%A8re_%2819.%29_%2841976211044%29.jpg\" rel=\"nofollow noopener\" target=\"_blank\">CC BY 2.0</a>, via Wikimedia Commons"
+  },
+  "bandeau-lyon": {
+   "url": "https://decupler.com/wp-content/uploads/2026/09/bandeau-lyon.jpg",
+   "w": 2000,
+   "h": 858,
+   "alt": "Lyon, la Saône et la colline de Fourvière",
+   "credit": "Photo Philippe Alès, <a href=\"https://commons.wikimedia.org/wiki/File%3ALyon_%2C_Sa%C3%B4ne%2C_Palais_de_justice_et_Fourvi%C3%A8res.jpg\" rel=\"nofollow noopener\" target=\"_blank\">CC BY-SA 4.0</a>, via Wikimedia Commons"
+  },
+  "hero-bordeaux": {
+   "url": "https://decupler.com/wp-content/uploads/2026/09/hero-bordeaux.jpg",
+   "w": 1400,
+   "h": 1050,
+   "alt": "Bordeaux, le miroir d'eau et la place de la Bourse",
+   "credit": "Photo Gzen92, <a href=\"https://commons.wikimedia.org/wiki/File%3AMiroir_d%27eau_et_place_de_la_Bourse_%28Bordeaux%29_%284%29.jpg\" rel=\"nofollow noopener\" target=\"_blank\">CC BY-SA 4.0</a>, via Wikimedia Commons"
+  },
+  "bandeau-bordeaux": {
+   "url": "https://decupler.com/wp-content/uploads/2026/09/bandeau-bordeaux.jpg",
+   "w": 2000,
+   "h": 858,
+   "alt": "Bordeaux, les quais de la Garonne et le pont Chaban-Delmas",
+   "credit": "Photo Grand Parc - Bordeaux, France, <a href=\"https://commons.wikimedia.org/wiki/File%3ABordeaux_-_Les_quais_et_le_pont_Chaban_Delmas_sur_la_Garonne_-_Gironde_France_Bridge_over_Garonne_Photo_Picture_Photography_%287900278820%29.jpg\" rel=\"nofollow noopener\" target=\"_blank\">CC BY 2.0</a>, via Wikimedia Commons"
+  },
+  "hero-toulouse": {
+   "url": "https://decupler.com/wp-content/uploads/2026/09/hero-toulouse.jpg",
+   "w": 1400,
+   "h": 1050,
+   "alt": "Toulouse, la place du Capitole",
+   "credit": "Photo kallerna, <a href=\"https://commons.wikimedia.org/wiki/File%3APlace_du_Capitole%2C_Toulouse.jpg\" rel=\"nofollow noopener\" target=\"_blank\">CC BY-SA 4.0</a>, via Wikimedia Commons"
+  },
+  "bandeau-toulouse": {
+   "url": "https://decupler.com/wp-content/uploads/2026/09/bandeau-toulouse.jpg",
+   "w": 2000,
+   "h": 858,
+   "alt": "Toulouse, la Garonne à la tombée de la nuit",
+   "credit": "Photo PierreSelim, <a href=\"https://commons.wikimedia.org/wiki/File%3APanorama_from_pont_Saint-Pierre_in_Toulouse_-_2012-08-31.jpg\" rel=\"nofollow noopener\" target=\"_blank\">CC BY 3.0</a>, via Wikimedia Commons"
   }
  }
 }
