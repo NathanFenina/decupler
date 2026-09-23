@@ -79,7 +79,7 @@
    ],
    "volume": 1000,
    "kd": 13,
-   "statut": "brouillon WP 20741 (23/09)",
+   "statut": "publiée le 23/09 (WP 20741)",
    "page_geo": null,
    "action": "Création. Priorité 2 : ancrage 06 crédible depuis Nice.",
    "registre": "agence"
@@ -115,7 +115,7 @@
    ],
    "volume": 1000,
    "kd": 12,
-   "statut": "brouillon WP 20756 (23/09)",
+   "statut": "publiée le 23/09 (WP 20756)",
    "page_geo": null,
    "action": "Création. Priorité 2.",
    "registre": "agence"
@@ -145,7 +145,7 @@
    ],
    "volume": 390,
    "kd": 17,
-   "statut": "brouillon WP 20757 (23/09)",
+   "statut": "publiée le 23/09 (WP 20757)",
    "page_geo": null,
    "action": "Création. Attention : Monaco n'est pas un département français. Ne pas écrire « Alpes-Maritimes », ne pas citer de code postal français, adapter la mention légale et la TVA si le budget est évoqué.",
    "registre": "agence"
@@ -180,7 +180,7 @@
    ],
    "volume": 210,
    "kd": 11,
-   "statut": "brouillon WP 20769 (23/09)",
+   "statut": "publiée le 23/09 (WP 20769)",
    "page_geo": null,
    "action": "Création. Priorité 3.",
    "registre": "agence"
@@ -218,7 +218,7 @@
    ],
    "volume": 390,
    "kd": 11,
-   "statut": "brouillon WP 20857 (23/09)",
+   "statut": "publiée le 23/09 (WP 20857)",
    "page_geo": null,
    "action": "Création. Page départementale, pas une ville : elle agrège et doit lier vers les pages villes, sans les cannibaliser. La rédiger en dernier, quand les pages villes existent.",
    "registre": "agence"
@@ -250,7 +250,7 @@
    ],
    "volume": 110,
    "kd": 10,
-   "statut": "brouillon WP 20849 (23/09)",
+   "statut": "publiée le 23/09 (WP 20849)",
    "page_geo": null,
    "action": "Création. Priorité 4.",
    "registre": "agence"
@@ -280,7 +280,7 @@
    ],
    "volume": 110,
    "kd": 9,
-   "statut": "brouillon WP 20850 (23/09)",
+   "statut": "publiée le 23/09 (WP 20850)",
    "page_geo": null,
    "action": "Création. Priorité 4.",
    "registre": "agence"
@@ -310,7 +310,7 @@
    ],
    "volume": 140,
    "kd": 8,
-   "statut": "brouillon WP 20851 (23/09)",
+   "statut": "publiée le 23/09 (WP 20851)",
    "page_geo": null,
    "action": "Création. Priorité 4.",
    "registre": "agence"
@@ -340,7 +340,7 @@
    ],
    "volume": 70,
    "kd": 11,
-   "statut": "brouillon WP 20852 (23/09)",
+   "statut": "publiée le 23/09 (WP 20852)",
    "page_geo": null,
    "action": "Création. Priorité 5 : petit volume, mais 15 min de Nice — l'ancrage y est le plus fort du lot.",
    "registre": "agence"
@@ -403,7 +403,7 @@
    ],
    "volume": 880,
    "kd": 17,
-   "statut": "brouillon WP 20752 (23/09)",
+   "statut": "publiée le 23/09 (WP 20752)",
    "page_geo": "agence-geo-nice",
    "siege": true,
    "action": "Création. Page Nathan, à la première personne. Absorbe « expert seo nice » (210) et « freelance seo nice » (140) : 1 230 de volume cumulé."
@@ -434,7 +434,7 @@
    ],
    "volume": 1000,
    "kd": 16,
-   "statut": "brouillon WP 20856 (23/09)",
+   "statut": "publiée le 23/09 (WP 20856)",
    "page_geo": "agence-geo-marseille",
    "action": "Création. Le registre consultant est le bon angle sur Marseille : pas d'adresse locale à justifier, c'est une personne qui intervient à distance. Plus fort que la page agence là-bas."
   },
@@ -466,7 +466,7 @@
    ],
    "volume": 480,
    "kd": 10,
-   "statut": "brouillon WP 20854 (23/09)",
+   "statut": "publiée le 23/09 (WP 20854)",
    "page_geo": null,
    "action": "Création après la page agence Toulon. Contrôler la duplication entre les deux : c'est le risque principal du double registre."
   },
@@ -497,7 +497,7 @@
    ],
    "volume": 320,
    "kd": 13,
-   "statut": "brouillon WP 20853 (23/09)",
+   "statut": "publiée le 23/09 (WP 20853)",
    "page_geo": null,
    "action": "Création. Absorbe « expert seo cannes » (30)."
   },
@@ -526,7 +526,7 @@
    ],
    "volume": 110,
    "kd": 12,
-   "statut": "brouillon WP 20855 (23/09)",
+   "statut": "publiée le 23/09 (WP 20855)",
    "page_geo": null,
    "action": "Création. Absorbe « expert seo monaco » (30). Monaco n'est pas un département français : pas de code postal français, pas d'« Alpes-Maritimes », TVA à adapter."
   },
@@ -563,7 +563,7 @@
    ],
    "volume": 90,
    "kd": 9,
-   "statut": "brouillon WP 20909 (23/09)",
+   "statut": "publiée le 23/09 (WP 20909)",
    "page_geo": null,
    "action": "Création 23/09. Page départementale, comme le 06 : elle agrège Toulon et Fréjus sans les cannibaliser. Absorbe « agence référencement var » (90).",
    "registre": "agence",
@@ -603,7 +603,7 @@
    ],
    "volume": 140,
    "kd": 8,
-   "statut": "brouillon WP 20910 (23/09)",
+   "statut": "publiée le 23/09 (WP 20910)",
    "page_geo": null,
    "action": "Création 23/09. Registre consultant, à distance : ne pas dupliquer consultant-seo-marseille (30 minutes l'une de l'autre)."
   },
@@ -640,7 +640,7 @@
    ],
    "volume": 590,
    "kd": 25,
-   "statut": "brouillon WP 20911 (23/09)",
+   "statut": "publiée le 23/09 (WP 20911)",
    "page_geo": null,
    "action": "Création 23/09. Registre consultant, entièrement à distance."
   },
@@ -674,7 +674,7 @@
    ],
    "volume": 1600,
    "kd": 30,
-   "statut": "brouillon WP 20912 (23/09)",
+   "statut": "publiée le 23/09 (WP 20912)",
    "page_geo": "agence-geo-lyon",
    "action": "Création 23/09. Registre consultant, entièrement à distance. Le plus gros volume du lot."
   },
@@ -712,7 +712,7 @@
    ],
    "volume": 480,
    "kd": 10,
-   "statut": "brouillon WP 20913 (23/09)",
+   "statut": "publiée le 23/09 (WP 20913)",
    "page_geo": "agence-geo-bordeaux",
    "action": "Création 23/09. Registre consultant, entièrement à distance."
   },
@@ -746,7 +746,7 @@
    ],
    "volume": 320,
    "kd": 8,
-   "statut": "brouillon WP 20914 (23/09)",
+   "statut": "publiée le 23/09 (WP 20914)",
    "page_geo": "agence-geo-toulouse",
    "action": "Création 23/09. Registre consultant, entièrement à distance."
   }
