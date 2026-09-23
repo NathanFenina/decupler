@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Décupler — Budget de crawl
  * Description:       Trois correctifs mesurés le 22/09/2026 sur decupler.com : un robots.txt propre, une page « disparue » légère au lieu de 151 Ko, et un 404 sur la pagination hors limites. Objectif : arrêter de faire télécharger 1,5 Go à Googlebot pour lui apprendre que 12 000 pages n'existent plus.
- * Version:           1.2.0
+ * Version:           1.2.1
  * Author:            Décupler
  * License:           GPL-2.0-or-later
  * Requires at least: 6.0
@@ -89,13 +89,19 @@
  *     que lors d'un enregistrement depuis son éditeur. Mesuré le 23/09 sur
  *     deux pages. Le plugin purge désormais ce cache à chaque écriture, et
  *     une fois à l'activation de la 1.2.0.
+ *
+ * 1.2.1 — 23/09/2026. Deux 301 de plus, sur de vrais doublons d'intention :
+ *   /seo-chatgpt/ → /seo-pour-chatgpt/, et /consultant-geo-optimisation-
+ *   moteurs-ia/ → /consultant-geo/. Les autres articles des grappes ChatGPT
+ *   et avis Google restent en ligne : relus un par un, chacun porte une
+ *   intention distincte. Ils sont désormais reliés à leur guide pilier.
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-const DCP_CRAWL_VERSION = '1.2.0';
+const DCP_CRAWL_VERSION = '1.2.1';
 
 /* -------------------------------------------------------------------------
  * 1. robots.txt
@@ -606,6 +612,14 @@ function dcp_crawl_redirections() {
 			'agence-visibilite-ia'         => 'https://decupler.com/agence-geo/',
 			'agence-referencement-chatgpt' => 'https://decupler.com/agence-geo/',
 			'agence-seo-chatgpt'           => 'https://decupler.com/agence-geo/',
+			// Doublon d'intention : l'ancien article Elementor « SEO ChatGPT »
+			// (non indexé) et « SEO pour ChatGPT », le socle technique. Les
+			// autres articles de la grappe ChatGPT restent : chacun porte une
+			// intention distincte, et le guide pilier les relie (23/09).
+			'seo-chatgpt'                  => 'https://decupler.com/seo-pour-chatgpt/',
+			// Meme intention que /consultant-geo/ (indexee) : l'ancienne version
+			// de decembre 2025, jamais exploree par Google en neuf mois.
+			'consultant-geo-optimisation-moteurs-ia' => 'https://decupler.com/consultant-geo/',
 		)
 	);
 }

@@ -82,6 +82,9 @@ sleep 2
 code(){ curl -sS -o /dev/null -w '%{http_code}' "$B$1"; }
 
 echo "== 1. robots.txt"
+# Sauvegardes laissees par un passage precedent du banc : on les compte
+# pour ne mesurer que celle que CE passage doit creer.
+AVANT=$(ls wordpress/robots.txt.desactive-* 2>/dev/null | wc -l | tr -d ' ')
 attend "le fichier physique masque le plugin (état de la production)" \
   "$(curl -sS "$B/robots.txt" | grep -c 'Budget de crawl')" "0"
 $WP eval 'wp_set_current_user(1); $_POST["dcp_action"]="desactiver";
@@ -89,7 +92,7 @@ $WP eval 'wp_set_current_user(1); $_POST["dcp_action"]="desactiver";
   add_filter("wp_redirect",function(){throw new Exception();});
   try{dcp_crawl_bascule_robots();}catch(Exception $e){}' >/dev/null 2>&1
 attend "le bouton range le fichier physique" "$([ -f wordpress/robots.txt ] && echo present || echo range)" "range"
-attend "une sauvegarde datée est conservée" "$(ls wordpress/robots.txt.desactive-* 2>/dev/null | wc -l | tr -d ' ')" "1"
+attend "une sauvegarde datée est conservée" "$(( $(ls wordpress/robots.txt.desactive-* 2>/dev/null | wc -l | tr -d ' ') - AVANT ))" "1"
 R=$(curl -sS "$B/robots.txt")
 attend "le plugin sert le robots.txt" "$(echo "$R" | grep -c 'Budget de crawl')" "1"
 attend "un seul groupe User-agent (pas de doublon Yoast)" "$(echo "$R" | grep -c '^User-agent')" "1"
@@ -121,6 +124,14 @@ attend "agence-geo dans le sitemap" "$(echo "$SM" | grep -c '/agence-geo/')" "1"
 echo "== 5. Redirections"
 attend "/agence-seo-ia/ → 301" "$(code /agence-seo-ia/)" "301"
 attend "cible = /agence-geo/" "$(curl -sS -o /dev/null -w '%{redirect_url}' "$B/agence-seo-ia/")" "https://decupler.com/agence-geo/"
+# Un ARTICLE redirigé (et non une page) : la grappe ChatGPT.
+if [ -z "$($WP post list --post_type=post --name=seo-chatgpt --field=ID 2>/dev/null)" ]; then
+  $WP post create --post_title="SEO ChatGPT" --post_name=seo-chatgpt --post_status=publish >/dev/null 2>&1
+  $WP transient delete --all >/dev/null 2>&1
+fi
+attend "article /seo-chatgpt/ → 301" "$(code /seo-chatgpt/)" "301"
+attend "cible = /seo-pour-chatgpt/" "$(curl -sS -o /dev/null -w '%{redirect_url}' "$B/seo-chatgpt/")" "https://decupler.com/seo-pour-chatgpt/"
+attend "article redirigé hors sitemap" "$(curl -sS "$B/post-sitemap.xml" | grep -c '/seo-chatgpt/')" "0"
 
 echo "== 6. llms.txt"
 L=$(curl -sS "$B/llms.txt")
@@ -133,7 +144,7 @@ attend "pages hors index exclues" "$(echo "$L" | grep -c '/panier/')" "0"
 
 echo "== 7. Cache Elementor"
 $WP eval 'update_post_meta(1,"_elementor_element_cache","ancien");
-  update_post_meta(1,"_elementor_data","[]");' >/dev/null 2>&1
+  update_post_meta(1,"_elementor_data","[]/*".microtime(true)."*/");' >/dev/null 2>&1
 attend "écrire _elementor_data purge le cache" "$($WP post meta get 1 _elementor_element_cache 2>/dev/null)" ""
 
 echo "== 8. Hygiène"
