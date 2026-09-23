@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Décupler — Budget de crawl
  * Description:       Trois correctifs mesurés le 22/09/2026 sur decupler.com : un robots.txt propre, une page « disparue » légère au lieu de 151 Ko, et un 404 sur la pagination hors limites. Objectif : arrêter de faire télécharger 1,5 Go à Googlebot pour lui apprendre que 12 000 pages n'existent plus.
- * Version:           1.1.0
+ * Version:           1.2.0
  * Author:            Décupler
  * License:           GPL-2.0-or-later
  * Requires at least: 6.0
@@ -60,13 +60,42 @@
  *
  * La 1.1.0 ajoute aussi /llms.txt, absent du site (404) — ce qui est gênant
  * pour une agence qui vend du GEO.
+ *
+ * ---------------------------------------------------------------------------
+ * 1.2.0 — 23/09/2026. Exécution de la carte topique, validée par Nathan.
+ *
+ *   - Pages fonctionnelles en noindex et hors sitemap. Vérification du
+ *     23/09 : les 143 URL du sitemap répondent toutes 200, indexables, avec
+ *     une canonique sur elles-mêmes — techniquement propres. Mais parmi elles
+ *     figurent le panier, la validation de commande, le compte client, une
+ *     boutique WooCommerce SANS AUCUN PRODUIT et la confirmation de
+ *     rendez-vous. Toutes indexables. Google choisissait de ne pas les
+ *     indexer ; il n'avait pas à faire ce tri à notre place.
+ *
+ *   - Webinaires passés (mars 26, avril 26, Warsaw) : même traitement.
+ *
+ *   - Redirections 301 de la grappe « agence + discipline IA ». Six pages
+ *     dont trois n'ont JAMAIS été montrées par Google en douze mois, toutes à
+ *     zéro clic, qui visent la même intention que /agence-geo/. Seules les
+ *     redirections dont la cible couvre DÉJÀ l'intention sont actives ici.
+ *     Les grappes « ChatGPT » et « avis Google » attendent que leur page
+ *     cible ait été réécrite pour absorber le sujet : rediriger « obtenir des
+ *     avis » vers un article sur la suppression d'avis serait pire que ne
+ *     rien faire.
+ *
+ *   - Cache d'éléments Elementor. Une écriture de _elementor_data par l'API
+ *     REST est bien enregistrée mais reste INVISIBLE en ligne, parce
+ *     qu'Elementor continue de servir le rendu mis en cache et ne le purge
+ *     que lors d'un enregistrement depuis son éditeur. Mesuré le 23/09 sur
+ *     deux pages. Le plugin purge désormais ce cache à chaque écriture, et
+ *     une fois à l'activation de la 1.2.0.
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-const DCP_CRAWL_VERSION = '1.1.0';
+const DCP_CRAWL_VERSION = '1.2.0';
 
 /* -------------------------------------------------------------------------
  * 1. robots.txt
@@ -131,7 +160,14 @@ add_filter(
 
 		return dcp_crawl_robots_voulu();
 	},
-	20,
+	// Priorité maximale, et c'est indispensable. Test du 23/09 sur un
+	// WordPress local avec Yoast : à la priorité 20, Yoast ajoutait APRÈS
+	// nous son propre bloc — un second groupe « User-agent: * » avec un
+	// « Disallow: » vide et une seconde ligne Sitemap. Google fusionne les
+	// groupes identiques, mais un robot qui ne retient que le dernier groupe
+	// aurait ignoré toutes les règles ci-dessus. On passe donc en dernier, et
+	// ce fichier est le seul à écrire le robots.txt.
+	PHP_INT_MAX,
 	2
 );
 
@@ -372,60 +408,127 @@ function dcp_crawl_llms_txt() {
 		return $cache;
 	}
 
-	$nom  = get_bloginfo( 'name' );
-	$desc = get_bloginfo( 'description' );
-	$out  = array( '# ' . $nom );
-	if ( $desc ) {
-		$out[] = '';
-		$out[] = '> ' . $desc;
-	}
-	$out[] = '';
+	// Format de llmstxt.org : un H1, un résumé en citation, puis des sections
+	// H2 de liens « - [titre](url): description ». Le résumé est la phrase
+	// que les moteurs génératifs liront en premier sur l'entreprise : il est
+	// écrit, pas emprunté au slogan du thème.
+	$resume = apply_filters(
+		'dcp_crawl_llms_resume',
+		'Décupler est une agence de référencement naturel (SEO) et de '
+		. 'référencement dans les moteurs génératifs (GEO) basée à Nice, fondée '
+		. 'et dirigée par Nathan Fenina. Elle rend les entreprises visibles sur '
+		. 'Google et citables par ChatGPT, Claude, Gemini et Perplexity.'
+	);
+
+	$out = array( '# ' . dcp_crawl_texte( get_bloginfo( 'name' ) ), '', '> ' . $resume, '' );
 	$out[] = 'Site : ' . home_url( '/' );
 	$out[] = 'Sitemap : ' . home_url( '/sitemap_index.xml' );
 	$out[] = '';
+
+	// Les pages piliers d'abord : un modèle qui lit ce fichier doit trouver
+	// l'offre avant les 104 autres pages rangées par ordre alphabétique.
+	$piliers = apply_filters(
+		'dcp_crawl_llms_piliers',
+		array( 'agence-seo', 'agence-geo', 'accompagnement-seo', 'audit-geo',
+			'seo-local', 'agence-seo-nice', 'cas-clients', 'machine-de-guerre-seo' )
+	);
+	$deja = array();
+	$lignes_piliers = array();
+	foreach ( $piliers as $chemin ) {
+		$p = get_page_by_path( $chemin, OBJECT, array( 'page', 'post' ) );
+		if ( $p && 'publish' === $p->post_status && dcp_crawl_llms_publiable( $p ) ) {
+			$lignes_piliers[] = dcp_crawl_llms_ligne( $p );
+			$deja[]           = (int) $p->ID;
+		}
+	}
+	if ( $lignes_piliers ) {
+		$out[] = '## Offre';
+		$out[] = '';
+		$out   = array_merge( $out, $lignes_piliers, array( '' ) );
+	}
 
 	foreach ( array( 'page' => 'Pages', 'post' => 'Articles' ) as $type => $titre ) {
 		$q = new WP_Query(
 			array(
 				'post_type'           => $type,
 				'post_status'         => 'publish',
-				'posts_per_page'      => ( 'page' === $type ) ? 120 : 200,
+				'posts_per_page'      => ( 'page' === $type ) ? 150 : 250,
 				'orderby'             => ( 'page' === $type ) ? 'title' : 'date',
 				'order'               => ( 'page' === $type ) ? 'ASC' : 'DESC',
 				'ignore_sticky_posts' => true,
 				'no_found_rows'       => true,
+				'post__not_in'        => $deja,
 			)
 		);
-		if ( ! $q->have_posts() ) {
-			continue;
-		}
-		$out[] = '## ' . $titre;
-		$out[] = '';
+		$lignes = array();
 		foreach ( $q->posts as $p ) {
-			// On ne publie que ce qui est indexable : une page en noindex n'a
-			// aucune raison d'être recommandée à un moteur par ailleurs.
-			if ( 'noindex' === get_post_meta( $p->ID, '_yoast_wpseo_meta-robots-noindex', true ) ) {
-				continue;
+			if ( dcp_crawl_llms_publiable( $p ) ) {
+				$lignes[] = dcp_crawl_llms_ligne( $p );
 			}
-			$resume = get_post_meta( $p->ID, '_yoast_wpseo_metadesc', true );
-			if ( ! $resume ) {
-				$resume = wp_strip_all_tags( get_the_excerpt( $p ) );
-			}
-			$resume = trim( preg_replace( '/\s+/', ' ', (string) $resume ) );
-			$ligne  = '- [' . wp_strip_all_tags( get_the_title( $p ) ) . ']('
-				. get_permalink( $p ) . ')';
-			if ( $resume ) {
-				$ligne .= ' : ' . mb_substr( $resume, 0, 180 );
-			}
-			$out[] = $ligne;
 		}
-		$out[] = '';
+		if ( $lignes ) {
+			$out[] = '## ' . $titre;
+			$out[] = '';
+			$out   = array_merge( $out, $lignes, array( '' ) );
+		}
 	}
 
 	$txt = implode( "\n", $out ) . "\n";
 	set_transient( 'dcp_crawl_llms', $txt, 12 * HOUR_IN_SECONDS );
 
 	return $txt;
+}
+
+/**
+ * Texte brut, entités décodées.
+ *
+ * WordPress rend les titres et les extraits avec des entités HTML : une
+ * apostrophe devient « &#8217; ». Test du 23/09 : le premier jet publiait
+ * donc « It&#8217;s » en clair dans un fichier texte — sur un site en
+ * français, c'est une entité toutes les trois lignes.
+ */
+function dcp_crawl_texte( $s ) {
+	$s = html_entity_decode( wp_strip_all_tags( (string) $s ), ENT_QUOTES | ENT_HTML5, 'UTF-8' );
+
+	return trim( preg_replace( '/\s+/u', ' ', $s ) );
+}
+
+/**
+ * Un contenu a-t-il sa place dans llms.txt ? Ni ce qui est en noindex, ni ce
+ * qu'on sort de l'index, ni ce qui redirige : on ne recommande pas à un
+ * moteur une page qu'on a soi-même écartée.
+ */
+function dcp_crawl_llms_publiable( $p ) {
+	if ( '1' === (string) get_post_meta( $p->ID, '_yoast_wpseo_meta-robots-noindex', true ) ) {
+		return false;
+	}
+	$slug = get_post_field( 'post_name', $p );
+
+	return ! in_array( $slug, dcp_crawl_chemins_hors_index(), true )
+		&& ! isset( dcp_crawl_redirections()[ $slug ] );
+}
+
+/**
+ * Une ligne de liste : « - [titre](url): description », la description
+ * coupée proprement à la fin d'un mot.
+ */
+function dcp_crawl_llms_ligne( $p ) {
+	$desc = get_post_meta( $p->ID, '_yoast_wpseo_metadesc', true );
+	if ( ! $desc ) {
+		// Repli sur le contenu : sans shortcodes, et chaque commentaire HTML
+		// (<!--nextpage-->, balises Gutenberg) remplacé par une espace — sinon
+		// « Partie 1<!--nextpage-->Partie 2 » devient « Partie 1Partie 2 ».
+		$corps = preg_replace( '/<!--.*?-->/s', ' ', strip_shortcodes( $p->post_content ) );
+		$desc  = has_excerpt( $p ) ? $p->post_excerpt : wp_trim_words( $corps, 40, '' );
+	}
+	$desc = dcp_crawl_texte( $desc );
+	if ( mb_strlen( $desc ) > 200 ) {
+		$desc = mb_substr( $desc, 0, 200 );
+		$desc = preg_replace( '/\s+\S*$/u', '', $desc ) . '…';
+	}
+	$ligne = '- [' . dcp_crawl_texte( get_the_title( $p ) ) . '](' . get_permalink( $p ) . ')';
+
+	return $desc ? $ligne . ': ' . $desc : $ligne;
 }
 
 /**
@@ -457,7 +560,216 @@ add_action(
 );
 
 /* -------------------------------------------------------------------------
- * 5. Écran de contrôle
+ * 5. Pages à sortir de l'index et du sitemap
+ * ---------------------------------------------------------------------- */
+
+/**
+ * Pages qui ne répondent à aucune recherche : fonctions de boutique, pages
+ * de remerciement, événements passés. Identifiées par leur chemin, parce
+ * qu'un identifiant change d'un environnement à l'autre et qu'un chemin se
+ * relit.
+ */
+function dcp_crawl_chemins_hors_index() {
+	return apply_filters(
+		'dcp_crawl_chemins_hors_index',
+		array(
+			// WooCommerce : panier, commande, compte, et une boutique vide.
+			'panier',
+			'commander',
+			'mon-compte',
+			'boutique',
+			// Page de remerciement après prise de rendez-vous.
+			'confirmation-de-rdv',
+			// Webinaires dont la date est passée.
+			'webinaire-mars26',
+			'webinaire-avril-26',
+			'webinaire-ecommerce-warsaw',
+		)
+	);
+}
+
+/**
+ * Redirections 301 de la carte topique.
+ *
+ * N'y figurent que les pages dont la cible couvre DÉJÀ l'intention. Chaque
+ * ligne est un chemin sans barre initiale, vers une URL absolue.
+ */
+function dcp_crawl_redirections() {
+	return apply_filters(
+		'dcp_crawl_redirections',
+		array(
+			// Grappe « agence + discipline IA » → hub GEO. Douze mois de
+			// Search Console : 0 clic sur les six, et trois jamais montrées.
+			'agence-seo-ia'                => 'https://decupler.com/agence-geo/',
+			'agence-aeo'                   => 'https://decupler.com/agence-geo/',
+			'agence-referencement-ia'      => 'https://decupler.com/agence-geo/',
+			'agence-visibilite-ia'         => 'https://decupler.com/agence-geo/',
+			'agence-referencement-chatgpt' => 'https://decupler.com/agence-geo/',
+			'agence-seo-chatgpt'           => 'https://decupler.com/agence-geo/',
+		)
+	);
+}
+
+/**
+ * Identifiants des contenus visés par un chemin, pour Yoast qui raisonne en
+ * identifiants. Mis en cache une heure : la résolution fait une requête par
+ * chemin, et le sitemap peut être demandé souvent.
+ */
+function dcp_crawl_ids_pour( array $chemins ) {
+	$cle = 'dcp_crawl_ids_' . md5( implode( '|', $chemins ) );
+	$ids = get_transient( $cle );
+	if ( is_array( $ids ) ) {
+		return $ids;
+	}
+	$ids = array();
+	foreach ( $chemins as $chemin ) {
+		foreach ( array( 'page', 'post' ) as $type ) {
+			$p = get_page_by_path( $chemin, OBJECT, $type );
+			if ( $p ) {
+				$ids[] = (int) $p->ID;
+			}
+		}
+	}
+	set_transient( $cle, $ids, HOUR_IN_SECONDS );
+
+	return $ids;
+}
+
+/**
+ * Chemin de la requête courante, sans barres ni paramètres.
+ */
+function dcp_crawl_chemin_courant() {
+	$chemin = wp_parse_url( $_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH );
+
+	return trim( (string) $chemin, '/' );
+}
+
+// Noindex via Yoast, qui produit la balise robots sur ce site. On passe par
+// le tableau plutôt que par la chaîne : il survit aux changements de format
+// de Yoast.
+add_filter(
+	'wpseo_robots_array',
+	function ( $robots ) {
+		if ( in_array( dcp_crawl_chemin_courant(), dcp_crawl_chemins_hors_index(), true ) ) {
+			$robots['index'] = 'noindex';
+		}
+		return $robots;
+	}
+);
+
+// Et en en-tête HTTP, pour le cas où Yoast serait désactivé un jour : le
+// noindex ne doit pas dépendre d'un seul plugin.
+add_action(
+	'template_redirect',
+	function () {
+		if ( in_array( dcp_crawl_chemin_courant(), dcp_crawl_chemins_hors_index(), true ) ) {
+			header( 'X-Robots-Tag: noindex, follow' );
+		}
+	},
+	5
+);
+
+// Hors sitemap : les pages hors index ET les pages redirigées. Un sitemap
+// qui annonce une URL redirigée fait explorer deux URL au lieu d'une.
+add_filter(
+	'wpseo_exclude_from_sitemap_by_post_ids',
+	function ( $ids ) {
+		$sortir = array_merge(
+			dcp_crawl_chemins_hors_index(),
+			array_keys( dcp_crawl_redirections() )
+		);
+
+		return array_values( array_unique( array_merge(
+			(array) $ids,
+			dcp_crawl_ids_pour( $sortir )
+		) ) );
+	}
+);
+
+// Les redirections, avant tout rendu. Priorité 0 : avant le correctif de
+// pagination et avant la page « disparue », pour qu'une URL redirigée ne
+// soit jamais servie en 404.
+add_action(
+	'template_redirect',
+	function () {
+		$carte  = dcp_crawl_redirections();
+		$chemin = dcp_crawl_chemin_courant();
+		if ( isset( $carte[ $chemin ] ) ) {
+			wp_redirect( $carte[ $chemin ], 301, 'Decupler carte topique' );
+			exit;
+		}
+	},
+	-1
+);
+
+/* -------------------------------------------------------------------------
+ * 6. Cache d'éléments Elementor
+ * ---------------------------------------------------------------------- */
+
+/**
+ * Purge le rendu mis en cache d'une page Elementor dès que ses données
+ * changent, quel que soit le chemin de l'écriture.
+ *
+ * Elementor ne purge ce cache que lors d'un enregistrement depuis son
+ * éditeur. Une écriture de _elementor_data par l'API REST est donc bien
+ * stockée, mais la page continue d'afficher l'ancien rendu — sans erreur,
+ * sans avertissement. Constaté le 23/09 sur /claude-skills-seo/ et
+ * /installer-mcp-data-for-seo-sur-chatgpt/.
+ */
+function dcp_crawl_purge_elementor_post( $post_id ) {
+	delete_post_meta( $post_id, '_elementor_element_cache' );
+	delete_post_meta( $post_id, '_elementor_css' );
+	// Le fichier CSS de la page est régénéré au prochain affichage.
+	$upload = wp_upload_dir();
+	$css    = trailingslashit( $upload['basedir'] ) . 'elementor/css/post-' . (int) $post_id . '.css';
+	if ( file_exists( $css ) ) {
+		wp_delete_file( $css );
+	}
+}
+
+foreach ( array( 'updated_post_meta', 'added_post_meta' ) as $crochet ) {
+	add_action(
+		$crochet,
+		function ( $meta_id, $post_id, $cle ) {
+			if ( '_elementor_data' === $cle ) {
+				dcp_crawl_purge_elementor_post( $post_id );
+			}
+		},
+		10,
+		3
+	);
+}
+
+/**
+ * Purge globale, une seule fois, au passage en 1.2.0 : c'est l'équivalent
+ * du bouton « Effacer les fichiers et les données » d'Elementor, et c'est ce
+ * qui rend visibles les écritures faites avant l'installation de ce
+ * correctif.
+ */
+add_action(
+	'init',
+	function () {
+		if ( get_option( 'dcp_crawl_version' ) === DCP_CRAWL_VERSION ) {
+			return;
+		}
+		global $wpdb;
+		if ( class_exists( '\Elementor\Plugin' )
+			&& isset( \Elementor\Plugin::$instance->files_manager ) ) {
+			\Elementor\Plugin::$instance->files_manager->clear_cache();
+		}
+		// Selon la version d'Elementor, la purge ci-dessus ne vide pas
+		// forcément le cache d'éléments. On le vide explicitement : Elementor
+		// le reconstruit au prochain affichage de chaque page.
+		$wpdb->delete( $wpdb->postmeta, array( 'meta_key' => '_elementor_element_cache' ) );
+		// Les identifiants résolus peuvent avoir changé avec la liste.
+		$wpdb->query( "DELETE FROM {$wpdb->options} WHERE option_name LIKE '\_transient\_dcp\_crawl\_%' OR option_name LIKE '\_transient\_timeout\_dcp\_crawl\_%'" );
+		update_option( 'dcp_crawl_version', DCP_CRAWL_VERSION, false );
+	},
+	99
+);
+
+/* -------------------------------------------------------------------------
+ * 7. Écran de contrôle
  * ---------------------------------------------------------------------- */
 
 add_action(
@@ -580,6 +892,33 @@ function dcp_crawl_ecran() {
 		. esc_html( home_url( '/llms.txt' ) ) . '</a>.</p>';
 	echo '<p><em>Ce n\'est pas une directive : aucun moteur n\'est obligé de '
 		. 'lire ce fichier. C\'est un sommaire lisible par une machine.</em></p>';
+
+	echo '<h2>5. Pages sorties de l\'index et du sitemap</h2>';
+	echo '<p>Noindex (balise Yoast et en-tête HTTP) et exclusion du sitemap pour '
+		. 'les pages qui ne répondent à aucune recherche&nbsp;:</p><ul style="list-style:disc;padding-left:20px">';
+	foreach ( dcp_crawl_chemins_hors_index() as $c ) {
+		echo '<li><a href="' . esc_url( home_url( '/' . $c . '/' ) ) . '" target="_blank">/'
+			. esc_html( $c ) . '/</a></li>';
+	}
+	echo '</ul>';
+
+	echo '<h2>6. Redirections 301 de la carte topique</h2>';
+	echo '<table class="widefat striped" style="max-width:760px"><thead><tr><th>Ancienne '
+		. 'adresse</th><th>Redirigée vers</th></tr></thead><tbody>';
+	foreach ( dcp_crawl_redirections() as $de => $vers ) {
+		echo '<tr><td><a href="' . esc_url( home_url( '/' . $de . '/' ) ) . '" target="_blank">/'
+			. esc_html( $de ) . '/</a></td><td>' . esc_html( $vers ) . '</td></tr>';
+	}
+	echo '</tbody></table>';
+	echo '<p><em>Seules les pages dont la cible couvre déjà le sujet sont '
+		. 'redirigées. Les grappes « ChatGPT » et « avis Google » attendent la '
+		. 'réécriture de leur page cible.</em></p>';
+
+	echo '<h2>7. Cache Elementor</h2>';
+	echo '<p>Toute modification de <code>_elementor_data</code> — y compris par '
+		. 'l\'API REST — purge désormais le rendu mis en cache de la page. Sans ce '
+		. 'correctif, une modification faite hors de l\'éditeur Elementor était '
+		. 'enregistrée mais restait invisible en ligne.</p>';
 
 	echo '<h2>Après activation</h2>';
 	echo '<ol><li>Vérifier les trois tests ci-dessus.</li>'
