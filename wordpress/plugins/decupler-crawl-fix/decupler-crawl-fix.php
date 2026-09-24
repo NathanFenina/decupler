@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Décupler — Budget de crawl
  * Description:       Trois correctifs mesurés le 22/09/2026 sur decupler.com : un robots.txt propre, une page « disparue » légère au lieu de 151 Ko, et un 404 sur la pagination hors limites. Objectif : arrêter de faire télécharger 1,5 Go à Googlebot pour lui apprendre que 12 000 pages n'existent plus.
- * Version:           1.3.2
+ * Version:           1.3.3
  * Author:            Décupler
  * License:           GPL-2.0-or-later
  * Requires at least: 6.0
@@ -118,13 +118,21 @@
  *   pas exister sur ce serveur. Le plugin sait désormais ÉCRIRE son
  *   robots.txt dans un vrai fichier, le réécrit à chaque nouvelle version,
  *   et l'écran de réglages vérifie ce que le serveur sert réellement.
+ *
+ * 1.3.3 — 24/09/2026. L'export des 321 pages indexées (Search Console)
+ *   compte 241 URL de spam, dont 206 absentes de la liste : elles
+ *   répondaient 404, et Google, pas revenu depuis le 8 juin, les gardait.
+ *   La liste passe à 350 chemins, tous en 410 et tous dans le sitemap
+ *   temporaire : une seule soumission au lieu de centaines de demandes
+ *   de suppression à la main. Trois redirections de pages mortes encore
+ *   indexées : /e-e-a-t/ → /eeat-google/, /en/ → /, /en/blog/ → /blog/.
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-const DCP_CRAWL_VERSION = '1.3.2';
+const DCP_CRAWL_VERSION = '1.3.3';
 
 /* -------------------------------------------------------------------------
  * 1. robots.txt
@@ -307,7 +315,7 @@ function dcp_crawl_urls_piratage() {
 }
 
 /** Date de relevé de la liste, servie en lastmod du sitemap temporaire. */
-const DCP_CRAWL_DATE_PIRATAGE = '2026-09-23';
+const DCP_CRAWL_DATE_PIRATAGE = '2026-09-24';
 
 // Le statut est posé AVANT la page légère (priorité 1), qui le reprend.
 add_action(
@@ -771,6 +779,12 @@ function dcp_crawl_redirections() {
 			// Meme intention que /consultant-geo/ (indexee) : l'ancienne version
 			// de decembre 2025, jamais exploree par Google en neuf mois.
 			'consultant-geo-optimisation-moteurs-ia' => 'https://decupler.com/consultant-geo/',
+			// Pages mortes encore indexées (export Search Console du 24/09) :
+			// l'ancienne page E-E-A-T, remplacée par le guide EEAT, et la
+			// version anglaise du site, supprimée.
+			'e-e-a-t'                      => 'https://decupler.com/eeat-google/',
+			'en'                           => 'https://decupler.com/',
+			'en/blog'                      => 'https://decupler.com/blog/',
 		)
 	);
 }
