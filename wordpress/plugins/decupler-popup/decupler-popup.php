@@ -41,13 +41,13 @@ function dcp_popup_defauts() {
 	return array(
 		'actif'         => true,
 		'campagne'      => 'workshop-2026-10-08',
-		'surtitre'      => 'Workshop live gratuit · 8 octobre, 12 h 30',
+		'surtitre'      => '',
 		'titre'         => '10× plus de contenu SEO, zéro abonnement en plus, le tout avec Claude Code',
-		'texte'         => 'Je te montre en direct comment produire plus et automatiser ton acquisition : audit GEO, monitoring de prompts IA, création de contenu, intégrations et mon système de prospection LinkedIn. Du concret à rejouer le lendemain, questions bienvenues.',
-		'mention'       => 'Pas de replay · 100 places maximum',
+		'texte'         => 'Audit GEO, monitoring de prompts IA, création de contenu, intégrations et mon système de prospection LinkedIn : je te montre tout en direct. Du concret à rejouer le lendemain, questions bienvenues.',
+		'mention'       => 'Gratuit · pas de replay · 100 places maximum',
 		'bouton'        => 'Je réserve ma place',
 		'lien'          => 'https://www.linkedin.com/events/7508143909210910720',
-		'image'         => '',
+		'image'         => 'https://decupler.com/wp-content/uploads/2026/09/workshop-claude-code-machine-seo-8-octobre.jpg',
 		'mobile_titre'  => 'Workshop Claude Code, 8 oct. à 12 h 30',
 		'mobile_bouton' => 'Réserver',
 		'fin'           => '2026-10-08T12:30:00+02:00',
@@ -209,7 +209,7 @@ if(!force&&s&&(s.clic||(s.ferme&&Date.now()-s.ferme<7*864e5)))return;
 var CSS='#dcp-pop,#dcp-pop *{box-sizing:border-box}'
 +'#dcp-pop{position:fixed;inset:0;z-index:2147483000;display:flex;align-items:center;justify-content:center;padding:16px;background:rgba(15,14,40,.55);font-family:"DM Sans",system-ui,-apple-system,"Segoe UI",sans-serif;animation:dcpIn .22s ease-out}'
 +'#dcp-pop .dcp-c{position:relative;width:100%;max-width:520px;max-height:calc(100vh - 32px);overflow:auto;background:#fff;color:#1a1a2e;border-radius:18px;box-shadow:0 24px 64px rgba(20,16,70,.35)}'
-+'#dcp-pop .dcp-img{display:block;width:100%;height:auto;aspect-ratio:1200/630;object-fit:cover;border-radius:18px 18px 0 0}'
++'#dcp-pop .dcp-img{display:block;width:100%;height:auto;border-radius:18px 18px 0 0}'
 +'#dcp-pop .dcp-b{padding:26px 28px 24px}'
 +'#dcp-pop .dcp-sur{display:inline-block;margin:0 0 12px;padding:5px 11px;border-radius:999px;background:#ece9f8;color:#4c47c9;font-size:12.5px;font-weight:700;letter-spacing:.02em}'
 +'#dcp-pop .dcp-t{margin:0 0 10px;font-size:22px;line-height:1.25;font-weight:800;color:#1a1a2e;text-wrap:balance}'
@@ -226,6 +226,7 @@ var CSS='#dcp-pop,#dcp-pop *{box-sizing:border-box}'
 +'#dcp-pop.dcp-mob .dcp-mt{flex:1;margin:0;font-size:14.5px;line-height:1.35;font-weight:700}'
 +'#dcp-pop.dcp-mob .dcp-go{width:auto;flex:none;padding:10px 14px;font-size:14px;border-radius:10px}'
 +'#dcp-pop.dcp-mob .dcp-close{top:50%;right:6px;transform:translateY(-50%);width:32px;height:32px;font-size:20px;box-shadow:none;background:transparent}'
++'@media (max-height:780px){#dcp-pop .dcp-img{max-height:30vh;object-fit:contain;background:#0e0f14}#dcp-pop .dcp-b{padding:20px 26px 18px}#dcp-pop .dcp-t{font-size:20px}}'
 +'@keyframes dcpIn{from{opacity:0}to{opacity:1}}'
 +'@media (prefers-reduced-motion:reduce){#dcp-pop{animation:none}#dcp-pop .dcp-go{transition:none}}';
 function n(t,cl,txt){var e=document.createElement(t);if(cl)e.className=cl;if(txt!=null)e.textContent=txt;return e}
@@ -246,7 +247,7 @@ go.addEventListener('click',function(){ecrire({clic:Date.now()});setTimeout(func
 var x=n('button','dcp-close','×');x.type='button';x.setAttribute('aria-label','Fermer');x.addEventListener('click',fermer);
 if(mob){var mt=n('p','dcp-mt',c.mobileTitre);mt.id='dcp-pop-t';card.appendChild(mt);card.appendChild(go);card.appendChild(x)}
 else{
-if(c.image){var im=n('img','dcp-img');im.src=c.image;im.alt='';card.appendChild(im)}
+if(c.image){var il=n('a');il.href=c.lien;il.target='_blank';il.rel='noopener';il.tabIndex=-1;il.setAttribute('aria-hidden','true');il.addEventListener('click',function(){ecrire({clic:Date.now()})});var im=n('img','dcp-img');im.src=c.image;im.alt='';im.width=1280;im.height=720;il.appendChild(im);card.appendChild(il)}
 var b=n('div','dcp-b');
 if(c.surtitre)b.appendChild(n('p','dcp-sur',c.surtitre));
 var t=n('h2','dcp-t',c.titre);t.id='dcp-pop-t';b.appendChild(t);
