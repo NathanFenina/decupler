@@ -5,16 +5,15 @@
 #   DOSSIER=/tmp/banc wordpress/tests/test-crawl-fix.sh   # installe le banc
 #   DOSSIER=/tmp/banc wordpress/tests/test-popup.sh
 #
-# Le comportement (délai, doublon avec la pop-up lead magnet, bandeau mobile)
-# est vérifié dans Chromium : --virtual-time-budget fait avancer les minuteries
-# sans attendre 15 vraies secondes.
+# Le comportement (délai, fermeture, mémoire, doublon avec la pop-up lead
+# magnet, bandeau mobile, date de fin) est vérifié dans Chromium par
+# popup-navigateur.mjs, avec une horloge simulée.
 set -u
 ICI="$(cd "$(dirname "$0")" && pwd)"
 PLUGIN="$ICI/../plugins/decupler-popup"
 D="${DOSSIER:?DOSSIER doit pointer vers un banc installé par test-crawl-fix.sh}"
 PORT="${PORT:-8123}"
 B="http://127.0.0.1:$PORT"
-CHROME="${CHROME:-/opt/pw-browsers/chromium-1194/chrome-linux/chrome}"
 OK=0; KO=0
 vert(){ printf '  \033[32m✓\033[0m %s\n' "$1"; OK=$((OK+1)); }
 rouge(){ printf '  \033[31m✗\033[0m %s — %s\n' "$1" "$2"; KO=$((KO+1)); }
@@ -42,13 +41,6 @@ SERVEUR=$!
 trap 'kill $SERVEUR 2>/dev/null' EXIT
 sleep 2
 page(){ curl -sS "$B$1"; }
-dom(){ # dom <chemin> <largeur> <budget ms>
-  # Hors ligne sauf le banc : une ressource externe (emoji, polices) qui ne
-  # répond pas bloquerait le temps virtuel indéfiniment.
-  timeout 60 "$CHROME" --headless=new --no-sandbox --disable-gpu --window-size="$2",900 \
-    --host-resolver-rules="MAP * ~NOTFOUND, EXCLUDE 127.0.0.1" \
-    --virtual-time-budget="$3" --dump-dom "$B$1" 2>/dev/null; }
-
 echo "== 1. Rendu serveur"
 H=$(page /)
 attend "configuration présente sur l'accueil" "$(echo "$H" | grep -c 'id="dcp-popup-cfg"')" "1"
@@ -56,21 +48,15 @@ CFG=$(echo "$H" | sed -n 's#.*<script type="application/json" id="dcp-popup-cfg"
 attend "JSON valide, bon lien" "$(echo "$CFG" | php -r '$c=json_decode(stream_get_contents(STDIN),true); echo $c["lien"]??"ko";')" "https://www.linkedin.com/events/7508143909210910720"
 attend "accents intacts dans le JSON" "$(echo "$CFG" | grep -c 'création de contenu')" "1"
 attend "aucun texte de l'invitation dans le HTML visible" "$(echo "$H" | grep -c 'class="dcp-t"')" "0"
-attend "présente sur une page intérieure" "$(page /agence-geo/ | grep -c 'dcp-popup-cfg')" "1"
+attend "présente sur une page intérieure" "$(page /agence-geo/ | grep -c 'id="dcp-popup-cfg"')" "1"
 attend "absente d'une page exclue (/geo-ready/)" "$(page /geo-ready/ | grep -c 'dcp-popup-cfg')" "0"
 attend "absente d'une page 404" "$(page /nexiste-pas-du-tout/ | grep -c 'dcp-popup-cfg')" "0"
 
-echo "== 2. Navigateur"
-attend "rien avant le délai (5 s)" "$(dom / 1440 5000 | grep -c 'id="dcp-pop"')" "0"
-D1=$(dom / 1440 17000)
-attend "affichée après 15 s" "$(echo "$D1" | grep -c 'id="dcp-pop"')" "1"
-attend "fenêtre au centre sur ordinateur" "$(echo "$D1" | grep -c 'id="dcp-pop" class=""')" "1"
-attend "titre affiché" "$(echo "$D1" | grep -c 'le tout avec Claude Code')" "1"
-attend "bouton vers l'événement, nouvel onglet" "$(echo "$D1" | grep -o 'class="dcp-go" href="https://www.linkedin.com/events/7508143909210910720" target="_blank" rel="noopener"' | wc -l | tr -d ' ')" "1"
-attend "bandeau en bas sur mobile" "$(dom / 400 17000 | grep -c 'id="dcp-pop" class="dcp-mob"')" "1"
-attend "pas de doublon sur une page lead magnet" "$(dom /guide-lm/ 1440 17000 | grep -c 'id="dcp-pop"')" "0"
-attend "aperçu ?dcp_popup=1 en 0,5 s" "$(dom '/?dcp_popup=1' 1440 1500 | grep -c 'id="dcp-pop"')" "1"
-attend "?dcp_popup=0 la bloque" "$(dom '/?dcp_popup=0' 1440 17000 | grep -c 'id="dcp-pop"')" "0"
+echo "== 2. Navigateur (Playwright, horloge simulée)"
+while IFS='|' read -r etat nom; do
+  [ -n "$nom" ] || continue
+  if [ "$etat" = OK ]; then vert "$nom"; else rouge "${nom%% — *}" "${nom#* — }"; fi
+done < <(node "$ICI/popup-navigateur.mjs" "$B" 2>&1 | grep -E '^(OK|KO)\|' || echo "KO|navigateur — le script n'a rien rendu")
 
 echo "== 3. Fin de campagne"
 $WP eval 'update_option("dcp_popup", array_merge(dcp_popup_reglages(), array("fin"=>"2020-01-01T00:00:00+01:00")));' >/dev/null 2>&1

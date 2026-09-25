@@ -41,14 +41,14 @@ function dcp_popup_defauts() {
 	return array(
 		'actif'         => true,
 		'campagne'      => 'workshop-2026-10-08',
-		'surtitre'      => 'Workshop live gratuit · 8 octobre, 12 h 30',
-		'titre'         => '10× plus de contenu SEO, zéro abonnement en plus : le tout avec Claude Code',
-		'texte'         => 'Je te montre en direct comment produire plus et automatiser ton acquisition : audit GEO, monitoring de prompts IA, création de contenu, intégrations et mon système de prospection LinkedIn. Du concret à rejouer le lendemain, questions bienvenues.',
-		'mention'       => 'Pas de replay · 100 places maximum',
+		'surtitre'      => 'Workshop live gratuit · 8 octobre, 12 h 30',
+		'titre'         => '10× plus de contenu SEO, zéro abonnement en plus, le tout avec Claude Code',
+		'texte'         => 'Je te montre en direct comment produire plus et automatiser ton acquisition : audit GEO, monitoring de prompts IA, création de contenu, intégrations et mon système de prospection LinkedIn. Du concret à rejouer le lendemain, questions bienvenues.',
+		'mention'       => 'Pas de replay · 100 places maximum',
 		'bouton'        => 'Je réserve ma place',
 		'lien'          => 'https://www.linkedin.com/events/7508143909210910720',
 		'image'         => '',
-		'mobile_titre'  => 'Workshop Claude Code · 8 oct., 12 h 30',
+		'mobile_titre'  => 'Workshop Claude Code, 8 oct. à 12 h 30',
 		'mobile_bouton' => 'Réserver',
 		'fin'           => '2026-10-08T12:30:00+02:00',
 		'delai'         => 15,
@@ -235,7 +235,7 @@ if(!force&&document.getElementById('ai-content-gate'))return;
 var mob=window.matchMedia('(max-width:700px)').matches;
 var st=n('style');st.textContent=CSS;document.head.appendChild(st);
 var w=n('div',mob?'dcp-mob':'');w.id='dcp-pop';
-var card=n('div','dcp-c');card.setAttribute('role','dialog');card.setAttribute('aria-labelledby','dcp-pop-t');
+var card=n('div','dcp-c');card.tabIndex=-1;card.style.outline='none';card.setAttribute('role','dialog');card.setAttribute('aria-labelledby','dcp-pop-t');
 if(!mob)card.setAttribute('aria-modal','true');
 var avant=document.activeElement;
 function fermer(){w.remove();st.remove();document.removeEventListener('keydown',clav);if(!force)ecrire({ferme:Date.now()});if(avant&&avant.focus)avant.focus()}
@@ -258,7 +258,7 @@ w.addEventListener('click',function(e){if(e.target===w)fermer()});
 }
 w.appendChild(card);document.body.appendChild(w);
 document.addEventListener('keydown',clav);
-if(!mob)go.focus({preventScroll:true});
+if(!mob)card.focus({preventScroll:true});
 }
 setTimeout(montrer,force?500:Math.max(3,c.delai|0)*1000);
 })();
