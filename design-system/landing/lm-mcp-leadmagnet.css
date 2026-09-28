@@ -36,3 +36,6 @@ body.lmg-gated .lm-mcp{filter:blur(5px);transition:filter .4s ease;pointer-event
 .ai-success-message{display:none;color:#10b981;font-weight:700;font-size:1.15rem;margin-top:1rem}
 .ai-popup-close{position:absolute;top:14px;right:16px;background:none;border:none;font-size:1.4rem;color:#cbd5e1;cursor:pointer;line-height:1}
 .ai-popup-close:hover{color:#64748b}
+/* Ne dépend plus du box-sizing du thème (sinon la carte déborde sur mobile) */
+.ai-popup-overlay,.ai-popup-overlay *{box-sizing:border-box}
+@media (max-width:480px){.ai-popup-overlay{padding:1rem}.ai-popup-card{padding:2rem 1.25rem}}

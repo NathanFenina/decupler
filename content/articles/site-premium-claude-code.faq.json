@@ -1,0 +1,22 @@
+[
+ {
+  "question": "Faut-il savoir coder ?",
+  "answer": "Non. Il faut savoir ouvrir un terminal, copier des commandes et juger un résultat à l'écran. Claude écrit le code ; ton rôle est celui du directeur artistique : cadrer, choisir, refuser ce qui fait générique."
+ },
+ {
+  "question": "Combien coûte cette stack ?",
+  "answer": "Claude Code demande un abonnement Claude (Pro ou Max) ou une clé API. Playwright, UI UX Pro Max et Impeccable sont open source. Firecrawl a une version sans clé limitée et des crédits payants au-delà. 21st fournit une clé gratuite pour chercher et récupérer des composants ; la génération par son IA est en option."
+ },
+ {
+  "question": "Quelle différence entre un MCP et un skill ?",
+  "answer": "Un MCP connecte Claude à un outil externe : un navigateur, un site web, une bibliothèque de composants. Un skill est un ensemble d'instructions et de scripts que Claude charge quand la tâche s'y prête : une méthode, des règles, une base de connaissances."
+ },
+ {
+  "question": "Et pour un site WordPress ?",
+  "answer": "La méthode est la même pour le design. Claude peut produire un thème léger ou du HTML propre à intégrer, et publier par l'API REST de WordPress. Playwright sert ensuite à vérifier le rendu réel en ligne."
+ },
+ {
+  "question": "Firecrawl, c'est légal pour s'inspirer d'un concurrent ?",
+  "answer": "Lire une page publique pour en analyser le style, oui. Reprendre ses textes, son logo ou sa maquette, non. Le guide s'en sert pour dégager des principes, pas pour cloner."
+ }
+]
