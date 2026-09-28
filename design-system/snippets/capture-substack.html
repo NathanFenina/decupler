@@ -1,0 +1,94 @@
+<!-- ============================================================
+     Capture email → Substack (Décupler)
+     Autonome : HTML + CSS + JS, à coller tel quel (bloc « HTML personnalisé »
+     dans WordPress, ou avant </body> sur n'importe quel site).
+     Réglages : les 3 constantes en haut du <script>.
+     Même mémoire que les lead magnets du site (localStorage + cookie lmg_sub) :
+     un abonné ne revoit plus la fenêtre, où qu'il soit sur decupler.com.
+     ?reset=true dans l'URL efface cette mémoire (pour tester).
+     ============================================================ -->
+<div id="sb-gate" class="sb-overlay" role="dialog" aria-modal="true" aria-labelledby="sb-t" hidden>
+  <div class="sb-card">
+    <button type="button" class="sb-x" aria-label="Fermer">×</button>
+    <h3 id="sb-t" class="sb-t">Débloque le guide complet</h3>
+    <p class="sb-d">Laisse ton email : tu reçois le guide et mes meilleures méthodes.</p>
+    <iframe name="sb-frame" id="sb-frame" title="Inscription Substack" hidden></iframe>
+    <form id="sb-form" action="https://decupler.substack.com/api/v1/free" method="post" target="sb-frame">
+      <input type="email" name="email" class="sb-in" placeholder="ton@email.com" autocomplete="email" required>
+      <input type="hidden" name="first_url" value="https://decupler.substack.com">
+      <input type="hidden" name="first_referrer" value="https://decupler.com">
+      <button type="submit" class="sb-go">Recevoir le guide (gratuit) →</button>
+      <p class="sb-f">Inscription à la newsletter Décupler. Désabonnement en 1 clic.</p>
+    </form>
+    <p id="sb-ok" class="sb-ok" hidden>✅ C'est bon ! Bonne lecture.</p>
+  </div>
+</div>
+<style>
+.sb-overlay,.sb-overlay *{box-sizing:border-box}
+.sb-overlay{position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;padding:1rem;background:rgba(15,23,42,.55);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.sb-overlay[hidden]{display:none}
+.sb-card{position:relative;width:100%;max-width:440px;background:#fff;border-radius:20px;padding:2.25rem 1.75rem;text-align:center;font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;box-shadow:0 24px 60px -12px rgba(15,23,42,.35)}
+.sb-x{position:absolute;top:10px;right:12px;width:36px;height:36px;margin:0;padding:0;border:0;border-radius:50%;background:none;color:#64748b;font-size:1.5rem;line-height:1;cursor:pointer}
+.sb-x:hover{background:#f1f5f9}
+.sb-t{margin:0 0 .5rem;font-size:1.5rem;line-height:1.2;color:#1e293b}
+.sb-d{margin:0 0 1.5rem;color:#475569;line-height:1.55}
+.sb-in{display:block;width:100%;margin:0 0 .75rem;padding:.9rem 1.1rem;border:2px solid #e2e8f0;border-radius:12px;font:inherit;font-size:1rem}
+.sb-in:focus{outline:none;border-color:#4c47c9}
+.sb-go{display:block;width:100%;margin:0;padding:.95rem 1.5rem;border:0;border-radius:12px;background:#4c47c9;color:#fff;font:inherit;font-size:1.02rem;font-weight:700;cursor:pointer}
+.sb-go:hover{background:#3f3ab0}
+.sb-f{margin:.9rem 0 0;font-size:.8rem;color:#64748b}
+.sb-ok{margin:0;font-weight:700;color:#047857}
+</style>
+<script>
+(function () {
+  var DELAI_MS = 6000;        // délai avant l'ouverture
+  var FERMABLE = true;        // false = fenêtre obligatoire (pas de croix, pas de clic à côté)
+  var FLOUTER = null;         // ex. '.lm-mcp' pour flouter le contenu derrière ; null = pas de flou
+
+  var box = document.getElementById('sb-gate');
+  var form = document.getElementById('sb-form');
+  var frame = document.getElementById('sb-frame');
+  var ok = document.getElementById('sb-ok');
+  var envoye = false;
+
+  function lit(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+  function ecrit(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+  function abonne() { return lit('lmg_sub') === 'true' || document.cookie.indexOf('lmg_sub=true') !== -1; }
+  function flou(on) {
+    if (!FLOUTER) return;
+    document.querySelectorAll(FLOUTER).forEach(function (el) { el.style.filter = on ? 'blur(5px)' : ''; });
+  }
+  function ouvre() {
+    if (abonne()) return;
+    box.hidden = false; flou(true); document.body.style.overflow = 'hidden';
+    var champ = box.querySelector('input[type=email]'); if (champ) champ.focus();
+  }
+  function ferme() { box.hidden = true; flou(false); document.body.style.overflow = ''; }
+
+  if (location.search.indexOf('reset=true') !== -1) {
+    try { localStorage.removeItem('lmg_sub'); } catch (e) {}
+    document.cookie = 'lmg_sub=; max-age=0; path=/';
+  }
+  if (FERMABLE) {
+    box.querySelector('.sb-x').addEventListener('click', ferme);
+    box.addEventListener('click', function (e) { if (e.target === box) ferme(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !box.hidden) ferme(); });
+  } else {
+    box.querySelector('.sb-x').remove();
+  }
+  form.addEventListener('submit', function () {
+    envoye = true;
+    var b = form.querySelector('button[type=submit]'); b.textContent = 'Validation…'; b.disabled = true;
+  });
+  // Le formulaire poste dans l'iframe cachée : pas de redirection vers Substack.
+  frame.addEventListener('load', function () {
+    if (!envoye) return;
+    envoye = false;
+    form.hidden = true; ok.hidden = false;
+    ecrit('lmg_sub', 'true');
+    document.cookie = 'lmg_sub=true; max-age=31536000; path=/';
+    setTimeout(ferme, 1500);
+  });
+  setTimeout(ouvre, DELAI_MS);
+})();
+</script>
