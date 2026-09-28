@@ -79,6 +79,43 @@ GATE_SCRIPT = (
     "document.cookie='lmg_sub=; max-age=0; path=/'}});</script>"
 )
 
+# Variante « campagne » (--gate-param) : la popup reste obligatoire (flou,
+# défilement bloqué, pas de fermeture) seulement pour les visiteurs arrivés
+# par le lien de campagne, ex. ?acces=linkedin. Les autres (Google compris)
+# lisent librement : popup fermable, sans flou, plus tardive, une fois par
+# session. Google pénalise sur mobile les interstitiels qui masquent le
+# contenu d'une page ouverte depuis la recherche.
+# Les formulaires .lmg-inline du contenu passent par la même mémoire lmg_sub.
+GATE_SCRIPT_CAMPAGNE = (
+    "<script>document.addEventListener('DOMContentLoaded',function(){"
+    "var p=document.getElementById('ai-content-gate'),f=document.getElementById('ai-popup-form'),"
+    "s=document.getElementById('ai-success-msg'),i=document.getElementById('hidden_iframe'),sub=false;"
+    "if(location.search.indexOf('reset=true')!==-1){try{localStorage.removeItem('lmg_sub');sessionStorage.removeItem('lmg_ferme')}catch(e){}"
+    "document.cookie='lmg_sub=; max-age=0; path=/'}"
+    "function ab(){try{if(localStorage.getItem('lmg_sub')==='true')return true}catch(e){}return document.cookie.indexOf('lmg_sub=true')!==-1}"
+    "function mem(){try{localStorage.setItem('lmg_sub','true')}catch(e){}document.cookie='lmg_sub=true; max-age=31536000; path=/'}"
+    "var q=new URLSearchParams(location.search),camp=q.get('%(param)s')==='%(val)s';"
+    "function cl(){p.classList.remove('active');document.body.classList.remove('lmg-gated');document.body.style.overflow=''}"
+    "if(!camp&&p){p.classList.add('ai-soft');var c=p.querySelector('.ai-popup-card'),x=document.createElement('button');x.type='button';x.className='ai-popup-close';"
+    "x.setAttribute('aria-label','Fermer');x.textContent='\\u00d7';c.insertBefore(x,c.firstChild);"
+    "var n=document.createElement('button');n.type='button';n.className='ai-popup-skip';n.textContent='Continuer sans email';c.appendChild(n);"
+    "function fe(){cl();try{sessionStorage.setItem('lmg_ferme','1')}catch(e){}}"
+    "c.querySelector('.ai-popup-title').textContent='Tu veux les prochains guides ?';c.querySelector('.ai-popup-desc').textContent='Laisse ton email : je t\\u2019envoie les prochains playbooks d\\u00e8s leur sortie.';var sb=c.querySelector('.ai-popup-submit');if(sb)sb.textContent='Je m\\u2019abonne (gratuit) \\u2192';"
+    "x.onclick=fe;n.onclick=fe;p.addEventListener('click',function(e){if(e.target===p)fe()});"
+    "document.addEventListener('keydown',function(e){if(e.key==='Escape'&&p.classList.contains('active'))fe()})}"
+    "function op(){if(ab())return;if(!camp){try{if(sessionStorage.getItem('lmg_ferme'))return}catch(e){}"
+    "p.classList.add('active');return}"
+    "p.classList.add('active');document.body.classList.add('lmg-gated');document.body.style.overflow='hidden'}"
+    "if(p)setTimeout(op,camp?%(delay)s:%(soft)s);"
+    "if(f)f.addEventListener('submit',function(){sub=true;var b=f.querySelector('button[type=submit]');b.textContent='Validation…';b.style.opacity='0.7'});"
+    "if(i)i.onload=function(){if(sub){f.style.display='none';s.style.display='block';mem();setTimeout(cl,1500);sub=false}};"
+    "document.querySelectorAll('.lmg-inline').forEach(function(box){var fo=box.querySelector('form'),fr=box.querySelector('iframe'),"
+    "ok=box.querySelector('.lmg-inline-ok'),en=false;if(ab()){fo.hidden=true;ok.hidden=false;return}"
+    "fo.addEventListener('submit',function(){en=true;var b=fo.querySelector('button');b.textContent='Validation…';b.disabled=true});"
+    "fr.addEventListener('load',function(){if(!en)return;en=false;fo.hidden=true;ok.hidden=false;mem()})})"
+    "});</script>"
+)
+
 HIDE_TITLE_SCRIPT = (
     "<script>document.addEventListener('DOMContentLoaded',function(){"
     "document.querySelectorAll('.entry-header,.entry-title,.ast-single-entry-banner,"
@@ -139,6 +176,11 @@ def main():
     ap.add_argument("--gate-desc", default="Laissez votre email pour recevoir le guide et nos meilleures méthodes SEO/GEO.")
     ap.add_argument("--gate-icon", default="🛠️")
     ap.add_argument("--gate-delay", default="5000", help="Délai (ms) avant l'apparition de la popup")
+    ap.add_argument("--gate-param", default=None,
+                    help="Popup obligatoire seulement pour ce lien de campagne, ex acces=linkedin ; "
+                         "les autres visiteurs ont une popup fermable, sans flou")
+    ap.add_argument("--gate-soft-delay", default="25000",
+                    help="Délai (ms) de la popup fermable, avec --gate-param")
     args = ap.parse_args()
 
     body = Path(args.body).read_text(encoding="utf-8").strip()
@@ -153,7 +195,15 @@ def main():
         sub = args.gate.rstrip("/")
         gate_html = GATE_HTML.format(icon=args.gate_icon, title=args.gate_title,
                                      desc=args.gate_desc, substack=sub)
-        gate_script = GATE_SCRIPT % {"delay": args.gate_delay}
+        if args.gate_param:
+            cle, _, val = args.gate_param.partition("=")
+            if not (cle.isidentifier() and val.replace("-", "").isalnum()):
+                ap.error("--gate-param attend cle=valeur, ex acces=linkedin")
+            gate_script = GATE_SCRIPT_CAMPAGNE % {"delay": int(args.gate_delay),
+                                                  "soft": int(args.gate_soft_delay),
+                                                  "param": cle, "val": val}
+        else:
+            gate_script = GATE_SCRIPT % {"delay": args.gate_delay}
 
     parts = [
         FONTS,

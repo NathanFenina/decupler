@@ -190,6 +190,10 @@ attend "cible = /eeat-google/" "$(curl -sS -o /dev/null -w '%{redirect_url}' "$B
 attend "/en/ → accueil" "$(curl -sS -o /dev/null -w '%{http_code} %{redirect_url}' "$B/en/")" "301 https://decupler.com/"
 attend "/en/blog/ → /blog/" "$(curl -sS -o /dev/null -w '%{http_code} %{redirect_url}' "$B/en/blog/")" "301 https://decupler.com/blog/"
 
+echo "== 8c. Ancien guide site IA (1.3.4)"
+attend "/guide-site-ia-creer-un-site-premium-en-24h/ → 301" "$(code /guide-site-ia-creer-un-site-premium-en-24h/)" "301"
+attend "cible = /claude-code-design/" "$(curl -sS -o /dev/null -w '%{redirect_url}' "$B/guide-site-ia-creer-un-site-premium-en-24h/")" "https://decupler.com/claude-code-design/"
+
 echo "== 9. Hygiène"
 attend "aucune alerte PHP pendant les tests" "$(grep -ciE 'warning|notice|fatal' serveur.log)" "0"
 

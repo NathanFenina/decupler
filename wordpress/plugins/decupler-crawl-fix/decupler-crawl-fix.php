@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Décupler — Budget de crawl
  * Description:       Trois correctifs mesurés le 22/09/2026 sur decupler.com : un robots.txt propre, une page « disparue » légère au lieu de 151 Ko, et un 404 sur la pagination hors limites. Objectif : arrêter de faire télécharger 1,5 Go à Googlebot pour lui apprendre que 12 000 pages n'existent plus.
- * Version:           1.3.3
+ * Version:           1.3.4
  * Author:            Décupler
  * License:           GPL-2.0-or-later
  * Requires at least: 6.0
@@ -126,13 +126,17 @@
  *   temporaire : une seule soumission au lieu de centaines de demandes
  *   de suppression à la main. Trois redirections de pages mortes encore
  *   indexées : /e-e-a-t/ → /eeat-google/, /en/ → /, /en/blog/ → /blog/.
+ *
+ * 1.3.4 — 28/09/2026. Le guide « Créer un site premium en 24h » (décembre
+ *   2025 : Elementor, Claude 3.5) est remplacé par /claude-code-design/,
+ *   même intention. Redirection 301 pour garder ses clics et ses liens.
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-const DCP_CRAWL_VERSION = '1.3.3';
+const DCP_CRAWL_VERSION = '1.3.4';
 
 /* -------------------------------------------------------------------------
  * 1. robots.txt
@@ -785,6 +789,9 @@ function dcp_crawl_redirections() {
 			'e-e-a-t'                      => 'https://decupler.com/eeat-google/',
 			'en'                           => 'https://decupler.com/',
 			'en/blog'                      => 'https://decupler.com/blog/',
+			// Ancien guide « site premium en 24h », remplacé par le guide
+			// Claude Code design du 28/09 (même intention, contenu à jour).
+			'guide-site-ia-creer-un-site-premium-en-24h' => 'https://decupler.com/claude-code-design/',
 		)
 	);
 }
