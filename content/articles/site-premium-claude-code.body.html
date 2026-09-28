@@ -1,43 +1,103 @@
 <div class="lm-mcp">
 <div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div>
 <style>
-.lm-mcp .vid{position:relative;margin:26px 0 8px;border-radius:16px;overflow:hidden;border:1px solid var(--border);box-shadow:0 20px 50px -22px rgba(99,102,241,.45);aspect-ratio:16/9;background:#0d1117;max-width:100%}
+.lm-mcp .vid{position:relative;margin:26px 0 8px;border-radius:16px;overflow:hidden;border:1px solid var(--border);aspect-ratio:16/9;background:#0d1117;max-width:100%}
 .lm-mcp .vid iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
-.lm-mcp .vid-cap{font-size:.85rem;color:var(--text-muted);text-align:center;margin:0 0 6px}
-.lm-mcp .slot{margin:22px 0 6px;border:2px dashed rgba(99,102,241,.35);border-radius:14px;padding:34px 20px;text-align:center;background:rgba(99,102,241,.04);color:var(--text-muted);font-size:.9rem}
-.lm-mcp .slot b{display:block;color:var(--violet);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px}
-.lm-mcp .stack-wrap{overflow-x:auto;margin-top:20px;border:1px solid var(--border);border-radius:14px}
-.lm-mcp .stack{width:100%;border-collapse:collapse;font-size:.92rem;min-width:640px}
-.lm-mcp .stack th{text-align:left;padding:12px 14px;background:var(--bg2);font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:var(--text-muted)}
-.lm-mcp .stack td{padding:12px 14px;border-top:1px solid var(--border);vertical-align:top}
-.lm-mcp .stack td:first-child{font-weight:700;white-space:nowrap}
-.lm-mcp .kind{display:inline-block;font-size:.72rem;font-weight:700;padding:2px 8px;border-radius:999px;background:rgba(99,102,241,.1);color:var(--violet)}
-.lm-mcp .kind.sk{background:rgba(16,185,129,.12);color:#059669}
-.lm-mcp .step-h{display:flex;align-items:center;gap:12px;margin-bottom:6px}
-.lm-mcp .step-n{flex:0 0 auto;width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff;background:linear-gradient(135deg,#6366f1,#8b5cf6)}
-.lm-mcp .flow{list-style:none;margin:20px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;counter-reset:f}
-.lm-mcp .flow li{counter-increment:f;background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:16px 18px;font-size:.93rem}
-.lm-mcp .flow li::before{content:counter(f);display:block;font-weight:800;color:var(--violet);margin-bottom:4px}
-.lm-mcp .flow b{display:block;margin-bottom:2px}
-.lm-mcp .tip{display:flex;gap:12px;align-items:flex-start;margin:18px 0 0;padding:14px 18px;border-radius:12px;border:1px solid rgba(99,102,241,.22);background:rgba(99,102,241,.06);font-size:.95rem}
+.lm-mcp .cap{font-size:.85rem;color:#475569;text-align:center;margin:8px 0 0}
+.lm-mcp .logos{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin:30px 0 0;padding:0;list-style:none}
+.lm-mcp .logos li{display:flex;flex-direction:column;align-items:center;gap:8px;font-size:.8rem;font-weight:700;color:#334155;text-align:center}
+.lm-mcp .logos img{width:52px;height:52px;border-radius:12px;border:1px solid var(--border);background:#fff;display:block}
+.lm-mcp .sites{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:22px}
+.lm-mcp .sites figure{margin:0;border-radius:14px;overflow:hidden;border:1px solid #d9dcea;background:#fff}
+.lm-mcp .sites figure:first-child{grid-column:1/-1}
+.lm-mcp .sites img{display:block;width:100%;height:auto}
+.lm-mcp .sites figcaption{font-size:.82rem;color:#475569;padding:9px 14px}
+.lm-mcp .anat{display:grid;grid-template-columns:1fr 1fr;gap:10px 28px;margin:22px 0 0;padding:0;list-style:none;counter-reset:a}
+.lm-mcp .anat li{counter-increment:a;display:flex;gap:12px;align-items:baseline;font-size:.94rem;color:#334155}
+.lm-mcp .anat li::before{content:counter(a);flex:0 0 26px;height:26px;border-radius:8px;background:#eef0fb;color:#4c47c9;font-weight:800;font-size:.8rem;display:flex;align-items:center;justify-content:center;transform:translateY(-2px)}
+.lm-mcp .anat b{color:#1e293b}
+.lm-mcp .chat{margin:22px 0 0;border:1px solid #d9dcea;border-radius:16px;background:#fff;padding:20px;display:flex;flex-direction:column;gap:14px}
+.lm-mcp .chat-h{font-size:.75rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#64748b;margin:0}
+.lm-mcp .msg{display:flex;gap:10px;align-items:flex-start;max-width:100%}
+.lm-mcp .msg .av{flex:0 0 32px;width:32px;height:32px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:800;overflow:hidden}
+.lm-mcp .msg .av img{width:32px;height:32px;display:block}
+.lm-mcp .msg.you{flex-direction:row-reverse}
+.lm-mcp .msg.you .av{background:#1e293b;color:#fff}
+.lm-mcp .bub{border-radius:14px;padding:11px 15px;font-size:.94rem;line-height:1.55;min-width:0}
+.lm-mcp .bub p{margin:0}.lm-mcp .bub p+p{margin-top:6px}
+.lm-mcp .msg.you .bub{background:#4c47c9;color:#fff;border-top-right-radius:4px;max-width:82%}
+.lm-mcp .msg.cl .bub{background:#f4f5fa;color:#1e293b;border-top-left-radius:4px;max-width:88%}
+.lm-mcp .acts{list-style:none;margin:8px 0 0;padding:0;display:flex;flex-direction:column;gap:4px}
+.lm-mcp .acts li{font-family:'JetBrains Mono',ui-monospace,Menlo,monospace;font-size:.76rem;color:#475569;background:#fff;border:1px solid #e3e5ef;border-radius:7px;padding:4px 9px;overflow-wrap:anywhere}
+.lm-mcp .acts li::before{content:"▸ ";color:#4c47c9}
+.lm-mcp .tool{display:flex;gap:16px;align-items:center;margin-bottom:10px}
+.lm-mcp .tool img{flex:0 0 56px;width:56px;height:56px;border-radius:14px;border:1px solid var(--border);background:#fff;display:block}
+.lm-mcp .tool h2{margin:0!important}
+.lm-mcp .tool-meta{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px;padding:0;list-style:none}
+.lm-mcp .tool-meta li{font-size:.78rem;font-weight:700;padding:4px 10px;border-radius:999px;background:#eef0fb;color:#4c47c9}
+.lm-mcp .tool-meta li.sk{background:#e3f6ef;color:#047857}
+.lm-mcp .shot{margin:22px 0 0;border-radius:14px;overflow:hidden;border:1px solid #d9dcea;background:#fff}
+.lm-mcp .shot img{display:block;width:100%;height:auto}
+.lm-mcp .shot figcaption{font-size:.82rem;color:#475569;padding:9px 14px}
+.lm-mcp details.cmd{margin:16px 0 0;border:1px solid #e3e5ef;border-radius:12px;background:#fff}
+.lm-mcp details.cmd summary{cursor:pointer;padding:11px 15px;font-size:.88rem;font-weight:700;color:#334155;list-style:none}
+.lm-mcp details.cmd summary::-webkit-details-marker{display:none}
+.lm-mcp details.cmd summary::before{content:"+ ";color:#4c47c9}
+.lm-mcp details.cmd[open] summary::before{content:"− "}
+.lm-mcp details.cmd .codeblock{margin:0 12px 12px}
+.lm-mcp .stack-wrap{overflow-x:auto;margin-top:20px;border:1px solid #d9dcea;border-radius:14px;background:#fff}
+.lm-mcp .stack{width:100%;border-collapse:collapse;font-size:.92rem;min-width:620px}
+.lm-mcp .stack th{text-align:left;padding:12px 14px;background:#f4f5fa;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:#475569}
+.lm-mcp .stack td{padding:12px 14px;border-top:1px solid #e3e5ef;vertical-align:middle;color:#334155}
+.lm-mcp .stack td:first-child{font-weight:700;color:#1e293b}
+.lm-mcp .stack .nm{display:flex;align-items:center;gap:10px;white-space:nowrap}
+.lm-mcp .stack .nm img{width:28px;height:28px;border-radius:7px;border:1px solid #e3e5ef;display:block}
+.lm-mcp .kind{display:inline-block;font-size:.72rem;font-weight:700;padding:2px 8px;border-radius:999px;background:#eef0fb;color:#4c47c9}
+.lm-mcp .kind.sk{background:#e3f6ef;color:#047857}
+.lm-mcp .ruban{background:#14122b;color:#e8e6f5;padding:17px 0;border-top:0}
+.lm-mcp .ruban .container{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 34px;font-size:.92rem;font-weight:700}
+.lm-mcp .ruban b{color:#a5b4fc}
+.lm-mcp .dk{background:radial-gradient(120% 90% at 20% 0%,#2a2560 0%,#14122b 60%);color:#e8e6f5;border-top:0}
+.lm-mcp .dk .section-label{color:#a5b4fc}
+.lm-mcp .dk h2{color:#fff!important;-webkit-text-fill-color:#fff}
+.lm-mcp .dk p{color:#d6d3ea;font-size:1.08rem;line-height:1.7;max-width:36em}
+.lm-mcp .dk p+p{margin-top:14px}
+.lm-mcp .dk .sign{margin-top:18px;font-size:.92rem;color:#a5b4fc;font-weight:700}
+.lm-mcp .flow{list-style:none;margin:20px 0 26px;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;counter-reset:f}
+.lm-mcp .flow li{counter-increment:f;background:#fff;border:1px solid #d9dcea;border-radius:14px;padding:16px 18px;font-size:.93rem;color:#334155}
+.lm-mcp .flow li::before{content:counter(f);display:block;font-weight:800;color:#4c47c9;margin-bottom:4px}
+.lm-mcp .flow b{display:block;margin-bottom:2px;color:#1e293b}
+.lm-mcp .no{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:20px}
+.lm-mcp .no div{background:#fff;border:1px solid #d9dcea;border-radius:14px;padding:16px 18px}
+.lm-mcp .no h3{font-size:1rem;margin:0 0 6px;color:#1e293b}
+.lm-mcp .no p{margin:0;font-size:.92rem;color:#475569}
+.lm-mcp .li{display:block}
+.lm-mcp .tip{display:flex;gap:12px;align-items:flex-start;margin:18px 0 0;padding:14px 18px;border-radius:12px;border:1px solid #d9dcea;background:#f6f6fd;font-size:.95rem}
 .lm-mcp .tip p{margin:0;color:#334155}
 .lm-mcp .tip>div,.lm-mcp .tip>p{flex:1;min-width:0}
 .lm-mcp .tipico{flex:0 0 auto;font-size:1.1rem;line-height:1.5}
-.lm-mcp .tip-a{border-color:rgba(245,158,11,.35);background:rgba(245,158,11,.08)}
-.lm-mcp .tip-e{border-color:rgba(16,185,129,.3);background:rgba(16,185,129,.07)}
-.lm-mcp .tip-links{display:block}
+.lm-mcp .tip-a{border-color:#f3d9a4;background:#fdf7ea}
+.lm-mcp .tip-e{border-color:#bfe8d6;background:#f0faf5}
 .lm-mcp .res-links{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
-.lm-mcp .res-links a{font-size:.85rem;font-weight:700;color:var(--violet);text-decoration:none;background:rgba(99,102,241,.08);border:1px solid rgba(99,102,241,.22);border-radius:20px;padding:8px 14px}
-.lm-mcp .res-links a:hover{background:rgba(99,102,241,.15)}
-@media (max-width:760px){.lm-mcp .flow{grid-template-columns:1fr}}
+.lm-mcp .res-links a{font-size:.85rem;font-weight:700;color:#4c47c9;text-decoration:none;background:#eef0fb;border:1px solid #d9dcea;border-radius:20px;padding:8px 14px}
+.lm-mcp .res-links a:hover{background:#e2e5fa}
+@media (max-width:760px){.lm-mcp .logos{grid-template-columns:repeat(3,1fr)}.lm-mcp .sites,.lm-mcp .anat,.lm-mcp .no{grid-template-columns:1fr}.lm-mcp .flow{grid-template-columns:1fr}.lm-mcp .msg.you .bub,.lm-mcp .msg.cl .bub{max-width:100%}.lm-mcp .tool img{flex-basis:46px;width:46px;height:46px}}
 </style>
 
 <section class="hero">
   <div class="container">
-    <span class="hero-eyebrow">Vidéo + playbook · Claude Code</span>
-    <h1>Créer un <em>site premium</em> avec Claude Code : les Skills et MCP à installer</h1>
-    <p class="hero-sub">Claude Code sait coder un site. Ce qui manque pour qu'il soit <strong>premium</strong>, ce sont des yeux, des références et du goût. Ce guide installe les outils qui les lui donnent : <strong>Firecrawl</strong>, <strong>Playwright</strong>, <strong>UI UX Pro Max</strong>, <strong>21st</strong>, <strong>Impeccable</strong>. Commandes exactes, vérifiées sur la documentation de chaque projet.</p>
-    <div class="hero-meta"><span class="hero-meta-item">Niveau : débutant à intermédiaire</span><span class="hero-meta-item">Installation : ~30 min</span><span class="hero-meta-item">Par Nathan Fenina, Décupler</span></div>
+    <span class="hero-eyebrow">Vidéo + playbook · Claude Code design</span>
+    <h1>Claude Code design : créer un <em>site web premium</em> en discutant avec Claude</h1>
+    <p class="hero-sub">Avec <strong>Claude Code</strong>, tu n'écris pas le site : tu le décris, et Claude le construit. Ce qui fait la différence entre un site générique et un site premium, ce sont les outils que tu lui branches. Ce guide te montre lesquels, à quoi ils servent, et <strong>quoi dire à Claude</strong> pour qu'il les installe et les utilise lui-même.</p>
+    <div class="hero-meta"><span class="hero-meta-item">Niveau : débutant</span><span class="hero-meta-item">Mise en place : ~30 min</span><span class="hero-meta-item">Par Nathan Fenina, Décupler</span></div>
+    <ul class="logos">
+      <li><img src="https://decupler.com/wp-content/uploads/2026/09/logo-claude.png" alt="Logo de Claude Code" width="52" height="52">Claude Code</li>
+      <li><img src="https://decupler.com/wp-content/uploads/2026/09/logo-firecrawl.png" alt="Logo de Firecrawl" width="52" height="52">Firecrawl</li>
+      <li><img src="https://decupler.com/wp-content/uploads/2026/09/logo-playwright.png" alt="Logo de Playwright" width="52" height="52">Playwright</li>
+      <li><img src="https://decupler.com/wp-content/uploads/2026/09/logo-uupm.png" alt="Logo de UI UX Pro Max" width="52" height="52">UI UX Pro Max</li>
+      <li><img src="https://decupler.com/wp-content/uploads/2026/09/logo-21st.png" alt="Logo de 21st.dev" width="52" height="52">21st</li>
+      <li><img src="https://decupler.com/wp-content/uploads/2026/09/logo-impeccable.png" alt="Logo d'Impeccable" width="52" height="52">Impeccable</li>
+    </ul>
   </div>
 </section>
 
@@ -46,173 +106,238 @@
     <div class="section-label">La vidéo</div>
     <h2 class="section-title">Regarde d'abord, installe ensuite</h2>
     <div class="vid"><iframe src="https://www.youtube-nocookie.com/embed/H8101DNXHz8?rel=0" title="Créer des sites web grâce à Claude Code (MCP + Skills utilisés)" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
-    <p class="vid-cap">« Créer des sites web grâce à Claude Code (MCP + Skills utilisés) ». Le playbook écrit est juste en dessous.</p>
+    <p class="cap">« Créer des sites web grâce à Claude Code (MCP + Skills utilisés) ». Le playbook écrit suit.</p>
   </div>
 </section>
 
 <section class="guide-section">
   <div class="container">
-    <div class="section-label">Le constat</div>
-    <h2 class="section-title">Pourquoi « crée-moi un site » donne un site générique</h2>
-    <p class="prose-block">Demande un site à une IA sans rien d'autre : tu obtiens la moyenne de tout ce qu'elle a vu. Police Inter, dégradé violet-bleu, trois cartes avec une icône au-dessus du titre. Le code tourne, mais le site ressemble à mille autres. Trois choses manquent :</p>
-    <ul class="checklist">
-      <li><span class="li"><strong>Des références.</strong> Elle ne regarde pas les sites de ton secteur qui fonctionnent. → <strong>Firecrawl</strong> les lit pour elle, identité visuelle comprise.</span></li>
-      <li><span class="li"><strong>Des yeux.</strong> Elle écrit du CSS sans jamais voir le résultat, ni sur mobile ni sur ordinateur. → <strong>Playwright</strong> ouvre un vrai navigateur et fait des captures.</span></li>
-      <li><span class="li"><strong>Du goût et un système.</strong> Elle ne sait pas quelle palette, quelle typo, quelle structure de page conviennent à un ostéopathe ou à un SaaS. → Les skills <strong>UI UX Pro Max</strong> et <strong>Impeccable</strong>, plus les composants de <strong>21st</strong>.</span></li>
-    </ul>
-    <div class="slot"><b>Image 1</b>Avant / après : le même brief sans les outils, puis avec.</div>
+    <div class="section-label">Le résultat</div>
+    <h2 class="section-title">Trois sites construits avec cette méthode</h2>
+    <p class="prose-block">Trois maquettes de page d'accueil réalisées pour des artisans de la région nantaise : un couvreur-façadier, un paysagiste-élagueur, une entreprise de couverture. Même méthode, trois identités différentes. Aucune ne ressemble à un gabarit.</p>
+    <div class="sites">
+      <figure><img src="https://decupler.com/wp-content/uploads/2026/09/site-compagnons-du-toit.jpg" alt="Page d'accueil d'un site de couvreur à Nantes créé avec Claude Code : hero photo, formulaire de devis, appel direct" width="1760" height="886" loading="lazy" decoding="async"><figcaption>Les Compagnons du Toit : couvreur et façadier à Nantes.</figcaption></figure>
+      <figure><img src="https://decupler.com/wp-content/uploads/2026/09/site-atlantique-jardins.jpg" alt="Page d'accueil d'un site de paysagiste à Rezé créé avec Claude Code, charte verte et formulaire de devis" width="1798" height="892" loading="lazy" decoding="async"><figcaption>Atlantique Jardins : paysagiste et élagueur à Rezé.</figcaption></figure>
+      <figure><img src="https://decupler.com/wp-content/uploads/2026/09/site-martin-couverture.jpg" alt="Page d'accueil d'un site de couvreur nantais créé avec Claude Code, formulaire de rappel gratuit" width="1516" height="878" loading="lazy" decoding="async"><figcaption>Martin Couverture : couverture et démoussage, Loire-Atlantique.</figcaption></figure>
+    </div>
+    <h3 style="margin:34px 0 0">Ce qu'ils ont en commun : l'anatomie d'une page d'accueil qui convertit</h3>
+    <ol class="anat">
+      <li><span><b>Le téléphone en haut à droite</b>, en toutes lettres, cliquable sur mobile.</span></li>
+      <li><span><b>Un sur-titre métier + ville</b> (« Couvreur &amp; façadier à Nantes ») : le visiteur et Google savent où ils sont.</span></li>
+      <li><span><b>Un titre qui promet un résultat</b>, pas un slogan : « Un jardin impeccable, taillé par quelqu'un du coin. »</span></li>
+      <li><span><b>Une vraie photo du métier</b> en fond, avec un voile sombre pour garder le texte lisible.</span></li>
+      <li><span><b>Un formulaire court dans le premier écran</b> : nom, téléphone, ville. Trois champs, pas dix.</span></li>
+      <li><span><b>Deux boutons</b> : « Demander un devis » et « Appeler ». Chacun choisit son canal.</span></li>
+      <li><span><b>Une typographie qui a du caractère</b> : un titre avec empattements ou très serré, jamais la police par défaut.</span></li>
+      <li><span><b>Une couleur par métier</b> : bleu ardoise pour la toiture, vert pour le jardin, ocre pour la couverture.</span></li>
+    </ol>
   </div>
 </section>
 
+<section class="guide-section ruban"><div class="container"><span><b>6</b> outils</span><span><b>1</b> conversation</span><span><b>0</b> commande à retenir</span></div></section>
+
 <section class="guide-section">
   <div class="container">
-    <div class="section-label">La stack</div>
-    <h2 class="section-title">Les outils en un coup d'œil</h2>
-    <p class="prose-block">Deux familles. Les <strong>MCP</strong> donnent à Claude un accès à un outil réel (un navigateur, le web, une bibliothèque de composants). Les <strong>skills</strong> lui donnent une méthode et des règles, chargées quand la tâche s'y prête.</p>
+    <div class="section-label">Le principe</div>
+    <h2 class="section-title">Tu parles, Claude exécute</h2>
+    <p class="prose-block">Claude Code est un agent : il lit tes fichiers, lance des commandes, installe des outils, ouvre un navigateur. Tu n'as donc pas besoin de connaître les commandes d'installation. Tu dis ce que tu veux, il s'en occupe, et il te montre ce qu'il a fait. Les commandes sont dans ce guide, repliées, pour ceux qui veulent savoir ce qui se passe en coulisse.</p>
+    <p class="prose-block">Demande un site à une IA sans rien d'autre et tu obtiens la moyenne de ce qu'elle a vu : police par défaut, dégradé violet-bleu, trois cartes avec une icône au-dessus du titre. Il lui manque trois choses, et chaque outil de ce guide en apporte une :</p>
     <div class="stack-wrap"><table class="stack">
-      <thead><tr><th>Outil</th><th>Type</th><th>Ce qu'il apporte</th><th>Coût</th></tr></thead>
+      <thead><tr><th>Outil</th><th>Type</th><th>Ce qui manquait</th><th>Coût</th></tr></thead>
       <tbody>
-        <tr><td>Claude Code</td><td><span class="kind">Agent</span></td><td>Écrit le code, crée les fichiers, lance les commandes</td><td>Abonnement Claude ou clé API</td></tr>
-        <tr><td>Firecrawl</td><td><span class="kind">MCP</span></td><td>Lit n'importe quel site et en extrait l'identité : couleurs, polices, espacements, logo</td><td>Version sans clé limitée, clé pour tout débloquer</td></tr>
-        <tr><td>Playwright</td><td><span class="kind">MCP</span></td><td>Pilote un vrai navigateur : navigation, clics, captures, redimensionnement</td><td>Open source (Microsoft)</td></tr>
-        <tr><td>UI UX Pro Max</td><td><span class="kind sk">Skill</span></td><td>Génère un design system adapté au secteur : style, palette, typos, structure de page</td><td>Open source (MIT)</td></tr>
-        <tr><td>21st</td><td><span class="kind">MCP</span></td><td>Cherche et récupère des composants d'interface prêts à adapter</td><td>Clé gratuite, génération IA en option</td></tr>
-        <tr><td>Impeccable</td><td><span class="kind sk">Skill</span></td><td>Vocabulaire de design, critique et audit contre le « look IA »</td><td>Open source (Apache 2.0)</td></tr>
+        <tr><td><span class="nm"><img src="https://decupler.com/wp-content/uploads/2026/09/logo-firecrawl.png" alt="" width="28" height="28">Firecrawl</span></td><td><span class="kind">MCP</span></td><td><b>Des références</b> : il lit les sites qui marchent dans ton secteur, identité visuelle comprise</td><td>Gratuit limité, puis crédits</td></tr>
+        <tr><td><span class="nm"><img src="https://decupler.com/wp-content/uploads/2026/09/logo-playwright.png" alt="" width="28" height="28">Playwright</span></td><td><span class="kind">MCP</span></td><td><b>Des yeux</b> : il ouvre un vrai navigateur et regarde le résultat</td><td>Open source</td></tr>
+        <tr><td><span class="nm"><img src="https://decupler.com/wp-content/uploads/2026/09/logo-uupm.png" alt="" width="28" height="28">UI UX Pro Max</span></td><td><span class="kind sk">Skill</span></td><td><b>Un système</b> : palette, typos, structure adaptées au secteur</td><td>Open source (MIT)</td></tr>
+        <tr><td><span class="nm"><img src="https://decupler.com/wp-content/uploads/2026/09/logo-21st.png" alt="" width="28" height="28">21st</span></td><td><span class="kind">MCP</span></td><td><b>Des composants</b> soignés au lieu de tout réinventer</td><td>Clé gratuite</td></tr>
+        <tr><td><span class="nm"><img src="https://decupler.com/wp-content/uploads/2026/09/logo-impeccable.png" alt="" width="28" height="28">Impeccable</span></td><td><span class="kind sk">Skill</span></td><td><b>Du goût</b> : il repère et corrige le « look IA »</td><td>Open source (Apache 2.0)</td></tr>
       </tbody>
     </table></div>
+    <p class="prose-block" style="margin-top:14px">Un <strong>MCP</strong> branche Claude sur un outil réel (un navigateur, le web, une bibliothèque). Un <strong>skill</strong> lui apprend une méthode, qu'il charge quand la tâche s'y prête.</p>
   </div>
 </section>
 
 <section class="guide-section">
   <div class="container">
-    <div class="section-label">Étape 0</div>
-    <div class="step-h"><span class="step-n">0</span><h2 class="section-title" style="margin:0">Installer Claude Code</h2></div>
-    <p class="prose-block">Il faut un abonnement Claude payant (Pro, Max…) ou une clé API. Sur macOS et Linux, l'installateur officiel :</p>
+    <div class="section-label">Étape 1</div>
+    <div class="tool"><img src="https://decupler.com/wp-content/uploads/2026/09/logo-claude.png" alt="Logo de Claude Code" width="56" height="56"><h2 class="section-title">Installer Claude Code : la seule commande que tu tapes</h2></div>
+    <p class="prose-block">Il faut un abonnement Claude payant (Pro, Max…) ou une clé API. Ouvre un terminal, colle cette ligne (macOS et Linux), puis lance <span class="inline-code">claude</span> dans un dossier vide :</p>
     <div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>terminal</span></div><pre>curl -fsSL https://claude.ai/install.sh | bash
-<span class="c"># ou, si tu as déjà Node.js :</span>
-npm install -g @anthropic-ai/claude-code
-<span class="c"># puis, dans le dossier du site :</span>
 mkdir mon-site &amp;&amp; cd mon-site
 claude</pre></div>
-    <p class="prose-block">Les commandes qui commencent par <span class="inline-code">/</span> (comme <span class="inline-code">/plugin</span>) se tapent <strong>dans</strong> Claude Code. Les autres se tapent dans le terminal.</p>
+    <p class="prose-block">À partir de là, tu ne tapes plus de commande. Tu écris en français.</p>
   </div>
 </section>
 
 <section class="guide-section">
   <div class="container">
-    <div class="section-label">Étape 1 · MCP</div>
-    <div class="step-h"><span class="step-n">1</span><h2 class="section-title" style="margin:0">Firecrawl : lire les sites de référence</h2></div>
-    <p class="prose-block">Firecrawl transforme une page web en texte propre, et son format <span class="inline-code">branding</span> en extrait l'identité : couleurs, polices, typographie, espacements, logo, composants. C'est la matière première du brief : on montre à Claude trois sites qui marchent dans le secteur, il en tire ce qui les rend crédibles.</p>
-    <p class="prose-block">Le plus simple, le plugin officiel :</p>
-    <div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>dans Claude Code</span></div><pre>/plugin install firecrawl@claude-plugins-official</pre></div>
-    <p class="prose-block">Ou en ligne de commande, avec ta clé (créée sur firecrawl.dev) :</p>
-    <div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>terminal</span></div><pre>claude mcp add firecrawl -e FIRECRAWL_API_KEY=fc-TA_CLE -- npx -y firecrawl-mcp
-<span class="c"># pour tester sans clé (scrape, search et parse seulement, débit limité) :</span>
-claude mcp add --transport http firecrawl https://mcp.firecrawl.dev/v2/mcp</pre></div>
-    <div class="tip tip-v"><span class="tipico">💬</span><p><strong>À demander :</strong> « Avec Firecrawl, récupère le branding de ces trois sites et fais-moi un tableau : couleurs, polices, tailles de titres, espacements, ton des textes. Ce qu'ils ont en commun, ce qui les distingue. »</p></div>
-    <div class="tip tip-a"><span class="tipico">⚠️</span><p>S'inspirer, pas copier : on reprend des principes (contraste, rythme, hiérarchie), jamais un logo, des textes ou une maquette entière. Et chaque page lue consomme des crédits : surveille ton solde.</p></div>
-    <div class="slot"><b>Image 2</b>Capture : le tableau de branding que Claude sort des sites de référence.</div>
+    <div class="section-label">Étape 2</div>
+    <h2 class="section-title">Un message pour tout installer</h2>
+    <p class="prose-block">Tu n'as pas besoin d'installer les outils un par un. Tu demandes, Claude fait.</p>
+    <div class="chat">
+      <p class="chat-h">Exemple d'échange dans Claude Code</p>
+      <div class="msg you"><span class="av">Toi</span><div class="bub"><p>Installe-moi pour ce projet : les MCP Playwright, Firecrawl et 21st, et les skills UI UX Pro Max et Impeccable. Dis-moi ce dont tu as besoin de ma part.</p></div></div>
+      <div class="msg cl"><span class="av"><img src="https://decupler.com/wp-content/uploads/2026/09/logo-claude.png" alt="" width="32" height="32"></span><div class="bub"><p>C'est fait pour Playwright, UI UX Pro Max et Impeccable. Firecrawl est branché en version gratuite, sans clé. Pour 21st, il me faut ta clé : crée-la sur 21st.dev/mcp et lance la commande ci-dessous toi-même, elle ne passera pas dans notre conversation. Relance-moi ensuite pour que je charge les nouveaux outils.</p>
+        <ul class="acts"><li>claude mcp add playwright npx @playwright/mcp@latest</li><li>claude mcp add --transport http firecrawl https://mcp.firecrawl.dev/v2/mcp</li><li>npm install -g ui-ux-pro-max-cli &amp;&amp; uipro init --ai claude</li><li>npx impeccable install --providers=claude --scope=project</li></ul></div></div>
+      <div class="msg you"><span class="av">Toi</span><div class="bub"><p>C'est relancé. Qu'est-ce qui est branché ?</p></div></div>
+      <div class="msg cl"><span class="av"><img src="https://decupler.com/wp-content/uploads/2026/09/logo-claude.png" alt="" width="32" height="32"></span><div class="bub"><p>Playwright, Firecrawl et 21st répondent, les deux skills sont chargés. On peut commencer le site.</p></div></div>
+    </div>
+    <div class="tip tip-a"><span class="tipico">🔑</span><p><strong>Les clés restent hors du chat.</strong> Deux outils en demandent une pour aller plus loin : Firecrawl (au-delà de la version gratuite) et 21st. Claude te donne la ligne à lancer avec ta clé ; tu ne la colles jamais dans la conversation.</p></div>
+    <details class="cmd"><summary>Voir toutes les commandes d'installation (si tu préfères les lancer toi-même)</summary><div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>terminal</span></div><pre><span class="c"># MCP</span>
+claude mcp add playwright npx @playwright/mcp@latest
+claude mcp add firecrawl -e FIRECRAWL_API_KEY=fc-TA_CLE -- npx -y firecrawl-mcp
+npx @21st-dev/cli@latest init --client claude
+<span class="c"># Skills</span>
+npm install -g ui-ux-pro-max-cli &amp;&amp; uipro init --ai claude
+npx impeccable install
+<span class="c"># Ou par la place de marché de plugins, dans Claude Code :</span>
+<span class="c"># /plugin install playwright@claude-plugins-official</span>
+<span class="c"># /plugin install firecrawl@claude-plugins-official</span></pre></div></details>
   </div>
 </section>
 
 <section class="guide-section">
   <div class="container">
-    <div class="section-label">Étape 2 · MCP</div>
-    <div class="step-h"><span class="step-n">2</span><h2 class="section-title" style="margin:0">Playwright : donner des yeux à Claude</h2></div>
-    <p class="prose-block">C'est l'outil qui change le plus la qualité. Playwright ouvre un vrai navigateur, charge ta page, la redimensionne, clique, fait des captures. Claude arrête de coder à l'aveugle : il <strong>voit</strong> le bouton qui déborde sur mobile et le corrige avant que tu le remarques.</p>
-    <div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>terminal</span></div><pre>claude mcp add playwright npx @playwright/mcp@latest</pre></div>
-    <p class="prose-block">Ou <span class="inline-code">/plugin install playwright@claude-plugins-official</span> depuis Claude Code. Par défaut, la fenêtre du navigateur s'affiche : tu vois Claude travailler. L'option <span class="inline-code">--headless</span> la masque.</p>
-    <div class="tip tip-v"><span class="tipico">💬</span><p><strong>À demander :</strong> « Ouvre le site en local, fais une capture à 390 px, 768 px et 1440 px de large. Liste tout ce qui casse ou qui fait amateur, corrige, puis refais les captures pour me montrer l'avant et l'après. »</p></div>
-    <div class="slot"><b>Image 3</b>Capture : la même page en mobile et en ordinateur, prise par Playwright.</div>
+    <div class="section-label">Étape 3 · MCP</div>
+    <div class="tool"><img src="https://decupler.com/wp-content/uploads/2026/09/logo-firecrawl.png" alt="Logo de Firecrawl" width="56" height="56"><h2 class="section-title">Firecrawl : partir de ce qui marche déjà</h2></div>
+    <ul class="tool-meta"><li>Lecture de sites web</li><li>Format « branding »</li><li>Version gratuite sans clé</li></ul>
+    <p class="prose-block">Firecrawl transforme une page web en texte propre, et son format <span class="inline-code">branding</span> en extrait l'identité visuelle : couleurs, polices, tailles, espacements, logo, composants. C'est la matière du brief : au lieu d'inventer, Claude part de trois sites qui fonctionnent dans ton secteur et en tire ce qui les rend crédibles.</p>
+    <div class="chat">
+      <p class="chat-h">Exemple d'échange dans Claude Code</p>
+      <div class="msg you"><span class="av">Toi</span><div class="bub"><p>Je fais le site d'un couvreur à Nantes. Trouve trois sites de couvreurs bien faits, récupère leur branding avec Firecrawl et fais-moi un tableau : couleurs, polices, structure de la page d'accueil. Ce qu'ils ont en commun, ce qui les distingue.</p></div></div>
+      <div class="msg cl"><span class="av"><img src="https://decupler.com/wp-content/uploads/2026/09/logo-claude.png" alt="" width="32" height="32"></span><div class="bub"><p>Voici le tableau. Point commun : le téléphone visible partout et une photo de chantier dès le premier écran. Aucun ne montre de formulaire court en haut de page : c'est une opportunité pour se démarquer.</p><ul class="acts"><li>firecrawl_search « couvreur Nantes »</li><li>firecrawl_scrape · formats: branding · ×3</li></ul></div></div>
+    </div>
+    <figure class="shot"><img src="https://decupler.com/wp-content/uploads/2026/09/og-firecrawl.jpg" alt="Firecrawl : transformer des sites web en données prêtes pour un LLM" width="1400" height="735" loading="lazy" decoding="async"><figcaption>Firecrawl, « Turn websites into LLM-ready data ». Visuel officiel, firecrawl.dev.</figcaption></figure>
+    <div class="tip tip-a"><span class="tipico">⚠️</span><p><strong>S'inspirer, pas copier.</strong> On reprend des principes (contraste, rythme, hiérarchie), jamais un logo, des textes ou une maquette entière. Et chaque page lue consomme des crédits : surveille ton solde.</p></div>
   </div>
 </section>
 
 <section class="guide-section">
   <div class="container">
-    <div class="section-label">Étape 3 · Skill</div>
-    <div class="step-h"><span class="step-n">3</span><h2 class="section-title" style="margin:0">UI UX Pro Max : le bon design system pour le bon secteur</h2></div>
-    <p class="prose-block">Ce skill donne à Claude une base de connaissances de design interrogeable. D'après la documentation du projet : 192 catégories de produits, 192 palettes, 74 associations de polices et 34 structures de landing page. À partir de ton secteur, il sort un design system complet : structure de page, style, couleurs, typographies, effets, erreurs à éviter et checklist avant livraison.</p>
-    <div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>dans Claude Code</span></div><pre>/plugin marketplace add nextlevelbuilder/ui-ux-pro-max-skill
-/plugin install ui-ux-pro-max@ui-ux-pro-max-skill</pre></div>
-    <p class="prose-block">Autre voie, par son installateur (Python 3 requis pour la recherche) :</p>
-    <div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>terminal</span></div><pre>npm install -g ui-ux-pro-max-cli
-uipro init --ai claude            <span class="c"># dans ce projet</span>
-uipro init --ai claude --global   <span class="c"># pour tous tes projets</span></pre></div>
-    <div class="tip tip-v"><span class="tipico">💬</span><p><strong>À demander :</strong> « Utilise UI UX Pro Max pour générer le design system d'un cabinet d'ostéopathie haut de gamme à Nice. Je veux la structure de la page d'accueil, la palette, les typos et la liste de ce qu'il faut éviter. »</p></div>
-    <div class="slot"><b>Image 4</b>Capture : le design system généré (structure, palette, typos).</div>
+    <div class="section-label">Étape 4 · Skill</div>
+    <div class="tool"><img src="https://decupler.com/wp-content/uploads/2026/09/logo-uupm.png" alt="Logo de UI UX Pro Max" width="56" height="56"><h2 class="section-title">UI UX Pro Max : le design system du secteur</h2></div>
+    <ul class="tool-meta"><li class="sk">Skill</li><li class="sk">Palettes, typos, structures</li><li class="sk">Open source (MIT)</li></ul>
+    <p class="prose-block">Ce skill donne à Claude une base de design interrogeable : styles d'interface, palettes, associations de polices, structures de landing page, règles par type d'activité. À partir de ton secteur, il sort un design system complet : structure de page, style, couleurs, typographies, effets, erreurs à éviter, et une checklist avant livraison (contraste, focus clavier, animations réduites, responsive de 375 à 1 440 px).</p>
+    <div class="chat">
+      <p class="chat-h">Exemple d'échange dans Claude Code</p>
+      <div class="msg you"><span class="av">Toi</span><div class="bub"><p>Avec UI UX Pro Max, génère le design system du couvreur, en tenant compte du tableau Firecrawl. Je veux un rendu sérieux, artisanal, pas « startup ».</p></div></div>
+      <div class="msg cl"><span class="av"><img src="https://decupler.com/wp-content/uploads/2026/09/logo-claude.png" alt="" width="32" height="32"></span><div class="bub"><p>Structure : hero avec preuve et formulaire, services, zone d'intervention, avis, devis. Palette ardoise et bleu gris, titres à empattements, texte en sans-serif lisible. À éviter : néons, dégradés violets, animations appuyées. Je l'enregistre dans le projet.</p><ul class="acts"><li>search.py « roofing contractor » --design-system --persist</li><li>Écrit design-system/couvreur/MASTER.md</li></ul></div></div>
+    </div>
+    <figure class="shot"><img src="https://decupler.com/wp-content/uploads/2026/09/og-uupm.jpg" alt="Page d'accueil d'UI UX Pro Max, la base de design interrogeable par Claude" width="1400" height="792" loading="lazy" decoding="async"><figcaption>UI UX Pro Max, « Design Intelligence ». Visuel officiel, uupm.cc.</figcaption></figure>
   </div>
 </section>
 
 <section class="guide-section">
   <div class="container">
-    <div class="section-label">Étape 4 · MCP</div>
-    <div class="step-h"><span class="step-n">4</span><h2 class="section-title" style="margin:0">21st : des composants prêts au lieu de tout réinventer</h2></div>
-    <p class="prose-block"><a href="https://21st.dev">21st.dev</a> est une bibliothèque de composants d'interface (sections hero, tableaux de prix, témoignages, menus). Son MCP permet à Claude de chercher un composant, d'en récupérer le code et de l'adapter à ta charte. L'ancien « Magic MCP » s'appelle désormais <strong>21st MCP</strong> : les anciennes clés ont été réinitialisées, il faut en créer une nouvelle sur <span class="inline-code">21st.dev/mcp</span>.</p>
-    <div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>terminal</span></div><pre>npx @21st-dev/cli@latest init --client claude</pre></div>
-    <p class="prose-block">La recherche et la récupération de composants marchent avec la clé gratuite. La génération de composants par l'IA de 21st demande un accès en plus : sans lui, c'est Claude qui adapte le code récupéré, et c'est très bien.</p>
-    <div class="tip tip-v"><span class="tipico">💬</span><p><strong>À demander :</strong> « Cherche sur 21st une section de témoignages et un tableau de prix à trois colonnes. Prends les deux plus sobres et adapte-les au design system du projet. »</p></div>
+    <div class="section-label">Étape 5 · MCP</div>
+    <div class="tool"><img src="https://decupler.com/wp-content/uploads/2026/09/logo-21st.png" alt="Logo de 21st.dev" width="56" height="56"><h2 class="section-title">21st : des composants soignés, adaptés à ta charte</h2></div>
+    <ul class="tool-meta"><li>Bibliothèque de composants</li><li>Clé gratuite</li><li>Ex-« Magic MCP »</li></ul>
+    <p class="prose-block">21st.dev rassemble des composants d'interface : sections hero, tableaux de prix, témoignages, menus, formulaires. Son MCP permet à Claude d'en chercher un, d'en récupérer le code et de l'adapter au design system. L'ancien « Magic MCP » s'appelle désormais <strong>21st MCP</strong> ; les anciennes clés ont été réinitialisées, il faut en créer une nouvelle.</p>
+    <div class="chat">
+      <p class="chat-h">Exemple d'échange dans Claude Code</p>
+      <div class="msg you"><span class="av">Toi</span><div class="bub"><p>Construis la page d'accueil. Pour les avis et le formulaire de devis, cherche sur 21st les composants les plus sobres et adapte-les au design system.</p></div></div>
+      <div class="msg cl"><span class="av"><img src="https://decupler.com/wp-content/uploads/2026/09/logo-claude.png" alt="" width="32" height="32"></span><div class="bub"><p>Page construite. J'ai pris un bloc d'avis en grille et un formulaire en carte, recolorés en ardoise, avec les polices du projet. Le formulaire garde trois champs : nom, téléphone, ville.</p><ul class="acts"><li>21st · search « testimonials »</li><li>21st · get_component ×2</li><li>Écrit index.html, styles.css</li></ul></div></div>
+    </div>
+    <figure class="shot"><img src="https://decupler.com/wp-content/uploads/2026/09/og-21st.jpg" alt="21st.dev, bibliothèque de composants d'interface" width="1400" height="735" loading="lazy" decoding="async"><figcaption>21st.dev, bibliothèque de composants. Visuel officiel.</figcaption></figure>
+    <p class="prose-block" style="margin-top:16px">La recherche et la récupération de composants marchent avec la clé gratuite. La génération par l'IA de 21st demande un accès en plus ; sans lui, c'est Claude qui adapte le code, et c'est très bien.</p>
   </div>
 </section>
 
 <section class="guide-section">
   <div class="container">
-    <div class="section-label">Étape 5 · Skill</div>
-    <div class="step-h"><span class="step-n">5</span><h2 class="section-title" style="margin:0">Impeccable : chasser le « look IA »</h2></div>
-    <p class="prose-block">Impeccable part du skill <em>frontend-design</em> d'Anthropic et va plus loin : une commande par intention (critique, audit, polish, typographie, mise en page, animation…) et 61 règles qui détectent les tics des sites générés par IA : polices par défaut, dégradés violet-bleu, cartes dans des cartes, texte gris sur fond coloré.</p>
-    <div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>terminal, à la racine du projet</span></div><pre>npx impeccable install</pre></div>
-    <p class="prose-block">Puis, dans Claude Code, une seule fois par projet : <span class="inline-code">/impeccable init</span>. Il pose les questions qui manquent (public, objectif, ton) et écrit un fichier <span class="inline-code">PRODUCT.md</span> que toutes les commandes suivantes relisent.</p>
-    <div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>les commandes les plus utiles</span></div><pre>/impeccable craft     <span class="c"># de la forme au code, avec itérations visuelles</span>
-/impeccable critique  <span class="c"># revue UX : hiérarchie, clarté</span>
-/impeccable audit     <span class="c"># accessibilité, performance, responsive</span>
-/impeccable typeset   <span class="c"># polices, hiérarchie, tailles</span>
-/impeccable polish    <span class="c"># dernière passe avant livraison</span></pre></div>
-    <div class="slot"><b>Image 5</b>Capture : le rapport de /impeccable critique sur une page.</div>
+    <div class="section-label">Étape 6 · MCP</div>
+    <div class="tool"><img src="https://decupler.com/wp-content/uploads/2026/09/logo-playwright.png" alt="Logo de Playwright" width="56" height="56"><h2 class="section-title">Playwright : Claude regarde ce qu'il a fait</h2></div>
+    <ul class="tool-meta"><li>Vrai navigateur</li><li>Captures mobile et ordinateur</li><li>Open source (Microsoft)</li></ul>
+    <p class="prose-block">C'est l'outil qui change le plus la qualité. Sans lui, Claude écrit du CSS à l'aveugle. Avec lui, il ouvre la page dans un vrai navigateur, la redimensionne, clique, fait des captures, et <strong>voit</strong> le bouton qui déborde sur mobile avant toi. Par défaut, la fenêtre s'affiche : tu le regardes travailler.</p>
+    <div class="chat">
+      <p class="chat-h">Exemple d'échange dans Claude Code</p>
+      <div class="msg you"><span class="av">Toi</span><div class="bub"><p>Ouvre la page avec Playwright à 390, 768 et 1440 px de large. Liste tout ce qui casse ou fait amateur, corrige, puis refais les captures pour me montrer l'avant et l'après.</p></div></div>
+      <div class="msg cl"><span class="av"><img src="https://decupler.com/wp-content/uploads/2026/09/logo-claude.png" alt="" width="32" height="32"></span><div class="bub"><p>Trois problèmes à 390 px : le numéro de téléphone passait sur deux lignes, le formulaire collait au bord, le titre prenait tout l'écran. Corrigés. Voici les captures avant et après.</p><ul class="acts"><li>browser_navigate · index.html</li><li>browser_resize 390 / 768 / 1440</li><li>browser_take_screenshot ×6</li></ul></div></div>
+    </div>
+    <div class="tip tip-v"><span class="tipico">💡</span><p><strong>Le réflexe à prendre :</strong> finis chaque demande par « et montre-moi les captures ». Claude vérifie son travail au lieu de te le déclarer terminé.</p></div>
   </div>
 </section>
 
 <section class="guide-section">
   <div class="container">
-    <div class="section-label">Étape 6</div>
-    <div class="step-h"><span class="step-n">6</span><h2 class="section-title" style="margin:0">Les autres skills et MCP utiles</h2></div>
-    <p class="prose-block">Tous disponibles dans la place de marché officielle de plugins Claude Code (<span class="inline-code">/plugin install &lt;nom&gt;@claude-plugins-official</span>) :</p>
+    <div class="section-label">Étape 7 · Skill</div>
+    <div class="tool"><img src="https://decupler.com/wp-content/uploads/2026/09/logo-impeccable.png" alt="Logo d'Impeccable" width="56" height="56"><h2 class="section-title">Impeccable : chasser le « look IA »</h2></div>
+    <ul class="tool-meta"><li class="sk">Skill</li><li class="sk">Commandes /impeccable</li><li class="sk">Open source (Apache 2.0)</li></ul>
+    <p class="prose-block">Impeccable part du skill <em>frontend-design</em> d'Anthropic et va plus loin : une commande par intention (critique, audit, finitions, typographie, mise en page, animation) et des règles qui détectent les tics des interfaces générées par IA : polices par défaut, dégradés violet-bleu, cartes dans des cartes, texte gris sur fond coloré. Au premier lancement, <span class="inline-code">/impeccable init</span> te pose quelques questions (public, objectif, ton) et les garde dans un fichier <span class="inline-code">PRODUCT.md</span> que les commandes suivantes relisent.</p>
+    <div class="chat">
+      <p class="chat-h">Exemple d'échange dans Claude Code</p>
+      <div class="msg you"><span class="av">Toi</span><div class="bub"><p>/impeccable critique la page d'accueil, puis corrige les points bloquants.</p></div></div>
+      <div class="msg cl"><span class="av"><img src="https://decupler.com/wp-content/uploads/2026/09/logo-claude.png" alt="" width="32" height="32"></span><div class="bub"><p>Deux points bloquants : le texte gris clair sur la photo manque de contraste, et les trois cartes de services sont identiques, on ne voit pas laquelle compte. J'ai renforcé le voile de la photo et mis la réparation d'urgence en avant.</p></div></div>
+    </div>
+    <figure class="shot"><img src="https://decupler.com/wp-content/uploads/2026/09/og-impeccable.jpg" alt="Impeccable, le vocabulaire de design pour les agents IA" width="1400" height="733" loading="lazy" decoding="async"><figcaption>Impeccable, « The missing design vocabulary for agents ». Visuel officiel, impeccable.style.</figcaption></figure>
+    <p class="prose-block" style="margin-top:16px">Les commandes les plus utiles : <span class="inline-code">/impeccable craft</span> (de l'idée au code), <span class="inline-code">critique</span> (revue UX), <span class="inline-code">audit</span> (accessibilité, performance, responsive), <span class="inline-code">typeset</span> (typographie), <span class="inline-code">polish</span> (dernière passe avant livraison).</p>
+  </div>
+</section>
+
+<section class="guide-section">
+  <div class="container">
+    <div class="section-label">Pour aller plus loin</div>
+    <h2 class="section-title">Les autres skills et MCP utiles</h2>
+    <p class="prose-block">Tous dans la place de marché officielle de plugins Claude Code. Même principe : demande à Claude de les installer.</p>
     <ul class="checklist">
       <li><span class="li"><strong>frontend-design</strong> (Anthropic) : pousse Claude vers une direction esthétique affirmée plutôt que le gabarit moyen.</span></li>
-      <li><span class="li"><strong>context7</strong> : la documentation à jour des bibliothèques (Tailwind, Next.js, Astro…), pour éviter le code écrit pour une version dépassée.</span></li>
-      <li><span class="li"><strong>chrome-devtools-mcp</strong> : traces de performance, requêtes réseau, console. Le complément de Playwright pour la vitesse.</span></li>
-      <li><span class="li"><strong>figma</strong> : si le client arrive avec une maquette, Claude lit les composants et les tokens au lieu de deviner.</span></li>
-      <li><span class="li"><strong>vercel</strong> ou <strong>netlify-skills</strong> : mettre en ligne et suivre les déploiements sans quitter le terminal.</span></li>
+      <li><span class="li"><strong>context7</strong> : la documentation à jour des bibliothèques (Tailwind, Astro, Next.js…), pour éviter du code écrit pour une version dépassée.</span></li>
+      <li><span class="li"><strong>chrome-devtools-mcp</strong> : traces de performance, requêtes réseau, console. Le complément de Playwright pour la vitesse du site.</span></li>
+      <li><span class="li"><strong>figma</strong> : si le client arrive avec une maquette, Claude lit ses composants et ses couleurs au lieu de deviner.</span></li>
+      <li><span class="li"><strong>vercel</strong> ou <strong>netlify-skills</strong> : mettre le site en ligne et suivre les déploiements sans quitter la conversation.</span></li>
+      <li><span class="li"><strong>Un MCP de génération d'images</strong> (chez nous, Gemini) : pour les illustrations abstraites. Pour le métier, de vraies photos.</span></li>
     </ul>
-    <p class="prose-block">Pour les visuels, un MCP de génération d'images (chez nous, Gemini) produit les illustrations directement dans le dossier du site.</p>
   </div>
 </section>
 
 <section class="guide-section">
   <div class="container">
     <div class="section-label">La méthode</div>
-    <h2 class="section-title">Le déroulé d'un site, de bout en bout</h2>
-    <ol class="flow" style="margin-bottom:26px">
-      <li><b>Cadrer</b><span class="inline-code">/impeccable init</span> : public, offre, ton. Tout part de là.</li>
-      <li><b>Regarder</b>Firecrawl sur trois sites de référence du secteur : ce qui les rend crédibles.</li>
-      <li><b>Poser le système</b>UI UX Pro Max : structure, palette, typos, interdits.</li>
-      <li><b>Construire</b>Claude Code, avec les composants de 21st adaptés à la charte.</li>
-      <li><b>Voir et corriger</b>Playwright : captures mobile et ordinateur, corrections, nouvelles captures.</li>
-      <li><b>Finir</b><span class="inline-code">/impeccable audit</span> puis <span class="inline-code">polish</span>, et mise en ligne.</li>
+    <h2 class="section-title">Un site en six messages</h2>
+    <ol class="flow">
+      <li><b>Cadrer</b>« /impeccable init » : public, offre, ton. Tout part de là.</li>
+      <li><b>Regarder</b>« Récupère le branding de trois sites du secteur. »</li>
+      <li><b>Poser le système</b>« Génère le design system avec UI UX Pro Max. »</li>
+      <li><b>Construire</b>« Construis l'accueil, avec les composants 21st. »</li>
+      <li><b>Voir et corriger</b>« Captures à 390, 768, 1440 px, corrige, recapture. »</li>
+      <li><b>Finir</b>« /impeccable audit, puis polish. »</li>
     </ol>
-    <p class="prose-block">Le prompt de départ, à adapter :</p>
-    <div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>prompt</span></div><pre>Tu construis le site de [ENTREPRISE], [ACTIVITÉ] à [VILLE].
-Cible : [CLIENT IDÉAL]. Objectif de la page : [PRISE DE RDV / DEVIS / APPEL].
+    <p class="prose-block">Ou tout d'un coup, avec ce prompt de départ à adapter :</p>
+    <div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>à coller dans Claude Code</span></div><pre>Tu construis le site de [ENTREPRISE], [ACTIVITÉ] à [VILLE].
+Cible : [CLIENT IDÉAL]. Objectif de la page : [DEVIS / APPEL / RDV].
 
 1. Lis PRODUCT.md. S'il n'existe pas, lance /impeccable init.
-2. Avec Firecrawl, récupère le branding de : [URL 1], [URL 2], [URL 3].
+2. Avec Firecrawl, récupère le branding de trois sites du secteur.
    Résume ce qu'ils ont en commun. Ne copie ni texte ni logo.
-3. Avec UI UX Pro Max, génère le design system adapté à ce secteur.
+3. Avec UI UX Pro Max, génère le design system adapté.
 4. Construis la page d'accueil. Cherche sur 21st les composants
    dont tu as besoin et adapte-les au design system.
 5. Avec Playwright, capture la page à 390, 768 et 1440 px.
    Corrige tout ce qui casse, puis refais les captures.
 6. Termine par /impeccable audit et corrige les points bloquants.
 Montre-moi les captures finales avant de t'arrêter.</pre></div>
-    <div class="slot"><b>Image 6</b>Le site final, en mobile et en ordinateur.</div>
+  </div>
+</section>
+
+<section class="guide-section dk">
+  <div class="container">
+    <div class="section-label">Mon parti pris</div>
+    <h2 class="section-title">Le client ne paie pas le code</h2>
+    <p>Le code, Claude l'écrit en quelques minutes. Si c'est ça que tu factures, ton prix va baisser tous les mois, et c'est normal.</p>
+    <p>Ce que le client paie, c'est ce que l'IA ne fait pas seule : comprendre son métier et ses clients, choisir une direction et refuser les autres, vérifier sur écran que tout tient, et livrer un site prêt à être trouvé sur Google et cité par les IA. Les outils de ce guide te font gagner le temps de fabrication. Le jugement, il reste à toi.</p>
+    <p class="sign">Nathan Fenina, fondateur de Décupler</p>
+  </div>
+</section>
+
+<section class="guide-section">
+  <div class="container">
+    <div class="section-label">Les limites</div>
+    <h2 class="section-title">Ce que ces outils ne font pas à ta place</h2>
+    <div class="no">
+      <div><h3>Les vraies photos</h3><p>Un couvreur se juge sur ses chantiers. Une image générée d'un toit se repère, et elle coûte la confiance. Demande les photos au client.</p></div>
+      <div><h3>Les avis et les chiffres</h3><p>Claude peut mettre en page des avis, pas les inventer. Tout chiffre, toute note, tout témoignage vient du client.</p></div>
+      <div><h3>Le brief</h3><p>Qui sont les clients, ce qui les fait appeler, ce que le concurrent fait mal : c'est la conversation avec le client qui le donne.</p></div>
+      <div><h3>La relecture finale</h3><p>Mentions légales, tarifs, zone d'intervention : relis tout ce qui engage le client avant la mise en ligne.</p></div>
+    </div>
   </div>
 </section>
 
@@ -221,16 +346,15 @@ Montre-moi les captures finales avant de t'arrêter.</pre></div>
     <div class="section-label">Avant de livrer</div>
     <h2 class="section-title">La checklist qualité</h2>
     <ul class="checklist">
-      <li><span class="li">Contraste du texte d'au moins 4,5:1 sur tous les fonds.</span></li>
+      <li><span class="li">Contraste du texte d'au moins 4,5:1 sur tous les fonds, photos comprises.</span></li>
       <li><span class="li">Focus visible au clavier sur chaque lien et chaque bouton.</span></li>
       <li><span class="li">Aucun débordement horizontal à 375, 768, 1024 et 1440 px.</span></li>
       <li><span class="li">Animations coupées quand le visiteur a activé « réduire les animations ».</span></li>
-      <li><span class="li">Pas d'emoji en guise d'icônes : des icônes SVG.</span></li>
-      <li><span class="li">Une seule balise H1, des H2 et H3 dans l'ordre, un title et une meta description par page.</span></li>
+      <li><span class="li">Des icônes SVG, pas d'emoji en guise d'icônes.</span></li>
+      <li><span class="li">Un seul H1, des H2 et H3 dans l'ordre, un title et une meta description par page.</span></li>
       <li><span class="li">Images compressées, avec dimensions et texte alternatif.</span></li>
-      <li><span class="li">Formulaire testé pour de vrai : le message arrive bien.</span></li>
+      <li><span class="li">Formulaire testé pour de vrai : le message arrive bien chez le client.</span></li>
     </ul>
-    <div class="tip tip-e"><span class="tipico">💡</span><p><strong>Ce que le client paie</strong>, ce n'est pas le code, que Claude écrit en quelques minutes. C'est la direction (le cadrage, les références, le système), la qualité vérifiée sur écran, et un site prêt à être trouvé sur Google et cité par les IA.</p></div>
     <div class="tip tip-v"><span class="tipico">🔗</span><div><p><strong>Pour aller plus loin :</strong></p>
       <div class="res-links"><a href="https://decupler.com/machine-de-guerre-seo/">Brancher les MCP SEO dans Claude Code</a><a href="https://decupler.com/claude-skills-repo-github/">40 skills SEO et GEO pour Claude Code</a><a href="https://decupler.com/connecter-search-console-claude/">Connecter Search Console à Claude</a><a href="https://decupler.com/geo-ready/">Tester si un site est prêt pour les IA</a></div></div>
     </div>
@@ -242,11 +366,12 @@ Montre-moi les captures finales avant de t'arrêter.</pre></div>
     <div class="section-label">FAQ</div>
     <h2 class="section-title">Questions fréquentes</h2>
     <div class="faq">
-      <details><summary>Faut-il savoir coder ?</summary><p>Non. Il faut savoir ouvrir un terminal, copier des commandes et juger un résultat à l'écran. Claude écrit le code ; ton rôle est celui du directeur artistique : cadrer, choisir, refuser ce qui fait générique.</p></details>
-      <details><summary>Combien coûte cette stack ?</summary><p>Claude Code demande un abonnement Claude (Pro ou Max) ou une clé API. Playwright, UI UX Pro Max et Impeccable sont open source. Firecrawl a une version sans clé limitée et des crédits payants au-delà. 21st fournit une clé gratuite pour chercher et récupérer des composants ; la génération par son IA est en option.</p></details>
+      <details><summary>Faut-il savoir coder pour créer un site avec Claude Code ?</summary><p>Non. Il faut savoir ouvrir un terminal pour la première commande, puis écrire en français. Claude installe les outils, écrit le code et le vérifie. Ton rôle est celui du directeur artistique : cadrer, choisir, refuser ce qui fait générique.</p></details>
+      <details><summary>Combien coûte cette stack ?</summary><p>Claude Code demande un abonnement Claude payant (Pro, Max…) ou une clé API. Playwright, UI UX Pro Max et Impeccable sont open source. Firecrawl a une version gratuite limitée et des crédits payants au-delà. 21st fournit une clé gratuite pour chercher et récupérer des composants ; la génération par son IA est en option.</p></details>
       <details><summary>Quelle différence entre un MCP et un skill ?</summary><p>Un MCP connecte Claude à un outil externe : un navigateur, un site web, une bibliothèque de composants. Un skill est un ensemble d'instructions et de scripts que Claude charge quand la tâche s'y prête : une méthode, des règles, une base de connaissances.</p></details>
-      <details><summary>Et pour un site WordPress ?</summary><p>La méthode est la même pour le design. Claude peut produire un thème léger ou du HTML propre à intégrer, et publier par l'API REST de WordPress. Playwright sert ensuite à vérifier le rendu réel en ligne.</p></details>
-      <details><summary>Firecrawl, c'est légal pour s'inspirer d'un concurrent ?</summary><p>Lire une page publique pour en analyser le style, oui. Reprendre ses textes, son logo ou sa maquette, non. Le guide s'en sert pour dégager des principes, pas pour cloner.</p></details>
+      <details><summary>Claude Code peut-il vraiment installer les outils lui-même ?</summary><p>Oui : il lance les commandes d'installation dans ton terminal et te montre chacune avant de l'exécuter. Deux limites : il faut relancer Claude Code pour qu'il charge un nouveau MCP, et les clés d'API se saisissent de ton côté, jamais dans la conversation.</p></details>
+      <details><summary>Et pour un site WordPress ?</summary><p>La méthode de design est la même. Claude peut produire un thème léger ou du HTML propre à intégrer, et publier par l'API REST de WordPress. Playwright sert ensuite à vérifier le rendu en ligne.</p></details>
+      <details><summary>Utiliser Firecrawl sur un concurrent, c'est légal ?</summary><p>Lire une page publique pour en analyser le style, oui. Reprendre ses textes, son logo ou sa maquette, non. Le guide s'en sert pour dégager des principes, pas pour cloner.</p></details>
     </div>
   </div>
 </section>
@@ -257,7 +382,7 @@ Montre-moi les captures finales avant de t'arrêter.</pre></div>
     <div class="cta-box">
       <h2>Tu veux un site pensé pour Google et les IA, sans y passer tes soirées&nbsp;?</h2>
       <p>On cadre, on construit avec cette méthode, et on livre un site rapide, propre et prêt à être trouvé.</p>
-      <a href="https://calendly.com/fenina-nathan/consultationstrategique" class="cta-btn cta-btn--pulse">Prendre un RDV de 20 min →</a>
+      <div><a href="https://calendly.com/fenina-nathan/consultationstrategique" class="cta-btn cta-btn--pulse">Prendre un RDV de 20 min →</a></div>
       <p class="cta-note">Décupler, l'infrastructure de visibilité organique.</p>
     </div>
   </div>
