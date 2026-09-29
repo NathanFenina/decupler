@@ -58,5 +58,8 @@ Prochaine mise à jour groupée : crawl-fix 1.3.4 + entite 1.0.0.
 - /claude-code-design/ (20928) publiée le 28/09 ; remplace l'ancien guide
   « site premium en 24h » (6263), redirection dans crawl-fix 1.3.4.
 - 21 pages locales publiées (23-24/09), GEO Ready (20880).
+- /nathan-fenina/ (20995) : page d'entité en brouillon, à compléter par Nathan.
+- 48 pages : blocs JSON-LD `Person` reliés à `#nathan-fenina`, URL LinkedIn
+  unifiée (`/in/nathan-fenina/`) le 29/09.
 - Audit « pages pourries » du 29/09 : 4 vides (restes WooCommerce, hors index),
   1 morte, 13 périmées, 20 à pousser — voir le skill `pages-pourries`.

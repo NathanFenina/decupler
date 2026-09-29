@@ -17,8 +17,10 @@ de vérité par page ; ce fichier dit l'ordre de marche.
      /citations-locales/, /worflow-recherche-prompt-geo/, /playbook-geo/.
    À chaque page : logos, visuels officiels, échanges avec Claude, preuves,
    CTA, mot-clé + prompt, rendu vérifié, Notion à jour.
-4. **Trio sémantique, couche contenu** : page d'entité Nathan Fenina en
-   brouillon (faits sourcés uniquement), bloc auteur relié à `#nathan-fenina`.
+4. **Trio sémantique, couche contenu** : page d'entité /nathan-fenina/ créée en
+   brouillon (ID 20995, faits sourcés uniquement). Nathan complète son parcours
+   et valide ; à la publication, ajouter `url` à la Personne dans le plugin
+   decupler-entite et relier les signatures d'auteur à cette page.
 
 ## Ensuite
 
