@@ -1,35 +1,43 @@
-
-# Cache de travail de la machine à opportunités (données brutes GSC/DataForSEO)
-# Contenu récupéré potentiellement sensible
-# Images générées par le MCP Gemini
-# Node
-# OS / éditeurs
-# Python
-# Secrets
-# Skills tierces installees via `npx skills add` (reinstallables depuis skills-lock.json)
+# Secrets : jamais dans le dépôt
+.env
+secrets/
 *-service-account*.json
 *.key
-*.log
-*.pyc
-.DS_Store
+
+# Contenu récupéré de l'ancien site, potentiellement sensible
+content/cleaned/
+content/raw/
+
+# Cache de travail de la machine à opportunités (données brutes GSC/DataForSEO)
+content/opportunities/.cache/
+
+# Images générées par le MCP Gemini
+generated-images/
+
+# Sorties de build régénérables
+.claude/skills/decupler-page-ville-seo/build/
+
+# Skills tierces installées via `npx skills add` (réinstallables depuis skills-lock.json)
 .agents/skills/
 .claude/agents/impeccable-*
 .claude/skills/ai-seo
-.claude/skills/decupler-page-ville-seo/build/
 .claude/skills/design-taste-frontend
 .claude/skills/frontend-design
 .claude/skills/impeccable
 .claude/skills/seo
 .claude/skills/seo-audit
 .claude/skills/seo-geo
-.env
-.venv/
-.vscode/
-__pycache__/
-content/cleaned/
-content/opportunities/.cache/
-content/raw/
-generated-images/
+
+# Node
 node_modules/
-secrets/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
 venv/
+
+# OS / éditeurs
+.DS_Store
+.vscode/
+*.log

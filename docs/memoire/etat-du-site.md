@@ -1,0 +1,62 @@
+# État de decupler.com — mémoire de travail
+
+Dernière mise à jour : **29/09/2026**. À relire au début de chaque session, à
+mettre à jour à la fin. Ce qui est ici a été vérifié sur le site en ligne.
+
+## Plugins maison (wordpress/plugins/)
+
+| Plugin | Version en ligne | Version dans le dépôt | Rôle |
+|---|---|---|---|
+| decupler-crawl-fix « Budget de crawl » | **1.3.3** | 1.3.4 (à installer) | robots.txt, llms.txt, 410 des 350 URL de spam, redirections 301, pages hors index, purge du cache Elementor |
+| decupler-popup « Pop-up Workshop » | 1.0.0 | 1.0.0 | Invitation au workshop du 8/10, s'arrête seule le 8/10 à 12 h 30 |
+| decupler-entite « Entité » | — | 1.0.0 (à installer) | Organisation + Nathan Fenina dans le graphe Yoast (trio sémantique) |
+| decupler-yoast-rest | 1.0 | hors dépôt | Expose les métas Yoast à l'API REST |
+
+Nathan installe les ZIP à la main (Extensions → Téléverser → Remplacer).
+Prochaine mise à jour groupée : crawl-fix 1.3.4 + entite 1.0.0.
+
+## Réglages et scripts posés en ligne (hors plugins)
+
+- **En-tête du site** = template Elementor **2762**, un seul widget HTML
+  (`.dcp-header`). Contient : menu codé en dur (bureau + mobile), bouton
+  « Workshop live · 8 oct. », et le **contrôleur des pop-ups lead magnet**
+  (`design-system/snippets/controleur-lead-magnet.js`). Sauvegardes dans
+  `scratchpad/conso/backup-2762-*`.
+- Pages en gabarit **elementor_canvas** (pas d'en-tête) : claude-skills-seo
+  (7679), creer-app-ecommerce (7668) — contrôleur injecté dans leur widget.
+- Réglage `dcp_popup.exclusions` : toutes les pages lead magnet (sinon la
+  pop-up Workshop s'empile sur la leur).
+
+## Pop-ups email (lead magnets)
+
+- Lien de campagne LinkedIn : `https://decupler.com/<slug>/?acces=linkedin`
+  → pop-up obligatoire. Tous les autres visiteurs : pop-up fermable à 25 s.
+- Ciblage mot-clé + prompt de chaque lead magnet : `content/lead-magnets/ciblage.json`
+  et base Notion « Cartographie SEO » (97c5e3eaa05b4d0aa2277004a93971f6).
+
+## Sécurité
+
+- 29/09 : **7 comptes administrateurs « maintable »** (IDs 6 à 12, sans email,
+  inscrits « en 2020 », insérés directement en base) → rétrogradés abonnés,
+  mots de passe aléatoires. Sauvegarde : `scratchpad/conso/backup-comptes-maintable.json`.
+  Contrôle programmé le 30/09. Reste à faire par la freelance : scan Wordfence
+  complet, inspection de `wp-content/mu-plugins/` et du `functions.php` du
+  thème, puis suppression des comptes.
+- Comptes légitimes : 3 (admin6091, « Nathan Fenina », utilisé par l'API) et
+  5 (admin@decupler.com).
+
+## Search Console
+
+- 30/08 → 26/09 : 1 seule impression sur les pages de spam (contre 3 308 en
+  mai). Le compteur « Dans l'index » (321) baissera quand Google repassera sur
+  les 410 (sitemap des URL supprimées lu le 28/09).
+- Pages locales et nouvelles pages : détectées, pas encore indexées ;
+  demandes d'indexation manuelles en cours (Nathan).
+
+## Pages récentes
+
+- /claude-code-design/ (20928) publiée le 28/09 ; remplace l'ancien guide
+  « site premium en 24h » (6263), redirection dans crawl-fix 1.3.4.
+- 21 pages locales publiées (23-24/09), GEO Ready (20880).
+- Audit « pages pourries » du 29/09 : 4 vides (restes WooCommerce, hors index),
+  1 morte, 13 périmées, 20 à pousser — voir le skill `pages-pourries`.

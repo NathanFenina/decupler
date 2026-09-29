@@ -7,7 +7,7 @@ dans la conversation. Produit un inventaire léger + des fichiers de contenu
 découpés, un par page/article.
 
 Usage:
-    python3 scripts/parse_wxr.py /chemin/vers/export.xml
+    python3 archives/scripts-migration/parse_wxr.py /chemin/vers/export.xml
 
 Sorties (dans content/cleaned/) :
     - inventory.md        : tableau récapitulatif (type, statut, titre, slug, tailles)
@@ -21,7 +21,7 @@ import json
 import re
 import xml.etree.ElementTree as ET
 
-ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))  # archives/scripts-migration/ → racine
 OUT = os.path.join(ROOT, "content", "cleaned")
 
 # Mapping des clés Yoast -> champs lisibles pour le seo-meta.json
@@ -191,6 +191,6 @@ def main(xml_path):
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
-        print("Usage: python3 scripts/parse_wxr.py /chemin/vers/export.xml")
+        print("Usage: python3 archives/scripts-migration/parse_wxr.py /chemin/vers/export.xml")
         sys.exit(1)
     main(sys.argv[1])

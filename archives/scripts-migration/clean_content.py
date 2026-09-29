@@ -7,7 +7,7 @@ Nettoyage du contenu extrait (content/cleaned/) pour Next.js.
 - Blog   : conversion en MDX avec frontmatter. -> content/cleaned/blog_mdx/<slug>.mdx
 
 Usage:
-    python3 scripts/clean_content.py
+    python3 archives/scripts-migration/clean_content.py
 """
 import os
 import re
@@ -17,7 +17,7 @@ import json
 from bs4 import BeautifulSoup, Comment
 from markdownify import markdownify as md
 
-ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))  # archives/scripts-migration/ → racine
 CLEAN = os.path.join(ROOT, "content", "cleaned")
 
 # Méta SEO Yoast produites par parse_wxr.py

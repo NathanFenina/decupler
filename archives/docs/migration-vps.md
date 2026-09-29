@@ -12,7 +12,7 @@ vert `#00E5A0`, polices Syne + DM Sans).
 ## ⚠️ Règles critiques
 - **NE JAMAIS charger l'export XML dans la conversation** : il fait **23 Mo /
   165 000 lignes** → c'est ce qui a causé « prompt too long ». On le parse
-  toujours via `scripts/parse_wxr.py`, on ne lit que les résumés et les fichiers
+  toujours via `archives/scripts-migration/parse_wxr.py`, on ne lit que les résumés et les fichiers
   découpés.
 - **VPS : ne PAS toucher au dossier/instance n8n.** Le site ira dans un dossier
   séparé (ex. `/var/www/decupler`). Demander confirmation avant toute commande
@@ -24,12 +24,12 @@ vert `#00E5A0`, polices Syne + DM Sans).
 - [x] Scaffold Next.js 16 dans `site/` (TypeScript, App Router, CSS pur, export statique)
 - [x] Page d'accueil placeholder de marque (à REMPLACER par le vrai contenu)
 - [x] Export XML reçu : `~/Downloads/decupler.WordPress.2026-06-13.xml`
-- [x] Parser écrit : `scripts/parse_wxr.py`
+- [x] Parser écrit : `archives/scripts-migration/parse_wxr.py`
 - [x] Contenu extrait → `content/cleaned/` :
       - 41 pages → `content/cleaned/pages/<slug>.html`
       - 19 articles → `content/cleaned/blog/<slug>.html`
       - inventaire → `content/cleaned/inventory.md`
-- [x] Nettoyage HTML Elementor → contenu propre (`scripts/clean_content.py`)
+- [x] Nettoyage HTML Elementor → contenu propre (`archives/scripts-migration/clean_content.py`)
       - 36 pages → `content/cleaned/pages_clean/<slug>.html` (HTML propre, e-commerce exclu)
       - 19 articles → `content/cleaned/blog_mdx/<slug>.mdx` (MDX + frontmatter)
       - Format retenu : pages = HTML, blog = MDX (validé OK SEO)
