@@ -1,0 +1,6 @@
+theme,valeur,motif
+offre-agence,3,agence (seo|geo)|accompagnement seo|consultant seo|audit (seo|geo)|bootcamp
+geo-ia,3,\bgeo\b|generative engine|llm|chatgpt|visibilit[ée] ia|ai overview|perplexity
+outils-claude,2,claude|skills?|mcp|agent ia|n8n|automatisation
+seo-technique,2,seo|r[ée]f[ée]rencement|backlink|netlinking|mots?.cl[ée]s
+cas-clients,2,cas client|[ée]tude de cas
