@@ -1,0 +1,653 @@
+<div class="lm-mcp">
+<div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div>
+<style>
+.lm-mcp .cap{font-size:.85rem;color:#475569;text-align:center;margin:8px 0 0}
+.lm-mcp .logos{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin:30px 0 0;padding:0;list-style:none}
+.lm-mcp .logos li{display:flex;flex-direction:column;align-items:center;gap:8px;font-size:.8rem;font-weight:700;color:#334155;text-align:center}
+.lm-mcp .logos img{width:52px;height:52px;border-radius:12px;border:1px solid var(--border);background:#fff;display:block}
+.lm-mcp .dl{display:flex;flex-wrap:wrap;align-items:center;gap:12px 18px;margin:26px 0 0}
+.lm-mcp .dl a{display:inline-flex;align-items:center;gap:8px;font-weight:800;font-size:.98rem;color:#fff;background:#4c47c9;border-radius:12px;padding:13px 20px;text-decoration:none}
+.lm-mcp .dl a:hover{background:#3f3ab0}
+.lm-mcp .dl span{font-size:.86rem;color:#475569}
+.lm-mcp .chat{margin:22px 0 0;border:1px solid #d9dcea;border-radius:16px;background:#fff;padding:20px;display:flex;flex-direction:column;gap:14px}
+.lm-mcp .chat-h{font-size:.75rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#64748b;margin:0}
+.lm-mcp .chat-h.reel{color:#047857}
+.lm-mcp .msg{display:flex;gap:10px;align-items:flex-start;max-width:100%}
+.lm-mcp .msg .av{flex:0 0 32px;width:32px;height:32px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:800;overflow:hidden}
+.lm-mcp .msg .av img{width:32px;height:32px;display:block}
+.lm-mcp .msg.you{flex-direction:row-reverse}
+.lm-mcp .msg.you .av{background:#1e293b;color:#fff}
+.lm-mcp .bub{border-radius:14px;padding:11px 15px;font-size:.94rem;line-height:1.55;min-width:0}
+.lm-mcp .bub p{margin:0}.lm-mcp .bub p+p{margin-top:6px}
+.lm-mcp .msg.you .bub{background:#4c47c9;color:#fff;border-top-right-radius:4px;max-width:82%}
+.lm-mcp .msg.cl .bub{background:#f4f5fa;color:#1e293b;border-top-left-radius:4px;max-width:88%}
+.lm-mcp .acts{list-style:none;margin:8px 0 0;padding:0;display:flex;flex-direction:column;gap:4px}
+.lm-mcp .acts li{font-family:'JetBrains Mono',ui-monospace,Menlo,monospace;font-size:.76rem;color:#475569;background:#fff;border:1px solid #e3e5ef;border-radius:7px;padding:4px 9px;overflow-wrap:anywhere}
+.lm-mcp .acts li::before{content:"▸ ";color:#4c47c9}
+.lm-mcp .chat-f{font-size:.8rem;color:#64748b;margin:0}
+.lm-mcp .vs{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:20px}
+.lm-mcp .vs div{background:#fff;border:1px solid #d9dcea;border-radius:14px;padding:16px 18px}
+.lm-mcp .vs div.sk{border-color:#bfe8d6;background:#f0faf5}
+.lm-mcp .vs h3{font-size:1rem;margin:0 0 8px;color:#1e293b}
+.lm-mcp .vs ul{margin:0;padding-left:1.1em;font-size:.92rem;color:#475569}
+.lm-mcp .vs li+li{margin-top:4px}
+.lm-mcp .stack-wrap{overflow-x:auto;margin-top:20px;border:1px solid #d9dcea;border-radius:14px;background:#fff}
+.lm-mcp .stack{width:100%;border-collapse:collapse;font-size:.92rem;min-width:620px}
+.lm-mcp .stack th{text-align:left;padding:12px 14px;background:#f4f5fa;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:#475569}
+.lm-mcp .stack td{padding:11px 14px;border-top:1px solid #e3e5ef;vertical-align:top;color:#334155}
+.lm-mcp .stack td:first-child{font-weight:700;color:#1e293b;white-space:nowrap}
+.lm-mcp .skg{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:22px}
+.lm-mcp .skc{background:#fff;border:1px solid #d9dcea;border-radius:16px;padding:18px 20px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.lm-mcp .skc-h{display:flex;gap:12px;align-items:center}
+.lm-mcp .skc-n{flex:0 0 34px;height:34px;border-radius:10px;background:#eef0fb;color:#4c47c9;font-weight:800;display:flex;align-items:center;justify-content:center}
+.lm-mcp .skc h3{margin:0;font-size:1.05rem;color:#1e293b;line-height:1.3}
+.lm-mcp .skc h3 small{display:block;font-family:'JetBrains Mono',ui-monospace,Menlo,monospace;font-size:.74rem;font-weight:600;color:#64748b;margin-top:2px}
+.lm-mcp .skc p{margin:0;font-size:.93rem;color:#334155}
+.lm-mcp .skc .say{background:#f4f5fa;border-radius:10px;padding:9px 12px;font-size:.88rem;color:#1e293b}
+.lm-mcp .skc .say b{color:#4c47c9}
+.lm-mcp details.cmd{margin:0;border:1px solid #e3e5ef;border-radius:12px;background:#fff}
+.lm-mcp details.cmd summary{cursor:pointer;padding:10px 14px;font-size:.86rem;font-weight:700;color:#334155;list-style:none}
+.lm-mcp details.cmd summary::-webkit-details-marker{display:none}
+.lm-mcp details.cmd summary::before{content:"+ ";color:#4c47c9}
+.lm-mcp details.cmd[open] summary::before{content:"− "}
+.lm-mcp details.cmd .codeblock{margin:0 10px 10px}
+.lm-mcp details.cmd pre{max-height:420px;overflow:auto;font-size:.76rem}
+.lm-mcp .chain{margin:18px 0 0;background:#fff;border:1px solid #d9dcea;border-radius:14px;padding:16px 18px}
+.lm-mcp .chain h3{margin:0 0 10px;font-size:1rem;color:#1e293b}
+.lm-mcp .chain ol{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.lm-mcp .chain li{font-size:.82rem;font-weight:700;padding:5px 11px;border-radius:999px;background:#eef0fb;color:#4c47c9}
+.lm-mcp .chain li+li::before{content:"→ ";color:#94a3b8}
+.lm-mcp .chain p{margin:10px 0 0;font-size:.9rem;color:#475569}
+.lm-mcp .proofs{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:22px;align-items:start}
+.lm-mcp .proofs figure{margin:0;border-radius:14px;overflow:hidden;border:1px solid #d9dcea;background:#fff}
+.lm-mcp .proofs figure:first-child{grid-column:1/-1}
+.lm-mcp .proofs img{display:block;width:100%;height:auto}
+.lm-mcp .proofs figcaption{font-size:.84rem;color:#334155;padding:10px 14px}
+.lm-mcp .proofs figcaption b{color:#1e293b}
+.lm-mcp .ruban{background:#14122b;color:#e8e6f5;padding:17px 0;border-top:0}
+.lm-mcp .ruban .container{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 34px;font-size:.92rem;font-weight:700}
+.lm-mcp .ruban b{color:#a5b4fc}
+.lm-mcp .dk{background:radial-gradient(120% 90% at 20% 0%,#2a2560 0%,#14122b 60%);color:#e8e6f5;border-top:0}
+.lm-mcp .dk .section-label{color:#a5b4fc}
+.lm-mcp .dk h2{color:#fff!important;-webkit-text-fill-color:#fff}
+.lm-mcp .dk p{color:#d6d3ea;font-size:1.08rem;line-height:1.7;max-width:36em}
+.lm-mcp .dk p+p{margin-top:14px}
+.lm-mcp .dk .sign{margin-top:18px;font-size:.92rem;color:#a5b4fc;font-weight:700}
+.lm-mcp .flow{list-style:none;margin:20px 0 0;padding:0;display:grid;grid-template-columns:repeat(2,1fr);gap:14px;counter-reset:f}
+.lm-mcp .flow li{counter-increment:f;background:#fff;border:1px solid #d9dcea;border-radius:14px;padding:16px 18px;font-size:.93rem;color:#334155}
+.lm-mcp .flow li::before{content:counter(f);display:block;font-weight:800;color:#4c47c9;margin-bottom:4px}
+.lm-mcp .flow b{display:block;margin-bottom:2px;color:#1e293b}
+.lm-mcp .no{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:20px}
+.lm-mcp .no div{background:#fff;border:1px solid #d9dcea;border-radius:14px;padding:16px 18px}
+.lm-mcp .no h3{font-size:1rem;margin:0 0 6px;color:#1e293b}
+.lm-mcp .no p{margin:0;font-size:.92rem;color:#475569}
+.lm-mcp .li{display:block}
+.lm-mcp .skc h3,.lm-mcp .no h3,.lm-mcp .chain h3,.lm-mcp .vs h3,.lm-mcp h3.h3{font-weight:700}
+.lm-mcp .tip{display:flex;gap:12px;align-items:flex-start;margin:18px 0 0;padding:14px 18px;border-radius:12px;border:1px solid #d9dcea;background:#f6f6fd;font-size:.95rem}
+.lm-mcp .tip p{margin:0;color:#334155}
+.lm-mcp .tip>div,.lm-mcp .tip>p{flex:1;min-width:0}
+.lm-mcp .tipico{flex:0 0 auto;font-size:1.1rem;line-height:1.5}
+.lm-mcp .tip-a{border-color:#f3d9a4;background:#fdf7ea}
+.lm-mcp .tip-e{border-color:#bfe8d6;background:#f0faf5}
+.lm-mcp .res-links{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+.lm-mcp .res-links a{font-size:.85rem;font-weight:700;color:#4c47c9;text-decoration:none;background:#eef0fb;border:1px solid #d9dcea;border-radius:20px;padding:8px 14px}
+.lm-mcp .res-links a:hover{background:#e2e5fa}
+@media (max-width:760px){.lm-mcp .logos{grid-template-columns:repeat(3,1fr)}.lm-mcp .vs,.lm-mcp .skg,.lm-mcp .proofs,.lm-mcp .no,.lm-mcp .flow{grid-template-columns:1fr}.lm-mcp .msg.you .bub,.lm-mcp .msg.cl .bub{max-width:100%}}
+</style>
+
+<section class="hero">
+  <div class="container">
+    <span class="hero-eyebrow">Pack gratuit · Claude SEO</span>
+    <h1>Claude SEO : les <em>10 skills</em> à installer pour faire ton SEO avec Claude</h1>
+    <p class="hero-sub">Pour faire du SEO avec Claude, installe dix skills : <strong>audit, optimisation pour les IA, données structurées, E-E-A-T, intention de recherche, écart concurrentiel, posts Google Business, maillage interne, brief de contenu et visibilité IA</strong>. Un skill est un fichier <span class="inline-code">SKILL.md</span> que Claude charge tout seul quand ta demande s'y prête. Le pack est en français, prêt à installer, et ce guide montre quoi dire à Claude pour s'en servir.</p>
+    <div class="hero-meta"><span class="hero-meta-item">Niveau : débutant</span><span class="hero-meta-item">Installation : 5 min</span><span class="hero-meta-item">Par Nathan Fenina, Décupler</span><span class="hero-meta-item">Mis à jour le 29/09/2026</span></div>
+    <div class="dl"><a href="https://decupler.com/wp-content/uploads/2026/09/skills-seo-claude-decupler.zip">⬇ Télécharger le pack (ZIP, 10 skills)</a><span>Gratuit · 10 dossiers <span class="inline-code">SKILL.md</span> · en français</span></div>
+    <ul class="logos">
+      <li><img src="https://decupler.com/wp-content/uploads/2026/09/logo-claude.png" alt="Logo de Claude" width="52" height="52">Claude</li>
+      <li><img src="https://decupler.com/wp-content/uploads/2026/09/logo-search-console.png" alt="Logo de Google Search Console" width="52" height="52">Search Console</li>
+      <li><img src="https://decupler.com/wp-content/uploads/2026/09/logo-dataforseo.png" alt="Logo de DataForSEO" width="52" height="52">DataForSEO</li>
+      <li><img src="https://decupler.com/wp-content/uploads/2026/09/logo-screaming-frog.png" alt="Logo de Screaming Frog" width="52" height="52">Screaming Frog</li>
+      <li><img src="https://decupler.com/wp-content/uploads/2026/09/logo-wordpress.png" alt="Logo de WordPress" width="52" height="52">WordPress</li>
+    </ul>
+  </div>
+</section>
+
+<section class="guide-section">
+  <div class="container">
+    <div class="section-label">La réponse courte</div>
+    <h2 class="section-title">Les 10 skills SEO pour Claude, en un tableau</h2>
+    <div class="stack-wrap"><table class="stack">
+      <thead><tr><th>Skill</th><th>Ce qu'il fait</th><th>Tu dis à Claude</th></tr></thead>
+      <tbody>
+        <tr><td>Audit SEO</td><td>Audit technique et on-page d&#x27;une page ou d&#x27;un site : un tableau priorisé et les 3 quick wins.</td><td>« Audite cette page et donne-moi les 3 quick wins. »</td></tr>
+        <tr><td>Optimisation pour les IA</td><td>Réécrit un contenu pour qu&#x27;il soit repris par les AI Overviews, ChatGPT et Perplexity, sans perdre Google.</td><td>« Réécris cet article pour qu&#x27;il soit cité sur « prix d&#x27;une toiture ». »</td></tr>
+        <tr><td>Données structurées</td><td>JSON-LD valide (Article, FAQ, LocalBusiness…), une entité = un @id, et rien d&#x27;inventé.</td><td>« Génère le JSON-LD de cette page service. »</td></tr>
+        <tr><td>Contrôle E-E-A-T</td><td>Note un contenu avant publication sur l&#x27;expérience, l&#x27;expertise, l&#x27;autorité et la fiabilité.</td><td>« Note cet article avant que je le publie. »</td></tr>
+        <tr><td>Intention de recherche</td><td>Classe des requêtes par intention, étape d&#x27;achat et risque de zéro clic, et dit quel format de page.</td><td>« Classe ces 40 requêtes Search Console par intention. »</td></tr>
+        <tr><td>Écart concurrentiel</td><td>Trouve ce que les pages mieux classées traitent et pas la tienne : sous-sujets, questions, preuves.</td><td>« Pourquoi ces deux pages sont devant la mienne ? »</td></tr>
+        <tr><td>Posts Google Business</td><td>Trois posts pour la fiche Google : actualité, offre, saison. La ville citée, pas de hashtag.</td><td>« Trois posts pour la fiche d&#x27;un plombier à Antibes. »</td></tr>
+        <tr><td>Maillage interne</td><td>Cocons pilier et satellites, liens à ajouter avec l&#x27;ancre et la phrase, pages orphelines.</td><td>« Voici mon sitemap : propose le maillage. »</td></tr>
+        <tr><td>Brief de contenu</td><td>Intention, plan H2/H3, questions, entités, maillage, title et meta : prêt pour un rédacteur.</td><td>« Fais le brief pour « création site internet dentiste ». »</td></tr>
+        <tr><td>Visibilité IA</td><td>Note sur 10 les chances d&#x27;être cité par les moteurs IA, avec les 3 corrections prioritaires.</td><td>« Cette page a-t-elle une chance d&#x27;être citée par Perplexity ? »</td></tr>
+      </tbody>
+    </table></div>
+    <div class="lmg-inline"><p class="lmg-inline-t">Reçois les prochains skills et guides Claude SEO par email</p><iframe name="lmg_inline_1" title="Inscription à la newsletter" hidden></iframe><form action="https://decupler.substack.com/api/v1/free" method="post" target="lmg_inline_1"><input type="email" name="email" placeholder="ton@email.com" autocomplete="email" required aria-label="Ton email"><input type="hidden" name="first_url" value="https://decupler.substack.com"><input type="hidden" name="first_referrer" value="https://decupler.com"><button type="submit">Je m'abonne</button></form><p class="lmg-inline-n">Newsletter Décupler, gratuite. Désabonnement en 1 clic.</p><p class="lmg-inline-ok" hidden>✅ C'est noté : confirme ton inscription dans ta boîte mail.</p></div>
+  </div>
+</section>
+
+<section class="guide-section">
+  <div class="container">
+    <div class="section-label">Le principe</div>
+    <h2 class="section-title">Skill ou prompt : pourquoi le skill gagne</h2>
+    <p class="prose-block">Un prompt, tu le retapes à chaque fois, et le résultat change d'une fois à l'autre. Un skill est une méthode écrite une fois, rangée dans un dossier, que Claude relit chaque fois que la tâche revient. Il lit d'abord la <strong>description</strong> de chaque skill ; quand ta demande correspond (« audite cette page »), il charge le fichier complet et suit la méthode. Tu peux aussi l'appeler par son nom : <span class="inline-code">/seo-site-auditor</span>.</p>
+    <div class="vs">
+      <div><h3>Un prompt</h3><ul><li>À retaper, ou à retrouver dans tes notes</li><li>Sortie différente d'une fois à l'autre</li><li>Aucune règle de fond qui tienne dans la durée</li></ul></div>
+      <div class="sk"><h3>Un skill</h3><ul><li>Écrit une fois, chargé tout seul quand il le faut</li><li>Même méthode, même format de sortie, à chaque fois</li><li>Des garde-fous écrits noir sur blanc : « aucun chiffre inventé »</li></ul></div>
+    </div>
+    <p class="prose-block" style="margin-top:16px">Le format <span class="inline-code">SKILL.md</span> a été créé par Anthropic puis publié comme <a href="https://agentskills.io/">standard ouvert</a> : un dossier, un fichier avec un nom, une description, et les instructions.</p>
+  </div>
+</section>
+
+<section class="guide-section">
+  <div class="container">
+    <div class="section-label">Installer</div>
+    <h2 class="section-title">Installer les skills SEO dans Claude Code : un message</h2>
+    <p class="prose-block">Dans Claude Code, tu n'as rien à copier à la main. Tu donnes le lien du pack, Claude s'occupe du reste.</p>
+    <div class="chat">
+      <p class="chat-h">Exemple d'échange dans Claude Code</p>
+      <div class="msg you"><span class="av">Toi</span><div class="bub"><p>Installe pour tous mes projets les skills SEO de ce pack : https://decupler.com/wp-content/uploads/2026/09/skills-seo-claude-decupler.zip</p></div></div>
+      <div class="msg cl"><span class="av"><img src="https://decupler.com/wp-content/uploads/2026/09/logo-claude.png" alt="" width="32" height="32"></span><div class="bub"><p>C'est fait : dix skills installés dans ton dossier personnel, disponibles dans tous tes projets. Tu peux dire « audite cette page » ou taper <span class="inline-code">/seo-site-auditor</span>.</p><ul class="acts"><li>curl -LO …/skills-seo-claude-decupler.zip</li><li>unzip · copie de 10 dossiers vers ~/.claude/skills/</li><li>/skills · 10 skills SEO chargés</li></ul></div></div>
+    </div>
+    <details class="cmd"><summary>Voir les commandes (si tu préfères les lancer toi-même)</summary><div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>terminal</span></div><pre>curl -LO https://decupler.com/wp-content/uploads/2026/09/skills-seo-claude-decupler.zip
+unzip skills-seo-claude-decupler.zip
+mkdir -p ~/.claude/skills
+cp -R skills-seo-claude/* ~/.claude/skills/
+<span class="c"># Pour un seul projet : copie-les dans .claude/skills/ à la racine du projet</span></pre></div></details>
+    <h3 class="h3" style="margin:30px 0 0">Et sur claude.ai (sans terminal) ?</h3>
+    <p class="prose-block">Dans les paramètres de claude.ai, rubrique des fonctionnalités, la section Skills permet d'importer un skill au format ZIP (un dossier qui contient son <span class="inline-code">SKILL.md</span>). Il faut une offre Pro, Max, Team ou Enterprise, avec l'exécution de code activée. Importe les skills un par un : compresse le dossier de chacun. Bonus : les skills activés sur ton compte claude.ai se synchronisent aussi dans Claude Code.</p>
+    <div class="tip tip-a"><span class="tipico">🔎</span><p><strong>Vérifie ce que tu installes.</strong> Un skill peut contenir des scripts que Claude exécute. Ouvre chaque <span class="inline-code">SKILL.md</span> avant de l'installer, celui-ci compris : ceux du pack ne contiennent que du texte.</p></div>
+  </div>
+</section>
+
+<section class="guide-section ruban"><div class="container"><span><b>10</b> skills</span><span><b>1</b> message pour les installer</span><span><b>0</b> prompt à retaper</span></div></section>
+
+<section class="guide-section">
+  <div class="container">
+    <div class="section-label">Les 10 skills</div>
+    <h2 class="section-title">Ce que fait chaque skill, et quoi lui dire</h2>
+    <p class="prose-block">Chaque carte donne une phrase à dire à Claude. Le fichier complet est replié dessous : c'est exactement ce qu'il y a dans le ZIP.</p>
+    <div class="skg">
+      <div class="skc"><div class="skc-h"><span class="skc-n">1</span><h3>Audit SEO<small>seo-site-auditor</small></h3></div><p>Audit technique et on-page d&#x27;une page ou d&#x27;un site : un tableau priorisé et les 3 quick wins.</p><p class="say"><b>Dis à Claude :</b> « Audite cette page et donne-moi les 3 quick wins. »</p><details class="cmd"><summary>Voir le SKILL.md</summary><div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>seo-site-auditor/SKILL.md</span></div><pre>---
+name: seo-site-auditor
+description: &gt;-
+  Audit SEO d'une page ou d'un site : technique, on-page, contenu, performance,
+  mobile. Sort un tableau priorisé (critique, important, optimisation) et les 3
+  quick wins. À utiliser quand on demande « audite cette page », « audit SEO »,
+  « qu'est-ce qui cloche sur ce site », ou qu'on colle un HTML, une URL ou un
+  export Screaming Frog.
+---
+ 
+# Audit SEO
+ 
+Tu es consultant SEO technique. Tu audites ce qu'on te donne (URL, HTML source,
+export de crawl) et rien d'autre : si une donnée manque, tu le dis au lieu de
+supposer.
+ 
+## Ce que tu vérifies
+ 
+1. **Indexation** : code HTTP, balise `robots`, canonical, présence dans le
+   sitemap, redirections en chaîne, `hreflang` si le site est multilingue.
+2. **On-page** : title (≤ 60 caractères, mot-clé au début), meta description
+   (≤ 155), un seul H1, hiérarchie H2/H3, mot-clé dans le premier paragraphe.
+3. **Contenu** : réponse à l'intention dans les 100 premiers mots, profondeur
+   face aux concurrents, auteur identifié, date de mise à jour.
+4. **Maillage** : liens internes entrants et sortants, ancres descriptives,
+   pages orphelines.
+5. **Performance et mobile** : images sans dimensions ni `alt`, ressources
+   bloquantes, viewport, zones tactiles.
+6. **Données structurées** : types présents, erreurs, `@id` cohérents.
+ 
+## Sortie
+ 
+| Priorité | Catégorie | Problème | Impact | Correctif |
+|---|---|---|---|---|
+ 
+Priorités : **Critique** (bloque l'indexation ou le classement), **Important**,
+**Optimisation**. Termine par **3 quick wins** : les correctifs au meilleur
+rapport impact / effort, avec l'élément exact à modifier.
+ 
+## Règles
+ 
+- Chaque problème cite l'élément concerné (la balise, l'URL, la ligne).
+- Aucun chiffre de trafic ou de position inventé : ils viennent de Search
+  Console ou d'un outil branché, sinon tu ne les donnes pas.</pre></div></details></div>
+      <div class="skc"><div class="skc-h"><span class="skc-n">2</span><h3>Optimisation pour les IA<small>aeo-content-optimizer</small></h3></div><p>Réécrit un contenu pour qu&#x27;il soit repris par les AI Overviews, ChatGPT et Perplexity, sans perdre Google.</p><p class="say"><b>Dis à Claude :</b> « Réécris cet article pour qu&#x27;il soit cité sur « prix d&#x27;une toiture ». »</p><details class="cmd"><summary>Voir le SKILL.md</summary><div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>aeo-content-optimizer/SKILL.md</span></div><pre>---
+name: aeo-content-optimizer
+description: &gt;-
+  Réécrit un contenu existant pour qu'il soit repris par les moteurs de réponse
+  (Google AI Overviews, ChatGPT, Perplexity, Claude) sans perdre son
+  référencement Google. À utiliser quand on demande « optimise pour les IA »,
+  « AEO », « GEO », « pourquoi ChatGPT ne me cite pas », ou qu'on colle un
+  article avec sa requête cible.
+---
+ 
+# Optimisation pour les moteurs de réponse
+ 
+On te donne un contenu et la requête visée. Tu le restructures pour qu'un
+moteur de réponse puisse en extraire une réponse et la citer.
+ 
+## Méthode en 4 étapes
+ 
+1. **Densité de réponse** : la réponse à la requête est-elle dans les 60
+   premiers mots ? Sinon, écris un paragraphe de réponse directe (40 à 60 mots)
+   qui se suffit à lui-même.
+2. **Structure** : un H2 par sous-question, formulé comme la question que pose
+   l'internaute ; comparaisons en tableau, étapes en liste numérotée.
+3. **Citabilité** : chiffres sourcés, définitions en une phrase, dates, termes
+   clés en gras. Une idée par paragraphe.
+4. **Entités** : nomme et définis les entités (outils, marques, lieux,
+   personnes) et leurs relations, au lieu de pronoms vagues.
+ 
+## Sortie
+ 
+1. Le paragraphe de réponse directe.
+2. Le contenu restructuré complet.
+3. Un tableau avant / après des changements.
+4. Une note sur 10 (avant et après), justifiée en trois lignes.
+ 
+## Règles
+ 
+- Tu gardes les faits du texte d'origine ; tu n'ajoutes pas de chiffre sans
+  source. S'il en manque un, tu l'indiques entre crochets : [chiffre à sourcer].
+- Tu gardes le mot-clé principal dans le title, le H1 et le premier paragraphe.</pre></div></details></div>
+      <div class="skc"><div class="skc-h"><span class="skc-n">3</span><h3>Données structurées<small>schema-markup-generator</small></h3></div><p>JSON-LD valide (Article, FAQ, LocalBusiness…), une entité = un @id, et rien d&#x27;inventé.</p><p class="say"><b>Dis à Claude :</b> « Génère le JSON-LD de cette page service. »</p><details class="cmd"><summary>Voir le SKILL.md</summary><div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>schema-markup-generator/SKILL.md</span></div><pre>---
+name: schema-markup-generator
+description: &gt;-
+  Génère des données structurées JSON-LD valides (Article, FAQPage, HowTo,
+  Product, LocalBusiness, Organization, Person, BreadcrumbList, VideoObject)
+  à partir d'une page ou d'une description. À utiliser quand on demande
+  « ajoute du schema », « JSON-LD », « données structurées », « rich results ».
+---
+ 
+# Données structurées JSON-LD
+ 
+## Règles
+ 
+1. Uniquement le vocabulaire schema.org, dans un seul bloc
+   `&lt;script type="application/ld+json"&gt;` avec un `@graph`.
+2. Toutes les propriétés requises par Google pour le type, plus les
+   recommandées quand l'information existe.
+3. **Jamais de donnée inventée** : pas de note, d'avis, de prix ou d'adresse
+   qui ne figure pas dans la page. Ce qui manque est listé à part.
+4. Une seule Organisation et une seule Personne par site, chacune avec un
+   `@id` stable (`https://exemple.com/#organization`), et tous les autres nœuds
+   y font référence par `@id` au lieu de les redéclarer.
+5. `sameAs` seulement vers des profils officiels vérifiés.
+ 
+## Sortie
+ 
+1. Le bloc JSON-LD prêt à coller.
+2. La liste des informations manquantes qui débloqueraient un résultat enrichi.
+3. Le lien pour tester : https://search.google.com/test/rich-results</pre></div></details></div>
+      <div class="skc"><div class="skc-h"><span class="skc-n">4</span><h3>Contrôle E-E-A-T<small>eeat-content-scorer</small></h3></div><p>Note un contenu avant publication sur l&#x27;expérience, l&#x27;expertise, l&#x27;autorité et la fiabilité.</p><p class="say"><b>Dis à Claude :</b> « Note cet article avant que je le publie. »</p><details class="cmd"><summary>Voir le SKILL.md</summary><div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>eeat-content-scorer/SKILL.md</span></div><pre>---
+name: eeat-content-scorer
+description: &gt;-
+  Note un contenu avant publication selon les critères E-E-A-T de Google
+  (expérience, expertise, autorité, fiabilité) et liste ce qu'il faut ajouter.
+  À utiliser quand on demande « relis avant publication », « score E-E-A-T »,
+  « ce contenu est-il crédible », « pourquoi Google ne me fait pas confiance ».
+---
+ 
+# Contrôle qualité E-E-A-T
+ 
+Tu es un évaluateur de qualité exigeant. Tu notes, tu ne complimentes pas.
+ 
+## Grille (sur 10 chacun)
+ 
+- **Expérience** : preuves d'un usage réel (captures, résultats, cas, photos
+  originales, erreurs rencontrées).
+- **Expertise** : exactitude, profondeur, vocabulaire du métier, nuances.
+- **Autorité** : auteur identifié avec une page auteur, sources citées, liens
+  vers des références reconnues.
+- **Fiabilité** : dates, sources des chiffres, mentions légales, contact,
+  absence de promesse invérifiable.
+ 
+## Sortie
+ 
+| Critère | Note | Ce qui manque | Ajout concret |
+|---|---|---|---|
+ 
+Puis un verdict : **publier**, **publier après corrections** ou **ne pas
+publier**, et les 3 ajouts qui feraient gagner le plus de points.
+ 
+## Règles
+ 
+- Signale toute affirmation invérifiable (« n°1 en France », « 100 % fiable »).
+- Ne propose jamais d'inventer un témoignage, un chiffre client ou un diplôme.</pre></div></details></div>
+      <div class="skc"><div class="skc-h"><span class="skc-n">5</span><h3>Intention de recherche<small>keyword-intent-classifier</small></h3></div><p>Classe des requêtes par intention, étape d&#x27;achat et risque de zéro clic, et dit quel format de page.</p><p class="say"><b>Dis à Claude :</b> « Classe ces 40 requêtes Search Console par intention. »</p><details class="cmd"><summary>Voir le SKILL.md</summary><div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>keyword-intent-classifier/SKILL.md</span></div><pre>---
+name: keyword-intent-classifier
+description: &gt;-
+  Classe une liste de mots-clés par intention (information, comparaison,
+  transaction, navigation, local), étape du parcours d'achat et risque de
+  réponse directe par l'IA (zéro clic), puis recommande le format de page.
+  À utiliser quand on colle une liste de mots-clés, un export Search Console ou
+  Ubersuggest, ou qu'on demande « quelle intention », « quel type de page ».
+---
+ 
+# Classement des mots-clés par intention
+ 
+## Pour chaque mot-clé
+ 
+- **Intention** : information, comparaison, transaction, navigation, local.
+- **Étape** : découverte, considération, décision.
+- **Risque zéro clic** : élevé (définition, fait simple, calcul), moyen,
+  faible (besoin d'un outil, d'un devis, d'une comparaison détaillée).
+- **Format recommandé** : guide, comparatif, page service, page locale, outil,
+  FAQ.
+ 
+## Sortie
+ 
+| Mot-clé | Intention | Étape | Risque zéro clic | Format | Page existante ? |
+|---|---|---|---|---|---|
+ 
+Puis les regroupements : les mots-clés qui doivent vivre **sur la même page**
+(même intention, mêmes résultats Google) et ceux qui méritent une page à part.
+ 
+## Règles
+ 
+- Si des volumes ou des positions sont fournis, garde-les tels quels ; n'en
+  invente aucun.
+- Signale les risques de cannibalisation avec les pages existantes citées.</pre></div></details></div>
+      <div class="skc"><div class="skc-h"><span class="skc-n">6</span><h3>Écart concurrentiel<small>competitor-gap-finder</small></h3></div><p>Trouve ce que les pages mieux classées traitent et pas la tienne : sous-sujets, questions, preuves.</p><p class="say"><b>Dis à Claude :</b> « Pourquoi ces deux pages sont devant la mienne ? »</p><details class="cmd"><summary>Voir le SKILL.md</summary><div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>competitor-gap-finder/SKILL.md</span></div><pre>---
+name: competitor-gap-finder
+description: &gt;-
+  Compare une page à celles des concurrents mieux classés et trouve ce qui
+  manque : sous-sujets, questions, entités, preuves, formats. À utiliser quand
+  on demande « pourquoi le concurrent est devant », « analyse de gap »,
+  « ce qui manque à ma page », ou qu'on fournit deux contenus ou deux URL.
+---
+ 
+# Écart avec les concurrents
+ 
+On te donne ta page et une à trois pages concurrentes sur la même requête.
+ 
+## Ce que tu compares
+ 
+1. **Sous-sujets** traités par eux et pas par toi (et l'inverse).
+2. **Questions** auxquelles ils répondent explicitement.
+3. **Entités** citées : outils, marques, normes, lieux, personnes.
+4. **Preuves** : chiffres, études de cas, captures, sources.
+5. **Formats** : tableaux, étapes, vidéos, outils, FAQ.
+6. **Angle** : ce que tu peux dire qu'eux ne disent pas (ton expérience).
+ 
+## Sortie
+ 
+| Élément manquant | Chez qui | Importance | Où l'ajouter dans ta page |
+|---|---|---|---|
+ 
+Puis le plan révisé de ta page, H2 par H2, en marquant les sections nouvelles.
+ 
+## Règles
+ 
+- On reprend des sujets, jamais des phrases : aucune copie de texte.
+- L'angle différenciant vient de ce que l'utilisateur sait ou a fait ; demande-le
+  s'il n'est pas fourni.</pre></div></details></div>
+      <div class="skc"><div class="skc-h"><span class="skc-n">7</span><h3>Posts Google Business<small>gbp-post-generator</small></h3></div><p>Trois posts pour la fiche Google : actualité, offre, saison. La ville citée, pas de hashtag.</p><p class="say"><b>Dis à Claude :</b> « Trois posts pour la fiche d&#x27;un plombier à Antibes. »</p><details class="cmd"><summary>Voir le SKILL.md</summary><div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>gbp-post-generator/SKILL.md</span></div><pre>---
+name: gbp-post-generator
+description: &gt;-
+  Rédige des posts Google Business Profile pour le SEO local : trois variantes
+  (actualité, offre, événement) avec la ville et un appel à l'action. À
+  utiliser quand on demande « post Google Business », « fiche Google », « post
+  GMB », « quoi publier sur ma fiche ».
+---
+ 
+# Posts Google Business Profile
+ 
+On te donne : le nom de l'entreprise, la ville ou le quartier, le service ou
+le sujet, et éventuellement une offre en cours.
+ 
+## Trois variantes
+ 
+1. **Actualité** : un conseil utile ou une nouvelle, ton d'expert du coin,
+   appel à l'action doux (« En savoir plus »).
+2. **Offre** : seulement si une offre réelle est fournie ; date de fin,
+   appel à l'action direct (« Réserver », « Appeler »).
+3. **Événement ou saison** : lien avec la vie locale ou la saison.
+ 
+## Règles
+ 
+- Moins de 1 500 caractères, les 150 premiers portent le message.
+- La ville ou le quartier cité naturellement, une fois.
+- Pas de hashtag, pas de numéro de téléphone dans le texte (Google les
+  refuse souvent), pas de promesse chiffrée non fournie.
+- Une idée de photo réelle à prendre pour chaque post.</pre></div></details></div>
+      <div class="skc"><div class="skc-h"><span class="skc-n">8</span><h3>Maillage interne<small>internal-linking-strategist</small></h3></div><p>Cocons pilier et satellites, liens à ajouter avec l&#x27;ancre et la phrase, pages orphelines.</p><p class="say"><b>Dis à Claude :</b> « Voici mon sitemap : propose le maillage. »</p><details class="cmd"><summary>Voir le SKILL.md</summary><div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>internal-linking-strategist/SKILL.md</span></div><pre>---
+name: internal-linking-strategist
+description: &gt;-
+  Construit le plan de maillage interne d'un site en cocons (page pilier et
+  pages satellites) : liens à ajouter, ancres, pages orphelines. À utiliser
+  quand on demande « maillage interne », « cocon sémantique », « quelles pages
+  relier », ou qu'on fournit une liste d'URL ou un sitemap.
+---
+ 
+# Maillage interne
+ 
+On te donne la liste des pages (URL, titre, mot-clé principal si connu) et,
+idéalement, les liens existants.
+ 
+## Méthode
+ 
+1. Regroupe les pages par sujet ; pour chaque groupe, désigne la **page
+   pilier** (la plus large, la plus forte) et ses **satellites**.
+2. Chaque satellite lie vers son pilier ; le pilier lie vers tous ses
+   satellites ; les satellites proches se lient entre eux.
+3. Repère les **pages orphelines** (aucun lien entrant) et les pages
+   importantes trop loin de l'accueil (plus de 3 clics).
+4. Choisis des **ancres descriptives** et variées, jamais « cliquez ici ».
+ 
+## Sortie
+ 
+| Page source | Page cible | Ancre proposée | Phrase où l'insérer |
+|---|---|---|---|
+ 
+Puis la carte des cocons (pilier → satellites) et la liste des orphelines.
+ 
+## Règles
+ 
+- Maximum 3 nouveaux liens par page et par passe : on ajoute des liens utiles
+  au lecteur, pas un bloc de liens.
+- Tu ne proposes que des URL présentes dans la liste fournie.</pre></div></details></div>
+      <div class="skc"><div class="skc-h"><span class="skc-n">9</span><h3>Brief de contenu<small>seo-content-brief</small></h3></div><p>Intention, plan H2/H3, questions, entités, maillage, title et meta : prêt pour un rédacteur.</p><p class="say"><b>Dis à Claude :</b> « Fais le brief pour « création site internet dentiste ». »</p><details class="cmd"><summary>Voir le SKILL.md</summary><div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>seo-content-brief/SKILL.md</span></div><pre>---
+name: seo-content-brief
+description: &gt;-
+  Rédige un brief SEO complet pour un rédacteur (ou pour Claude) : intention,
+  plan H2/H3, questions à traiter, entités, longueur, maillage, title et meta.
+  À utiliser quand on demande « fais un brief », « brief de rédaction »,
+  « plan d'article » pour un mot-clé donné.
+---
+ 
+# Brief de contenu SEO
+ 
+On te donne le mot-clé principal, et si possible les pages qui rankent, les
+requêtes Search Console voisines et les pages existantes du site.
+ 
+## Le brief contient
+ 
+1. **Intention** de recherche et lecteur visé, en deux phrases.
+2. **Angle** : ce que la page apporte de plus que les résultats actuels.
+3. **Plan** H1 / H2 / H3, chaque titre avec ce qu'il doit contenir.
+4. **Questions** à traiter (issues de « Autres questions posées » ou des
+   requêtes fournies), chacune avec l'endroit où y répondre.
+5. **Entités** et termes à couvrir.
+6. **Longueur** indicative, calée sur les pages concurrentes fournies.
+7. **Maillage** : 3 à 5 liens internes vers des pages existantes, avec ancre.
+8. **Title** (≤ 60 caractères) et **meta description** (≤ 155).
+9. **Notes pour les IA** : le paragraphe de réponse directe à placer en tête.
+ 
+## Règles
+ 
+- Les preuves à fournir (captures, chiffres, cas) sont listées comme « à
+  demander au client », jamais inventées.</pre></div></details></div>
+      <div class="skc"><div class="skc-h"><span class="skc-n">10</span><h3>Visibilité IA<small>ai-search-visibility</small></h3></div><p>Note sur 10 les chances d&#x27;être cité par les moteurs IA, avec les 3 corrections prioritaires.</p><p class="say"><b>Dis à Claude :</b> « Cette page a-t-elle une chance d&#x27;être citée par Perplexity ? »</p><details class="cmd"><summary>Voir le SKILL.md</summary><div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>ai-search-visibility/SKILL.md</span></div><pre>---
+name: ai-search-visibility
+description: &gt;-
+  Évalue les chances qu'un contenu soit cité par ChatGPT, Perplexity, Gemini ou
+  les AI Overviews de Google, avec une note sur 10 et les 3 corrections
+  prioritaires. À utiliser quand on demande « ma page sera-t-elle citée par
+  les IA », « visibilité IA », « score GEO », ou avant de publier une page
+  stratégique.
+---
+ 
+# Visibilité dans les moteurs IA
+ 
+On te donne un contenu et la requête (ou le prompt) visé.
+ 
+## Cinq critères pondérés
+ 
+1. **Position de la réponse** (30 %) : la réponse est-elle dans les 100
+   premiers mots, formulée pour être reprise telle quelle ?
+2. **Clarté de structure** (25 %) : titres en questions, tableaux, listes.
+3. **Densité factuelle** (20 %) : chiffres sourcés, dates, données originales.
+4. **Couverture des entités** (15 %) : entités nommées, définies et reliées.
+5. **Fraîcheur** (10 %) : date de mise à jour, références récentes.
+ 
+## Sortie
+ 
+| Critère | Note /10 | Constat | Correction |
+|---|---|---|---|
+ 
+Note globale : **8-10** citation probable, **5-7** possible mais un concurrent
+sera préféré, **1-4** peu de chances. Puis les 3 corrections prioritaires et
+le paragraphe d'ouverture réécrit.
+ 
+## Règles
+ 
+- C'est une estimation fondée sur la structure du contenu, pas une mesure :
+  pour mesurer, il faut interroger les moteurs sur le prompt et relever qui
+  est cité.</pre></div></details></div>
+    </div>
+  </div>
+</section>
+
+<section class="guide-section">
+  <div class="container">
+    <div class="section-label">En vrai</div>
+    <h2 class="section-title">Trois échanges réels sur decupler.com</h2>
+    <p class="prose-block">Les skills donnent la méthode ; les données font la différence. Voici trois tâches faites sur notre propre site cette semaine, avec Claude Code branché sur Search Console et sur l'API WordPress. Les échanges sont résumés, les chiffres sont ceux du jour.</p>
+    <div class="chat">
+      <p class="chat-h reel">Échange réel · quick wins Search Console</p>
+      <div class="msg you"><span class="av">Toi</span><div class="bub"><p>Sors-moi les quick wins de decupler.com sur les 28 derniers jours : requêtes entre la position 8 et 20, au moins 30 impressions.</p></div></div>
+      <div class="msg cl"><span class="av"><img src="https://decupler.com/wp-content/uploads/2026/09/logo-claude.png" alt="" width="32" height="32"></span><div class="bub"><p>13 requêtes. En tête : « agence geo bordeaux » (219 impressions, position 8,1, aucun clic) et « agence geo lille » (154 impressions, position 11,2). Viennent ensuite trois pages de création de site (électricien, institut de beauté, dentiste), entre la position 16 et 20. Et ce guide-ci sort en position 19 sur « seo skills » : il est dans la liste.</p><ul class="acts"><li>Search Console · requête × page · 30/08 → 26/09/2026</li><li>filtre : position 8 à 20, impressions ≥ 30</li></ul></div></div>
+      <p class="chat-f">Suite donnée : ce guide est la première page retravaillée de la liste.</p>
+    </div>
+    <div class="chat">
+      <p class="chat-h reel">Échange réel · pages à nettoyer</p>
+      <div class="msg you"><span class="av">Toi</span><div class="bub"><p>Passe tous les contenus du site au crible : lesquels sont vides, morts, périmés, ou à pousser ?</p></div></div>
+      <div class="msg cl"><span class="av"><img src="https://decupler.com/wp-content/uploads/2026/09/logo-claude.png" alt="" width="32" height="32"></span><div class="bub"><p>165 contenus analysés : 4 vides (des restes de l'ancienne boutique, déjà hors de l'index), 1 morte, 13 périmées, 1 mince, 20 à pousser. Je commence par les périmées qui ont encore du trafic.</p><ul class="acts"><li>API WordPress · 165 pages et articles</li><li>Search Console · 180 jours par page</li><li>écrit audit.md · un verdict par page</li></ul></div></div>
+    </div>
+    <div class="chat">
+      <p class="chat-h reel">Échange réel · entité et données structurées</p>
+      <div class="msg you"><span class="av">Toi</span><div class="bub"><p>Vérifie que Google comprend qui est derrière le site : l'agence, son fondateur, leurs profils.</p></div></div>
+      <div class="msg cl"><span class="av"><img src="https://decupler.com/wp-content/uploads/2026/09/logo-claude.png" alt="" width="32" height="32"></span><div class="bub"><p>Trois problèmes : l'organisation n'a aucun lien vers ses profils, Nathan Fenina apparaît sous trois identifiants différents, et deux adresses LinkedIn circulent. Je relie tout à un seul identifiant pour l'agence et un seul pour la personne, sur les 48 pages concernées.</p><ul class="acts"><li>lit le JSON-LD de toutes les pages</li><li>corrige 48 pages · un @id par entité</li></ul></div></div>
+    </div>
+    <div class="tip tip-e"><span class="tipico">🔌</span><p><strong>Le branchement qui change tout :</strong> <a href="https://decupler.com/connecter-search-console-claude/">connecter Search Console à Claude</a>. Sans lui, un skill d'audit raisonne dans le vide ; avec lui, il travaille sur tes vraies requêtes.</p></div>
+  </div>
+</section>
+
+<section class="guide-section">
+  <div class="container">
+    <div class="section-label">Les preuves</div>
+    <h2 class="section-title">Ce que donne un SEO piloté par la donnée</h2>
+    <p class="prose-block">Trois sites accompagnés, captures Search Console brutes. Les noms sont masqués. Ces courbes sont le fruit d'un travail SEO complet, pas d'un skill installé en cinq minutes : les skills servent à faire plus vite, et sans oubli, les tâches qui reviennent chaque semaine.</p>
+    <div class="proofs">
+      <figure><img src="https://decupler.com/wp-content/uploads/2026/09/gsc-preuve-12-semaines-320k-clics.jpg" alt="Search Console d'un site accompagné : 320 k clics et 17,1 M d'impressions du 21/05 au 10/08/2026" width="1600" height="654" loading="lazy" decoding="async"><figcaption><b>320 k clics, 17,1 M d'impressions</b> du 21/05 au 10/08/2026, position moyenne 10,4. Site accompagné, nom masqué.</figcaption></figure>
+      <figure><img src="https://decupler.com/wp-content/uploads/2026/09/gsc-preuve-12-mois-28k-clics.jpg" alt="Search Console d'un site accompagné : 28 k clics et 629 k impressions sur 12 mois, courbe en hausse" width="1600" height="643" loading="lazy" decoding="async"><figcaption><b>28 k clics, 629 k impressions</b> sur 12 mois à partir du 20/10/2025, CTR 4,5 %. Site accompagné, nom masqué.</figcaption></figure>
+      <figure><img src="https://decupler.com/wp-content/uploads/2026/09/gsc-preuve-2023-2024-41k-clics.jpg" alt="Search Console d'un site accompagné : 41 k clics et 638 k impressions d'avril 2023 à avril 2024" width="600" height="292" loading="lazy" decoding="async"><figcaption><b>41 k clics, 638 k impressions</b> d'avril 2023 à avril 2024, clics quotidiens multipliés par trois. Site accompagné par Nathan Fenina, nom masqué.</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="guide-section">
+  <div class="container">
+    <div class="section-label">Aller plus vite</div>
+    <h2 class="section-title">Enchaîner les skills</h2>
+    <p class="prose-block">Un skill seul fait une tâche. Enchaînés dans une seule demande, ils font un livrable. Trois enchaînements qu'on utilise :</p>
+    <div class="chain"><h3>Nouveau client</h3><ol><li>seo-site-auditor</li><li>ai-search-visibility</li><li>competitor-gap-finder</li><li>keyword-intent-classifier</li><li>seo-content-brief</li></ol><p>« Audite le site, mesure sa visibilité IA, compare-le à ses deux concurrents, classe ses requêtes et fais le brief de la première page à créer. »</p></div>
+    <div class="chain"><h3>Rafraîchir un contenu qui baisse</h3><ol><li>eeat-content-scorer</li><li>aeo-content-optimizer</li><li>schema-markup-generator</li><li>ai-search-visibility</li></ol><p>« Cette page perd des clics : note-la, réécris-la pour les IA, mets ses données structurées à jour et redonne-moi sa note. »</p></div>
+    <div class="chain"><h3>SEO local, chaque semaine</h3><ol><li>gbp-post-generator</li><li>internal-linking-strategist</li><li>schema-markup-generator</li></ol><p>« Trois posts pour la fiche Google, un lien interne de plus vers la page de la ville, et le LocalBusiness à jour. »</p></div>
+  </div>
+</section>
+
+<section class="guide-section">
+  <div class="container">
+    <div class="section-label">Créer le tien</div>
+    <h2 class="section-title">Transformer ta méthode en skill</h2>
+    <p class="prose-block">Le meilleur skill, c'est celui qui reprend ce que tu fais déjà chaque semaine. Pas besoin de l'écrire : fais la tâche une fois avec Claude, puis demande-lui d'en faire un skill.</p>
+    <div class="chat">
+      <p class="chat-h">Exemple d'échange dans Claude Code</p>
+      <div class="msg you"><span class="av">Toi</span><div class="bub"><p>On refait cette analyse de quick wins tous les lundis. Transforme ce qu'on vient de faire en skill, avec les mêmes filtres et le même tableau.</p></div></div>
+      <div class="msg cl"><span class="av"><img src="https://decupler.com/wp-content/uploads/2026/09/logo-claude.png" alt="" width="32" height="32"></span><div class="bub"><p>C'est fait. Il se déclenche quand tu parles de quick wins ou de requêtes en position 8 à 20, et il refuse de donner un chiffre qui ne vient pas de Search Console.</p><ul class="acts"><li>écrit .claude/skills/quick-wins-lundi/SKILL.md</li></ul></div></div>
+    </div>
+    <ol class="flow">
+      <li><b>Une description qui dit quand</b>C'est elle que Claude lit pour décider. Mets-y les mots que tu emploies vraiment.</li>
+      <li><b>Des étapes numérotées</b>Dans l'ordre où tu les fais, avec les sources de données.</li>
+      <li><b>Un format de sortie imposé</b>Un tableau avec ses colonnes, pas « un résumé ».</li>
+      <li><b>Des garde-fous</b>Ce qu'il ne fait jamais : inventer un chiffre, un avis, une adresse.</li>
+    </ol>
+  </div>
+</section>
+
+<section class="guide-section dk">
+  <div class="container">
+    <div class="section-label">Mon parti pris</div>
+    <h2 class="section-title">Un skill sans données reste un conseil générique</h2>
+    <p>Un skill donne à Claude une méthode. Il ne lui donne pas tes données. Sans Search Console, sans la page de résultats du jour, il audite dans le vide et te rend des conseils que tu aurais trouvés dans n'importe quel article.</p>
+    <p>Ce qui change tout, c'est de brancher les deux : la méthode, avec les skills, et la réalité, avec Search Console, DataForSEO et ton WordPress. Là, Claude ne te dit plus « pense au maillage interne » : il te dit quelle page relier à laquelle, avec quelle ancre, et il le fait.</p>
+    <p class="sign">Nathan Fenina, fondateur de Décupler</p>
+  </div>
+</section>
+
+<section class="guide-section">
+  <div class="container">
+    <div class="section-label">Les limites</div>
+    <h2 class="section-title">Ce que ces skills ne font pas à ta place</h2>
+    <div class="no">
+      <div><h3>Deviner tes chiffres</h3><p>Sans Search Console ou un outil branché, il n'a ni tes positions ni tes clics. Les skills du pack refusent d'en inventer.</p></div>
+      <div><h3>Voir Google aujourd'hui</h3><p>Pour savoir qui ranke sur une requête ce matin, il lui faut un outil : DataForSEO, une recherche web ou une capture de la page de résultats.</p></div>
+      <div><h3>Se relire à ta place</h3><p>Un détail technique peut être faux. Vérifie le rendu réel de la page avant de publier, pas seulement le fichier.</p></div>
+      <div><h3>Choisir tes priorités</h3><p>Quelle page fait venir des clients, quelle offre compte ce trimestre : c'est toi qui le sais, et c'est ça qui ordonne le travail.</p></div>
+    </div>
+    <div class="tip tip-v"><span class="tipico">🔗</span><div><p><strong>Pour aller plus loin :</strong></p>
+      <div class="res-links"><a href="https://decupler.com/connecter-search-console-claude/">Connecter Search Console à Claude</a><a href="https://decupler.com/installer-mcp-data-for-seo-sur-chatgpt/">Brancher DataForSEO en MCP</a><a href="https://decupler.com/machine-de-guerre-seo/">Les MCP SEO dans Claude Code</a><a href="https://decupler.com/claude-skills-repo-github/">40 skills SEO et GEO sur GitHub</a><a href="https://decupler.com/claude-code-design/">Claude Code design</a></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="guide-section">
+  <div class="container">
+    <div class="section-label">FAQ</div>
+    <h2 class="section-title">Questions fréquentes</h2>
+    <div class="faq">
+      <details><summary>Quels skills installer dans Claude pour faire du SEO ?</summary><p>Dix couvrent l&#x27;essentiel : un audit SEO, une optimisation pour les moteurs de réponse (AEO), un générateur de données structurées, un contrôle E-E-A-T, un classement des mots-clés par intention, une analyse d&#x27;écart avec les concurrents, des posts Google Business Profile, un plan de maillage interne, un brief de contenu et une évaluation de visibilité IA. Le pack Décupler les réunit en français, prêts à installer.</p></details>
+      <details><summary>Qu&#x27;est-ce qu&#x27;un skill Claude ?</summary><p>Un dossier qui contient un fichier SKILL.md : un nom, une description qui dit quand s&#x27;en servir, et des instructions. Claude lit les descriptions, et charge le skill complet quand ta demande correspond. Le format a été créé par Anthropic et publié comme standard ouvert.</p></details>
+      <details><summary>Où installer les skills dans Claude Code ?</summary><p>Dans ~/.claude/skills/&lt;nom-du-skill&gt;/SKILL.md pour les avoir dans tous tes projets, ou dans .claude/skills/ à la racine d&#x27;un projet pour ce projet seulement. Le plus simple : donner le lien du pack à Claude Code et lui demander de les installer.</p></details>
+      <details><summary>Peut-on utiliser ces skills sans Claude Code ?</summary><p>Oui, sur claude.ai : dans les paramètres, la section Skills permet d&#x27;importer un skill au format ZIP, avec une offre Pro, Max, Team ou Enterprise et l&#x27;exécution de code activée. Les skills activés sur ton compte se synchronisent aussi dans Claude Code.</p></details>
+      <details><summary>Un skill remplace-t-il un outil SEO ?</summary><p>Non. Un skill apporte la méthode, pas les données. Pour des positions, des clics ou l&#x27;état de la page de résultats, il faut brancher Search Console, DataForSEO ou un crawler comme Screaming Frog. C&#x27;est l&#x27;association des deux qui produit des recommandations précises.</p></details>
+      <details><summary>Le pack est-il gratuit ?</summary><p>Oui, le ZIP est en téléchargement libre. Il faut en revanche un abonnement Claude payant pour Claude Code, ou pour importer des skills sur claude.ai.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="cta-final">
+  <div class="container">
+    <div class="cta-break"><span>Passez à l'action</span></div>
+    <div class="cta-box">
+      <h2>Tu veux qu'on branche tout ça sur ton site&nbsp;?</h2>
+      <p>On connecte Search Console, on installe les skills adaptés à ton activité, et on traite les premiers quick wins avec toi.</p>
+      <div><a href="https://calendly.com/fenina-nathan/consultationstrategique" class="cta-btn cta-btn--pulse">Prendre un RDV de 20 min →</a></div>
+      <p class="cta-note">Décupler, l'infrastructure de visibilité organique.</p>
+    </div>
+  </div>
+</section>
+
+</div>

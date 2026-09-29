@@ -32,6 +32,14 @@ Chaque ligne a coûté au moins une erreur. Les relire avant de toucher au site.
   `setTimeout` posés depuis un MutationObserver. Pour ces cas, minuteries réelles.
 - La capture pleine page laisse blanches les images `loading="lazy"` hors
   écran : forcer `loading = 'eager'` avant la capture, ou capturer par écran.
+- `miroir.py` (corrigé le 29/09) : WordPress écrit ses `<link rel=stylesheet>`
+  entre apostrophes, et une CSS enregistrée en `.bin` est ignorée par le
+  navigateur. Symptôme : page décalée à gauche, colonne de contenu de largeur 0.
+  Avant de conclure à un bug du site, vérifier que le thème (astra main.min.css)
+  s'est bien chargé dans la copie.
+- Débordement horizontal : chercher l'élément dont le bord droit dépasse la
+  fenêtre sans parent en `overflow:hidden`. Le 29/09, c'était le pied de page
+  (template Elementor 2788) : `padding` + `width:100%` sans `box-sizing`.
 - `pkill -f` ne doit pas correspondre à sa propre commande : `routeur.ph[p]`.
 - Firecrawl (compte connecté) peut tomber à court de crédits : lire les README
   GitHub directement (raw.githubusercontent.com) pour vérifier une commande.

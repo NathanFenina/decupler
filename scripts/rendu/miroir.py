@@ -11,6 +11,7 @@ vrai header, vrais scripts inline.
 
     python3 scripts/rendu/miroir.py https://decupler.com/site-internet-offert/ /tmp/miroir
 """
+import html as html_mod
 import os, re, sys, urllib.parse, urllib.request
 from pathlib import Path
 
@@ -30,10 +31,14 @@ def chemin_local(url):
     """Un chemin de fichier stable et sans surprise pour une URL."""
     u = urllib.parse.urlsplit(url)
     p = u.path.lstrip('/') or 'index'
+    racine, ext = os.path.splitext(p)
+    if not re.fullmatch(r'\.[A-Za-z0-9]{2,5}', ext):
+        racine, ext = p, '.css' if 'fonts.googleapis' in u.netloc else '.bin'
+    # La requete va AVANT l'extension : le serveur local deduit le type MIME
+    # de l'extension, et une CSS servie en .bin est ignoree par le navigateur.
     if u.query:
-        p += '_' + re.sub(r'[^A-Za-z0-9]+', '', u.query)[:24]
-    if not re.search(r'\.[A-Za-z0-9]{2,5}$', p):
-        p += '.bin'
+        racine += '_' + re.sub(r'[^A-Za-z0-9]+', '', u.query)[:24]
+    p = racine + ext
     return f'assets/{u.netloc}/{p}'
 
 
@@ -44,14 +49,16 @@ def miroir(url_page, dossier):
     origine = urllib.parse.urlsplit(url_page)
 
     # Toutes les URL citees dans un attribut, plus celles des url() de CSS inline.
+    # WordPress ecrit ses <link rel=stylesheet> entre apostrophes : les deux formes.
     urls = set(re.findall(r'(?:href|src)="([^"]+)"', html))
+    urls |= set(re.findall(r"(?:href|src)='([^']+)'", html))
     urls |= set(re.findall(r'url\((?:\'|")?([^)\'"]+)', html))
 
     vus, file = {}, []
     for u in urls:
         if u.startswith(('data:', 'mailto:', 'tel:', '#', 'javascript:')):
             continue
-        abs_u = urllib.parse.urljoin(url_page, u)
+        abs_u = urllib.parse.urljoin(url_page, html_mod.unescape(u))
         s = urllib.parse.urlsplit(abs_u)
         if s.scheme not in ('http', 'https'):
             continue
@@ -102,6 +109,10 @@ def miroir(url_page, dossier):
     for abs_u, rel in vus.items():
         variantes[abs_u] = rel
         variantes['//' + abs_u.split('//', 1)[1]] = rel
+        # Dans le HTML, les & des URL sont souvent encodes en &#038; ou &amp;.
+        for enc in ('&#038;', '&amp;'):
+            if '&' in abs_u:
+                variantes[abs_u.replace('&', enc)] = rel
     motif = re.compile('|'.join(re.escape(k) for k in
                                 sorted(variantes, key=len, reverse=True)))
     html = motif.sub(lambda m: variantes[m.group(0)], html)

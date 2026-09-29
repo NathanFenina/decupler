@@ -15,7 +15,10 @@ description: >-
 
 # Skill : lead-magnet v2 — une page qui donne tout, ranke, et capture l'email
 
-La référence est **/claude-code-design/** (28/09/2026) : c'est la page que
+Deux références : **/claude-code-design/** (28/09/2026) et
+**/claude-skills-seo/** (29/09/2026, gabarit + générateur :
+`content/articles/claude-skills-seo.body.tpl.html`,
+`scripts/lead_magnet_claude_skills_seo.py`). La première est la page que
 Nathan a jugée « nettement meilleure ». Ce qui a fait la différence, dans
 l'ordre : les logos et visuels réels des outils, les échanges avec Claude
 (« tu parles, Claude exécute »), les exemples réels (captures de sites), un
@@ -52,11 +55,20 @@ du premier écran.
 | **Anatomie / méthode** | Donne la méthode, pas seulement l'outil | Liste numérotée tirée des exemples réels |
 | **Parti pris signé** (bande sombre `.dk`) | Une voix, une position | 2-3 paragraphes à la première personne, signés Nathan. Aucune anecdote inventée |
 | **Ce que ça ne fait pas** (`.no`) | Le bloc le moins imitable | 4 limites concrètes |
-| **Preuves Search Console** | Crédibilité | Captures GSC seulement si Nathan précise le site et l'autorise ; légende factuelle (site, période, chiffres visibles) |
+| **Échanges réels** (`.chat-h.reel`) | La preuve que la méthode tourne chez nous | Tâches vraiment faites sur decupler.com (quick wins GSC, audit pages pourries, trio sémantique), résumées, avec les chiffres du jour et la période. Titrer « Échange réel » |
+| **Preuves Search Console** | Crédibilité | Captures fournies par Nathan, **noms de sites masqués** (accord du 29/09 : « pas besoin de citer les noms »). Légende factuelle : chiffres visibles, période, « site accompagné, nom masqué ». Avant avril 2024 (création de Décupler) : « accompagné par Nathan Fenina ». Préciser que la courbe vient d'un travail SEO complet, pas de l'outil seul. Médias déjà en ligne : 21001-21003 |
+| **Livrable téléchargeable** | La valeur promise, tout de suite | Si la page promet des fichiers (skills, prompts, modèles) : un ZIP en téléchargement libre, sources versionnées dans `content/lead-magnets/<pack>/`. Exemple : `skills-seo-claude/` |
 | **CTA** | Conversion | RDV Calendly en bas, encart d'inscription `.lmg-inline` sous la vidéo ou le premier bloc de valeur |
 
 Règles de fond : jamais de chiffre client, d'avis ou de note inventés ; un
 chiffre d'outil vient de sa documentation, avec la version relevée.
+
+À retirer lors d'une refonte : affirmations invérifiables (« Top 20 SEO
+France »), gains de temps chiffrés non mesurés, sections datées sur un modèle
+d'IA précis. Remplacer une page existante **à la même URL** : sauvegarde du
+contenu et de `_elementor_data`, `_elementor_edit_mode` vide, gabarit par
+défaut (plus de `elementor_canvas`), ancienne version dans
+`archives/pages-avant-refonte/`.
 
 ## 2. Assembler
 

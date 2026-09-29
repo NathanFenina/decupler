@@ -11,7 +11,8 @@ de vérité par page ; ce fichier dit l'ordre de marche.
 2. **Freelance** : scan Wordfence complet, mu-plugins, functions.php ; supprimer
    les 7 comptes « maintable » si rien ne les recrée.
 3. **Lead magnets v2** (skill `lead-magnet`), par priorité Notion :
-   - P1 /claude-skills-seo/ (9 129 impressions, position 14) — « claude seo » ;
+   - ~~P1 /claude-skills-seo/~~ fait le 29/09 ; suivre « claude seo » et
+     « seo skills » (position 19 avant refonte) fin octobre ;
    - P1 /installer-mcp-data-for-seo-sur-chatgpt/ (3 514, pos. 18) — « dataforseo mcp » ;
    - P2 /claude-skills-repo-github/, /machine-de-guerre-seo/, /openclawseo/,
      /citations-locales/, /worflow-recherche-prompt-geo/, /playbook-geo/.
@@ -34,5 +35,6 @@ de vérité par page ; ce fichier dit l'ordre de marche.
 ## En attente d'une réponse de Nathan
 
 - Captures Search Console reçues le 29/09 (320 k clics / 17,1 M impressions ;
-  28 k / 629 k ; 41 k / 638 k) : quel site, quelle période, et accord pour les
-  montrer comme preuves (anonymisées ou non) ?
+  28 k / 629 k ; 41 k / 638 k) : utilisées anonymisées sur /claude-skills-seo/
+  (Nathan : « pas besoin de citer les noms »). À confirmer : ce sont bien des
+  sites accompagnés par Nathan ou Décupler.

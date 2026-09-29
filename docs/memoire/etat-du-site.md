@@ -22,8 +22,12 @@ Prochaine mise à jour groupée : crawl-fix 1.3.4 + entite 1.0.0.
   « Workshop live · 8 oct. », et le **contrôleur des pop-ups lead magnet**
   (`design-system/snippets/controleur-lead-magnet.js`). Sauvegardes dans
   `scratchpad/conso/backup-2762-*`.
-- Pages en gabarit **elementor_canvas** (pas d'en-tête) : claude-skills-seo
-  (7679), creer-app-ecommerce (7668) — contrôleur injecté dans leur widget.
+- **Pied de page** = template Elementor **2788** (widget HTML `.footer-seo-ia`).
+  29/09 : ajout de `box-sizing:border-box` (il débordait de 40 px sur mobile,
+  sur toutes les pages). Sauvegarde : `scratchpad/conso/backup-2788-footer-avant-boxsizing.json`.
+- Page en gabarit **elementor_canvas** (pas d'en-tête) : creer-app-ecommerce
+  (7668) — contrôleur injecté dans son widget. claude-skills-seo (7679) est
+  repassée en gabarit par défaut le 29/09 (refonte v2).
 - Réglage `dcp_popup.exclusions` : toutes les pages lead magnet (sinon la
   pop-up Workshop s'empile sur la leur).
 
@@ -55,6 +59,12 @@ Prochaine mise à jour groupée : crawl-fix 1.3.4 + entite 1.0.0.
 
 ## Pages récentes
 
+- /claude-skills-seo/ (7679) refaite en v2 le 29/09 (mot-clé « claude seo ») :
+  pack ZIP de 10 skills en français (média 21004,
+  `uploads/2026/09/skills-seo-claude-decupler.zip`, sources dans
+  `content/lead-magnets/skills-seo-claude/`), 3 captures Search Console
+  anonymisées (médias 21001-21003), logos 20996-20999 (Search Console, DataForSEO,
+  Screaming Frog, WordPress). Ancienne version : `archives/pages-avant-refonte/`.
 - /claude-code-design/ (20928) publiée le 28/09 ; remplace l'ancien guide
   « site premium en 24h » (6263), redirection dans crawl-fix 1.3.4.
 - 21 pages locales publiées (23-24/09), GEO Ready (20880).

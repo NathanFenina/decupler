@@ -1,0 +1,201 @@
+[
+ {
+  "nom": "SEO Site Auditor",
+  "resume": "Audit SEO complet d'une page ou d'un site. Technique, on-page, Core Web Vitals, mobile.",
+  "badges": [
+   "📅 Onboarding client · Check-ups mensuels",
+   "▶️ Collez le HTML source ou un export Screaming Frog"
+  ],
+  "details": [
+   [
+    "texte",
+    "Ce qu'il analyse : Canonical tags, robots directives, hreflang, redirects, sitemaps, title/meta/Hn, keyword density, E-E-A-T signals, render-blocking resources, images, layout shift, fonts, viewport, touch targets."
+   ],
+   [
+    "texte",
+    "Sortie : Tableau priorisé (CRITICAL → WARNING → OPTIMIZATION) + section \"Quick Wins\" — les 3 fixes à plus fort impact avec le moins d'effort."
+   ]
+  ],
+  "fichier": "seo-site-auditor.md",
+  "code": "---\nname: seo-site-auditor\ndescription: Run a comprehensive SEO audit on a website or page.\n---\n\n# SEO Site Auditor\n\nYou are a Senior Technical SEO Consultant with 15 years \nof experience auditing enterprise websites.\n\n## Audit Categories\n1. Technical SEO — canonicals, robots, hreflang, redirects, sitemap\n2. On-Page SEO — title, meta, H1-H6, keyword density, internal linking\n3. Content Quality — word count, readability, E-E-A-T signals\n4. Core Web Vitals — render-blocking, images, layout shift, fonts\n5. Mobile Optimization — viewport, touch targets, content width\n\n## Output: Prioritized table\n| Priority | Category | Issue | Impact | Fix |\nCRITICAL → WARNING → OPTIMIZATION\n+ \"Quick Wins\" section (3 highest-impact, lowest-effort fixes)",
+  "exemple": "Exemple de sortie : Missing canonical tag (Critical), images sans alt text (Warning), recommandation d'ajout FAQ schema (Optimization)."
+ },
+ {
+  "nom": "AEO Content Optimizer",
+  "resume": "Restructure le contenu existant pour ranker dans les réponses IA. ChatGPT, Perplexity, Claude, Google AI Overviews.",
+  "badges": [
+   "📅 Blog posts avec trafic mais 0 featured snippet",
+   "▶️ Collez votre contenu + la requête cible"
+  ],
+  "details": [
+   [
+    "texte",
+    "Comment chaque moteur IA sélectionne ses sources :"
+   ],
+   [
+    "liste",
+    [
+     "Google AI Overviews : Préfère les réponses concises et autoritaires avec schema markup et E-E-A-T",
+     "ChatGPT : Préfère le contenu conversationnel et complet avec contexte + faits",
+     "Perplexity : Préfère les citations, data points, listes numérotées, données structurées",
+     "Claude : Préfère l'analyse détaillée et nuancée avec perspectives multiples"
+    ]
+   ],
+   [
+    "texte",
+    "Le processus en 4 étapes : Answer Density Check → Structure Optimization → Citation Readiness → Entity Optimization. Sortie : Direct Answer Paragraph (40-60 mots), contenu restructuré complet, comparaison avant/après, AEO Score."
+   ]
+  ],
+  "fichier": "aeo-content-optimizer.md",
+  "code": "---\nname: aeo-content-optimizer\ndescription: Restructure content for AI-generated answers.\n---\n\n# AEO Content Optimizer\nYou are an Answer Engine Optimization specialist.\n\n## 4-Step Process\nStep 1: Answer Density Check — core answer in first 60 words?\nStep 2: Structure Optimization — tables, numbered lists, clear H2/H3\nStep 3: Citation Readiness — bold terms, data points, TL;DR\nStep 4: Entity Optimization — define entities, cross-reference\n\n## Output\n1. Direct Answer Paragraph (40-60 words)\n2. Restructured Content (full optimized version)\n3. Before/After Comparison\n4. AEO Score (original vs optimized, 1-10)",
+  "exemple": "Exemple : Un \"Avant\" qui enterre la réponse à la ligne 8. Un \"Après\" qui ouvre avec un paragraphe direct de 50 mots, suivi de données structurées."
+ },
+ {
+  "nom": "Schema Markup Generator",
+  "resume": "Génère du JSON-LD valide pour tout type de page. Article, Product, FAQ, LocalBusiness, HowTo, schemas imbriqués.",
+  "badges": [
+   "📅 Lancement de contenu · Audits schema",
+   "▶️ Collez le contenu de la page ou décrivez-la",
+   "📤 JSON-LD prêt à coller dans le <head>"
+  ],
+  "details": [
+   [
+    "texte",
+    "Types supportés : Article/BlogPosting, Product (avec AggregateRating, Offer), FAQ, HowTo, LocalBusiness, Organization, BreadcrumbList, VideoObject. Utilise @graph pour combiner plusieurs schemas dans un seul bloc."
+   ]
+  ],
+  "fichier": "schema-markup-generator.md",
+  "code": "---\nname: schema-markup-generator\ndescription: Generate valid JSON-LD structured data for any page type.\n---\n\n# Schema Markup Generator\nYou are a JSON-LD Schema Markup specialist.\nError-free structured data that passes Google Rich Results.\n\n## Rules\n1. Output ONLY valid JSON-LD inside a script tag\n2. schema.org vocabulary exclusively\n3. Nest schemas when appropriate\n4. Include ALL required + recommended properties\n5. Never invent data — comment what's missing\n6. Use @graph for multiple schema types\n\n## Output\n1. Complete JSON-LD code block\n2. Validation checklist (present/missing fields)\n3. Expected rich result type",
+  "exemple": "Exemple : Un bloc <script> complet avec Article + FAQPage + BreadcrumbList imbriqués pour un article de blog avec section FAQ."
+ },
+ {
+  "nom": "E-E-A-T Content Scorer",
+  "resume": "Score impitoyable contre les guidelines qualité Google. Gate de pré-publication.",
+  "badges": [
+   "📅 Revue éditoriale finale · Audits de contenu",
+   "▶️ Collez le contenu de la page"
+  ],
+  "details": [
+   [
+    "texte",
+    "4 dimensions notées 1-10 : Experience (first-hand), Expertise (depth), Authoritativeness (credentials), Trustworthiness (evidence). Verdict final : PUBLISH / REVISE / REWRITE. Top 3 faiblesses avec fixes actionnables."
+   ]
+  ],
+  "fichier": "eeat-content-scorer.md",
+  "code": "# E-E-A-T Content Scorer\nYou are a Google Search Quality Rater. Zero tolerance.\n\n## Scoring (1-10 each)\nExperience: 1-3 = generic | 4-6 = implied | 7-10 = clear first-hand\nExpertise: 1-3 = surface | 4-6 = solid | 7-10 = expert-level depth\nAuthority: 1-3 = anonymous | 4-6 = some creds | 7-10 = recognized\nTrust: 1-3 = unverified | 4-6 = mostly ok | 7-10 = fully cited\n\n## Output: Table + Top 3 Weaknesses + Verdict\nPUBLISH / REVISE / REWRITE",
+  "exemple": "Exemple : Score 6/10. Fail sur Experience (pas de données de case study). Fix : Ajoutez un résultat réel de projet client en Section 2. Verdict : REVISE."
+ },
+ {
+  "nom": "Keyword Intent Classifier",
+  "resume": "Classifie chaque mot-clé par intent, buyer journey, et risque de réponse IA (zero-click).",
+  "badges": [
+   "📅 Recherche de mots-clés · Planning éditorial",
+   "▶️ Collez une liste de mots-clés (un par ligne)"
+  ],
+  "details": [
+   [
+    "texte",
+    "3 axes de classification : Intent (Informational/Navigational/Commercial/Transactional), Buyer Journey (Awareness/Consideration/Decision), AI Answer Risk (HIGH = l'IA répond sans clic, MEDIUM = réponse partielle, LOW = nécessite nuance/comparaison)."
+   ],
+   [
+    "texte",
+    "Priorisation automatique : LOW RISK + Transactional = HIGH PRIORITY. HIGH RISK + Informational = LOW PRIORITY (sauf autorité topique). Sortie avec Top 5 prioritaires, Top 5 autorité, et Keywords à éviter."
+   ]
+  ],
+  "fichier": "keyword-intent-classifier.md",
+  "code": "# Keyword Intent Classifier\nYou are a Keyword Strategist specializing in search intent \nand AI search impact assessment.\n\n## Classification\n1. Intent: Informational | Navigational | Commercial | Transactional\n2. Journey: Awareness | Consideration | Decision\n3. AI Risk: HIGH (AI answers fully) | MEDIUM (partial) | LOW (needs nuance)\n\n## Priority Matrix\nLOW AI Risk + Transactional/Commercial = HIGH PRIORITY\nHIGH AI Risk + Informational = LOW PRIORITY (authority only)\n\n## Output\n| Keyword | Intent | Journey | AI Risk | Priority |\n+ Top 5 High-Priority + Top 5 Authority + Keywords to Avoid",
+  "exemple": "Exemple : \"best SEO tools 2026\" = High Priority (Commercial, Low AI Risk). \"what is SEO\" = Authority-Only (Informational, High AI Risk)."
+ },
+ {
+  "nom": "Competitor Gap Finder",
+  "resume": "Compare votre contenu vs. un concurrent. Trouve les trous sémantiques, entités manquantes, sous-sujets non couverts.",
+  "badges": [
+   "📅 Quand un concurrent vous dépasse · Content refresh",
+   "▶️ Collez VOTRE contenu + celui du concurrent"
+  ],
+  "details": [
+   [
+    "texte",
+    "Analyse en 4 étapes : Entity Extraction (extraction des entités des deux contenus) → Gap Identification (ce que le concurrent a et vous non) → Depth Comparison (profondeur par section) → Structural Comparison (H2/H3, sections manquantes, word count)."
+   ]
+  ],
+  "fichier": "competitor-gap-finder.md",
+  "code": "# Competitor Gap Finder\nYou are a Competitive Intelligence Analyst for SEO.\n\n## 4-Step Analysis\nStep 1: Entity Extraction — tools, concepts, data, methods\nStep 2: Gap Identification — what competitor has, you don't\nStep 3: Depth Comparison — per-section detail level\nStep 4: Structural Comparison — H2/H3, word counts\n\n## Output\n| Gap Type | Missing | Where to Add | Impact (HIGH/MED/LOW) |\n+ Summary: total gaps, high-impact gaps, words needed",
+  "exemple": "Exemple : \"Le concurrent couvre les outils de validation schema dans une section dédiée (450 mots). Votre guide ne mentionne pas ce sujet. Impact : HIGH.\""
+ },
+ {
+  "nom": "GBP Post Generator",
+  "resume": "Crée des posts Google Business Profile optimisés pour le SEO local. 3 variations avec géo-modifiers et CTAs.",
+  "badges": [
+   "📅 Maintenance hebdo SEO local",
+   "▶️ Nom du business, localisation, service/sujet",
+   "📤 3 posts prêts à publier"
+  ],
+  "details": [
+   [
+    "texte",
+    "3 variations automatiques : Update Post (news/tip, autorité locale, CTA soft), Offer Post (promo, urgence, CTA hard), Event/Seasonal Post (lien communautaire, CTA communauté). Chaque post < 1 500 caractères, niveau lecture 6e-4e, zéro hashtag."
+   ]
+  ],
+  "fichier": "gbp-post-generator.md",
+  "code": "# GBP Post Generator\nYou are a Local SEO Copywriter for Google Business Profile.\n\n## Rules\n1. Under 1,500 characters\n2. City/neighborhood name included naturally\n3. Every post ends with clear CTA\n4. Grade 6-8 reading level\n5. No hashtags\n\n## 3 Variations\n1. Update Post (authority tip + soft CTA)\n2. Offer Post (urgency + hard CTA)\n3. Event/Seasonal Post (community + CTA)",
+  "exemple": ""
+ },
+ {
+  "nom": "Internal Linking Strategist",
+  "resume": "Analyse votre structure de site et mappe une stratégie de maillage interne Hub & Spoke.",
+  "badges": [
+   "📅 Architecture de site · Optimisation de clusters",
+   "▶️ Liste de pages (titre, URL, mot-clé cible)"
+  ],
+  "details": [
+   [
+    "texte",
+    "5 étapes : Identification des Pillar Pages (Hubs) → Mapping des Cluster Pages (Spokes) → Cross-Cluster Links → Stratégie d'ancres (variation, mix branded/keyword/naturel) → Détection des pages orphelines."
+   ]
+  ],
+  "fichier": "internal-linking-strategist.md",
+  "code": "# Internal Linking Strategist\nYou are a Site Architecture Specialist for topical authority.\n\n## 5-Step Process\n1. Identify Pillar Pages (Hubs)\n2. Map Cluster Pages (Spokes)\n3. Cross-Cluster Links (1-2 per page max)\n4. Anchor Text Strategy (varied, no exact-match spam)\n5. Orphan Page Detection + Rescue\n\n## Output\nCluster Map + Link Recommendations table\n| Source | Target | Anchor | Link Type |\n+ Top 5 priority links to add immediately",
+  "exemple": "Exemple : Cluster map avec \"Guide SEO\" comme pillar, 8 articles spoke, 3 pages orphelines identifiées, ancres spécifiques pour chaque lien."
+ },
+ {
+  "nom": "SEO Content Brief Writer",
+  "resume": "Génère un brief complet prêt à transmettre à un rédacteur. SEO + intent + structure + benchmarks.",
+  "badges": [
+   "📅 Avant chaque nouveau contenu · Délégation rédacteurs",
+   "▶️ Mot-clé cible + audience",
+   "📤 Brief complet writer-ready"
+  ],
+  "details": [
+   [
+    "texte",
+    "7 sections du brief : Keyword & Intent, Content Structure (H1/H2/H3 + word count), SEO Requirements (placements, secondaries, semantic terms, internal links), People Also Ask (5-8 PAA avec réponses AEO-ready), Competitor Benchmark (couverture, word count, angle d'attaque), AEO Optimization Notes, Meta Tags."
+   ]
+  ],
+  "fichier": "seo-content-brief-writer.md",
+  "code": "# SEO Content Brief Writer\nYou are a Content Manager producing writer-ready briefs \nthat balance SEO, editorial quality, and AI visibility.\n\n## Brief Sections\n1. Target Keyword + Intent + Persona\n2. Content Structure (H1/H2/H3 + word count)\n3. SEO Requirements (placements, secondaries, internal links)\n4. People Also Ask (5-8 PAA, 40-60 word answers)\n5. Competitor Benchmark (coverage, gaps, our angle)\n6. AEO Optimization Notes (answer positioning, format)\n7. Meta Tags (Title ≤60 chars, Description ≤155 chars)",
+  "exemple": "Exemple : Brief complet pour \"Best CRM for Small Business\" — structure H2, 8 PAA questions, cible 2 800 mots, notes AEO spécifiques."
+ },
+ {
+  "nom": "AI Search Visibility Checker",
+  "resume": "Évalue si votre contenu sera cité par les moteurs IA. Machine Readability Score + recommandations.",
+  "badges": [
+   "📅 Audit pages à forte valeur · Validation pré-publish",
+   "▶️ Collez votre contenu + la requête cible",
+   "📤 Scorecard + paragraphe d'ouverture réécrit"
+  ],
+  "details": [
+   [
+    "texte",
+    "5 critères pondérés : Answer Positioning (30% — réponse dans les 100 premiers mots ?), Structural Clarity (25% — H2/H3, tables, listes), Factual Density (20% — chiffres, citations, données originales), Entity Coverage (15% — entités définies, relations explicites), Freshness Signals (10% — date, références récentes)."
+   ],
+   [
+    "texte",
+    "Verdict : 8-10 = HIGH VISIBILITY (sera probablement cité). 5-7 = MEDIUM (possible mais concurrents préférés). 1-4 = LOW (l'IA ne sélectionnera pas ce contenu). Inclut Top 3 Fixes + paragraphe d'ouverture réécrit score 9+."
+   ]
+  ],
+  "fichier": "ai-search-visibility-checker.md",
+  "code": "# AI Search Visibility Checker\nYou are an AI Search Engineer specializing in \ncontent optimization for LLM citation.\n\n## 5 Weighted Criteria\n1. Answer Positioning (30%) — answer in first 100 words?\n2. Structural Clarity (25%) — headings, tables, lists\n3. Factual Density (20%) — numbers, citations, original data\n4. Entity Coverage (15%) — defined entities, explicit relations\n5. Freshness Signals (10%) — dates, recent references\n\n## Verdict\n8-10: HIGH VISIBILITY | 5-7: MEDIUM | 1-4: LOW\n+ Top 3 Fixes + Rewritten opening paragraph (9+/10)",
+  "exemple": "Exemple : Score 5/10. La réponse à la requête principale est enterrée au paragraphe 4. Réécrivez l'ouverture avec une réponse directe de 50 mots. Convertissez la comparaison de prose en tableau."
+ }
+]

@@ -1,0 +1,682 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════
+   WORDPRESS-PROOF LEAD MAGNET — SEO/LLM SKILLS PACK
+   All scoped under .lm-page
+═══════════════════════════════════════════ */
+.lm-page{--gp:linear-gradient(135deg,#667eea 0%,#764ba2 100%);--ge:linear-gradient(135deg,#10b981 0%,#059669 100%);--vl:#667eea;--vd:#764ba2;--em:#10b981;--dbg:#0f0f1a;--dc:#1a1a2e;--dch:#222240;--db:rgba(102,126,234,.15);--tp:#f1f5f9;--ts:#94a3b8;--tm:#64748b;--sg:rgba(255,255,255,.04);--sgh:rgba(255,255,255,.08);background:var(--dbg)!important;color:var(--tp)!important;font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif!important;line-height:1.6!important;overflow-x:hidden;position:relative;width:100vw;margin-left:calc(-50vw + 50%)}
+.lm-page *,.lm-page *::before,.lm-page *::after{box-sizing:border-box!important}
+.lm-page a{color:var(--vl)!important;text-decoration:none!important}
+.lm-page h1,.lm-page h2,.lm-page h3,.lm-page h4,.lm-page h5,.lm-page h6{margin:0!important;padding:0!important;border:none!important;letter-spacing:normal!important;text-transform:none!important;background:none!important;-webkit-text-fill-color:var(--tp)!important;color:var(--tp)!important}
+.lm-page p{margin:0!important;padding:0!important}
+.lm-page ul,.lm-page ol{margin:0!important;padding:0!important;list-style:none!important}
+.lm-page li{padding:0!important}
+.lm-page li::before,.lm-page li::marker{display:none!important;content:''!important}
+.lm-page section{position:relative;z-index:1}
+.lm-page img{max-width:100%!important;height:auto!important}
+.lm-page code{background:rgba(255,255,255,.08)!important;padding:2px 6px!important;border-radius:4px;font-size:12px!important;font-family:'JetBrains Mono',monospace!important;color:#a5d6ff!important}
+/* CONTAINER */
+.lm-page .lmc{max-width:1100px!important;margin:0 auto!important;padding:0 24px!important}
+/* GRADIENT TEXT */
+.lm-page .gt{background:var(--gp)!important;-webkit-background-clip:text!important;-webkit-text-fill-color:transparent!important;background-clip:text!important}
+.lm-page .et{background:var(--ge)!important;-webkit-background-clip:text!important;-webkit-text-fill-color:transparent!important;background-clip:text!important}
+/* TAGS */
+.lm-page .stag{display:inline-flex!important;align-items:center;gap:8px;font-size:12px!important;font-weight:700!important;letter-spacing:2px;text-transform:uppercase;padding:8px 20px!important;border-radius:30px;margin-bottom:24px!important}
+.lm-page .stag-v{color:var(--vl)!important;background:rgba(102,126,234,.12)!important;border:1px solid rgba(102,126,234,.25)!important}
+.lm-page .stag-e{color:var(--em)!important;background:rgba(16,185,129,.12)!important;border:1px solid rgba(16,185,129,.25)!important}
+.lm-page .stag-o{color:#f59e0b!important;background:rgba(245,158,11,.12)!important;border:1px solid rgba(245,158,11,.25)!important}
+/* AMBIENT */
+.lm-page .amb{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden}
+.lm-page .amb .ob{position:absolute;border-radius:50%;filter:blur(120px);opacity:.12}
+.lm-page .ob1{width:600px;height:600px;background:#667eea;top:-200px;right:-200px;animation:lmF 20s ease-in-out infinite}
+.lm-page .ob2{width:500px;height:500px;background:#764ba2;bottom:20%;left:-150px;animation:lmF 25s ease-in-out infinite reverse}
+.lm-page .ob3{width:400px;height:400px;background:#10b981;top:50%;right:-100px;opacity:.06;animation:lmF 18s ease-in-out infinite}
+@keyframes lmF{0%,100%{transform:translate(0,0)}50%{transform:translate(-40px,30px)}}
+@keyframes lmP{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.3)}}
+/* HERO */
+.lm-page .s-hero{padding:100px 24px 80px!important;text-align:center;background:var(--dbg)!important}
+.lm-page .hbadge{display:inline-flex!important;align-items:center;gap:10px;padding:10px 24px!important;background:rgba(16,185,129,.1)!important;border:1px solid rgba(16,185,129,.3)!important;border-radius:30px;margin-bottom:32px!important}
+.lm-page .hbadge-dot{width:8px;height:8px;background:var(--em)!important;border-radius:50%;animation:lmP 2s ease-in-out infinite}
+.lm-page .hbadge span{font-size:13px!important;font-weight:700!important;color:var(--em)!important;letter-spacing:1px;text-transform:uppercase}
+.lm-page .s-hero h1{font-size:clamp(2.2rem,6vw,3.6rem)!important;font-weight:900!important;line-height:1.15!important;margin-bottom:24px!important;max-width:900px;margin-left:auto!important;margin-right:auto!important}
+.lm-page .hsub{font-size:clamp(1rem,2.5vw,1.2rem)!important;color:var(--ts)!important;max-width:700px;margin:0 auto 40px!important;line-height:1.7!important}
+.lm-page .hsub strong{color:var(--tp)!important;font-weight:600!important}
+.lm-page .hstats{display:flex!important;justify-content:center;align-items:center;gap:32px;flex-wrap:wrap;margin-bottom:48px!important}
+.lm-page .hstat{padding:24px 36px!important;background:var(--sg)!important;border:1px solid var(--db)!important;border-radius:16px;text-align:center;min-width:220px}
+.lm-page .hstat.feat{border-color:rgba(102,126,234,.3)!important}
+.lm-page .hstat.feat .hstat-l{color:var(--vl)!important}
+.lm-page .hstat.feat .hstat-v{background:var(--gp)!important;-webkit-background-clip:text!important;-webkit-text-fill-color:transparent!important;background-clip:text!important}
+.lm-page .hstat.aft{border-color:rgba(16,185,129,.3)!important}
+.lm-page .hstat-l{font-size:12px!important;font-weight:700!important;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px!important}
+.lm-page .hstat.aft .hstat-l{color:var(--em)!important}
+.lm-page .hstat.aft .hstat-v{background:var(--ge)!important;-webkit-background-clip:text!important;-webkit-text-fill-color:transparent!important;background-clip:text!important}
+.lm-page .hstat-v{font-size:32px!important;font-weight:900!important;line-height:1.2!important}
+.lm-page .hstat-d{font-size:14px!important;color:var(--tm)!important;margin-top:4px!important}
+.lm-page .harrow{font-size:32px!important;color:var(--vl)!important;-webkit-text-fill-color:var(--vl)!important}
+.lm-page .hauteur{display:flex!important;align-items:center;justify-content:center;gap:12px;margin-top:40px!important;padding-top:32px!important;border-top:1px solid var(--db)!important;max-width:500px;margin-left:auto!important;margin-right:auto!important}
+.lm-page .hav{width:48px;height:48px;border-radius:50%;background:var(--gp)!important;display:flex!important;align-items:center;justify-content:center;font-weight:800!important;font-size:18px!important;color:#fff!important;-webkit-text-fill-color:#fff!important;flex-shrink:0}
+.lm-page .hai{text-align:left!important}
+.lm-page .han{font-size:15px!important;font-weight:700!important;color:var(--tp)!important;-webkit-text-fill-color:var(--tp)!important}
+.lm-page .har{font-size:13px!important;color:var(--tm)!important;-webkit-text-fill-color:var(--tm)!important}
+/* SECTION HEADER */
+.lm-page .shc{text-align:center;margin-bottom:64px!important}
+.lm-page .shc h2{font-size:clamp(1.8rem,4vw,2.6rem)!important;font-weight:800!important;margin-bottom:16px!important}
+.lm-page .shc h2 .gt,.lm-page .shc h2 .et{-webkit-text-fill-color:transparent!important}
+.lm-page .shc p{font-size:17px!important;color:var(--ts)!important;max-width:650px;margin:0 auto!important}
+/* PROBLEM */
+.lm-page .s-prob{padding:100px 24px!important;background:#0e0e18!important;border-top:1px solid rgba(239,68,68,.1)!important;border-bottom:1px solid rgba(239,68,68,.1)!important}
+.lm-page .pgrid{display:grid!important;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
+.lm-page .ptxt h2{font-size:clamp(1.8rem,4vw,2.4rem)!important;font-weight:800!important;line-height:1.25!important;margin-bottom:24px!important}
+.lm-page .ptxt p{font-size:17px!important;line-height:1.8!important;color:var(--ts)!important;margin-bottom:20px!important}
+.lm-page .ptxt strong{color:var(--tp)!important}
+.lm-page .plist{display:flex!important;flex-direction:column;gap:16px;margin-top:32px!important}
+.lm-page .plist li{display:flex!important;align-items:flex-start;gap:14px;font-size:16px!important;color:var(--ts)!important;line-height:1.6!important}
+.lm-page .pico{flex-shrink:0;width:28px;height:28px;border-radius:8px;background:rgba(239,68,68,.12)!important;display:flex!important;align-items:center;justify-content:center;font-size:14px!important;margin-top:2px}
+.lm-page .pico-v{background:rgba(102,126,234,.12)!important}
+/* SOLUTION / FEATURES GRID */
+.lm-page .s-sol{padding:100px 24px!important;background:var(--dbg)!important}
+.lm-page .fgrid{display:grid!important;grid-template-columns:repeat(3,1fr);gap:20px}
+.lm-page .fcard{padding:32px!important;background:var(--sg)!important;border:1px solid var(--db)!important;border-radius:16px;transition:all .3s ease}
+.lm-page .fcard:hover{background:var(--sgh)!important;border-color:rgba(102,126,234,.3)!important;transform:translateY(-4px)}
+.lm-page .fico{width:52px;height:52px;border-radius:14px;display:flex!important;align-items:center;justify-content:center;font-size:24px!important;margin-bottom:20px!important;background:rgba(102,126,234,.12)!important}
+.lm-page .fico-e{background:rgba(16,185,129,.12)!important}
+.lm-page .fcard h3{font-size:17px!important;font-weight:700!important;margin-bottom:10px!important}
+.lm-page .fcard p{font-size:14px!important;line-height:1.7!important;color:var(--tm)!important}
+/* BENTO / STACK */
+.lm-page .s-stack{padding:100px 24px!important;background:#0e0e1c!important;border-top:1px solid var(--db)!important;border-bottom:1px solid var(--db)!important}
+.lm-page .bgrid{display:grid!important;grid-template-columns:repeat(12,1fr);gap:20px}
+.lm-page .bcard{background:var(--dc)!important;border:1px solid var(--db)!important;border-radius:20px;padding:36px!important;transition:all .3s ease;overflow:hidden}
+.lm-page .bcard:hover{border-color:rgba(102,126,234,.3)!important;background:var(--dch)!important;transform:translateY(-4px)}
+.lm-page .bw{grid-column:span 8}
+.lm-page .bn{grid-column:span 4}
+.lm-page .bh{grid-column:span 6}
+.lm-page .bf{grid-column:span 12}
+.lm-page .bico{font-size:40px!important;margin-bottom:20px!important;display:block}
+.lm-page .bcard h3{font-size:20px!important;font-weight:800!important;margin-bottom:12px!important}
+.lm-page .bcard p{font-size:15px!important;line-height:1.7!important;color:var(--ts)!important}
+.lm-page .tbadges{display:flex!important;flex-wrap:wrap;gap:8px;margin-top:16px!important}
+.lm-page .tb{display:inline-flex!important;padding:6px 14px!important;background:rgba(102,126,234,.1)!important;border:1px solid rgba(102,126,234,.2)!important;border-radius:8px;font-size:13px!important;font-weight:600!important;color:var(--vl)!important}
+.lm-page .tb-e{background:rgba(16,185,129,.1)!important;border-color:rgba(16,185,129,.2)!important;color:var(--em)!important}
+/* TUTORIAL / STEPS */
+.lm-page .s-tut{padding:100px 24px!important;background:var(--dbg)!important}
+.lm-page .stcon{max-width:900px;margin:0 auto;position:relative}
+.lm-page .stline{position:absolute;left:36px;top:80px;width:3px;height:calc(100% - 160px);background:linear-gradient(180deg,var(--vl),var(--em))!important;opacity:.25;border-radius:2px}
+.lm-page .sblk{display:flex!important;gap:36px;margin-bottom:80px!important;position:relative}
+.lm-page .sblk:last-child{margin-bottom:0!important}
+.lm-page .snum{flex-shrink:0;width:72px;height:72px;border-radius:20px;background:var(--gp)!important;display:flex!important;align-items:center;justify-content:center;font-size:28px!important;font-weight:900!important;color:#fff!important;-webkit-text-fill-color:#fff!important;box-shadow:0 8px 32px rgba(102,126,234,.4);z-index:2}
+.lm-page .scont{flex:1;padding-top:10px}
+.lm-page .scont h3{font-size:22px!important;font-weight:800!important;margin-bottom:16px!important}
+.lm-page .scont>p{font-size:16px!important;line-height:1.8!important;color:var(--ts)!important;margin-bottom:20px!important}
+.lm-page .scont strong{color:var(--tp)!important}
+/* INSTRUCTION CARD */
+.lm-page .icard{background:var(--dc)!important;border:1px solid var(--db)!important;border-radius:16px;padding:28px!important;margin-top:20px!important}
+.lm-page .icard h4{font-size:15px!important;font-weight:700!important;color:var(--vl)!important;-webkit-text-fill-color:var(--vl)!important;margin-bottom:16px!important}
+.lm-page .icard ol{display:flex!important;flex-direction:column;gap:14px;counter-reset:inst}
+.lm-page .icard ol li{counter-increment:inst;display:flex!important;align-items:flex-start;gap:12px;font-size:15px!important;line-height:1.7!important;color:var(--ts)!important}
+.lm-page .icard ol li::before{content:counter(inst)!important;flex-shrink:0;width:26px;height:26px;min-width:26px;border-radius:8px;background:rgba(102,126,234,.15)!important;display:flex!important;align-items:center;justify-content:center;font-size:13px!important;font-weight:700!important;color:var(--vl)!important;margin-top:1px}
+.lm-page .icard ol li strong{color:var(--tp)!important}
+/* DETAIL TEXT */
+.lm-page .dtxt{font-size:14px!important;line-height:1.7!important;color:var(--tm)!important;margin-top:12px!important;padding:16px 20px!important;background:rgba(255,255,255,.02)!important;border-left:3px solid rgba(102,126,234,.3)!important;border-radius:0 8px 8px 0}
+.lm-page .dtxt strong{color:var(--ts)!important}
+/* CALLOUT */
+.lm-page .cblk{margin-top:20px!important;padding:24px!important;background:var(--dc)!important;border:1px solid var(--db)!important;border-radius:14px}
+.lm-page .cblk h4{font-size:15px!important;font-weight:700!important;margin-bottom:12px!important}
+.lm-page .cblk p{font-size:14px!important;line-height:1.7!important;color:var(--ts)!important;margin-bottom:10px!important}
+.lm-page .cblk p:last-child{margin-bottom:0!important}
+.lm-page .cblk strong{color:var(--tp)!important}
+.lm-page .cblk ul{display:flex!important;flex-direction:column;gap:8px;margin-top:12px!important}
+.lm-page .cblk ul li{font-size:14px!important;line-height:1.6!important;color:var(--ts)!important;padding-left:20px!important;position:relative}
+.lm-page .cblk ul li::before{content:'→'!important;position:absolute;left:0;color:var(--vl)!important;font-weight:700!important;display:inline!important}
+/* CODE BLOCK */
+.lm-page .codeblk{background:#0d1117!important;border:1px solid rgba(102,126,234,.15)!important;border-radius:14px;margin-top:20px!important;overflow:hidden}
+.lm-page .codeh{display:flex!important;align-items:center;justify-content:space-between;padding:12px 20px!important;background:rgba(255,255,255,.03)!important;border-bottom:1px solid rgba(255,255,255,.06)!important}
+.lm-page .codeh span{font-size:13px!important;font-weight:600!important;color:var(--tm)!important;font-family:'JetBrains Mono',monospace!important}
+.lm-page .codelang{color:var(--vl)!important;background:rgba(102,126,234,.15)!important;padding:3px 10px!important;border-radius:6px;font-size:11px!important}
+.lm-page .codeb{padding:20px!important;overflow-x:auto}
+.lm-page .codeb pre{font-family:'JetBrains Mono',monospace!important;font-size:13px!important;line-height:1.8!important;color:#c9d1d9!important;white-space:pre-wrap;word-break:break-word;margin:0!important;background:transparent!important;border:none!important;padding:0!important}
+.lm-page .cm{color:#6e7681!important}.lm-page .kw{color:#ff7b72!important}.lm-page .st{color:#a5d6ff!important}.lm-page .pr{color:#d2a8ff!important}.lm-page .vl{color:#79c0ff!important}.lm-page .fn{color:#ffa657!important}
+/* TIP BOX */
+.lm-page .tip{margin-top:20px!important;padding:20px 24px!important;border-radius:12px;display:flex!important;gap:12px;align-items:flex-start}
+.lm-page .tip-v{background:rgba(102,126,234,.08)!important;border:1px solid rgba(102,126,234,.2)!important}
+.lm-page .tip-e{background:rgba(16,185,129,.08)!important;border:1px solid rgba(16,185,129,.2)!important}
+.lm-page .tip-a{background:rgba(245,158,11,.08)!important;border:1px solid rgba(245,158,11,.2)!important}
+.lm-page .tipico{font-size:20px!important;flex-shrink:0}
+.lm-page .tip p{font-size:14px!important;line-height:1.7!important;color:var(--ts)!important}
+.lm-page .tip strong{color:var(--tp)!important}
+/* TCARD (comparison / time) */
+.lm-page .tcard{background:var(--dc)!important;border:1px solid rgba(102,126,234,.2)!important;border-radius:20px;padding:40px!important;position:relative;overflow:hidden}
+.lm-page .tcard::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--gp)!important}
+.lm-page .tcard h3{font-size:20px!important;font-weight:800!important;margin-bottom:28px!important}
+.lm-page .titem{display:flex!important;justify-content:space-between;align-items:center;padding:14px 0!important;border-bottom:1px solid rgba(255,255,255,.05)!important}
+.lm-page .titem:last-of-type{border-bottom:none!important}
+.lm-page .ttask{font-size:15px!important;color:var(--ts)!important}
+.lm-page .tdur{font-size:15px!important;font-weight:700!important;color:var(--vl)!important;font-family:'JetBrains Mono',monospace!important}
+/* SKILL CARD — custom for this page */
+.lm-page .skill-card{background:var(--dc)!important;border:1px solid var(--db)!important;border-radius:20px;padding:40px!important;margin-bottom:48px!important;position:relative;overflow:hidden;transition:all .3s ease}
+.lm-page .skill-card:hover{border-color:rgba(102,126,234,.3)!important;transform:translateY(-2px)}
+.lm-page .skill-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--gp)!important}
+.lm-page .skill-card.skill-green::before{background:var(--ge)!important}
+.lm-page .skill-header{display:flex!important;align-items:flex-start;gap:20px;margin-bottom:24px!important}
+.lm-page .skill-num{flex-shrink:0;width:56px;height:56px;border-radius:16px;background:var(--gp)!important;display:flex!important;align-items:center;justify-content:center;font-size:22px!important;font-weight:900!important;color:#fff!important;-webkit-text-fill-color:#fff!important;box-shadow:0 4px 16px rgba(102,126,234,.3)}
+.lm-page .skill-green .skill-num{background:var(--ge)!important;box-shadow:0 4px 16px rgba(16,185,129,.3)}
+.lm-page .skill-meta{flex:1}
+.lm-page .skill-meta h3{font-size:22px!important;font-weight:800!important;margin-bottom:6px!important}
+.lm-page .skill-meta p{font-size:15px!important;color:var(--ts)!important;line-height:1.6!important}
+.lm-page .skill-badges{display:flex!important;flex-wrap:wrap;gap:8px;margin-bottom:20px!important}
+.lm-page .skill-badge{display:inline-flex!important;align-items:center;gap:6px;padding:6px 14px!important;border-radius:8px;font-size:12px!important;font-weight:600!important}
+.lm-page .sb-when{background:rgba(245,158,11,.1)!important;border:1px solid rgba(245,158,11,.2)!important;color:#f59e0b!important}
+.lm-page .sb-how{background:rgba(102,126,234,.1)!important;border:1px solid rgba(102,126,234,.2)!important;color:var(--vl)!important}
+.lm-page .sb-out{background:rgba(16,185,129,.1)!important;border:1px solid rgba(16,185,129,.2)!important;color:var(--em)!important}
+.lm-page .skill-desc{font-size:15px!important;line-height:1.8!important;color:var(--ts)!important;margin-bottom:20px!important}
+.lm-page .skill-desc strong{color:var(--tp)!important}
+.lm-page .skill-example{margin-top:16px!important;padding:16px 20px!important;background:rgba(16,185,129,.06)!important;border:1px solid rgba(16,185,129,.15)!important;border-radius:12px}
+.lm-page .skill-example p{font-size:14px!important;color:var(--ts)!important;line-height:1.7!important}
+.lm-page .skill-example strong{color:var(--em)!important}
+/* PILLARS */
+.lm-page .s-prompt{padding:100px 24px!important;background:#0e0e1c!important;border-top:1px solid var(--db)!important;border-bottom:1px solid var(--db)!important}
+.lm-page .ppillars{display:grid!important;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1000px;margin:0 auto}
+.lm-page .pcard{padding:28px!important;background:var(--dc)!important;border:1px solid var(--db)!important;border-radius:16px;text-align:center}
+.lm-page .pnum{width:40px;height:40px;border-radius:12px;background:var(--gp)!important;display:flex!important;align-items:center;justify-content:center;font-size:18px!important;font-weight:800!important;color:#fff!important;-webkit-text-fill-color:#fff!important;margin:0 auto 16px!important}
+.lm-page .pcard h4{font-size:16px!important;font-weight:700!important;margin-bottom:10px!important}
+.lm-page .pcard p{font-size:14px!important;line-height:1.6!important;color:var(--tm)!important}
+/* CHAIN SECTION */
+.lm-page .chain-card{background:var(--dc)!important;border:1px solid var(--db)!important;border-radius:20px;padding:36px!important;margin-bottom:24px!important;transition:all .3s ease}
+.lm-page .chain-card:hover{border-color:rgba(102,126,234,.3)!important;transform:translateY(-2px)}
+.lm-page .chain-card h3{font-size:20px!important;font-weight:800!important;margin-bottom:16px!important}
+.lm-page .chain-steps{display:flex!important;flex-wrap:wrap;gap:12px;align-items:center}
+.lm-page .chain-step{display:inline-flex!important;align-items:center;gap:8px;padding:8px 16px!important;background:rgba(102,126,234,.08)!important;border:1px solid rgba(102,126,234,.2)!important;border-radius:10px;font-size:13px!important;font-weight:600!important;color:var(--vl)!important}
+.lm-page .chain-step .cs-num{width:22px;height:22px;border-radius:6px;background:var(--gp)!important;display:flex!important;align-items:center;justify-content:center;font-size:11px!important;font-weight:800!important;color:#fff!important;-webkit-text-fill-color:#fff!important;flex-shrink:0}
+.lm-page .chain-arrow{color:var(--vl)!important;font-size:16px!important;opacity:.5}
+.lm-page .chain-result{margin-top:16px!important;padding:12px 16px!important;background:rgba(16,185,129,.06)!important;border-left:3px solid var(--em)!important;border-radius:0 8px 8px 0;font-size:14px!important;color:var(--ts)!important}
+.lm-page .chain-result strong{color:var(--em)!important}
+/* QUICK REFERENCE TABLE */
+.lm-page .ref-table{width:100%;border-collapse:separate;border-spacing:0;overflow:hidden;border-radius:16px;border:1px solid var(--db)!important}
+.lm-page .ref-table thead{background:rgba(102,126,234,.1)!important}
+.lm-page .ref-table th{padding:16px 20px!important;font-size:13px!important;font-weight:700!important;text-transform:uppercase;letter-spacing:1px;color:var(--vl)!important;-webkit-text-fill-color:var(--vl)!important;text-align:left;border-bottom:1px solid var(--db)!important}
+.lm-page .ref-table td{padding:14px 20px!important;font-size:14px!important;color:var(--ts)!important;border-bottom:1px solid rgba(255,255,255,.04)!important}
+.lm-page .ref-table tr:last-child td{border-bottom:none!important}
+.lm-page .ref-table tr:hover td{background:rgba(255,255,255,.02)!important}
+.lm-page .ref-table td:first-child{font-weight:600!important;color:var(--tp)!important}
+.lm-page .ref-table code{font-size:12px!important;padding:3px 8px!important}
+/* DEPLOY */
+.lm-page .s-deploy{padding:100px 24px!important;background:var(--dbg)!important}
+.lm-page .dflow{display:grid!important;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1000px;margin:0 auto}
+.lm-page .dcard{padding:36px!important;background:var(--dc)!important;border:1px solid var(--db)!important;border-radius:20px;text-align:center;transition:all .3s ease}
+.lm-page .dcard:hover{border-color:rgba(102,126,234,.3)!important;transform:translateY(-4px)}
+.lm-page .dico{font-size:48px!important;margin-bottom:20px!important;display:block}
+.lm-page .dcard h3{font-size:18px!important;font-weight:800!important;margin-bottom:12px!important}
+.lm-page .dcard p{font-size:14px!important;line-height:1.7!important;color:var(--tm)!important}
+/* CTA */
+.lm-page .s-cta{padding:100px 24px!important;text-align:center;background:var(--dbg)!important}
+.lm-page .ctabox{max-width:700px;margin:0 auto;padding:60px 48px!important;background:var(--dc)!important;border:2px solid rgba(102,126,234,.3)!important;border-radius:24px;position:relative;overflow:hidden}
+.lm-page .ctabox::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--gp)!important}
+.lm-page .ctabox h2{font-size:clamp(1.6rem,4vw,2.2rem)!important;font-weight:800!important;margin-bottom:16px!important}
+.lm-page .ctabox h2 .gt{-webkit-text-fill-color:transparent!important}
+.lm-page .ctabox>p{font-size:17px!important;color:var(--ts)!important;margin-bottom:36px!important;line-height:1.7!important}
+.lm-page .ctabtn{display:inline-flex!important;align-items:center;gap:10px;padding:18px 48px!important;background:var(--gp)!important;color:#fff!important;-webkit-text-fill-color:#fff!important;font-size:17px!important;font-weight:700!important;border-radius:12px;transition:all .3s ease;box-shadow:0 8px 32px rgba(102,126,234,.4)}
+.lm-page .ctabtn:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(102,126,234,.6);color:#fff!important}
+.lm-page .ctatrust{margin-top:24px!important;font-size:14px!important;color:var(--tm)!important}
+.lm-page .cta-features{display:flex!important;flex-wrap:wrap;justify-content:center;gap:24px;margin-bottom:32px!important}
+.lm-page .cta-feat{display:flex!important;align-items:center;gap:8px;font-size:14px!important;color:var(--ts)!important}
+.lm-page .cta-feat span:first-child{color:var(--em)!important;font-size:16px!important}
+/* RESPONSIVE */
+@media(max-width:968px){
+.lm-page .pgrid,.lm-page .fgrid,.lm-page .dflow,.lm-page .ppillars{grid-template-columns:1fr!important}
+.lm-page .bgrid{grid-template-columns:1fr!important}
+.lm-page .bw,.lm-page .bn,.lm-page .bh,.lm-page .bf{grid-column:span 1!important}
+}
+@media(max-width:768px){
+.lm-page .s-hero{padding:64px 20px 48px!important}
+.lm-page .hstats{flex-direction:column!important;align-items:center;gap:16px!important}
+.lm-page .harrow{transform:rotate(90deg)}
+.lm-page .hstat{width:100%;max-width:300px}
+.lm-page .sblk{flex-direction:column!important;gap:20px!important}
+.lm-page .snum{width:56px!important;height:56px!important;font-size:22px!important}
+.lm-page .stline{display:none!important}
+.lm-page .ctabox{padding:40px 28px!important}
+.lm-page .skill-header{flex-direction:column!important;gap:12px!important}
+.lm-page .chain-steps{flex-direction:column!important;align-items:flex-start!important}
+.lm-page .chain-arrow{transform:rotate(90deg)}
+}
+@media(max-width:480px){
+.lm-page .s-hero h1{font-size:1.8rem!important}
+.lm-page .tcard{padding:24px!important}
+.lm-page .skill-card{padding:24px!important}
+}
+</style>
+<!-- ═══════════════════════════════════════════
+     HERO
+═══════════════════════════════════════════ -->
+<section>
+Guide Gratuit — SEO + IA
+<h1>10 Skills Claude pour dominer Google ET la Recherche IA</h1>
+<p>Le SEO est devenu <strong>deux jeux en simultané</strong>. Google + les moteurs IA (ChatGPT, Perplexity, Claude). Ce guide vous donne <strong>10 systèmes prêts à l'emploi</strong> que vous installez en 5 minutes. Zéro prompt engineering requis.</p>
+📦 Skills10Workflows automatisés
+→
+⏱️ Installation&lt; 5 minCopy-paste direct
+→
+✅ RésultatSEO + GEOCouverture totale
+NFNathan FeninaFondateur Decupler · Expert SEO & IA · Top 20 SEO France
+</section>
+<!-- ═══════════════════════════════════════════
+     PROBLEM: POURQUOI CE GUIDE
+═══════════════════════════════════════════ -->
+<section>
+⚠️ Le Problème
+<h2>La plupart des SEOs utilisent l'IA comme un chatbot</h2>
+<p>Ils tapent une question. Reçoivent une réponse médiocre. Font un copier-coller dans un doc. <strong>Ce n'est pas de l'automatisation — c'est du travail manuel avec des étapes en plus.</strong></p>
+<p>Pendant ce temps, le SEO a changé de nature. Il ne suffit plus de ranker sur Google. <strong>Il faut aussi apparaître quand quelqu'un pose une question à ChatGPT, Perplexity ou Claude</strong> sur votre industrie.</p>
+<ul>
+<li>🔍Google SEO classique : positions organiques, featured snippets, rich results</li>
+<li>🤖GEO (Generative Engine Optimization) : apparaître dans les réponses IA</li>
+<li>⏱️Les prompts manuels ne scalent pas : chaque tâche recommence à zéro</li>
+<li>📉Le zero-click search augmente : 60%+ des requêtes ne génèrent plus de clic</li>
+<li>🏗️Aucun système structuré : chaque consultant réinvente la roue</li>
+</ul>
+<h3>⚡ Skill vs. Prompt : la différence</h3>
+Un promptUsage unique
+→ Vous le retapez à chaque fois0 mémoire
+→ Sortie imprévisibleIncohérent
+Un SkillPermanent
+→ Instructions persistantes dans Claude1× config
+→ Rôle + Contraintes + Format = cohérent100% fiable
+→ Exécution en 1 commandeInstantané
+</section>
+<!-- ═══════════════════════════════════════════
+     WHY OPUS 4.6 + HOW TO INSTALL
+═══════════════════════════════════════════ -->
+<section>
+✅ Pourquoi maintenant<h2>Claude Opus 4.6 change la donne</h2><p>Les anciens modèles oubliaient vos instructions en cours de route. Opus 4.6 suit des Skills de 500+ lignes — chaque règle, chaque contrainte, chaque format de sortie. Systématiquement.</p>
+🧠<h3>Raisonnement profond</h3><p>Garde en mémoire des workflows multi-étapes complexes sans dériver ni oublier les instructions.</p>
+📋<h3>Suivi de contraintes</h3><p>500 lignes de Skill = 500 lignes suivies. Formats de sortie, limites de caractères, règles métier.</p>
+🔄<h3>Consistance</h3><p>Même input = même qualité de sortie. Pas de variation aléatoire. Résultats production-ready.</p>
+</section>
+<!-- ═══════════════════════════════════════════
+     HOW TO INSTALL
+═══════════════════════════════════════════ -->
+<section>
+⚙️ Installation<h2>Comment installer les Skills en 5 min</h2><p>Deux méthodes. Choisissez celle qui vous convient.</p>
+A
+<h3>Méthode 1 : Claude Projects (Web/Desktop)</h3>
+<p>La méthode la plus simple. Idéale si vous utilisez <strong>claude.ai</strong> au quotidien.</p>
+<h4>📌 Étapes :</h4><ol>
+<li>Ouvrez <strong><a href="https://claude.ai" target="_blank" rel="noopener">claude.ai</a></strong> et créez un nouveau <strong>Project</strong> (ex: "SEO Skills Pack")</li>
+<li>Cliquez sur <strong>"Add to Project Knowledge"</strong></li>
+<li>Copiez-collez chaque Skill ci-dessous dans un <strong>fichier séparé</strong></li>
+<li>Nommez chaque fichier (ex: <code>seo-site-auditor.md</code>)</li>
+<li>Tapez <strong>"Run SEO Site Auditor"</strong> pour exécuter</li>
+</ol>
+B
+<h3>Méthode 2 : Claude Code (CLI)</h3>
+<p>Pour les développeurs. Auto-découverte des Skills.</p>
+<h4>📌 Étapes :</h4><ol>
+<li>Créez un dossier : <code>~/.claude/skills/seo-skills/</code></li>
+<li>Sauvegardez chaque Skill comme <code>SKILL.md</code> dans son propre sous-dossier</li>
+<li>Claude Code auto-découvre les Skills</li>
+<li>Exécutez avec <code>/seo-site-auditor</code> ou décrivez simplement la tâche</li>
+</ol>
+</section>
+<!-- ═══════════════════════════════════════════
+     THE 10 SKILLS
+═══════════════════════════════════════════ -->
+<section>
+🛠️ Les 10 Skills<h2>Votre arsenal SEO + GEO complet</h2><p>Chaque Skill automatise un workflow SEO spécifique. Copiez, collez, exécutez.</p>
+<!-- SKILL 1 -->
+1
+<h3>SEO Site Auditor</h3><p>Audit SEO complet d'une page ou d'un site. Technique, on-page, Core Web Vitals, mobile.</p>
+📅 Onboarding client · Check-ups mensuels
+▶️ Collez le HTML source ou un export Screaming Frog
+<strong>Ce qu'il analyse :</strong> Canonical tags, robots directives, hreflang, redirects, sitemaps, title/meta/Hn, keyword density, E-E-A-T signals, render-blocking resources, images, layout shift, fonts, viewport, touch targets.
+<strong>Sortie :</strong> Tableau priorisé (CRITICAL → WARNING → OPTIMIZATION) + section "Quick Wins" — les 3 fixes à plus fort impact avec le moins d'effort.
+seo-site-auditor.mdSKILL<pre>---
+name: seo-site-auditor
+description: Run a comprehensive SEO audit on a website or page.
+---
+# SEO Site Auditor
+You are a Senior Technical SEO Consultant with 15 years 
+of experience auditing enterprise websites.
+## Audit Categories
+1. Technical SEO — canonicals, robots, hreflang, redirects, sitemap
+2. On-Page SEO — title, meta, H1-H6, keyword density, internal linking
+3. Content Quality — word count, readability, E-E-A-T signals
+4. Core Web Vitals — render-blocking, images, layout shift, fonts
+5. Mobile Optimization — viewport, touch targets, content width
+## Output: Prioritized table
+| Priority | Category | Issue | Impact | Fix |
+CRITICAL → WARNING → OPTIMIZATION
++ "Quick Wins" section (3 highest-impact, lowest-effort fixes)</pre>
+<p><strong>Exemple de sortie :</strong> Missing canonical tag (Critical), images sans alt text (Warning), recommandation d'ajout FAQ schema (Optimization).</p>
+<!-- SKILL 2 -->
+2
+<h3>AEO Content Optimizer</h3><p>Restructure le contenu existant pour ranker dans les réponses IA. ChatGPT, Perplexity, Claude, Google AI Overviews.</p>
+📅 Blog posts avec trafic mais 0 featured snippet
+▶️ Collez votre contenu + la requête cible
+<strong>Comment chaque moteur IA sélectionne ses sources :</strong>
+<ul>
+<li><strong>Google AI Overviews :</strong> Préfère les réponses concises et autoritaires avec schema markup et E-E-A-T</li>
+<li><strong>ChatGPT :</strong> Préfère le contenu conversationnel et complet avec contexte + faits</li>
+<li><strong>Perplexity :</strong> Préfère les citations, data points, listes numérotées, données structurées</li>
+<li><strong>Claude :</strong> Préfère l'analyse détaillée et nuancée avec perspectives multiples</li>
+</ul>
+<strong>Le processus en 4 étapes :</strong> Answer Density Check → Structure Optimization → Citation Readiness → Entity Optimization. Sortie : Direct Answer Paragraph (40-60 mots), contenu restructuré complet, comparaison avant/après, AEO Score.
+aeo-content-optimizer.mdSKILL<pre>---
+name: aeo-content-optimizer
+description: Restructure content for AI-generated answers.
+---
+# AEO Content Optimizer
+You are an Answer Engine Optimization specialist.
+## 4-Step Process
+Step 1: Answer Density Check — core answer in first 60 words?
+Step 2: Structure Optimization — tables, numbered lists, clear H2/H3
+Step 3: Citation Readiness — bold terms, data points, TL;DR
+Step 4: Entity Optimization — define entities, cross-reference
+## Output
+1. Direct Answer Paragraph (40-60 words)
+2. Restructured Content (full optimized version)
+3. Before/After Comparison
+4. AEO Score (original vs optimized, 1-10)</pre>
+<p><strong>Exemple :</strong> Un "Avant" qui enterre la réponse à la ligne 8. Un "Après" qui ouvre avec un paragraphe direct de 50 mots, suivi de données structurées.</p>
+<!-- SKILL 3 -->
+3
+<h3>Schema Markup Generator</h3><p>Génère du JSON-LD valide pour tout type de page. Article, Product, FAQ, LocalBusiness, HowTo, schemas imbriqués.</p>
+📅 Lancement de contenu · Audits schema
+▶️ Collez le contenu de la page ou décrivez-la
+📤 JSON-LD prêt à coller dans le &lt;head&gt;
+<strong>Types supportés :</strong> Article/BlogPosting, Product (avec AggregateRating, Offer), FAQ, HowTo, LocalBusiness, Organization, BreadcrumbList, VideoObject. Utilise @graph pour combiner plusieurs schemas dans un seul bloc.
+schema-markup-generator.mdSKILL<pre>---
+name: schema-markup-generator
+description: Generate valid JSON-LD structured data for any page type.
+---
+# Schema Markup Generator
+You are a JSON-LD Schema Markup specialist.
+Error-free structured data that passes Google Rich Results.
+## Rules
+1. Output ONLY valid JSON-LD inside a script tag
+2. schema.org vocabulary exclusively
+3. Nest schemas when appropriate
+4. Include ALL required + recommended properties
+5. Never invent data — comment what's missing
+6. Use @graph for multiple schema types
+## Output
+1. Complete JSON-LD code block
+2. Validation checklist (present/missing fields)
+3. Expected rich result type</pre>
+<p><strong>Exemple :</strong> Un bloc &lt;script&gt; complet avec Article + FAQPage + BreadcrumbList imbriqués pour un article de blog avec section FAQ.</p>
+<!-- SKILL 4 -->
+4
+<h3>E-E-A-T Content Scorer</h3><p>Score impitoyable contre les guidelines qualité Google. Gate de pré-publication.</p>
+📅 Revue éditoriale finale · Audits de contenu
+▶️ Collez le contenu de la page
+<strong>4 dimensions notées 1-10 :</strong> Experience (first-hand), Expertise (depth), Authoritativeness (credentials), Trustworthiness (evidence). Verdict final : PUBLISH / REVISE / REWRITE. Top 3 faiblesses avec fixes actionnables.
+eeat-content-scorer.mdSKILL<pre># E-E-A-T Content Scorer
+You are a Google Search Quality Rater. Zero tolerance.
+## Scoring (1-10 each)
+Experience: 1-3 = generic | 4-6 = implied | 7-10 = clear first-hand
+Expertise: 1-3 = surface | 4-6 = solid | 7-10 = expert-level depth
+Authority: 1-3 = anonymous | 4-6 = some creds | 7-10 = recognized
+Trust: 1-3 = unverified | 4-6 = mostly ok | 7-10 = fully cited
+## Output: Table + Top 3 Weaknesses + Verdict
+PUBLISH / REVISE / REWRITE</pre>
+<p><strong>Exemple :</strong> Score 6/10. Fail sur Experience (pas de données de case study). Fix : Ajoutez un résultat réel de projet client en Section 2. Verdict : REVISE.</p>
+<!-- SKILL 5 -->
+5
+<h3>Keyword Intent Classifier</h3><p>Classifie chaque mot-clé par intent, buyer journey, et risque de réponse IA (zero-click).</p>
+📅 Recherche de mots-clés · Planning éditorial
+▶️ Collez une liste de mots-clés (un par ligne)
+<strong>3 axes de classification :</strong> Intent (Informational/Navigational/Commercial/Transactional), Buyer Journey (Awareness/Consideration/Decision), AI Answer Risk (HIGH = l'IA répond sans clic, MEDIUM = réponse partielle, LOW = nécessite nuance/comparaison).
+<strong>Priorisation automatique :</strong> LOW RISK + Transactional = HIGH PRIORITY. HIGH RISK + Informational = LOW PRIORITY (sauf autorité topique). Sortie avec Top 5 prioritaires, Top 5 autorité, et Keywords à éviter.
+keyword-intent-classifier.mdSKILL<pre># Keyword Intent Classifier
+You are a Keyword Strategist specializing in search intent 
+and AI search impact assessment.
+## Classification
+1. Intent: Informational | Navigational | Commercial | Transactional
+2. Journey: Awareness | Consideration | Decision
+3. AI Risk: HIGH (AI answers fully) | MEDIUM (partial) | LOW (needs nuance)
+## Priority Matrix
+LOW AI Risk + Transactional/Commercial = HIGH PRIORITY
+HIGH AI Risk + Informational = LOW PRIORITY (authority only)
+## Output
+| Keyword | Intent | Journey | AI Risk | Priority |
++ Top 5 High-Priority + Top 5 Authority + Keywords to Avoid</pre>
+<p><strong>Exemple :</strong> "best SEO tools 2026" = High Priority (Commercial, Low AI Risk). "what is SEO" = Authority-Only (Informational, High AI Risk).</p>
+<!-- SKILL 6 -->
+6
+<h3>Competitor Gap Finder</h3><p>Compare votre contenu vs. un concurrent. Trouve les trous sémantiques, entités manquantes, sous-sujets non couverts.</p>
+📅 Quand un concurrent vous dépasse · Content refresh
+▶️ Collez VOTRE contenu + celui du concurrent
+<strong>Analyse en 4 étapes :</strong> Entity Extraction (extraction des entités des deux contenus) → Gap Identification (ce que le concurrent a et vous non) → Depth Comparison (profondeur par section) → Structural Comparison (H2/H3, sections manquantes, word count).
+competitor-gap-finder.mdSKILL<pre># Competitor Gap Finder
+You are a Competitive Intelligence Analyst for SEO.
+## 4-Step Analysis
+Step 1: Entity Extraction — tools, concepts, data, methods
+Step 2: Gap Identification — what competitor has, you don't
+Step 3: Depth Comparison — per-section detail level
+Step 4: Structural Comparison — H2/H3, word counts
+## Output
+| Gap Type | Missing | Where to Add | Impact (HIGH/MED/LOW) |
++ Summary: total gaps, high-impact gaps, words needed</pre>
+<p><strong>Exemple :</strong> "Le concurrent couvre les outils de validation schema dans une section dédiée (450 mots). Votre guide ne mentionne pas ce sujet. Impact : HIGH."</p>
+<!-- SKILL 7 -->
+7
+<h3>GBP Post Generator</h3><p>Crée des posts Google Business Profile optimisés pour le SEO local. 3 variations avec géo-modifiers et CTAs.</p>
+📅 Maintenance hebdo SEO local
+▶️ Nom du business, localisation, service/sujet
+📤 3 posts prêts à publier
+<strong>3 variations automatiques :</strong> Update Post (news/tip, autorité locale, CTA soft), Offer Post (promo, urgence, CTA hard), Event/Seasonal Post (lien communautaire, CTA communauté). Chaque post &lt; 1 500 caractères, niveau lecture 6e-4e, zéro hashtag.
+gbp-post-generator.mdSKILL<pre># GBP Post Generator
+You are a Local SEO Copywriter for Google Business Profile.
+## Rules
+1. Under 1,500 characters
+2. City/neighborhood name included naturally
+3. Every post ends with clear CTA
+4. Grade 6-8 reading level
+5. No hashtags
+## 3 Variations
+1. Update Post (authority tip + soft CTA)
+2. Offer Post (urgency + hard CTA)
+3. Event/Seasonal Post (community + CTA)</pre>
+<!-- SKILL 8 -->
+8
+<h3>Internal Linking Strategist</h3><p>Analyse votre structure de site et mappe une stratégie de maillage interne Hub & Spoke.</p>
+📅 Architecture de site · Optimisation de clusters
+▶️ Liste de pages (titre, URL, mot-clé cible)
+<strong>5 étapes :</strong> Identification des Pillar Pages (Hubs) → Mapping des Cluster Pages (Spokes) → Cross-Cluster Links → Stratégie d'ancres (variation, mix branded/keyword/naturel) → Détection des pages orphelines.
+internal-linking-strategist.mdSKILL<pre># Internal Linking Strategist
+You are a Site Architecture Specialist for topical authority.
+## 5-Step Process
+1. Identify Pillar Pages (Hubs)
+2. Map Cluster Pages (Spokes)
+3. Cross-Cluster Links (1-2 per page max)
+4. Anchor Text Strategy (varied, no exact-match spam)
+5. Orphan Page Detection + Rescue
+## Output
+Cluster Map + Link Recommendations table
+| Source | Target | Anchor | Link Type |
++ Top 5 priority links to add immediately</pre>
+<p><strong>Exemple :</strong> Cluster map avec "Guide SEO" comme pillar, 8 articles spoke, 3 pages orphelines identifiées, ancres spécifiques pour chaque lien.</p>
+<!-- SKILL 9 -->
+9
+<h3>SEO Content Brief Writer</h3><p>Génère un brief complet prêt à transmettre à un rédacteur. SEO + intent + structure + benchmarks.</p>
+📅 Avant chaque nouveau contenu · Délégation rédacteurs
+▶️ Mot-clé cible + audience
+📤 Brief complet writer-ready
+<strong>7 sections du brief :</strong> Keyword & Intent, Content Structure (H1/H2/H3 + word count), SEO Requirements (placements, secondaries, semantic terms, internal links), People Also Ask (5-8 PAA avec réponses AEO-ready), Competitor Benchmark (couverture, word count, angle d'attaque), AEO Optimization Notes, Meta Tags.
+seo-content-brief-writer.mdSKILL<pre># SEO Content Brief Writer
+You are a Content Manager producing writer-ready briefs 
+that balance SEO, editorial quality, and AI visibility.
+## Brief Sections
+1. Target Keyword + Intent + Persona
+2. Content Structure (H1/H2/H3 + word count)
+3. SEO Requirements (placements, secondaries, internal links)
+4. People Also Ask (5-8 PAA, 40-60 word answers)
+5. Competitor Benchmark (coverage, gaps, our angle)
+6. AEO Optimization Notes (answer positioning, format)
+7. Meta Tags (Title ≤60 chars, Description ≤155 chars)</pre>
+<p><strong>Exemple :</strong> Brief complet pour "Best CRM for Small Business" — structure H2, 8 PAA questions, cible 2 800 mots, notes AEO spécifiques.</p>
+<!-- SKILL 10 -->
+10
+<h3>AI Search Visibility Checker</h3><p>Évalue si votre contenu sera cité par les moteurs IA. Machine Readability Score + recommandations.</p>
+📅 Audit pages à forte valeur · Validation pré-publish
+▶️ Collez votre contenu + la requête cible
+📤 Scorecard + paragraphe d'ouverture réécrit
+<strong>5 critères pondérés :</strong> Answer Positioning (30% — réponse dans les 100 premiers mots ?), Structural Clarity (25% — H2/H3, tables, listes), Factual Density (20% — chiffres, citations, données originales), Entity Coverage (15% — entités définies, relations explicites), Freshness Signals (10% — date, références récentes).
+<strong>Verdict :</strong> 8-10 = HIGH VISIBILITY (sera probablement cité). 5-7 = MEDIUM (possible mais concurrents préférés). 1-4 = LOW (l'IA ne sélectionnera pas ce contenu). Inclut Top 3 Fixes + paragraphe d'ouverture réécrit score 9+.
+ai-search-visibility-checker.mdSKILL<pre># AI Search Visibility Checker
+You are an AI Search Engineer specializing in 
+content optimization for LLM citation.
+## 5 Weighted Criteria
+1. Answer Positioning (30%) — answer in first 100 words?
+2. Structural Clarity (25%) — headings, tables, lists
+3. Factual Density (20%) — numbers, citations, original data
+4. Entity Coverage (15%) — defined entities, explicit relations
+5. Freshness Signals (10%) — dates, recent references
+## Verdict
+8-10: HIGH VISIBILITY | 5-7: MEDIUM | 1-4: LOW
++ Top 3 Fixes + Rewritten opening paragraph (9+/10)</pre>
+<p><strong>Exemple :</strong> Score 5/10. La réponse à la requête principale est enterrée au paragraphe 4. Réécrivez l'ouverture avec une réponse directe de 50 mots. Convertissez la comparaison de prose en tableau.</p>
+</section>
+<!-- ═══════════════════════════════════════════
+     CHAINING SKILLS
+═══════════════════════════════════════════ -->
+<section>
+⚡ Avancé<h2>Chaîner les Skills pour 10× l'impact</h2><p>Le vrai pouvoir n'est pas dans un Skill isolé. C'est dans les enchaînements.</p>
+<h3>🏢 Chaîne "Onboarding Nouveau Client"</h3>
+1SEO Site Auditor→
+2AI Visibility Checker→
+3Competitor Gap Finder→
+4Keyword Intent Classifier→
+5Content Brief Writer
+<strong>Temps total : 30 minutes.</strong> Ce qui prenait auparavant 2-3 jours.
+<h3>🔄 Chaîne "Content Refresh"</h3>
+1E-E-A-T Scorer→
+2AEO Optimizer→
+3Schema Generator→
+4AI Visibility Checker
+<strong>Résultat :</strong> Contenu mis à jour pour Google ET les moteurs IA en une seule session.
+<h3>📍 Chaîne "SEO Local Hebdo"</h3>
+1GBP Post Generator→
+2Internal Linking Strategist→
+3Schema Generator
+<strong>Résultat :</strong> Post GBP + vérification maillage + schema LocalBusiness à jour. 15 minutes max.
+</section>
+<!-- ═══════════════════════════════════════════
+     BUILD YOUR OWN SKILLS
+═══════════════════════════════════════════ -->
+<section>
+🧠 Créez vos propres Skills<h2>La formule en 4 piliers</h2><p>Ces 10 Skills sont votre point de départ. Voici comment en créer d'autres.</p>
+1<h4>Rôle</h4><p>Pas "expert SEO" mais "Senior Technical SEO avec 15 ans en SaaS enterprise".</p>
+2<h4>Contraintes</h4><p>Ce que l'IA NE PEUT PAS faire. Pas de fluff, pas de données inventées, formats précis.</p>
+3<h4>Format de sortie</h4><p>Tables, code blocks, listes numérotées. Jamais "écris-moi un paragraphe".</p>
+4<h4>Quality Gate</h4><p>Intégrez un auto-contrôle : scoring, validation, priorisation. Le Skill se vérifie lui-même.</p>
+🎯<p><strong>Règle d'or :</strong> Plus vos contraintes sont spécifiques, meilleur est l'output. La spécificité bat la longueur.</p>
+</section>
+<!-- ═══════════════════════════════════════════
+     QUICK REFERENCE TABLE
+═══════════════════════════════════════════ -->
+<section>
+📋 Référence Rapide<h2>Les 10 Skills en un coup d'œil</h2>
+<table>
+<thead><tr><th>Skill</th><th>Commande</th><th>Meilleur usage</th></tr></thead>
+<tbody>
+<tr><td>SEO Site Auditor</td><td><code>Run SEO Site Auditor</code></td><td>Audits techniques, onboarding client</td></tr>
+<tr><td>AEO Content Optimizer</td><td><code>Run AEO Content Optimizer</code></td><td>Featured snippets, citations IA</td></tr>
+<tr><td>Schema Markup Generator</td><td><code>Run Schema Markup Generator</code></td><td>Rich results, données structurées</td></tr>
+<tr><td>E-E-A-T Content Scorer</td><td><code>Run E-E-A-T Scorer</code></td><td>Gate qualité pré-publication</td></tr>
+<tr><td>Keyword Intent Classifier</td><td><code>Run Keyword Intent Classifier</code></td><td>Recherche KW, planning éditorial</td></tr>
+<tr><td>Competitor Gap Finder</td><td><code>Run Competitor Gap Finder</code></td><td>Dépasser les concurrents</td></tr>
+<tr><td>GBP Post Generator</td><td><code>Run GBP Post Generator</code></td><td>Maintenance SEO local</td></tr>
+<tr><td>Internal Linking Strategist</td><td><code>Run Internal Linking Strategist</code></td><td>Architecture, autorité topique</td></tr>
+<tr><td>SEO Content Brief Writer</td><td><code>Run Content Brief Writer</code></td><td>Délégation rédacteurs</td></tr>
+<tr><td>AI Search Visibility Checker</td><td><code>Run AI Visibility Checker</code></td><td>Audits de visibilité IA</td></tr>
+</tbody>
+</table>
+</section>
+<!-- ═══════════════════════════════════════════
+     CTA — 3 cartes
+═══════════════════════════════════════════ -->
+<section>
+<h2>Prêt à dominer Google ET la Recherche IA ?</h2>
+<p>Ces Skills sont votre point de départ. La suite dépend de vous.</p>
+<!-- CARTE 1 : SEO AI SYSTEMS -->
+⚡
+L'App Decupler
+<p style="font-size:11px!important;font-weight:700!important;text-transform:uppercase;letter-spacing:1.5px;color:#667eea!important;-webkit-text-fill-color:#667eea!important;margin-bottom:8px!important">Gérer en autonome</p>
+<p style="font-size:13px!important;color:#94a3b8!important;line-height:1.7!important;margin-bottom:20px!important">Vous voulez que Google et la recherche IA travaillent pour vous — sans agence, sans friction. Laissez l'IA faire le travail.</p>
+<a href="https://calendly.com/fenina-nathan/app-decupler" target="_blank" rel="noopener" style="display:flex!important;padding:12px 20px!important;font-size:14px!important;width:100%!important;justify-content:center!important;box-sizing:border-box!important">Découvrir l'Application →</a>
+<!-- CARTE 2 : GEO ACCELERATOR -->
+🎓
+GEO Accelerator
+<p style="font-size:11px!important;font-weight:700!important;text-transform:uppercase;letter-spacing:1.5px;color:#10b981!important;-webkit-text-fill-color:#10b981!important;margin-bottom:8px!important">Monter en compétences</p>
+<p style="font-size:13px!important;color:#94a3b8!important;line-height:1.7!important;margin-bottom:20px!important">Vous voulez maîtriser le GEO de A à Z — stratégie, méthodes, mise en pratique. Une formation intensive pour aller vite et bien.</p>
+<a href="https://decupler.com/bootcamp-geo/" target="_blank" rel="noopener" style="display:flex!important;padding:12px 20px!important;font-size:14px!important;background:linear-gradient(135deg,#10b981,#059669)!important;box-shadow:0 8px 32px rgba(16,185,129,.4)!important;width:100%!important;justify-content:center!important;box-sizing:border-box!important">Rejoindre le Bootcamp →</a>
+<!-- CARTE 3 : MASTERCLASS GEO LINKEDIN -->
+<!-- Badge "Bientôt" -->
+Bientôt
+🎙️
+Masterclass GEO
+<p style="font-size:11px!important;font-weight:700!important;text-transform:uppercase;letter-spacing:1.5px;color:#f59e0b!important;-webkit-text-fill-color:#f59e0b!important;margin-bottom:8px!important">Techniques en live</p>
+<p style="font-size:13px!important;color:#94a3b8!important;line-height:1.7!important;margin-bottom:20px!important">Rejoignez la masterclass LinkedIn pour découvrir les techniques GEO en direct — questions live, cas concrets, stratégies actionnables.</p>
+<a href="https://www.linkedin.com/events/7437082488759406592/?viewAsMember=true" target="_blank" rel="noopener" style="display:flex!important;padding:12px 20px!important;font-size:14px!important;background:linear-gradient(135deg,#f59e0b,#d97706)!important;box-shadow:0 8px 32px rgba(245,158,11,.4)!important;width:100%!important;justify-content:center!important;box-sizing:border-box!important">S'inscrire à l'événement →</a>
+<p>✓ Essai gratuit· Bootcamp certifiant</p>
+</section>
+<!-- ═══════════════════════════════════════════
+     POP UP - EMAIL GATE
+═══════════════════════════════════════════ -->
+<style>
+    .ai-popup-overlay {
+        position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+        background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(8px);
+        z-index: 99999; display: none; justify-content: center; align-items: center;
+        padding: 1.5rem; opacity: 0; transition: opacity 0.4s ease;
+    }
+    .ai-popup-overlay.active { display: flex; opacity: 1; }
+    .ai-popup-card {
+        background: white; width: 100%; max-width: 480px; padding: 3rem 2.5rem;
+        border-radius: 24px; text-align: center;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transform: scale(0.95); transition: transform 0.4s ease; position: relative;
+    }
+    .ai-popup-overlay.active .ai-popup-card { transform: scale(1); }
+    .ai-popup-icon { font-size: 3.5rem; margin-bottom: 1rem; display: block; }
+    .ai-popup-title { font-family: 'Inter', sans-serif; font-size: 1.8rem; font-weight: 800; color: #0f172a; margin-bottom: 0.5rem; line-height: 1.2; }
+    .ai-popup-desc { font-family: 'Inter', sans-serif; font-size: 1rem; color: #64748b; margin-bottom: 2rem; line-height: 1.6; }
+    .ai-popup-input {
+        width: 100%; padding: 1rem 1.5rem; border: 2px solid #e2e8f0; border-radius: 12px;
+        font-size: 1rem; margin-bottom: 1rem; font-family: 'Inter', sans-serif; transition: border-color 0.3s;
+    }
+    .ai-popup-input:focus { outline: none; border-color: #667eea; }
+    .ai-popup-submit {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none;
+        padding: 1rem 2rem; border-radius: 50px; font-size: 1.1rem; font-weight: 700; cursor: pointer;
+        width: 100%; transition: transform 0.2s, box-shadow 0.2s;
+        box-shadow: 0 10px 20px -5px rgba(102, 126, 234, 0.4);
+    }
+    .ai-popup-submit:hover { transform: translateY(-2px); box-shadow: 0 15px 25px -5px rgba(102, 126, 234, 0.5); }
+    .ai-popup-footer { font-size: 0.8rem; color: #94a3b8; margin-top: 1rem; }
+    .ai-success-message { display: none; color: #10b981; font-weight: 700; font-size: 1.2rem; margin-top: 1rem; }
+    @media(max-width:900px){
+        .lm-page .ctabox > div[style*="grid-template-columns:1fr 1fr 1fr"] {
+            grid-template-columns: 1fr !important;
+        }
+    }
+</style>
+        🛠️
+        <h3>Débloquez les 10 Skills SEO/LLM</h3>
+        <p>
+            Accédez instantanément aux 10 Skills Claude prêts à copier-coller + les chaînes de workflow avancées.
+        </p>
+        <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+        <form id="ai-popup-form" 
+              action="https://decupler.substack.com/api/v1/free" 
+              method="post" 
+              target="hidden_iframe">
+            <input type="email" name="email" placeholder="votre@email.com" required>
+            <input type="hidden" name="first_url" value="https://decupler.substack.com">
+            <input type="hidden" name="first_referrer" value="https://decupler.com">
+            <button type="submit">Accéder au guide complet (Gratuit) →</button>
+            <p>🔒 Pas de spam. Désabonnement en 1 clic.</p>
+        </form>
+            ✅ Accès débloqué ! Bonne lecture.
