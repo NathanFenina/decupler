@@ -9,7 +9,7 @@ mettre à jour à la fin. Ce qui est ici a été vérifié sur le site en ligne.
 |---|---|---|---|
 | decupler-crawl-fix « Budget de crawl » | **1.3.3** | 1.3.4 (à installer) | robots.txt, llms.txt, 410 des 350 URL de spam, redirections 301, pages hors index, purge du cache Elementor |
 | decupler-popup « Pop-up Workshop » | 1.0.0 | 1.0.0 | Invitation au workshop du 8/10, s'arrête seule le 8/10 à 12 h 30 |
-| decupler-entite « Entité » | — | 1.0.0 (à installer) | Organisation + Nathan Fenina dans le graphe Yoast (trio sémantique) |
+| decupler-entite « Entité » | — | 1.0.1 (à installer ; `url` de la Personne = /nathan-fenina/) | Organisation + Nathan Fenina dans le graphe Yoast (trio sémantique) |
 | decupler-yoast-rest | 1.0 | hors dépôt | Expose les métas Yoast à l'API REST |
 
 Nathan installe les ZIP à la main (Extensions → Téléverser → Remplacer).
@@ -68,7 +68,10 @@ Prochaine mise à jour groupée : crawl-fix 1.3.4 + entite 1.0.0.
 - /claude-code-design/ (20928) publiée le 28/09 ; remplace l'ancien guide
   « site premium en 24h » (6263), redirection dans crawl-fix 1.3.4.
 - 21 pages locales publiées (23-24/09), GEO Ready (20880).
-- /nathan-fenina/ (20995) : page d'entité en brouillon, à compléter par Nathan.
+- /nathan-fenina/ (20995) : page d'entité **publiée le 29/09** avec son parcours
+  (ingénieur en informatique ; développeur et chef de projet digital chez de
+  grands comptes : Société Générale, Decathlon, Pluxee). Signatures de
+  /claude-skills-seo/ et /claude-code-design/ reliées à cette page.
 - 48 pages : blocs JSON-LD `Person` reliés à `#nathan-fenina`, URL LinkedIn
   unifiée (`/in/nathan-fenina/`) le 29/09.
 - Audit « pages pourries » du 29/09 : 4 vides (restes WooCommerce, hors index),

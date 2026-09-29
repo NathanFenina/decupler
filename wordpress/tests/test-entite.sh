@@ -50,6 +50,7 @@ graphe(){ curl -sS "$B$1" | php -r '
     case "sameas_org": echo in_array("https://annuaire-entreprises.data.gouv.fr/entreprise/927480319",(array)($org["sameAs"]??[]),true)?"ok":"ko"; break;
     case "nb_personnes": echo count($pers); break;
     case "id_personne": echo substr($pers[0]["@id"]??"",-14); break;
+    case "url_personne": echo substr($pers[0]["url"]??"",-14); break;
     case "linkedin": echo in_array("https://www.linkedin.com/in/nathan-fenina/",(array)($pers[0]["sameAs"]??[]),true)?"ok":"ko"; break;
     case "auteur": foreach($g as $n){ if(isset($n["author"])){ $a=$n["author"]; echo substr(is_array($a)&&isset($a["@id"])?$a["@id"]:json_encode($a),-14); break; } } break;
     case "orphelins": $ids=[]; array_walk_recursive($g,function($v,$k)use(&$ids){ if($k==="@id") $ids[]=$v; }); echo count(array_filter($ids,function($i){ return strpos($i,"#/schema/person/")!==false; })); break;
@@ -64,9 +65,11 @@ echo "== 2. Personne"
 attend "une seule personne sur l'accueil" "$(graphe / nb_personnes)" "1"
 attend "identifiant unique" "$(graphe / id_personne)" "#nathan-fenina"
 attend "LinkedIn dans sameAs" "$(graphe / linkedin)" "ok"
+attend "url → page d'entité" "$(graphe / url_personne)" "nathan-fenina/"
 echo "== 3. Article : auteur fusionné"
 attend "une seule personne dans l'article" "$(graphe /article-entite/ nb_personnes)" "1"
 attend "auteur → #nathan-fenina" "$(graphe /article-entite/ auteur)" "#nathan-fenina"
+attend "url de l'auteur = page d'entité (pas l'archive auteur)" "$(graphe /article-entite/ url_personne)" "nathan-fenina/"
 attend "aucune référence à l'ancien identifiant Yoast" "$(graphe /article-entite/ orphelins)" "0"
 echo "== 4. Organisation déjà publiée par Yoast (cas du site en ligne)"
 R=$($WP eval '

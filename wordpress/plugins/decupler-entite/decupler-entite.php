@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Décupler — Entité
  * Description:       Complète le graphe schema.org de Yoast sur tout le site : l'Organisation Décupler avec ses données officielles (registre national) et ses profils, une seule entité Nathan Fenina, et un auteur unique pour les contenus. C'est la couche « données structurées » du trio sémantique.
- * Version:           1.0.0
+ * Version:           1.0.1
  * Author:            Décupler
  * License:           GPL-2.0-or-later
  * Requires at least: 6.0
@@ -30,13 +30,17 @@
  *      creator…) pointent vers le même identifiant.
  *
  * Tout est filtrable (decupler_entite_organisation, decupler_entite_personne).
+ *
+ * 1.0.1 (29/09/2026) : la Personne pointe vers sa page d'entité publiée
+ *   (/nathan-fenina/, url + mainEntityOfPage) et porte son parcours
+ *   (description, domaines).
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-const DCP_ENTITE_VERSION = '1.0.0';
+const DCP_ENTITE_VERSION = '1.0.1';
 
 function dcp_entite_base() {
 	return trailingslashit( home_url() );
@@ -82,11 +86,14 @@ function dcp_entite_personne() {
 			'@type'      => 'Person',
 			'@id'        => dcp_entite_id_personne(),
 			'name'       => 'Nathan Fenina',
-			'jobTitle'   => 'Fondateur et président de Décupler',
-			'worksFor'   => array( '@id' => dcp_entite_base() . '#organization' ),
-			'image'      => 'https://decupler.com/wp-content/uploads/2026/09/nathan-fenina-portrait.jpg',
-			'knowsAbout' => array( 'SEO', 'Generative Engine Optimization', 'Claude Code', 'SEO local' ),
-			'sameAs'     => array(
+			'url'              => dcp_entite_base() . 'nathan-fenina/',
+			'mainEntityOfPage' => dcp_entite_base() . 'nathan-fenina/',
+			'jobTitle'         => 'Fondateur et président de Décupler',
+			'description'      => 'Ingénieur en informatique, ancien développeur et chef de projet digital chez de grands comptes (Société Générale, Decathlon, Pluxee), fondateur de Décupler, agence SEO et GEO à Nice.',
+			'worksFor'         => array( '@id' => dcp_entite_base() . '#organization' ),
+			'image'            => 'https://decupler.com/wp-content/uploads/2026/09/nathan-fenina-portrait.jpg',
+			'knowsAbout'       => array( 'SEO', 'Generative Engine Optimization', 'Claude Code', 'SEO local', 'Intelligence artificielle', 'Gestion de projet digital' ),
+			'sameAs'           => array(
 				'https://www.linkedin.com/in/nathan-fenina/',
 				'https://www.youtube.com/@nathanfenina',
 			),

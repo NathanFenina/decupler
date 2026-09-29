@@ -152,7 +152,7 @@ def article_jsonld(title, description, author):
         "description": description,
         # Mêmes identifiants que le graphe Yoast (plugin decupler-entite) :
         # les moteurs relient l'article à l'auteur et à l'organisation.
-        "author": ({"@type": "Person", "@id": "https://decupler.com/#nathan-fenina", "name": "Nathan Fenina"}
+        "author": ({"@type": "Person", "@id": "https://decupler.com/#nathan-fenina", "name": "Nathan Fenina", "url": "https://decupler.com/nathan-fenina/"}
                    if author in ("Nathan Fenina", "Décupler") else {"@type": "Person", "name": author}),
         "publisher": {"@type": "Organization", "@id": "https://decupler.com/#organization", "name": "Décupler"},
     }
