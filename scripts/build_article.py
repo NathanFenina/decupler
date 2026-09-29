@@ -150,8 +150,11 @@ def article_jsonld(title, description, author):
         "@type": "Article",
         "headline": title,
         "description": description,
-        "author": {"@type": "Organization", "name": author},
-        "publisher": {"@type": "Organization", "name": "Décupler"},
+        # Mêmes identifiants que le graphe Yoast (plugin decupler-entite) :
+        # les moteurs relient l'article à l'auteur et à l'organisation.
+        "author": ({"@type": "Person", "@id": "https://decupler.com/#nathan-fenina", "name": "Nathan Fenina"}
+                   if author in ("Nathan Fenina", "Décupler") else {"@type": "Person", "name": author}),
+        "publisher": {"@type": "Organization", "@id": "https://decupler.com/#organization", "name": "Décupler"},
     }
     return f'<script type="application/ld+json">{json.dumps(data, ensure_ascii=False)}</script>'
 
@@ -162,7 +165,7 @@ def main():
     ap.add_argument("--title", required=True)
     ap.add_argument("--description", required=True)
     ap.add_argument("--faq", help="JSON : liste de {question, answer}")
-    ap.add_argument("--author", default="Décupler")
+    ap.add_argument("--author", default="Nathan Fenina")
     ap.add_argument("--out", required=True)
     ap.add_argument("--no-hide-title", action="store_true",
                     help="Ne pas injecter le script de masquage du titre")

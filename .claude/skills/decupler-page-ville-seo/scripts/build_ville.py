@@ -991,11 +991,12 @@ def construis(slug):
                              for q, r in b["faq"]]}
     if reg == "consultant":
         ent = {"@context": "https://schema.org", "@type": "Person",
+               "@id": "https://decupler.com/#nathan-fenina",
                "name": "Nathan Fenina", "jobTitle": f"Consultant SEO à {ville}",
                "url": f"https://decupler.com/{slug}/", "image": PHOTO_NATHAN,
                "sameAs": [LI],
-               "worksFor": {"@type": "ProfessionalService", "name": "Décupler",
-                            "url": "https://decupler.com/"},
+               "worksFor": {"@type": "Organization", "@id": "https://decupler.com/#organization",
+                            "name": "Décupler", "url": "https://decupler.com/"},
                "knowsAbout": ["Référencement naturel", "SEO local",
                               "Generative Engine Optimization"],
                "areaServed": {"@type": "City", "name": ville,
@@ -1012,8 +1013,9 @@ def construis(slug):
                            "addressCountry": siege["pays"]},
                "areaServed": {"@type": "City", "name": ville,
                               "containedInPlace": conteneur},
-               "founder": {"@type": "Person", "name": "Nathan Fenina",
-                           "sameAs": LI}}
+               "parentOrganization": {"@id": "https://decupler.com/#organization"},
+               "founder": {"@type": "Person", "@id": "https://decupler.com/#nathan-fenina",
+                           "name": "Nathan Fenina", "sameAs": LI}}
     a('<div class="ldjson">')
     # Les deux blocs sur UNE ligne : separes par un saut, wpautop glissait
     # un <br /> entre eux (constate sur les 15 brouillons du 23/09).
