@@ -10,14 +10,14 @@
 
 ## Roadmap du mois (skill seo-pilotage)
 
-1. Lis le tableau de bord https://claude.ai/artifact/MkDZXG4uhzv4J6WnpDbpmx avec l'outil Artifact (action read) et enregistre le HTML reçu dans `donnees/tableau-de-bord.html` (jamais commité).
+1. Lis le tableau de bord https://claude.ai/artifact/CtbunuSEJDwPnkhEFawBHS avec l'outil Artifact (action read) et enregistre le HTML reçu dans `donnees/tableau-de-bord.html` (jamais commité).
 2. Puis :
    ```bash
    python3 .claude/decupler-seo/scripts/pilotage.py donnees --sortie donnees/pilotage.json
    python3 .claude/decupler-seo/scripts/pilotage.py proposer --mois <AAAA-MM du mois qui commence> --projet-id decupler --sortie donnees/actions-<AAAA-MM>.json
    python3 .claude/decupler-seo/scripts/pilotage.py injecter --html donnees/tableau-de-bord.html --projet-id decupler --donnees donnees/pilotage.json --actions donnees/actions-<AAAA-MM>.json
    ```
-3. Republie avec l'outil Artifact (publish, `url` https://claude.ai/artifact/MkDZXG4uhzv4J6WnpDbpmx, `file_path` donnees/tableau-de-bord.html, sans capabilities). En cas de conflit : relis, refais l'injection, republie une fois.
+3. Republie avec l'outil Artifact (publish, `url` https://claude.ai/artifact/CtbunuSEJDwPnkhEFawBHS, `file_path` donnees/tableau-de-bord.html, sans capabilities). En cas de conflit : relis, refais l'injection, republie une fois.
 4. Résume dans le rapport les actions proposées ; Nathan les valide sur le tableau de bord.
 
 ## Livrer

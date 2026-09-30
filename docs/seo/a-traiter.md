@@ -47,8 +47,9 @@ Décupler. Cocher au fur et à mesure.
 ## 5. Cartographie
 
 - `memoire/cartographie.csv` : 161 lignes proposées automatiquement
-  (`cartographie.py initialiser`), à **fusionner avec le dashboard Notion
-  existant** de la cartographie Décupler, qui fait foi.
+  (`cartographie.py initialiser`). Reprendre de l'ancienne base Notion ce
+  qui n'y est pas encore (angles, plans des pages locales) ; c'est désormais
+  ce fichier et la page de suivi qui font foi.
 - `docs/seo/cartographie-2026-09.md` : premier tableau mensuel.
 - [ ] Page d'accueil : son mot-clé principal détecté est
       « cherche agence seo avec supervision humaine 24/7 » — à choisir.

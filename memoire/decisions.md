@@ -16,9 +16,15 @@ contenu déjà en place, une règle propre au client.
 - **Publication WordPress en brouillon** (`scripts/wp.py` de la méthode, mode
   `assisted`) : les routines créent et modifient en brouillon ou en révision ;
   la mise en ligne reste une validation humaine dans l'admin WordPress.
-- **Cartographie** : le dashboard Notion « Cartographie SEO — Décupler » fait
-  foi. `memoire/cartographie.csv` est la copie de travail des routines ; la
-  réconcilier avec Notion avant toute décision (skill `seo-cartographie`).
+- **Cartographie et suivi** (30/09, décision de Nathan) : plus de Notion.
+  `memoire/cartographie.csv` fait foi, et la page de suivi
+  https://claude.ai/artifact/CtbunuSEJDwPnkhEFawBHS trace roadmap, avancement
+  et chiffres (skills `seo-cartographie` et `seo-pilotage`). L'ancienne base
+  Notion reste une archive, à consulter pour reprendre ses données.
+- **International** (30/09) : version anglaise pour les États-Unis (demande
+  GEO et IA) et le Moyen-Orient (SEO local, Dubaï en tête), plus des pages
+  francophones hors de France (Québec, Belgique, Suisse, Maghreb). Détail et
+  volumes dans la page de suivi.
 - **Skills propres au projet prioritaires** : `decupler-page-builder`,
   `redaction-article`, `redaction-expert`, `yoast-score`, `lead-magnet`,
   `netlinking-outreach` et les analyses `gsc-*` de `.claude/skills/`.
