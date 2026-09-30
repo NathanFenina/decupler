@@ -6,7 +6,9 @@ cd /home/user/decupler && python3 - <<'PY'
 import json,html
 faq=json.load(open('content/articles/jev-seo.faq.json',encoding='utf-8'))
 f='\n'.join(f'      <details><summary>{html.escape(q["question"])}</summary><p>{html.escape(q["answer"])}</p></details>' for q in faq)
-t=open('content/articles/jev-seo.body.tpl.html',encoding='utf-8').read().replace('__FAQ__',f)
+req=html.escape(open('content/lead-magnets/kit-jev-seo-geo/requete-page.json',encoding='utf-8').read().rstrip(),quote=False)
+t=open('content/articles/jev-seo.body.tpl.html',encoding='utf-8').read().replace('__FAQ__',f).replace('__REQ__',req)
+assert '__' not in t.replace('__IMG','')
 open('content/articles/jev-seo.body.html','w',encoding='utf-8').write(t)
 PY
 python3 scripts/build_article.py --body content/articles/jev-seo.body.html \

@@ -4,6 +4,10 @@
   "answer": "Installe le skill open source jev-seo dans Claude Code et donne-lui l'URL de ta page d'accueil. Il lit ton site, vérifie 52 règles reliées à la documentation Google Search Central, fait juger chaque page par Jev (type de page, intention, utilité, citabilité, adéquation du title) et te rend un PDF, un tableur d'actions et un rapport Markdown. Ensuite, corrige dans l'ordre d'impact, puis mesure ta présence dans les réponses de ChatGPT, Claude et Perplexity."
  },
  {
+  "question": "Comment construire un tableau de bord GEO avec Jev ?",
+  "answer": "En quatre blocs : visibilité moteur par moteur, score GEO global, couverture des intentions et citabilité par type de page. Jev répond à des questions typées sur chaque réponse d'IA et sur chaque page (marque citée, intention du prompt, type de page, citabilité, précision, confiance) ; un tableur ou un script calcule ensuite les taux et les moyennes. Le kit gratuit de cette page contient toutes les questions et les formules."
+ },
+ {
   "question": "Jev, c'est quoi ?",
   "answer": "Jev est le premier modèle « System One » de TypeSafe AI. Ce n'est pas un chatbot : il ne rédige pas, il décide. On lui donne un contexte et des questions typées (Choice pour choisir une option, Score pour placer sur une échelle, Noul pour la probabilité d'un oui ou d'un non) et il répond avec des probabilités."
  },

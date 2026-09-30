@@ -70,6 +70,24 @@ contenu et de `_elementor_data`, `_elementor_edit_mode` vide, gabarit par
 défaut (plus de `elementor_canvas`), ancienne version dans
 `archives/pages-avant-refonte/`.
 
+### Leçons de /jev-seo/ (30/09/2026, v1 jugée « pas convaincante » par Nathan)
+
+- **Un lead magnet sans rien à emporter ne tient pas sa promesse.** Si le post
+  promet un playbook, la page donne un **kit téléchargeable** (prompts,
+  modèles, formules), en bande sombre dédiée, et le bouton du hero y mène.
+- **Rythme** : appliquer `decupler-direction-artistique` (jamais plus de deux
+  bandes claires d'affilée : ruban chiffré, bande kit sombre, parti pris avec
+  la vraie photo de Nathan). La v1 enchaînait dix sections blanches.
+- **Animations au défilement** (IntersectionObserver, classe `.io` → `.on`),
+  jamais au chargement : sinon elles sont finies avant que le lecteur arrive.
+- **Captures de rapport recadrées** sur la zone utile : une page A4 réduite à
+  860 px est illisible.
+- **Un parcours cliquable** des étapes (`.road` + ancres `#etape-N`) et un
+  exemple avant / après concret (fictif assumé, crochets à la place des
+  chiffres) valent plus qu'un paragraphe d'explication.
+- Gabarit de référence : `content/articles/jev-seo.body.tpl.html`, assemblage
+  `scripts/lead_magnet_jev_seo.sh`.
+
 ## 2. Assembler
 
 ```bash

@@ -59,7 +59,9 @@ Constaté le 30/09 : crawl-fix 1.3.4 et entite 1.0.1 actives.
 
 ## Pages récentes
 
-- /jev-seo/ (21035) publiée le 30/09 : playbook Jev (mot-clé « jev seo »), menu
+- /jev-seo/ (21035) publiée le 30/09, refaite en v2 le même jour (design +
+  kit ZIP `kit-jev-seo-geo-decupler.zip`, sources `content/lead-magnets/kit-jev-seo-geo/`) :
+  playbook Jev (mot-clé « jev seo »), menu
   Nos Pépites, exclue de la pop-up Workshop, CTA workshop du 8/10 à remplacer
   après l'événement (rappel du 8/10). Preuve : audit jev-seo réel de
   decupler.com, 97 → 98 après corrections du 30/09 : 9 liens cassés
