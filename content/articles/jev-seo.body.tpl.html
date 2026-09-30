@@ -190,8 +190,8 @@
       <ul class="logos"><li><img src="https://decupler.com/wp-content/uploads/2026/09/logo-typesafe-jev.png" alt="Logo de TypeSafe AI, l'éditeur de Jev" width="28" height="28">Jev</li><li><img src="https://decupler.com/wp-content/uploads/2026/09/logo-claude.png" alt="Logo de Claude" width="28" height="28">Claude Code</li><li><img src="https://decupler.com/wp-content/uploads/2026/09/logo-search-console.png" alt="Logo de Google Search Console" width="28" height="28">Search Console</li><li><img src="https://decupler.com/wp-content/uploads/2026/09/logo-dataforseo.png" alt="Logo de DataForSEO" width="28" height="28">DataForSEO</li></ul>
     </div>
     <div>
-      <figure class="frame"><div class="frame-b"><i></i><i></i><i></i><span>tableau-de-bord-geo · exemple</span></div><div class="frame-i"><img src="https://decupler.com/wp-content/uploads/2026/09/jev-tableau-de-bord-geo.jpg" alt="Tableau de bord Jev pour le SEO et le GEO : citations dans ChatGPT, Claude et Perplexity, score GEO, intentions et citabilité (exemple)" width="800" height="512" fetchpriority="high" decoding="async"></div></figure>
-      <p class="frame-c">Le tableau de bord GEO construit avec Jev · données d'exemple, chaque bloc est expliqué plus bas</p>
+      __DASH__
+      <p class="frame-c">Le tableau de bord GEO construit avec Jev, animé · données d'exemple, chaque bloc est expliqué plus bas</p>
     </div>
   </div></div>
 </section>
@@ -209,7 +209,7 @@
       </tbody>
     </table></div>
     <h3 class="h3">La règle d'or : une source trouve, le code décide, Jev juge, Claude écrit</h3>
-    <div class="pipe"><span class="dot" aria-hidden="true"></span><div class="st"><i>1</i><b>La source trouve</b>Crawl, Search Console, PageSpeed, DataForSEO : les faits.</div><div class="st"><i>2</i><b>Le code décide</b>Codes HTTP, doublons, schema, scores : rien n'est laissé au modèle.</div><div class="st jv"><i>3</i><b>Jev juge</b>Type, intention, utilité, citabilité, avec probabilités.</div><div class="st"><i>4</i><b>Claude écrit</b>La synthèse et le plan, action par action.</div></div>
+    <div class="pipe"><div class="dot" aria-hidden="true"></div><div class="st"><i>1</i><b>La source trouve</b>Crawl, Search Console, PageSpeed, DataForSEO : les faits.</div><div class="st"><i>2</i><b>Le code décide</b>Codes HTTP, doublons, schema, scores : rien n'est laissé au modèle.</div><div class="st jv"><i>3</i><b>Jev juge</b>Type, intention, utilité, citabilité, avec probabilités.</div><div class="st"><i>4</i><b>Claude écrit</b>La synthèse et le plan, action par action.</div></div>
   </div>
 </section>
 <section class="guide-section lav" id="tableau-de-bord">
@@ -282,7 +282,7 @@ ln -s "$PWD" ~/.claude/skills/jev-seo
 <span class="c"># Skill officiel TypeSafe (documentation de l'API pour ton agent)</span>
 claude plugin marketplace add typesafe-ai/skills
 claude plugin install typesafe@typesafe-ai</pre></div></details>
-    <div class="tip tip-a"><span class="tipico">🔑</span><p><strong>Deux pièges.</strong> Le PDF a besoin de la bibliothèque Pango (<span class="inline-code">brew install pango</span> sur Mac). Et sans clé PageSpeed, Google limite les appels : chez nous, les 6 mesures de vitesse sont revenues en erreur 429.</p></div>
+    <div class="tip tip-a"><div class="tipico">🔑</div><p><strong>Deux pièges.</strong> Le PDF a besoin de la bibliothèque Pango (<span class="inline-code">brew install pango</span> sur Mac). Et sans clé PageSpeed, Google limite les appels : chez nous, les 6 mesures de vitesse sont revenues en erreur 429.</p></div>
   </div>
   <div class="container" id="etape-2" style="margin-top:64px">
     <div class="step-h"><span>2</span><h2 class="section-title">Lancer l'audit : une URL, moins d'une minute</h2></div>
@@ -313,7 +313,7 @@ claude plugin install typesafe@typesafe-ai</pre></div></details>
     <ul class="ab io"><li><b>Score global</b><span class="tr"><span class="av" style="width:97%"></span><span class="ap" style="width:98%"></span></span><em>97 → 98</em></li><li><b>Liens et architecture</b><span class="tr"><span class="av" style="width:90%"></span><span class="ap" style="width:99%"></span></span><em>90 → 99</em></li><li><b>On-page</b><span class="tr"><span class="av" style="width:92%"></span><span class="ap" style="width:96%"></span></span><em>92 → 96</em></li><li><b>Actions à traiter</b><span class="tr"><span class="av" style="width:100%"></span><span class="ap" style="width:77%"></span></span><em>13 → 10</em></li></ul>
     <p class="ab-l"><span><i style="background:#c9cbe0"></i>Avant</span><span><i style="background:linear-gradient(90deg,#4c47c9,#10b981)"></i>Après, mesuré par le même outil le jour même</span></p>
     <div class="duo"><figure class="shot"><img src="https://decupler.com/wp-content/uploads/2026/09/jev-score-avant.jpg" alt="Score jev-seo de decupler.com avant corrections : 97 sur 100, 13 actions dont 1 critique" width="1230" height="575" loading="lazy" decoding="async"><figcaption><b>Avant</b> : 97/100, 13 actions, 1 critique.</figcaption></figure><figure class="shot"><img src="https://decupler.com/wp-content/uploads/2026/09/jev-score-apres.jpg" alt="Score jev-seo de decupler.com après corrections : 98 sur 100, 10 actions, aucune critique" width="1230" height="575" loading="lazy" decoding="async"><figcaption><b>Après</b> : 98/100, 10 actions, 0 critique.</figcaption></figure></div>
-    <div class="tip tip-a"><span class="tipico">⚠️</span><p><strong>Vérifie avant de corriger.</strong> Lors d'un passage, l'outil a signalé une page « injoignable » sur 56 pages : c'était une coupure du réseau de notre côté, la page répondait normalement. Une alerte est un signal, pas un verdict.</p></div>
+    <div class="tip tip-a"><div class="tipico">⚠️</div><p><strong>Vérifie avant de corriger.</strong> Lors d'un passage, l'outil a signalé une page « injoignable » sur 56 pages : c'était une coupure du réseau de notre côté, la page répondait normalement. Une alerte est un signal, pas un verdict.</p></div>
   </div>
 </section>
 <section class="guide-section lav" id="etape-5">
@@ -351,7 +351,7 @@ bin/jevseo render jev-seo-reports/&lt;dossier&gt;
   <div class="container" id="etape-7" style="margin-top:64px">
     <div class="step-h"><span>7</span><h2 class="section-title">Remesurer chaque mois</h2></div>
     <p class="prose-block">Même audit, même lot de prompts, une fois par mois. Le suivi se fait dans l'onglet Actions du tableur : à faire, en cours, fait. <span class="inline-code">bin/jevseo rescore</span> recalcule un audit existant sans rien dépenser.</p>
-    <div class="tip tip-e"><span class="tipico">🔌</span><p><strong>À croiser avec tes vraies données :</strong> jev-seo ne mesure ni trafic ni positions dans le temps. Pour ça, <a href="https://decupler.com/connecter-search-console-claude/">connecte Search Console à Claude</a> et suis les pages corrigées.</p></div>
+    <div class="tip tip-e"><div class="tipico">🔌</div><p><strong>À croiser avec tes vraies données :</strong> jev-seo ne mesure ni trafic ni positions dans le temps. Pour ça, <a href="https://decupler.com/connecter-search-console-claude/">connecte Search Console à Claude</a> et suis les pages corrigées.</p></div>
   </div>
 </section>
 <section class="guide-section dk">
@@ -397,7 +397,7 @@ bin/jevseo render jev-seo-reports/&lt;dossier&gt;
       <div><h3>Lire tout un gros site</h3><p>L'audit s'arrête à 60 pages par défaut et le dit. Les volumes de DataForSEO sont des estimations.</p></div>
       <div><h3>Réécrire tes pages</h3><p>Il trouve et classe. La réécriture, les preuves et les priorités business restent ton travail, ou celui de Claude avec toi.</p></div>
     </div>
-    <div class="tip tip-v"><span class="tipico">🔗</span><div><p><strong>Les ressources :</strong></p>
+    <div class="tip tip-v"><div class="tipico">🔗</div><div><p><strong>Les ressources :</strong></p>
       <div class="res-links"><a href="https://github.com/AgriciDaniel/jev-seo">jev-seo sur GitHub</a><a href="https://docs.typesafe.ai/">Documentation TypeSafe</a><a href="https://decupler.com/claude-skills-seo/">Les 10 skills SEO pour Claude</a><a href="https://decupler.com/installer-mcp-data-for-seo-sur-chatgpt/">DataForSEO en MCP</a><a href="https://decupler.com/audit-geo/">Notre audit GEO accompagné</a></div></div>
     </div>
   </div>

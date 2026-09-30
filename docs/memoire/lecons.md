@@ -8,6 +8,10 @@ Chaque ligne a coûté au moins une erreur. Les relire avant de toucher au site.
   isolés sur une ligne en `<br>`/`<p><a>`. Contenu sans ligne vide ; scripts et
   CSS sur une seule ligne ; `<span>`/`<a>` d'un conteneur flex sur une seule
   ligne. Vérifier le HTML **rendu** (`?context=edit` → `rendered`), pas le source.
+- **`</p>` orphelin de wpautop** : `<div><span>🔑</span><p>…` produit un `<p>`
+  vide qui prend une case de grille ou de flex. Invisible au contrôle par regex,
+  visible au navigateur : `scripts/rendu/paragraphes_vides.mjs`. Filet global le
+  30/09 : `.lm-mcp p:empty{display:none}` dans l'en-tête 2762.
 - Une écriture de `_elementor_data` par l'API est stockée mais **pas affichée**
   tant que le cache d'Elementor n'est pas purgé : le plugin crawl-fix purge à
   chaque changement.

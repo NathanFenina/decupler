@@ -125,6 +125,14 @@ HTML qui contient `#ai-content-gate`.
    zéro `<br />`, `<p><a>`, `<p><img>`, `<p></p>` hors scripts de fin. Les
    éléments en ligne (`<span>`, `<a>`) d'un conteneur flex vont sur une seule
    ligne, sinon wpautop glisse des `<br>`.
+3 bis. **Paragraphes vides visibles** : `node scripts/rendu/paragraphes_vides.mjs
+   http://127.0.0.1:8230/<slug>/page.html` sur le miroir. Cible 0. Le contrôle
+   par regex du point 3 ne les voit pas : wpautop écrit un `</p>` orphelin que
+   le navigateur transforme en `<p>` vide, qui prend une case de grille (la
+   frise « Claude écrit » passée à la ligne) ou la moitié d'un flex (les
+   bannières jaunes à moitié vides, signalées par Nathan le 30/09). À la
+   source : jamais `<span>`, `<i>`, `<b>` suivi d'un bloc dans le même
+   conteneur ; utiliser `<div>`.
 4. **Un seul H1** : mettre les métas Astra `site-post-title` et
    `ast-banner-title-visibility` à `disabled`, sinon le thème ajoute le sien.
 5. Pages lead magnet ajoutées aux **exclusions de la pop-up Workshop**
