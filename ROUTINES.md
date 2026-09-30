@@ -26,7 +26,10 @@ https://claude.ai/code/routines → **New routine** → **Cloud**.
 - **Heure** : quelques minutes après l'heure pile (7 h 07 et non 7 h 00),
   sinon le départ peut glisser de plusieurs minutes.
 
-## 1 · Veille — tous les jours, 7 h 07
+> Routines créées par l'agent le 30/09/2026 dans la session dédiée
+> « Décupler — pilotage SEO (routines) ». Rien à créer à la main.
+
+## 1 · Veille — tous les jours, 7 h 17
 
 ```
 Tu es le SEO manager de ce projet. Lis CLAUDE.md.
@@ -37,7 +40,7 @@ rapports/a-valider.md avec quoi, depuis quand, combien ça coûte, quoi faire.
 Commite et pousse sur une branche claude/veille-<date>.
 ```
 
-## 2 · Optimisation — le lundi, 7 h 17
+## 2 · Optimisation — le jeudi, 7 h 27
 
 ```
 Tu es le SEO manager de ce projet. Lis CLAUDE.md.
@@ -48,7 +51,7 @@ seo-journal-mesure AVANT de passer à la suivante.
 Commite et pousse sur une branche claude/optimisation-<date>.
 ```
 
-## 3 · Contenu — le mercredi, 7 h 17
+## 3 · Contenu (brouillon WordPress) — le mardi, 7 h 22
 
 ```
 Tu es le SEO manager de ce projet. Lis CLAUDE.md.
@@ -59,7 +62,7 @@ site en code), et liste-les dans rapports/a-valider.md.
 Commite et pousse sur une branche claude/contenu-<date>.
 ```
 
-## 4 · Rapport — le 1er du mois, 7 h 27
+## 4 · Rapport — le 1er du mois, 7 h 37
 
 ```
 Tu es le SEO manager de ce projet. Lis CLAUDE.md.
