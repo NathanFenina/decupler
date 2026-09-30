@@ -16,6 +16,6 @@ python3 scripts/build_article.py --body content/articles/jev-seo.body.html \
  --description "Jev SEO : comment auditer ton site en SEO et GEO avec Jev et le skill jev-seo, lire les résultats et corriger dans le bon ordre. Testé sur notre site." \
  --faq content/articles/jev-seo.faq.json \
  --extra-css design-system/landing/lm-mcp-light.css design-system/landing/lm-mcp-decupler.css design-system/landing/lm-mcp-leadmagnet.css \
- --gate "https://decupler.substack.com" --gate-title "Accède au playbook Jev" \
- --gate-desc "Laisse ton email : tu débloques le playbook complet et tu reçois les prochains guides SEO et GEO." \
+ --gate "https://decupler.substack.com" --gate-title "Accède au playbook et au kit Jev" \
+ --gate-desc "Laisse ton email : tu débloques le playbook et le kit (questions Jev, formules, prompts), et tu reçois les prochains guides SEO et GEO." \
  --gate-delay 6000 --gate-param acces=linkedin --gate-soft-delay 25000 --out content/articles/jev-seo.html

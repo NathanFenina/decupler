@@ -89,7 +89,8 @@ GATE_SCRIPT = (
 GATE_SCRIPT_CAMPAGNE = (
     "<script>document.addEventListener('DOMContentLoaded',function(){"
     "var p=document.getElementById('ai-content-gate'),f=document.getElementById('ai-popup-form'),"
-    "s=document.getElementById('ai-success-msg'),i=document.getElementById('hidden_iframe'),sub=false;"
+    "s=document.getElementById('ai-success-msg'),i=document.getElementById('hidden_iframe'),sub=false,pend=null;"
+    "function go(){if(pend){var h=pend;pend=null;setTimeout(function(){location.href=h},700)}}"
     "if(location.search.indexOf('reset=true')!==-1){try{localStorage.removeItem('lmg_sub');sessionStorage.removeItem('lmg_ferme')}catch(e){}"
     "document.cookie='lmg_sub=; max-age=0; path=/'}"
     "function ab(){try{if(localStorage.getItem('lmg_sub')==='true')return true}catch(e){}return document.cookie.indexOf('lmg_sub=true')!==-1}"
@@ -99,7 +100,7 @@ GATE_SCRIPT_CAMPAGNE = (
     "if(!camp&&p){p.classList.add('ai-soft');var c=p.querySelector('.ai-popup-card'),x=document.createElement('button');x.type='button';x.className='ai-popup-close';"
     "x.setAttribute('aria-label','Fermer');x.textContent='\\u00d7';c.insertBefore(x,c.firstChild);"
     "var n=document.createElement('button');n.type='button';n.className='ai-popup-skip';n.textContent='Continuer sans email';c.appendChild(n);"
-    "function fe(){cl();try{sessionStorage.setItem('lmg_ferme','1')}catch(e){}}"
+    "function fe(){cl();try{sessionStorage.setItem('lmg_ferme','1')}catch(e){}go()}"
     "c.querySelector('.ai-popup-title').textContent='Tu veux les prochains guides ?';c.querySelector('.ai-popup-desc').textContent='Laisse ton email : je t\\u2019envoie les prochains playbooks d\\u00e8s leur sortie.';var sb=c.querySelector('.ai-popup-submit');if(sb)sb.textContent='Je m\\u2019abonne (gratuit) \\u2192';"
     "x.onclick=fe;n.onclick=fe;p.addEventListener('click',function(e){if(e.target===p)fe()});"
     "document.addEventListener('keydown',function(e){if(e.key==='Escape'&&p.classList.contains('active'))fe()})}"
@@ -107,12 +108,16 @@ GATE_SCRIPT_CAMPAGNE = (
     "p.classList.add('active');return}"
     "p.classList.add('active');document.body.classList.add('lmg-gated');document.body.style.overflow='hidden'}"
     "if(p)setTimeout(op,camp?%(delay)s:%(soft)s);"
+    # Liens verrouillés (data-lmg-verrou) : l'email d'abord, puis le lien s'ouvre.
+    "document.querySelectorAll('[data-lmg-verrou]').forEach(function(a){a.addEventListener('click',function(e){"
+    "if(!p||ab())return;if(!camp){try{if(sessionStorage.getItem('lmg_ferme'))return}catch(x){}}"
+    "e.preventDefault();pend=a.href;p.classList.add('active');if(camp){document.body.classList.add('lmg-gated');document.body.style.overflow='hidden'}})});"
     "if(f)f.addEventListener('submit',function(){sub=true;var b=f.querySelector('button[type=submit]');b.textContent='Validation…';b.style.opacity='0.7'});"
-    "if(i)i.onload=function(){if(sub){f.style.display='none';s.style.display='block';mem();setTimeout(cl,1500);sub=false}};"
+    "if(i)i.onload=function(){if(sub){f.style.display='none';s.style.display='block';mem();setTimeout(cl,1500);sub=false;go()}};"
     "document.querySelectorAll('.lmg-inline').forEach(function(box){var fo=box.querySelector('form'),fr=box.querySelector('iframe'),"
     "ok=box.querySelector('.lmg-inline-ok'),en=false;if(ab()){fo.hidden=true;ok.hidden=false;return}"
     "fo.addEventListener('submit',function(){en=true;var b=fo.querySelector('button');b.textContent='Validation…';b.disabled=true});"
-    "fr.addEventListener('load',function(){if(!en)return;en=false;fo.hidden=true;ok.hidden=false;mem()})})"
+    "fr.addEventListener('load',function(){if(!en)return;en=false;fo.hidden=true;ok.hidden=false;mem();go()})})"
     "});</script>"
 )
 

@@ -107,6 +107,14 @@ python3 scripts/build_article.py \
 pop-up fermable à 25 s, sans flou, une fois par session, plus l'encart
 `.lmg-inline`. Le lien à mettre sur LinkedIn : `https://decupler.com/<slug>/?acces=linkedin`.
 
+**Livrable verrouillé** : ajouter `data-lmg-verrou` sur un lien (ZIP, PDF…).
+Venu de LinkedIn (`?acces=linkedin`) : le clic ouvre la pop-up obligatoire et
+le téléchargement part tout seul après l'inscription. Venu de Google : pop-up
+fermable, téléchargement après inscription ou « Continuer sans email ». Déjà
+inscrit : téléchargement direct. Sans cet attribut, un visiteur LinkedIn peut
+prendre le livrable pendant les 6 s qui précèdent la pop-up (faille vue sur
+/jev-seo/ le 30/09). Test : `scratchpad/lm/verrou-live.mjs`, trois scénarios.
+
 Les anciennes pages (Elementor, script maison) sont couvertes par le
 **contrôleur** posé dans l'en-tête du site
 (`design-system/snippets/controleur-lead-magnet.js`) ; les pages en gabarit
