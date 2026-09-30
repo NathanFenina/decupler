@@ -84,3 +84,7 @@ sans CSS inline ni classes Elementor, pour bien s'intégrer au thème du freelan
   coup, mais l'écran de consentement Google est laborieux et le jeton expire
   tous les 7 jours tant que l'app reste en mode test.
 - Les secrets vont dans l'environnement — jamais dans le dépôt ni le chat.
+
+## Méthode SEO/GEO (decupler-seo)
+
+@CLAUDE.decupler-seo.md
