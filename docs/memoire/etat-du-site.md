@@ -7,13 +7,13 @@ mettre à jour à la fin. Ce qui est ici a été vérifié sur le site en ligne.
 
 | Plugin | Version en ligne | Version dans le dépôt | Rôle |
 |---|---|---|---|
-| decupler-crawl-fix « Budget de crawl » | **1.3.3** | 1.3.4 (à installer) | robots.txt, llms.txt, 410 des 350 URL de spam, redirections 301, pages hors index, purge du cache Elementor |
+| decupler-crawl-fix « Budget de crawl » | **1.3.4** | 1.3.4 | robots.txt, llms.txt, 410 des 350 URL de spam, redirections 301, pages hors index, purge du cache Elementor |
 | decupler-popup « Pop-up Workshop » | 1.0.0 | 1.0.0 | Invitation au workshop du 8/10, s'arrête seule le 8/10 à 12 h 30 |
-| decupler-entite « Entité » | — | 1.0.1 (à installer ; `url` de la Personne = /nathan-fenina/) | Organisation + Nathan Fenina dans le graphe Yoast (trio sémantique) |
+| decupler-entite « Entité » | **1.0.1** | 1.0.1 (`url` de la Personne = /nathan-fenina/) | Organisation + Nathan Fenina dans le graphe Yoast (trio sémantique) |
 | decupler-yoast-rest | 1.0 | hors dépôt | Expose les métas Yoast à l'API REST |
 
 Nathan installe les ZIP à la main (Extensions → Téléverser → Remplacer).
-Prochaine mise à jour groupée : crawl-fix 1.3.4 + entite 1.0.0.
+Constaté le 30/09 : crawl-fix 1.3.4 et entite 1.0.1 actives.
 
 ## Réglages et scripts posés en ligne (hors plugins)
 
@@ -59,6 +59,13 @@ Prochaine mise à jour groupée : crawl-fix 1.3.4 + entite 1.0.0.
 
 ## Pages récentes
 
+- /jev-seo/ (21035) publiée le 30/09 : playbook Jev (mot-clé « jev seo »), menu
+  Nos Pépites, exclue de la pop-up Workshop, CTA workshop du 8/10 à remplacer
+  après l'événement (rappel du 8/10). Preuve : audit jev-seo réel de
+  decupler.com, 97 → 98 après corrections du 30/09 : 9 liens cassés
+  (/a-propos, /search-everywhere), titles/metas en double
+  (audit-geo-claude-code, seo-geo-team), lien du pied de page 2788 vers
+  l'ancien guide. Sauvegardes : scratchpad/conso/liens-casses/.
 - /claude-skills-seo/ (7679) refaite en v2 le 29/09 (mot-clé « claude seo ») :
   pack ZIP de 10 skills en français (média 21004,
   `uploads/2026/09/skills-seo-claude-decupler.zip`, sources dans

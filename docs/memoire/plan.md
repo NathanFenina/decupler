@@ -5,8 +5,8 @@ de vérité par page ; ce fichier dit l'ordre de marche.
 
 ## Cette semaine
 
-1. **Nathan** : installer crawl-fix 1.3.4 et entite 1.0.1 (ZIP renvoyés le
-   29/09) ; demandes d'indexation ≈10/jour, dans l'ordre de la liste du 29/09
+1. **Nathan** : ~~installer crawl-fix 1.3.4 et entite 1.0.1~~ (fait, constaté le
+   30/09) ; demander l'indexation de /jev-seo/ ; demandes d'indexation ≈10/jour, dans l'ordre de la liste du 29/09
    (inspection : 34 pages « détectées, non indexées », 9 inconnues de Google).
    /claude-skills-seo/ demandée le 29/09.
 2. **Freelance** : scan Wordfence complet, mu-plugins, functions.php ; supprimer
@@ -24,6 +24,13 @@ de vérité par page ; ce fichier dit l'ordre de marche.
    relier les signatures des autres pages lors de leur refonte.
 
 ## Ensuite
+
+- Audit jev-seo de decupler.com, reste à traiter (10 actions, rapport du
+  30/09) : /blog trop mince (65 mots), 23 pages avec plusieurs H1, 46 pages
+  qui sautent un niveau de titre, 310 images sans dimensions, en-têtes de
+  sécurité (HSTS, etc.), 11 pages sans og:image. Avec une clé TypeSafe
+  (TYPESAFE_API_KEY), relancer pour avoir les jugements Jev (qualité,
+  citabilité, pages concurrentes).
 
 - Pages « périmées » avec trafic (audit du 29/09) : dominer-les-moteurs-de-
   recherche-ia, etude-de-cas-seo-double-trade, agences-geo-france, forum-llm.

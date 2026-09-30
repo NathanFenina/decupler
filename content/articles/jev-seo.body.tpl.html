@@ -1,0 +1,394 @@
+<div class="lm-mcp">
+<div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div>
+<style>
+.lm-mcp .cap{font-size:.85rem;color:#475569;text-align:center;margin:8px 0 0}
+.lm-mcp .logos{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin:30px 0 0;padding:0;list-style:none}
+.lm-mcp .logos li{display:flex;flex-direction:column;align-items:center;gap:8px;font-size:.8rem;font-weight:700;color:#334155;text-align:center}
+.lm-mcp .logos img{width:52px;height:52px;border-radius:12px;border:1px solid var(--border);background:#fff;display:block}
+.lm-mcp .shot{margin:22px 0 0;border-radius:14px;overflow:hidden;border:1px solid #d9dcea;background:#fff}
+.lm-mcp .shot img{display:block;width:100%;height:auto}
+.lm-mcp .shot figcaption{font-size:.84rem;color:#334155;padding:10px 14px}
+.lm-mcp .shot figcaption b{color:#1e293b}
+.lm-mcp .hero-shot{box-shadow:0 18px 50px rgba(76,71,201,.18)}
+.lm-mcp .duo{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:22px;align-items:start}
+.lm-mcp .duo .shot{margin:0}
+.lm-mcp .chat{margin:22px 0 0;border:1px solid #d9dcea;border-radius:16px;background:#fff;padding:20px;display:flex;flex-direction:column;gap:14px}
+.lm-mcp .chat-h{font-size:.75rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#64748b;margin:0}
+.lm-mcp .chat-h.reel{color:#047857}
+.lm-mcp .msg{display:flex;gap:10px;align-items:flex-start;max-width:100%}
+.lm-mcp .msg .av{flex:0 0 32px;width:32px;height:32px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:800;overflow:hidden}
+.lm-mcp .msg .av img{width:32px;height:32px;display:block}
+.lm-mcp .msg.you{flex-direction:row-reverse}
+.lm-mcp .msg.you .av{background:#1e293b;color:#fff}
+.lm-mcp .bub{border-radius:14px;padding:11px 15px;font-size:.94rem;line-height:1.55;min-width:0}
+.lm-mcp .bub p{margin:0}.lm-mcp .bub p+p{margin-top:6px}
+.lm-mcp .msg.you .bub{background:#4c47c9;color:#fff;border-top-right-radius:4px;max-width:82%}
+.lm-mcp .msg.cl .bub{background:#f4f5fa;color:#1e293b;border-top-left-radius:4px;max-width:88%}
+.lm-mcp .acts{list-style:none;margin:8px 0 0;padding:0;display:flex;flex-direction:column;gap:4px}
+.lm-mcp .acts li{font-family:'JetBrains Mono',ui-monospace,Menlo,monospace;font-size:.76rem;color:#475569;background:#fff;border:1px solid #e3e5ef;border-radius:7px;padding:4px 9px;overflow-wrap:anywhere}
+.lm-mcp .acts li::before{content:"▸ ";color:#4c47c9}
+.lm-mcp details.cmd{margin:16px 0 0;border:1px solid #e3e5ef;border-radius:12px;background:#fff}
+.lm-mcp details.cmd summary{cursor:pointer;padding:11px 15px;font-size:.88rem;font-weight:700;color:#334155;list-style:none}
+.lm-mcp details.cmd summary::-webkit-details-marker{display:none}
+.lm-mcp details.cmd summary::before{content:"+ ";color:#4c47c9}
+.lm-mcp details.cmd[open] summary::before{content:"− "}
+.lm-mcp details.cmd .codeblock{margin:0 12px 12px}
+.lm-mcp .stack-wrap{overflow-x:auto;margin-top:20px;border:1px solid #d9dcea;border-radius:14px;background:#fff}
+.lm-mcp .stack{width:100%;border-collapse:collapse;font-size:.92rem;min-width:620px}
+.lm-mcp .stack th{text-align:left;padding:12px 14px;background:#f4f5fa;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:#475569}
+.lm-mcp .stack td{padding:11px 14px;border-top:1px solid #e3e5ef;vertical-align:top;color:#334155}
+.lm-mcp .stack td:first-child{font-weight:700;color:#1e293b;white-space:nowrap}
+.lm-mcp .kind{display:inline-block;font-size:.72rem;font-weight:700;padding:2px 8px;border-radius:999px;background:#eef0fb;color:#4c47c9;white-space:nowrap}
+.lm-mcp .kind.sc{background:#e3f6ef;color:#047857}
+.lm-mcp .kind.nl{background:#fdf1e7;color:#b45309}
+.lm-mcp .ruban{background:#14122b;color:#e8e6f5;padding:17px 0;border-top:0}
+.lm-mcp .ruban .container{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 34px;font-size:.92rem;font-weight:700}
+.lm-mcp .ruban b{color:#a5b4fc}
+.lm-mcp .pipe{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:24px 0 0}
+.lm-mcp .pipe::before{content:"";position:absolute;left:6%;right:6%;top:31px;height:2px;background:linear-gradient(90deg,#c7c9f2,#4c47c9,#c7c9f2)}
+.lm-mcp .pipe .dot{position:absolute;top:26px;left:6%;width:12px;height:12px;border-radius:50%;background:#10b981;box-shadow:0 0 0 6px rgba(16,185,129,.18);animation:jv-run 4.5s ease-in-out infinite}
+.lm-mcp .pipe .st{position:relative;background:#fff;border:1px solid #d9dcea;border-radius:14px;padding:50px 14px 14px;font-size:.88rem;color:#475569;text-align:center}
+.lm-mcp .pipe .st b{display:block;color:#1e293b;font-size:.98rem;margin-bottom:4px}
+.lm-mcp .pipe .st i{position:absolute;top:14px;left:50%;transform:translateX(-50%);width:36px;height:36px;border-radius:50%;background:#eef0fb;color:#4c47c9;font-style:normal;font-weight:800;display:flex;align-items:center;justify-content:center;border:2px solid #fff;box-shadow:0 0 0 1px #d9dcea}
+.lm-mcp .pipe .st.jv i{background:#4c47c9;color:#fff}
+@keyframes jv-run{0%{left:6%}45%{left:calc(94% - 12px)}55%{left:calc(94% - 12px)}100%{left:6%}}
+.lm-mcp .blocks{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:22px}
+.lm-mcp .blk{background:#fff;border:1px solid #d9dcea;border-radius:16px;padding:18px 20px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.lm-mcp .blk-h{display:flex;gap:10px;align-items:center}
+.lm-mcp .blk-h span{flex:0 0 30px;height:30px;border-radius:9px;background:#4c47c9;color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center}
+.lm-mcp .blk h3{margin:0;font-size:1.05rem;font-weight:700;color:#1e293b}
+.lm-mcp .blk p{margin:0;font-size:.92rem;color:#334155}
+.lm-mcp .blk .how{font-size:.86rem;color:#475569;background:#f6f6fd;border-radius:10px;padding:9px 12px}
+.lm-mcp .blk .how b{color:#4c47c9}
+.lm-mcp .viz{background:#fbfbff;border:1px solid #eceefa;border-radius:12px;padding:12px 14px}
+.lm-mcp .viz-t{font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#94a3b8;margin:0 0 8px}
+.lm-mcp .bars{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:7px}
+.lm-mcp .bars li{display:grid;grid-template-columns:92px 1fr 40px;gap:8px;align-items:center;font-size:.8rem;color:#334155;font-weight:600}
+.lm-mcp .bars .tr{height:9px;border-radius:9px;background:#eceefa;overflow:hidden}
+.lm-mcp .bars .fi{display:block;height:100%;border-radius:9px;background:#4c47c9;transform-origin:left;animation:jv-grow 1.6s cubic-bezier(.2,.8,.2,1) both}
+.lm-mcp .bars .fi.g{background:#10b981}.lm-mcp .bars .fi.o{background:#d97757}
+.lm-mcp .bars em{font-style:normal;text-align:right;color:#1e293b;font-variant-numeric:tabular-nums}
+@keyframes jv-grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.lm-mcp .gauge{display:flex;align-items:center;gap:16px}
+.lm-mcp .gauge svg{flex:0 0 110px;width:110px;height:110px}
+.lm-mcp .gauge .arc{animation:jv-arc 1.8s cubic-bezier(.2,.8,.2,1) both}
+@keyframes jv-arc{from{stroke-dashoffset:289}}
+.lm-mcp .radar{display:block;width:100%;max-width:260px;height:auto;margin:0 auto}
+.lm-mcp .radar .poly{transform-origin:120px 110px;animation:jv-pop 1.6s cubic-bezier(.2,.8,.2,1) both}
+@keyframes jv-pop{from{transform:scale(.05)}to{transform:scale(1)}}
+.lm-mcp .ab{list-style:none;margin:20px 0 0;padding:18px 20px;background:#fff;border:1px solid #d9dcea;border-radius:16px;display:flex;flex-direction:column;gap:14px}
+.lm-mcp .ab li{display:grid;grid-template-columns:190px 1fr 92px;gap:12px;align-items:center;font-size:.9rem;color:#334155}
+.lm-mcp .ab li b{color:#1e293b}
+.lm-mcp .ab .tr{position:relative;height:12px;border-radius:12px;background:#eceefa;overflow:hidden}
+.lm-mcp .ab .av,.lm-mcp .ab .ap{position:absolute;left:0;top:0;bottom:0;border-radius:12px;transform-origin:left;animation:jv-grow 1.6s cubic-bezier(.2,.8,.2,1) both}
+.lm-mcp .ab .av{background:#c9cbe0}
+.lm-mcp .ab .ap{background:linear-gradient(90deg,#4c47c9,#10b981);animation-delay:.5s;height:6px;top:3px}
+.lm-mcp .ab em{font-style:normal;font-weight:800;color:#047857;text-align:right;font-variant-numeric:tabular-nums}
+.lm-mcp .ab-l{display:flex;gap:18px;font-size:.78rem;color:#64748b;margin:8px 0 0}
+.lm-mcp .ab-l i{display:inline-block;width:18px;height:8px;border-radius:8px;margin-right:6px;vertical-align:middle}
+.lm-mcp .steps{list-style:none;margin:0;padding:0;counter-reset:s}
+.lm-mcp .wf{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px;list-style:none;padding:0}
+.lm-mcp .wf li{background:#fff;border:1px solid #d9dcea;border-radius:14px;padding:14px 16px;font-size:.9rem;color:#475569}
+.lm-mcp .wf li b{display:block;color:#1e293b;margin-bottom:4px}
+.lm-mcp .wf li .kind{margin-left:6px}
+.lm-mcp .dk{background:radial-gradient(120% 90% at 20% 0%,#2a2560 0%,#14122b 60%);color:#e8e6f5;border-top:0}
+.lm-mcp .dk .section-label{color:#a5b4fc}
+.lm-mcp .dk h2{color:#fff!important;-webkit-text-fill-color:#fff}
+.lm-mcp .dk p{color:#d6d3ea;font-size:1.08rem;line-height:1.7;max-width:36em}
+.lm-mcp .dk p+p{margin-top:14px}
+.lm-mcp .dk .sign{margin-top:18px;font-size:.92rem;color:#a5b4fc;font-weight:700}
+.lm-mcp .dk .sign a{color:inherit}
+.lm-mcp .no{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:20px}
+.lm-mcp .no div{background:#fff;border:1px solid #d9dcea;border-radius:14px;padding:16px 18px}
+.lm-mcp .no h3{font-size:1rem;margin:0 0 6px;color:#1e293b;font-weight:700}
+.lm-mcp .no p{margin:0;font-size:.92rem;color:#475569}
+.lm-mcp .tip{display:flex;gap:12px;align-items:flex-start;margin:18px 0 0;padding:14px 18px;border-radius:12px;border:1px solid #d9dcea;background:#f6f6fd;font-size:.95rem}
+.lm-mcp .tip p{margin:0;color:#334155}
+.lm-mcp .tip>div,.lm-mcp .tip>p{flex:1;min-width:0}
+.lm-mcp .tipico{flex:0 0 auto;font-size:1.1rem;line-height:1.5}
+.lm-mcp .tip-a{border-color:#f3d9a4;background:#fdf7ea}
+.lm-mcp .tip-e{border-color:#bfe8d6;background:#f0faf5}
+.lm-mcp .res-links{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+.lm-mcp .res-links a{font-size:.85rem;font-weight:700;color:#4c47c9;text-decoration:none;background:#eef0fb;border:1px solid #d9dcea;border-radius:20px;padding:8px 14px}
+.lm-mcp .res-links a:hover{background:#e2e5fa}
+.lm-mcp .li{display:block}
+.lm-mcp h3.h3{font-weight:700;margin:34px 0 0}
+.lm-mcp .wk{display:grid;grid-template-columns:1.15fr 1fr;gap:26px;align-items:center;background:#0f0e1a;border-radius:20px;padding:22px;color:#e8e6f5;text-align:left}
+.lm-mcp .wk img{display:block;width:100%;height:auto;border-radius:14px}
+.lm-mcp .wk .wk-t{font-size:.75rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#fbbf24;margin:0}
+.lm-mcp .wk h2{color:#fff!important;-webkit-text-fill-color:#fff;font-size:1.5rem;line-height:1.25;margin:8px 0 10px}
+.lm-mcp .wk p{color:#d6d3ea;margin:0 0 10px;font-size:.98rem}
+.lm-mcp .wk .wk-m{font-size:.82rem;color:#a5b4fc;margin:10px 0 0}
+.lm-mcp .wk .cta-btn{margin-top:8px}
+.lm-mcp .wk .wk-alt{display:inline-block;margin-top:12px;font-size:.86rem;color:#a5b4fc}
+@media (prefers-reduced-motion:reduce){.lm-mcp .pipe .dot,.lm-mcp .bars .fi,.lm-mcp .gauge .arc,.lm-mcp .radar .poly,.lm-mcp .ab .av,.lm-mcp .ab .ap{animation:none}}
+@media (max-width:760px){.lm-mcp .logos{grid-template-columns:repeat(3,1fr)}.lm-mcp .duo,.lm-mcp .blocks,.lm-mcp .no,.lm-mcp .wf,.lm-mcp .wk{grid-template-columns:1fr}.lm-mcp .pipe{grid-template-columns:1fr 1fr}.lm-mcp .pipe::before,.lm-mcp .pipe .dot{display:none}.lm-mcp .msg.you .bub,.lm-mcp .msg.cl .bub{max-width:100%}.lm-mcp .ab li{grid-template-columns:1fr 80px}.lm-mcp .ab li .tr{grid-column:1/-1;grid-row:2}}
+</style>
+
+<section class="hero">
+  <div class="container">
+    <span class="hero-eyebrow">Playbook gratuit · Jev SEO</span>
+    <h1>Jev SEO : le playbook pour faire ton <em>audit SEO et GEO</em> avec Jev</h1>
+    <p class="hero-sub">Pour faire un audit SEO et GEO avec Jev, installe le skill open source <strong>jev-seo</strong> dans Claude Code et donne-lui l'URL de ta page d'accueil. Il lit ton site, vérifie <strong>52 règles</strong> tirées de la documentation de Google, fait juger chaque page par Jev et te rend un PDF, un tableur d'actions et un rapport. Ce playbook montre comment lire les résultats et, surtout, <strong>quoi corriger en premier</strong> pour que l'IA vienne chercher tes pages.</p>
+    <div class="hero-meta"><span class="hero-meta-item">Niveau : débutant</span><span class="hero-meta-item">Mise en place : 20 min</span><span class="hero-meta-item">Par <a href="https://decupler.com/nathan-fenina/">Nathan Fenina</a>, Décupler</span><span class="hero-meta-item">Testé sur decupler.com le 30/09/2026</span></div>
+    <figure class="shot hero-shot"><img src="https://decupler.com/wp-content/uploads/2026/09/jev-tableau-de-bord-geo.jpg" alt="Tableau de bord Jev pour le SEO et le GEO : citations dans ChatGPT, Claude et Perplexity, score GEO, intentions et citabilité (exemple)" width="800" height="512" fetchpriority="high" decoding="async"><figcaption><b>Le tableau de bord GEO construit avec Jev.</b> Citations moteur par moteur, score GEO global, couverture des intentions, citabilité par type de page. Données d'exemple ; chaque bloc est expliqué plus bas.</figcaption></figure>
+    <ul class="logos">
+      <li><img src="https://decupler.com/wp-content/uploads/2026/09/logo-typesafe-jev.png" alt="Logo de TypeSafe AI, l'éditeur de Jev" width="52" height="52">Jev (TypeSafe)</li>
+      <li><img src="https://decupler.com/wp-content/uploads/2026/09/logo-claude.png" alt="Logo de Claude" width="52" height="52">Claude Code</li>
+      <li><img src="https://decupler.com/wp-content/uploads/2026/09/logo-search-console.png" alt="Logo de Google Search Console" width="52" height="52">Search Console</li>
+      <li><img src="https://decupler.com/wp-content/uploads/2026/09/logo-dataforseo.png" alt="Logo de DataForSEO" width="52" height="52">DataForSEO</li>
+      <li><img src="https://decupler.com/wp-content/uploads/2026/09/logo-wordpress.png" alt="Logo de WordPress" width="52" height="52">WordPress</li>
+    </ul>
+  </div>
+</section>
+
+<section class="guide-section ruban"><div class="container"><span><b>52</b> règles vérifiées</span><span><b>60</b> pages lues en <b>53 s</b></span><span><b>~0,01 $</b> de Jev par site</span></div></section>
+
+<section class="guide-section">
+  <div class="container">
+    <div class="section-label">Jev, c'est quoi ?</div>
+    <h2 class="section-title">Pas un chatbot : un modèle qui décide</h2>
+    <p class="prose-block">Jev est le premier modèle « System One » de <strong>TypeSafe AI</strong>. Là où ChatGPT ou Claude rédigent, Jev tranche : on lui donne un contexte (une page, une requête, une réponse d'IA) et des <strong>questions typées</strong>, il renvoie une réponse bornée avec ses probabilités. Il répond en une fraction de seconde et coûte une fraction de centime par page.</p>
+    <p class="prose-block">Or une grande partie du SEO est de la classification. Cette page est-elle trop mince ? Cette requête est-elle informationnelle ? Ces deux pages se battent-elles sur la même recherche ? Ce titre colle-t-il à l'intention ? La marque est-elle citée dans la réponse de ChatGPT ? Ce sont des décisions, pas des textes à écrire.</p>
+    <div class="stack-wrap"><table class="stack">
+      <thead><tr><th>Type de question</th><th>Ce qu'il répond</th><th>Exemple en SEO</th></tr></thead>
+      <tbody>
+        <tr><td><span class="kind">Choice</span></td><td>Une option parmi une liste fermée, avec la probabilité de chacune</td><td>« Quel est le type de cette page : fiche, guide, comparatif, FAQ ? »</td></tr>
+        <tr><td><span class="kind sc">Score</span></td><td>Un niveau sur une échelle définie</td><td>« Sur 1 à 5, cette page est-elle précise ou générique ? »</td></tr>
+        <tr><td><span class="kind nl">Noul</span></td><td>La probabilité qu'une affirmation soit vraie, de 0 à 1</td><td>« La page répond-elle à la question dès son premier paragraphe ? »</td></tr>
+      </tbody>
+    </table></div>
+    <h3 class="h3">La règle d'or : chacun son métier</h3>
+    <p class="prose-block">Le skill jev-seo repose sur une phrase : <strong>une source trouve, le code décide, Jev juge, Claude écrit.</strong> Personne n'invente de chiffre.</p>
+    <div class="pipe"><span class="dot" aria-hidden="true"></span><div class="st"><i>1</i><b>La source trouve</b>Le crawl, Search Console, PageSpeed et DataForSEO rapportent les faits.</div><div class="st"><i>2</i><b>Le code décide</b>Codes HTTP, doublons, schema, formules de score : rien n'est laissé au modèle.</div><div class="st jv"><i>3</i><b>Jev juge</b>Type de page, intention, utilité, citabilité : des réponses typées, avec probabilités.</div><div class="st"><i>4</i><b>Claude écrit</b>La synthèse et le plan, en citant chaque action par son identifiant.</div></div>
+    <figure class="shot"><img src="https://decupler.com/wp-content/uploads/2026/09/jev-seo-source-code-jev-claude.jpg" alt="Page du rapport jev-seo : une source trouve, le code décide, Jev juge, Claude écrit" width="1200" height="1218" loading="lazy" decoding="async"><figcaption><b>Dans le rapport de decupler.com</b> : qui décide quoi, et ce que chaque étape n'a pas le droit de faire (Jev ne prédit jamais de positions ni de trafic).</figcaption></figure>
+  </div>
+</section>
+
+<section class="guide-section">
+  <div class="container">
+    <div class="section-label">Le tableau de bord</div>
+    <h2 class="section-title">Les 4 blocs de l'audit GEO, expliqués un par un</h2>
+    <p class="prose-block">L'image du haut, c'est ce qu'on veut obtenir : en un coup d'œil, savoir si les IA te citent, où tu en es, sur quels sujets tu es absent et quelles pages ont une chance d'être reprises. Voici ce que dit chaque bloc, comment Jev le calcule, et ce que tu en fais. Les visuels ci-dessous sont des exemples animés.</p>
+    <div class="blocks">
+      <div class="blk"><div class="blk-h"><span>1</span><h3>Ta visibilité, moteur par moteur</h3></div>
+        <p>Sur un lot de prompts de ton secteur, combien de fois ChatGPT, Claude et Perplexity te citent, et qui est cité à ta place.</p>
+        <div class="viz"><p class="viz-t">Exemple · part des réponses qui citent la marque</p><ul class="bars"><li>ChatGPT<span class="tr"><span class="fi g" style="width:18%"></span></span><em>18 %</em></li><li>Claude<span class="tr"><span class="fi o" style="width:9%"></span></span><em>9 %</em></li><li>Perplexity<span class="tr"><span class="fi" style="width:26%"></span></span><em>26 %</em></li></ul></div>
+        <p class="how"><b>Comment :</b> les réponses des IA sont collectées (DataForSEO en mode complet), puis Jev répond par <em>Noul</em> à chaque réponse : la marque est-elle citée ? recommandée ? un concurrent est-il cité ? une source est-elle donnée ?</p>
+        <p><strong>Ce que tu en fais :</strong> tu repères les concurrents cités à ta place et tu lis leurs pages sources. C'est ta liste de contenus à battre.</p>
+      </div>
+      <div class="blk"><div class="blk-h"><span>2</span><h3>Ton score GEO global</h3></div>
+        <p>Où tu en es sur 100, et la part de gains qui dort encore : les pages qui pourraient être citées mais ne le sont pas.</p>
+        <div class="viz"><p class="viz-t">Exemple · score et gains restants</p><div class="gauge"><svg viewBox="0 0 110 110" role="img" aria-label="Score GEO d'exemple : 62 sur 100"><circle cx="55" cy="55" r="46" fill="none" stroke="#eceefa" stroke-width="10"/><circle class="arc" cx="55" cy="55" r="46" fill="none" stroke="#4c47c9" stroke-width="10" stroke-linecap="round" stroke-dasharray="289" stroke-dashoffset="110" transform="rotate(-90 55 55)"/><text x="55" y="60" text-anchor="middle" font-size="24" font-weight="800" fill="#1e293b">62</text><text x="55" y="76" text-anchor="middle" font-size="10" fill="#64748b">/100</text></svg><p>Ici, <strong>38 %</strong> de gains restants : autant de pages qui ont le fond mais pas la forme pour être reprises.</p></div></div>
+        <p class="how"><b>Comment :</b> Jev note chaque page par <em>Score</em> (utilité, précision, confiance, citabilité) et par <em>Noul</em> (« la page va-t-elle droit au but ? »). Le code fait la moyenne pondérée : Jev ne calcule jamais le score lui-même.</p>
+        <p><strong>Ce que tu en fais :</strong> tu suis ce chiffre chaque mois. Il ne prédit pas ton trafic : il classe ton travail.</p>
+      </div>
+      <div class="blk"><div class="blk-h"><span>3</span><h3>Ta couverture des intentions</h3></div>
+        <p>Information, prix, comparatif, avis, local, achat : sur quels sujets l'IA te trouve, et où tu es absent.</p>
+        <div class="viz"><p class="viz-t">Exemple · couverture par intention</p><div class="rw"><svg class="radar" viewBox="0 0 240 220" role="img" aria-label="Radar d'exemple : forte couverture sur Info et Local, faible sur Avis et Achat"><polygon points="120,30 189.3,70 189.3,150 120,190 50.7,150 50.7,70" fill="none" stroke="#dfe1f3"/><polygon points="120,70 154.6,90 154.6,130 120,150 85.4,130 85.4,90" fill="none" stroke="#dfe1f3"/><line x1="120" y1="110" x2="120" y2="30" stroke="#eceefa"/><line x1="120" y1="110" x2="189.3" y2="70" stroke="#eceefa"/><line x1="120" y1="110" x2="189.3" y2="150" stroke="#eceefa"/><line x1="120" y1="110" x2="120" y2="190" stroke="#eceefa"/><line x1="120" y1="110" x2="50.7" y2="150" stroke="#eceefa"/><line x1="120" y1="110" x2="50.7" y2="70" stroke="#eceefa"/><polygon class="poly" points="120,54 133.9,102 144.2,124 120,118 81.9,132 109.6,104" fill="rgba(76,71,201,.22)" stroke="#4c47c9" stroke-width="2"/><text x="120" y="20" text-anchor="middle" font-size="11" fill="#475569">Info</text><text x="200" y="66" font-size="11" fill="#475569">Prix</text><text x="200" y="158" font-size="11" fill="#475569">Compa</text><text x="120" y="208" text-anchor="middle" font-size="11" fill="#475569">Avis</text><text x="40" y="158" text-anchor="end" font-size="11" fill="#475569">Local</text><text x="40" y="66" text-anchor="end" font-size="11" fill="#475569">Achat</text></svg></div></div>
+        <p class="how"><b>Comment :</b> Jev classe chaque prompt et chaque requête par <em>Choice</em> (info, prix, comparatif, avis, local, achat), puis on croise avec les réponses où tu es cité.</p>
+        <p><strong>Ce que tu en fais :</strong> chaque pointe rentrée est une page à créer. Dans l'exemple, il manque un comparatif et une page d'avis.</p>
+      </div>
+      <div class="blk"><div class="blk-h"><span>4</span><h3>Ta citabilité par type de page</h3></div>
+        <p>Quel type de page a une vraie chance d'être repris par l'IA, et lequel ne sera jamais cité en l'état.</p>
+        <div class="viz"><p class="viz-t">Exemple · citabilité moyenne sur 100</p><ul class="bars"><li>FAQ<span class="tr"><span class="fi g" style="width:74%"></span></span><em>74</em></li><li>Comparatif<span class="tr"><span class="fi" style="width:58%"></span></span><em>58</em></li><li>Page pilier<span class="tr"><span class="fi" style="width:41%"></span></span><em>41</em></li><li>Fiche service<span class="tr"><span class="fi o" style="width:17%"></span></span><em>17</em></li></ul></div>
+        <p class="how"><b>Comment :</b> Jev donne le type de chaque page (<em>Choice</em>) et sa citabilité (<em>Score</em>) ; le code fait la moyenne par type.</p>
+        <p><strong>Ce que tu en fais :</strong> tu reprends en priorité le type le plus faible, avec une réponse directe en tête et des faits vérifiables.</p>
+      </div>
+    </div>
+    <div class="lmg-inline"><p class="lmg-inline-t">Reçois les prochains playbooks SEO et GEO par email</p><iframe name="lmg_inline_1" title="Inscription à la newsletter" hidden></iframe><form action="https://decupler.substack.com/api/v1/free" method="post" target="lmg_inline_1"><input type="email" name="email" placeholder="ton@email.com" autocomplete="email" required aria-label="Ton email"><input type="hidden" name="first_url" value="https://decupler.substack.com"><input type="hidden" name="first_referrer" value="https://decupler.com"><button type="submit">Je m'abonne</button></form><p class="lmg-inline-n">Newsletter Décupler, gratuite. Désabonnement en 1 clic.</p><p class="lmg-inline-ok" hidden>✅ C'est noté : confirme ton inscription dans ta boîte mail.</p></div>
+  </div>
+</section>
+
+<section class="guide-section">
+  <div class="container">
+    <div class="section-label">Étape 1</div>
+    <h2 class="section-title">Installer jev-seo dans Claude Code</h2>
+    <p class="prose-block"><strong>jev-seo</strong> est un skill gratuit et open source (licence MIT), publié par Daniel Agrici. Il tourne dans Claude Code ou en ligne de commande. Il te faut une <strong>clé d'API TypeSafe</strong> pour les jugements Jev ; une clé PageSpeed Insights est conseillée, DataForSEO est optionnel.</p>
+    <div class="chat">
+      <p class="chat-h">Exemple d'échange dans Claude Code</p>
+      <div class="msg you"><span class="av">Toi</span><div class="bub"><p>Installe le skill jev-seo depuis github.com/AgriciDaniel/jev-seo et dis-moi quelles clés il te manque.</p></div></div>
+      <div class="msg cl"><span class="av"><img src="https://decupler.com/wp-content/uploads/2026/09/logo-claude.png" alt="" width="32" height="32"></span><div class="bub"><p>C'est installé et relié comme skill. Il manque la clé TypeSafe : ajoute-la dans le fichier .env du dossier, pas dans notre conversation. Sans elle, l'audit tourne quand même mais sans les jugements Jev.</p><ul class="acts"><li>git clone https://github.com/AgriciDaniel/jev-seo.git</li><li>pip install -r requirements.txt (dans un environnement virtuel)</li><li>ln -s … ~/.claude/skills/jev-seo</li><li>bin/jevseo doctor · TYPESAFE_API_KEY manquante</li></ul></div></div>
+    </div>
+    <details class="cmd"><summary>Voir les commandes d'installation (doc officielle, version 0.1.1)</summary><div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>terminal</span></div><pre>git clone https://github.com/AgriciDaniel/jev-seo.git
+cd jev-seo
+python3 -m venv .venv &amp;&amp; . .venv/bin/activate
+pip install -r requirements.txt
+cp .env.example .env        <span class="c"># TYPESAFE_API_KEY, PAGESPEED_API_KEY, DataForSEO en option</span>
+bin/jevseo doctor           <span class="c"># vérifie les dépendances et les clés, sans les afficher</span>
+ln -s "$PWD" ~/.claude/skills/jev-seo</pre></div></details>
+    <div class="tip tip-a"><span class="tipico">🔑</span><p><strong>Deux pièges évités d'avance.</strong> Le PDF a besoin de la bibliothèque Pango (<span class="inline-code">brew install pango</span> sur Mac). Et sans clé PageSpeed, Google limite les appels : chez nous, les 6 mesures de vitesse sont revenues en erreur 429.</p></div>
+  </div>
+</section>
+
+<section class="guide-section">
+  <div class="container">
+    <div class="section-label">Étape 2</div>
+    <h2 class="section-title">Lancer l'audit : une URL, moins d'une minute</h2>
+    <p class="prose-block">Dans Claude Code : <span class="inline-code">/jev-seo https://tonsite.fr</span>. Le skill lance l'audit en arrière-plan et te donne une ligne par étape : exploration, règles, DataForSEO, jugements Jev, PageSpeed, score, rendu. Voici le vrai passage sur notre site.</p>
+    <figure class="shot"><img src="https://decupler.com/wp-content/uploads/2026/09/jev-seo-terminal-decupler.jpg" alt="Sortie réelle de jev-seo sur decupler.com : 60 pages lues, 52 règles, score 97 en 53 secondes" width="1668" height="1281" loading="lazy" decoding="async"><figcaption><b>Sortie réelle, decupler.com, 30/09/2026.</b> 60 pages lues sur 383 URL du sitemap, 14 constats sur 52 règles, score 97 sur 100 et trois rapports en 53 secondes. Ce jour-là, sans clé TypeSafe, les jugements Jev étaient désactivés : l'outil le dit et marque l'audit « partiel ».</figcaption></figure>
+  </div>
+</section>
+
+<section class="guide-section">
+  <div class="container">
+    <div class="section-label">Étape 3</div>
+    <h2 class="section-title">Lire les trois livrables</h2>
+    <p class="prose-block">Les trois fichiers sortent des mêmes données (<span class="inline-code">audit.json</span>) : aucun chiffre ne diffère de l'un à l'autre.</p>
+    <div class="stack-wrap"><table class="stack">
+      <thead><tr><th>Fichier</th><th>Pour qui</th><th>Ce qu'il contient</th></tr></thead>
+      <tbody>
+        <tr><td>report.pdf</td><td>Le client, la direction</td><td>Score, résumé, plan, carte des liens, matrice impact / effort, cartes Jev, carte de chaleur qualité, sources</td></tr>
+        <tr><td>report.xlsx</td><td>Toi, pour suivre le travail</td><td>Onglet Actions avec statut modifiable, pages, jugements Jev bruts avec probabilités, technique, performance</td></tr>
+        <tr><td>report.md</td><td>Tes agents, GitHub, Obsidian</td><td>Le rapport complet en texte, avec graphiques : à redonner à Claude pour qu'il corrige</td></tr>
+      </tbody>
+    </table></div>
+    <figure class="shot"><img src="https://decupler.com/wp-content/uploads/2026/09/jev-seo-jugements-jev.jpg" alt="Rapport jev-seo : cartes de jugements Jev, carte de chaleur qualité et où investir" width="1428" height="682" loading="lazy" decoding="async"><figcaption><b>Les pages Jev du PDF</b> : ce que Jev pense du site, la qualité page par page (utile, précise, fiable, citable, va droit au but) et où investir. Visuel officiel du dépôt jev-seo.</figcaption></figure>
+    <figure class="shot"><img src="https://decupler.com/wp-content/uploads/2026/09/jev-seo-tableur-actions.jpg" alt="Tableur jev-seo : onglet Actions avec priorité, statut, impact et effort" width="1418" height="681" loading="lazy" decoding="async"><figcaption><b>L'onglet Actions du tableur</b> : chaque correction a un identifiant, une priorité, un impact, un effort et un statut que tu fais évoluer. Visuel officiel du dépôt jev-seo.</figcaption></figure>
+  </div>
+</section>
+
+<section class="guide-section">
+  <div class="container">
+    <div class="section-label">Étape 4</div>
+    <h2 class="section-title">Corriger dans l'ordre : priorités d'abord, quick wins ensuite</h2>
+    <p class="prose-block">Chaque action a une priorité (P1 à P3), un impact et un effort. La matrice les range : en haut à gauche, les <strong>quick wins</strong> (fort impact, peu d'effort) ; en haut à droite, les gros chantiers. On traite les P1, puis les quick wins, et on planifie le reste.</p>
+    <figure class="shot"><img src="https://decupler.com/wp-content/uploads/2026/09/jev-seo-quoi-corriger-en-premier.jpg" alt="Matrice impact et effort du rapport jev-seo : les quick wins à corriger en premier" width="1200" height="1272" loading="lazy" decoding="async"><figcaption><b>« What to fix first », rapport de decupler.com.</b> Chaque point est une action ; les étiquetées sont à traiter en premier.</figcaption></figure>
+    <div class="chat">
+      <p class="chat-h reel">Échange réel · corriger les priorités de l'audit</p>
+      <div class="msg you"><span class="av">Toi</span><div class="bub"><p>Traite l'action P1 de l'audit et les quick wins qui se corrigent en une heure. Vérifie chaque alerte sur le site avant de toucher à quoi que ce soit.</p></div></div>
+      <div class="msg cl"><span class="av"><img src="https://decupler.com/wp-content/uploads/2026/09/logo-claude.png" alt="" width="32" height="32"></span><div class="bub"><p>P1 confirmée : 9 pages pointaient vers deux adresses en 404 (/a-propos et /search-everywhere). Les liens renvoient maintenant vers la page de Nathan Fenina et vers la page visibilité en ligne. Deux pages partageaient le même title et la même meta : réécrits. Et 56 pages passaient par une redirection à cause d'un lien du pied de page : corrigé à la source.</p><ul class="acts"><li>curl · les deux adresses répondent bien 404</li><li>API WordPress · 9 pages sauvegardées puis corrigées</li><li>Yoast · 2 titles et 2 metas distincts</li><li>pied de page · 1 lien remplacé, 56 pages assainies</li><li>jevseo run · nouvel audit</li></ul></div></div>
+    </div>
+    <p class="prose-block" style="margin-top:18px">Le résultat, mesuré par le même outil le jour même, après corrections :</p>
+    <ul class="ab"><li><b>Score global</b><span class="tr"><span class="av" style="width:97%"></span><span class="ap" style="width:98%"></span></span><em>97 → 98</em></li><li><b>Liens et architecture</b><span class="tr"><span class="av" style="width:90%"></span><span class="ap" style="width:99%"></span></span><em>90 → 99</em></li><li><b>On-page</b><span class="tr"><span class="av" style="width:92%"></span><span class="ap" style="width:96%"></span></span><em>92 → 96</em></li><li><b>Actions à traiter</b><span class="tr"><span class="av" style="width:100%"></span><span class="ap" style="width:77%"></span></span><em>13 → 10</em></li></ul>
+    <p class="ab-l"><span><i style="background:#c9cbe0"></i>Avant</span><span><i style="background:linear-gradient(90deg,#4c47c9,#10b981)"></i>Après</span></p>
+    <div class="duo">
+      <figure class="shot"><img src="https://decupler.com/wp-content/uploads/2026/09/jev-seo-audit-decupler-avant.jpg" alt="Rapport jev-seo de decupler.com avant corrections : score 97 sur 100, 13 actions" width="1000" height="1248" loading="lazy" decoding="async"><figcaption><b>Avant</b> : 97/100, 13 actions dont 1 critique.</figcaption></figure>
+      <figure class="shot"><img src="https://decupler.com/wp-content/uploads/2026/09/jev-seo-audit-decupler-apres-final.jpg" alt="Rapport jev-seo de decupler.com après corrections : score 98 sur 100, 10 actions, aucune critique" width="1000" height="1248" loading="lazy" decoding="async"><figcaption><b>Après</b> : 98/100, 10 actions, aucune critique.</figcaption></figure>
+    </div>
+    <div class="tip tip-a"><span class="tipico">⚠️</span><p><strong>Vérifie avant de corriger.</strong> Lors d'un passage, l'outil a signalé une page « injoignable » : c'était une coupure du réseau de notre côté, la page répondait normalement. Une alerte est un signal, pas un verdict.</p></div>
+  </div>
+</section>
+
+<section class="guide-section">
+  <div class="container">
+    <div class="section-label">Étape 5</div>
+    <h2 class="section-title">Rendre une page invisible citable par l'IA</h2>
+    <p class="prose-block">Une fois la technique propre, le GEO se joue page par page. jev-seo pose à Jev 13 questions par page. Voici celles qui décident si une IA te reprend, et la correction qui va avec.</p>
+    <div class="stack-wrap"><table class="stack">
+      <thead><tr><th>Question posée à Jev</th><th>Type</th><th>Si la réponse est mauvaise</th></tr></thead>
+      <tbody>
+        <tr><td>Va droit au but</td><td><span class="kind nl">Noul</span></td><td>Mets la réponse dans les deux premières phrases, avant tout contexte.</td></tr>
+        <tr><td>Citabilité</td><td><span class="kind sc">Score</span></td><td>Des phrases qui se tiennent seules : un fait, un chiffre sourcé, une définition.</td></tr>
+        <tr><td>Précision</td><td><span class="kind sc">Score</span></td><td>Remplace les généralités par tes cas, tes prix, tes délais, tes méthodes.</td></tr>
+        <tr><td>Confiance</td><td><span class="kind sc">Score</span></td><td>Auteur identifié, date, sources, preuves (captures, résultats).</td></tr>
+        <tr><td>Intention</td><td><span class="kind">Choice</span></td><td>Si la page ne sert pas l'intention de sa requête, change son format ou sa cible.</td></tr>
+        <tr><td>Adéquation du title et de la meta</td><td><span class="kind sc">Score</span></td><td>Reprends la question que pose l'internaute, pas un slogan.</td></tr>
+        <tr><td>Pages concurrentes</td><td><span class="kind nl">Noul</span></td><td>Deux pages sur la même recherche : fusionne, ou différencie leurs cibles.</td></tr>
+      </tbody>
+    </table></div>
+    <div class="chat">
+      <p class="chat-h">Exemple d'échange dans Claude Code</p>
+      <div class="msg you"><span class="av">Toi</span><div class="bub"><p>Dans le rapport, prends les 5 pages les plus importantes marquées « ne va pas droit au but ». Réécris leur ouverture avec une réponse directe et montre-moi l'avant et l'après.</p></div></div>
+      <div class="msg cl"><span class="av"><img src="https://decupler.com/wp-content/uploads/2026/09/logo-claude.png" alt="" width="32" height="32"></span><div class="bub"><p>Voici les 5 ouvertures réécrites, chacune avec la réponse en première phrase. Je n'ai ajouté aucun chiffre qui ne figure pas déjà dans la page ; deux pages auraient besoin d'une preuve que toi seul peux fournir.</p><ul class="acts"><li>lit report.md · 5 pages sélectionnées</li><li>propose 5 paragraphes d'ouverture</li></ul></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="guide-section">
+  <div class="container">
+    <div class="section-label">Étape 6</div>
+    <h2 class="section-title">Mesurer tes citations dans ChatGPT, Claude et Perplexity</h2>
+    <p class="prose-block">C'est le bloc 1 du tableau de bord. Le mode complet de jev-seo (<span class="inline-code">--full</span>) ajoute DataForSEO : tes mots-clés et positions, tes concurrents, tes backlinks, les résultats Google du moment avec les sources citées par les AI Overviews, et tes mentions dans les réponses des IA. Jev trie ensuite ces données : il écarte les recherches sur d'autres marques et désigne, pour chaque mot-clé, la page qui doit le porter.</p>
+    <p class="prose-block">Coût annoncé par la documentation : <strong>environ 0,30 dollar par site</strong>, avec un plafond de dépense vérifié avant chaque appel. Pour aller plus loin sur tes propres prompts, branche <a href="https://decupler.com/installer-mcp-data-for-seo-sur-chatgpt/">DataForSEO en MCP</a> et fais classer chaque réponse par Jev : marque citée, marque recommandée, concurrent cité, source donnée.</p>
+    <details class="cmd"><summary>Voir les commandes du mode complet</summary><div class="codeblock"><div class="codeblock-h"><i class="r"></i><i class="y"></i><i class="g"></i><span>terminal</span></div><pre>bin/jevseo audit https://tonsite.fr --full --location-code 2250 --language fr
+bin/jevseo render jev-seo-reports/&lt;dossier&gt;
+<span class="c"># 2250 = France. Par défaut l'outil vise les États-Unis (2840, en).</span></pre></div></details>
+  </div>
+</section>
+
+<section class="guide-section">
+  <div class="container">
+    <div class="section-label">Étape 7</div>
+    <h2 class="section-title">Remesurer chaque mois</h2>
+    <p class="prose-block">Relance le même audit une fois par mois et compare. <span class="inline-code">bin/jevseo rescore</span> recalcule les scores d'un audit existant sans rien dépenser, utile après une mise à jour des règles. Le suivi se fait dans l'onglet Actions du tableur : à faire, en cours, fait.</p>
+    <div class="tip tip-e"><span class="tipico">🔌</span><p><strong>À croiser avec tes vraies données :</strong> jev-seo ne mesure ni trafic ni positions dans le temps. Pour ça, <a href="https://decupler.com/connecter-search-console-claude/">connecte Search Console à Claude</a> et suis clics et positions des pages corrigées.</p></div>
+  </div>
+</section>
+
+<section class="guide-section">
+  <div class="container">
+    <div class="section-label">Aller plus loin</div>
+    <h2 class="section-title">10 usages de Jev pour le SEO</h2>
+    <p class="prose-block">Au-delà de l'audit, tout ce qui ressemble à « trier des milliers de lignes » se confie à Jev. Liste inspirée de l'article de Prefer (22/09/2026).</p>
+    <ul class="wf">
+      <li><b>Maillage interne <span class="kind nl">Noul</span></b>Quelles pages ont une vraie raison de se lier entre elles.</li>
+      <li><b>Cannibalisation <span class="kind nl">Noul</span></b>Quelles pages visent la même intention, à fusionner ou à séparer.</li>
+      <li><b>Contenu mince <span class="kind sc">Score</span></b>Avant publication : original et utile, ou redite du site ?</li>
+      <li><b>Intention de recherche <span class="kind">Choice</span></b>Apprendre, comparer, acheter : la page colle-t-elle à la requête ?</li>
+      <li><b>Audit de contenu <span class="kind">Choice</span></b>Garder, mettre à jour, fusionner, supprimer : un premier tri de chaque URL.</li>
+      <li><b>Plan de redirections <span class="kind">Choice</span></b>Pour une refonte : la meilleure nouvelle URL, et les cas douteux à revoir.</li>
+      <li><b>Données structurées <span class="kind nl">Noul</span></b>Le schema décrit-il vraiment ce qu'il y a sur la page ?</li>
+      <li><b>Écart concurrentiel <span class="kind">Choice</span></b>Chaque sujet : couvert, partiellement couvert, absent.</li>
+      <li><b>Title et meta <span class="kind">Choice</span></b>Alignés, faibles ou à côté de l'intention.</li>
+      <li><b>Visibilité IA <span class="kind nl">Noul</span></b>Marque citée, recommandée, concurrent cité, source donnée.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="guide-section dk">
+  <div class="container">
+    <div class="section-label">Mon parti pris</div>
+    <h2 class="section-title">Un audit te donne le quoi. Pas le comment.</h2>
+    <p>J'ai vu passer des audits GEO facturés jusqu'à 10 000 €. Le diagnostic qui prenait une semaine à un consultant se fait maintenant en quelques minutes, pour quelques centimes. C'est une très bonne nouvelle, et ça déplace la valeur.</p>
+    <p>Ce qui compte n'est plus de trouver les problèmes : c'est de choisir lesquels corriger, dans quel ordre, et de réécrire les pages pour que l'IA ait envie de les citer. Un tableau de bord ne remonte pas une page dans ChatGPT. Les corrections, si.</p>
+    <p class="sign"><a href="https://decupler.com/nathan-fenina/">Nathan Fenina</a>, fondateur de Décupler</p>
+  </div>
+</section>
+
+<section class="guide-section">
+  <div class="container">
+    <div class="section-label">Les limites</div>
+    <h2 class="section-title">Ce que Jev ne fait pas à ta place</h2>
+    <div class="no">
+      <div><h3>Dire la vérité à coup sûr</h3><p>Jev donne des probabilités. Une réponse bien formée peut être fausse ; celles qui ne sont pas assez tranchées sont marquées « à vérifier ».</p></div>
+      <div><h3>Prédire ton trafic</h3><p>Les scores servent à classer le travail. Ils ne prédisent ni positions, ni clics, ni chiffre d'affaires.</p></div>
+      <div><h3>Lire tout un gros site</h3><p>L'audit s'arrête à 60 pages par défaut et le dit. Les volumes et le trafic de DataForSEO sont des estimations.</p></div>
+      <div><h3>Réécrire tes pages</h3><p>Il trouve et classe. La réécriture, les preuves et les priorités business restent ton travail, ou celui de Claude avec toi.</p></div>
+    </div>
+    <h3 class="h3">Jusqu'où lui faire confiance</h3>
+    <p class="prose-block">Mesures publiées par l'auteur du skill le 22/09/2026 : sur les mêmes 59 pages jugées deux fois, les scores ont bougé de 0,03 ou moins en moyenne, et les 44 types de page jugés avec assurance sont restés identiques. Face à un second modèle juge, en aveugle, Jev est d'accord 28 fois sur 29 sur l'utilité et la précision, et 23 fois sur 23 sur « va droit au but ». Un second modèle n'est pas un humain : cela montre que Jev est constant et raisonnable, pas qu'il a raison.</p>
+    <div class="tip tip-v"><span class="tipico">🔗</span><div><p><strong>Les ressources :</strong></p>
+      <div class="res-links"><a href="https://github.com/AgriciDaniel/jev-seo">jev-seo sur GitHub</a><a href="https://docs.typesafe.ai/primitives">Documentation de Jev (TypeSafe)</a><a href="https://decupler.com/claude-skills-seo/">Les 10 skills SEO pour Claude</a><a href="https://decupler.com/connecter-search-console-claude/">Search Console dans Claude</a><a href="https://decupler.com/audit-geo/">Notre audit GEO accompagné</a></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="guide-section">
+  <div class="container">
+    <div class="section-label">FAQ</div>
+    <h2 class="section-title">Questions fréquentes sur Jev SEO</h2>
+    <div class="faq">
+__FAQ__
+    </div>
+  </div>
+</section>
+
+<section class="cta-final">
+  <div class="container">
+    <div class="cta-break"><span>Passe à l'action</span></div>
+    <div class="wk">
+      <div><a href="https://www.linkedin.com/events/7508143909210910720"><img src="https://decupler.com/wp-content/uploads/2026/09/workshop-claude-code-machine-seo-8-octobre.jpg" alt="Workshop interactif Claude Code = machine SEO, jeudi 8 octobre à 12 h 30, avec Nathan Fenina" width="1280" height="720" loading="lazy" decoding="async"></a></div>
+      <div>
+        <p class="wk-t">Workshop live · jeudi 8 octobre · 12 h 30</p>
+        <h2>Claude Code = machine SEO : je te montre tout en direct</h2>
+        <p>Audit GEO, monitoring de prompts IA, création de contenu, intégrations et mon système de prospection LinkedIn. Du concret à rejouer le lendemain, questions bienvenues.</p>
+        <div><a href="https://www.linkedin.com/events/7508143909210910720" class="cta-btn cta-btn--pulse">Je réserve ma place →</a></div>
+        <p class="wk-m">Gratuit · pas de replay · 100 places maximum</p>
+        <a class="wk-alt" href="https://calendly.com/fenina-nathan/consultationstrategique">Ou un audit GEO de ton site en RDV de 20 min →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div>

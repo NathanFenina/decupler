@@ -44,6 +44,18 @@ Chaque ligne a coûté au moins une erreur. Les relire avant de toucher au site.
 - Firecrawl (compte connecté) peut tomber à court de crédits : lire les README
   GitHub directement (raw.githubusercontent.com) pour vérifier une commande.
 
+## Outils d'audit
+
+- jev-seo (github.com/AgriciDaniel/jev-seo) tourne dans la session :
+  `scratchpad/jev/jev-seo`, venv, `REQUESTS_CA_BUNDLE=/root/.ccr/ca-bundle.crt`.
+  Sans `TYPESAFE_API_KEY` : audit partiel (pas de jugements Jev) ; sans
+  `PAGESPEED_API_KEY` : PageSpeed renvoie 429. Rendre le rapport en images :
+  capturer les `<section>` de `report.html` avec Playwright (pas de pdftoppm).
+- Une coupure du proxy pendant un crawl produit de faux « liens cassés » en
+  masse (30/09 : /organic-opportunity-map « injoignable » sur 56 pages alors
+  qu'elle répondait 200). Toujours revérifier une alerte P1 au curl avant de
+  corriger.
+
 ## Search Console
 
 - Le rapport d'indexation a plusieurs jours de retard ; la vérité page par

@@ -248,6 +248,19 @@
    "impressions_180j": 0,
    "clics_180j": 0,
    "position_180j": null
+  },
+  {
+   "slug": "jev-seo",
+   "mot_cle": "jev seo",
+   "prompt": "Comment faire un audit SEO et GEO avec Jev ?",
+   "secondaires": "jev typesafe · audit geo jev · outil audit geo · audit geo ia (« audit geo » reste à /audit-geo/)",
+   "priorite": "P2",
+   "action": "Vérifier indexation / Relancer",
+   "silo": "GEO / Référencement IA",
+   "notion": "3ebbebf1e51b81fa9444f0b5ef39d8fc",
+   "impressions_180j": 0,
+   "clics_180j": 0,
+   "position_180j": null
   }
  ]
 }

@@ -1,0 +1,26 @@
+[
+ {
+  "question": "Comment faire un audit SEO et GEO avec Jev ?",
+  "answer": "Installe le skill open source jev-seo dans Claude Code et donne-lui l'URL de ta page d'accueil. Il lit ton site, vérifie 52 règles reliées à la documentation Google Search Central, fait juger chaque page par Jev (type de page, intention, utilité, citabilité, adéquation du title) et te rend un PDF, un tableur d'actions et un rapport Markdown. Ensuite, corrige dans l'ordre d'impact, puis mesure ta présence dans les réponses de ChatGPT, Claude et Perplexity."
+ },
+ {
+  "question": "Jev, c'est quoi ?",
+  "answer": "Jev est le premier modèle « System One » de TypeSafe AI. Ce n'est pas un chatbot : il ne rédige pas, il décide. On lui donne un contexte et des questions typées (Choice pour choisir une option, Score pour placer sur une échelle, Noul pour la probabilité d'un oui ou d'un non) et il répond avec des probabilités."
+ },
+ {
+  "question": "Combien coûte un audit avec Jev ?",
+  "answer": "Selon la documentation de jev-seo relevée le 30/09/2026, les jugements Jev coûtent environ 0,00015 dollar par page, soit à peu près un centime pour un site de 60 pages. Le mode complet, qui ajoute les positions, les mots-clés, les backlinks et les citations dans les IA via DataForSEO, coûte environ 0,30 dollar par site. Le crawl, les règles et les rapports tournent sur ta machine, gratuitement."
+ },
+ {
+  "question": "Faut-il savoir coder pour utiliser Jev ?",
+  "answer": "Non. Dans Claude Code, tu demandes l'installation du skill jev-seo et tu tapes /jev-seo suivi de ton URL. Il te faut une clé d'API TypeSafe, et en option une clé PageSpeed Insights et un compte DataForSEO ; les clés se mettent dans un fichier .env, jamais dans la conversation."
+ },
+ {
+  "question": "Jev remplace-t-il un consultant SEO ?",
+  "answer": "Il remplace la partie la plus longue du diagnostic : lire chaque page et la classer. Il ne choisit pas tes priorités business, ne rédige pas tes pages et ne prédit ni trafic ni positions. Ses réponses sont des probabilités : celles qui ne sont pas assez tranchées sont marquées « à vérifier »."
+ },
+ {
+  "question": "Quelle différence avec un audit GEO classique ?",
+  "answer": "Un audit GEO classique est fait à la main : quelques dizaines de prompts testés, une lecture des pages, des recommandations. Avec Jev, la lecture et la classification de chaque page et de chaque réponse d'IA sont automatiques et chiffrées. Le travail humain se concentre sur les corrections et la stratégie, ce que fait notre audit GEO accompagné."
+ }
+]
