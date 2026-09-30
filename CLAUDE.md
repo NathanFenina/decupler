@@ -88,3 +88,12 @@ sans CSS inline ni classes Elementor, pour bien s'intégrer au thème du freelan
 ## Méthode SEO/GEO (decupler-seo)
 
 @CLAUDE.decupler-seo.md
+
+## Quand Nathan ouvre cette conversation
+
+Commencer par la roadmap du projet (skill `seo-pilotage`) : lire le tableau de
+bord https://claude.ai/artifact/MkDZXG4uhzv4J6WnpDbpmx (outil Artifact, action read), l'enregistrer dans
+`donnees/tableau-de-bord.html`, puis
+`python3 .claude/decupler-seo/scripts/pilotage.py etat --html donnees/tableau-de-bord.html --projet-id decupler`.
+Montrer les actions à valider, validées, en cours et faites ; proposer de lancer
+les actions validées, et lancer celles que Nathan désigne.

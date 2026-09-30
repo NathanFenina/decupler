@@ -43,3 +43,5 @@ generated-images/
 !.env.example
 *-service-account.json
 .seo-decupler/backups/
+
+donnees/tableau-de-bord.html
