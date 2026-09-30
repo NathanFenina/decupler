@@ -46,7 +46,7 @@ Décupler. Cocher au fur et à mesure.
 
 ## 5. Cartographie
 
-- `docs/seo/cartographie.csv` : 161 lignes proposées automatiquement
+- `memoire/cartographie.csv` : 161 lignes proposées automatiquement
   (`cartographie.py initialiser`), à **fusionner avec le dashboard Notion
   existant** de la cartographie Décupler, qui fait foi.
 - `docs/seo/cartographie-2026-09.md` : premier tableau mensuel.

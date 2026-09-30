@@ -37,3 +37,9 @@ generated-images/
 .claude/skills/seo-audit
 .claude/skills/seo
 .claude/skills/seo-geo
+
+# decupler-seo : secrets et état local
+.env.*
+!.env.example
+*-service-account.json
+.seo-decupler/backups/

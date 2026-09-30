@@ -1,0 +1,516 @@
+#!/usr/bin/env python3
+"""Crée un projet SEO et y synchronise la méthode decupler-seo.
+
+    python3 scripts/projet.py init ../mon-projet --nom "Mon Projet" --domaine https://exemple.com
+    python3 scripts/projet.py sync ../mon-projet
+    python3 scripts/projet.py sync . --depuis https://github.com/NathanFenina/decupler-seo
+    python3 scripts/projet.py statut ../mon-projet
+
+Pourquoi embarquer la méthode dans chaque projet : une routine Claude Code
+tourne dans une session cloud qui ne charge pas les plugins installés via
+marketplace. Elle ne voit que ce qui est commité dans le dépôt cloné :
+CLAUDE.md, .claude/skills, .claude/agents, .claude/commands et .mcp.json.
+
+Ce qui appartient au projet n'est jamais touché par la synchronisation :
+la mémoire, la config, le journal, les données, et les skills préfixés
+`projet-`. Ce qui appartient à la méthode est remplacé à chaque synchro,
+après vérification qu'aucun fichier n'a été modifié localement — sinon la
+modification serait perdue sans que personne ne le sache.
+"""
+
+from __future__ import annotations
+
+import argparse
+import datetime as dt
+import hashlib
+import json
+import re
+import shutil
+import subprocess
+import sys
+import tempfile
+from pathlib import Path
+from urllib.parse import urlparse
+
+RACINE_METHODE = Path(__file__).resolve().parent.parent
+DEPOT_DEFAUT = "https://github.com/NathanFenina/decupler-seo"
+MODELE = "modele-projet"
+DOSSIER_EMBARQUE = Path(".claude") / "decupler-seo"
+MANIFESTE = DOSSIER_EMBARQUE / "FICHIERS.json"
+PREFIXE_PROJET = "projet-"
+JETON = "${CLAUDE_PLUGIN_ROOT}"
+
+# Ressources de la méthode copiées sous .claude/decupler-seo/.
+RESSOURCES = ("scripts", "schema", "templates", "config", "hooks")
+
+
+# ─── Utilitaires ──────────────────────────────────────────────────
+
+def empreinte(fichier: Path) -> str:
+    return hashlib.sha256(fichier.read_bytes()).hexdigest()[:16]
+
+
+def version_de(source: Path) -> str:
+    try:
+        v = json.loads((source / ".claude-plugin" / "plugin.json").read_text(encoding="utf-8"))["version"]
+    except (OSError, KeyError, json.JSONDecodeError):
+        v = "inconnue"
+    try:
+        sha = subprocess.run(["git", "-C", str(source), "rev-parse", "--short", "HEAD"],
+                             capture_output=True, text=True, timeout=10).stdout.strip()
+    except (OSError, subprocess.SubprocessError):
+        sha = ""
+    return f"{v}+{sha}" if sha else v
+
+
+def obtenir_source(depuis: str | None) -> tuple[Path, tempfile.TemporaryDirectory | None]:
+    """Renvoie le dossier de la méthode à copier : local, ou cloné depuis une URL."""
+    if not depuis:
+        if (RACINE_METHODE / "skills").is_dir():
+            return RACINE_METHODE, None
+        # Lancé depuis la copie embarquée d'un projet : elle ne contient pas
+        # les skills sources, on récupère donc la dernière version publiée.
+        depuis = DEPOT_DEFAUT
+        print(f"  Source : {DEPOT_DEFAUT}")
+    if Path(depuis).expanduser().is_dir():
+        return Path(depuis).expanduser().resolve(), None
+    tempo = tempfile.TemporaryDirectory(prefix="decupler-seo-")
+    cible = Path(tempo.name) / "source"
+    resultat = subprocess.run(["git", "clone", "--depth", "1", "--quiet", depuis, str(cible)],
+                              capture_output=True, text=True, timeout=180)
+    if resultat.returncode != 0:
+        tempo.cleanup()
+        raise SystemExit(f"✗ Clonage impossible de {depuis} :\n{resultat.stderr.strip()}")
+    return cible, tempo
+
+
+def fichiers_methode(source: Path) -> dict[Path, Path]:
+    """Associe chaque fichier de la méthode à son chemin dans le projet."""
+    plan: dict[Path, Path] = {}
+
+    for dossier in sorted((source / "skills").iterdir()):
+        if not dossier.is_dir():
+            continue
+        if dossier.name.startswith(PREFIXE_PROJET):
+            raise SystemExit(f"✗ Le skill de méthode « {dossier.name} » utilise le préfixe réservé "
+                             f"aux projets ({PREFIXE_PROJET}). Renommez-le dans decupler-seo.")
+        for f in dossier.rglob("*"):
+            if f.is_file():
+                plan[Path(".claude/skills") / dossier.name / f.relative_to(dossier)] = f
+
+    for type_ in ("agents", "commands"):
+        for f in sorted((source / type_).glob("*.md")):
+            plan[Path(".claude") / type_ / f.name] = f
+
+    for ressource in RESSOURCES:
+        base = source / ressource
+        if base.is_dir():
+            for f in base.rglob("*"):
+                if f.is_file() and "__pycache__" not in f.parts:
+                    plan[DOSSIER_EMBARQUE / ressource / f.relative_to(base)] = f
+
+    plugin_json = source / ".claude-plugin" / "plugin.json"
+    if plugin_json.is_file():
+        plan[DOSSIER_EMBARQUE / "plugin.json"] = plugin_json
+    return plan
+
+
+def ecrire(source: Path, cible: Path) -> None:
+    """Copie un fichier ; dans le Markdown, repointe les scripts vers la copie embarquée."""
+    cible.parent.mkdir(parents=True, exist_ok=True)
+    if source.suffix == ".md":
+        texte = source.read_text(encoding="utf-8")
+        # Chemin relatif à la racine du projet : c'est de là que Claude
+        # travaille, en local comme dans une routine.
+        cible.write_text(texte.replace(JETON, str(DOSSIER_EMBARQUE)), encoding="utf-8")
+    else:
+        shutil.copy2(source, cible)
+
+
+def lire_manifeste(projet: Path) -> dict:
+    chemin = projet / MANIFESTE
+    if not chemin.is_file():
+        return {"version": None, "fichiers": {}}
+    return json.loads(chemin.read_text(encoding="utf-8"))
+
+
+# ─── Synchronisation ──────────────────────────────────────────────
+
+def collisions(projet: Path, plan: dict[Path, Path], ancien: dict) -> list[Path]:
+    """Fichiers présents dans le projet, jamais installés par la synchro, et différents.
+
+    Typiquement : des skills copiés à la main depuis une ancienne version. Les
+    écraser sans le dire ferait disparaître une éventuelle adaptation locale.
+    """
+    gerees = set(ancien["fichiers"])
+    trouvees = []
+    for rel, src in plan.items():
+        cible = projet / rel
+        if cible.is_file() and str(rel) not in gerees:
+            tempo = Path(tempfile.mkstemp()[1])
+            ecrire(src, tempo)
+            if empreinte(tempo) != empreinte(cible):
+                trouvees.append(rel)
+            tempo.unlink()
+    return trouvees
+
+
+def signaler_collisions(liste: list[Path]) -> None:
+    print(f"\n✗ {len(liste)} fichier(s) existent déjà dans ce projet sans avoir été installés par la")
+    print("  synchronisation, et diffèrent de la méthode :\n")
+    for rel in liste[:25]:
+        print(f"    {rel}")
+    if len(liste) > 25:
+        print(f"    … et {len(liste) - 25} autres")
+    print("\n  Souvent des copies d'une ancienne version. Vérifiez qu'aucun ne contient d'adaptation")
+    print("  propre au projet (à déplacer dans un skill .claude/skills/projet-…), puis relancez avec")
+    print("  --forcer pour les remplacer par la version courante.\n")
+
+
+def identique(src: Path | None, cible: Path) -> bool:
+    """La cible est-elle exactement ce que la synchro y écrirait ?"""
+    if src is None:
+        return False
+    tempo = Path(tempfile.mkstemp()[1])
+    ecrire(src, tempo)
+    egal = empreinte(tempo) == empreinte(cible)
+    tempo.unlink()
+    return egal
+
+
+def synchroniser(projet: Path, source: Path, forcer: bool = False, simuler: bool = False) -> int:
+    ancien = lire_manifeste(projet)
+    plan = fichiers_methode(source)
+    version = version_de(source)
+
+    # 1. Repérer les fichiers de méthode modifiés à la main dans le projet.
+    # Un fichier déjà identique à la nouvelle version n'est pas une modification locale
+    # (ex. fichier ignoré par git, mis à jour par une synchro faite sur une autre branche).
+    modifies = []
+    for rel, empreinte_connue in ancien["fichiers"].items():
+        chemin = projet / rel
+        if chemin.is_file() and empreinte(chemin) != empreinte_connue and not identique(plan.get(Path(rel)), chemin):
+            modifies.append(rel)
+
+    if modifies and not forcer:
+        print(f"\n✗ {len(modifies)} fichier(s) de méthode modifié(s) localement dans ce projet :\n")
+        for rel in modifies[:20]:
+            print(f"    {rel}")
+        print("\n  Une synchronisation les écraserait. Deux options :")
+        print("  · la modification est une amélioration de méthode → reportez-la dans")
+        print("    decupler-seo, pour que tous les projets en profitent, puis resynchronisez ;")
+        print("  · la modification est propre à ce client → déplacez-la dans un skill")
+        print(f"    .claude/skills/{PREFIXE_PROJET}…, que la synchronisation ne touche jamais.")
+        print("\n  Relancez avec --forcer une fois ce choix fait.\n")
+        return 1
+
+    conflits = collisions(projet, plan, ancien)
+    if conflits and not forcer:
+        signaler_collisions(conflits)
+        return 1
+
+    # 2. Calculer ce qui change.
+    ajoutes, maj, inchanges = [], [], []
+    for rel, src in plan.items():
+        cible = projet / rel
+        if not cible.exists():
+            ajoutes.append(rel)
+        else:
+            tempo = Path(tempfile.mkstemp()[1])
+            ecrire(src, tempo)
+            (inchanges if empreinte(tempo) == empreinte(cible) else maj).append(rel)
+            tempo.unlink()
+    nouveaux = {str(r) for r in plan}
+    retires = [Path(r) for r in ancien["fichiers"] if r not in nouveaux]
+
+    print(f"\n  Méthode {ancien['version'] or '(aucune)'} → {version}")
+    print(f"  {len(ajoutes)} ajouté(s) · {len(maj)} mis à jour · {len(retires)} retiré(s) · "
+          f"{len(inchanges)} inchangé(s)")
+    if simuler:
+        for libelle, lot in (("+", ajoutes), ("~", maj), ("-", retires)):
+            for rel in lot[:30]:
+                print(f"    {libelle} {rel}")
+        print("\n  Simulation : rien n'a été écrit.\n")
+        return 0
+
+    # 3. Appliquer.
+    for rel in ajoutes + maj:
+        ecrire(plan[rel], projet / rel)
+    for rel in retires:
+        chemin = projet / rel
+        if chemin.is_file():
+            chemin.unlink()
+            # Nettoyer les dossiers de skill devenus vides.
+            parent = chemin.parent
+            while parent != projet and parent.is_dir() and not any(parent.iterdir()):
+                parent.rmdir()
+                parent = parent.parent
+
+    manifeste = {
+        "version": version,
+        "synchronise_le": dt.datetime.now().isoformat(timespec="seconds"),
+        "fichiers": {str(rel): empreinte(projet / rel) for rel in plan},
+    }
+    (projet / MANIFESTE).parent.mkdir(parents=True, exist_ok=True)
+    (projet / MANIFESTE).write_text(json.dumps(manifeste, ensure_ascii=False, indent=1), encoding="utf-8")
+    (projet / DOSSIER_EMBARQUE / "VERSION").write_text(version + "\n", encoding="utf-8")
+
+    print(f"  ✓ Méthode synchronisée dans {projet / '.claude'}\n")
+    return 0
+
+
+# ─── Création d'un projet ─────────────────────────────────────────
+
+def remplir(texte: str, valeurs: dict[str, str]) -> str:
+    for cle, valeur in valeurs.items():
+        texte = texte.replace("{{" + cle + "}}", valeur)
+    return texte
+
+
+def valeurs_gabarit(args) -> dict[str, str]:
+    domaine = args.domaine.rstrip("/")
+    if "//" not in domaine:
+        domaine = "https://" + domaine
+    langues = [l.strip() for l in args.langues.split(",") if l.strip()]
+    return {
+        "NOM": args.nom, "DOMAINE": domaine,
+        "DOMAINE_NU": urlparse(domaine).netloc.removeprefix("www."),
+        "PAYS": args.pays, "LANGUES": ", ".join(langues), "LANGUES_YAML": ", ".join(langues),
+        "LANGUE_PRINCIPALE": langues[0] if langues else "fr", "CMS": args.cms,
+        "ACTIVITE": args.activite, "PROPOSITION_VALEUR": args.proposition, "TON": args.ton,
+        "VOUVOIEMENT": "true" if args.vouvoiement else "false",
+        "VOUVOIEMENT_TEXTE": "oui" if args.vouvoiement else "non (tutoiement)", "PAGES_MAX": str(args.pages_max),
+        "MODE": args.mode, "PUBLICATION": args.publication,
+        "DATE": dt.date.today().isoformat(), "PAR": args.par,
+    }
+
+
+def initialiser(args) -> int:
+    projet = Path(args.dossier).expanduser().resolve()
+    if projet.exists() and any(p for p in projet.iterdir() if p.name != ".git"):
+        if (projet / "CLAUDE.md").exists() and not args.forcer:
+            print(f"✗ {projet} contient déjà un CLAUDE.md. Utilisez `sync` pour mettre à jour "
+                  "la méthode, ou --forcer pour réinitialiser le gabarit.")
+            return 1
+
+    valeurs = valeurs_gabarit(args)
+
+    source, tempo = obtenir_source(args.depuis)
+    try:
+        modele = source / MODELE
+        if not modele.is_dir():
+            print(f"✗ Gabarit introuvable : {modele}")
+            return 1
+
+        projet.mkdir(parents=True, exist_ok=True)
+        for f in modele.rglob("*"):
+            if not f.is_file():
+                continue
+            cible = projet / f.relative_to(modele)
+            if cible.exists() and not args.forcer:
+                continue
+            cible.parent.mkdir(parents=True, exist_ok=True)
+            try:
+                cible.write_text(remplir(f.read_text(encoding="utf-8"), valeurs), encoding="utf-8")
+            except UnicodeDecodeError:
+                shutil.copy2(f, cible)
+
+        # Le .mcp.json vit à la racine du projet : c'est là qu'une routine le lit.
+        # Il appartient ensuite au projet, qui peut retirer les serveurs inutiles.
+        mcp = projet / ".mcp.json"
+        if not mcp.exists() and (source / ".mcp.json").is_file():
+            shutil.copy2(source / ".mcp.json", mcp)
+
+        restants = sorted({m for f in projet.rglob("*") if f.is_file() and ".git" not in f.parts
+                           and f.suffix in {".md", ".yml", ".example"}
+                           for m in re.findall(r"\{\{([A-Z_]+)\}\}", f.read_text(encoding="utf-8",
+                                                                                 errors="ignore"))})
+        print(f"\n  ✓ Projet « {args.nom} » créé dans {projet}")
+        code = synchroniser(projet, source, forcer=True)
+    finally:
+        if tempo:
+            tempo.cleanup()
+
+    if restants:
+        print(f"  ! Champs encore à remplir : {', '.join(restants)}")
+    print("  Prochaines étapes :")
+    print("    1. Compléter memoire/marque.md — c'est lui qui rend le contenu propre à ce client")
+    print("    2. git init && créer le dépôt PRIVÉ sur GitHub, puis pousser")
+    print("    3. Créer les 4 routines décrites dans ROUTINES.md\n")
+    return code
+
+
+# ─── Adoption d'un dépôt existant ─────────────────────────────────
+
+LIGNES_GITIGNORE = [".env", ".env.*", "!.env.example", "secrets/", "*-service-account.json",
+                    ".seo-decupler/backups/", "__pycache__/", "*.pyc"]
+
+
+def adopter(args) -> int:
+    """Branche la méthode sur un dépôt qui a déjà sa vie : rien n'est écrasé en silence.
+
+    - les fichiers du gabarit ne sont ajoutés que s'ils manquent ;
+    - un CLAUDE.md existant est gardé, et le gabarit est écrit à côté
+      (CLAUDE.decupler-seo.md) pour que vous fusionniez ce qui vous sert ;
+    - le .gitignore existant est complété, jamais remplacé ;
+    - les fichiers de méthode déjà présents sans avoir été installés par la
+      synchronisation arrêtent tout, sauf --forcer.
+    """
+    projet = Path(args.dossier).expanduser().resolve()
+    valeurs = valeurs_gabarit(args)
+    source, tempo = obtenir_source(args.depuis)
+    try:
+        plan = fichiers_methode(source)
+        conflits = collisions(projet, plan, lire_manifeste(projet))
+        if conflits and not args.forcer:
+            signaler_collisions(conflits)
+            return 1
+
+        ajoutes, a_cote = [], []
+        for f in (source / MODELE).rglob("*"):
+            if not f.is_file():
+                continue
+            rel = f.relative_to(source / MODELE)
+            cible = projet / rel
+            if rel.name == ".gitignore" and cible.exists():
+                actuelles = cible.read_text(encoding="utf-8").splitlines()
+                manquantes = [l for l in LIGNES_GITIGNORE if l not in actuelles]
+                if manquantes:
+                    with open(cible, "a", encoding="utf-8") as g:
+                        g.write("\n# decupler-seo : secrets et état local\n" + "\n".join(manquantes) + "\n")
+                    ajoutes.append(f"{rel} (complété)")
+                continue
+            if cible.exists():
+                if rel.name == "CLAUDE.md":
+                    cible = projet / "CLAUDE.decupler-seo.md"
+                    a_cote.append(cible.name)
+                else:
+                    continue
+            cible.parent.mkdir(parents=True, exist_ok=True)
+            try:
+                cible.write_text(remplir(f.read_text(encoding="utf-8"), valeurs), encoding="utf-8")
+            except UnicodeDecodeError:
+                shutil.copy2(f, cible)
+            ajoutes.append(str(cible.relative_to(projet)))
+
+        print(f"\n  ✓ Gabarit : {len(ajoutes)} fichier(s) ajouté(s), rien d'existant écrasé")
+        for nom in a_cote:
+            print(f"  → {nom} : le gabarit de mémoire, écrit à côté de votre CLAUDE.md.")
+            print(f"    Importez-le depuis votre CLAUDE.md (ligne « @{nom} »), ou reprenez-en ce qui vous sert.")
+        if not (projet / ".mcp.json").exists():
+            print("  → .mcp.json non ajouté : un dépôt existant a déjà ses connecteurs, et une routine démarre")
+            print(f"    chaque serveur déclaré. Reprenez seulement ceux utiles depuis {DEPOT_DEFAUT}/blob/main/.mcp.json")
+        code = synchroniser(projet, source, forcer=True)
+    finally:
+        if tempo:
+            tempo.cleanup()
+    return code
+
+
+# ─── Statut ───────────────────────────────────────────────────────
+
+def statut(args) -> int:
+    projet = Path(args.dossier).expanduser().resolve()
+    manifeste = lire_manifeste(projet)
+    if not manifeste["version"]:
+        print(f"\n  Aucune méthode synchronisée dans {projet}.")
+        print(f"  → python3 {Path(__file__).name} sync {args.dossier}\n")
+        return 1
+
+    modifies = [rel for rel, e in manifeste["fichiers"].items()
+                if (projet / rel).is_file() and empreinte(projet / rel) != e]
+    manquants = [rel for rel in manifeste["fichiers"] if not (projet / rel).is_file()]
+    propres = sorted(p.name for p in (projet / ".claude" / "skills").glob(f"{PREFIXE_PROJET}*") if p.is_dir())
+
+    print(f"\n  Projet    : {projet}")
+    print(f"  Méthode   : {manifeste['version']}  (synchronisée le {manifeste.get('synchronise_le', '?')})")
+    print(f"  Fichiers  : {len(manifeste['fichiers'])} gérés par la méthode")
+    print(f"  Skills propres au projet : {', '.join(propres) or 'aucun'}")
+    if modifies:
+        print(f"  ! {len(modifies)} fichier(s) de méthode modifié(s) localement :")
+        for rel in modifies[:10]:
+            print(f"      {rel}")
+    if manquants:
+        print(f"  ! {len(manquants)} fichier(s) de méthode supprimé(s) localement")
+
+    if (RACINE_METHODE / ".claude-plugin" / "plugin.json").is_file():
+        source_version = version_de(RACINE_METHODE)
+        if source_version != manifeste["version"]:
+            print(f"  → Une autre version est disponible ici : {source_version}")
+    else:
+        # Lancé depuis la copie embarquée : on compare à la dernière version
+        # publiée, sans rien télécharger.
+        publiee = derniere_publiee()
+        embarquee = manifeste["version"].rpartition("+")[2]
+        if not publiee:
+            print("  Dernière version publiée : impossible à lire (réseau ?)")
+        elif embarquee and publiee.startswith(embarquee):
+            print("  ✓ À jour avec la dernière version publiée")
+        else:
+            print(f"  → Mise à jour disponible ({publiee[:7]}) : python3 {DOSSIER_EMBARQUE}/scripts/projet.py sync .")
+    print()
+    return 0
+
+
+def derniere_publiee() -> str:
+    try:
+        sortie = subprocess.run(["git", "ls-remote", DEPOT_DEFAUT, "HEAD"], capture_output=True,
+                                text=True, timeout=20).stdout
+    except (OSError, subprocess.TimeoutExpired):
+        return ""
+    return sortie.split()[0] if sortie.split() else ""
+
+
+def main() -> int:
+    p = argparse.ArgumentParser(description="Projets decupler-seo")
+    sp = p.add_subparsers(dest="commande", required=True)
+
+    creation = sp.add_parser("init", help="créer un projet à partir du gabarit")
+    adoption = sp.add_parser("adopter", help="brancher la méthode sur un dépôt existant, sans rien écraser")
+    for sous in (creation, adoption):
+        sous.add_argument("dossier")
+        sous.add_argument("--nom", required=True)
+        sous.add_argument("--domaine", required=True)
+        sous.add_argument("--pays", default="FR")
+        sous.add_argument("--langues", default="fr", help="ex. fr ou ar,en")
+        sous.add_argument("--cms", default="wordpress")
+        sous.add_argument("--publication", default="cms", choices=["cms", "depot"],
+                          help="depot pour un site en code : publier = fusionner une PR")
+        sous.add_argument("--activite", default="")
+        sous.add_argument("--proposition", default="")
+        sous.add_argument("--ton", default="expert, direct, sans jargon inutile")
+        sous.add_argument("--vouvoiement", action=argparse.BooleanOptionalAction, default=True)
+        sous.add_argument("--pages-max", type=int, default=3)
+        sous.add_argument("--mode", default="assisted", choices=["safe", "assisted", "autonomous"],
+                          help="assisted par défaut : un nouveau projet commence sous surveillance")
+        sous.add_argument("--par", default="")
+        sous.add_argument("--depuis", help="dossier ou URL git de decupler-seo")
+        sous.add_argument("--forcer", action="store_true")
+
+    s = sp.add_parser("sync", help="installer ou mettre à jour la méthode dans un projet")
+    s.add_argument("dossier")
+    s.add_argument("--depuis", help="dossier ou URL git de decupler-seo")
+    s.add_argument("--forcer", action="store_true", help="écraser les modifications locales")
+    s.add_argument("--simuler", action="store_true", help="montrer sans écrire")
+
+    t = sp.add_parser("statut", help="version et intégrité de la méthode embarquée")
+    t.add_argument("dossier")
+
+    args = p.parse_args()
+    if args.commande == "init":
+        return initialiser(args)
+    if args.commande == "adopter":
+        return adopter(args)
+    if args.commande == "sync":
+        projet = Path(args.dossier).expanduser().resolve()
+        source, tempo = obtenir_source(args.depuis)
+        try:
+            return synchroniser(projet, source, forcer=args.forcer, simuler=args.simuler)
+        finally:
+            if tempo:
+                tempo.cleanup()
+    return statut(args)
+
+
+if __name__ == "__main__":
+    sys.exit(main())
