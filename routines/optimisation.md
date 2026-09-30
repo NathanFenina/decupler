@@ -4,10 +4,10 @@
 
 ## Roadmap d'abord (skill seo-pilotage)
 
-1. Lis le tableau de bord https://claude.ai/artifact/CtbunuSEJDwPnkhEFawBHS avec l'outil Artifact (action read) et enregistre le HTML reçu dans `donnees/tableau-de-bord.html` (jamais commité).
+1. Lis le tableau de bord https://claude.ai/artifact/Rb2sP3EQFzedk6G2Xau6KA avec l'outil Artifact (action read) et enregistre le HTML reçu dans `donnees/tableau-de-bord.html` (jamais commité).
 2. `python3 .claude/decupler-seo/scripts/pilotage.py etat --html donnees/tableau-de-bord.html --projet-id decupler --statut validee`
 3. Exécute en priorité les actions validées de type « optimisation », en respectant leur note. Pour chacune : `python3 .claude/decupler-seo/scripts/pilotage.py marquer --html donnees/tableau-de-bord.html --projet-id decupler --id <id> --statut en-cours`, republie ; une fois livrée, `--statut faite --lien <PR ou URL>`, republie. Bloquée : remets `validee` avec `--note` qui dit pourquoi.
-4. Republier = outil Artifact, publish, `url` https://claude.ai/artifact/CtbunuSEJDwPnkhEFawBHS, `file_path` donnees/tableau-de-bord.html, sans capabilities. En cas de conflit : relis la page, refais le marquage, republie une fois.
+4. Republier = outil Artifact, publish, `url` https://claude.ai/artifact/Rb2sP3EQFzedk6G2Xau6KA, `file_path` donnees/tableau-de-bord.html, sans capabilities. En cas de conflit : relis la page, refais le marquage, republie une fois.
 
 ## Puis le travail de la semaine
 

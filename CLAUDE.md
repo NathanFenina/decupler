@@ -92,7 +92,7 @@ sans CSS inline ni classes Elementor, pour bien s'intégrer au thème du freelan
 ## Quand Nathan ouvre cette conversation
 
 Commencer par la roadmap du projet (skill `seo-pilotage`) : lire le tableau de
-bord https://claude.ai/artifact/CtbunuSEJDwPnkhEFawBHS (outil Artifact, action read), l'enregistrer dans
+bord https://claude.ai/artifact/Rb2sP3EQFzedk6G2Xau6KA (outil Artifact, action read), l'enregistrer dans
 `donnees/tableau-de-bord.html`, puis
 `python3 .claude/decupler-seo/scripts/pilotage.py etat --html donnees/tableau-de-bord.html --projet-id decupler`.
 Montrer les actions à valider, validées, en cours et faites ; proposer de lancer
@@ -100,7 +100,7 @@ les actions validées, et lancer celles que Nathan désigne.
 
 ### Règle anti-doublon (toutes les conversations du projet)
 
-La page de suivi https://claude.ai/artifact/CtbunuSEJDwPnkhEFawBHS est **le seul endroit** où l'on trace les actions de ce
+La page de suivi https://claude.ai/artifact/Rb2sP3EQFzedk6G2Xau6KA est **le seul endroit** où l'on trace les actions de ce
 projet, quelle que soit la conversation. Avant de lancer une tâche : vérifier
 qu'elle n'y est pas déjà en cours ou faite. Après toute tâche livrée, même
 demandée hors roadmap : `python3 .claude/decupler-seo/scripts/pilotage.py ajouter

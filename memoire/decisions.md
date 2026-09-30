@@ -18,7 +18,7 @@ contenu déjà en place, une règle propre au client.
   la mise en ligne reste une validation humaine dans l'admin WordPress.
 - **Cartographie et suivi** (30/09, décision de Nathan) : plus de Notion.
   `memoire/cartographie.csv` fait foi, et la page de suivi
-  https://claude.ai/artifact/CtbunuSEJDwPnkhEFawBHS trace roadmap, avancement
+  https://claude.ai/artifact/Rb2sP3EQFzedk6G2Xau6KA trace roadmap, avancement
   et chiffres (skills `seo-cartographie` et `seo-pilotage`). L'ancienne base
   Notion reste une archive, à consulter pour reprendre ses données.
 - **International** (30/09) : version anglaise pour les États-Unis (demande
