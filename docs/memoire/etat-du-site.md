@@ -43,7 +43,7 @@ Constaté le 30/09 : crawl-fix 1.3.4 et entite 1.0.1 actives.
 - 29/09 : **7 comptes administrateurs « maintable »** (IDs 6 à 12, sans email,
   inscrits « en 2020 », insérés directement en base) → rétrogradés abonnés,
   mots de passe aléatoires. Sauvegarde : `scratchpad/conso/backup-comptes-maintable.json`.
-  Contrôle programmé le 30/09. Reste à faire par la freelance : scan Wordfence
+  Contrôle du 30/09 : toujours abonnés, aucun nouvel admin (admins : 3 et 5). Reste à faire par la freelance : scan Wordfence
   complet, inspection de `wp-content/mu-plugins/` et du `functions.php` du
   thème, puis suppression des comptes.
 - Comptes légitimes : 3 (admin6091, « Nathan Fenina », utilisé par l'API) et
