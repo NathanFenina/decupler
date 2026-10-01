@@ -91,6 +91,10 @@ sans CSS inline ni classes Elementor, pour bien s'intégrer au thème du freelan
 
 ## Quand Nathan ouvre cette conversation
 
+**Lire aussi `memoire/passation.md`** : contexte, chiffres, pistes ouvertes et
+questions en attente laissés par la conversation de pilotage commune (close le
+01/10/2026). Ce projet se pilote désormais depuis ce dépôt seulement.
+
 Commencer par la roadmap du projet (skill `seo-pilotage`) : lire le tableau de
 bord https://claude.ai/artifact/Rb2sP3EQFzedk6G2Xau6KA (outil Artifact, action read), l'enregistrer dans
 `donnees/tableau-de-bord.html`, puis

@@ -1,6 +1,6 @@
 {
- "version": "3.5.3+eb462f7",
- "synchronise_le": "2026-10-01T07:20:28",
+ "version": "3.6.0+0f19d5b",
+ "synchronise_le": "2026-10-01T12:19:36",
  "fichiers": {
   ".claude/skills/geo-citation-tracker/SKILL.md": "27c796cbc194559b",
   ".claude/skills/geo-llms-txt/SKILL.md": "b5504ca5703dd594",
@@ -137,7 +137,7 @@
   ".claude/decupler-seo/scripts/cms_restore.py": "c8955ed36debc59c",
   ".claude/decupler-seo/scripts/gsc_analyse.py": "99bc808b939371a1",
   ".claude/decupler-seo/scripts/cartographie.py": "80f675b8d3cf3f52",
-  ".claude/decupler-seo/scripts/demande.py": "8a1f9199aea1bd7b",
+  ".claude/decupler-seo/scripts/demande.py": "b0962a42b18cb966",
   ".claude/decupler-seo/scripts/hreflang_check.py": "02d18b6524a47356",
   ".claude/decupler-seo/scripts/audit_images.py": "e969825cfd6ab4c8",
   ".claude/decupler-seo/scripts/_projet.py": "024816630fdcb4e7",
@@ -175,6 +175,6 @@
   ".claude/decupler-seo/hooks/garde-fou.sh": "e433f9908f6938a7",
   ".claude/decupler-seo/hooks/README.md": "685c8d6876ba5f7c",
   ".claude/decupler-seo/hooks/verifier-schema.sh": "ffc54d77ef9461a9",
-  ".claude/decupler-seo/plugin.json": "28c191c0f8052f51"
+  ".claude/decupler-seo/plugin.json": "2b5f648de12c0f16"
  }
 }

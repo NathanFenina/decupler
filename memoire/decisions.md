@@ -10,6 +10,9 @@ contenu déjà en place, une règle propre au client.
 | Date | Décision | Contexte | Par |
 |---|---|---|---|
 | 2026-09-30 | Création du projet | Onboarding |  |
+| 2026-10-01 | **Anglais sans plugin multilingue** : pages `decupler.com/en/<page>/` (page parente `en`, `lang`/hreflang par le plugin « Budget de crawl », retirer d'abord la 301 sur `/en/`) ; cibles États-Unis (GEO/IA) et Moyen-Orient (SEO local, Dubaï) | Décision de Nathan | Nathan |
+| 2026-10-01 | **Une seule page de suivi** : la roadmap vit en haut de « Chantiers decupler.com » ; la page « Pilotage Décupler » est supprimée | Éviter les doublons entre conversations | Nathan |
+| 2026-10-01 | **Pilotage depuis ce dépôt uniquement** ; contexte dans `memoire/passation.md` | Fin de la conversation commune aux trois projets | Nathan |
 
 ## 2026-09-30 — Adoption de decupler-seo (Claude, pour Nathan)
 
