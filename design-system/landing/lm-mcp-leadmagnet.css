@@ -36,3 +36,24 @@ body.lmg-gated .lm-mcp{filter:blur(5px);transition:filter .4s ease;pointer-event
 .ai-success-message{display:none;color:#10b981;font-weight:700;font-size:1.15rem;margin-top:1rem}
 .ai-popup-close{position:absolute;top:14px;right:16px;background:none;border:none;font-size:1.4rem;color:#cbd5e1;cursor:pointer;line-height:1}
 .ai-popup-close:hover{color:#64748b}
+/* Ne dépend plus du box-sizing du thème (sinon la carte déborde sur mobile) */
+.ai-popup-overlay,.ai-popup-overlay *{box-sizing:border-box}
+@media (max-width:480px){.ai-popup-overlay{padding:1rem}.ai-popup-card{padding:2rem 1.25rem}}
+/* Popup fermable (--gate-param) : croix lisible, lien « Continuer sans email »,
+   remise à zéro des styles de bouton du thème (Astra ajoute padding et fond). */
+.ai-popup-card .ai-popup-close{top:10px;right:12px;width:36px;height:36px;margin:0;padding:0;border-radius:50%;color:#64748b;font-size:1.5rem;display:flex;align-items:center;justify-content:center;min-width:0;box-shadow:none}
+.ai-popup-card .ai-popup-close:hover{background:#f1f5f9;color:#1e293b}
+.ai-popup-card .ai-popup-skip{display:inline-block;margin:.9rem 0 0;padding:4px 6px;min-width:0;background:none;border:0;box-shadow:none;color:#475569;font-size:.88rem;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+/* Encart d'inscription dans le contenu */
+.lm-mcp .lmg-inline{margin:22px 0 0;padding:18px 20px;border:1px solid #d9dcea;border-radius:14px;background:#fff}
+.lm-mcp .lmg-inline-t{margin:0 0 10px;font-weight:700;color:#1e293b}
+.lm-mcp .lmg-inline form{display:flex;flex-wrap:wrap;gap:10px}
+.lm-mcp .lmg-inline input[type=email]{flex:1 1 220px;min-width:0;margin:0;padding:.8rem 1rem;border:2px solid #e2e8f0;border-radius:10px;font:inherit;font-size:1rem}
+.lm-mcp .lmg-inline input[type=email]:focus{outline:none;border-color:#4c47c9}
+.lm-mcp .lmg-inline button{flex:0 0 auto;margin:0;padding:.8rem 1.3rem;min-width:0;border:0;border-radius:10px;background:#4c47c9;color:#fff;font:inherit;font-weight:700;cursor:pointer}
+.lm-mcp .lmg-inline button:hover{background:#3f3ab0}
+.lm-mcp .lmg-inline-n{margin:8px 0 0;font-size:.8rem;color:#64748b}
+.lm-mcp .lmg-inline-ok{margin:0;font-weight:700;color:#047857}
+.ai-popup-overlay.ai-soft{backdrop-filter:none;-webkit-backdrop-filter:none;background:rgba(15,23,42,.45)}
+/* wpautop glisse des <p> vides (balise courte suivie d'un bloc sur la même ligne) : ils prennent une case de grille ou de flex. */
+.lm-mcp p:empty{display:none!important}

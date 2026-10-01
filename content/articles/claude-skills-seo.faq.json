@@ -1,0 +1,26 @@
+[
+ {
+  "question": "Quels skills installer dans Claude pour faire du SEO ?",
+  "answer": "Dix couvrent l'essentiel : un audit SEO, une optimisation pour les moteurs de réponse (AEO), un générateur de données structurées, un contrôle E-E-A-T, un classement des mots-clés par intention, une analyse d'écart avec les concurrents, des posts Google Business Profile, un plan de maillage interne, un brief de contenu et une évaluation de visibilité IA. Le pack Décupler les réunit en français, prêts à installer."
+ },
+ {
+  "question": "Qu'est-ce qu'un skill Claude ?",
+  "answer": "Un dossier qui contient un fichier SKILL.md : un nom, une description qui dit quand s'en servir, et des instructions. Claude lit les descriptions, et charge le skill complet quand ta demande correspond. Le format a été créé par Anthropic et publié comme standard ouvert."
+ },
+ {
+  "question": "Où installer les skills dans Claude Code ?",
+  "answer": "Dans ~/.claude/skills/<nom-du-skill>/SKILL.md pour les avoir dans tous tes projets, ou dans .claude/skills/ à la racine d'un projet pour ce projet seulement. Le plus simple : donner le lien du pack à Claude Code et lui demander de les installer."
+ },
+ {
+  "question": "Peut-on utiliser ces skills sans Claude Code ?",
+  "answer": "Oui, sur claude.ai : dans les paramètres, la section Skills permet d'importer un skill au format ZIP, avec une offre Pro, Max, Team ou Enterprise et l'exécution de code activée. Les skills activés sur ton compte se synchronisent aussi dans Claude Code."
+ },
+ {
+  "question": "Un skill remplace-t-il un outil SEO ?",
+  "answer": "Non. Un skill apporte la méthode, pas les données. Pour des positions, des clics ou l'état de la page de résultats, il faut brancher Search Console, DataForSEO ou un crawler comme Screaming Frog. C'est l'association des deux qui produit des recommandations précises."
+ },
+ {
+  "question": "Le pack est-il gratuit ?",
+  "answer": "Oui, le ZIP est en téléchargement libre. Il faut en revanche un abonnement Claude payant pour Claude Code, ou pour importer des skills sur claude.ai."
+ }
+]

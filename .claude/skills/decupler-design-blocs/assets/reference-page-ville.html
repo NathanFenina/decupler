@@ -1,0 +1,383 @@
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap">
+<style>
+body .ast-article-single > .entry-header, .entry-title { display:none !important; }
+.site-content .ast-container, .site-content #primary, .entry-content,
+.site-content, #content, main#main.site-main, article.page {
+  max-width:100% !important; padding-top:0 !important; padding-bottom:0 !important;
+  margin-top:0 !important; margin-bottom:0 !important;
+}
+.dcp-v{
+  --vio:#667eea; --vio2:#764ba2; --vio-d:#512990; --vio-l:#7c3aed;
+  --grad:linear-gradient(135deg,#667eea 0%,#764ba2 100%);
+  --tx:#1a1a2e; --tx2:#4a4a6a; --tx3:#8b8ba7;
+  --bg:#ffffff; --bg2:#f7f5fd; --lav:#ece9f8; --bd:#e6e3f2;
+  --ft:"Sora",system-ui,sans-serif; --fb:"Inter",system-ui,sans-serif;
+  width:100vw; max-width:100vw;
+  margin-left:calc(50% - 50vw) !important; margin-right:calc(50% - 50vw) !important;
+  background:var(--bg); color:var(--tx2); font-family:var(--fb);
+  font-size:16px; line-height:1.68; overflow-x:hidden;
+}
+.dcp-v *{box-sizing:border-box}
+.dcp-v .in{max-width:1180px;margin:0 auto;padding-left:26px;padding-right:26px}
+.dcp-v .nr{max-width:70ch}
+/* Astra pose un color explicite sur h1/h2/h3 : une regle explicite bat la
+   valeur heritee, il faut donc la redeclarer ici. */
+.dcp-v h1,.dcp-v h2,.dcp-v h3,.dcp-v h4{font-family:var(--ft) !important;color:var(--tx) !important;
+  margin:0;text-wrap:balance;letter-spacing:-.02em}
+.dcp-v h1{font-size:clamp(2.05rem,4.4vw,3.15rem);font-weight:700;line-height:1.14}
+.dcp-v h1 em{font-style:normal;color:var(--vio)}
+.dcp-v h2{font-size:clamp(1.42rem,2.9vw,2.1rem);font-weight:700;line-height:1.2}
+.dcp-v h3{font-size:1.01rem;font-weight:700;line-height:1.36}
+.dcp-v p{margin:0}
+.dcp-v a{color:inherit}
+.dcp-v .pill{display:inline-block;background:var(--lav);color:var(--vio-d);font-size:.685rem;
+  font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:7px 15px;border-radius:999px}
+.dcp-v .lead{color:var(--tx2);font-size:1.035rem}
+.dcp-v .sub{color:var(--tx3);font-size:.815rem}
+.dcp-v .st{display:flex;flex-direction:column;gap:18px}
+.dcp-v .st-s{display:flex;flex-direction:column;gap:12px}
+.dcp-v .row{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.dcp-v .bl{padding-top:clamp(56px,6.5vw,92px);padding-bottom:clamp(56px,6.5vw,92px)}
+.dcp-v .bl-lav{background:var(--bg2)}
+.dcp-v .bl-lav2{background:var(--lav)}
+/* boutons */
+.dcp-v .btn{display:inline-flex;align-items:center;background:var(--grad);color:#fff !important;
+  font-family:var(--ft);font-weight:700;font-size:.925rem;padding:14px 26px;border-radius:10px;
+  text-decoration:none;box-shadow:0 6px 18px rgba(102,126,234,.28)}
+.dcp-v .btn:hover{filter:brightness(1.07)}
+.dcp-v .btn-o{display:inline-flex;align-items:center;background:#fff;color:var(--vio-d) !important;
+  font-family:var(--ft);font-weight:700;font-size:.925rem;padding:13px 25px;border-radius:10px;
+  text-decoration:none;border:1px solid var(--bd)}
+.dcp-v .btn-o:hover{border-color:var(--vio);color:var(--vio) !important}
+.dcp-v .lnk{color:var(--vio-d);text-decoration:underline;text-underline-offset:2px;font-weight:500}
+.dcp-v .lnk:hover{color:var(--vio)}
+/* hero */
+.dcp-v .hero{background:linear-gradient(170deg,#f3f0fd 0%,#faf9fe 58%,#ffffff 100%);
+  padding-top:clamp(52px,6vw,82px);padding-bottom:clamp(52px,6vw,78px);position:relative;overflow:hidden}
+.dcp-v .hgrid{display:grid;grid-template-columns:1.32fr .68fr;gap:clamp(26px,4vw,54px);align-items:start}
+.dcp-v .cards{display:flex;flex-direction:column;gap:14px;padding-top:12px}
+.dcp-v .card{background:#fff;border:1px solid var(--bd);border-radius:13px;padding:14px 18px;
+  box-shadow:0 8px 24px rgba(81,41,144,.07)}
+.dcp-v .card .k{font-size:.62rem;letter-spacing:.13em;text-transform:uppercase;color:var(--tx3);font-weight:700}
+.dcp-v .card .v{font-family:var(--ft);font-weight:700;font-size:.97rem;color:var(--tx);margin-top:3px}
+.dcp-v .trust{display:flex;flex-wrap:wrap;background:#fff;border:1px solid var(--bd);border-radius:13px;
+  margin-top:30px;box-shadow:0 8px 24px rgba(81,41,144,.06);overflow:hidden}
+.dcp-v .trust > div{flex:1 1 150px;padding:17px 22px;border-right:1px solid var(--bd)}
+.dcp-v .trust > div:last-child{border-right:0}
+.dcp-v .trust .n{font-family:var(--ft);font-weight:700;font-size:1.32rem;color:var(--vio);line-height:1.1}
+.dcp-v .trust .l{font-size:.78rem;color:var(--tx3);margin-top:3px;line-height:1.4}
+/* grille numerotee */
+.dcp-v .num2{display:grid;grid-template-columns:repeat(auto-fit,minmax(296px,1fr));gap:16px;margin-top:26px}
+.dcp-v .num2 > div{background:#fff;border:1px solid var(--bd);border-radius:13px;padding:22px 24px}
+.dcp-v .num2 .b{width:26px;height:26px;border-radius:999px;background:var(--lav);color:var(--vio-d);
+  font-family:var(--ft);font-weight:700;font-size:.78rem;display:flex;align-items:center;
+  justify-content:center;margin-bottom:11px}
+.dcp-v .num2 .d{color:var(--tx2);font-size:.9rem;line-height:1.6;margin-top:5px}
+/* maquette requete IA */
+.dcp-v .mock{background:#fff;border:1px solid var(--bd);border-radius:16px;padding:20px;
+  box-shadow:0 18px 44px rgba(81,41,144,.1)}
+.dcp-v .mock .k{font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--tx3);font-weight:700}
+.dcp-v .mock .q{background:var(--bg2);border:1px solid var(--bd);border-radius:9px;padding:12px 14px;
+  margin-top:8px;color:var(--tx);font-size:.875rem;line-height:1.5}
+.dcp-v .mock .ans{margin-top:16px;display:flex;flex-direction:column;gap:9px}
+.dcp-v .mock .ans > div{display:grid;grid-template-columns:15px 1fr;gap:10px;align-items:center;font-size:.875rem}
+.dcp-v .mock .dot{width:11px;height:11px;border-radius:999px;border:2px solid var(--bd);display:block}
+.dcp-v .mock .on .dot{border-color:var(--vio);background:var(--vio);box-shadow:0 0 0 3px rgba(102,126,234,.16)}
+.dcp-v .mock .on span{color:var(--tx);font-weight:600}
+.dcp-v .mock .off span{color:var(--tx3)}
+.dcp-v .mock .ft{font-size:.72rem;color:var(--tx3);margin-top:15px;padding-top:13px;border-top:1px solid var(--bd)}
+/* methode */
+.dcp-v .split{display:grid;grid-template-columns:.95fr 1.05fr;gap:clamp(26px,4.5vw,64px);align-items:center}
+.dcp-v .steps{display:flex;flex-direction:column;gap:15px;margin-top:6px}
+.dcp-v .steps > div{display:grid;grid-template-columns:25px 1fr;gap:14px;align-items:start}
+.dcp-v .steps .b{width:25px;height:25px;border-radius:999px;background:#fff;border:1px solid var(--bd);
+  color:var(--tx2);font-family:var(--ft);font-weight:700;font-size:.74rem;display:flex;
+  align-items:center;justify-content:center}
+.dcp-v .steps .t{font-size:.93rem;line-height:1.6;color:var(--tx2)}
+.dcp-v .steps .t b{color:var(--tx);font-weight:700}
+/* tableau */
+.dcp-v .tw{overflow-x:auto;border:1px solid var(--bd);border-radius:13px;background:#fff;margin-top:24px}
+.dcp-v table{border-collapse:collapse;width:100%;min-width:660px;font-size:.89rem}
+.dcp-v thead th{background:var(--grad);color:#fff;font-family:var(--ft);font-weight:700;font-size:.69rem;
+  letter-spacing:.11em;text-transform:uppercase;text-align:left;padding:14px 18px}
+.dcp-v tbody td{padding:14px 18px;border-bottom:1px solid var(--bd);border-right:1px solid var(--bd);
+  color:var(--tx2);vertical-align:top}
+.dcp-v tbody td:last-child{border-right:0}
+.dcp-v tbody tr:last-child td{border-bottom:0}
+.dcp-v tbody td:first-child{font-weight:600;color:var(--tx);font-family:var(--ft);font-size:.86rem}
+/* liste cochee */
+.dcp-v .chk{display:flex;flex-direction:column;gap:10px;margin-top:16px}
+.dcp-v .chk > div{display:grid;grid-template-columns:19px 1fr;gap:11px;align-items:start;
+  font-size:.925rem;color:var(--tx2);line-height:1.58}
+.dcp-v .chk .c{width:19px;height:19px;border-radius:999px;background:var(--lav);color:var(--vio-d);
+  font-size:.66rem;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:2px}
+/* photo ville + communes */
+.dcp-v .ph{border-radius:16px;overflow:hidden;position:relative;border:1px solid var(--bd);
+  background:var(--bg2);box-shadow:0 18px 44px rgba(81,41,144,.1);aspect-ratio:3/4;max-width:100%}
+.dcp-v .ph img{width:100%;height:100%;object-fit:cover;display:block}
+.dcp-v .ph .cap{position:absolute;left:0;right:0;bottom:0;padding:14px 18px;color:#fff;font-size:.78rem;
+  font-weight:600;background:linear-gradient(to top,rgba(20,10,40,.72),rgba(20,10,40,0))}
+.dcp-v .ph .slot{display:flex;align-items:center;justify-content:center;height:100%;padding:26px;
+  text-align:center;color:var(--tx3);font-size:.83rem;line-height:1.6}
+.dcp-v .comm{display:grid;grid-template-columns:repeat(auto-fit,minmax(178px,1fr));gap:12px;margin-top:26px}
+.dcp-v .comm > div{background:#fff;border:1px solid var(--bd);border-radius:11px;padding:13px 16px}
+.dcp-v .comm .n{font-family:var(--ft);font-weight:700;font-size:.9rem;color:var(--tx)}
+.dcp-v .comm .l{font-size:.73rem;color:var(--tx3);margin-top:2px}
+.dcp-v .cp{font-family:var(--ft);font-weight:700;color:var(--vio);font-size:.97rem}
+/* secteurs & budget */
+.dcp-v .grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:16px;margin-top:26px}
+.dcp-v .grid2 > div{background:#fff;border:1px solid var(--bd);border-radius:13px;padding:22px 24px}
+.dcp-v .grid2 .d{color:var(--tx2);font-size:.9rem;line-height:1.6;margin-top:6px}
+.dcp-v .bud{display:grid;grid-template-columns:repeat(auto-fit,minmax(238px,1fr));gap:16px;margin-top:26px}
+.dcp-v .bud > div{background:#fff;border:1px solid var(--bd);border-radius:13px;padding:24px;
+  display:flex;flex-direction:column;gap:6px}
+.dcp-v .bud .f{font-family:var(--ft);font-weight:700;font-size:1.13rem;color:var(--vio-d)}
+.dcp-v .bud .q{color:var(--tx2);font-size:.885rem;line-height:1.58}
+/* FAQ */
+.dcp-v .faq{display:flex;flex-direction:column;gap:12px;margin-top:26px}
+.dcp-v .decupler-faq-item{background:#fff;border:1px solid var(--bd);border-radius:13px}
+.dcp-v .decupler-faq-question{font-family:var(--ft);font-weight:700;font-size:1rem;line-height:1.4;
+  color:var(--tx);padding:20px 24px 0 24px}
+.dcp-v .decupler-faq-answer-inner{padding:9px 24px 20px 24px;color:var(--tx2);font-size:.915rem;
+  line-height:1.68;max-width:78ch}
+.dcp-v .decupler-faq-answer-inner a{color:var(--vio-d);text-decoration:underline;text-underline-offset:2px}
+/* E-E-A-T */
+.dcp-v .eeat{display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:center;background:#fff;
+  border:1px solid var(--bd);border-radius:14px;padding:22px 24px;margin-top:24px}
+.dcp-v .eeat .av{width:66px;height:66px;border-radius:999px;overflow:hidden;background:var(--lav);display:block}
+.dcp-v .eeat .av img{width:100%;height:100%;object-fit:cover;display:block}
+.dcp-v .eeat .nf{display:flex;flex-direction:column;gap:4px}
+.dcp-v .eeat .nf .n{font-family:var(--ft);font-weight:700;font-size:1.03rem;color:var(--tx)}
+.dcp-v .eeat .nf .r{color:var(--tx2);font-size:.885rem;max-width:60ch}
+/* bande CTA finale */
+.dcp-v .final{background:var(--grad);border-radius:0}
+.dcp-v .final h2{color:#fff !important}
+.dcp-v .final .lead{color:rgba(255,255,255,.88)}
+.dcp-v .final .btn{background:#fff;color:var(--vio-d) !important;box-shadow:0 8px 22px rgba(0,0,0,.16)}
+.dcp-v .final .btn-o{background:transparent;color:#fff !important;border-color:rgba(255,255,255,.5)}
+@media (max-width:920px){
+  .dcp-v .hgrid,.dcp-v .split{grid-template-columns:1fr}
+  .dcp-v .cards{flex-direction:row;flex-wrap:wrap;padding-top:0}
+  .dcp-v .cards .card{flex:1 1 168px}
+}
+/* Translation seulement : jamais d'opacite, sinon le texte disparait pour les
+   crawlers qui n'executent pas JS. */
+@keyframes dcpIn{from{transform:translateY(14px)}to{transform:none}}
+@media (prefers-reduced-motion:no-preference){
+  .dcp-v .a1{animation:dcpIn .65s cubic-bezier(.2,.7,.2,1) both}
+  .dcp-v .a2{animation:dcpIn .65s cubic-bezier(.2,.7,.2,1) .08s both}
+  .dcp-v .a3{animation:dcpIn .65s cubic-bezier(.2,.7,.2,1) .16s both}
+}
+</style>
+<div class="dcp-v">
+<div class="hero">
+<div class="in">
+<div class="hgrid">
+<div class="st">
+<div><span class="pill a1">Agence SEO Cannes</span></div>
+<h1 class="a2">Agence SEO Cannes : soyez trouvé sur Google <em>et cité par les IA</em></h1>
+<p class="lead nr a2">Cannes vit au rythme d'un calendrier. Le Festival, le MIPIM, les Cannes Lions : la demande de recherche y monte par vagues et retombe. Une stratégie annuelle lissée passe à côté de l'essentiel. Nous travaillons le <a class="lnk" href="https://decupler.com/seo-local/">SEO local</a> cannois sur ce rythme réel, et la citation dans les réponses de ChatGPT, Claude, Gemini et Perplexity.</p>
+<div class="row a3"><a class="btn" href="https://calendly.com/fenina-nathan/consultationstrategique">Lancer mon audit gratuit</a><a class="btn-o" href="https://decupler.com/audit-geo/">Parler à un expert du 06</a></div>
+<p class="sub a3">Diagnostic en moins d'une minute. Sans engagement.</p>
+</div>
+<div class="cards a3">
+<div class="card"><div class="k">Zone</div><div class="v">Cannes · 06400</div></div>
+<div class="card"><div class="k">Moteurs suivis</div><div class="v">ChatGPT · Claude · Gemini</div></div>
+<div class="card"><div class="k">Diagnostic</div><div class="v">Gratuit</div></div>
+</div>
+</div>
+<div class="trust">
+<div><div class="n">1er</div><div class="l">palais des festivals d'Europe</div></div>
+<div><div class="n">4</div><div class="l">moteurs IA analysés</div></div>
+<div><div class="n">06400</div><div class="l">Cannes et bassin cannois</div></div>
+<div><div class="n">30 min</div><div class="l">depuis nos bureaux de Nice</div></div>
+</div>
+</div>
+</div>
+<div class="bl">
+<div class="in st-s">
+<h2>Pourquoi faire appel à une agence SEO Cannes ?</h2>
+<p class="lead nr">Cannes concentre sur quelques kilomètres carrés une densité d'entreprises que peu de villes françaises atteignent : hôtellerie, restauration, immobilier de prestige, yachting, événementiel. Sur la Croisette et le carré d'or, des dizaines d'établissements se disputent les mêmes requêtes à trois cents mètres les uns des autres.</p>
+<p class="lead nr">La deuxième particularité est temporelle. Une part importante du chiffre d'affaires cannois se joue pendant une poignée de semaines, dictées par le calendrier du Palais des Festivals. Un contenu publié le jour d'un salon arrive trop tard : Google met plusieurs semaines à l'indexer et à lui accorder sa confiance. Une agence SEO Cannes qui ne construit pas son calendrier éditorial sur ces dates travaille à contretemps.</p>
+<p class="lead nr">S'ajoute une clientèle en partie internationale, qui interroge Google et les assistants IA en anglais, en italien ou en allemand — avec des formulations qui ne sont jamais la traduction littérale des vôtres.</p>
+<div class="row" style="margin-top:8px"><a class="btn" href="https://calendly.com/fenina-nathan/consultationstrategique">Voir où j'en suis aujourd'hui</a></div>
+</div>
+</div>
+<div class="bl bl-lav">
+<div class="in st-s">
+<h2>Qu'est-ce qui fait ranker à Cannes ?</h2>
+<p class="lead nr">Six chantiers qu'une agence SEO Cannes doit traiter en priorité, et qui pèsent plus lourd ici que dans une ville comparable de l'intérieur.</p>
+<div class="num2">
+<div><div class="b">1</div><h3>Travailler en amont du calendrier</h3><div class="d">Le contenu lié à un salon se publie trois à six semaines avant, le temps que Google l'indexe. Arriver le jour J, c'est arriver après.</div></div>
+<div><div class="b">2</div><h3>La fiche Google avant le site</h3><div class="d">Sur l'hôtellerie et la restauration cannoises, la fiche capte souvent plus de contacts que le site lui-même. Elle se travaille en premier, avec les avis et les photos.</div></div>
+<div><div class="b">3</div><h3>Le multilingue réel, pas traduit</h3><div class="d">Des URLs distinctes par langue, des balises hreflang correctes, et des mots-clés réellement recherchés dans chaque langue.</div></div>
+<div><div class="b">4</div><h3>La proximité au pâté de maisons</h3><div class="d">Google arbitre à l'échelle du quartier. Être cité sur des sources azuréennes pèse plus que trois backlinks nationaux.</div></div>
+<div><div class="b">5</div><h3>Être citable par un modèle</h3><div class="d">Une IA reprend ce qui est clair, structuré et attribuable : horaires, tarifs, réponses explicites. Pas de la prose promotionnelle.</div></div>
+<div><div class="b">6</div><h3>La preuve plutôt que la promesse</h3><div class="d">Sur un marché où tout le monde s'annonce premium, seuls les chiffres vérifiables font la différence.</div></div>
+</div>
+<div class="row" style="margin-top:22px"><a class="btn-o" href="https://decupler.com/agence-geo/">Comprendre le référencement IA</a></div>
+</div>
+</div>
+<div class="bl">
+<div class="in split">
+<div class="mock">
+<div class="k">Requête posée à ChatGPT</div>
+<div class="q">Quelle agence contacter pour un hôtel à Cannes qui veut remplir hors Festival ?</div>
+<div class="ans">
+<div class="on"><span class="dot"></span><span>Votre établissement</span></div>
+<div class="off"><span class="dot"></span><span>Concurrent A</span></div>
+<div class="off"><span class="dot"></span><span>Concurrent B</span></div>
+</div>
+<div class="ft">Citation mesurée sur le bassin cannois, sur ChatGPT, Claude, Gemini et Perplexity.</div>
+</div>
+<div class="st-s">
+<h2>Comment se déroule un accompagnement à Cannes ?</h2>
+<p class="lead nr">Quatre étapes, outillées par <a class="lnk" href="https://decupler.com/cartographie-ia/">la Cartographie IA</a> et <a class="lnk" href="https://decupler.com/claude-skills-seo/">nos agents d'audit</a>. Nous prenons en charge l'exécution, pas seulement la recommandation.</p>
+<div class="steps">
+<div><div class="b">1</div><div class="t"><b>Relevé de la SERP réelle.</b> Nous regardons qui ranke réellement sur vos requêtes cannoises et pourquoi, plutôt que d'appliquer des règles générales. La structure cible sort de ce relevé.</div></div>
+<div><div class="b">2</div><div class="t"><b>Fondations et signaux locaux.</b> Vitesse, indexation, données structurées, <a class="lnk" href="https://decupler.com/fiche-gmb/">fiche Google</a> et <a class="lnk" href="https://decupler.com/citations-locales/">citations locales</a> cohérentes.</div></div>
+<div><div class="b">3</div><div class="t"><b>Contenu calé sur votre calendrier.</b> Les pages qui comptent publiées en amont des pics, avec des réponses explicites et chiffrées.</div></div>
+<div><div class="b">4</div><div class="t"><b>Mesure mensuelle, deux canaux.</b> Positions et clics d'un côté, taux de citation dans les réponses IA de l'autre. Ils ne bougent pas au même rythme.</div></div>
+</div>
+<div class="row" style="margin-top:20px"><a class="btn-o" href="https://calendly.com/fenina-nathan/consultationstrategique">Prendre un RDV stratégique</a></div>
+</div>
+</div>
+</div>
+<div class="bl bl-lav">
+<div class="in st-s">
+<h2>Quelle différence avec une agence SEO classique ?</h2>
+<p class="lead nr">Entre une requête touristique multilingue et une recherche B2B locale, l'écart de méthode saute aux yeux.</p>
+<div class="tw">
+<table>
+<thead><tr><th>Critère</th><th>Approche classique</th><th>Méthode Décupler</th></tr></thead>
+<tbody>
+<tr><td>Objectif</td><td>Se positionner dans les liens Google</td><td>Être cité dans la réponse générée et classé sur Google</td></tr>
+<tr><td>Unité de travail</td><td>Le mot-clé isolé</td><td>Le prompt, formulé en langage naturel</td></tr>
+<tr><td>Surfaces</td><td>Google, Bing</td><td>Google, ChatGPT, Claude, Gemini, Perplexity</td></tr>
+<tr><td>Indicateur suivi</td><td>Position moyenne</td><td>Taux de citation et rang face aux concurrents</td></tr>
+<tr><td>Rythme éditorial</td><td>Un volume mensuel constant</td><td>Calé sur le calendrier du Palais des Festivals</td></tr>
+<tr><td>Déclinaison locale</td><td>Un gabarit dupliqué par ville</td><td>Un contenu propre au tissu économique cannois</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="bl">
+<div class="in st-s">
+<h2>Quels résultats obtenons-nous ?</h2>
+<p class="lead nr">Nous ne sommes pas installés à Cannes et nous ne le prétendrons pas. Ce que nous mettons sur la table à la place, ce sont des missions documentées publiquement, avec leurs chiffres et leurs dates.</p>
+<div class="grid2">
+<div><h3>Decathlon Travel — tourisme</h3><div class="d">De mai à novembre 2023 : <strong style="color:var(--vio-d)">+140 % de trafic organique</strong>, de 12 500 à 30 000 visites mensuelles, 85 mots-clés en top 3 Google et +180 % de conversions. Le secteur le plus proche du tissu cannois. <a class="lnk" href="https://decupler.com/etude-de-cas-seo-decathlon/">Lire l'étude</a>.</div></div>
+<div><h3>Le Point — média</h3><div class="d">En 12 semaines : <strong style="color:var(--vio-d)">trafic organique multiplié par 3,2</strong>, de 2 000 à 6 360 visites mensuelles, passage de la position 3-5 à la première place, 12 puis 57 mots-clés en top 10. <a class="lnk" href="https://decupler.com/etude-de-cas-seo-le-point/">Lire l'étude</a>.</div></div>
+<div><h3>Reux Travaux — artisanat local</h3><div class="d">Configuration comparable à celle d'une PME cannoise : <strong style="color:var(--vio-d)">+450 % de clics</strong> sur la page de service stratégique, de 8 à 44 clics mensuels, et 100+ mots-clés locaux positionnés. <a class="lnk" href="https://decupler.com/etude-de-cas-seo-reux-travaux/">Lire l'étude</a>.</div></div>
+<div><h3>Allianz — acquisition payante</h3><div class="d">En 4 mois à budget constant : <strong style="color:var(--vio-d)">ROI multiplié par 3</strong> et coût par lead réduit de 42 %, de 127 € à 74 €. Utile quand un pic de saison impose de compléter l'organique. <a class="lnk" href="https://decupler.com/etude-de-cas-sea-allianz/">Lire l'étude</a>.</div></div>
+</div>
+<div class="row" style="margin-top:24px"><a class="btn" href="https://decupler.com/cas-clients/">Les 8 missions documentées</a></div>
+</div>
+</div>
+<div class="bl bl-lav">
+<div class="in">
+<div class="split">
+<div class="st-s">
+<h2>Où intervenons-nous autour de Cannes ?</h2>
+<p class="lead nr">Nous couvrons Cannes intra-muros — la Croisette, le Suquet, la Californie et Cannes-la-Bocca, soit les codes postaux 06400 et 06150 — ainsi que tout le bassin cannois.</p>
+<p class="cp">06400 · 06150</p>
+<p class="lead nr">Exemples de prompts sur lesquels nous travaillons la citation dans le bassin cannois :</p>
+<div class="chk">
+<div><span class="c">✓</span><span>hôtel avec vue mer à Cannes hors Festival</span></div>
+<div><span class="c">✓</span><span>traiteur pour un événement au Palais des Festivals</span></div>
+<div><span class="c">✓</span><span>agence immobilière de prestige Cannes Croisette</span></div>
+<div><span class="c">✓</span><span>location de yacht à la semaine à Cannes</span></div>
+</div>
+<div class="row" style="margin-top:22px"><a class="btn-o" href="https://calendly.com/fenina-nathan/consultationstrategique">Prendre rendez-vous</a></div>
+</div>
+<div class="ph"><div class="slot">Emplacement photo — vue de Cannes, format portrait 3:4.<br>À déposer dans la médiathèque, alt « agence SEO Cannes ».</div></div>
+</div>
+<div class="comm">
+<div><div class="n">Le Cannet</div><div class="l">06 · bassin cannois</div></div>
+<div><div class="n">Mandelieu-la-Napoule</div><div class="l">06 · bassin cannois</div></div>
+<div><div class="n">Mougins</div><div class="l">06 · bassin cannois</div></div>
+<div><div class="n">Vallauris</div><div class="l">06 · bassin cannois</div></div>
+<div><div class="n">Antibes</div><div class="l">06 · bassin cannois</div></div>
+<div><div class="n">Théoule-sur-Mer</div><div class="l">06 · bassin cannois</div></div>
+<div><div class="n">Pégomas</div><div class="l">06 · bassin cannois</div></div>
+<div><div class="n">Mouans-Sartoux</div><div class="l">06 · bassin cannois</div></div>
+</div>
+<p class="lead nr" style="margin-top:22px">Les entreprises cannoises qui nous consultent partent souvent du même constat : elles apparaissent sur leur nom de marque, jamais sur ce que leurs clients tapent réellement. Nous intervenons aussi à <a class="lnk" href="https://decupler.com/agence-seo-nice/">Nice</a> et sur le <a class="lnk" href="https://decupler.com/agence-geo-nice/">référencement IA azuréen</a>.</p>
+</div>
+</div>
+<div class="bl">
+<div class="in st-s">
+<h2>Quels secteurs accompagnons-nous à Cannes ?</h2>
+<p class="lead nr">Quatre univers structurent le tissu économique cannois, et ils n'ont pas les mêmes requêtes.</p>
+<div class="grid2">
+<div><h3>Hôtellerie &amp; restauration</h3><div class="d">Requêtes de découverte formulées en phrases complètes, très souvent depuis l'étranger et dans une autre langue. La fiche Google y pèse autant que le site.</div></div>
+<div><h3>Événementiel &amp; congrès</h3><div class="d">Traiteurs, régisseurs, agences réceptives, loueurs de matériel. Une demande qui explose sur quelques semaines et disparaît ensuite.</div></div>
+<div><h3>Immobilier de prestige</h3><div class="d">Agences, promoteurs, gestion locative saisonnière. Un marché où la réputation en ligne pèse autant que le portefeuille de biens.</div></div>
+<div><h3>Yachting &amp; services de luxe</h3><div class="d">Courtiers, conciergeries, chantiers. Des décisions qui passent souvent par un prescripteur, qui lui aussi interroge l'IA.</div></div>
+</div>
+<div class="row" style="margin-top:24px"><a class="btn" href="https://decupler.com/accompagnement-seo/">Tester la visibilité de mon secteur</a></div>
+</div>
+</div>
+<div class="bl bl-lav">
+<div class="in st-s">
+<div><span class="pill">Budget</span></div>
+<h2>Combien coûte une agence SEO Cannes ?</h2>
+<p class="lead nr">Trois ordres de grandeur, selon l'état du site et la concurrence de vos requêtes.</p>
+<div class="bud">
+<div><div class="f">800 à 1 200 € / mois</div><div class="q">Commerce ou service local, concurrence modérée, site sain. Fiche Google, pages locales, contenu régulier.</div></div>
+<div><div class="f">1 500 à 2 500 € / mois</div><div class="q">Hôtellerie, restauration, immobilier : concurrence forte sur un territoire dense, souvent du multilingue à traiter.</div></div>
+<div><div class="f">Sur devis</div><div class="q">E-commerce, plateforme, refonte technique, ou une couverture GEO complète avec suivi du taux de citation.</div></div>
+</div>
+<p class="lead nr" style="margin-top:22px">Ce qui fait varier le chiffre, à Cannes plus qu'ailleurs : le nombre de langues à couvrir, et la part de votre activité qui dépend d'un pic de calendrier. Un établissement dont une large part du chiffre se fait en mai n'a pas le même plan qu'un prestataire à l'année. Nous le disons avant de commencer, et nous ne prenons pas la mission si le SEO n'est pas votre priorité du moment.</p>
+</div>
+</div>
+<div class="bl">
+<div class="in st-s">
+<h2>Questions fréquentes sur le SEO à Cannes</h2>
+<div class="faq">
+<div class="decupler-faq-item">
+<div class="decupler-faq-question">Avez-vous des bureaux à Cannes ?</div>
+<div class="decupler-faq-answer"><div class="decupler-faq-answer-inner">Non, et nous préférons le dire. Notre adresse est à Nice, 10 avenue Lympia privée, à une trentaine de minutes. Nous travaillons à distance avec des rendez-vous sur place quand c'est utile. Si le fait qu'une agence SEO Cannes soit physiquement installée en ville est un critère pour vous, un concurrent local aura cet argument et nous ne le contesterons pas — ce que nous apportons à la place, ce sont des missions chiffrées et vérifiables.</div></div>
+</div>
+<div class="decupler-faq-item">
+<div class="decupler-faq-question">Comment gérez-vous la saisonnalité du calendrier cannois ?</div>
+<div class="decupler-faq-answer"><div class="decupler-faq-answer-inner">En travaillant en amont. Le contenu lié à un salon ou au Festival se publie trois à six semaines avant l'événement, le temps que Google l'indexe et lui accorde un minimum de confiance. Nous construisons un calendrier éditorial calé sur les dates réelles du Palais des Festivals, et nous comparons chaque année la même période plutôt que le mois précédent — sinon on confond un creux normal avec une chute.</div></div>
+</div>
+<div class="decupler-faq-item">
+<div class="decupler-faq-question">Combien de temps avant de voir un résultat ?</div>
+<div class="decupler-faq-answer"><div class="decupler-faq-answer-inner">Nos missions publiées donnent l'ordre de grandeur réel : 21 jours pour les premiers mouvements sur Le Point, 3 mois pour Atoo Énergie, 4 mois pour Allianz, 6 mois pour l'essentiel du gain Decathlon. Sur les citations par les IA, les mouvements apparaissent plus vite que sur Google, parce que les modèles réindexent leurs sources en quelques semaines. Nous mesurons les deux séparément, chaque mois.</div></div>
+</div>
+<div class="decupler-faq-item">
+<div class="decupler-faq-question">Faut-il traduire le site pour la clientèle internationale ?</div>
+<div class="decupler-faq-answer"><div class="decupler-faq-answer-inner">Souvent oui à Cannes, mais pas n'importe comment. Une traduction automatique posée sur les pages existantes ne ranke pas : il faut des URLs distinctes par langue, des balises hreflang correctes, et surtout des mots-clés réellement recherchés dans chaque langue — qui ne sont presque jamais la traduction littérale des vôtres. Nous mesurons le volume réel par langue avant d'engager le moindre mot.</div></div>
+</div>
+<div class="decupler-faq-item">
+<div class="decupler-faq-question">Travaillez-vous le référencement dans ChatGPT et Perplexity ?</div>
+<div class="decupler-faq-answer"><div class="decupler-faq-answer-inner">Oui, c'est la moitié de notre métier. Nous mesurons votre part de citation en interrogeant les modèles de façon répétée sur un panier de requêtes représentatives de votre marché, puis en comptant dans quelle proportion votre marque apparaît — et qui apparaît à votre place quand elle est absente. Les leviers recoupent en partie le SEO classique, mais pas complètement : un site peut être premier sur Google et absent des réponses IA.</div></div>
+</div>
+<div class="decupler-faq-item">
+<div class="decupler-faq-question">Faut-il refaire le site ?</div>
+<div class="decupler-faq-answer"><div class="decupler-faq-answer-inner">Rarement. Dans la plupart des missions le site est conservé et nous travaillons son architecture, son contenu et ses données structurées. Une refonte ne se justifie que si la technique bloque l'indexation : rendu entièrement dépendant du JavaScript, temps de réponse serveur hors normes, arborescence ingérable. Nous le disons à l'audit, avant de commencer.</div></div>
+</div>
+</div>
+<div class="eeat">
+<div class="av"><img src="https://decupler.com/wp-content/uploads/2026/06/nathanfenina.png" alt="Nathan Fenina, fondateur de Décupler, agence SEO Cannes" width="300" height="300" loading="lazy"></div>
+<div class="nf">
+<div class="n">Nathan Fenina</div>
+<div class="r">Fondateur de Décupler, à Nice. Il opère les missions et publie la méthode.</div>
+<div class="r"><a class="lnk" href="https://www.linkedin.com/in/nathanfenina/">LinkedIn</a></div>
+</div>
+</div>
+</div>
+</div>
+<div class="bl final">
+<div class="in st">
+<h2>Savoir où vous en êtes prend vingt minutes</h2>
+<p class="lead nr">Nous regardons ensemble sur quelles requêtes cannoises vous êtes visible, lesquelles vous échappent, et si les modèles vous citent ou citent un concurrent. Sans engagement, et nous vous dirons franchement si le SEO n'est pas votre levier prioritaire.</p>
+<div class="row"><a class="btn" href="https://calendly.com/fenina-nathan/consultationstrategique">Demander une analyse</a><a class="btn-o" href="https://decupler.com/agence-seo/">Voir notre offre SEO</a></div>
+</div>
+</div>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","name":"Décupler — agence SEO Cannes","url":"https://decupler.com/agence-seo-cannes/","description":"Agence SEO et GEO intervenant à Cannes et dans le bassin cannois depuis Nice.","parentOrganization":{"@type":"Organization","name":"Décupler","@id":"https://decupler.com/#organization"},"address":{"@type":"PostalAddress","streetAddress":"10 avenue Lympia privée","postalCode":"06300","addressLocality":"Nice","addressRegion":"Provence-Alpes-Côte d'Azur","addressCountry":"FR"},"areaServed":[{"@type":"City","name":"Cannes"},{"@type":"City","name":"Le Cannet"},{"@type":"City","name":"Mandelieu-la-Napoule"},{"@type":"City","name":"Mougins"},{"@type":"City","name":"Vallauris"},{"@type":"City","name":"Antibes"},{"@type":"AdministrativeArea","name":"Alpes-Maritimes"}],"founder":{"@type":"Person","name":"Nathan Fenina","sameAs":"https://www.linkedin.com/in/nathanfenina/"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Avez-vous des bureaux à Cannes ?","acceptedAnswer":{"@type":"Answer","text":"Non, et nous préférons le dire. Notre adresse est à Nice, 10 avenue Lympia privée, à une trentaine de minutes. Nous travaillons à distance avec des rendez-vous sur place quand c'est utile. Si le fait qu'une agence SEO Cannes soit physiquement installée en ville est un critère pour vous, un concurrent local aura cet argument et nous ne le contesterons pas — ce que nous apportons à la place, ce sont des missions chiffrées et vérifiables."}},{"@type":"Question","name":"Comment gérez-vous la saisonnalité du calendrier cannois ?","acceptedAnswer":{"@type":"Answer","text":"En travaillant en amont. Le contenu lié à un salon ou au Festival se publie trois à six semaines avant l'événement, le temps que Google l'indexe et lui accorde un minimum de confiance. Nous construisons un calendrier éditorial calé sur les dates réelles du Palais des Festivals, et nous comparons chaque année la même période plutôt que le mois précédent — sinon on confond un creux normal avec une chute."}},{"@type":"Question","name":"Combien de temps avant de voir un résultat ?","acceptedAnswer":{"@type":"Answer","text":"Nos missions publiées donnent l'ordre de grandeur réel : 21 jours pour les premiers mouvements sur Le Point, 3 mois pour Atoo Énergie, 4 mois pour Allianz, 6 mois pour l'essentiel du gain Decathlon. Sur les citations par les IA, les mouvements apparaissent plus vite que sur Google, parce que les modèles réindexent leurs sources en quelques semaines. Nous mesurons les deux séparément, chaque mois."}},{"@type":"Question","name":"Faut-il traduire le site pour la clientèle internationale ?","acceptedAnswer":{"@type":"Answer","text":"Souvent oui à Cannes, mais pas n'importe comment. Une traduction automatique posée sur les pages existantes ne ranke pas : il faut des URLs distinctes par langue, des balises hreflang correctes, et surtout des mots-clés réellement recherchés dans chaque langue — qui ne sont presque jamais la traduction littérale des vôtres. Nous mesurons le volume réel par langue avant d'engager le moindre mot."}},{"@type":"Question","name":"Travaillez-vous le référencement dans ChatGPT et Perplexity ?","acceptedAnswer":{"@type":"Answer","text":"Oui, c'est la moitié de notre métier. Nous mesurons votre part de citation en interrogeant les modèles de façon répétée sur un panier de requêtes représentatives de votre marché, puis en comptant dans quelle proportion votre marque apparaît — et qui apparaît à votre place quand elle est absente. Les leviers recoupent en partie le SEO classique, mais pas complètement : un site peut être premier sur Google et absent des réponses IA."}},{"@type":"Question","name":"Faut-il refaire le site ?","acceptedAnswer":{"@type":"Answer","text":"Rarement. Dans la plupart des missions le site est conservé et nous travaillons son architecture, son contenu et ses données structurées. Une refonte ne se justifie que si la technique bloque l'indexation : rendu entièrement dépendant du JavaScript, temps de réponse serveur hors normes, arborescence ingérable. Nous le disons à l'audit, avant de commencer."}}]}</script>
+</div>

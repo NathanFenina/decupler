@@ -1,0 +1,79 @@
+{
+  "state": {
+    "url": "https://votresite.fr/page/",
+    "title": "LE TITLE DE LA PAGE",
+    "meta_description": "LA META DESCRIPTION",
+    "prompt_vise": "LA QUESTION À LAQUELLE CETTE PAGE DOIT RÉPONDRE",
+    "contenu": "LE TEXTE PRINCIPAL DE LA PAGE"
+  },
+  "model": "jev-latest",
+  "questions": {
+    "type_page": {
+      "type": "choice",
+      "instructions": "Quel est le type de cette page ?",
+      "criteria": {
+        "fiche_service": "Présente un service ou un produit et pousse au contact",
+        "guide": "Explique un sujet en profondeur, étape par étape",
+        "comparatif": "Compare plusieurs options, marques ou solutions",
+        "faq": "Répond à une série de questions courtes",
+        "page_pilier": "Page large qui introduit un sujet et renvoie vers des pages détaillées",
+        "page_locale": "Cible une ville ou une zone précise",
+        "autre": null
+      }
+    },
+    "va_droit_au_but": {
+      "type": "noul",
+      "instructions": "Les deux premières phrases du contenu répondent-elles directement à la question 'prompt_vise' ?",
+      "criteria": {
+        "true": "La réponse est donnée d'entrée, avant tout contexte",
+        "false": "Le début parle d'autre chose : contexte, promesse, présentation"
+      }
+    },
+    "repond_au_prompt": {
+      "type": "noul",
+      "instructions": "Une IA pourrait-elle répondre à 'prompt_vise' en s'appuyant uniquement sur ce contenu ?"
+    },
+    "citabilite": {
+      "type": "score",
+      "instructions": "À quel point ce contenu contient-il des phrases qu'une IA pourrait reprendre telles quelles dans une réponse ?",
+      "criteria": [
+        "Aucune phrase reprenable : texte vague ou commercial",
+        "Quelques phrases utiles, noyées dans du remplissage",
+        "Plusieurs définitions, faits ou chiffres clairs, mais dispersés",
+        "Faits, chiffres et définitions nets, faciles à extraire",
+        "Chaque paragraphe tient seul et porte un fait vérifiable"
+      ]
+    },
+    "precision": {
+      "type": "score",
+      "instructions": "Le contenu est-il spécifique à cette entreprise ou générique ?",
+      "criteria": [
+        "Totalement générique, applicable à n'importe qui",
+        "Surtout générique, quelques détails propres",
+        "Mélange de généralités et de détails propres",
+        "Surtout spécifique : prix, délais, méthodes, cas",
+        "Entièrement spécifique et impossible à copier"
+      ]
+    },
+    "confiance": {
+      "type": "score",
+      "instructions": "Le contenu donne-t-il des raisons de lui faire confiance ?",
+      "criteria": [
+        "Aucun auteur, aucune source, aucune preuve",
+        "Un élément de confiance isolé",
+        "Auteur ou sources présents, preuves faibles",
+        "Auteur identifié, sources et preuves concrètes",
+        "Auteur expert identifié, sources datées, preuves vérifiables"
+      ]
+    },
+    "title_aligne": {
+      "type": "choice",
+      "instructions": "Le title et la meta description correspondent-ils à l'intention de 'prompt_vise' ?",
+      "criteria": {
+        "aligne": "Ils reprennent la question et promettent la bonne réponse",
+        "faible": "Liés au sujet, mais vagues ou génériques",
+        "decale": "Ils promettent autre chose que ce que cherche l'internaute"
+      }
+    }
+  }
+}

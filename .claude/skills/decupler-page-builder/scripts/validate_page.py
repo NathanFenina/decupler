@@ -13,6 +13,7 @@ longueur, maillage, FAQ, duplication entre pages d'un meme lot.
 Le manifeste est un JSON : [{"fichier": "...", "kw": "...", "slug": "...",
 "type": "article", "title": "...", "meta": "...", "parution": "2026-08-17"}]
 """
+import html as htmllib
 import os
 import re
 import sys
@@ -57,11 +58,34 @@ LIENS_MIN = 8
 MOTS_PLANCHER = 1500
 DUPLI_SEUIL = 4            # phrases communes tolerees entre deux contenus
 
+# Seuils par type. Les valeurs "page-ville" ne sont pas les regles maison
+# habituelles : elles viennent du releve SERP du 19/09/2026 sur
+# « agence seo marseille » (2 400 de volume).
+#
+#   Jones and Co  (position 1) : ~850 mots,  5 occurrences, aucune FAQ
+#   Digimood      (position 3) : 1 345 mots, 5 occurrences, aucune FAQ
+#   Junto         (position 10, modele du gabarit d'origine)
+#
+# Exiger 20 occurrences et 1 715 mots produirait des pages deux fois plus
+# longues que celles qui rankent, sans toucher au facteur reellement
+# discriminant : la preuve locale (adresse, communes, references chiffrees).
+# D'ou les controles PREUVE_LOCALE ci-dessous, propres a page-ville.
+# Le type "home" a ses propres regles : la page d'accueil se classe sur la
+# marque, pas sur une requete generique. Exiger 20 occurrences de mot-cle y
+# produirait du bourrage sur la page la plus vue du site. On ne verifie donc
+# ni occurrences ni densite, mais on garde le plancher de mots, la FAQ et le
+# maillage, qui restent decisifs.
+OCCURRENCES_TYPE = {"article": 20, "page-ville": 6, "page-service": 20, "home": 0}
+MOTS_PLANCHER_TYPE = {"article": 1500, "page-ville": 1100, "page-service": 1500,
+                      "home": 900}
+FAQ_MIN_TYPE = {"article": 6, "page-ville": 4, "page-service": 6, "home": 5}
+
 SEUILS_TYPE = {
     # type          title      meta        H2 min
     "article":     ((50, 60), (120, 156), 6),
     "page-ville":  ((50, 60), (120, 156), 8),
     "page-service": ((50, 60), (120, 156), 6),
+    "home":        ((50, 70), (120, 156), 8),
 }
 
 
@@ -70,10 +94,32 @@ def sansacc(t):
                    if not unicodedata.combining(c))
 
 
-def mots_min(kw):
-    """20 occurrences sans depasser 3,5 % de densite."""
+def sanstags(t):
+    return re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", t))
+
+
+def sansliaison(t):
+    """sansacc, entites HTML decodees, balises retirees, puis les liaisons
+    « & » et « et » supprimees. « Agence SEO &amp; GEO » dans un H1 et
+    « agence seo geo » en requete doivent se correspondre — sans le decodage
+    des entites, le controle echoue sur une esperluette ou une espace insecable."""
+    t = htmllib.unescape(t).replace("\u00a0", " ")
+    t = sansacc(t)
+    t = re.sub(r"\s*&\s*", " ", t)
+    t = re.sub(r"\bet\b", " ", t)
+    return re.sub(r"\s+", " ", t).strip()
+
+
+def occurrences_min(typ):
+    return OCCURRENCES_TYPE.get(typ, OCCURRENCES_MIN)
+
+
+def mots_min(kw, typ="article"):
+    """Assez de mots pour porter les occurrences du type sans depasser 3,5 %."""
     n = len(kw.split())
-    return max(MOTS_PLANCHER, int(OCCURRENCES_MIN * n / (DENSITE_MAX / 100)) + 1)
+    occ = occurrences_min(typ)
+    plancher = MOTS_PLANCHER_TYPE.get(typ, MOTS_PLANCHER)
+    return max(plancher, int(occ * n / (DENSITE_MAX / 100)) + 1)
 
 
 def hors_css(html):
@@ -87,11 +133,46 @@ def texte(html):
     return re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", c))
 
 
+def sans_chrome(html):
+    """Retire les blocs marques data-dcp="chrome".
+
+    Sur un lot de pages villes, la bande de logos, le bloc « villes voisines »,
+    le bandeau E-E-A-T avec l'adresse du siege, le CTA final et les legendes
+    d'images sont IDENTIQUES par construction : c'est du chrome, pas du
+    contenu. Sans ce retrait, le controle de duplication signale l'adresse du
+    siege et les libelles de boutons comme des phrases dupliquees, et on finit
+    par ignorer ses alertes — alors qu'il est la pour attraper la vraie
+    duplication editoriale.
+    """
+    # Bloc a profondeur variable : on coupe au marqueur et on recolle apres le
+    # nombre de fermetures correspondant, en comptant les div imbriques.
+    while 'data-dcp="chrome"' in html:
+        i = html.index('data-dcp="chrome"')
+        deb = html.rindex("<", 0, i)
+        j, prof = deb, 0
+        while j < len(html):
+            m = re.compile(r"</?(?:div|p|span)\b").search(html, j)
+            if not m:
+                j = len(html)
+                break
+            if html[m.start():m.start() + 2] == "</":
+                prof -= 1
+                if prof == 0:
+                    j = html.index(">", m.start()) + 1
+                    break
+            else:
+                prof += 1
+            j = m.end()
+        html = html[:deb] + " " + html[j:]
+    return html
+
+
 def phrases(html, sidebar=""):
-    """Phrases de >= 8 mots, sidebar exclue (identique sur tous les contenus)."""
+    """Phrases de >= 8 mots, sidebar et chrome exclus."""
     if sidebar:
         html = html.replace(sidebar, "")
     html = re.sub(r'<div class="dcp-sidebar".*?</div>\s*</div>', "", html, flags=re.S)
+    html = sans_chrome(html)
     return {p.strip() for p in re.split(r"[.!?]", texte(html))
             if len(p.strip().split()) >= 8}
 
@@ -101,7 +182,12 @@ def mesures(html, kw):
     if not os.path.exists(ANALYZE):
         return None
     tmp = os.path.join(SKILL, "_tmp_validate.html")
-    open(tmp, "w", encoding="utf-8").write(html)
+    # Le bloc <style> ne doit JAMAIS partir a l'analyseur : il retire les
+    # balises avant de compter, donc tout commentaire CSS un peu bavard se
+    # retrouve compte comme du texte de page. Symptome observe le 22/09 : les
+    # quatre pages du lot renvoyaient le meme nombre de mots (3 344) et zero
+    # occurrence, parce qu'on mesurait la feuille de style.
+    open(tmp, "w", encoding="utf-8").write(hors_css(html))
     try:
         r = subprocess.run([sys.executable, ANALYZE, "--file", tmp,
                             "--keyword", kw],
@@ -127,13 +213,29 @@ def inline_orphelins(html):
         <div>…</div><span>x</span>   ou   <span>x</span><div>…</div>
     """
     c = hors_css(html)
-    inline = r"span|svg|b|i|em|strong|small|code"
+    # « a » et « img » manquaient, alors que la regle 5 du skill design les
+    # cite nommement. C'est exactement ce trou qui a laisse passer en
+    # production un bloc de cartes-liens ou wpautop a enveloppe le premier
+    # <a class="vcard"> dans un <p> : l'ouverture du <p> a avale la fermeture
+    # de la carte suivante, et le rendu montrait des cartes vides entre les
+    # cartes remplies. Un controle qui ne cherche pas ce que sa propre
+    # documentation signale ne sert a rien.
+    inline = r"a|img|span|svg|b|i|em|strong|small|code"
     bloc = r"div|section|ul|ol|table|figure|blockquote"
     fautifs = []
     for m in re.finditer(rf"</(?:{bloc})>\s*<(?:{inline})\b", c):
         fautifs.append(c[max(0, m.start() - 40):m.end()])
     for m in re.finditer(rf"</(?:{inline})>\s*<(?:{bloc})[ >]", c):
         fautifs.append(c[max(0, m.start() - 40):m.end()])
+    # Troisieme regle, celle qui manquait vraiment. wpautop enveloppe tout
+    # element inline pose SEUL SUR SA LIGNE au niveau bloc — meme quand son
+    # frere precedent est une balise OUVRANTE. C'est le cas qui est passe en
+    # production : <div class="vgrid"> puis <a class="vcard"> a la ligne. Les
+    # deux regles ci-dessus ne cherchaient que les balises fermantes, donc
+    # elles ne voyaient rien.
+    for ligne in c.split("\n"):
+        if re.match(rf"\s*<(?:{inline})\b", ligne):
+            fautifs.append("ligne commencant par un inline : " + ligne.strip())
     return fautifs[:3]
 
 
@@ -158,19 +260,26 @@ def valide(html, kw, slug, typ="article", title=None, meta=None,
     h1 = re.search(r"<h1[^>]*>(.*?)</h1>", html, re.S)
     if not h1:
         e.append("aucun H1")
-    elif k not in sansacc(h1.group(1)):
+    elif k not in sansacc(h1.group(1)) and \
+            sansliaison(kw) not in sansliaison(sanstags(h1.group(1))):
         e.append("mot-cle absent du H1")
     if len(re.findall(r"<h1[^>]*>", html)) > 1:
         e.append("plusieurs H1")
-    if k.replace("'", "").replace("’", "") not in sansacc(slug.replace("-", " ")):
+    # Le slug remplace les tirets par des espaces : il faut faire de meme
+    # avec le mot-cle, sinon toute ville a trait d'union echoue — Cagnes-
+    # sur-Mer a ete refusee le 23/09 alors que son slug etait exact.
+    if typ != "home" and \
+       k.replace("'", "").replace("’", "").replace("-", " ") \
+       not in sansacc(slug.replace("-", " ")):
         e.append("mot-cle absent du slug")
     h2s = re.findall(r"<h2[^>]*>(.*?)</h2>", html, re.S)
     if len(h2s) < h2_min:
         e.append(f"{len(h2s)} H2 (<{h2_min})")
-    if not any(k in sansacc(x) for x in h2s):
+    if not any(k in sansacc(x) or sansliaison(kw) in sansliaison(sanstags(x))
+               for x in h2s):
         e.append("mot-cle dans aucun H2")
     interro = sum(1 for x in h2s if "?" in x)
-    if h2s and interro < len(h2s) * 0.5:
+    if typ != "home" and h2s and interro < len(h2s) * 0.5:
         e.append(f"seulement {interro}/{len(h2s)} H2 formules en question")
 
     # ── metadonnees ────────────────────────────────────────────────────────
@@ -179,15 +288,34 @@ def valide(html, kw, slug, typ="article", title=None, meta=None,
     if meta is not None and not (m_min <= len(meta) <= m_max):
         e.append(f"meta {len(meta)} car. ({m_min}-{m_max})")
     if typ != "article" and (title or meta):
-        e.append("RAPPEL page : Yoast non ecrivable par l'API, saisie manuelle")
+        # Vrai jusqu'au 22/09/2026. Depuis, le plugin decupler-yoast-rest expose
+        # _yoast_wpseo_title/_metadesc/_focuskw a l'API sur post et page (verifie :
+        # ecriture puis relecture OK sur la page 20732). Le rappel ne vaut plus que
+        # si le plugin est desactive.
+        e.append("NOTE verifier que le plugin decupler-yoast-rest est actif, "
+                 "sinon Yoast se saisit a la main")
 
     # ── maillage ───────────────────────────────────────────────────────────
     liens = re.findall(r'href="(?:https://decupler\.com)?(/[^"#]*)"', html)
     liens = [u for u in liens if not u.startswith("/wp-content")]
+    # Un bloc de navigation « villes voisines » (.vcard) reprend forcement des
+    # destinations deja citees dans le texte : c'est de la navigation, pas de
+    # l'ancrage editorial. Le controle des liens repetes ne vise que la prose,
+    # ou repeter la meme ancre est du bourrage. Ces liens restent comptes dans
+    # le total du maillage.
+    # .vcard : bloc de navigation « villes voisines ».
+    # .hpr   : carte de preuve du hero, qui mene a l'etude de cas detaillee
+    #          plus bas — c'est un renvoi, pas une ancre de prose.
+    nav = re.findall(r'<a class="(?:vcard|hpr)" href="(?:https://decupler\.com)?'
+                     r'(/[^"#]*)"', html)
+    prose = list(liens)
+    for u in nav:
+        if u in prose:
+            prose.remove(u)
     if len(set(liens)) < LIENS_MIN:
         e.append(f"{len(set(liens))} liens internes (<{LIENS_MIN})")
-    if len(liens) != len(set(liens)):
-        rep = [u for u in set(liens) if liens.count(u) > 1]
+    if typ != "home" and len(prose) != len(set(prose)):
+        rep = [u for u in set(prose) if prose.count(u) > 1]
         e.append("lien interne repete : " + ", ".join(sorted(rep)))
     if f"/{slug}/" in liens:
         e.append("lien vers soi-meme")
@@ -212,7 +340,8 @@ def valide(html, kw, slug, typ="article", title=None, meta=None,
     sans_alt = [i for i in imgs if 'alt="' not in i or 'alt=""' in i]
     if sans_alt:
         e.append(f"{len(sans_alt)} image(s) sans alt")
-    if imgs and not any(k in sansacc(i) for i in imgs):
+    if imgs and not any(k in sansacc(i) or sansliaison(kw) in sansliaison(i)
+                        for i in imgs):
         e.append("aucun alt ne contient le mot-cle")
 
     # ── CTA et E-E-A-T ─────────────────────────────────────────────────────
@@ -222,27 +351,48 @@ def valide(html, kw, slug, typ="article", title=None, meta=None,
         e.append("cross-citation Nathan Fenina absente")
 
     # ── FAQ ────────────────────────────────────────────────────────────────
+    faq_min = FAQ_MIN_TYPE.get(typ, 6)
     nb_faq = html.count("decupler-faq-item")
-    if nb_faq < 6:
-        e.append(f"{nb_faq} questions de FAQ (<6)")
+    if nb_faq < faq_min:
+        e.append(f"{nb_faq} questions de FAQ (<{faq_min})")
     if "decupler-faq-answer-inner" not in html:
         e.append("FAQ sans .decupler-faq-answer-inner (aucun padding)")
     if "FAQPage" not in html:
         e.append("JSON-LD FAQPage absent")
 
+    # ── preuve locale : ce qui separe reellement les pages villes ──────────
+    # Digimood (#3) affiche adresse, communes, logos et temoignages ; la page
+    # #1 n'a aucune preuve mais porte l'autorite d'un domaine marseillais.
+    # Sans adresse locale, la preuve chiffree est notre seul levier.
+    # Correction du 21/09/2026 : le controle initial exigeait un LocalBusiness
+    # sur chaque page ville. C'etait une sur-generalisation depuis la page
+    # Marseille de Digimood, ou ils ont un bureau. Leur page Nice
+    # (digimood.com/agence-seo/nice/) ranke avec 610 mots, aucune adresse,
+    # aucun LocalBusiness, aucune FAQ et aucun temoignage. Sur une ville
+    # satellite, areaServed et un cadrage honnete (« a proximite de »)
+    # suffisent. On n'invente jamais d'adresse : faux signal local.
+    if typ == "page-ville":
+        if not re.search(r"\b\d{5}\b", html):
+            e.append("PREUVE LOCALE : aucun code postal cite")
+        if "LocalBusiness" not in html and "areaServed" not in html:
+            e.append("PREUVE LOCALE : ni LocalBusiness ni areaServed dans le JSON-LD")
+        if "etude-de-cas" not in html:
+            e.append("PREUVE LOCALE : aucun lien vers une etude de cas chiffree")
+
     # ── mesures deleguees ──────────────────────────────────────────────────
     m = mesures(html, kw)
     if m:
-        cible = mots_min(kw)
+        cible = mots_min(kw, typ)
+        occ_min = occurrences_min(typ)
         if m["mots"] < cible:
-            e.append(f"{m['mots']} mots (<{cible} pour {OCCURRENCES_MIN} "
+            e.append(f"{m['mots']} mots (<{cible} pour {occ_min} "
                      f"occurrences a {DENSITE_MAX}%)")
-        if m["occurrences_exactes"] < OCCURRENCES_MIN:
-            e.append(f"{m['occurrences_exactes']} occurrences (<{OCCURRENCES_MIN})")
+        if m["occurrences_exactes"] < occ_min:
+            e.append(f"{m['occurrences_exactes']} occurrences (<{occ_min})")
         if m["densite_effective_pct"] > DENSITE_MAX:
             e.append(f"SUR-OPTIMISATION densite {m['densite_effective_pct']}% "
                      f"— ajouter du texte, pas retirer des occurrences")
-        if not m["mot_cle_dans_100_premiers_mots"]:
+        if typ != "home" and not m["mot_cle_dans_100_premiers_mots"]:
             e.append("mot-cle absent des 100 premiers mots")
     return e, m
 
@@ -300,14 +450,15 @@ def main():
         liens = len({u for u in re.findall(
             r'href="(?:https://decupler\.com)?(/[^"#]*)"', html)
             if not u.startswith("/wp-content")})
-        etat = "✓" if not err else "✗ " + " | ".join(err[:2])
+        defauts = [x for x in err if not x.startswith("NOTE")]
+        etat = "✓" if not defauts else "✗ " + " | ".join(defauts[:2])
         print(f"{it['slug'][:32]:32s} {(m or {}).get('mots', 0):>5} "
               f"{(m or {}).get('densite_effective_pct', 0):>5}% "
               f"{(m or {}).get('occurrences_exactes', 0):>4} "
               f"{html.count('<h2'):>3} {liens:>6}  {etat}")
-        for x in err[2:]:
+        for x in defauts[2:] + [x for x in err if x.startswith("NOTE")]:
             print(" " * 63 + x)
-        total += len(err)
+        total += len(defauts)
 
     if len(pages) > 1:
         print("\n=== DUPLICATION ENTRE CONTENUS ===")

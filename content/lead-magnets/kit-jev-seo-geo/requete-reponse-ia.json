@@ -1,0 +1,63 @@
+{
+  "state": {
+    "marque": "NOM DE VOTRE MARQUE",
+    "site": "votresite.fr",
+    "concurrents": [
+      "CONCURRENT A",
+      "CONCURRENT B"
+    ],
+    "moteur": "chatgpt",
+    "prompt": "LE PROMPT ENVOYÉ À L'IA",
+    "reponse": "LA RÉPONSE COMPLÈTE DE L'IA, SOURCES COMPRISES"
+  },
+  "model": "jev-latest",
+  "questions": {
+    "marque_citee": {
+      "type": "noul",
+      "instructions": "La réponse mentionne-t-elle la marque ou le site indiqués dans 'marque' et 'site' ?",
+      "criteria": {
+        "true": "La marque ou son domaine apparaît au moins une fois",
+        "false": "Ni la marque ni le domaine n'apparaissent"
+      }
+    },
+    "marque_recommandee": {
+      "type": "noul",
+      "instructions": "La réponse recommande-t-elle explicitement la marque indiquée dans 'marque' ?",
+      "criteria": {
+        "true": "La marque est conseillée, classée en tête ou présentée comme un bon choix",
+        "false": "La marque est absente, citée sans recommandation, ou critiquée"
+      }
+    },
+    "concurrent_cite": {
+      "type": "noul",
+      "instructions": "La réponse mentionne-t-elle au moins un des concurrents listés dans 'concurrents' ?"
+    },
+    "site_en_source": {
+      "type": "noul",
+      "instructions": "Le domaine indiqué dans 'site' figure-t-il parmi les sources ou liens donnés par la réponse ?"
+    },
+    "contexte_marque": {
+      "type": "choice",
+      "instructions": "Dans quel contexte la marque indiquée dans 'marque' apparaît-elle dans la réponse ?",
+      "criteria": {
+        "absente": "La marque n'apparaît pas",
+        "recommandee": "La marque est conseillée ou classée en tête",
+        "comparee": "La marque figure dans une comparaison, sans être préférée",
+        "citee_neutre": "La marque est citée comme exemple ou source, sans jugement",
+        "critiquee": "La marque est citée avec une réserve ou un avis négatif"
+      }
+    },
+    "intention_prompt": {
+      "type": "choice",
+      "instructions": "Quelle est l'intention principale du prompt indiqué dans 'prompt' ?",
+      "criteria": {
+        "info": "Comprendre, apprendre, définir",
+        "prix": "Connaître un prix, un tarif, un budget",
+        "comparatif": "Comparer des options, des marques, des solutions",
+        "avis": "Chercher des avis, des retours, une réputation",
+        "local": "Trouver un prestataire près d'un lieu",
+        "achat": "Acheter, réserver, demander un devis maintenant"
+      }
+    }
+  }
+}

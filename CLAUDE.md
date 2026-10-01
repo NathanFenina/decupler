@@ -14,7 +14,8 @@ abandonnée — voir historique dans `docs/`).
 ## Contexte
 - Le site WordPress de Décupler a été **hacké**, puis **réparé par une freelance**.
 - On abandonne **Elementor + Astra** → un **thème custom léger** est réalisé par
-  le freelance (un seul CSS, charte ci-dessous).
+  le freelance (un seul CSS, charte ci-dessous). En attendant, le site tourne
+  encore sous Elementor + Astra : l'en-tête est le template Elementor 2762.
 - Décupler est une **agence SEO/GEO** : l'objectif est de **produire du contenu
   en volume**, optimisé pour le référencement (Google + moteurs IA).
 
@@ -41,14 +42,29 @@ python3 scripts/wp_publish.py --type post --title "Titre" --slug titre \
 Le contenu généré doit rester **propre** (HTML sémantique : `h2/h3/p/ul/table…`),
 sans CSS inline ni classes Elementor, pour bien s'intégrer au thème du freelance.
 
+## Mémoire du projet — À LIRE au début de chaque session
+- `docs/memoire/etat-du-site.md` — ce qui est en ligne (plugins et versions,
+  scripts posés dans l'en-tête, sécurité, Search Console). À mettre à jour en fin
+  de session.
+- `docs/memoire/decisions.md` — ce qui a été tranché, et pourquoi.
+- `docs/memoire/lecons.md` — les pièges techniques déjà payés (wpautop,
+  Elementor, Chromium, Search Console…).
+- `docs/memoire/plan.md` — la suite, dans l'ordre.
+- Base Notion « Cartographie SEO » (97c5e3eaa05b4d0aa2277004a93971f6) : une
+  ligne par page (mot-clé, prompt principal, action, priorité). Accès permanent.
+
 ## Structure du repo
-- `scripts/wp_publish.py` — publication WordPress via API REST (cœur du projet).
-- `scripts/parse_wxr.py`, `clean_content.py` — ont servi à extraire l'ancien
-  contenu depuis l'export XML (référence ; voir `content/cleaned/`).
-- `content/cleaned/` — ancien contenu récupéré + **`seo-meta.json`** (titres/méta
-  Yoast d'origine). Utile pour : maillage interne, éviter les doublons, audits.
-- `design-system/tokens.css` — la charte.
-- `docs/` — historique migration (archive).
+Voir `README.md` pour la carte complète. L'essentiel :
+- `scripts/` — publication WordPress (`wp_publish.py`), inventaire des pages
+  publiées (`inventaire.py`, régénère `content/cleaned/inventory.md`), assemblage des pages
+  (`build_article.py`), Search Console (`gsc.py`), rendu réel (`rendu/`).
+- `.claude/skills/` — une méthode par tâche : `lead-magnet` (v2),
+  `pages-pourries`, `trio-semantique`, `decupler-page-ville-seo`,
+  `decupler-direction-artistique`, `gsc-*`, `redaction-*`…
+- `wordpress/plugins/` — plugins maison versionnés et testés (`wordpress/tests/`).
+- `content/` — contenus ; `content/lead-magnets/ciblage.json` pour le ciblage.
+- `design-system/` — charte, CSS `.lm-mcp`, snippets autonomes.
+- `archives/` — sauvegardes « avant refonte », scripts de l'ancienne migration.
 - `.env` / `.env.example` — secrets (WP, GSC, DataForSEO).
 
 ## Génération d'images (MCP Gemini)
@@ -68,8 +84,15 @@ sans CSS inline ni classes Elementor, pour bien s'intégrer au thème du freelan
   ~23 Mo (cause de « prompt too long »). Le contenu utile est déjà extrait dans
   `content/cleaned/`.
 - Contenu généré = **HTML sémantique propre**, pensé SEO (structure Hn, méta
-  description, maillage interne vers les pages existantes listées dans
-  `content/cleaned/inventory.md`).
+  description, maillage interne vers les pages existantes : les lister par
+  l'API REST WordPress, pas par un inventaire figé).
+- Toute modification du site en ligne : **sauvegarde avant**, vérification
+  **après** sur le site réel (HTML rendu, miroir Chromium). Les correctifs
+  serveur passent par un plugin versionné et testé, jamais par un réglage fait
+  à la main sans trace.
+- Trio sémantique : une seule Organisation (`https://decupler.com/#organization`)
+  et une seule Personne (`https://decupler.com/#nathan-fenina`) ; tout bloc
+  JSON-LD y fait référence par `@id`.
 - Sécurité WordPress (côté hébergeur/freelance) : minimum de plugins, Wordfence,
   MAJ auto, sauvegardes externes.
 
