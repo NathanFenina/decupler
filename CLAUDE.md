@@ -43,15 +43,20 @@ Le contenu généré doit rester **propre** (HTML sémantique : `h2/h3/p/ul/tabl
 sans CSS inline ni classes Elementor, pour bien s'intégrer au thème du freelance.
 
 ## Mémoire du projet — À LIRE au début de chaque session
-- `docs/memoire/etat-du-site.md` — ce qui est en ligne (plugins et versions,
-  scripts posés dans l'en-tête, sécurité, Search Console). À mettre à jour en fin
-  de session.
-- `docs/memoire/decisions.md` — ce qui a été tranché, et pourquoi.
-- `docs/memoire/lecons.md` — les pièges techniques déjà payés (wpautop,
+Tout est dans `memoire/` (un seul dossier, lu aussi par la routine du vendredi) :
+- `memoire/passation.md` — contexte laissé par la conversation de pilotage commune.
+- `memoire/etat-du-site.md` — ce qui est en ligne (plugins et versions, scripts
+  posés dans l'en-tête, sécurité, Search Console). À mettre à jour en fin de session.
+- `memoire/decisions.md` — ce qui a été tranché, et pourquoi.
+- `memoire/lecons-techniques.md` — les pièges techniques déjà payés (wpautop,
   Elementor, Chromium, Search Console…).
-- `docs/memoire/plan.md` — la suite, dans l'ordre.
-- Base Notion « Cartographie SEO » (97c5e3eaa05b4d0aa2277004a93971f6) : une
-  ligne par page (mot-clé, prompt principal, action, priorité). Accès permanent.
+- `memoire/cartographie.csv` — une ligne par page (mot-clé, prompt principal) :
+  **fait foi**. La base Notion « Cartographie SEO » (97c5e3eaa05b4d0aa2277004a93971f6)
+  sert de bibliothèque des contenus pour naviguer ; accès permanent.
+- **La suite, dans l'ordre** : la page de suivi
+  https://claude.ai/artifact/Rb2sP3EQFzedk6G2Xau6KA (onglet du mois : à décider,
+  fait, à faire par chantier, wins, contenus, reporting). Copie dans
+  `journal/pilotage.json`. Liste des demandes d'indexation : `docs/seo/indexation-a-demander.md`.
 
 ## Structure du repo
 Voir `README.md` pour la carte complète. L'essentiel :
@@ -60,7 +65,8 @@ Voir `README.md` pour la carte complète. L'essentiel :
   (`build_article.py`), Search Console (`gsc.py`), rendu réel (`rendu/`).
 - `.claude/skills/` — une méthode par tâche : `lead-magnet` (v2),
   `pages-pourries`, `trio-semantique`, `decupler-page-ville-seo`,
-  `decupler-direction-artistique`, `gsc-*`, `redaction-*`…
+  `decupler-direction-artistique`, `redaction-*`… ; la méthode decupler-seo
+  (`seo-*`, `geo-*`) pour tout le reste, dont `seo-gsc-analyses`.
 - `wordpress/plugins/` — plugins maison versionnés et testés (`wordpress/tests/`).
 - `content/` — contenus ; `content/lead-magnets/ciblage.json` pour le ciblage.
 - `design-system/` — charte, CSS `.lm-mcp`, snippets autonomes.

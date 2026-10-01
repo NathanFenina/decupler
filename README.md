@@ -45,8 +45,8 @@ dans WordPress** via l'API REST, + outillage SEO.
 ## Structure du dépôt
 
     CLAUDE.md                     → contexte et règles du projet (À LIRE en premier)
-    docs/memoire/                 → mémoire de travail : état du site, décisions,
-                                    leçons techniques, plan (à relire à chaque session)
+    memoire/                      → mémoire du projet : passation, état du site, décisions,
+                                    leçons techniques, cartographie (à relire à chaque session)
 
     .claude/skills/               → les skills : une méthode par type de tâche
                                     (lead-magnet, pages-pourries, trio-semantique,

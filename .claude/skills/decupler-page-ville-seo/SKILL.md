@@ -49,7 +49,7 @@ Trois lectures :
    SERP.
 
 Avant chaque nouveau lot de villes, **refaire le relevé** avec le skill
-`serp-analyse` : ces chiffres datent, et une règle non sourcée finit par coûter
+`seo-serp-analysis` : ces chiffres datent, et une règle non sourcée finit par coûter
 cher.
 
 ## 2. Cibles

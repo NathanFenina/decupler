@@ -1,6 +1,6 @@
 # État de decupler.com — mémoire de travail
 
-Dernière mise à jour : **29/09/2026**. À relire au début de chaque session, à
+Dernière mise à jour : **01/10/2026**. À relire au début de chaque session, à
 mettre à jour à la fin. Ce qui est ici a été vérifié sur le site en ligne.
 
 ## Plugins maison (wordpress/plugins/)
@@ -36,7 +36,7 @@ Constaté le 30/09 : crawl-fix 1.3.4 et entite 1.0.1 actives.
 - Lien de campagne LinkedIn : `https://decupler.com/<slug>/?acces=linkedin`
   → pop-up obligatoire. Tous les autres visiteurs : pop-up fermable à 25 s.
 - Ciblage mot-clé + prompt de chaque lead magnet : `content/lead-magnets/ciblage.json`
-  et base Notion « Cartographie SEO » (97c5e3eaa05b4d0aa2277004a93971f6).
+  et `memoire/cartographie.csv` (fait foi) ; Notion sert de bibliothèque des contenus.
 
 ## Sécurité
 

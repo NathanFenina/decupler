@@ -94,4 +94,4 @@ nom, adresse, description courte partout.
    aucune référence `#/schema/person/` restante, sameAs présents.
 3. Test des résultats enrichis de Google sur 2 ou 3 pages (Nathan le lance :
    l'outil demande un navigateur).
-4. Consigner l'état dans `docs/memoire/etat-du-site.md`.
+4. Consigner l'état dans `memoire/etat-du-site.md`.

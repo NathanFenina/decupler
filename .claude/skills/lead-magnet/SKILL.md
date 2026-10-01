@@ -7,7 +7,7 @@ description: >-
   Claude, captures, preuves sourcées), et avec une pop-up obligatoire
   seulement pour la campagne LinkedIn (?acces=linkedin) — Google lit
   librement. Produit le HTML .lm-mcp, vérifie le rendu dans Chromium, publie
-  et met à jour Notion. À utiliser pour : « crée une page lead magnet »,
+  et met à jour la cartographie, Notion et la page de suivi. À utiliser pour : « crée une page lead magnet »,
   « le guide gratuit contre email », « refais ce lead magnet comme la page
   Claude Code design », « mets à jour les lead magnets », « commente X sur
   LinkedIn → reçois le guide ».
@@ -35,9 +35,10 @@ repliées plutôt qu'étalées.
    Perplexity et à laquelle la page doit être la réponse citée
    (« Quels skills installer dans Claude pour faire du SEO ? »).
 3. Le ciblage de chaque lead magnet existant est dans
-   `content/lead-magnets/ciblage.json` et dans la base Notion « Cartographie
-   SEO » (colonnes Mot clé, Prompt principal, Fan query, Tracking de lead).
-4. Vérifier la cannibalisation avec les pages voisines (`gsc-cannibalisation`).
+   `content/lead-magnets/ciblage.json` et dans `memoire/cartographie.csv`
+   (fait foi) ; la base Notion « Cartographie SEO » en est la bibliothèque.
+4. Vérifier la cannibalisation avec les pages voisines (`seo-gsc-analyses`,
+   analyse cannibalisation).
 
 Le mot-clé va dans le title, le H1, la meta, le premier paragraphe et un ou
 deux H2. Le prompt principal devient une question de FAQ et la phrase-réponse
@@ -151,8 +152,10 @@ HTML qui contient `#ai-content-gate`.
 - Brouillon, relecture, publication (`wp_publish.py` ou API REST).
 - Menu : entrée dans Expertises → Nos Pépites (template Elementor 2762,
   bureau ET mobile), sauvegarde de l'en-tête avant.
-- Notion « Cartographie SEO » : Mot clé, Prompt principal, Fan query,
-  Tracking de lead, Statut, Dernière MAJ.
+- `memoire/cartographie.csv` (mot-clé et prompt principal), puis la ligne
+  Notion « Cartographie SEO » (bibliothèque des contenus) avec son lien.
+- Page de suivi : `pilotage.py ajouter --statut faite --chantier contenus --lien <URL>`
+  et le contenu dans l'onglet du mois (`pilotage.py mois`, avec le lien Notion).
 - Sitemap resoumis (`scripts/gsc.py sitemap --resoumettre`), puis demande
   d'indexation par Nathan dans Search Console.
 

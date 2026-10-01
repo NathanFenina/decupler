@@ -36,8 +36,8 @@ mentions obsolètes, présence d'une pop-up email.
 | **vide** | < 80 mots et 0 impression | 410 si c'est un reste technique, sinon redirection |
 | **morte** | 0 impression depuis 180 jours, page de plus de 6 mois | Rediriger vers le pilier du sujet, ou fusionner |
 | **périmée** | Mentionne Claude 3/3.5, GPT-4/4o, Gemini 1.5/2.0, « en 2024 »… | Mettre à jour si elle a du trafic, sinon fusionner |
-| **mince** | < 400 mots mais montrée par Google | Enrichir : sections manquantes (skill `gsc-sections-manquantes`) |
-| **à pousser** | Position 8 à 20, ≥ 100 impressions | Quick win : title, sections, maillage (`gsc-quick-wins`) |
+| **mince** | < 400 mots mais montrée par Google | Enrichir : sections manquantes (`seo-gsc-analyses` (analyse sections-manquantes)) |
+| **à pousser** | Position 8 à 20, ≥ 100 impressions | Quick win : title, sections, maillage (`seo-gsc-analyses`, analyse quick-wins) |
 | **saine** | Le reste | Garder |
 
 Les règles sont volontairement simples : **le verdict est une proposition, la
@@ -49,9 +49,9 @@ décision est humaine**. Un faux positif typique : une citation datée
 1. **Vérifier qu'elle n'est pas un reste technique déjà neutralisé** : les pages
    WooCommerce (boutique, panier, commander, mon-compte) sont vides mais hors
    index et hors sitemap grâce au plugin « Budget de crawl ». Ne rien faire.
-2. **Vérifier la cannibalisation** avant de rediriger (skill `gsc-cannibalisation`) :
+2. **Vérifier la cannibalisation** avant de rediriger (`seo-gsc-analyses` (analyse cannibalisation)) :
    la cible doit couvrir la même intention.
-3. **Sauvegarder** le contenu et `_elementor_data` (voir `docs/memoire/lecons.md`).
+3. **Sauvegarder** le contenu et `_elementor_data` (voir `memoire/lecons-techniques.md`).
 4. Les redirections et les 410 passent par le plugin « Budget de crawl »
    (`dcp_crawl_redirections()`, `urls-piratage.php`), jamais par un plugin tiers.
    Ajouter le cas aux tests (`wordpress/tests/test-crawl-fix.sh`).

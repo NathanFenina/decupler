@@ -487,7 +487,7 @@
   },
   {
    "id": "950adc5d",
-   "titre": "Pilotage : une routine hebdo le vendredi, un onglet par mois, copie de la roadmap dans git (méthode decupler-seo)",
+   "titre": "Pilotage : routine hebdo le vendredi (4 routines désactivées), page en onglets par mois, roadmap copiée dans git (méthode 3.7.0)",
    "type": "technique",
    "page": "",
    "pourquoi": "",
@@ -495,13 +495,14 @@
    "effort": "M",
    "source": "conversation",
    "mois": "2026-10",
-   "statut": "en-cours",
+   "statut": "faite",
    "maj": "2026-10-01",
-   "chantier": "pilotage"
+   "chantier": "pilotage",
+   "lien": "https://github.com/NathanFenina/decupler-seo/blob/main/CHANGELOG.md"
   },
   {
    "id": "0e95387f",
-   "titre": "Fusionner la mémoire (docs/memoire → memoire/) et retirer les skills en doublon de la méthode",
+   "titre": "Mémoire fusionnée dans memoire/ (décisions, état du site, leçons) et 21 skills en doublon de la méthode retirés",
    "type": "technique",
    "page": "",
    "pourquoi": "",
@@ -509,9 +510,10 @@
    "effort": "M",
    "source": "conversation",
    "mois": "2026-10",
-   "statut": "en-cours",
+   "statut": "faite",
    "maj": "2026-10-01",
-   "chantier": "pilotage"
+   "chantier": "pilotage",
+   "lien": "https://github.com/NathanFenina/decupler/tree/main/memoire"
   },
   {
    "id": "b9e225cb",
@@ -576,7 +578,7 @@
    "titre": "Demandes d'indexation manuelles : ~45 URL en 5 jours, plus /jev-seo/",
    "type": "technique",
    "page": "",
-   "pourquoi": "Liste par priorité : docs/memoire/indexation-a-demander.md",
+   "pourquoi": "Liste par priorité : docs/seo/indexation-a-demander.md",
    "gain": "",
    "effort": "M",
    "source": "conversation",
@@ -1131,12 +1133,6 @@
    ],
    "contenus": [
     {
-     "titre": "21 pages locales (agence et consultant SEO)",
-     "url": "https://decupler.com/agence-seo-nice/",
-     "statut": "publié",
-     "date": "2026-09-24"
-    },
-    {
      "titre": "GEO Ready : optimisation GEO et simulateur",
      "url": "https://decupler.com/geo-ready/",
      "statut": "publié",
@@ -1166,6 +1162,132 @@
      "statut": "publié",
      "date": "2026-09-30",
      "notion": "https://www.notion.so/3ebbebf1e51b81fa9444f0b5ef39d8fc"
+    },
+    {
+     "titre": "Agence SEO Nice (1600 rech./mois)",
+     "url": "https://decupler.com/agence-seo-nice/",
+     "statut": "refait",
+     "date": "2026-09-24"
+    },
+    {
+     "titre": "Agence SEO Cannes (1000 rech./mois)",
+     "url": "https://decupler.com/agence-seo-cannes/",
+     "statut": "publié",
+     "date": "2026-09-23"
+    },
+    {
+     "titre": "Agence SEO Toulon (1000 rech./mois)",
+     "url": "https://decupler.com/agence-seo-toulon/",
+     "statut": "publié",
+     "date": "2026-09-23"
+    },
+    {
+     "titre": "Agence SEO Monaco (390 rech./mois)",
+     "url": "https://decupler.com/agence-seo-monaco/",
+     "statut": "publié",
+     "date": "2026-09-23"
+    },
+    {
+     "titre": "Agence SEO Antibes (210 rech./mois)",
+     "url": "https://decupler.com/agence-seo-antibes/",
+     "statut": "publié",
+     "date": "2026-09-23"
+    },
+    {
+     "titre": "Agence SEO 06 (390 rech./mois)",
+     "url": "https://decupler.com/agence-seo-06/",
+     "statut": "publié",
+     "date": "2026-09-23"
+    },
+    {
+     "titre": "Agence SEO Grasse (110 rech./mois)",
+     "url": "https://decupler.com/agence-seo-grasse/",
+     "statut": "publié",
+     "date": "2026-09-23"
+    },
+    {
+     "titre": "Agence SEO Menton (110 rech./mois)",
+     "url": "https://decupler.com/agence-seo-menton/",
+     "statut": "publié",
+     "date": "2026-09-23"
+    },
+    {
+     "titre": "Agence SEO Fréjus (140 rech./mois)",
+     "url": "https://decupler.com/agence-seo-frejus/",
+     "statut": "publié",
+     "date": "2026-09-23"
+    },
+    {
+     "titre": "Agence SEO Cagnes-sur-Mer (70 rech./mois)",
+     "url": "https://decupler.com/agence-seo-cagnes-sur-mer/",
+     "statut": "publié",
+     "date": "2026-09-23"
+    },
+    {
+     "titre": "Consultant SEO Nice (880 rech./mois) — absorbe « expert seo nice » (210), « freelance seo nice » (140)",
+     "url": "https://decupler.com/consultant-seo-nice/",
+     "statut": "publié",
+     "date": "2026-09-23"
+    },
+    {
+     "titre": "Consultant SEO Marseille (1000 rech./mois)",
+     "url": "https://decupler.com/consultant-seo-marseille/",
+     "statut": "publié",
+     "date": "2026-09-23"
+    },
+    {
+     "titre": "Consultant SEO Toulon (480 rech./mois)",
+     "url": "https://decupler.com/consultant-seo-toulon/",
+     "statut": "publié",
+     "date": "2026-09-23"
+    },
+    {
+     "titre": "Consultant SEO Cannes (320 rech./mois) — absorbe « expert seo cannes » (30)",
+     "url": "https://decupler.com/consultant-seo-cannes/",
+     "statut": "publié",
+     "date": "2026-09-23"
+    },
+    {
+     "titre": "Consultant SEO Monaco (110 rech./mois) — absorbe « expert seo monaco » (30)",
+     "url": "https://decupler.com/consultant-seo-monaco/",
+     "statut": "publié",
+     "date": "2026-09-23"
+    },
+    {
+     "titre": "Agence SEO Var (90 rech./mois) — absorbe « agence référencement var » (90)",
+     "url": "https://decupler.com/agence-seo-var/",
+     "statut": "publié",
+     "date": "2026-09-23"
+    },
+    {
+     "titre": "Consultant SEO Aix-en-Provence (140 rech./mois)",
+     "url": "https://decupler.com/consultant-seo-aix-en-provence/",
+     "statut": "publié",
+     "date": "2026-09-23"
+    },
+    {
+     "titre": "Consultant SEO Montpellier (590 rech./mois)",
+     "url": "https://decupler.com/consultant-seo-montpellier/",
+     "statut": "publié",
+     "date": "2026-09-23"
+    },
+    {
+     "titre": "Consultant SEO Lyon (1600 rech./mois)",
+     "url": "https://decupler.com/consultant-seo-lyon/",
+     "statut": "publié",
+     "date": "2026-09-23"
+    },
+    {
+     "titre": "Consultant SEO Bordeaux (480 rech./mois)",
+     "url": "https://decupler.com/consultant-seo-bordeaux/",
+     "statut": "publié",
+     "date": "2026-09-23"
+    },
+    {
+     "titre": "Consultant SEO Toulouse (320 rech./mois)",
+     "url": "https://decupler.com/consultant-seo-toulouse/",
+     "statut": "publié",
+     "date": "2026-09-23"
     }
    ]
   },
