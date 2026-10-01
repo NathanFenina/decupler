@@ -525,9 +525,10 @@
    "effort": "M",
    "source": "conversation",
    "mois": "2026-10",
-   "statut": "validee",
+   "statut": "en-cours",
    "maj": "2026-10-01",
-   "chantier": "pilotage"
+   "chantier": "pilotage",
+   "note": "Notion à jour le 01/10 (lignes publiées, doublons d'intention passés en « Ignorer », /nathan-fenina/ ajoutée). Reste l'import dans cartographie.csv."
   },
   {
    "id": "c9806071",
@@ -590,18 +591,17 @@
   },
   {
    "id": "d88fc65d",
-   "titre": "Relancer l'audit jev-seo avec les jugements Jev (qualité, citabilité, pages concurrentes)",
-   "type": "technique",
+   "titre": "Facultatif : créer une clé TypeSafe pour avoir l'avis de l'IA Jev dans l'audit",
+   "type": "decision",
    "page": "",
-   "pourquoi": "",
+   "pourquoi": "L'audit du 30/09 (97 → 98) n'a vérifié que les 52 règles techniques. Avec une clé gratuite à créer sur console.typesafe.ai/keys (environ 0,015 $ pour 100 pages), l'IA Jev note en plus chaque page : qualité, citabilité par les IA, pages concurrentes. Refuser si ce n'est pas utile.",
    "gain": "",
    "effort": "M",
    "source": "conversation",
    "mois": "2026-10",
-   "statut": "bloquee",
+   "statut": "proposee",
    "maj": "2026-10-01",
-   "chantier": "geo",
-   "attend": "Nathan : une clé TYPESAFE_API_KEY dans l'environnement"
+   "chantier": "geo"
   },
   {
    "id": "c1660141",
@@ -854,6 +854,21 @@
    "statut": "validee",
    "maj": "2026-10-01",
    "chantier": "contenus"
+  },
+  {
+   "id": "a9752cf2",
+   "titre": "Notion « Cartographie SEO » remis à jour : 26 contenus de septembre reliés, 7 doublons d'intention passés en « Ignorer », /nathan-fenina/ ajoutée",
+   "type": "technique",
+   "page": "",
+   "pourquoi": "",
+   "gain": "",
+   "effort": "M",
+   "source": "conversation",
+   "mois": "2026-10",
+   "statut": "faite",
+   "maj": "2026-10-01",
+   "chantier": "pilotage",
+   "lien": "https://www.notion.so/97c5e3eaa05b4d0aa2277004a93971f6"
   }
  ],
  "nom": "Décupler",
@@ -1136,25 +1151,29 @@
      "titre": "GEO Ready : optimisation GEO et simulateur",
      "url": "https://decupler.com/geo-ready/",
      "statut": "publié",
-     "date": "2026-09-24"
+     "date": "2026-09-24",
+     "notion": "https://www.notion.so/3e4bebf1e51b81a492fde32153315cf1"
     },
     {
      "titre": "Claude Code design (remplace « site premium en 24h »)",
      "url": "https://decupler.com/claude-code-design/",
      "statut": "publié",
-     "date": "2026-09-28"
+     "date": "2026-09-28",
+     "notion": "https://www.notion.so/3eabebf1e51b8176b8bbfdb00ab0b741"
     },
     {
      "titre": "Claude skills SEO : pack de 10 skills (v2)",
      "url": "https://decupler.com/claude-skills-seo/",
      "statut": "refait",
-     "date": "2026-09-29"
+     "date": "2026-09-29",
+     "notion": "https://www.notion.so/382bebf1e51b8110b71fe059d46e7010"
     },
     {
      "titre": "Nathan Fenina : page d'entité",
      "url": "https://decupler.com/nathan-fenina/",
      "statut": "publié",
-     "date": "2026-09-29"
+     "date": "2026-09-29",
+     "notion": "https://www.notion.so/3ecbebf1e51b81cf8c90eabfef354174"
     },
     {
      "titre": "Jev SEO : playbook d'audit SEO et GEO + kit",
@@ -1167,127 +1186,148 @@
      "titre": "Agence SEO Nice (1600 rech./mois)",
      "url": "https://decupler.com/agence-seo-nice/",
      "statut": "refait",
-     "date": "2026-09-24"
+     "date": "2026-09-24",
+     "notion": "https://www.notion.so/3bbbebf1e51b8104812bff2f5669019a"
     },
     {
      "titre": "Agence SEO Cannes (1000 rech./mois)",
      "url": "https://decupler.com/agence-seo-cannes/",
      "statut": "publié",
-     "date": "2026-09-23"
+     "date": "2026-09-23",
+     "notion": "https://www.notion.so/3dfbebf1e51b817babf4d710490ecf49"
     },
     {
      "titre": "Agence SEO Toulon (1000 rech./mois)",
      "url": "https://decupler.com/agence-seo-toulon/",
      "statut": "publié",
-     "date": "2026-09-23"
+     "date": "2026-09-23",
+     "notion": "https://www.notion.so/3bbbebf1e51b81d58ce7e5332f333def"
     },
     {
      "titre": "Agence SEO Monaco (390 rech./mois)",
      "url": "https://decupler.com/agence-seo-monaco/",
      "statut": "publié",
-     "date": "2026-09-23"
+     "date": "2026-09-23",
+     "notion": "https://www.notion.so/3dfbebf1e51b819db43adce9b9b6c8d6"
     },
     {
      "titre": "Agence SEO Antibes (210 rech./mois)",
      "url": "https://decupler.com/agence-seo-antibes/",
      "statut": "publié",
-     "date": "2026-09-23"
+     "date": "2026-09-23",
+     "notion": "https://www.notion.so/3dfbebf1e51b81dea7cef7e3f626efd8"
     },
     {
      "titre": "Agence SEO 06 (390 rech./mois)",
      "url": "https://decupler.com/agence-seo-06/",
      "statut": "publié",
-     "date": "2026-09-23"
+     "date": "2026-09-23",
+     "notion": "https://www.notion.so/3dfbebf1e51b8159bad3d19e79125518"
     },
     {
      "titre": "Agence SEO Grasse (110 rech./mois)",
      "url": "https://decupler.com/agence-seo-grasse/",
      "statut": "publié",
-     "date": "2026-09-23"
+     "date": "2026-09-23",
+     "notion": "https://www.notion.so/3dfbebf1e51b8168ba74f90e39a84c74"
     },
     {
      "titre": "Agence SEO Menton (110 rech./mois)",
      "url": "https://decupler.com/agence-seo-menton/",
      "statut": "publié",
-     "date": "2026-09-23"
+     "date": "2026-09-23",
+     "notion": "https://www.notion.so/3dfbebf1e51b819a8633d2c68fa0ba1d"
     },
     {
      "titre": "Agence SEO Fréjus (140 rech./mois)",
      "url": "https://decupler.com/agence-seo-frejus/",
      "statut": "publié",
-     "date": "2026-09-23"
+     "date": "2026-09-23",
+     "notion": "https://www.notion.so/3dfbebf1e51b819fb19bf4fe6acd8cea"
     },
     {
      "titre": "Agence SEO Cagnes-sur-Mer (70 rech./mois)",
      "url": "https://decupler.com/agence-seo-cagnes-sur-mer/",
      "statut": "publié",
-     "date": "2026-09-23"
+     "date": "2026-09-23",
+     "notion": "https://www.notion.so/3dfbebf1e51b8147a388fe1484a72f10"
     },
     {
      "titre": "Consultant SEO Nice (880 rech./mois) — absorbe « expert seo nice » (210), « freelance seo nice » (140)",
      "url": "https://decupler.com/consultant-seo-nice/",
      "statut": "publié",
-     "date": "2026-09-23"
+     "date": "2026-09-23",
+     "notion": "https://www.notion.so/3dfbebf1e51b81c6aae0da4d79c0601d"
     },
     {
      "titre": "Consultant SEO Marseille (1000 rech./mois)",
      "url": "https://decupler.com/consultant-seo-marseille/",
      "statut": "publié",
-     "date": "2026-09-23"
+     "date": "2026-09-23",
+     "notion": "https://www.notion.so/3dfbebf1e51b81749c45fc37357eb0eb"
     },
     {
      "titre": "Consultant SEO Toulon (480 rech./mois)",
      "url": "https://decupler.com/consultant-seo-toulon/",
      "statut": "publié",
-     "date": "2026-09-23"
+     "date": "2026-09-23",
+     "notion": "https://www.notion.so/3dfbebf1e51b81078352d91198e763fb"
     },
     {
      "titre": "Consultant SEO Cannes (320 rech./mois) — absorbe « expert seo cannes » (30)",
      "url": "https://decupler.com/consultant-seo-cannes/",
      "statut": "publié",
-     "date": "2026-09-23"
+     "date": "2026-09-23",
+     "notion": "https://www.notion.so/3dfbebf1e51b815c9877fc08f372aaa7"
     },
     {
      "titre": "Consultant SEO Monaco (110 rech./mois) — absorbe « expert seo monaco » (30)",
      "url": "https://decupler.com/consultant-seo-monaco/",
      "statut": "publié",
-     "date": "2026-09-23"
+     "date": "2026-09-23",
+     "notion": "https://www.notion.so/3dfbebf1e51b818d856cf709e3d91a55"
     },
     {
      "titre": "Agence SEO Var (90 rech./mois) — absorbe « agence référencement var » (90)",
      "url": "https://decupler.com/agence-seo-var/",
      "statut": "publié",
-     "date": "2026-09-23"
+     "date": "2026-09-23",
+     "notion": "https://www.notion.so/3e4bebf1e51b81c7aaf5d46aa0f068de"
     },
     {
      "titre": "Consultant SEO Aix-en-Provence (140 rech./mois)",
      "url": "https://decupler.com/consultant-seo-aix-en-provence/",
      "statut": "publié",
-     "date": "2026-09-23"
+     "date": "2026-09-23",
+     "notion": "https://www.notion.so/3e4bebf1e51b813c81c3c6db3591f6cd"
     },
     {
      "titre": "Consultant SEO Montpellier (590 rech./mois)",
      "url": "https://decupler.com/consultant-seo-montpellier/",
      "statut": "publié",
-     "date": "2026-09-23"
+     "date": "2026-09-23",
+     "notion": "https://www.notion.so/3e4bebf1e51b814d824dfe36ecade3f0"
     },
     {
      "titre": "Consultant SEO Lyon (1600 rech./mois)",
      "url": "https://decupler.com/consultant-seo-lyon/",
      "statut": "publié",
-     "date": "2026-09-23"
+     "date": "2026-09-23",
+     "notion": "https://www.notion.so/3e4bebf1e51b81ffa6eedd1b69e3b574"
     },
     {
      "titre": "Consultant SEO Bordeaux (480 rech./mois)",
      "url": "https://decupler.com/consultant-seo-bordeaux/",
      "statut": "publié",
-     "date": "2026-09-23"
+     "date": "2026-09-23",
+     "notion": "https://www.notion.so/3e4bebf1e51b813b916acc0c7a3e11c8"
     },
     {
      "titre": "Consultant SEO Toulouse (320 rech./mois)",
      "url": "https://decupler.com/consultant-seo-toulouse/",
      "statut": "publié",
-     "date": "2026-09-23"
+     "date": "2026-09-23",
+     "notion": "https://www.notion.so/3e4bebf1e51b81fe8d90ef840e505efb"
     }
    ]
   },
@@ -1296,5 +1336,23 @@
    "wins": [],
    "contenus": []
   }
+ },
+ "theme": {
+  "mode": "sombre",
+  "fond": "#07080f",
+  "carte": "#0f1120",
+  "encre": "#e8e9f2",
+  "doux": "#9aa0b5",
+  "trait": "#23263a",
+  "trait_fort": "#33374f",
+  "accent": "#9d86ff",
+  "accent_doux": "#1e1a3a",
+  "lien": "#9d86ff",
+  "cta": "#00E5A0",
+  "cta_texte": "#07080f",
+  "titre": "\"Syne\",system-ui,sans-serif",
+  "texte": "\"DM Sans\",system-ui,sans-serif",
+  "rayon": "14px",
+  "polices": "https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap"
  }
 }

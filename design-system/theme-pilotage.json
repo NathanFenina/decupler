@@ -1,0 +1,7 @@
+{"mode": "sombre",
+ "fond": "#07080f", "carte": "#0f1120", "encre": "#e8e9f2", "doux": "#9aa0b5",
+ "trait": "#23263a", "trait_fort": "#33374f",
+ "accent": "#9d86ff", "accent_doux": "#1e1a3a", "lien": "#9d86ff",
+ "cta": "#00E5A0", "cta_texte": "#07080f",
+ "titre": "\"Syne\",system-ui,sans-serif", "texte": "\"DM Sans\",system-ui,sans-serif", "rayon": "14px",
+ "polices": "https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap"}
