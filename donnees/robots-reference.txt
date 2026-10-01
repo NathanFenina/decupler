@@ -1,0 +1,26 @@
+# ====================================================================
+# robots.txt ÉCRIT par le plugin « Décupler — Budget de crawl » v1.3.4, le 2026-09-29.
+# Fichier physique : cet hébergeur ne transmet pas /robots.txt à
+# WordPress. Le plugin le réécrit à chaque nouvelle version.
+# ====================================================================
+
+User-agent: *
+
+# Recherche interne : espace d'URL infini, aucune valeur pour Google.
+Disallow: /*?s=
+Disallow: /*&s=
+
+# Paramètres de suivi et d'attachement : duplicats de pages existantes.
+Disallow: /*?utm_
+Disallow: /*&utm_
+Disallow: /*?attachment_id=
+Disallow: /*?replytocom=
+
+# Administration, hors l'endpoint ajax dont le front a besoin.
+Disallow: /wp-admin/
+Allow: /wp-admin/admin-ajax.php
+
+# Pas de « Disallow: /page/ » : la pagination du blog est légitime. La
+# pagination hors limites est traitée en 404 par ce plugin.
+
+Sitemap: https://decupler.com/sitemap_index.xml
