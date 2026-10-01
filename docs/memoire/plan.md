@@ -10,7 +10,7 @@ de vérité par page ; ce fichier dit l'ordre de marche.
    (inspection : 34 pages « détectées, non indexées », 9 inconnues de Google).
    /claude-skills-seo/ demandée le 29/09.
 2. **Freelance** : scan Wordfence complet, mu-plugins, functions.php ; supprimer
-   les 7 comptes « maintable » si rien ne les recrée.
+   les comptes suspects si rien ne les recrée.
 3. **Lead magnets v2** (skill `lead-magnet`), par priorité Notion :
    - ~~P1 /claude-skills-seo/~~ fait le 29/09 ; suivre « claude seo » et
      « seo skills » (position 19 avant refonte) fin octobre ;
