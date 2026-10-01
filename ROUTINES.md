@@ -1,9 +1,19 @@
 # Les routines de Décupler
 
-Quatre routines font tourner ce projet en autonomie. Créez-les sur
-https://claude.ai/code/routines → **New routine** → **Cloud**.
+**Une seule routine par projet, le vendredi** (`hebdo`) : elle contrôle le
+site, exécute les actions validées, mesure, et écrit le bilan de la semaine
+dans l'onglet du mois de la page de suivi ; le premier vendredi du mois, elle
+fait aussi le rapport et les propositions. C'est le rythme par défaut : sur un
+site à quelques centaines de clics par mois, Search Console bouge trop
+lentement pour qu'un passage quotidien trouve autre chose que du bruit.
 
-## Réglages communs aux quatre
+Les quatre routines séparées (veille quotidienne, optimisation, contenu,
+rapport) restent possibles pour un gros site, où une journée de panne coûte
+cher. Ne jamais faire tourner les deux formules à la fois.
+
+Créez la routine sur https://claude.ai/code/routines → **New routine** → **Cloud**.
+
+## Réglages communs
 
 - **Dépôt** : ce dépôt uniquement. Une routine à un seul dépôt lit son
   `CLAUDE.md`, ses skills, ses agents et son `.mcp.json`.
@@ -26,54 +36,33 @@ https://claude.ai/code/routines → **New routine** → **Cloud**.
 - **Heure** : quelques minutes après l'heure pile (7 h 07 et non 7 h 00),
   sinon le départ peut glisser de plusieurs minutes.
 
-> Routines créées par l'agent le 30/09/2026 dans la session dédiée
-> « Décupler — pilotage SEO (routines) ». Rien à créer à la main.
+## Le prompt de chaque routine : court, il renvoie au dépôt
 
-## 1 · Veille — tous les jours, 7 h 17
-
-```
-Tu es le SEO manager de ce projet. Lis CLAUDE.md.
-Lance le skill seo-cycle en mode veille.
-N'écris rien sur le site. Si tout va bien, termine sans rien produire
-d'autre que le journal de run. S'il y a une anomalie, décris-la dans
-rapports/a-valider.md avec quoi, depuis quand, combien ça coûte, quoi faire.
-Commite et pousse sur une branche claude/veille-<date>.
-```
-
-## 2 · Optimisation — le jeudi, 7 h 27
+Les consignes vivent dans `routines/<mode>.md`, versionnées avec le projet.
+Le prompt de la routine ne fait que les lire :
 
 ```
-Tu es le SEO manager de ce projet. Lis CLAUDE.md.
-Lance le skill seo-cycle en mode optimisation.
-Respecte strictement les niveaux d'autonomie de CLAUDE.md et les plafonds de
-decupler-seo.config.yml. Journalise chaque modification publiée avec
-seo-journal-mesure AVANT de passer à la suivante.
-Commite et pousse sur une branche claude/optimisation-<date>.
+Routine de <mode> de Décupler. Commence par `git fetch origin main`, puis lis
+les instructions à jour avec `git show origin/main:routines/<mode>.md` et
+suis-les à la lettre, étape par étape.
 ```
 
-## 3 · Contenu (brouillon WordPress) — le mardi, 7 h 22
+Pourquoi : le prompt d'une routine ne se modifie que depuis la conversation
+qui l'a créée. Avec ce prompt court, améliorer une routine revient à modifier
+un fichier du dépôt, depuis n'importe quelle conversation, sans la recréer.
 
-```
-Tu es le SEO manager de ce projet. Lis CLAUDE.md.
-Lance le skill seo-cycle en mode contenu.
-Produis au plus le nombre de pages neuves autorisé par semaine, publiées
-selon publication.mode de la config (brouillon CMS, ou pull request sur un
-site en code), et liste-les dans rapports/a-valider.md.
-Commite et pousse sur une branche claude/contenu-<date>.
-```
+| Routine | `<mode>` | Quand (Europe/Paris) |
+|---|---|---|
+| **Hebdo (par défaut)** | `hebdo` | le vendredi, 7 h 07 |
+| *ou, pour un gros site :* | | |
+| Veille | `veille` | tous les jours, 7 h 07 |
+| Optimisation | `optimisation` | le lundi, 7 h 17 |
+| Contenu | `contenu` | le mercredi, 7 h 17 |
+| Rapport et roadmap | `rapport` | le 1er du mois, 7 h 27 |
 
-## 4 · Rapport — le 1er du mois, 7 h 37
-
-```
-Tu es le SEO manager de ce projet. Lis CLAUDE.md.
-Lance le skill seo-cycle en mode rapport : mesure toutes les modifications
-arrivées à échéance (seo-journal-mesure), mets à jour
-memoire/apprentissages.md, relève la cartographie du mois
-(cartographie.py mensuel → rapports/cartographie-<AAAA-MM>.md), puis écris
-rapports/<AAAA-MM>.md et rapports/<AAAA-MM>.json. Vérifie aussi rapports/runs/ : signale toute
-routine qui n'a pas produit son journal de run ce mois-ci.
-Commite et pousse sur une branche claude/rapport-<date>.
-```
+Sur plusieurs projets, décalez les heures de 5 minutes d'un projet à l'autre,
+et l'optimisation d'un jour par rapport à toute autre routine qui écrit les
+mêmes fichiers.
 
 ## Pourquoi un journal de run
 
@@ -82,8 +71,14 @@ et s'est terminée sans erreur d'infrastructure, **pas** que le travail a été
 fait. Chaque exécution écrit donc `rapports/runs/<date>-<mode>.md`, et la
 routine de rapport vérifie qu'aucune n'a manqué.
 
-## Votre temps : 30 minutes le lundi
+## Votre temps : 20 minutes le vendredi
 
-1. Lire `rapports/a-valider.md`
-2. Valider ou refuser, et consigner dans `memoire/decisions.md`
-3. Fusionner les branches `claude/` que vous acceptez
+1. Ouvrir la page de suivi, onglet du mois : lire « À décider », valider ou
+   refuser, laisser une remarque si besoin (la routine la lit comme une consigne)
+2. Débloquer ce qui vous attend (« bloquée » : la page dit qui ou quoi)
+3. Fusionner les PR marquées « à fusionner par un humain »
+
+> **Depuis le 01/10/2026 : une seule routine, « Décupler — hebdo (vendredi) »**,
+> le vendredi à 7 h 07, dans la session dédiée « Décupler — pilotage SEO
+> (routines) ». Les quatre anciennes (veille, optimisation, contenu, rapport)
+> sont désactivées, pas supprimées : on peut les réactiver si le site grossit.

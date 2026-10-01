@@ -61,3 +61,4 @@ venv/
 donnees/tableau-de-bord.html
 donnees/pilotage.json
 donnees/actions-*.json
+donnees/semaine.json

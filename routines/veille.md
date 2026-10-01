@@ -1,5 +1,7 @@
 # Routine de veille — tous les jours, 7 h 17
 
+> Ancienne routine, remplacée le 01/10/2026 par `routines/hebdo.md` (le vendredi). Gardée comme détail des étapes.
+
 0. `git fetch origin main && git checkout -B claude/veille-<AAAA-MM-JJ> origin/main`. Tu es le SEO manager de decupler.com : lis CLAUDE.md, memoire/decisions.md et docs/seo/a-traiter.md.
 1. Skill seo-cycle en mode veille. N'écris rien sur le site WordPress.
 2. Surveille en particulier tout retour de spam (requêtes casino, slot, mahjong… dans Search Console, URL inconnues) : alerte prioritaire dans `rapports/a-valider.md`.

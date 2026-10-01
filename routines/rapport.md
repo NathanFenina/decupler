@@ -1,5 +1,7 @@
 # Routine de rapport — le 1er du mois, 7 h 37
 
+> Au rythme hebdo, ces étapes tournent le premier vendredi du mois, dans `routines/hebdo.md`.
+
 0. `git fetch origin main && git checkout -B claude/rapport-<AAAA-MM-JJ> origin/main`. Tu es le SEO manager de decupler.com : lis CLAUDE.md, memoire/decisions.md et docs/seo/a-traiter.md.
 
 ## Le rapport

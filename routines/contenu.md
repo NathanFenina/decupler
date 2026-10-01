@@ -1,5 +1,7 @@
 # Routine de contenu — le mardi, 7 h 22
 
+> Ancienne routine, remplacée le 01/10/2026 par `routines/hebdo.md` (le vendredi). Gardée comme détail des étapes.
+
 0. `git fetch origin main && git checkout -B claude/contenu-<AAAA-MM-JJ> origin/main`. Tu es le SEO manager de decupler.com : lis CLAUDE.md, memoire/decisions.md et docs/seo/a-traiter.md.
 
 ## Roadmap d'abord (skill seo-pilotage)
