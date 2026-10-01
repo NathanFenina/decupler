@@ -9,7 +9,7 @@ de Décupler. Son but unique :
 
 Ce projet **NE construit PAS** le thème WordPress (c'est un **freelance externe**
 qui s'en charge, ailleurs) et n'a **plus rien à voir avec Next.js** (migration
-abandonnée — voir historique dans `docs/`).
+abandonnée — historique dans `archives/`).
 
 ## Contexte
 - Le site WordPress de Décupler a été **hacké**, puis **réparé par une freelance**.

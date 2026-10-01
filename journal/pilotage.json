@@ -561,18 +561,17 @@
   },
   {
    "id": "fe0614ed",
-   "titre": "Passer le dépôt GitHub NathanFenina/decupler en privé",
+   "titre": "Passer le dépôt GitHub NathanFenina/decupler en privé (GitHub › Settings › Danger zone, à faire par Nathan)",
    "type": "decision",
    "page": "",
-   "pourquoi": "Le dépôt est public ; le site a déjà été piraté",
+   "pourquoi": "Aucun workflow ni routine n'a besoin qu'il soit public (les Actions tournent aussi en privé). Public, il montre à tous la structure et les protections du site après le piratage, et la roadmap. Refuser = on le garde public, sans jamais y écrire de détail de sécurité.",
    "gain": "",
    "effort": "M",
    "source": "conversation",
    "mois": "2026-10",
-   "statut": "bloquee",
+   "statut": "proposee",
    "maj": "2026-10-01",
-   "chantier": "securite",
-   "attend": "Nathan : GitHub › Settings › Danger zone (Claude n'a pas ce droit)"
+   "chantier": "securite"
   },
   {
    "id": "d22f2214",
@@ -869,6 +868,49 @@
    "maj": "2026-10-01",
    "chantier": "pilotage",
    "lien": "https://www.notion.so/97c5e3eaa05b4d0aa2277004a93971f6"
+  },
+  {
+   "id": "4140c42d",
+   "titre": "Supprimer les branches GitHub inutiles (5 fusionnées, 9 anciennes de juillet-août)",
+   "type": "technique",
+   "page": "",
+   "pourquoi": "Fusionnées, sans risque : calibrate-seo-geo-score-hrcmz4, decupler-seo-adoption, nice-planck-ppqiji, optimisation-2026-10-01, publish-wordpress-pages-ccavr5. Anciennes (restaurables depuis GitHub pendant un temps après suppression) : contenu-recommandations, decupler-html-reporting, form-selection-strategy, gemini-cmp-installation, gestalt-html-reporting, landings-oom-offre, mcp-gemini-install, notion-keyword-mapping, orators-seo-audit-mcps. Garder focused-noether-7kr2zz et veille-2026-10-01.",
+   "gain": "",
+   "effort": "S",
+   "source": "conversation",
+   "mois": "2026-10",
+   "statut": "bloquee",
+   "maj": "2026-10-01",
+   "chantier": "pilotage",
+   "attend": "Nathan : github.com/NathanFenina/decupler/branches → icône corbeille (la session ne peut pas supprimer de branche)"
+  },
+  {
+   "id": "aa56ae08",
+   "titre": "Dossiers rangés : contenus/ fusionné dans content/, historique de la migration dans archives/",
+   "type": "technique",
+   "page": "",
+   "pourquoi": "",
+   "gain": "",
+   "effort": "M",
+   "source": "conversation",
+   "mois": "2026-10",
+   "statut": "faite",
+   "maj": "2026-10-01",
+   "chantier": "pilotage"
+  },
+  {
+   "id": "ea4ffa13",
+   "titre": "Skill cartographie-client : il cite docs/offre/blueprint-front-end-v1.md, absent du dépôt — le retrouver (dépôt decupler-proposals ?) ou retirer la référence",
+   "type": "decision",
+   "page": "",
+   "pourquoi": "",
+   "gain": "",
+   "effort": "S",
+   "source": "conversation",
+   "mois": "2026-10",
+   "statut": "proposee",
+   "maj": "2026-10-01",
+   "chantier": "pilotage"
   }
  ],
  "nom": "Décupler",

@@ -89,7 +89,7 @@ opportunites:
   mix: "60/25/15"
 
 sorties:
-  dossier: ./contenus
+  dossier: ./content          # contenus du projet (contenus/ de la méthode fusionné ici le 01/10)
   langue: fr
 
 # Tableau de bord partagé (skill seo-pilotage) : roadmap validée par Nathan.
