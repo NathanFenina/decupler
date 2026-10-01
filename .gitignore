@@ -45,3 +45,5 @@ generated-images/
 .seo-decupler/backups/
 
 donnees/tableau-de-bord.html
+donnees/pilotage.json
+donnees/actions-*.json

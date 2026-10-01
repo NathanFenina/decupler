@@ -15,3 +15,5 @@
 2. Sur WordPress, uniquement par `python3 .claude/decupler-seo/scripts/wp.py` : title et meta (`wp.py meta`), contenus en révision, jamais de mise en ligne directe d'une page publiée ; garde-fou respecté. Skills du projet : yoast-score, decupler-page-builder.
 3. Journalise chaque modification avec seo-journal-mesure. Liste dans `rapports/a-valider.md` ce qui attend une validation dans l'admin WordPress.
 4. Pousse, ouvre une pull request vers main et fusionne-la (fichiers du dépôt seulement). Journal de run `rapports/runs/<AAAA-MM-JJ>-optimisation.md`.
+
+**Si une étape est refusée** par les permissions de la session (fusion, suppression, push) : n'insiste pas et n'attends aucune réponse, personne ne lit pendant la routine. Laisse la PR ouverte avec « à fusionner par un humain » dans sa description et dans le journal de run, ajoute-la sur le tableau de bord (`pilotage.py ajouter --titre "Fusionner la PR <n°>" --statut validee --lien <PR>`, puis republie), et termine. Les fichiers `donnees/tableau-de-bord.html`, `donnees/pilotage.json` et `donnees/actions-*.json` sont ignorés par git : ne les supprime pas.
